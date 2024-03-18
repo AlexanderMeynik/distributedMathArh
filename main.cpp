@@ -68,11 +68,9 @@ int main(int argc, char* argv[]) {
         std::vector<Eigen::Vector<long double,2>>a=avec[i];
         int N=a.size();
         Dipoles<long double> d(N,a);
-        d.solve2();
+        d.solve_();
         auto solut2=d.getSolution_();
-        d.solve();
-        auto solut=d.getSolution();
-        std::cout<<(solut.head(2*N)-solut2[0]).norm()<<"\n"<<(solut.segment(2*N,2*N)-solut2[1]).norm()<<"\n\n\n";
+        //std::cout<<(d.getMatrixx2()-d.getMatrixx()).norm()<<"\n";
         //Aox-0,Aoy-1
         //Box-2,Boy-3
         /*std::array<std::vector<long double>,4> coefss={std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0)};
@@ -133,24 +131,25 @@ int main(int argc, char* argv[]) {
 
 void
 printToFile(int N, vector<Eigen::Vector<long double, 2>> &a, dipoles::Dipoles<long double> &d, string &basicString,int id) {
-    auto solut=d.getSolution();
+    auto solut=d.getSolution_();
     std::ofstream out(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.txt");
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
     out<<"Матрица\n"<<d.getMatrixx().format(CleanFmt)<<"\n\n";
     out<<"Координаты диполей\n";
     for_each(a.begin(),a.end(),[&out](Eigen::Vector<long double,2>& n) { out << n(0) << '\t'<<n(1)<<"\n"; });
     out<<"\n\n";
-    out<<"Правая часть\n"<<d.getRightPart().format(CleanFmt)<<"\n\n";
 
-    out<<"Вектор решения\n"<<solut.format(CleanFmt)<<"\n\n";
+    out<<"Правая часть\n"<<d.getRightPart()[0].format(CleanFmt)<<'\n'<<d.getRightPart()[1].format(CleanFmt)<<"\n\n";
+
+    out<<"Вектор решения\n"<<solut[0].format(CleanFmt)<<'\n'<<solut[1].format(CleanFmt)<<"\n\n";
     out<<"Коеффициенты по номеру уравнения\n";
     /*auto newas=d.getMatrixx()*solut-d.getRightPart();
     std::cout<<"\n\n\n"<<newas<<"\n Norm="<<newas.norm()<<"\n\n";*/
 
 
     for (int i = 0; i < N; ++i) {
-        out<<"A"<<i+1<<"x = "<<solut.coeffRef(2*i)<<", B"<<i+1<<"x = "<<solut.coeffRef(2*N+2*i)<<"\n";
-        out<<"A"<<i+1<<"y = "<<solut.coeffRef(2*i+1)<<", B"<<i+1<<"y = "<<solut.coeffRef(2*N+2*i+1)<<"\n";
+        out<<"A"<<i+1<<"x = "<<solut[0].coeffRef(2*i)<<", B"<<i+1<<"x = "<<solut[1].coeffRef(2*i)<<"\n";
+        out<<"A"<<i+1<<"y = "<<solut[0].coeffRef(2*i+1)<<", B"<<i+1<<"y = "<<solut[1].coeffRef(2*i+1)<<"\n";
     }
 
     /*for (int i = 0; i < N; ++i) {

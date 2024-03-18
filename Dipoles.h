@@ -17,40 +17,11 @@ namespace dipoles {
     public:
         Dipoles(int N, std::vector<Eigen::Vector<T,2>> &xi);
 
-        void solve(){
-            solution=matrixx.colPivHouseholderQr().solve(rightPart);
-            return ;
-        };
 
-        void solve2(){
-
-            Eigen::Matrix<T,Eigen::Dynamic,-1> tt=(M1_*M1_+M2_*M2_).inverse();
-
-            //Eigen::Matrix<T,Eigen::Dynamic,1> f1=rightPart.head(2*N_);
-            //Eigen::Matrix<T,Eigen::Dynamic,1> f2=rightPart.tail(2*N_);
-            /*std::cout<<M1.eigenvalues()<<"\n\n"<<M2.eigenvalues()<<"\n\n";
-
-
-            Eigen::LLT<Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic>> lltOfA2(-M2); // compute the Cholesky decomposition of A
-            if(lltOfA2.info() == Eigen::NumericalIssue)
-            {
-                throw std::runtime_error("Possibly non semi-positive definitie matrix M2!");
-            }*/
-
-            //Eigen::Vector<T,Eigen::Dynamic> ttt=(M1_*f1+M2_*f2);
-            //Eigen::Vector<T,Eigen::Dynamic>  ttt2=(M1_*f2-M2_*f1);
-            //Eigen::Vector<T,Eigen::Dynamic> tttt=tt*(M1_*f1+M2_*f2);
-            //Eigen::Vector<T,Eigen::Dynamic> tttt2=tt*(M1_*f2-M2_*f1);
-            //std::cout<<tttt<<"\n"<<tttt2<<"\n\n\n\n";
-            /*for (int i = 0; i < 2*N_; ++i) {
-                solution.head(2*N_).data()[i]=tttt.data()[i];
-                solution.tail(2*N_).data()[i+2*N_]=tttt2.data()[i];
-            }*/
+        void solve_(){
+            Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> tt=(M1_*M1_+M2_*M2_).inverse();
             solution_[0]=tt*(M1_*f1+M2_*f2);
             solution_[1]=tt*(M1_*f2-M2_*f1);
-            //solution.head(2*N_)=tttt;
-            //solution.tail(2*N_)=tttt2;
-            //solution=matrixx.colPivHouseholderQr().solve(rightPart);
             return ;
         };
 
@@ -70,25 +41,22 @@ namespace dipoles {
         Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> matrixx;
         Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> M1_;
         Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> M2_;
-        Eigen::Vector<T,Eigen::Dynamic> rightPart;
+        //Eigen::Vector<T,Eigen::Dynamic> rightPart;
         Eigen::Vector<T,Eigen::Dynamic> f1;
         Eigen::Vector<T,Eigen::Dynamic> f2;
-        Eigen::Vector<T,Eigen::Dynamic> solution;
+        //Eigen::Vector<T,Eigen::Dynamic> solution;
         std::array<Eigen::Vector<T,Eigen::Dynamic>,2> solution_;
     public:
-        const Eigen::Vector<T,Eigen::Dynamic> &getSolution() const {
-            return solution;
-        }
 
         const std::array<Eigen::Vector<T,Eigen::Dynamic>,2> &getSolution_() const {
             return solution_;
         }
 
     public:
-        const Eigen::Vector<T,Eigen::Dynamic> &getRightPart() const;
+        const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
 
     public:
-        const Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> &getMatrixx() const;
+        const Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> &getMatrixx();
 
     private:
 
@@ -118,13 +86,22 @@ namespace dipoles {
     }
 
     template<class T>
-    const Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> &Dipoles<T>::getMatrixx() const {
+    const Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> &Dipoles<T>::getMatrixx() {
+
+        matrixx.resize(4*N_,4*N_);
+        matrixx.topLeftCorner(2*N_,2*N_).noalias()=M1_;
+        matrixx.topRightCorner(2*N_,2*N_).noalias()=-M2_;
+        matrixx.bottomLeftCorner(2*N_,2*N_).noalias()=M2_;
+        matrixx.bottomRightCorner(2*N_,2*N_).noalias()=M1_;
+        //std::cout<<MM<<"\n\n";
+
         return matrixx;
     }
 
     template<class T>
-    const Eigen::Vector<T,Eigen::Dynamic> &Dipoles<T>::getRightPart() const {
-        return rightPart;
+    const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> Dipoles<T>::getRightPart(){
+
+        return {f1,f2};
     }
 
     template<class T>
@@ -199,87 +176,15 @@ namespace dipoles {
                 }
             }
 
-            //std::cout<<matrixx<<"\n\n\n";
-
-
-           /* for (int I = 0; I < N_; ++I) {//MAS
-                for (int M = 0; M < N_; ++M) {
-                    if(I==M)
-                    {
-                        matrixx.block(2 * I+sectors[2].first, 2 * M+sectors[2].second, 2, 2) = Eigen::Matrix<T,2,2>::Identity()*(-yo*omega);
-                    }
-                    else {
-
-                        Eigen::Vector<T,2> rim = getRIM(M, I);
-                        T rMode = getDistance(I, M);
-                        Eigen::Matrix<T,2,2> K1;
-                        Eigen::Matrix<T,2,2> K2;
-                        getMatrixes(rim, rMode, K1, K2);
-                        T arg = omega * rMode / c;
-                        matrixx.block(2 * I+sectors[2].first, 2 * M+sectors[2].second, 2, 2) = -an * (K1 * sin(arg) + K2 * cos(arg));
-                    }
-
-                }
-            }
-            //std::cout<<matrixx<<"\n\n\n";
-
-
-            for (int I = 0; I < N_; ++I) {//MBs
-                for (int M = 0; M < N_; ++M) {
-                    if(I==M)
-                    {
-                        matrixx.block(2 * I+sectors[3].first, 2 * M+sectors[3].second, 2, 2) = Eigen::Matrix<T,2,2>::Identity()*(omega0*omega0-omega*omega);
-                    }
-                    else {
-
-                        Eigen::Vector<T,2> rim = getRIM(M, I);
-                        T rMode = getDistance(I, M);
-                        Eigen::Matrix<T,2,2> K1;
-                        Eigen::Matrix<T,2,2> K2;
-                        getMatrixes(rim, rMode, K1, K2);
-                        T arg = omega * rMode / c;
-                        matrixx.block(2 * I+sectors[3].first, 2 * M+sectors[3].second, 2, 2) = -an * (-K2 * sin(arg) + K1 * cos(arg));
-                    }
-
-                }
-            }*/
-
-
 
             f1.resize(2*N_);
             f2.resize(2*N_);
-            rightPart.resize(4*N_);
-            /* for (int i = 0; i < N_; ++i) {
-                 rightPart(i)=0;
-                 rightPart(N_+i)=a*eps;
-                 rightPart(2*N_+i)=a*eps;
-                 rightPart(3*N_+i)=0;
-             }*/
             for (int i = 0; i < N_; ++i) {
-                /*rightPart(2*i)=0;
-                rightPart(2*i+1)=a*eps;
-
-                rightPart(2*N_+2*i)=a*eps;
-                rightPart(2*N_+2*i+1)=0;*/
-
-                rightPart(2*i)=an*eps;
-                rightPart(2*i+1)=0;
-
-                rightPart(2*N_+2*i)=0;
-                rightPart(2*N_+2*i+1)=an*eps;
-
                 f1(2*i)=an*eps;
                 f1(2*i+1)=0;
                 f2(2*i)=0;
                 f2(2*i+1)=an*eps;
             }
-            //std::cout<<matrixx<<"\n\n\n"<<rightPart<<"\n\n\n";
-            /*auto print = [](const int& n) { std::cout << n << ' '; };
-            std::for_each(rightPart.begin(),rightPart.end(),print);
-            std::for_each(xi_.begin(),xi_.end(),[](Vector2d& n) { std::cout << n(0) << '\t'<<n(1)<<"||\n"; });
-            std::cout<<1;*/
-
-
     }
 
 }
