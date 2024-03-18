@@ -41,10 +41,8 @@ namespace dipoles {
         Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> matrixx;
         Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> M1_;
         Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> M2_;
-        //Eigen::Vector<T,Eigen::Dynamic> rightPart;
         Eigen::Vector<T,Eigen::Dynamic> f1;
         Eigen::Vector<T,Eigen::Dynamic> f2;
-        //Eigen::Vector<T,Eigen::Dynamic> solution;
         std::array<Eigen::Vector<T,Eigen::Dynamic>,2> solution_;
     public:
 
@@ -53,7 +51,7 @@ namespace dipoles {
         }
 
     public:
-        const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
+        std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
 
     public:
         const Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> &getMatrixx();
@@ -99,7 +97,7 @@ namespace dipoles {
     }
 
     template<class T>
-    const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> Dipoles<T>::getRightPart(){
+            std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> Dipoles<T>::getRightPart(){
 
         return {f1,f2};
     }
@@ -109,7 +107,6 @@ namespace dipoles {
             xi_=xi;
             an=a/N_;
             //double rdist= getDistance()
-            matrixx.resize(4 * N_, 4 * N_);
             M1_.resize(2 * N_, 2 * N_);
             M2_.resize(2 * N_, 2 * N_);
             //matrixx=Eigen::Matrix<T,4 * N_, 4 * N_>;
@@ -124,8 +121,6 @@ namespace dipoles {
                     if(I==M)
                     {
                         auto id=Eigen::Matrix<T,2,2>::Identity()*(omega0*omega0-omega*omega);
-                        matrixx.block(2 * I, 2 * M, 2, 2) = id;
-                        matrixx.block(2 * I+sectors[3].first, 2 * M+sectors[3].second, 2, 2) = id;
                         M1_.block(2 * I, 2 * M, 2, 2)=id;
                     }
                     else {
@@ -137,8 +132,6 @@ namespace dipoles {
                         getMatrixes(rim, rMode, K1, K2);
                         T arg = omega * rMode / c;
                         auto tmpmatr=-an * (K1 * cos(arg) - K2 * sin(arg));
-                        matrixx.block(2 * I, 2 * M, 2, 2) = tmpmatr;
-                        matrixx.block(2 * I+sectors[3].first, 2 * M+sectors[3].second, 2, 2) = tmpmatr;
                         M1_.block(2 * I, 2 * M, 2, 2)=tmpmatr;
                     }
 
@@ -152,8 +145,6 @@ namespace dipoles {
                     if(I==M)
                     {
                         auto id=Eigen::Matrix<T,2,2>::Identity()*(yo*omega);
-                        matrixx.block(2 * I+sectors[1].first, 2 * M+sectors[1].second, 2, 2)=id ;
-                        matrixx.block(2 * I+sectors[2].first, 2 * M+sectors[2].second, 2, 2)=-id ;
                         //matrixx.block<2, 2>(2 * I+sectors[1].first, 2 * M+sectors[1].second) = Eigen::Matrix<T,2,2>::Identity()*(yo*omega);
                         M2_.block(2 * I, 2 * M, 2, 2)=-id;
                     }
@@ -166,9 +157,6 @@ namespace dipoles {
                         getMatrixes(rim, rMode, K1, K2);
                         T arg = omega * rMode / c;
                         auto tmpmatr=-an * (K2 * cos(arg) +K1 * sin(arg));
-                        //auto tmpmatr1=an * (K2 * cos(arg) +K1 * sin(arg));
-                        matrixx.block(2 * I+sectors[1].first, 2 * M+sectors[1].second, 2, 2)  = -tmpmatr;
-                        matrixx.block(2 * I+sectors[2].first, 2 * M+sectors[2].second, 2, 2)  = tmpmatr;
 
                         M2_.block(2 * I, 2 * M, 2, 2)=tmpmatr;
                     }
