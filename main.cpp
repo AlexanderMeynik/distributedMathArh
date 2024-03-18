@@ -68,11 +68,14 @@ int main(int argc, char* argv[]) {
         std::vector<Eigen::Vector<long double,2>>a=avec[i];
         int N=a.size();
         Dipoles<long double> d(N,a);
+        d.solve2();
+        auto solut2=d.getSolution();
         d.solve();
         auto solut=d.getSolution();
+        std::cout<<solut-solut2<<"\n\n\n";
         //Aox-0,Aoy-1
         //Box-2,Boy-3
-        std::array<std::vector<long double>,4> coefss={std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0)};
+        /*std::array<std::vector<long double>,4> coefss={std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0)};
 
         for (int i = 0; i < N; ++i) {
             coefss[0][i]=solut.coeffRef(2*i);//Ax
@@ -81,7 +84,7 @@ int main(int argc, char* argv[]) {
             coefss[3][i]=solut.coeffRef(2*N+2*i+1);//By
             std::cout<<"A"<<i<<"x = "<<solut.coeffRef(2*i)<<", B"<<i<<"x = "<<solut.coeffRef(2*N+2*i)<<"\n";
             std::cout<<"A"<<i<<"y = "<<solut.coeffRef(2*i+1)<<", B"<<i<<"y = "<<solut.coeffRef(2*N+2*i+1)<<"\n";
-        }
+        }*/
         std::cout<<solut;
         //std::cout << "Hello, World!" << std::endl;
         printToFile(N, a, d, dirname,i);
@@ -141,8 +144,8 @@ printToFile(int N, vector<Eigen::Vector<long double, 2>> &a, dipoles::Dipoles<lo
 
     out<<"Вектор решения\n"<<solut.format(CleanFmt)<<"\n\n";
     out<<"Коеффициенты по номеру уравнения\n";
-    auto newas=d.getMatrixx()*solut-d.getRightPart();
-    std::cout<<"\n\n\n"<<newas<<"\n Norm="<<newas.norm()<<"\n\n";
+    /*auto newas=d.getMatrixx()*solut-d.getRightPart();
+    std::cout<<"\n\n\n"<<newas<<"\n Norm="<<newas.norm()<<"\n\n";*/
 
 
     for (int i = 0; i < N; ++i) {
