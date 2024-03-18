@@ -69,10 +69,10 @@ int main(int argc, char* argv[]) {
         int N=a.size();
         Dipoles<long double> d(N,a);
         d.solve2();
-        auto solut2=d.getSolution();
+        auto solut2=d.getSolution_();
         d.solve();
         auto solut=d.getSolution();
-        std::cout<<solut-solut2<<"\n\n\n";
+        std::cout<<(solut.head(2*N)-solut2[0]).norm()<<"\n"<<(solut.segment(2*N,2*N)-solut2[1]).norm()<<"\n\n\n";
         //Aox-0,Aoy-1
         //Box-2,Boy-3
         /*std::array<std::vector<long double>,4> coefss={std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0),std::vector<long double>(N,0)};
@@ -85,7 +85,7 @@ int main(int argc, char* argv[]) {
             std::cout<<"A"<<i<<"x = "<<solut.coeffRef(2*i)<<", B"<<i<<"x = "<<solut.coeffRef(2*N+2*i)<<"\n";
             std::cout<<"A"<<i<<"y = "<<solut.coeffRef(2*i+1)<<", B"<<i<<"y = "<<solut.coeffRef(2*N+2*i+1)<<"\n";
         }*/
-        std::cout<<solut;
+        //std::cout<<"\n\n"<<solut<<"\n";
         //std::cout << "Hello, World!" << std::endl;
         printToFile(N, a, d, dirname,i);
     }

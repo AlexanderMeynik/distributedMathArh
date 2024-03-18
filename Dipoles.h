@@ -23,12 +23,11 @@ namespace dipoles {
         };
 
         void solve2(){
-            auto M1=matrixx.block(0,0,2*N_,2*N_);
-            auto M2=matrixx.block(2*N_,0,2*N_,2*N_);
-            Eigen::Matrix<T,Eigen::Dynamic,-1> tt=(M1*M1+M2*M2).inverse();
 
-            Eigen::Matrix<T,Eigen::Dynamic,1> f1=rightPart.head(2*N_);
-            Eigen::Matrix<T,Eigen::Dynamic,1> f2=rightPart.tail(2*N_);
+            Eigen::Matrix<T,Eigen::Dynamic,-1> tt=(M1_*M1_+M2_*M2_).inverse();
+
+            //Eigen::Matrix<T,Eigen::Dynamic,1> f1=rightPart.head(2*N_);
+            //Eigen::Matrix<T,Eigen::Dynamic,1> f2=rightPart.tail(2*N_);
             /*std::cout<<M1.eigenvalues()<<"\n\n"<<M2.eigenvalues()<<"\n\n";
 
 
@@ -38,18 +37,19 @@ namespace dipoles {
                 throw std::runtime_error("Possibly non semi-positive definitie matrix M2!");
             }*/
 
-            Eigen::Matrix<T,Eigen::Dynamic,1> ttt=(M1*f1+M2*f2);
-            Eigen::Matrix<T,Eigen::Dynamic,1>  ttt2=(M1*f2-M2*f1);
-            Eigen::Matrix<T,Eigen::Dynamic,1> tttt=tt*ttt;
-            Eigen::Matrix<T,Eigen::Dynamic,1> tttt2=tt*ttt2;
-            std::cout<<tttt<<"\n\n\n\n"<<tttt2<<"\n\n\n\n";
-            for (int i = 0; i < 2*N_; ++i) {
+            //Eigen::Vector<T,Eigen::Dynamic> ttt=(M1_*f1+M2_*f2);
+            //Eigen::Vector<T,Eigen::Dynamic>  ttt2=(M1_*f2-M2_*f1);
+            //Eigen::Vector<T,Eigen::Dynamic> tttt=tt*(M1_*f1+M2_*f2);
+            //Eigen::Vector<T,Eigen::Dynamic> tttt2=tt*(M1_*f2-M2_*f1);
+            //std::cout<<tttt<<"\n"<<tttt2<<"\n\n\n\n";
+            /*for (int i = 0; i < 2*N_; ++i) {
                 solution.head(2*N_).data()[i]=tttt.data()[i];
                 solution.tail(2*N_).data()[i+2*N_]=tttt2.data()[i];
-            }
-
-            //solution.head(2*N_).data()=tttt.data();
-            //solution.tail(2*N_).data()=tttt2.data();
+            }*/
+            solution_[0]=tt*(M1_*f1+M2_*f2);
+            solution_[1]=tt*(M1_*f2-M2_*f1);
+            //solution.head(2*N_)=tttt;
+            //solution.tail(2*N_)=tttt2;
             //solution=matrixx.colPivHouseholderQr().solve(rightPart);
             return ;
         };
@@ -68,11 +68,20 @@ namespace dipoles {
         };
 
         Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> matrixx;
+        Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> M1_;
+        Eigen::Matrix<T,Eigen::Dynamic,Eigen::Dynamic> M2_;
         Eigen::Vector<T,Eigen::Dynamic> rightPart;
+        Eigen::Vector<T,Eigen::Dynamic> f1;
+        Eigen::Vector<T,Eigen::Dynamic> f2;
         Eigen::Vector<T,Eigen::Dynamic> solution;
+        std::array<Eigen::Vector<T,Eigen::Dynamic>,2> solution_;
     public:
         const Eigen::Vector<T,Eigen::Dynamic> &getSolution() const {
             return solution;
+        }
+
+        const std::array<Eigen::Vector<T,Eigen::Dynamic>,2> &getSolution_() const {
+            return solution_;
         }
 
     public:
@@ -124,6 +133,8 @@ namespace dipoles {
             an=a/N_;
             //double rdist= getDistance()
             matrixx.resize(4 * N_, 4 * N_);
+            M1_.resize(2 * N_, 2 * N_);
+            M2_.resize(2 * N_, 2 * N_);
             //matrixx=Eigen::Matrix<T,4 * N_, 4 * N_>;
 
             std::vector<std::pair<int,int>> sectors(4);
@@ -138,6 +149,7 @@ namespace dipoles {
                         auto id=Eigen::Matrix<T,2,2>::Identity()*(omega0*omega0-omega*omega);
                         matrixx.block(2 * I, 2 * M, 2, 2) = id;
                         matrixx.block(2 * I+sectors[3].first, 2 * M+sectors[3].second, 2, 2) = id;
+                        M1_.block(2 * I, 2 * M, 2, 2)=id;
                     }
                     else {
 
@@ -150,6 +162,7 @@ namespace dipoles {
                         auto tmpmatr=-an * (K1 * cos(arg) - K2 * sin(arg));
                         matrixx.block(2 * I, 2 * M, 2, 2) = tmpmatr;
                         matrixx.block(2 * I+sectors[3].first, 2 * M+sectors[3].second, 2, 2) = tmpmatr;
+                        M1_.block(2 * I, 2 * M, 2, 2)=tmpmatr;
                     }
 
                 }
@@ -165,6 +178,7 @@ namespace dipoles {
                         matrixx.block(2 * I+sectors[1].first, 2 * M+sectors[1].second, 2, 2)=id ;
                         matrixx.block(2 * I+sectors[2].first, 2 * M+sectors[2].second, 2, 2)=-id ;
                         //matrixx.block<2, 2>(2 * I+sectors[1].first, 2 * M+sectors[1].second) = Eigen::Matrix<T,2,2>::Identity()*(yo*omega);
+                        M2_.block(2 * I, 2 * M, 2, 2)=-id;
                     }
                     else {
 
@@ -178,6 +192,8 @@ namespace dipoles {
                         //auto tmpmatr1=an * (K2 * cos(arg) +K1 * sin(arg));
                         matrixx.block(2 * I+sectors[1].first, 2 * M+sectors[1].second, 2, 2)  = -tmpmatr;
                         matrixx.block(2 * I+sectors[2].first, 2 * M+sectors[2].second, 2, 2)  = tmpmatr;
+
+                        M2_.block(2 * I, 2 * M, 2, 2)=tmpmatr;
                     }
 
                 }
@@ -230,8 +246,8 @@ namespace dipoles {
 
 
 
-
-
+            f1.resize(2*N_);
+            f2.resize(2*N_);
             rightPart.resize(4*N_);
             /* for (int i = 0; i < N_; ++i) {
                  rightPart(i)=0;
@@ -245,11 +261,17 @@ namespace dipoles {
 
                 rightPart(2*N_+2*i)=a*eps;
                 rightPart(2*N_+2*i+1)=0;*/
+
                 rightPart(2*i)=an*eps;
                 rightPart(2*i+1)=0;
 
                 rightPart(2*N_+2*i)=0;
                 rightPart(2*N_+2*i+1)=an*eps;
+
+                f1(2*i)=an*eps;
+                f1(2*i+1)=0;
+                f2(2*i)=0;
+                f2(2*i+1)=an*eps;
             }
             //std::cout<<matrixx<<"\n\n\n"<<rightPart<<"\n\n\n";
             /*auto print = [](const int& n) { std::cout << n << ' '; };
