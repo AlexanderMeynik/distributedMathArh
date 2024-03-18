@@ -1,0 +1,119 @@
+
+
+#include <cmath>
+#include "Dipoles.h"
+
+
+dipoles::Dipoles::Dipoles(int N, std::vector<double>&xi):N_(N) {
+    xi_=xi;
+    matrixx=MatrixXd(2 * N_, 2 * N_);
+    std::vector<std::pair<int,int>> sectors(4);
+    sectors[0]={0,0};
+    sectors[1]={N_,0};
+    sectors[2]={0,N_};
+    sectors[3]={N_,N_};
+
+    for (int i = 0; i < N_; ++i) {
+        for (int m = 0; m < N_; ++m) {
+            if(i==m)
+            {
+                matrixx(i+sectors[0].first,m+sectors[0].second)=-yo*omega;
+            }
+            else
+            {
+                double xim=getDistance(i,m);
+                double arg=omega*xim;
+                double argc=arg/c;
+                matrixx(i,m)=(a/(c*pow(xim,3)))*(c*sin(argc)-arg*cos(argc));
+            }
+        }
+    }
+
+    for (int i = 0; i < N_; ++i) {
+        for (int m = 0; m < N_; ++m) {
+            if(i==m)
+            {
+                matrixx(i+sectors[1].first,m+sectors[1].second)=omega0*omega0-omega*omega;
+            }
+            else
+            {
+                double xim=getDistance(i,m);
+                double arg=omega*xim;
+                double argc=arg/c;
+                matrixx(i+sectors[1].first,m+sectors[1].second)=(a/(c*pow(xim,3)))*(c*cos(argc)+arg*sin(argc));
+            }
+        }
+    }
+
+    for (int i = 0; i < N_; ++i) {
+        for (int m = 0; m < N_; ++m) {
+            if(i==m)
+            {
+                matrixx(i+sectors[2].first,m+sectors[2].second)=omega0*omega0-omega*omega;
+            }
+            else
+            {
+                double xim=getDistance(i,m);
+                double arg=omega*xim;
+                double argc=arg/c;
+                matrixx(i+sectors[2].first,m+sectors[2].second)=(a/(c*pow(xim,3)))*(c*cos(argc)+arg*sin(argc));
+            }
+        }
+    }
+
+
+    for (int i = 0; i < N_; ++i) {
+        for (int m = 0; m < N_; ++m) {
+            if(i==m)
+            {
+                matrixx(i+sectors[3].first,m+sectors[3].second)=yo*omega;
+            }
+            else
+            {
+                double xim=getDistance(i,m);
+                double arg=omega*xim;
+                double argc=arg/c;
+                matrixx(i+sectors[3].first,m+sectors[3].second)=-(a/(c*pow(xim,3)))*(c*sin(argc)-arg*cos(argc));
+            }
+        }
+    }
+
+    rightPart= VectorXd(2*N_);
+    for (int i = 0; i < N_; ++i) {
+        rightPart(i)=a*E;
+        rightPart(N_+i)=0;
+    }
+
+
+}
+
+
+
+double dipoles::Dipoles::getDistance(int i1,int i2) {
+    return std::abs(xi_[i1]-xi_[i2]);
+}
+
+
+
+
+VectorXd dipoles::Dipoles::solve()
+{
+    return matrixx.colPivHouseholderQr().solve(rightPart);
+}
+
+
+const MatrixXd &dipoles::Dipoles::getMatrixx() const {
+    return matrixx;
+}
+
+const VectorXd &dipoles::Dipoles::getRightPart() const {
+    return rightPart;
+}
+
+
+
+
+
+
+
+
