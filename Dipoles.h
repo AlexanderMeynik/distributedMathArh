@@ -103,7 +103,7 @@ namespace dipoles {
     }
 
     template<class T>
-    Dipoles<T>::Dipoles(int N, vector<Eigen::Vector<T, 2>> &xi):N_(N) {
+    Dipoles<T>::Dipoles(int N, vector<Eigen::Vector<T, 2>> &xi):N_(N) {//todo надо бы превратить массив диполей в массив из 2 векторов
             xi_=xi;
             an=a/N_;
             //double rdist= getDistance()
