@@ -4,4 +4,4 @@ include_directories (${Boost_INCLUDE_DIRS})
 
 add_executable (Boost_Tests_run test1.cpp)
 target_link_libraries (Boost_Tests_run ${Boost_LIBRARIES})
-#target_link_libraries (Boost_Tests_run DateConverter_lib)
+target_link_libraries (Boost_Tests_run myLibrary)
