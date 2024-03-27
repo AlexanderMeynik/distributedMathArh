@@ -50,3 +50,10 @@ target_link_libraries(testIntegr PRIVATE ${PQXX_LIB} ${PQ_LIB})
 
 # Include Directories
 add_library(myLibrary Dipoles.cpp lib.cpp)
+
+add_executable(moveDipoles moveDipoles.cpp)
+target_link_libraries(moveDipoles PUBLIC Matplot++::matplot)
+target_link_libraries(moveDipoles PUBLIC myLibrary)
+target_include_directories(moveDipoles PRIVATE ${GSL_INCLUDE_DIRS})
+target_link_libraries(moveDipoles PRIVATE ${GSL_LIBRARIES})
+target_link_libraries(moveDipoles PRIVATE ${PQXX_LIB} ${PQ_LIB})
