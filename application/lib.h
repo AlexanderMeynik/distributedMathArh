@@ -78,7 +78,110 @@ T integrateFunctionBy1Val(std::function<T(T, T, T)>&ff, T theta, T phi,T left,T 
 }
 
 template<class T>
-std::vector<std::array<std::vector<T>,2>> parseConf(string &filename) {
+std::vector<std::array<std::vector<T>,2>> parseConf(string &filename);
+
+template<class T>
+void printToFile(int N, std::array<std::vector<T>,2> &a, dipoles::Dipoles <T> &d, string &basicString, int id, int verboseLevel);
+
+template<class T>
+void generateMeshes(int N,int id, dipoles::Dipoles<T> & d,std::ostream&out,std::string &basicString);
+
+template<class T>
+T getMeshDiffNorm(std::vector<std::vector<T>>& mesh1,std::vector<std::vector<T>>& mesh2);
+
+
+
+template<class T>
+void generateMeshes(int N, int id, dipoles::Dipoles<T> &d, ostream &out, string &basicString) {
+    using namespace matplot;
+
+    const T omega=pow(10,15);//todo константа вынести
+    const T rr=2*M_PI/omega;//todo константа вынести
+    const T step=M_PI/12;//todo константа вынести
+    d.getFullFunction();
+    std::function<T(T,T,T)>ff2=d.getIfunction();
+
+
+    out<<"Функция I(phi,th)\n";
+    out<<"phi\\th\t\t";
+    for (T theta = 0; theta < M_PI/2; theta+=step) {
+        out<<scientificNumber(theta,5)<<"\t";
+    }
+    out<<"\n";
+    for (T phi = 0; phi < M_PI*2; phi+=step) {
+        out<<scientificNumber(phi,5)<<"\t";
+        for (T theta = 0; theta < M_PI/2; theta+=step) {
+            out<<scientificNumber(integrateFunctionBy1Val(ff2,theta,phi,0.0,rr),5)<<"\t";
+        }
+        out<<"\n";
+    }
+
+
+    auto [phi, theta] = meshgrid(linspace(0, M_PI*2, 25), linspace(0, M_PI_2, 7));
+    auto func = transform(phi, theta, [&ff2,&rr](double x, double y) {
+        return integrateFunctionBy1Val<double>(ff2,y,x,0,rr);
+    });
+
+    auto x=phi;
+    auto y=theta;
+    auto z=func;
+    for (int i = 0; i < x.size(); ++i) {
+        for (int j = 0; j < x[0].size(); ++j) {
+            x[i][j]=func[i][j]*sin(theta[i][j])*cos(phi[i][j]);
+            y[i][j]=func[i][j]*sin(theta[i][j])*sin(phi[i][j]);
+            z[i][j]=func[i][j]*cos(theta[i][j]);
+        }
+    }
+
+    auto ax=gca();
+    ax->surf(x, y, z);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+    //surf(x, y, z);
+    view(213,22);
+    xlim({-40,40});
+    ylim({-40,40});
+    matplot::save(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.png");
+}
+
+
+template<class T>
+void
+printToFile(int N, array<std::vector<T>, 2> &a, dipoles::Dipoles<T> &d, string &basicString, int id, int verboseLevel) {
+    auto solut=d.getSolution_();
+    std::ofstream out(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.txt");
+    Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
+    if(verboseLevel>=3) {
+        out << "Матрица\n" << d.getMatrixx().format(CleanFmt) << "\n\n";
+    }
+    out<<"Координаты диполей\n";
+    for (int i = 0; i < a[0].size(); ++i) {
+        out << a[0][i] << '\t'<<a[1][i]<<"\n";
+    }
+    //for_each(a.begin(),a.end(),[&out](Eigen::Vector<T,2>& n) { out << n(0) << '\t'<<n(1)<<"\n"; });
+    out<<"\n\n";
+    if(verboseLevel>=2) {
+        out << "Правая часть\n" << d.getRightPart()[0].format(CleanFmt) << '\n' << d.getRightPart()[1].format(CleanFmt)
+            << "\n\n";
+
+        out << "Вектор решения\n" << solut[0].format(CleanFmt) << '\n' << solut[1].format(CleanFmt) << "\n\n";
+    }
+    out<<"Коеффициенты по номеру уравнения\n";
+    /*auto newas=d.getMatrixx()*solut-d.getRightPart();
+    std::cout<<"\n\n\n"<<newas<<"\n Norm="<<newas.norm()<<"\n\n";*/
+
+
+    for (int i = 0; i < N; ++i) {
+        out<<"A"<<i+1<<"x = "<<solut[0].coeffRef(2*i)<<", B"<<i+1<<"x = "<<solut[1].coeffRef(2*i)<<"\n";
+        out<<"A"<<i+1<<"y = "<<solut[0].coeffRef(2*i+1)<<", B"<<i+1<<"y = "<<solut[1].coeffRef(2*i+1)<<"\n";
+    }
+
+    generateMeshes(N,id,d,out,basicString);
+
+    out.close();
+}
+
+
+template<class T>
+vector<std::array<std::vector<T>, 2>> parseConf(string &filename) {
     std::ifstream in(filename);
     char c=in.get();
     assert(c=='C');
@@ -129,7 +232,6 @@ std::vector<std::array<std::vector<T>,2>> parseConf(string &filename) {
         }
         else{
             for (int i = 0; i < N; ++i) {
-                //in>>a[i][0];
                 in >> avec[j][0][i];
             }
             c = in.get();
@@ -141,147 +243,23 @@ std::vector<std::array<std::vector<T>,2>> parseConf(string &filename) {
             }
 
             for (int i = 0; i < N; ++i) {
-                //in>>a[i][1];
                 in >> avec[j][1][i];
             }
         }
     }
     return avec;
 }
-/*template<class T>
-void getMeshes(array<Eigen::Vector<T, -1>, 2>&solut,vector<Eigen::Vector<T, 2>> &a) {
-    using namespace matplot;
-    int N=solut[0].size();
-
-    std::array<std::vector<T>,2> coord={std::vector<T>(N),std::vector<T>(N)};
-    std::array<std::vector<T>,2> coefs={std::vector<T>(2*N),std::vector<T>(2*N)};
-
-    for (int i = 0; i < N; ++i) {
-        coord[0][i]=a[i][0];
-        coord[1][i]=a[i][1];
-    }
-    for (int i = 0; i < 2*N; ++i) {
-        coefs[0][i]=solut[0][i];
-        coefs[1][i]=solut[1][i];
-        //coord[1][i]=a[i][1];
-    }
-    const T omega=pow(10,15);//todo константа вынести
-    const T rr=2*M_PI/omega;//todo константа вынести
-    //todo вынести высление функции в отдельнкю библиотеку
-    //todo поменять входные параметры
-
-    std::function<T(T,T,T)>ff2=getFullFunction<T>(coefs,coord);
-    T step=M_PI/12;//todo константа вынести
-
-
-
-
-
-    auto [phi, theta] = meshgrid(linspace(0, M_PI*2, 25), linspace(0, M_PI_2, 7));
-    auto func = transform(phi, theta, [&ff2,&rr](double x, double y) {
-        return integrateFunctionBy1Val<double>(ff2,y,x,0,rr);
-    });
-
-    auto x=phi;
-    auto y=theta;
-    auto z=func;
-    for (int i = 0; i < x.size(); ++i) {
-        for (int j = 0; j < x[0].size(); ++j) {
-            x[i][j]=func[i][j]*sin(theta[i][j])*cos(phi[i][j]);
-            y[i][j]=func[i][j]*sin(theta[i][j])*sin(phi[i][j]);
-            z[i][j]=func[i][j]*cos(theta[i][j]);
-        }
-    }
-//todo доделать
-    //show();
-}*/
-template<class T>
-void generateMeshes(int N,int id, dipoles::Dipoles<T> & d,array<Eigen::Vector<T, -1>, 2>&solut,std::array<std::vector<T>,2> &a,std::ostream&out,std::string &basicString) {
-    using namespace matplot;
-
-    const T omega=pow(10,15);//todo константа вынести
-    const T rr=2*M_PI/omega;//todo константа вынести
-    const T step=M_PI/12;//todo константа вынести
-    d.getFullFunction();
-    std::function<T(T,T,T)>ff2=d.getIfunction();
-
-
-    out<<"Функция I(phi,th)\n";
-    out<<"phi\\th\t\t";
-    for (T theta = 0; theta < M_PI/2; theta+=step) {
-        out<<scientificNumber(theta,5)<<"\t";
-    }
-    out<<"\n";
-    for (T phi = 0; phi < M_PI*2; phi+=step) {
-        out<<scientificNumber(phi,5)<<"\t";
-        for (T theta = 0; theta < M_PI/2; theta+=step) {
-            out<<scientificNumber(integrateFunctionBy1Val(ff2,theta,phi,0.0,rr),5)<<"\t";
-        }
-        out<<"\n";
-    }
-
-
-    auto [phi, theta] = meshgrid(linspace(0, M_PI*2, 25), linspace(0, M_PI_2, 7));
-    auto func = transform(phi, theta, [&ff2,&rr](double x, double y) {
-        return integrateFunctionBy1Val<double>(ff2,y,x,0,rr);
-    });
-
-    auto x=phi;
-    auto y=theta;
-    auto z=func;
-    for (int i = 0; i < x.size(); ++i) {
-        for (int j = 0; j < x[0].size(); ++j) {
-            x[i][j]=func[i][j]*sin(theta[i][j])*cos(phi[i][j]);
-            y[i][j]=func[i][j]*sin(theta[i][j])*sin(phi[i][j]);
-            z[i][j]=func[i][j]*cos(theta[i][j]);
-        }
-    }
-
-
-    surf(x, y, z);
-    view(213,22);
-    xlim({-40,40});
-    ylim({-40,40});
-    //show();
-    matplot::save(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.png");
-}
 
 template<class T>
-void printToFile(int N, std::array<std::vector<T>,2> &a, dipoles::Dipoles <T> &d, string &basicString, int id, int verboseLevel) {
-    auto solut=d.getSolution_();
-    std::ofstream out(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.txt");
-    Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
-    if(verboseLevel>=3) {
-        out << "Матрица\n" << d.getMatrixx().format(CleanFmt) << "\n\n";
+T getMeshDiffNorm(std::vector<std::vector<T>>& mesh1,std::vector<std::vector<T>>& mesh2)
+{
+    T res=0;
+    for (int i = 0; i < mesh1.size(); ++i) {
+        for (int j = 0; j < mesh1[0].size(); ++j) {
+            res+=pow(mesh1[i][j]-mesh2[i][j],2);
+        }
     }
-    out<<"Координаты диполей\n";
-    for (int i = 0; i < a[0].size(); ++i) {
-        out << a[0][i] << '\t'<<a[1][i]<<"\n";
-    }
-    //for_each(a.begin(),a.end(),[&out](Eigen::Vector<T,2>& n) { out << n(0) << '\t'<<n(1)<<"\n"; });
-    out<<"\n\n";
-    if(verboseLevel>=2) {
-        out << "Правая часть\n" << d.getRightPart()[0].format(CleanFmt) << '\n' << d.getRightPart()[1].format(CleanFmt)
-            << "\n\n";
-
-        out << "Вектор решения\n" << solut[0].format(CleanFmt) << '\n' << solut[1].format(CleanFmt) << "\n\n";
-    }
-    out<<"Коеффициенты по номеру уравнения\n";
-    /*auto newas=d.getMatrixx()*solut-d.getRightPart();
-    std::cout<<"\n\n\n"<<newas<<"\n Norm="<<newas.norm()<<"\n\n";*/
-
-
-    for (int i = 0; i < N; ++i) {
-        out<<"A"<<i+1<<"x = "<<solut[0].coeffRef(2*i)<<", B"<<i+1<<"x = "<<solut[1].coeffRef(2*i)<<"\n";
-        out<<"A"<<i+1<<"y = "<<solut[0].coeffRef(2*i+1)<<", B"<<i+1<<"y = "<<solut[1].coeffRef(2*i+1)<<"\n";
-    }
-
-    generateMeshes(N,id,d,solut,a,out,basicString);
-    /*for (int i = 0; i < N; ++i) {
-            out<<solut.coeffRef(2*i)<<"\t"<<solut.coeffRef(2*N+2*i)<<"\t";
-            out<<solut.coeffRef(2*i+1)<<"\t"<<solut.coeffRef(2*N+2*i+1)<<"\n";
-        }*/
-    out.close();
+    return sqrt(res);
 }
 
 #endif //MAGISTER1_LIB_H
