@@ -34,9 +34,9 @@ int main(int argc, char* argv[]) {
     std::string dirname=filename.erase(filename.find('.'));
     std::filesystem::create_directory(dirname);
     for (int i = 0; i < avec.size(); ++i) {
-        std::vector<Eigen::Vector<double,2>>a=avec[i];
-        int N=a.size();
-        Dipoles< double> d(N,a);
+        std::array<std::vector<double>,2>a=avec[i];
+        int N=a[0].size();
+        Dipoles<double> d(N,a);
         d.solve_();
         auto solut2=d.getSolution_();
         printToFile<double>(N, a, d, dirname,i,verbose);
