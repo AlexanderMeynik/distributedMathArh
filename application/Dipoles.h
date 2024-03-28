@@ -27,22 +27,20 @@ namespace dipoles {
     public:
         Dipoles(int N, std::array<std::vector<T>, 2> &xi);
 
-        void getFullFunction();//std::array<std::vector<T>, 2> &coefs, std::array<std::vector<T>, 2> &coords);
+        void setNewCoordinates(std::array<std::vector<T>, 2> &xi);
+
+        void getFullFunction();
 
         void solve_() {
             Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> tt = (M1_ * M1_ + M2_ * M2_).inverse();
             solution_[0] = tt * (M1_ * f1 + M2_ * f2);
             solution_[1] = tt * (M1_ * f2 - M2_ * f1);
         };
-
         const function<T(T, T, T)> &getIfunction() const {
             return Ifunction_;
         }
-
         const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &getSolution_() const;
-
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
-
         const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &getMatrixx();
 
     private:
@@ -74,7 +72,73 @@ namespace dipoles {
         void
         getMatrixes(const Eigen::Vector<T, 2> &rim, T rMode, Eigen::Matrix<T, 2, 2> &K1,
                     Eigen::Matrix<T, 2, 2> &K2) const;
+
+        void setMatrixes();
     };
+
+    template<class T>
+    void Dipoles<T>::setNewCoordinates(std::array<std::vector<T>, 2> &xi) {
+        xi_ = xi;
+
+        setMatrixes();
+
+
+        /*for (int i = 0; i < N_; ++i) {//todo эта часть уже не пустая
+            f1(2 * i) = an * eps;
+            f1(2 * i + 1) = 0;
+            f2(2 * i) = 0;
+            f2(2 * i + 1) = an * eps;
+        }*/
+    }
+
+    template<class T>
+    void Dipoles<T>::setMatrixes() {
+        vector<pair<int, int>> sectors(4);
+        sectors[0] = {0, 0};
+        sectors[1] = {0, 2 * N_};
+        sectors[2] = {2 * N_, 0};
+        sectors[3] = {2 * N_, 2 * N_};
+        for (int I = 0; I < N_; ++I) {//MAC
+            for (int M = 0; M < N_; ++M) {
+                if (I == M) {
+                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (omega0 * omega0 - omega * omega);
+                    M1_.block(2 * I, 2 * M, 2, 2) = id;
+                } else {
+
+                    Eigen::Vector<T, 2> rim = getRIM(M, I);
+                    T rMode = getDistance(I, M);
+                    Eigen::Matrix<T, 2, 2> K1;
+                    Eigen::Matrix<T, 2, 2> K2;
+                    getMatrixes(rim, rMode, K1, K2);
+                    T arg = omega * rMode / c;
+                    auto tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
+                    M1_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
+                }
+
+            }
+        }
+
+        for (int I = 0; I < N_; ++I) {//MBC
+            for (int M = 0; M < N_; ++M) {
+                if (I == M) {
+                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (yo * omega);
+                    M2_.block(2 * I, 2 * M, 2, 2) = -id;
+                } else {
+
+                    Eigen::Vector<T, 2> rim = getRIM(M, I);
+                    T rMode = getDistance(I, M);
+                    Eigen::Matrix<T, 2, 2> K1;
+                    Eigen::Matrix<T, 2, 2> K2;
+                    getMatrixes(rim, rMode, K1, K2);
+                    T arg = omega * rMode / c;
+                    auto tmpmatr = -an * (K2 * cos(arg) + K1 * sin(arg));
+
+                    M2_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
+                }
+
+            }
+        }
+    }
 
     template<class T>
     const array<Eigen::Vector<T, Eigen::Dynamic>, 2> &Dipoles<T>::getSolution_() const {
@@ -162,52 +226,7 @@ namespace dipoles {
         M1_.resize(2 * N_, 2 * N_);
         M2_.resize(2 * N_, 2 * N_);
 
-        std::vector<std::pair<int, int>> sectors(4);
-        sectors[0] = {0, 0};
-        sectors[1] = {0, 2 * N_};
-        sectors[2] = {2 * N_, 0};
-        sectors[3] = {2 * N_, 2 * N_};
-        for (int I = 0; I < N_; ++I) {//MAC
-            for (int M = 0; M < N_; ++M) {
-                if (I == M) {
-                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (omega0 * omega0 - omega * omega);
-                    M1_.block(2 * I, 2 * M, 2, 2) = id;
-                } else {
-
-                    Eigen::Vector<T, 2> rim = getRIM(M, I);
-                    T rMode = getDistance(I, M);
-                    Eigen::Matrix<T, 2, 2> K1;
-                    Eigen::Matrix<T, 2, 2> K2;
-                    getMatrixes(rim, rMode, K1, K2);
-                    T arg = omega * rMode / c;
-                    auto tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
-                    M1_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
-                }
-
-            }
-        }
-
-
-        for (int I = 0; I < N_; ++I) {//MBC
-            for (int M = 0; M < N_; ++M) {
-                if (I == M) {
-                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (yo * omega);
-                    M2_.block(2 * I, 2 * M, 2, 2) = -id;
-                } else {
-
-                    Eigen::Vector<T, 2> rim = getRIM(M, I);
-                    T rMode = getDistance(I, M);
-                    Eigen::Matrix<T, 2, 2> K1;
-                    Eigen::Matrix<T, 2, 2> K2;
-                    getMatrixes(rim, rMode, K1, K2);
-                    T arg = omega * rMode / c;
-                    auto tmpmatr = -an * (K2 * cos(arg) + K1 * sin(arg));
-
-                    M2_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
-                }
-
-            }
-        }
+        setMatrixes();
 
 
         f1.resize(2 * N_);
