@@ -27,7 +27,7 @@ namespace dipoles {
     public:
         Dipoles(int N, std::array<std::vector<T>, 2> &xi);
 
-        void getFullFunction(std::array<std::vector<T>, 2> &coefs, std::array<std::vector<T>, 2> &coords);
+        void getFullFunction();//std::array<std::vector<T>, 2> &coefs, std::array<std::vector<T>, 2> &coords);
 
         void solve_() {
             Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> tt = (M1_ * M1_ + M2_ * M2_).inverse();
@@ -47,8 +47,6 @@ namespace dipoles {
 
     private:
         T getDistance(int i1, int i2) {
-            //T d1=xi_[i1].coeffRef(0)-xi_[i2].coeffRef(0);
-            //T d2=xi_[i1].coeffRef(1)-xi_[i2].coeffRef(1);
             T d1 = xi_[0][i1] - xi_[0][i2];
             T d2 = xi_[1][i1] - xi_[1][i2];
 
@@ -84,18 +82,19 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::getFullFunction(array<std::vector<T>, 2> &coefs, array<std::vector<T>, 2> &coords) {
-        this->Ifunction_ = [&coords, &coefs](T theta, T phi, T t) {
-            int N = coords[0].size();
+    void Dipoles<T>::getFullFunction(){
+
+        this->Ifunction_ = [this](T theta, T phi, T t) {
+            int N = this->xi_[0].size();
             T res = 0;
             T s[2] = {cos(phi), sin(phi)};
             T ress[3] = {0, 0, 0};
             for (int i = 0; i < N; ++i) {
-                T ri[2] = {coords[0][i], coords[1][i]};
+                T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
                 T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
                 T t0 = t - ys / c;
-                T Ai[2] = {coefs[0][2 * i], coefs[0][2 * i + 1]};
-                T Bi[2] = {coefs[1][2 * i], coefs[1][2 * i + 1]};
+                T Ai[2] = {this->solution_[0].coeffRef(2 * i), this->solution_[0].coeffRef(2 * i + 1)};
+                T Bi[2] = {this->solution_[1].coeffRef(2 * i), this->solution_[1].coeffRef(2 * i + 1)};
 
 
                 T Di[2] = {Ai[0] * cos(omega * t0) + Bi[0] * sin(omega * t0),
@@ -141,11 +140,10 @@ namespace dipoles {
 
         matrixx.resize(4 * N_, 4 * N_);
         matrixx.topLeftCorner(2 * N_, 2 * N_).noalias() = M1_;
-        std::cout<<M1_<<"\n\n\n\n"<<M2_<<"\n\n\n\n\n";
+        //std::cout<<M1_<<"\n\n\n\n"<<M2_<<"\n\n\n\n\n";
         matrixx.topRightCorner(2 * N_, 2 * N_).noalias() = -M2_;
         matrixx.bottomLeftCorner(2 * N_, 2 * N_).noalias() = M2_;
         matrixx.bottomRightCorner(2 * N_, 2 * N_).noalias() = M1_;
-        //std::cout<<MM<<"\n\n";
 
         return matrixx;
     }
@@ -158,14 +156,11 @@ namespace dipoles {
 
     template<class T>
     Dipoles<T>::Dipoles(int N, std::array<std::vector<T>, 2> &xi):N_(
-            N) {//todo надо бы превратить массив диполей в массив из 2 векторов
-        //Dipoles<T>::Dipoles(int N, vector<Eigen::Vector<T, 2>> &xi):N_(N) {//todo надо бы превратить массив диполей в массив из 2 векторов
+            N) {
         xi_ = xi;
         an = a / N_;
-        //double rdist= getDistance()
         M1_.resize(2 * N_, 2 * N_);
         M2_.resize(2 * N_, 2 * N_);
-        //matrixx=Eigen::Matrix<T,4 * N_, 4 * N_>;
 
         std::vector<std::pair<int, int>> sectors(4);
         sectors[0] = {0, 0};
@@ -191,14 +186,12 @@ namespace dipoles {
 
             }
         }
-        //std::cout<<matrixx<<"\n\n\n";
 
 
         for (int I = 0; I < N_; ++I) {//MBC
             for (int M = 0; M < N_; ++M) {
                 if (I == M) {
                     auto id = Eigen::Matrix<T, 2, 2>::Identity() * (yo * omega);
-                    //matrixx.block<2, 2>(2 * I+sectors[1].first, 2 * M+sectors[1].second) = Eigen::Matrix<T,2,2>::Identity()*(yo*omega);
                     M2_.block(2 * I, 2 * M, 2, 2) = -id;
                 } else {
 
