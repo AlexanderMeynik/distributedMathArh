@@ -17,47 +17,10 @@
 #include <filesystem>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
+#include "MeshProcessor.h"
 
-template<typename T>
-struct scientificNumberType
-{
-    explicit scientificNumberType(T number, int decimalPlaces) : number(number), decimalPlaces(decimalPlaces) {}
-
-    T number;
-    int decimalPlaces;
-};
-
-template<typename T>
-scientificNumberType<T> scientificNumber(T t, int decimalPlaces)
-{
-    return scientificNumberType<T>(t, decimalPlaces);
-}
-
-template<typename T>
-std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>& n)
-{
-    double numberDouble = n.number;
-    char c=(n.number>0)?'+':'-';
-
-    int eToThe = 0;
-    for(; numberDouble > 9; ++eToThe)
-    {
-        numberDouble /= 10;
-    }
-
-    // memorize old state
-    std::ios oldState(nullptr);
-    oldState.copyfmt(os);
-
-    os << std::fixed << std::setprecision(n.decimalPlaces) << numberDouble << "e"<<c << eToThe;
-
-    // restore state
-    os.copyfmt(oldState);
-
-    return os;
-}
 using Eigen::Vector2d;
-template<class T>
+/*template<class T>
 T integrate(std::function<T(T)> &f1, T left, T right) {
     T error;
     T Q = boost::math::quadrature::gauss_kronrod<T, 61>::integrate(f1, left, right, 5, 1e-20, &error);
@@ -75,7 +38,7 @@ T integrateFunctionBy1Val(std::function<T(T, T, T)>&ff, T theta, T phi,T left,T 
 {
     std::function<T(T)> tt=[&theta,&phi,&ff](T t){return ff(theta,phi,t);};
     return integrate(tt,left,right);
-}
+}*/
 
 template<class T>
 std::vector<std::array<std::vector<T>,2>> parseConf(string &filename);
@@ -86,12 +49,9 @@ void printToFile(int N, std::array<std::vector<T>,2> &a, dipoles::Dipoles <T> &d
 template<class T>
 void generateMeshes(int N,int id, dipoles::Dipoles<T> & d,std::ostream&out,std::string &basicString);
 
-template<class T>
-T getMeshDiffNorm(std::vector<std::vector<T>>& mesh1,std::vector<std::vector<T>>& mesh2);
 
 
-
-template<class T>
+/*template<class T>
 void generateMeshes(int N, int id, dipoles::Dipoles<T> &d, ostream &out, string &basicString) {
     using namespace matplot;
 
@@ -139,8 +99,8 @@ void generateMeshes(int N, int id, dipoles::Dipoles<T> &d, ostream &out, string 
     view(213,22);
     xlim({-40,40});
     ylim({-40,40});
-    matplot::save(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.png");
-}
+    matplot::save(basicString+"/out"+std::to_string(N)+"_"+std::to_string(id)+"_.png");
+}*/
 
 
 template<class T>
@@ -174,7 +134,14 @@ printToFile(int N, array<std::vector<T>, 2> &a, dipoles::Dipoles<T> &d, string &
         out<<"A"<<i+1<<"y = "<<solut[0].coeffRef(2*i+1)<<", B"<<i+1<<"y = "<<solut[1].coeffRef(2*i+1)<<"\n";
     }
 
-    generateMeshes(N,id,d,out,basicString);
+    //generateMeshes(N,id,d,out,basicString);
+    MeshProcessor<T> mesh;
+    d.getFullFunction();
+    mesh.generateMeshes(d.getIfunction());
+
+    mesh.printDec(out);
+    mesh.plotSpherical(basicString+"/out"+std::to_string(N)+"_"+std::to_string(id)+"_.png");
+
 
     out.close();
 }
@@ -250,16 +217,6 @@ vector<std::array<std::vector<T>, 2>> parseConf(string &filename) {
     return avec;
 }
 
-template<class T>
-T getMeshDiffNorm(std::vector<std::vector<T>>& mesh1,std::vector<std::vector<T>>& mesh2)
-{
-    T res=0;
-    for (int i = 0; i < mesh1.size(); ++i) {
-        for (int j = 0; j < mesh1[0].size(); ++j) {
-            res+=pow(mesh1[i][j]-mesh2[i][j],2);
-        }
-    }
-    return sqrt(res);
-}
+
 
 #endif //MAGISTER1_LIB_H

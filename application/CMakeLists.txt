@@ -23,7 +23,7 @@ find_package(GSL REQUIRED)
 
 
 # Add Executable
-add_executable(Magister1 Dipoles.h main.cpp lib.cpp)
+add_executable(Magister1 Dipoles.h main.cpp lib.cpp printUtils.h MeshProcessor.cpp)
 add_executable(Magister2 Dipoles2.h main.cpp)
 add_executable(ConFReader configReader.cpp)
 add_executable(testIntegr gausTets.cpp)
