@@ -58,7 +58,7 @@ private:
 
     T philims[2]={0, M_PI*2};
     T thelims[2]={0, M_PI_2};
-    T steps[2]={M_PI/12, M_PI/12};
+    T steps[2]={M_PI/48, M_PI/48};
     T nums[2]={(philims[1]-philims[0])/(steps[0])+1, (thelims[1]-thelims[0])/(steps[1])+1};
     const T omega=pow(10,15);//todo константа вынести
     const T rr=2*M_PI/omega;//todo константа вынести

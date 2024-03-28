@@ -16,10 +16,11 @@ const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
 using  namespace dipoles;
 const double  l=1E-7;
-double eps=0.01;
+double eps=0.01;//todo метод печати матрицы в диполи
+//todo сравнивать штуки
 int main(int argc, char* argv[]) {
     std::ios_base::sync_with_stdio(false);
-    std::string dirname="movemovemove";
+    std::string dirname="movemovemove/";
     std::filesystem::create_directory(dirname);
     std::array<std::vector<double>,2>coordinates;
     coordinates[0]={0.0,5*l};
@@ -27,7 +28,7 @@ int main(int argc, char* argv[]) {
     double limit=0.01*l;
     int i=0;
     int N=coordinates[0].size();
-    std::ofstream out("movemovemove/results.txt");
+    std::ofstream out(dirname+"results.txt");
 
     Dipoles< double> d(N,coordinates);
     d.solve_();
@@ -36,9 +37,11 @@ int main(int argc, char* argv[]) {
     d.getFullFunction();
     mmesh.generateMeshes(d.getIfunction());
     auto prevMesh=mmesh.getMeshdec();
-    while(i<20)//(coordinates[0]-coordinates[1]).norm()>limit)
+    prevMesh[2][0][0]=10000000000;
+    double multip=1;
+    while(i<30)//(coordinates[0]-coordinates[1]).norm()>limit)
     {
-
+        std::ofstream  fout(dirname+"out"+std::to_string(N)+"_"+std::to_string(i)+".txt");
         d.setNewCoordinates(coordinates);
         d.solve_();
         auto solut2=d.getSolution_();
@@ -52,12 +55,32 @@ int main(int argc, char* argv[]) {
         mmesh.printDec(out);
         std::vector<std::vector<double>> t1=prevMesh[2];
         std::vector<std::vector<double>> t2=mmesh.getMeshdec()[2];
-        out<<getMeshDiffNorm(t1,t2)<<"\n\n\n\n\n";
+        auto res=getMeshDiffNorm(t1,t2);
+        out<<res<<"\n\n\n\n\n";
+        fout<<coordinates[0][0]<<"\t"<<coordinates[1][0]<<"\n";
+        fout<<coordinates[0][1]<<"\t"<<coordinates[1][1]<<"\n";
+        fout<<i<<"\t"<<res<<"\n";
+        mmesh.plotSpherical(dirname+"out"+std::to_string(N)+"_"+std::to_string(i)+".png");
         ++i;
+        fout<<'\n'<<solut2[0]<<"\n"<<solut2[1]<<"\n\n";
 
-        coordinates[1][0]=coordinates[1][0]-l/5;
-        coordinates[1][1]=coordinates[1][1]-l/5;
 
+        mmesh.printDec(fout);
+
+        coordinates[0][1]=coordinates[0][1]+multip*l;
+        coordinates[1][1]=coordinates[1][1]+multip*l;
+
+        prevMesh=mmesh.getMeshdec();
+        if(i%4)
+        {
+            multip*=2;
+        }
+        if(i==29)
+        {
+            show();
+        }
+
+        fout.close();
 
     }
     out.close();
