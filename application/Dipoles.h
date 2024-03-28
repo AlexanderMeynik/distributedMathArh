@@ -30,7 +30,6 @@ namespace dipoles {
         void setNewCoordinates(std::array<std::vector<T>, 2> &xi);
 
         void getFullFunction();
-
         void solve_() {
             Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> tt = (M1_ * M1_ + M2_ * M2_).inverse();
             solution_[0] = tt * (M1_ * f1 + M2_ * f2);
@@ -161,12 +160,12 @@ namespace dipoles {
                 T Bi[2] = {this->solution_[1].coeffRef(2 * i), this->solution_[1].coeffRef(2 * i + 1)};
 
 
-                T Di[2] = {Ai[0] * cos(omega * t0) + Bi[0] * sin(omega * t0),
-                           Ai[1] * cos(omega * t0) + Bi[1] * sin(omega * t0)};
+                T Di[2] = {Ai[0] * cos((T)omega * t0) + Bi[0] * sin((T)omega * t0),
+                           Ai[1] * cos((T)omega * t0) + Bi[1] * sin((T)omega * t0)};
 
-                T vi[2] = {omega * (Bi[0] * cos(omega * t0) - Ai[0] * sin(omega * t0)) / c,
-                           omega * (Bi[1] * cos(omega * t0) - Ai[1] * sin(omega)) / c};
-                T ai[2] = {-pow(omega, 2) * Di[0], -pow(omega, 2) * Di[1]};
+                T vi[2] = {(T)omega * (Bi[0] * cos((T)omega * t0) - Ai[0] * sin((T)omega * t0)) / c,
+                           (T)omega * (Bi[1] * cos((T)omega * t0) - Ai[1] * sin((T)omega)) / c};
+                T ai[2] = {-pow((T)omega, 2) * Di[0], -pow((T)omega, 2) * Di[1]};
 
                 T vsi = vi[0] * s[0] + vi[1] * s[1];
                 T asi = ai[0] * s[0] + ai[1] * s[1];

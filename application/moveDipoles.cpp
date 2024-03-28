@@ -21,19 +21,38 @@ int main(int argc, char* argv[]) {
     std::ios_base::sync_with_stdio(false);
     std::string dirname="movemovemove";
     std::filesystem::create_directory(dirname);
-    std::vector<Eigen::Vector<double,2>>coordinates={{0,0},{5*l,5*l}};
+    std::array<std::vector<double>,2>coordinates;
+    coordinates[0]={0.0,5*l};
+    coordinates[1]={0.0,5*l};
     double limit=0.01*l;
     int i=0;
-    int N=coordinates.size();
+    int N=coordinates[0].size();
+    std::ofstream out("movemovemove/results.txt");
+
+    Dipoles< double> d(N,coordinates);
+    d.solve_();
+
+    MeshProcessor<double> mmesh;
+    d.getFullFunction();
+    mmesh.generateMeshes(d.getIfunction());
+    auto prevMesh=mmesh.getMeshdec();
     while(i<20)//(coordinates[0]-coordinates[1]).norm()>limit)
     {
 
-        Dipoles< double> d(N,coordinates);
+        d.setNewCoordinates(coordinates);
         d.solve_();
         auto solut2=d.getSolution_();
-        printToFile<double>(N,coordinates,d,dirname,i,2);//надо сравнивать mesh
+
+        d.getFullFunction();
+        mmesh.generateMeshes(d.getIfunction());
+
+        //printToFile<double>(N, coordinates, d, dirname,i,2);
         //когда разницы между ними почти не будет оставновка
         //функция для подсчёта нормы от разницы 2 мешей принимет vector<vector<T>>&
+        mmesh.printDec(out);
+        std::vector<std::vector<double>> t1=prevMesh[2];
+        std::vector<std::vector<double>> t2=mmesh.getMeshdec()[2];
+        out<<getMeshDiffNorm(t1,t2)<<"\n\n\n\n\n";
         ++i;
 
         coordinates[1][0]=coordinates[1][0]-l/5;
@@ -41,6 +60,7 @@ int main(int argc, char* argv[]) {
 
 
     }
+    out.close();
     /*for (int i = 0; i < avec.size(); ++i) {
         std::vector<Eigen::Vector<double,2>>a=avec[i];
         int N=a.size();
