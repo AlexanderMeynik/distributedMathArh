@@ -38,6 +38,42 @@ T getMeshDiffNorm(std::vector<std::vector<T>>& mesh1,std::vector<std::vector<T>>
 
 using namespace matplot;
 template <typename T>
+std::pair<std::vector<std::vector<T>>,std::vector<std::vector<T>>> mymeshGrid(std::vector<T>&&a,std::vector<T>&&b);
+
+
+
+template <typename T>
+std::vector<T> myLinspace(T lower_bound, T upper_bound, size_t n, bool end=true);
+
+template<typename T>
+std::vector<T> myLinspace(T lower_bound, T upper_bound, size_t n, bool end) {
+    std::vector<T> result(n,T());
+
+    T div=(end)?(n - 1):n;
+    T step = (upper_bound - lower_bound) / div;
+
+    for (int i = 0; i < n; ++i) {
+        result[i]=i*step+lower_bound;
+    }
+    return result;
+}
+
+
+template<typename T>
+std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>> mymeshGrid(std::vector<T> &&a, std::vector<T> &&b) {
+    std::vector<std::vector<T>> x_mesh(b.size(), std::vector<T>(a.size()));
+    std::vector<std::vector<T>> y_mesh(b.size(), std::vector<T>(a.size()));
+    for (size_t i = 0; i < b.size(); ++i) {
+        x_mesh[i]=a;
+        for (size_t j = 0; j < a.size(); ++j) {
+            y_mesh[i][j] = b[i];
+        }
+    }
+
+    return std::make_pair(x_mesh, y_mesh);
+}
+
+template <typename T>
 class MeshProcessor {
 public:
     const std::array<std::vector<std::vector<T>>, 3> &getMeshdec() const {
@@ -48,6 +84,7 @@ public:
         return meshsph;
     }
     void generateMeshes(const std::function<T(T,T,T)>&func);
+
     void plotSpherical(std::string filename);
 
     void printDec(std::ostream&out);
@@ -58,7 +95,7 @@ private:
 
     T philims[2]={0, M_PI*2};
     T thelims[2]={0, M_PI_2};
-    T steps[2]={M_PI/48, M_PI/48};
+    T steps[2]={M_PI/12, M_PI/12};
     T nums[2]={(philims[1]-philims[0])/(steps[0])+1, (thelims[1]-thelims[0])/(steps[1])+1};
     const T omega=pow(10,15);//todo константа вынести
     const T rr=2*M_PI/omega;//todo константа вынести
@@ -109,8 +146,8 @@ void MeshProcessor<T>::generateMeshes(const std::function<T(T, T, T)> &func) {
     meshdec[0]=meshgrid1.first;
     meshdec[1]=meshgrid1.second;
     T rr1=this->rr;
-    meshdec[2] = transform(meshdec[0], meshdec[1], [&func,&rr1](double x, double y) {
-        return integrateFunctionBy1Val<double>(func,y,x,0,rr1);
+    meshdec[2] = transform(meshdec[0], meshdec[1], [&func,&rr1](T x, T y) {
+        return integrateFunctionBy1Val<T>(func,y,x,0,rr1);
     });
     meshsph[0]=meshdec[0];
     meshsph[1]=meshdec[1];

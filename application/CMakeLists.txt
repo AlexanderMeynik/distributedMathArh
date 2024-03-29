@@ -49,7 +49,7 @@ target_link_libraries(testIntegr PRIVATE ${PQXX_LIB} ${PQ_LIB})
 
 
 # Include Directories
-add_library(myLibrary Dipoles.cpp lib.cpp)
+add_library(myLibrary Dipoles.cpp lib.cpp MeshProcessor.h MeshProcessor.cpp printUtils.h)
 
 add_executable(moveDipoles moveDipoles.cpp)
 target_link_libraries(moveDipoles PUBLIC Matplot++::matplot)
