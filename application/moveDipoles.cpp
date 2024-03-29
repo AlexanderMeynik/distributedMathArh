@@ -23,8 +23,9 @@ int main(int argc, char* argv[]) {
     std::string dirname="movemovemove/";
     std::filesystem::create_directory(dirname);
     std::array<std::vector<double>,2>coordinates;
-    coordinates[0]={0.0,0.25*l};
-    coordinates[1]={0.0,0.25*l};
+    double start_multip=1/8.0;
+    coordinates[0]={0.0,start_multip*l};
+    coordinates[1]={0.0,start_multip*l};
     double limit=0.01*l;
     int i=0;
     int N=coordinates[0].size();
@@ -40,7 +41,7 @@ int main(int argc, char* argv[]) {
     mmesh.generateMeshes(d.getIfunction());
     auto prevMesh=mmesh.getMeshdec();
     prevMesh[2][0][0]=10000000000;
-    double multip=1;
+    double multip=start_multip;
     double res=5;
     while(i<30 && (solut1[0].norm()+solut1[1].norm())/1000000<res)//(coordinates[0]-coordinates[1]).norm()>limit)
     {

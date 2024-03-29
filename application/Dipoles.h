@@ -219,7 +219,96 @@ namespace dipoles {
             return res;
         };
         this->I2function_ = [this](T phi, T theta) {//todo аналит решение
-            return theta+0*phi;
+            //return theta+0*phi;
+            int N = this->xi_[0].size();
+            T T0=M_PI*2/omega;
+            T res=0;
+            Eigen::Vector<T,2> resxy={0.0,0.0};
+            T resz=0.0;
+            Eigen::Vector<T,2> s={cos(phi),sin(phi)};
+            for (int i = 0; i < N; ++i) {
+
+
+                Eigen::Vector<T,2> ri = {this->xi_[0][i], this->xi_[1][i]};
+                T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
+                //T t0 = t - ys / c;
+                Eigen::Vector<T,2> Ai = {this->solution_[0].coeffRef(2 * i), this->solution_[0].coeffRef(2 * i + 1)};
+                Eigen::Vector<T,2> Bi = {this->solution_[1].coeffRef(2 * i), this->solution_[1].coeffRef(2 * i + 1)};
+
+                T argument=omega*ys/c;
+                T Ais=Ai->dot(s);
+                T Bis=Bi->dot(s);
+
+                Eigen::Vector<T,2> Pc2i={0.0,0.0};
+                Eigen::Vector<T,2> Ps2i={0.0,0.0};
+                Eigen::Vector<T,2> Pc1i={0.0,0.0};
+                Eigen::Vector<T,2> Ps1i={0.0,0.0};
+                Eigen::Vector<T,2> Pcomi={0.0,0.0};
+                T Pci=Ais*cos(argument)-Bis*sin(argument);
+                T Psi=Ais*sin(argument)+Bis*cos(argument);
+
+
+                ///j ter
+                Eigen::Vector<T,2> rj;
+                T ysj;
+                Eigen::Vector<T,2> Aj;
+                Eigen::Vector<T,2> Bj;
+                T argumentj;
+                T Ajs;
+                T Bjs;
+
+
+
+
+                Eigen::Vector<T,2> Pc2j={0.0,0.0};
+                Eigen::Vector<T,2> Ps2j={0.0,0.0};
+                Eigen::Vector<T,2> Pc1j={0.0,0.0};
+                Eigen::Vector<T,2> Ps1j={0.0,0.0};
+                Eigen::Vector<T,2> Pcomj={0.0,0.0};
+
+                T Pcj=0.0;
+                T Psj=0.0;
+                for (int j = 0; j < i; ++j) {
+                    Pc2j={0.0,0.0};
+                    Ps2j={0.0,0.0};
+                    Pc1j={0.0,0.0};
+                    Ps1j={0.0,0.0};
+                    Pcomj={0.0,0.0};
+                    Pcj=0.0;
+                    Psj=0.0;
+
+                    resxy+=Pc2i.cwiseProduct(Pc2j)-Ps2i.cwiseProduct(Ps2j)+
+                           Pc2i.cwiseProduct(Pc1j)-Ps2i.cwiseProduct(Ps1j)
+                           +Pcomi.cwiseProduct(Pcomj);
+
+
+                    //z project
+                    rj={this->xi_[0][j], this->xi_[1][j]};
+                    ysj=(rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
+                    Aj={this->solution_[0].coeffRef(2 * j), this->solution_[0].coeffRef(2 * j + 1)};
+                    Bj={this->solution_[1].coeffRef(2 * j), this->solution_[1].coeffRef(2 * j + 1)};
+                    argumentj=omega*ysj/c;
+                    Ajs=Aj.dot(s);
+                    Bjs=Bj.dot(s);
+                    Pcj=Ajs*cos(argumentj)-Bjs*sin(argumentj);
+                    Psj=Ajs*sin(argumentj)+Bjs*cos(argumentj);
+                    resz+=(Pci*Pcj-Psi*Psj);
+                }
+                resxy+=(Pc2i.cwiseProduct(Pc2i)-Ps2i.cwiseProduct(Ps2i)+
+                        Pc2i.cwiseProduct(Pc1i)-Ps2i.cwiseProduct(Ps1i)
+                        +Pcomi.cwiseProduct(Pcomi))/2.0;
+
+
+                resz+=(Pci*Pci-Psi*Psi)/2;
+                //T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
+                //T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
+
+            }
+            resxy=resxy*T0;
+            resz=resz*T0*(pow(omega,4)*pow((sin(theta)* cos(phi),2)));
+            res=resxy.sum()+resz;
+            return res;
+
         };
     }
 
