@@ -23,8 +23,8 @@ int main(int argc, char* argv[]) {
     std::string dirname="movemovemove/";
     std::filesystem::create_directory(dirname);
     std::array<std::vector<double>,2>coordinates;
-    coordinates[0]={0.0,5*l};
-    coordinates[1]={0.0,5*l};
+    coordinates[0]={0.0,0.25*l};
+    coordinates[1]={0.0,0.25*l};
     double limit=0.01*l;
     int i=0;
     int N=coordinates[0].size();
@@ -44,7 +44,7 @@ int main(int argc, char* argv[]) {
     double res=5;
     while(i<30 && (solut1[0].norm()+solut1[1].norm())/1000000<res)//(coordinates[0]-coordinates[1]).norm()>limit)
     {
-        std::ofstream  fout(dirname+"out"+std::to_string(N)+"_"+std::to_string(i)+".txt");
+        std::ofstream  fout(dirname+"out"+std::to_string(N)+"_iter"+std::to_string(i)+".txt");
         d.setNewCoordinates(coordinates);
         d.solve_();
         auto solut2=d.getSolution_();
@@ -60,12 +60,21 @@ int main(int argc, char* argv[]) {
         std::vector<std::vector<double>> t2=mmesh.getMeshdec()[2];
         res=(solut1[0]-solut2[0]).norm()+(solut1[1]-solut2[1]).norm();//getMeshDiffNorm(t1,t2);
         out<<res<<"\n\n\n\n\n";
-        fout<<coordinates[0][0]<<"\t"<<coordinates[1][0]<<"\n";
-        fout<<coordinates[0][1]<<"\t"<<coordinates[1][1]<<"\n";
-        fout<<i<<"\t"<<res<<"\n";
-        mmesh.plotSpherical(dirname+"out"+std::to_string(N)+"_"+std::to_string(i)+".png");
+        Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
+
+        //fout<<"Координаты диполей\n";
+
+       // fout<<coordinates[0][0]<<"\t"<<coordinates[1][0]<<"\n";
+        //fout<<coordinates[0][1]<<"\t"<<coordinates[1][1]<<"\n";
+        fout<<"Номер итерации\tНорма разницы векторов решений\n";
+        fout<<i<<"\t\t"<<res<<"\n";
+        mmesh.plotSpherical(dirname+"out"+std::to_string(N)+"_iter"+std::to_string(i)+".png");
         ++i;
-        fout<<'\n'<<solut2[0]<<"\n"<<solut2[1]<<"\n\n";
+
+        d.printMatrix(fout,CleanFmt);
+        d.printCoordinates(fout);
+        d.printSolution(fout,CleanFmt);
+
 
 
         mmesh.printDec(fout);

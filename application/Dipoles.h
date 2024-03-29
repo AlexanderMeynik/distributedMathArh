@@ -44,7 +44,10 @@ namespace dipoles {
         const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &getSolution_() const;
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
         const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &getMatrixx();
-
+        void printMatrix(std::ostream& out,Eigen::IOFormat& format);
+        void printCoordinates(std::ostream& out);
+        void printRightPart(std::ostream& out,Eigen::IOFormat& format);
+        void printSolution(std::ostream& out,Eigen::IOFormat& format);
     private:
         T getDistance(int i1, int i2) {
             T d1 = xi_[0][i1] - xi_[0][i2];
@@ -78,6 +81,32 @@ namespace dipoles {
 
         void setMatrixes();
     };
+
+    template<class T>
+    void Dipoles<T>::printSolution(std::ostream &out, Eigen::IOFormat &format) {
+        out << "Вектор решения\n" << solution_[0].format(format) << '\n' << solution_[1].format(format) << "\n\n";
+    }
+
+    template<class T>
+    void Dipoles<T>::printRightPart(std::ostream &out, Eigen::IOFormat &format) {
+        out << "Правая часть\n" << this->f1.format(format) << '\n' << this->f2.format(format)
+            << "\n\n";
+    }
+
+    template<class T>
+    void Dipoles<T>::printCoordinates(std::ostream &out) {
+        out<<"Координаты диполей\n";
+        for (int i = 0; i < xi_[0].size(); ++i) {
+            out << xi_[0][i] << '\t'<<xi_[1][i]<<"\n";
+        }
+        //for_each(a.begin(),a.end(),[&out](Eigen::Vector<T,2>& n) { out << n(0) << '\t'<<n(1)<<"\n"; });
+        out<<"\n\n";
+    }
+
+    template<class T>
+    void Dipoles<T>::printMatrix(std::ostream &out, Eigen::IOFormat &format) {
+        out << "Матрица\n" << getMatrixx().format(format) << "\n\n";
+    }
 
     template<class T>
     void Dipoles<T>::setNewCoordinates(std::array<std::vector<T>, 2> &xi) {
@@ -189,7 +218,7 @@ namespace dipoles {
             }
             return res;
         };
-        this->I2function_ = [this](T phi, T theta) {//todo анал решение 
+        this->I2function_ = [this](T phi, T theta) {//todo аналит решение
             return theta+0*phi;
         };
     }

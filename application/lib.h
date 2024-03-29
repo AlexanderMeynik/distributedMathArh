@@ -110,19 +110,23 @@ printToFile(int N, array<std::vector<T>, 2> &a, dipoles::Dipoles<T> &d, string &
     std::ofstream out(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.txt");
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
     if(verboseLevel>=3) {
-        out << "Матрица\n" << d.getMatrixx().format(CleanFmt) << "\n\n";
+        //out << "Матрица\n" << d.getMatrixx().format(CleanFmt) << "\n\n";
+        d.printMatrix(out,CleanFmt);
     }
-    out<<"Координаты диполей\n";
+    /*out<<"Координаты диполей\n";
     for (int i = 0; i < a[0].size(); ++i) {
         out << a[0][i] << '\t'<<a[1][i]<<"\n";
-    }
+    }*/
+    d.printCoordinates(out);
     //for_each(a.begin(),a.end(),[&out](Eigen::Vector<T,2>& n) { out << n(0) << '\t'<<n(1)<<"\n"; });
     out<<"\n\n";
     if(verboseLevel>=2) {
-        out << "Правая часть\n" << d.getRightPart()[0].format(CleanFmt) << '\n' << d.getRightPart()[1].format(CleanFmt)
+        /*out << "Правая часть\n" << d.getRightPart()[0].format(CleanFmt) << '\n' << d.getRightPart()[1].format(CleanFmt)
             << "\n\n";
 
-        out << "Вектор решения\n" << solut[0].format(CleanFmt) << '\n' << solut[1].format(CleanFmt) << "\n\n";
+        out << "Вектор решения\n" << solut[0].format(CleanFmt) << '\n' << solut[1].format(CleanFmt) << "\n\n";*/
+        d.printRightPart(out,CleanFmt);
+        d.printSolution(out,CleanFmt);
     }
     out<<"Коеффициенты по номеру уравнения\n";
     /*auto newas=d.getMatrixx()*solut-d.getRightPart();
