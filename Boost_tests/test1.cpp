@@ -41,6 +41,25 @@ BOOST_AUTO_TEST_CASE( test_meshfunc )
     //BOOST_CHECK_EQUAL_COLLECTIONS(mesh1.begin(),mesh1.end(),res2.b)
 }
 
+BOOST_AUTO_TEST_CASE(testdot)
+{
+    Eigen::Vector2d init={1,2};
+    auto ss=init*2;
+    Eigen::Vector2d init2={2,4};
+    BOOST_CHECK_EQUAL_COLLECTIONS(ss.begin(), ss.end(),
+                                  init2.begin(), init2.end());
+}
+
+BOOST_AUTO_TEST_CASE(testcwise)
+{
+    Eigen::Vector2d init={1,2};
+    Eigen::Vector2d mm={3,4};
+    auto ss=init.cwiseProduct(mm);
+    Eigen::Vector2d init2={3,8};
+    BOOST_CHECK_EQUAL_COLLECTIONS(ss.begin(), ss.end(),
+                                  init2.begin(), init2.end());
+}
+
 BOOST_AUTO_TEST_CASE( test_e_impement )
 /* Compare with void free_test_function() */
 {

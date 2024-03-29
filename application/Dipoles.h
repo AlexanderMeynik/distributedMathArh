@@ -222,7 +222,7 @@ namespace dipoles {
             //return theta+0*phi;
             int N = this->xi_[0].size();
             T T0=M_PI*2/omega;
-            T res=0;
+            T res;
             Eigen::Vector<T,2> resxy={0.0,0.0};
             T resz=0.0;
             Eigen::Vector<T,2> s={cos(phi),sin(phi)};
