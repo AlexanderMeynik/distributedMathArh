@@ -84,6 +84,7 @@ public:
         return meshsph;
     }
     void generateMeshes(const std::function<T(T,T,T)>&func);
+    void generateNoInt(const std::function<T(T,T)> &func);
 
     void plotSpherical(std::string filename);
 
@@ -101,6 +102,8 @@ private:
     const T rr=2*M_PI/omega;//todo константа вынести
     const T step=M_PI/12;//todo константа вынести
 };
+
+
 
 template<typename T>
 void MeshProcessor<T>::printDec(std::ostream &out) {
@@ -139,13 +142,45 @@ void MeshProcessor<T>::plotSpherical(std::string filename) {
 }
 
 template<typename T>
-void MeshProcessor<T>::generateMeshes(const std::function<T(T, T, T)> &func) {
+void MeshProcessor<T>::generateNoInt(const std::function<T(T,T)> &func) {
     int num1 =(philims[1]-philims[0])/step;
-    std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>> meshgrid1=meshgrid(linspace(philims[0], philims[1],nums[0]),
-                                                                                          linspace(thelims[0], thelims[1], nums[1]));
+    //std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>> meshgrid1=meshgrid(linspace(philims[0], philims[1],nums[0]),
+    //                                                                                      linspace(thelims[0], thelims[1], nums[1]));
+    std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>> meshgrid1=mymeshGrid(myLinspace(philims[0], philims[1],nums[0]),
+                                                                                             myLinspace(thelims[0], thelims[1], nums[1]));
+
     meshdec[0]=meshgrid1.first;
     meshdec[1]=meshgrid1.second;
     T rr1=this->rr;
+
+    meshdec[2] = transform(meshdec[0], meshdec[1],func);
+    meshsph[0]=meshdec[0];
+    meshsph[1]=meshdec[1];
+    meshsph[2]=meshdec[2];
+    //auto x=phi;
+    //auto y=theta;
+    // auto z=func;
+    for (int i = 0; i < meshsph[0].size(); ++i) {
+        for (int j = 0; j < meshsph[0][0].size(); ++j) {
+            meshsph[0][i][j]=meshsph[2][i][j]*sin(meshdec[1][i][j])*cos(meshdec[0][i][j]);
+            meshsph[1][i][j]=meshsph[2][i][j]*sin(meshdec[1][i][j])*sin(meshdec[0][i][j]);
+            meshsph[2][i][j]=meshsph[2][i][j]*cos(meshdec[1][i][j]);
+        }
+    }
+}
+
+template<typename T>
+void MeshProcessor<T>::generateMeshes(const std::function<T(T, T, T)> &func) {
+    int num1 =(philims[1]-philims[0])/step;
+    //std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>> meshgrid1=meshgrid(linspace(philims[0], philims[1],nums[0]),
+    //                                                                                      linspace(thelims[0], thelims[1], nums[1]));
+    std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>> meshgrid1=mymeshGrid(myLinspace(philims[0], philims[1],nums[0]),
+                                                                                           myLinspace(thelims[0], thelims[1], nums[1]));
+
+    meshdec[0]=meshgrid1.first;
+    meshdec[1]=meshgrid1.second;
+    T rr1=this->rr;
+
     meshdec[2] = transform(meshdec[0], meshdec[1], [&func,&rr1](T x, T y) {
         return integrateFunctionBy1Val<T>(func,y,x,0,rr1);
     });

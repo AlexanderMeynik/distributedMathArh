@@ -38,6 +38,9 @@ namespace dipoles {
         const function<T(T, T, T)> &getIfunction() const {
             return Ifunction_;
         }
+        const function<T(T, T)> &getI2function() const {
+            return I2function_;
+        }
         const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &getSolution_() const;
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
         const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &getMatrixx();
@@ -63,6 +66,7 @@ namespace dipoles {
         Eigen::Vector<T, Eigen::Dynamic> f2;
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
         std::function<T(T, T, T)> Ifunction_;
+        std::function<T(T, T)> I2function_;
         T an = a;
         //std::vector<Eigen::Vector<T,2>> xi_;
         std::array<std::vector<T>, 2> xi_;
@@ -184,6 +188,9 @@ namespace dipoles {
                 res += elem * elem;
             }
             return res;
+        };
+        this->I2function_ = [this](T phi, T theta) {//todo анал решение 
+            return theta+0*phi;
         };
     }
 

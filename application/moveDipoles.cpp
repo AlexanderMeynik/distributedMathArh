@@ -22,26 +22,26 @@ int main(int argc, char* argv[]) {
     std::ios_base::sync_with_stdio(false);
     std::string dirname="movemovemove/";
     std::filesystem::create_directory(dirname);
-    std::array<std::vector<long double>,2>coordinates;
+    std::array<std::vector<double>,2>coordinates;
     coordinates[0]={0.0,5*l};
     coordinates[1]={0.0,5*l};
-    long double limit=0.01*l;
+    double limit=0.01*l;
     int i=0;
     int N=coordinates[0].size();
     std::ofstream out(dirname+"results.txt");
 
-    Dipoles< long double> d(N,coordinates);
+    Dipoles< double> d(N,coordinates);
     d.solve_();
 
-    MeshProcessor<long double> mmesh;
+    MeshProcessor<double> mmesh;
     d.getFullFunction();
     auto solut1=d.getSolution_();
     solut1[0][0]=5;
     mmesh.generateMeshes(d.getIfunction());
     auto prevMesh=mmesh.getMeshdec();
     prevMesh[2][0][0]=10000000000;
-    long double multip=1;
-    long double res=5;
+    double multip=1;
+    double res=5;
     while(i<30 && (solut1[0].norm()+solut1[1].norm())/1000000<res)//(coordinates[0]-coordinates[1]).norm()>limit)
     {
         std::ofstream  fout(dirname+"out"+std::to_string(N)+"_"+std::to_string(i)+".txt");
@@ -56,8 +56,8 @@ int main(int argc, char* argv[]) {
         //когда разницы между ними почти не будет оставновка
         //функция для подсчёта нормы от разницы 2 мешей принимет vector<vector<T>>&
         mmesh.printDec(out);
-        std::vector<std::vector<long double>> t1=prevMesh[2];
-        std::vector<std::vector<long double>> t2=mmesh.getMeshdec()[2];
+        std::vector<std::vector<double>> t1=prevMesh[2];
+        std::vector<std::vector<double>> t2=mmesh.getMeshdec()[2];
         res=(solut1[0]-solut2[0]).norm()+(solut1[1]-solut2[1]).norm();//getMeshDiffNorm(t1,t2);
         out<<res<<"\n\n\n\n\n";
         fout<<coordinates[0][0]<<"\t"<<coordinates[1][0]<<"\n";
