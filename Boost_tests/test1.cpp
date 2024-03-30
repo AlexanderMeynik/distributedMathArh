@@ -91,3 +91,24 @@ BOOST_AUTO_TEST_CASE( test_e_impement )
 
     //BOOST_CHECK_EQUAL_COLLECTIONS(res1.begin(),res1.end(),res2.b)
 }
+
+BOOST_AUTO_TEST_CASE( test_my_function )
+{
+    const double  l=1E-7;
+    std::array<std::vector<double>,2>coordinates;
+    coordinates[0]={0.0,l};
+    coordinates[1]={0.0,l};
+    using dipoles::Dipoles;
+    Dipoles<double> d(coordinates[0].size(),coordinates);
+    d.solve_();
+    auto sol=d.getSolution_();
+    d.getFullFunction();
+    auto f1=d.getIfunction();
+    auto f2=d.getI2function();
+    auto val=f2(M_PI/12,M_PI/12);
+    double rr1=2*M_PI/pow(10, 15);
+    auto ff=[&f1,&rr1](double x, double y) {
+        return integrateFunctionBy1Val<double>(f1,y,x,0,rr1);
+    };
+    std::cout<<val<<"\n"<<ff(M_PI/12,M_PI/12)<<"\n";
+}
