@@ -73,12 +73,12 @@ BOOST_AUTO_TEST_CASE( test_e_impement )
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.getI2function();
+    auto f2=d.I1_5function_;
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
     auto mesh1=mesh.getMeshdec();
-    mesh.generateNoInt(f2);
+    mesh.generateMeshes(f2);
     auto mesh2=mesh.getMeshdec();
     for (int m = 0; m <3 ; ++m) {
         for (int i = 0; i < mesh1[m].size(); ++i) {
@@ -111,4 +111,29 @@ BOOST_AUTO_TEST_CASE( test_my_function )
         return integrateFunctionBy1Val<double>(f1,y,x,0,rr1);
     };
     std::cout<<val<<"\n"<<ff(M_PI/12,M_PI/12)<<"\n";
+}
+
+
+BOOST_AUTO_TEST_CASE( test_1_5_function )
+{
+    const double  l=1E-7;
+    std::array<std::vector<double>,2>coordinates;
+    coordinates[0]={0.0,l};
+    coordinates[1]={0.0,l};
+    using dipoles::Dipoles;
+    Dipoles<double> d(coordinates[0].size(),coordinates);
+    d.solve_();
+    auto sol=d.getSolution_();
+    d.getFullFunction();
+    auto f1=d.getIfunction();
+    auto f1_5=d.I1_5function_;
+    //auto val=f2(M_PI/12,M_PI/12);
+    double rr1=2*M_PI/pow(10, 15);
+    auto ff=[&f1,&rr1](double x, double y) {
+        return integrateFunctionBy1Val<double>(f1,y,x,0,rr1);
+    };
+    auto ff_15=[&f1_5,&rr1](double x, double y) {
+        return integrateFunctionBy1Val<double>(f1_5,y,x,0,rr1);
+    };
+    std::cout<<ff_15(M_PI/12,M_PI/12)<<"\n"<<ff(M_PI/12,M_PI/12)<<"\n";
 }

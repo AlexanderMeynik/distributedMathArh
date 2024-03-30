@@ -68,7 +68,9 @@ namespace dipoles {
         Eigen::Vector<T, Eigen::Dynamic> f1;
         Eigen::Vector<T, Eigen::Dynamic> f2;
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
+    public://todo после тество убрать
         std::function<T(T, T, T)> Ifunction_;
+        std::function<T(T, T, T)> I1_5function_;
         std::function<T(T, T)> I2function_;
         T an = a;
         //std::vector<Eigen::Vector<T,2>> xi_;
@@ -218,6 +220,79 @@ namespace dipoles {
             }
             return res;
         };
+        this->I1_5function_ = [this](T theta, T phi, T t) {//todo стр. 4
+            //return theta+0*phi;
+            int N = this->xi_[0].size();
+            T omega0=omega;
+            T T0=M_PI*2/omega0;
+            T res;
+            Eigen::Vector<T,2> resxy={0.0,0.0};
+            T resz=0.0;
+            T o3dc= -pow(omega0,3)/c;
+            T o2= -pow(omega0,2);
+            T sinth2=pow(sin(theta),2);
+            Eigen::Vector<T,2> s={cos(phi),
+                                  sin(phi)};
+            for (int i = 0; i < N; ++i) {
+                Eigen::Vector<T,2> ri = {this->xi_[0][i],
+                                         this->xi_[1][i]};
+                T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
+
+                Eigen::Vector<T,2> Ai = {this->solution_[0].coeffRef(2 * i),
+                                         this->solution_[0].coeffRef(2 * i + 1)};
+                Eigen::Vector<T,2> Bi = {this->solution_[1].coeffRef(2 * i),
+                                         this->solution_[1].coeffRef(2 * i + 1)};
+
+                T argument=omega0*ys/c;
+                T Ais=Ai.dot(s);
+                T Bis=Bi.dot(s);
+
+                //xyter
+                Eigen::Vector<T,2> ABis=Ai*Bis;
+                Eigen::Vector<T,2> BBis=Bi*Bis;
+                Eigen::Vector<T,2> AAis=Ai*Ais;
+                Eigen::Vector<T,2> BAis=Bi*Ais;
+
+                //todo очень схожие вещи
+                //todo 2 вынести -pow(omega,3)/c
+                Eigen::Vector<T,2> Pc2i=o3dc*
+                                        ((ABis-BAis)*(sin(theta)+1)*cos(2*argument)-
+                                         (BBis-AAis)*(sin(theta)-1)* sin(2*argument))/2;
+                Eigen::Vector<T,2> Ps2i=o3dc*
+                                        ((ABis-BAis)*(sin(theta)+1)* sin(2*argument)+
+                                         (BBis-AAis)*(sin(theta)-1)* cos(2*argument))/2;
+                Eigen::Vector<T,2> Pc1i=o2*
+                                        ((s*Ais*sinth2-Ai)*cos(argument)+
+                                         (s*Bis*sinth2-Bi)*sin(argument));
+                Eigen::Vector<T,2> Ps1i=o2*
+                                        ((s*Ais*sinth2-Ai)*sin(argument)+
+                                         (s*Bis*sinth2-Bi)*cos(argument));
+                Eigen::Vector<T,2> Pcomi=o3dc*
+                                         (sin(theta)-1)*(ABis+BAis)/2;
+
+
+                T Pci=-o2*sin(theta)*cos(theta)*(Ais*cos(argument)-Bis*sin(argument));
+                T Psi=-o2*sin(theta)*cos(theta)*(Ais*sin(argument)+Bis*cos(argument));
+
+
+
+
+                Eigen::Vector<T,2> ri_xy=Pc2i* cos(2*omega0*t)+Ps2i* sin(2*omega0*t)+
+                        Pc1i* cos(omega0*t)+Ps1i* sin(omega0*t)+Pcomi;
+                resxy+=ri_xy;
+
+                T ri_xz=Pci* sin(omega*t)+Psi* sin(omega*t);
+                resz+=ri_xz;
+                //T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
+                //T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
+
+            }
+            //resz=resz*T0*(pow(omega0,4)*pow(sin(theta)* cos(phi),2));
+            res=(resxy.cwiseProduct(resxy)).sum()+resz*resz;
+            return res;
+
+        };
+
         this->I2function_ = [this](T phi, T theta) {//todo аналит решение
             //return theta+0*phi;
             int N = this->xi_[0].size();
