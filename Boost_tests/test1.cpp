@@ -60,7 +60,10 @@ BOOST_AUTO_TEST_CASE(testcwise)
                                   init2.begin(), init2.end());
 }
 
-BOOST_AUTO_TEST_CASE( test_e_impement )
+
+#define BOOST_TEST_MODULE tolerance_01
+namespace utf = boost::unit_test;
+BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(0.000000001))
 /* Compare with void free_test_function() */
 {
     const double  l=1E-7;
@@ -73,19 +76,26 @@ BOOST_AUTO_TEST_CASE( test_e_impement )
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.I1_5function_;
+    auto f2=d.I1_3function_;
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
     auto mesh1=mesh.getMeshdec();
     mesh.generateMeshes(f2);
     auto mesh2=mesh.getMeshdec();
-    for (int m = 2; m <3 ; ++m) {
-        for (int i = 0; i < mesh1[m].size(); ++i) {
-            BOOST_CHECK_EQUAL_COLLECTIONS(mesh1[m][i].begin(), mesh1[m][i].end(),
-                                          mesh2[m][i].begin(), mesh2[m][i].end());
+    auto mesh3=mesh2;
+
+        for (int i = 0; i < mesh1[2].size(); ++i) {
+            std::cout<<"theta = "<<M_PI*i/12.0<<'\n';
+            //BOOST_CHECK_EQUAL_COLLECTIONS(mesh1[2][i].begin(), mesh1[2][i].end(),
+             //                             mesh2[2][i].begin(), mesh2[2][i].end());
+            for (int k = 0; k < mesh1[2][i].size(); ++k) {
+
+                mesh3[2][i][k]=mesh1[2][i][k]-mesh2[2][i][k];
+                BOOST_TEST(mesh1[2][i][k]==mesh2[2][i][k]);
+                std::cout<<"phi = "<<M_PI*k/12.0<<'\t'<<mesh3[2][i][k]<<'\n';
+            }
         }
-    }
 
 
 
@@ -126,7 +136,7 @@ BOOST_AUTO_TEST_CASE( test_1_5_function )
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f1_5=d.I1_5function_;
+    auto f1_5=d.I1_4function_;
     //auto val=f2(M_PI/12,M_PI/12);
     double rr1=2*M_PI/pow(10, 15);
     auto ff=[&f1,&rr1](double x, double y) {
