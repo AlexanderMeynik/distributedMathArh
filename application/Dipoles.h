@@ -223,7 +223,7 @@ namespace dipoles {
             return res;
         };
 
-        this->I1_3function_ = [this](T theta, T phi, T t) {//todo стр. 4
+        this->I1_3function_ = [this](T theta, T phi, T t) {
             //return theta+0*phi;
             int N = this->xi_[0].size();
             T omega0=omega;
@@ -288,7 +288,7 @@ namespace dipoles {
             return res;
 
         };
-        this->I1_4function_ = [this](T theta, T phi, T t) {//todo стр. 4
+        this->I1_4function_ = [this](T theta, T phi, T t) {
             //return theta+0*phi;
             int N = this->xi_[0].size();
             T omega0=omega;
@@ -326,7 +326,7 @@ namespace dipoles {
                 //todo 2 вынести -pow(omega,3)/c
                 Eigen::Vector<T,2> first= -o3dc * sin(theta) * ((ABis+BAis)*cos(2 * omega0 * t0) +
                         (BBis-AAis)*sin(2 * omega0 * t0) + (ABis - BAis)) / 2;
-                first-=omega*omega*(Ai*cos(omega0 * t0) + Bi * sin(omega0 * t0));
+                first+=omega*omega*(Ai*cos(omega0 * t0) + Bi * sin(omega0 * t0));
 
                 Eigen::Vector<T,2> second=-omega*omega*sinth2*(s*Ais*cos(omega0 * t0) + s * Bis * sin(omega0 * t0));
                 Eigen::Vector<T,2> last= o3dc * sin(theta) * ((BAis+ABis)*cos(2 * omega0 * t0) +

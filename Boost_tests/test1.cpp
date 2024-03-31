@@ -63,7 +63,7 @@ BOOST_AUTO_TEST_CASE(testcwise)
 
 #define BOOST_TEST_MODULE tolerance_01
 namespace utf = boost::unit_test;
-BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(0.000000001))
+BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(pow(10,-12)))
 /* Compare with void free_test_function() */
 {
     const double  l=1E-7;
@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(0.000000001))
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.I1_3function_;
+    auto f2=d.I1_4function_;
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
