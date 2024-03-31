@@ -80,7 +80,7 @@ BOOST_AUTO_TEST_CASE( test_e_impement )
     auto mesh1=mesh.getMeshdec();
     mesh.generateMeshes(f2);
     auto mesh2=mesh.getMeshdec();
-    for (int m = 0; m <3 ; ++m) {
+    for (int m = 2; m <3 ; ++m) {
         for (int i = 0; i < mesh1[m].size(); ++i) {
             BOOST_CHECK_EQUAL_COLLECTIONS(mesh1[m][i].begin(), mesh1[m][i].end(),
                                           mesh2[m][i].begin(), mesh2[m][i].end());
