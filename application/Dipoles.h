@@ -322,7 +322,7 @@ namespace dipoles {
                 Eigen::Vector<T,2> ri_xy=first+second+last;
                 resxy+=ri_xy;
                 T ri_xz=z_1;
-                //resz+=ri_xz;
+                resz+=ri_xz;
 
             }
             res=(resxy.cwiseProduct(resxy)).sum()+resz*resz;
@@ -378,14 +378,15 @@ namespace dipoles {
                                          (s*Bis*sinth2-Bi)*cos(argument));
                 Eigen::Vector<T,2> Pcomi=-o3dc*
                                          (sin(theta))*(ABis-BAis);
+
                 T Pci=-o2*sin(theta)*cos(theta)*(Ais*cos(argument)-Bis*sin(argument));
                 T Psi=-o2*sin(theta)*cos(theta)*(Ais*sin(argument)+Bis*cos(argument));
                 Eigen::Vector<T,2> ri_xy=Pc2i* cos(2*omega0*t)+Ps2i* sin(2*omega0*t)+
                         Pc1i*cos(omega0*t)+Ps1i*sin(omega0*t)+Pcomi;
                 resxy+=ri_xy;
 
-                T ri_xz=Pci* sin(omega0*t)+Psi* sin(omega0*t);
-                //resz+=ri_xz;
+                T ri_xz=Pci* cos(omega0*t)+Psi* sin(omega0*t);
+                resz+=ri_xz;
             }
             res=(resxy.cwiseProduct(resxy)).sum()+resz*resz;
             return res;

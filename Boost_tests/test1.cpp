@@ -75,7 +75,7 @@ BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(pow(10,-12)))
     d.solve_();
     auto sol=d.getSolution_();
     d.getFullFunction();
-    auto f1=d.I1_4function_;
+    auto f1=d.getIfunction();
     auto f2=d.I1_5function_;
 
     MeshProcessor<double> mesh;
