@@ -68,11 +68,9 @@ namespace dipoles {
         Eigen::Vector<T, Eigen::Dynamic> f1;
         Eigen::Vector<T, Eigen::Dynamic> f2;
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
-    public://todo после тество убрать
         std::function<T(T, T, T)> Ifunction_;
         std::function<T(T, T)> I2function_;
         T an = a;
-        //std::vector<Eigen::Vector<T,2>> xi_;
         std::array<std::vector<T>, 2> xi_;
         int N_;
 

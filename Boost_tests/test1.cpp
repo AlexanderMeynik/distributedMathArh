@@ -76,7 +76,7 @@ BOOST_AUTO_TEST_CASE( test_e_impement1 ,* utf::tolerance(pow(10,-12)))
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.I2function_;
+    auto f2=d.getI2function();
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
@@ -106,7 +106,7 @@ BOOST_AUTO_TEST_CASE( test_e_impementation2 ,* utf::tolerance(pow(10,-12)))
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.I2function_;
+    auto f2=d.getI2function();
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
@@ -137,7 +137,7 @@ BOOST_AUTO_TEST_CASE( test_e_impementation3 ,* utf::tolerance(pow(10,-12)))
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.I2function_;
+    auto f2=d.getI2function();
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
@@ -172,7 +172,7 @@ BOOST_AUTO_TEST_CASE( test_e_impementation4 ,* utf::tolerance(pow(10,-12)))
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.I2function_;
+    auto f2=d.getI2function();
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
