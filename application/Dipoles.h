@@ -25,6 +25,8 @@ namespace dipoles {
     template<class T>
     class Dipoles {
     public:
+        //todo метод для импорта/экспорта данных
+        //определить где и как будем хранить
         Dipoles(int N, std::array<std::vector<T>, 2> &xi);
 
         void setNewCoordinates(std::array<std::vector<T>, 2> &xi);

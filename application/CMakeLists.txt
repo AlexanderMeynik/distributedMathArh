@@ -23,18 +23,19 @@ find_package(GSL REQUIRED)
 
 
 # Add Executable
-add_executable(Magister1 Dipoles.h main.cpp lib.cpp printUtils.h MeshProcessor.cpp)
+add_executable(Magister1  main.cpp) #lib.cpp printUtils.h MeshProcessor.cpp)
 add_executable(Magister2 Dipoles2.h main.cpp)
 add_executable(ConFReader configReader.cpp)
 add_executable(testIntegr gausTets.cpp)
 # Link Libraries
 
-
+add_library(myLibrary Dipoles.cpp lib.cpp MeshProcessor.h MeshProcessor.cpp printUtils.h)
 # Include Directories
 target_link_libraries(Magister1 PRIVATE ${GSL_LIBRARIES})
 target_link_libraries(Magister1 PRIVATE ${PQXX_LIB} ${PQ_LIB})
 target_include_directories(Magister1 PRIVATE ${GSL_INCLUDE_DIRS})
 target_link_libraries(Magister1 PUBLIC Matplot++::matplot)
+target_link_libraries(Magister1 PUBLIC myLibrary)
 
 
 target_link_libraries(ConFReader PRIVATE ${GSL_LIBRARIES})
@@ -49,7 +50,8 @@ target_link_libraries(testIntegr PRIVATE ${PQXX_LIB} ${PQ_LIB})
 
 
 # Include Directories
-add_library(myLibrary Dipoles.cpp lib.cpp MeshProcessor.h MeshProcessor.cpp printUtils.h)
+
+
 
 add_executable(moveDipoles moveDipoles.cpp)
 target_link_libraries(moveDipoles PUBLIC Matplot++::matplot)

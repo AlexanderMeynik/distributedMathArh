@@ -184,13 +184,10 @@ BOOST_AUTO_TEST_CASE( test_e_impementation4 ,* utf::tolerance(pow(10,-12)))
     for (int i = 0; i < mesh1[2].size(); ++i) {
         std::cout<<"theta = "<<M_PI*i/12.0<<'\n';
         for (int k = 0; k < mesh1[2][i].size(); ++k) {
-
             mesh3[2][i][k]=mesh1[2][i][k]-mesh2[2][i][k];
             BOOST_TEST(mesh1[2][i][k]==mesh2[2][i][k]);
         }
     }
-
-
 
 }
 
