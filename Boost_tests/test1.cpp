@@ -61,7 +61,6 @@ BOOST_AUTO_TEST_CASE(testcwise)
 }
 
 
-#define BOOST_TEST_MODULE tolerance_01
 namespace utf = boost::unit_test;
 BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(pow(10,-12)))
 /* Compare with void free_test_function() */
@@ -93,7 +92,7 @@ BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(pow(10,-12)))
 
                 mesh3[2][i][k]=mesh1[2][i][k]-mesh2[2][i][k];
                 BOOST_TEST(mesh1[2][i][k]==mesh2[2][i][k]);
-                std::cout<<"phi = "<<M_PI*k/12.0<<'\t'<<mesh3[2][i][k]<<'\n';
+                //std::cout<<"phi = "<<M_PI*k/12.0<<'\t'<<mesh3[2][i][k]<<'\n';
             }
         }
 
@@ -102,48 +101,74 @@ BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(pow(10,-12)))
     //BOOST_CHECK_EQUAL_COLLECTIONS(res1.begin(),res1.end(),res2.b)
 }
 
-BOOST_AUTO_TEST_CASE( test_my_function )
+namespace utf = boost::unit_test;
+BOOST_AUTO_TEST_CASE( test_e_impementation2 ,* utf::tolerance(pow(10,-12)))
 {
     const double  l=1E-7;
     std::array<std::vector<double>,2>coordinates;
-    coordinates[0]={0.0,l};
-    coordinates[1]={0.0,l};
+    coordinates[0]={0.0,0.5*l,l};
+    coordinates[1]={0.0,0.5*l,l};
     using dipoles::Dipoles;
     Dipoles<double> d(coordinates[0].size(),coordinates);
     d.solve_();
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.getI2function();
-    auto val=f2(M_PI/12,M_PI/12);
-    double rr1=2*M_PI/pow(10, 15);
-    auto ff=[&f1,&rr1](double x, double y) {
-        return integrateFunctionBy1Val<double>(f1,y,x,0,rr1);
-    };
-    std::cout<<val<<"\n"<<ff(M_PI/12,M_PI/12)<<"\n";
+    auto f2=d.I2function_;
+
+    MeshProcessor<double> mesh;
+    mesh.generateMeshes(f1);
+    auto mesh1=mesh.getMeshdec();
+    mesh.generateNoInt(f2);
+    auto mesh2=mesh.getMeshdec();
+    auto mesh3=mesh2;
+
+    for (int i = 0; i < mesh1[2].size(); ++i) {
+        std::cout<<"theta = "<<M_PI*i/12.0<<'\n';
+        for (int k = 0; k < mesh1[2][i].size(); ++k) {
+
+            mesh3[2][i][k]=mesh1[2][i][k]-mesh2[2][i][k];
+            BOOST_TEST(mesh1[2][i][k]==mesh2[2][i][k]);
+        }
+    }
+
+
+
 }
 
-
-BOOST_AUTO_TEST_CASE( test_1_5_function )
+namespace utf = boost::unit_test;
+BOOST_AUTO_TEST_CASE( test_e_impementation3 ,* utf::tolerance(pow(10,-12)))
 {
     const double  l=1E-7;
     std::array<std::vector<double>,2>coordinates;
-    coordinates[0]={0.0,l};
-    coordinates[1]={0.0,l};
+    coordinates[0]={0.0,0.5*l,0.0,0.5*l,l};
+    coordinates[1]={0.0,0.0,0.5*l,0.5*l,l};
     using dipoles::Dipoles;
     Dipoles<double> d(coordinates[0].size(),coordinates);
     d.solve_();
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f1_5=d.I1_4function_;
-    //auto val=f2(M_PI/12,M_PI/12);
-    double rr1=2*M_PI/pow(10, 15);
-    auto ff=[&f1,&rr1](double x, double y) {
-        return integrateFunctionBy1Val<double>(f1,y,x,0,rr1);
-    };
-    auto ff_15=[&f1_5,&rr1](double x, double y) {
-        return integrateFunctionBy1Val<double>(f1_5,y,x,0,rr1);
-    };
-    std::cout<<ff_15(M_PI/12,M_PI/12)<<"\n"<<ff(M_PI/12,M_PI/12)<<"\n";
+    auto f2=d.I2function_;
+
+    MeshProcessor<double> mesh;
+    mesh.generateMeshes(f1);
+    auto mesh1=mesh.getMeshdec();
+    mesh.generateNoInt(f2);
+    auto mesh2=mesh.getMeshdec();
+    auto mesh3=mesh2;
+
+    for (int i = 0; i < mesh1[2].size(); ++i) {
+        std::cout<<"theta = "<<M_PI*i/12.0<<'\n';
+        for (int k = 0; k < mesh1[2][i].size(); ++k) {
+
+            mesh3[2][i][k]=mesh1[2][i][k]-mesh2[2][i][k];
+            BOOST_TEST(mesh1[2][i][k]==mesh2[2][i][k]);
+        }
+    }
+
+
+
 }
+
+
