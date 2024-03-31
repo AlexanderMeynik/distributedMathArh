@@ -76,12 +76,12 @@ BOOST_AUTO_TEST_CASE( test_e_impement ,* utf::tolerance(pow(10,-12)))
     auto sol=d.getSolution_();
     d.getFullFunction();
     auto f1=d.getIfunction();
-    auto f2=d.I1_5function_;
+    auto f2=d.I2function_;
 
     MeshProcessor<double> mesh;
     mesh.generateMeshes(f1);
     auto mesh1=mesh.getMeshdec();
-    mesh.generateMeshes(f2);
+    mesh.generateNoInt(f2);
     auto mesh2=mesh.getMeshdec();
     auto mesh3=mesh2;
 
