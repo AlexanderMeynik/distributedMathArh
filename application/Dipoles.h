@@ -250,8 +250,6 @@ namespace dipoles {
                 T Ais=Ai.dot(s);
                 T Bis=Bi.dot(s);
 
-                //todo очень схожие вещи
-                //todo 2 вынести -pow(omega,3)/c
                 Eigen::Vector<T,2> first;
                 Eigen::Vector<T,2> second;
                 Eigen::Vector<T,2> last;
@@ -266,24 +264,13 @@ namespace dipoles {
 
 
                 T z_1=-o2*sin(theta)*cos(theta)*(Ais*cos(omega0 * t0) + Bis * sin(omega0 * t0));
-                //T z_2=o2*sin(theta)*cos(theta)*(Ais* cos(omega0*t0)+Bis* sin(omega0*t0));
-                //T Pci=o2*sin(theta)*cos(theta)*(Ais*cos(argument)-Bis*sin(argument));
-                //T Psi=o2*sin(theta)*cos(theta)*(Ais*sin(argument)+Bis*cos(argument));
-
-
-
 
                 Eigen::Vector<T,2> ri_xy=first+second+last;
                 resxy+=ri_xy;
 
-                //T ri_xz=Pci* sin(omega0*t)+Psi* sin(omega0*t);
                 T ri_xz=z_1;
                 resz+=ri_xz;
-                //T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
-                //T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
-
             }
-            //resz=resz*T0*(pow(omega0,4)*pow(sin(theta)* cos(phi),2));
             res=(resxy.cwiseProduct(resxy)).sum()+resz*resz;
             return res;
 
@@ -316,14 +303,11 @@ namespace dipoles {
                 T Ais=Ai.dot(s);
                 T Bis=Bi.dot(s);
 
-                //xyter
                 Eigen::Vector<T,2> ABis=Ai*Bis;
                 Eigen::Vector<T,2> BBis=Bi*Bis;
                 Eigen::Vector<T,2> AAis=Ai*Ais;
                 Eigen::Vector<T,2> BAis=Bi*Ais;
 
-                //todo очень схожие вещи
-                //todo 2 вынести -pow(omega,3)/c
                 Eigen::Vector<T,2> first= -o3dc * sin(theta) * ((ABis+BAis)*cos(2 * omega0 * t0) +
                         (BBis-AAis)*sin(2 * omega0 * t0) + (ABis - BAis)) / 2;
                 first+=omega*omega*(Ai*cos(omega0 * t0) + Bi * sin(omega0 * t0));
@@ -334,24 +318,13 @@ namespace dipoles {
 
 
                 T z_1=-o2*sin(theta)*cos(theta)*(Ais*cos(omega0 * t0) + Bis * sin(omega0 * t0));
-                //T z_2=o2*sin(theta)*cos(theta)*(Ais* cos(omega0*t0)+Bis* sin(omega0*t0));
-                //T Pci=o2*sin(theta)*cos(theta)*(Ais*cos(argument)-Bis*sin(argument));
-                //T Psi=o2*sin(theta)*cos(theta)*(Ais*sin(argument)+Bis*cos(argument));
-
-
-
 
                 Eigen::Vector<T,2> ri_xy=first+second+last;
                 resxy+=ri_xy;
-
-                //T ri_xz=Pci* sin(omega0*t)+Psi* sin(omega0*t);
                 T ri_xz=z_1;
-                resz+=ri_xz;
-                //T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
-                //T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
+                //resz+=ri_xz;
 
             }
-            //resz=resz*T0*(pow(omega0,4)*pow(sin(theta)* cos(phi),2));
             res=(resxy.cwiseProduct(resxy)).sum()+resz*resz;
             return res;
 
@@ -364,8 +337,8 @@ namespace dipoles {
             T res;
             Eigen::Vector<T,2> resxy={0.0,0.0};
             T resz=0.0;
-            T o3dc= -pow(omega0,3)/c;
-            T o2= -pow(omega0,2);
+            T o3dc= pow(omega0,3)/c;
+            T o2= pow(omega0,2);
             T sinth2=pow(sin(theta),2);
             Eigen::Vector<T,2> s={cos(phi),
                                   sin(phi)};
@@ -397,33 +370,23 @@ namespace dipoles {
                 Eigen::Vector<T,2> Ps2i={0.0,0.0};/*o3dc*(sin(theta)-sin(theta))*
                                         ((ABis+BAis)*sin(2*argument)+
                                          (BBis-AAis)*cos(2*argument))/2;*/
-                Eigen::Vector<T,2> Pc1i=o2*
+                Eigen::Vector<T,2> Pc1i=-o2*
                                         ((s*Ais*sinth2-Ai)*cos(argument)-
                                          (s*Bis*sinth2-Bi)*sin(argument));
-                Eigen::Vector<T,2> Ps1i=o2*
+                Eigen::Vector<T,2> Ps1i=-o2*
                                         ((s*Ais*sinth2-Ai)*sin(argument)+
                                          (s*Bis*sinth2-Bi)*cos(argument));
-                Eigen::Vector<T,2> Pcomi=o3dc*
+                Eigen::Vector<T,2> Pcomi=-o3dc*
                                          (sin(theta))*(ABis-BAis);
-
-
-                T Pci=o2*sin(theta)*cos(theta)*(Ais*cos(argument)-Bis*sin(argument));
-                T Psi=o2*sin(theta)*cos(theta)*(Ais*sin(argument)+Bis*cos(argument));
-
-
-
-
+                T Pci=-o2*sin(theta)*cos(theta)*(Ais*cos(argument)-Bis*sin(argument));
+                T Psi=-o2*sin(theta)*cos(theta)*(Ais*sin(argument)+Bis*cos(argument));
                 Eigen::Vector<T,2> ri_xy=Pc2i* cos(2*omega0*t)+Ps2i* sin(2*omega0*t)+
                         Pc1i*cos(omega0*t)+Ps1i*sin(omega0*t)+Pcomi;
                 resxy+=ri_xy;
 
                 T ri_xz=Pci* sin(omega0*t)+Psi* sin(omega0*t);
-                resz+=ri_xz;
-                //T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
-                //T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
-
+                //resz+=ri_xz;
             }
-            //resz=resz*T0*(pow(omega0,4)*pow(sin(theta)* cos(phi),2));
             res=(resxy.cwiseProduct(resxy)).sum()+resz*resz;
             return res;
 
@@ -446,7 +409,6 @@ namespace dipoles {
                 Eigen::Vector<T,2> ri = {this->xi_[0][i],
                                          this->xi_[1][i]};
                 T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
-                //T t0 = t - ys / c;
 
                 Eigen::Vector<T,2> Ai = {this->solution_[0].coeffRef(2 * i),
                                          this->solution_[0].coeffRef(2 * i + 1)};
@@ -463,8 +425,6 @@ namespace dipoles {
                 Eigen::Vector<T,2> AAis=Ai*Ais;
                 Eigen::Vector<T,2> BAis=Bi*Ais;
 
-                //todo очень схожие вещи
-                //todo 2 вынести -pow(omega,3)/c
                 Eigen::Vector<T,2> Pc2i=o3dc*
                         ((ABis-BAis)*(sin(theta)+1)*cos(2*argument)-
                         (BBis-AAis)*(sin(theta)-1)* sin(2*argument))/2;
@@ -484,8 +444,6 @@ namespace dipoles {
                 T Pci=Ais*cos(argument)-Bis*sin(argument);
                 T Psi=Ais*sin(argument)+Bis*cos(argument);
 
-
-                ///j ter
                 Eigen::Vector<T,2> rj;
                 T ysj;
                 Eigen::Vector<T,2> Aj;
@@ -512,9 +470,6 @@ namespace dipoles {
                 Eigen::Vector<T,2> BAjs;
                 for (int j = 0; j < i; ++j) {
 
-
-
-                    //z project
                     rj={this->xi_[0][j],
                         this->xi_[1][j]};
                     ysj=(rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
@@ -528,7 +483,6 @@ namespace dipoles {
                     Pcj=Ajs*cos(argumentj)-Bjs*sin(argumentj);
                     Psj=Ajs*sin(argumentj)+Bjs*cos(argumentj);
 
-
                     T rij_z=(Pci*Pcj-Psi*Psj);
                     resz+=rij_z;
 
@@ -536,7 +490,6 @@ namespace dipoles {
                     BBjs=Bj*Bjs;
                     AAjs=Aj*Ajs;
                     BAjs=Bi*Ajs;
-
 
                     Pc2j=o3dc*
                             ((ABjs-BAjs)*(sin(theta)+1)*cos(2*argumentj)-
@@ -552,9 +505,6 @@ namespace dipoles {
                             (s*Bjs*sinth2-Bj)*cos(argumentj));
                     Pcomj=o3dc*(sin(theta)-1)*(ABjs+BAjs)/2;
 
-
-
-
                     Eigen::Vector<T,2> rij_xy=Pc2i.cwiseProduct(Pc2j)-Ps2i.cwiseProduct(Ps2j)+
                              Pc1i.cwiseProduct(Pc1j)-Ps1i.cwiseProduct(Ps1j)
                              +Pcomi.cwiseProduct(Pcomj);
@@ -567,9 +517,6 @@ namespace dipoles {
 
                 T ri_xz=(Pci*Pci-Psi*Psi)/2;
                 resz+=ri_xz;
-                //T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
-                //T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
-
             }
             resxy=resxy*T0;
             resz=resz*T0*(pow(omega0,4)*pow(sin(theta)* cos(phi),2));
