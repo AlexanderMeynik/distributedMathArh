@@ -28,6 +28,7 @@ namespace dipoles {
     public:
         //todo метод для импорта/экспорта данных
         //определить где и как будем хранить
+        Dipoles() =default;
         Dipoles(int N, std::array<std::vector<T>, 2> &xi);
 
         void setNewCoordinates(std::array<std::vector<T>, 2> &xi);
@@ -65,7 +66,23 @@ namespace dipoles {
             T d2 = xi_[1][i] - xi_[1][m];
             return {d1, d2};
         };
+        void initArrays(std::array<std::vector<T>, 2> &xi)
+        {
+            xi_ = xi;
+            an = a / N_;
+            M1_.resize(2 * N_, 2 * N_);
+            M2_.resize(2 * N_, 2 * N_);
 
+
+            f1.resize(2 * N_);
+            f2.resize(2 * N_);
+            for (int i = 0; i < N_; ++i) {
+                f1(2 * i) = an * eps;
+                f1(2 * i + 1) = 0;
+                f2(2 * i) = 0;
+                f2(2 * i + 1) = an * eps;
+            }
+        }
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> matrixx;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M1_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M2_;
@@ -139,11 +156,15 @@ namespace dipoles {
 
     template<class T>
     void Dipoles<T>::setNewCoordinates(std::array<std::vector<T>, 2> &xi) {
-        xi_ = xi;
-
+        if(xi_[0].empty())
+        {
+            this->N_=xi[0].size();
+            initArrays(xi);
+        }
+        else {
+            xi_ = xi;
+        }
         setMatrixes();
-
-
         /*for (int i = 0; i < N_; ++i) {//todo эта часть уже не пустая
             f1(2 * i) = an * eps;
             f1(2 * i + 1) = 0;
@@ -391,22 +412,11 @@ namespace dipoles {
     template<class T>
     Dipoles<T>::Dipoles(int N, std::array<std::vector<T>, 2> &xi):N_(
             N) {
-        xi_ = xi;
-        an = a / N_;
-        M1_.resize(2 * N_, 2 * N_);
-        M2_.resize(2 * N_, 2 * N_);
+        initArrays(xi);
 
         setMatrixes();
 
 
-        f1.resize(2 * N_);
-        f2.resize(2 * N_);
-        for (int i = 0; i < N_; ++i) {
-            f1(2 * i) = an * eps;
-            f1(2 * i + 1) = 0;
-            f2(2 * i) = 0;
-            f2(2 * i + 1) = an * eps;
-        }
     }
 
 }

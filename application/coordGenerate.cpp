@@ -4,7 +4,7 @@
 #include <cassert>
 #include <eigen3/Eigen/Dense>
 #include <random>
-
+#include <omp.h>
 /*
 int main(int argc, char* argv[]) {
  double alpha=1;
@@ -37,6 +37,9 @@ int main(int argc, char* argv[]) {
     }
     std::string dirname="experiment_N="+std::to_string(N)+
             "_Nsym="+std::to_string(Nsym)+"/";
+    if(!std::filesystem::exists(dirname)) {
+        std::filesystem::create_directory(dirname);
+    }
 
     CoordGenerator<double> genr(0,1e-6);
     std::vector<array<vector<double>, 2>> coordinates(Nsym);
@@ -48,25 +51,28 @@ int main(int argc, char* argv[]) {
     MeshProcessor<double> mesh=MeshProcessor<double>();
     auto result = mesh.getMeshGliff();
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
+    #pragma omp parallel for private(dipoles1,mesh),default(shared)
     for (int i = 0; i < Nsym; ++i) {
-        std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
+        //std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
         dipoles1.setNewCoordinates(coordinates[i]);
         dipoles1.solve_();
         dipoles1.getFullFunction();
         mesh.generateNoInt(dipoles1.getI2function());
         auto mesht=mesh.getMeshdec()[2];
-        addMesh(result,mesht);
-
-        out1<<"Итерация симуляции i = "<<i<<"\n\n";
+        #pragma omp critical
+        {
+            addMesh(result, mesht);
+        }
+        /*out1<<"Итерация симуляции i = "<<i<<"\n\n";
         dipoles1.printCoordinates(out1);
         out1<<"\n";
 
         dipoles1.printSolutionFormat1(out1);
         out1<<"\n";
-        mesh.printDec(out1);
+        mesh.printDec(out1);*/
 
-        out1.close();
-        mesh.plotSpherical(dirname+"sim_i="+std::to_string(i)+".png");
+       // out1.close();
+        //mesh.plotSpherical(dirname+"sim_i="+std::to_string(i)+".png");
     }
 
     for (int i = 0; i < result.size(); ++i) {

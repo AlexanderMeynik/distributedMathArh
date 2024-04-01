@@ -18,6 +18,7 @@ find_package(Matplot++ REQUIRED)
 find_library(PQXX_LIB pqxx)
 find_library(PQ_LIB pq)
 find_package(GSL REQUIRED)
+find_package(OpenMP REQUIRED)
 #add_executable(Magister1 main.cpp) #Dipoles.cpp)
 
 
@@ -65,3 +66,5 @@ target_link_libraries(generator PUBLIC myLibrary)
 target_include_directories(generator PRIVATE ${GSL_INCLUDE_DIRS})
 target_link_libraries(generator PRIVATE ${GSL_LIBRARIES})
 target_link_libraries(generator PRIVATE Matplot++::matplot)
+
+target_link_libraries(generator PRIVATE OpenMP::OpenMP_CXX)
