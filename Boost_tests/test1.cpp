@@ -6,6 +6,8 @@
 #include "../application/Dipoles.h"
 #include <algorithm>
 //https://stackoverflow.com/questions/6759560/boosttest-and-mocking-framework
+#define BOOST_TEST_MODULE example
+BOOST_AUTO_TEST_SUITE( example )
 
 BOOST_AUTO_TEST_CASE( free_test_function )
 /* Compare with void free_test_function() */
@@ -192,3 +194,4 @@ BOOST_AUTO_TEST_CASE( test_e_impementation4 ,* utf::tolerance(pow(10,-12)))
 }
 
 
+BOOST_AUTO_TEST_SUITE_END()
