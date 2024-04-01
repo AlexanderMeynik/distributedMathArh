@@ -18,27 +18,9 @@
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
 #include "MeshProcessor.h"
-
+#include <random>
 using Eigen::Vector2d;
-/*template<class T>
-T integrate(std::function<T(T)> &f1, T left, T right) {
-    T error;
-    T Q = boost::math::quadrature::gauss_kronrod<T, 61>::integrate(f1, left, right, 5, 1e-20, &error);
-    return Q;
-}
-template<class T>
-T integrate(std::function<T(T)> &&f1, T left, T right) {
-    T error;
-    double Q = boost::math::quadrature::gauss_kronrod<T, 61>::integrate(f1, left, right, 5, 1e-20, &error);
-    return Q;
-}
 
-template<class T>
-T integrateFunctionBy1Val(std::function<T(T, T, T)>&ff, T theta, T phi,T left,T right)
-{
-    std::function<T(T)> tt=[&theta,&phi,&ff](T t){return ff(theta,phi,t);};
-    return integrate(tt,left,right);
-}*/
 
 template<class T>
 std::vector<std::array<std::vector<T>,2>> parseConf(string &filename);
@@ -50,58 +32,41 @@ template<class T>
 void generateMeshes(int N,int id, dipoles::Dipoles<T> & d,std::ostream&out,std::string &basicString);
 
 
-
-/*template<class T>
-void generateMeshes(int N, int id, dipoles::Dipoles<T> &d, ostream &out, string &basicString) {
-    using namespace matplot;
-
-    const T omega=pow(10,15);//todo константа вынести
-    const T rr=2*M_PI/omega;//todo константа вынести
-    const T step=M_PI/12;//todo константа вынести
-    d.getFullFunction();
-    std::function<T(T,T,T)>ff2=d.getIfunction();
-
-
-    out<<"Функция I(phi,th)\n";
-    out<<"phi\\th\t\t";
-    for (T theta = 0; theta < M_PI/2; theta+=step) {
-        out<<scientificNumber(theta,5)<<"\t";
+template <typename T>
+class CoordGenerator
+{
+public:
+    CoordGenerator(T mean,T stddev):mean_(mean),stddev_(sqrt(2)*stddev)
+    {
+        distribution_=std::normal_distribution<T>(mean_, stddev_);
     }
-    out<<"\n";
-    for (T phi = 0; phi < M_PI*2; phi+=step) {
-        out<<scientificNumber(phi,5)<<"\t";
-        for (T theta = 0; theta < M_PI/2; theta+=step) {
-            out<<scientificNumber(integrateFunctionBy1Val(ff2,theta,phi,0.0,rr),5)<<"\t";
+    std::array<std::vector<T>,2> generateCoordinates(size_t N)
+    {
+        if(!N)
+        {
+            return  std::array<std::vector<T>,2>();
         }
-        out<<"\n";
+        std::array<std::vector<T>,2>res;
+        res[0]=std::vector<T>(N,0);
+        res[1]=std::vector<T>(N,0);
+        std::function<T()> generetor=[&](){return distribution_(rng_);};
+        //std::cout<<generetor()<<"\t"<<distribution_(rng_)<<"\n";
+        std::generate(res[0].begin(), res[0].end(), generetor);
+        std::generate(res[1].begin(), res[1].end(), generetor);
+        return res;
     }
 
-
-    auto [phi, theta] = meshgrid(linspace(0, M_PI*2, 25), linspace(0, M_PI_2, 7));
-    auto func = transform(phi, theta, [&ff2,&rr](double x, double y) {
-        return integrateFunctionBy1Val<double>(ff2,y,x,0,rr);
-    });
-
-    auto x=phi;
-    auto y=theta;
-    auto z=func;
-    for (int i = 0; i < x.size(); ++i) {
-        for (int j = 0; j < x[0].size(); ++j) {
-            x[i][j]=func[i][j]*sin(theta[i][j])*cos(phi[i][j]);
-            y[i][j]=func[i][j]*sin(theta[i][j])*sin(phi[i][j]);
-            z[i][j]=func[i][j]*cos(theta[i][j]);
-        }
-    }
-
-    auto ax=gca();
-    ax->surf(x, y, z);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
-    //surf(x, y, z);
-    view(213,22);
-    xlim({-40,40});
-    ylim({-40,40});
-    matplot::save(basicString+"/out"+std::to_string(N)+"_"+std::to_string(id)+"_.png");
-}*/
-
+    CoordGenerator(CoordGenerator&)=delete;
+    CoordGenerator(CoordGenerator&&)=delete;
+    CoordGenerator&operator=(CoordGenerator&)=delete;
+    CoordGenerator&operator=(CoordGenerator&&)=delete;
+private:
+    T mean_;
+    T stddev_;
+    std::random_device rd_;
+    std::mt19937 rng_=std::mt19937(rd_());
+    std::normal_distribution<T> distribution_;
+};
 
 template<class T>
 void

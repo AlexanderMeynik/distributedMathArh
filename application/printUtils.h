@@ -7,7 +7,24 @@
 #include <iostream>
 #include <ostream>
 #include <iomanip>
+class IosStatePreserve
+{
+public:
+    IosStatePreserve(std::ostream&out):out_(out)
+    {
+        flags_=out.flags();
+        //out_=out;
 
+    }
+    ~IosStatePreserve()
+    {
+        out_.setf(flags_);
+    }
+
+private:
+    std::ostream &out_;
+    std::ios_base::fmtflags flags_;
+};
 template<typename T>
 struct scientificNumberType
 {

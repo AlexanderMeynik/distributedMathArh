@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
     d.getFullFunction();
     auto solut1=d.getSolution_();
     solut1[0][0]=5;
-    mmesh.generateMeshes(d.getIfunction());
+    mmesh.generateNoInt(d.getI2function());
     auto prevMesh=mmesh.getMeshdec();
     prevMesh[2][0][0]=10000000000;
     double multip=start_multip;

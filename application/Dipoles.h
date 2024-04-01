@@ -6,7 +6,8 @@ using namespace std;
 #include <memory>
 #include <eigen3/Eigen/Dense>
 #include <iostream>
-
+#include "printUtils.h"
+#include <iomanip>
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using Eigen::Vector2d;
@@ -50,6 +51,7 @@ namespace dipoles {
         void printCoordinates(std::ostream& out);
         void printRightPart(std::ostream& out,Eigen::IOFormat& format);
         void printSolution(std::ostream& out,Eigen::IOFormat& format);
+        void printSolutionFormat1(std::ostream& out);
     private:
         T getDistance(int i1, int i2) {
             T d1 = xi_[0][i1] - xi_[0][i2];
@@ -84,6 +86,34 @@ namespace dipoles {
     };
 
     template<class T>
+    void Dipoles<T>::printSolutionFormat1(std::ostream &out) {
+        out<<"Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
+        for (int i = 0; i < N_; ++i) {
+            auto cx= sqrt(solution_[0].coeffRef(2*i)*solution_[0].coeffRef(2*i)+
+                    solution_[1].coeffRef(2*i)*solution_[1].coeffRef(2*i));
+            auto cy=sqrt(solution_[0].coeffRef(2*i+1)*solution_[0].coeffRef(2*i+1)+
+                         solution_[1].coeffRef(2*i+1)*solution_[1].coeffRef(2*i+1));
+            /*out<<"A"<<i+1<<"x = "<<solution_[0].coeffRef(2*i)
+            <<", B"<<i+1<<"x = "<<solution_[1].coeffRef(2*i)
+            <<", C"<<i+1<<"x = "<<cx
+            <<"\n";
+            out<<"A"<<i+1<<"y = "<<solution_[0].coeffRef(2*i+1)
+            <<", B"<<i+1<<"y = "<<solution_[1].coeffRef(2*i+1)
+            <<", C"<<i+1<<"y = "<<cy
+            <<"\n";*/
+            IosStatePreserve state(out);
+            out<<std::scientific;
+
+            out<<solution_[0].coeffRef(2*i)<<"\t"
+            <<solution_[1].coeffRef(2*i)<<"\t"
+            <<cx<<"\n";
+            out<<solution_[0].coeffRef(2*i+1)<<"\t"
+               <<solution_[1].coeffRef(2*i+1)<<"\t"
+               <<cy<<"\n";
+        }
+    }
+
+    template<class T>
     void Dipoles<T>::printSolution(std::ostream &out, Eigen::IOFormat &format) {
         out << "Вектор решения\n" << solution_[0].format(format) << '\n' << solution_[1].format(format) << "\n\n";
     }
@@ -100,8 +130,6 @@ namespace dipoles {
         for (int i = 0; i < xi_[0].size(); ++i) {
             out << xi_[0][i] << '\t'<<xi_[1][i]<<"\n";
         }
-        //for_each(a.begin(),a.end(),[&out](Eigen::Vector<T,2>& n) { out << n(0) << '\t'<<n(1)<<"\n"; });
-        out<<"\n\n";
     }
 
     template<class T>
@@ -147,7 +175,6 @@ namespace dipoles {
                     auto tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
                     M1_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
                 }
-
             }
         }
 

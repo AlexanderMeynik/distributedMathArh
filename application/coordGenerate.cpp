@@ -20,39 +20,67 @@ int main(int argc, char* argv[]) {
 #include <random>
 #include <cmath>
 #include <fstream>
+#include "lib.h"
+#include "Dipoles.h"
+#include "MeshProcessor.h"
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
+using dipoles::Dipoles;
 
-
-int main() {
-    std::ofstream out("coord1.txt");
-    // Задаем параметры распределения
-    double mean = 0.0; // Среднее значение
-    double stddev = 1.0; // Стандартное отклонение
-    double a = 1.0; // Параметр а в распределении
-    double sqrt2= sqrt(2);
-    stddev*=sqrt2;
-    // Инициализируем генератор случайных чисел
-    std::random_device rd;
-    std::mt19937 rng(rd());
-
-    std::normal_distribution<double> distribution(mean, stddev);
-
-    // Генерируем случайные числа и выводим их
-    int num_samples = 100000; // Количество сэмплов для генерации
-    for (int i = 0; i < num_samples; ++i) {
-        double x = distribution(rng);
-        double y =distribution(rng);
-        //std::cout << "x_" << i << ": " << x << ", y_" << i << ": " << y << std::endl;
-        out <<x <<"\t" << y << '\n';
-        // Проверяем, что случайные числа находятся в пределах заданного квадрата
-        /*if ((x * x + y * y) <= (a * a * M_PI)) {
-            // Печатаем координаты, если точка входит в область
-
-        } else {
-            // Если точка не входит в область, генерируем новую
-            --i;
-        }*/
+int main(int argc, char* argv[]) {
+    int N=5;
+    int Nsym=1000;
+    if(argc==3)
+    {
+        char* end;
+        N=std::strtol(argv[1],&end,10);
+        Nsym=std::strtol(argv[2],&end,10);
     }
-    out.close();
+    std::string dirname="experiment_N="+std::to_string(N)+
+            "_Nsym="+std::to_string(Nsym)+"/";
+
+    CoordGenerator<double> genr(0,1e-6);
+    std::vector<array<vector<double>, 2>> coordinates(Nsym);
+    for (int i = 0; i < Nsym; ++i) {
+        coordinates[i]=genr.generateCoordinates(N);
+    }
+    Dipoles<double>dipoles1(N,coordinates[0]);
+
+    MeshProcessor<double> mesh=MeshProcessor<double>();
+    auto result = mesh.getMeshGliff();
+    Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
+    for (int i = 0; i < Nsym; ++i) {
+        std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
+        dipoles1.setNewCoordinates(coordinates[i]);
+        dipoles1.solve_();
+        dipoles1.getFullFunction();
+        mesh.generateNoInt(dipoles1.getI2function());
+        auto mesht=mesh.getMeshdec()[2];
+        addMesh(result,mesht);
+
+        out1<<"Итерация симуляции i = "<<i<<"\n\n";
+        dipoles1.printCoordinates(out1);
+        out1<<"\n";
+
+        dipoles1.printSolutionFormat1(out1);
+        out1<<"\n";
+        mesh.printDec(out1);
+
+        out1.close();
+        mesh.plotSpherical(dirname+"sim_i="+std::to_string(i)+".png");
+    }
+
+    for (int i = 0; i < result.size(); ++i) {
+        for (int j = 0; j < result[0].size(); ++j) {
+            result[i][j]/=Nsym;
+        }
+    }
+    std::ofstream out1(dirname+"avg.txt");
+    out1<<"Значение  целевой функции усреднённой по "<<Nsym<<" симуляциям "
+    <<"для конфигураций, состоящих из "<< N<<" диполей\n";
+    mesh.setMesh3(result);
+    mesh.printDec(out1);
+    mesh.plotSpherical(dirname+"avg.png");
+    out1.close();
+
     return 0;
 }
