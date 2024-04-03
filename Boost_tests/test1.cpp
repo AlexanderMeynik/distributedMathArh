@@ -1,4 +1,5 @@
 #include "../application/lib.h"
+#include <chrono>
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN  // in only one cpp file
 #include <boost/test/unit_test.hpp>
@@ -193,5 +194,92 @@ BOOST_AUTO_TEST_CASE( test_e_impementation4 ,* utf::tolerance(pow(10,-12)))
 
 }
 
+BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
+{
+
+
+    auto t_prev = std::chrono::high_resolution_clock::now();
+    auto t_curr = std::chrono::high_resolution_clock::now();
+    double elapsed_time_ms[2] ={0.0,0.0};// std::chrono::duration<double, std::milli>(t_end-t_start).count();
+    int N=2;
+    int Nsym=100;
+    std::string dirname="experiment_N="+std::to_string(N)+
+                        "_Nsym="+std::to_string(Nsym)+"/";
+    if(!std::filesystem::exists(dirname)) {
+        std::filesystem::create_directory(dirname);
+    }
+
+    CoordGenerator<double> genr(0,1e-6);
+    std::vector<array<vector<double>, 2>> coordinates(Nsym);
+    for (int i = 0; i < Nsym; ++i) {
+        coordinates[i]=genr.generateCoordinates(N);
+    }
+    dipoles::Dipoles<double>dipoles1(N,coordinates[0]);
+
+    MeshProcessor<double> mesh=MeshProcessor<double>();
+    auto result = mesh.getMeshGliff();
+    auto resultInt = mesh.getMeshGliff();
+    Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
+        for (int i = 0; i < Nsym; ++i) {
+            //std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
+            dipoles1.setNewCoordinates(coordinates[i]);
+            dipoles1.solve_();
+            dipoles1.getFullFunction();
+            t_prev = std::chrono::high_resolution_clock::now();
+            mesh.generateNoInt(dipoles1.getI2function());
+            t_curr = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms[0]+=std::chrono::duration<double, std::milli>(t_curr-t_prev).count();
+            auto mesht=mesh.getMeshdec()[2];
+            {
+                addMesh(result, mesht);
+            }
+            t_prev = std::chrono::high_resolution_clock::now();
+            mesh.generateMeshes(dipoles1.getIfunction());
+            t_curr = std::chrono::high_resolution_clock::now();
+            elapsed_time_ms[1]+=std::chrono::duration<double, std::milli>(t_curr-t_prev).count();
+            mesht=mesh.getMeshdec()[2];
+            {
+                addMesh(resultInt, mesht);
+            }
+        }
+
+        for (int i = 0; i < result.size(); ++i) {
+            for (int j = 0; j < result[0].size(); ++j) {
+                result[i][j]/=Nsym;
+                resultInt[i][j]/=Nsym;
+            }
+        }
+        std::ofstream out1(dirname+"avg.txt");
+        out1<<"Значение  целевой функции усреднённой по "<<Nsym<<" симуляциям "
+            <<"для конфигураций, состоящих из "<< N<<" диполей\n";
+        out1<<"Время выполнения программы: "<<elapsed_time_ms[0]<<'\n';
+        mesh.setMesh3(result);
+        mesh.printDec(out1);
+        mesh.plotSpherical(dirname+"avg.png");
+        out1.close();
+
+
+        std::ofstream out2(dirname+"avgINT.txt");
+        out2<<"Значение  целевой функции усреднённой по "<<Nsym<<" симуляциям "
+            <<"для конфигураций, состоящих из "<< N<<" диполей\n";
+        out2<<"Время выполнения программы: "<<elapsed_time_ms[1]<<'\n';
+        mesh.setMesh3(resultInt);
+        mesh.printDec(out2);
+        mesh.plotSpherical(dirname+"avgINT.png");
+
+        out2.close();
+
+        std::cout<<elapsed_time_ms[1]/elapsed_time_ms[0]<<"\n";
+
+        auto mesh3=mesh.getMeshdec()[2];
+            for (int i = 0; i < resultInt.size(); ++i) {
+           std::cout<<"theta = "<<M_PI*i/12.0<<'\n';
+           for (int k = 0; k < resultInt[i].size(); ++k) {
+               mesh3[i][k]=resultInt[i][k]-result[i][k];
+               BOOST_TEST(resultInt[i][k]==result[i][k]);
+           }
+        }
+
+}
 
 BOOST_AUTO_TEST_SUITE_END()

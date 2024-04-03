@@ -93,6 +93,12 @@ public:
         {
             initCoordMeshes();
         }
+
+        void setSteps(std::pair<T,T>& elems)
+        {
+            steps[0]=elems.first;
+            steps[1]=elems.second;
+        }
     const std::array<std::vector<std::vector<T>>, 3> &getMeshdec() const {
         return meshdec;
     }
@@ -121,7 +127,7 @@ private:
 
     T philims[2]={0, M_PI*2};
     T thelims[2]={0, M_PI_2};
-    T steps[2]={M_PI/12, M_PI/12};
+    T steps[2]={M_PI/12, M_PI/120};
     T nums[2]={(philims[1]-philims[0])/(steps[0])+1, (thelims[1]-thelims[0])/(steps[1])+1};
     const T omega=pow(10,15);//todo константа вынести
     const T rr=2*M_PI/omega;//todo константа вынести
@@ -168,11 +174,13 @@ void MeshProcessor<T>::printDec(std::ostream &out) {
 template<typename T>
 void MeshProcessor<T>::plotSpherical(std::string filename) {
     auto ax=gca();
-    ax->surf(meshsph[0], meshsph[1], meshsph[2]);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+    ax->surf(meshsph[0], meshsph[1], meshsph[2])
+    ->lighting(true).primary(0.8f).specular(0.2f);;//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
     //surf(x, y, z);
     view(213,22);
     xlim({-40,40});
     ylim({-40,40});
+    zlim({0,90});
     matplot::save(filename);
 }
 
