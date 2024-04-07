@@ -11,24 +11,24 @@
 #include "printUtils.h"
 
 
-template<class T>
-T integrate(std::function<T(T)> &f1, T left, T right) {
+template<class T,unsigned N>
+T integrate(std::function<T(T)> &f1, T left, T right,unsigned int max_depth=5,T tol=1e-20) {
     T error;
-    T Q = boost::math::quadrature::gauss_kronrod<T, 61>::integrate(f1, left, right, 5, 1e-20, &error);
+    T Q = boost::math::quadrature::gauss_kronrod<T, N>::integrate(f1, left, right, max_depth, tol, &error);
     return Q;
 }
-template<class T>
-T integrate(const std::function<T(T)> &&f1, T left, T right) {
+template<class T,unsigned N>
+T integrate(const std::function<T(T)> &&f1, T left, T right,unsigned int max_depth=5,T tol=1e-20) {
     T error;
-    double Q = boost::math::quadrature::gauss_kronrod<T, 61>::integrate(f1, left, right, 5, 1e-20, &error);
+    double Q = boost::math::quadrature::gauss_kronrod<T, N>::integrate(f1, left, right, max_depth, tol, &error);
     return Q;
 }
 
-template<class T>
-T integrateFunctionBy1Val(const std::function<T(T, T, T)>&ff, T theta, T phi,T left,T right)
+template<class T,unsigned N>
+T integrateFunctionBy1Val(const std::function<T(T, T, T)>&ff, T theta, T phi,T left,T right,unsigned int max_depth=5,T tol=1e-20)
 {
     std::function<T(T)> tt=[&theta,&phi,&ff](T t){return ff(theta,phi,t);};
-    return integrate(tt,left,right);
+    return integrate<T,N>(tt,left,right,max_depth,tol);
 }
 template<class T>
 T getMeshDiffNorm(std::vector<std::vector<T>>& mesh1,std::vector<std::vector<T>>& mesh2);
@@ -211,7 +211,7 @@ void MeshProcessor<T>::generateMeshes(const std::function<T(T, T, T)> &func) {
     T rr1=this->rr;
 
     meshdec[2] = transform(meshdec[0], meshdec[1], [&func,&rr1](T x, T y) {
-        return integrateFunctionBy1Val<T>(func,y,x,0,rr1);
+        return integrateFunctionBy1Val<T,61>(func,y,x,0,rr1);
     });
 
     sphericalTransformation();
