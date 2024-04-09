@@ -103,7 +103,7 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
     {
 
         double elapsed_time_ms[3] ={0.0,0.0,0.0};// std::chrono::duration<double, std::milli>(t_end-t_start).count();
-        const int N=8;
+        const int N=1;
         const int Nsym=100;
         auto t_prev = std::chrono::high_resolution_clock::now();
         auto t_curr = std::chrono::high_resolution_clock::now();
@@ -201,7 +201,7 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
         std::ofstream out3(dirname+"avgPAR.txt");
         out3<<"Значение  целевой функции усреднённой по "<<Nsym<<" симуляциям "
             <<"для конфигураций, состоящих из "<< N<<" диполей\n";
-        out2<<"Время выполнения программы: "<<elapsed_time_ms[2]<<'\n';
+        out3<<"Время выполнения программы: "<<elapsed_time_ms[2]<<'\n';
         mesh.setMesh3(resultInt);
         mesh.printDec(out3);
         mesh.plotSpherical(dirname+"avgPAR.png");

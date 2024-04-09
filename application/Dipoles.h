@@ -8,12 +8,14 @@ using namespace std;
 #include <iostream>
 #include "printUtils.h"
 #include <iomanip>
+#include <matplot/matplot.h>
 using Eigen::MatrixXd;
 using Eigen::VectorXd;
 using Eigen::Vector2d;
 using Eigen::Vector2d;
 
 namespace dipoles {
+    using namespace matplot;
 
     static const long double c = 3.0 * pow(10, 8);
     static const long double yo = pow(10, 7);
@@ -53,6 +55,9 @@ namespace dipoles {
         void printRightPart(std::ostream& out,Eigen::IOFormat& format);
         void printSolution(std::ostream& out,Eigen::IOFormat& format);
         void printSolutionFormat1(std::ostream& out);
+
+        void plotCoordinates(std::string name);
+
     private:
         T getDistance(int i1, int i2) {
             T d1 = xi_[0][i1] - xi_[0][i2];
@@ -101,6 +106,21 @@ namespace dipoles {
 
         void setMatrixes();
     };
+
+    template<class T>
+    void Dipoles<T>::plotCoordinates(std::string name) {
+
+        auto ax=gca();
+
+        for (int i = 0; i < xi_[0].size(); ++i) {
+            std::cout<<xi_[0][i]<<'\t'<<xi_[1][i]<<"\n";
+        }
+
+        ax->scatter(xi_[0],xi_[1]);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+
+        std::cout<<"\n\n\n";
+        matplot::save(name);
+    }
 
     template<class T>
     void Dipoles<T>::printSolutionFormat1(std::ostream &out) {

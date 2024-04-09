@@ -51,28 +51,34 @@ int main(int argc, char* argv[]) {
     MeshProcessor<double> mesh=MeshProcessor<double>();
     auto result = mesh.getMeshGliff();
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
-    #pragma omp parallel for private(dipoles1,mesh),default(shared)
+    //#pragma omp parallel for private(dipoles1,mesh),default(shared)
     for (int i = 0; i < Nsym; ++i) {
-        //std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
+        std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
         dipoles1.setNewCoordinates(coordinates[i]);
         dipoles1.solve_();
         dipoles1.getFullFunction();
         mesh.generateNoInt(dipoles1.getI2function());
         auto mesht=mesh.getMeshdec()[2];
-        #pragma omp critical
+        //#pragma omp critical
         {
             addMesh(result, mesht);
         }
-        /*out1<<"Итерация симуляции i = "<<i<<"\n\n";
+        out1<<"Итерация симуляции i = "<<i<<"\n\n";
         dipoles1.printCoordinates(out1);
         out1<<"\n";
 
         dipoles1.printSolutionFormat1(out1);
         out1<<"\n";
-        mesh.printDec(out1);*/
 
-       // out1.close();
-        //mesh.plotSpherical(dirname+"sim_i="+std::to_string(i)+".png");
+
+        out1<<"\n";
+        mesh.printDec(out1);
+
+        out1.close();
+        mesh.plotSpherical(dirname+"sim_i="+std::to_string(i)+".png");
+        std::string name=dirname+"coord_i="+std::to_string(i)+".png";
+        dipoles1.plotCoordinates(name);
+
     }
 
     for (int i = 0; i < result.size(); ++i) {

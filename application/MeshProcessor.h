@@ -177,11 +177,13 @@ void MeshProcessor<T>::plotSpherical(std::string filename) {
     ax->surf(meshsph[0], meshsph[1], meshsph[2])
     ->lighting(true).primary(0.8f).specular(0.2f);;//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
     //surf(x, y, z);
-    view(213,22);
-    xlim({-40,40});
-    ylim({-40,40});
-    zlim({0,90});
+    ax->view(213,22);
+    ax->xlim({-40,40});
+    ax->ylim({-40,40});
+    ax->zlim({0,90});
+
     matplot::save(filename);
+    ax->clear();
 }
 
 template<typename T>
