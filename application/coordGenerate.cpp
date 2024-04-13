@@ -52,6 +52,10 @@ int main(int argc, char* argv[]) {
         char* end;
         print=strtol(argv[4],&end,10);
     }
+    //todo добавить класс test runner
+    //его задачи - инциализирвоать все компоненты
+    //данный класс внутри будет хранить структуру с названием теста и его параметрами
+    //в стуркутре теста можно задать статусы
 
     std::stringstream ss;
     ss<<aRange<<".csv";
@@ -59,7 +63,7 @@ int main(int argc, char* argv[]) {
     aStr.erase(std::remove(aStr.begin(), aStr.end(), '+'), aStr.end());// removing the '+' sign
     std::replace(aStr.begin(), aStr.end(), '-','_');//, aStr.end());// removing the '-' sign
     //std::cout<<aStr; // 1e16.csv
-    std::string dirname="experiment_N="+std::to_string(N)+
+    std::string dirname="results/experiment_N="+std::to_string(N)+
             "_Nsym="+std::to_string(Nsym)+"_a="+aStr+"_print="+std::to_string(print)+"/";
     if(!std::filesystem::exists(dirname)) {
         std::filesystem::create_directory(dirname);
@@ -75,6 +79,7 @@ int main(int argc, char* argv[]) {
     MeshProcessor<double> mesh=MeshProcessor<double>();
     auto result = mesh.getMeshGliff();
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
+    double stime = omp_get_wtime();
     if(!print) {
         #pragma omp parallel for private(dipoles1,mesh),default(shared)
         for (int i = 0; i < Nsym; ++i) {
@@ -119,6 +124,9 @@ int main(int argc, char* argv[]) {
 
         }
     }
+
+    double resulting_time = omp_get_wtime()-stime;
+    std::cout<<"Execution_time = "<<resulting_time<<"\tN = "<<N<<"\n";
 
     for (int i = 0; i < result.size(); ++i) {
         for (int j = 0; j < result[0].size(); ++j) {

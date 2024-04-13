@@ -108,7 +108,7 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
         auto t_prev = std::chrono::high_resolution_clock::now();
         auto t_curr = std::chrono::high_resolution_clock::now();
 
-        std::string dirname="experiment2_N="+std::to_string(N)+
+        std::string dirname="results/experiment2_N="+std::to_string(N)+
                             "_Nsym="+std::to_string(Nsym)+"/";
         if(!std::filesystem::exists(dirname)) {
             std::filesystem::create_directory(dirname);
@@ -220,6 +220,81 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
             }
         }
 
+    }
+
+    BOOST_AUTO_TEST_CASE( free_test_function,* utf::tolerance(pow(10,-12)) )
+/* Compare with void free_test_function() */
+    {
+        //auto res= integrate<double,61>([](double x)->double{return 2*x;},0,2);
+        //unsigned const int array[5]={15,31,41,51,61};
+        const int N=100;
+        //const int Nsym=10000;
+        CoordGenerator<double> genr(0,1e-6);
+
+        auto coord= genr.generateCoordinates(N);
+        dipoles::Dipoles<double> dipolearr(N,coord);
+        dipolearr.solve_();
+        dipolearr.getFullFunction();
+        const int mag=7;
+        const int mag2=5;
+        unsigned const int Ns[mag2]={15,31,41,51,61};
+        unsigned const int maxSizes[5]={5,7,10,12,15};
+        double tols[mag]={1e-5,1e-7,1e-10,1e-12,1e-15,1e-17,1e-20};
+        double resarr[mag*mag2];
+        double timearr[mag*mag2];
+        auto func=dipolearr.getIfunction();
+        double rr=2*M_PI/pow(10,15);
+
+        for (int i=0;i<mag;i++) {
+            double stime=omp_get_wtime();
+            resarr[i]= integrateFunctionBy1Val<double,15>(func,0,M_PI,0,rr,5,tols[i]);
+            timearr[i] = omp_get_wtime()-stime;
+        }
+        for (int i=0;i<mag;i++) {
+            double stime=omp_get_wtime();
+            resarr[i+mag]= integrateFunctionBy1Val<double,31>(func,0,M_PI,0,rr,5,tols[i]);
+            timearr[i+mag] = omp_get_wtime()-stime;
+        }
+        for (int i=0;i<mag;i++) {
+            double stime=omp_get_wtime();
+            resarr[i+2*mag]= integrateFunctionBy1Val<double,41>(func,0,M_PI,0,rr,5,tols[i]);
+            timearr[i+2*mag] = omp_get_wtime()-stime;
+        }
+        for (int i=0;i<mag;i++) {
+            double stime=omp_get_wtime();
+
+            resarr[i+3*mag]= integrateFunctionBy1Val<double,51>(func,0,M_PI,0,rr,5,tols[i]);
+            timearr[i+3*mag] = omp_get_wtime()-stime;
+        }
+        for (int i=0;i<mag;i++) {
+            double stime=omp_get_wtime();
+            resarr[i+4*mag]= integrateFunctionBy1Val<double,61>(func,0,M_PI,0,rr,5,tols[i]);
+            timearr[i+4*mag] = omp_get_wtime()-stime;
+        }
+        std::cout<<"Tols\t";
+        for(auto &elem:tols)
+        {
+            std::cout<<elem<<"\t";
+        }
+        std::cout<<"\n";
+
+        for (int i = 0; i < mag2; ++i) {
+            std::cout<<Ns[i]<<"\t";
+            for (int j = 0; j < mag; ++j) {
+                std::cout<<timearr[j+mag*i]<<"\t";
+            }
+            std::cout<<"\n";
+        }
+
+
+        /*for (int i = 0; i < mag2; ++i) {
+
+            for (int j = 0; j < mag; ++j) {
+                std::cout<<Ns[i]<<"\t"<<tols[j]<<"\t"<<resarr[i*mag+j]-4<<"\n";
+                BOOST_TEST(resarr[i*mag+j]==4);
+            }
+        }*/
+        //BOOST_TEST(res==4);
     }
 
 
