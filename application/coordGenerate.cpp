@@ -24,24 +24,48 @@ int main(int argc, char* argv[]) {
 #include "Dipoles.h"
 #include "MeshProcessor.h"
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
+std::string getString(const std::string &dirname,std::string &&name, int i, std::string &&end) {
+    return dirname + name+"_i"+ to_string(i) +"."+ end;
+}
+
 using dipoles::Dipoles;
 
 int main(int argc, char* argv[]) {
     int N=5;
     int Nsym=1000;
-    if(argc==3)
+    double aRange=1e-6;
+    bool print=false;
+    if(argc>=3)
     {
         char* end;
         N=std::strtol(argv[1],&end,10);
         Nsym=std::strtol(argv[2],&end,10);
     }
+    if(argc>=4)
+    {
+        char* end;
+        aRange=std::strtod(argv[3],&end);
+    }
+
+    if(argc==5)
+    {
+        char* end;
+        print=strtol(argv[4],&end,10);
+    }
+
+    std::stringstream ss;
+    ss<<aRange<<".csv";
+    std::string aStr = ss.str(); // filename = 1e+16.csv
+    aStr.erase(std::remove(aStr.begin(), aStr.end(), '+'), aStr.end());// removing the '+' sign
+    std::replace(aStr.begin(), aStr.end(), '-','_');//, aStr.end());// removing the '-' sign
+    //std::cout<<aStr; // 1e16.csv
     std::string dirname="experiment_N="+std::to_string(N)+
-            "_Nsym="+std::to_string(Nsym)+"/";
+            "_Nsym="+std::to_string(Nsym)+"_a="+aStr+"_print="+std::to_string(print)+"/";
     if(!std::filesystem::exists(dirname)) {
         std::filesystem::create_directory(dirname);
     }
 
-    CoordGenerator<double> genr(0,1e-6);
+    CoordGenerator<double> genr(0,aRange);
     std::vector<array<vector<double>, 2>> coordinates(Nsym);
     for (int i = 0; i < Nsym; ++i) {
         coordinates[i]=genr.generateCoordinates(N);
@@ -51,34 +75,49 @@ int main(int argc, char* argv[]) {
     MeshProcessor<double> mesh=MeshProcessor<double>();
     auto result = mesh.getMeshGliff();
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
-    //#pragma omp parallel for private(dipoles1,mesh),default(shared)
-    for (int i = 0; i < Nsym; ++i) {
-        std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
-        dipoles1.setNewCoordinates(coordinates[i]);
-        dipoles1.solve_();
-        dipoles1.getFullFunction();
-        mesh.generateNoInt(dipoles1.getI2function());
-        auto mesht=mesh.getMeshdec()[2];
-        //#pragma omp critical
-        {
-            addMesh(result, mesht);
+    if(!print) {
+        #pragma omp parallel for private(dipoles1,mesh),default(shared)
+        for (int i = 0; i < Nsym; ++i) {
+            dipoles1.setNewCoordinates(coordinates[i]);
+            dipoles1.solve_();
+            dipoles1.getFullFunction();
+            mesh.generateNoInt(dipoles1.getI2function());
+            auto mesht = mesh.getMeshdec()[2];
+            #pragma omp critical
+            {
+                addMesh(result, mesht);
+            }
         }
-        out1<<"Итерация симуляции i = "<<i<<"\n\n";
-        dipoles1.printCoordinates(out1);
-        out1<<"\n";
+    }
+    else
+    {
+        for (int i = 0; i < Nsym; ++i) {
+            std::ofstream out1(getString(dirname,"sim", i, "txt"));
+            dipoles1.setNewCoordinates(coordinates[i]);
+            dipoles1.solve_();
+            dipoles1.getFullFunction();
+            mesh.generateNoInt(dipoles1.getI2function());
+            auto mesht = mesh.getMeshdec()[2];
+            {
+                addMesh(result, mesht);
+            }
+            out1 << "Итерация симуляции i = " << i << "\n\n";
+            dipoles1.printCoordinates(out1);
+            out1 << "\n";
 
-        dipoles1.printSolutionFormat1(out1);
-        out1<<"\n";
+            dipoles1.printSolutionFormat1(out1);
+            out1 << "\n";
 
 
-        out1<<"\n";
-        mesh.printDec(out1);
+            out1 << "\n";
+            mesh.printDec(out1);
 
-        out1.close();
-        mesh.plotSpherical(dirname+"sim_i="+std::to_string(i)+".png");
-        std::string name=dirname+"coord_i="+std::to_string(i)+".png";
-        dipoles1.plotCoordinates(name);
+            out1.close();
+            mesh.plotSpherical(getString(dirname,"sim", i, "png"));
+            //std::string name = dirname + "coord_i=" + std::to_string(i) + ".png";
+            dipoles1.plotCoordinates(getString(dirname,"coord", i, "png"));
 
+        }
     }
 
     for (int i = 0; i < result.size(); ++i) {
@@ -96,3 +135,5 @@ int main(int argc, char* argv[]) {
 
     return 0;
 }
+
+

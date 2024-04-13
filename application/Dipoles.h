@@ -112,13 +112,13 @@ namespace dipoles {
 
         auto ax=gca();
 
-        for (int i = 0; i < xi_[0].size(); ++i) {
+       /* for (int i = 0; i < xi_[0].size(); ++i) {
             std::cout<<xi_[0][i]<<'\t'<<xi_[1][i]<<"\n";
-        }
+        }*/
 
         ax->scatter(xi_[0],xi_[1]);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
 
-        std::cout<<"\n\n\n";
+        //std::cout<<"\n\n\n";
         matplot::save(name);
     }
 
