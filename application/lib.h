@@ -20,8 +20,8 @@
 #include "MeshProcessor.h"
 #include <random>
 using Eigen::Vector2d;
-
-
+using std::function,std::pair,std::vector,std::array;
+using std::string;
 template<class T>
 std::vector<std::array<std::vector<T>,2>> parseConf(string &filename);
 

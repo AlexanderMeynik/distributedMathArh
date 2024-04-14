@@ -5,9 +5,12 @@
 #include "../application/Dipoles.h"
 #include <algorithm>
 #include <omp.h>
+#include <boost/test/parameterized_test.hpp>
+
+#include <boost/test/data/test_case.hpp>
+#include <boost/array.hpp>
 BOOST_AUTO_TEST_SUITE( speedTest )
 namespace utf = boost::unit_test;
-
 
 BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
 {
@@ -221,14 +224,10 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
         }
 
     }
-
-    BOOST_AUTO_TEST_CASE( free_test_function,* utf::tolerance(pow(10,-12)) )
-/* Compare with void free_test_function() */
+    static const boost::array< double, 14 > NS{ 1,2,4,5,8,10,20,40,50,100,200,400,500,1000};
+    BOOST_DATA_TEST_CASE( free_test_function,NS)
     {
-        //auto res= integrate<double,61>([](double x)->double{return 2*x;},0,2);
-        //unsigned const int array[5]={15,31,41,51,61};
-        const int N=100;
-        //const int Nsym=10000;
+        const int N= sample;
         CoordGenerator<double> genr(0,1e-6);
 
         auto coord= genr.generateCoordinates(N);
@@ -247,28 +246,28 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
 
         for (int i=0;i<mag;i++) {
             double stime=omp_get_wtime();
-            resarr[i]= integrateFunctionBy1Val<double,15>(func,0,M_PI,0,rr,5,tols[i]);
+            resarr[i]= integrateFunctionBy1Val<double,15>(func,M_PI/12,M_PI/12,0,rr,5,tols[i]);
             timearr[i] = omp_get_wtime()-stime;
         }
         for (int i=0;i<mag;i++) {
             double stime=omp_get_wtime();
-            resarr[i+mag]= integrateFunctionBy1Val<double,31>(func,0,M_PI,0,rr,5,tols[i]);
+            resarr[i+mag]= integrateFunctionBy1Val<double,31>(func,M_PI/12,M_PI/12,0,rr,5,tols[i]);
             timearr[i+mag] = omp_get_wtime()-stime;
         }
         for (int i=0;i<mag;i++) {
             double stime=omp_get_wtime();
-            resarr[i+2*mag]= integrateFunctionBy1Val<double,41>(func,0,M_PI,0,rr,5,tols[i]);
+            resarr[i+2*mag]= integrateFunctionBy1Val<double,41>(func,M_PI/12,M_PI/12,0,rr,5,tols[i]);
             timearr[i+2*mag] = omp_get_wtime()-stime;
         }
         for (int i=0;i<mag;i++) {
             double stime=omp_get_wtime();
 
-            resarr[i+3*mag]= integrateFunctionBy1Val<double,51>(func,0,M_PI,0,rr,5,tols[i]);
+            resarr[i+3*mag]= integrateFunctionBy1Val<double,51>(func,M_PI/12,M_PI/12,0,rr,5,tols[i]);
             timearr[i+3*mag] = omp_get_wtime()-stime;
         }
         for (int i=0;i<mag;i++) {
             double stime=omp_get_wtime();
-            resarr[i+4*mag]= integrateFunctionBy1Val<double,61>(func,0,M_PI,0,rr,5,tols[i]);
+            resarr[i+4*mag]= integrateFunctionBy1Val<double,61>(func,M_PI/12,M_PI/12,0,rr,5,tols[i]);
             timearr[i+4*mag] = omp_get_wtime()-stime;
         }
         std::cout<<"Tols\t";
@@ -281,7 +280,17 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
         for (int i = 0; i < mag2; ++i) {
             std::cout<<Ns[i]<<"\t";
             for (int j = 0; j < mag; ++j) {
-                std::cout<<timearr[j+mag*i]<<"\t";
+                std::cout<<timearr[j+mag*i]*10000*61*25<<"\t";
+            }
+            std::cout<<"\n";
+        }
+        std::cout<<"\n";
+        std::cout<<"\n";
+
+        for (int i = 0; i < mag2; ++i) {
+            std::cout<<Ns[i]<<"\t";
+            for (int j = 0; j < mag; ++j) {
+                std::cout<<resarr[j+mag*i]<<"\t";
             }
             std::cout<<"\n";
         }
@@ -296,6 +305,24 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
         }*/
         //BOOST_TEST(res==4);
     }
+
+
+    static const boost::array< double, 5 > DATA{ 1,10,100,1000,2000};
+    BOOST_DATA_TEST_CASE( Foo, DATA )
+{
+    CoordGenerator<double> genr(0,1e-6);
+    double N=sample;
+    auto coord= genr.generateCoordinates(N);
+    double stime=omp_get_wtime();
+    dipoles::Dipoles<double> dipolearr(N,coord);
+    double ftime = omp_get_wtime()-stime;
+    double ttemp=ftime;
+    stime=omp_get_wtime();
+    dipolearr.solve_();
+    ftime = omp_get_wtime()-stime;
+    std::cout<<ttemp<<"\t"<<ftime<<"\t"<<N<<"\n";
+}
+
 
 
 BOOST_AUTO_TEST_SUITE_END()

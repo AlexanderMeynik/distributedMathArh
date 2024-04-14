@@ -1,6 +1,6 @@
 #ifndef DIPLOM_DIPOLES_H
 #define DIPLOM_DIPOLES_H
-using namespace std;
+
 
 #include <vector>
 #include <memory>
@@ -15,7 +15,9 @@ using Eigen::Vector2d;
 using Eigen::Vector2d;
 
 namespace dipoles {
-    using namespace matplot;
+    //using namespace matplot;
+    using matplot::gca;
+    using std::function,std::pair,std::vector,std::array;
 
     static const long double c = 3.0 * pow(10, 8);
     static const long double yo = pow(10, 7);
@@ -130,14 +132,6 @@ namespace dipoles {
                     solution_[1].coeffRef(2*i)*solution_[1].coeffRef(2*i));
             auto cy=sqrt(solution_[0].coeffRef(2*i+1)*solution_[0].coeffRef(2*i+1)+
                          solution_[1].coeffRef(2*i+1)*solution_[1].coeffRef(2*i+1));
-            /*out<<"A"<<i+1<<"x = "<<solution_[0].coeffRef(2*i)
-            <<", B"<<i+1<<"x = "<<solution_[1].coeffRef(2*i)
-            <<", C"<<i+1<<"x = "<<cx
-            <<"\n";
-            out<<"A"<<i+1<<"y = "<<solution_[0].coeffRef(2*i+1)
-            <<", B"<<i+1<<"y = "<<solution_[1].coeffRef(2*i+1)
-            <<", C"<<i+1<<"y = "<<cy
-            <<"\n";*/
             IosStatePreserve state(out);
             out<<std::scientific;
 

@@ -9,7 +9,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_BUILD_TYPE RelWithDebInfo)
 set(CMAKE_CXX_FLAGS "-O1 -g")
 #SET( CMAKE_CXX_FLAGS_DEBUG   "-O1 -g -march=native -fpic -ftree-vectorize")
-set(CMAKE_CXX_FLAGS_DEBUG   "-O1 -g")
+set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g")
 #set(CMAKE_CXX_FLAGS_DEBUG   "-O3 -march=native -fpic -ffast-math -ftree-vectorize")
 SET( CMAKE_CXX_FLAGS_RELEASE    "-O3 -g -march=native -fpic -ftree-vectorize" )
 #find_package(OpenXLSX)
@@ -68,3 +68,21 @@ target_link_libraries(generator PRIVATE ${GSL_LIBRARIES})
 target_link_libraries(generator PRIVATE Matplot++::matplot)
 
 target_link_libraries(generator PRIVATE OpenMP::OpenMP_CXX)
+
+
+add_executable(checker eigenTest.cpp)
+target_link_libraries(checker PUBLIC myLibrary)
+target_link_libraries(checker PRIVATE Matplot++::matplot)
+target_include_directories(checker PRIVATE ${GSL_INCLUDE_DIRS})
+target_link_libraries(checker PRIVATE ${GSL_LIBRARIES})
+
+target_link_libraries(checker PRIVATE OpenMP::OpenMP_CXX)
+
+
+add_executable(grids darwingGrids.cpp)
+target_link_libraries(grids PUBLIC myLibrary)
+target_link_libraries(grids PRIVATE Matplot++::matplot)
+target_include_directories(grids PRIVATE ${GSL_INCLUDE_DIRS})
+target_link_libraries(grids PRIVATE ${GSL_LIBRARIES})
+
+target_link_libraries(grids PRIVATE OpenMP::OpenMP_CXX)
