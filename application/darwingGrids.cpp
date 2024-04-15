@@ -8,45 +8,43 @@
 #include <vector>
 
 //template <class T>
-std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,double b=0)//r-r,l-длинна
+std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,double b=0,bool center=false)//r-r,l-длинна
 {
     long double c1= 1/2.0;
     long double c2= sqrt(3)/2.0;
     double k=c2/c1;
-    double c=0;
 
-    double D=sqrt(k*k*r*r/(k*k+1));
-    std::vector<double> x_t={-D,D};
-    std::vector<double> y_t(2);
+    double D=sqrt(k*k*r*r/(k*k+1));//здесь мы находим x координаты для точек пересечения
+    double x_t[2]={-D,D};
+    double y_t[2];
     for (int i = 0; i < 2; ++i) {
-        y_t[i]=-(x_t[i])/k;
+        y_t[i]=-(x_t[i])/k;//подставляем их в исходный код
     }
-    std::vector<double> c_t(2);
+    double c_t[2];
 
     for (int i = 0; i < 2; ++i) {
         c_t[i]=y_t[i]-x_t[i]*k;
     }
-    std::vector<int> l_t(2,0);
+    int l_t[2];
 
     for (int i = 0; i < 2; ++i) {
         l_t[i]=-(c_t[i])/(k*l);
-    }
-    if(l_t[0]>0)
-    {
-        std::swap(l_t[0],l_t[1]);
     }
 
 
     //todo 2 круг симметричная фигура-> можно подсчитать результаты в 1 четверти
     //а что будет если поместить треугольники так, чробы центр центрального был в центре круга
+    if(center)
+    {
+        l_t[0]--;
+        //l_t[1];
+    }
     int funccount=std::abs(l_t[1]-l_t[0])+1;
     std::vector<double> x1= myLinspace(l_t[0]*l,l_t[1]*l,funccount);
     std::vector<double> y1(funccount,0);
 
     std::vector<double> x(funccount*funccount,0);
     std::vector<double> y(funccount*funccount,0);
-
-
 
     for (int i = 0; i < funccount; ++i) {
         for (int j = 0; j < funccount; ++j) {
@@ -56,6 +54,19 @@ std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,do
 
             x[j+i*funccount]+=a;
             y[j+i*funccount]+=b;
+
+        }
+    }
+
+    if(center)
+    {
+        for (int i = 0; i < funccount; ++i) {
+            for (int j = 0; j < funccount; ++j) {
+
+                x[j+i*funccount]+=l/2.0;
+                y[j+i*funccount]+=l*c2/2.0;
+
+            }
         }
     }
 
@@ -70,11 +81,7 @@ std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,do
             y_filtered.push_back(y[i]);
         }
     }
-
-
     std::cout<<x_filtered.size()<<'\t'<<x.size()<<'\t'<<x_filtered.size()/(1.0*x.size())<<"\n";
-
-
     return {x_filtered, y_filtered};
 }
 int main(int argc, char* argv[]) {
@@ -83,27 +90,30 @@ int main(int argc, char* argv[]) {
     using namespace Eigen;
     double a=1e-6;
     double l=a/10.0;
-    std::cin>>a>>l;
+    std::cin>>l;
+    l=a/l;
+    bool center=true;
+    std::cin>>center;
 
-    double x1,y1;
-    std::cin>>x1>>y1;
+    //double x1,y1;
+    //std::cin>>x1>>y1;
 
 
    // CoordGenerator<double> genr(0.0,a);
-    auto coords=triangularGrid(l,a,x1,y1);
+    auto coords=triangularGrid(l,a,0,0,center);
     N=coords[0].size();
 
-    auto ax=gca();
+   // auto ax=gca();
 
     /* for (int i = 0; i < xi_[0].size(); ++i) {
          std::cout<<xi_[0][i]<<'\t'<<xi_[1][i]<<"\n";
      }*/
 
-    ax->scatter(coords[0],coords[1]);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+    //ax->scatter(coords[0],coords[1]);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
 
-    hold(on);
+    //hold(on);
 
-    std::stringstream ss;
+    /*std::stringstream ss;
     ss<<a;
 
     auto t= myLinspace(0.0,2*M_PI,200);
@@ -111,15 +121,37 @@ int main(int argc, char* argv[]) {
     auto x=transform(t, [&a,&x1](auto t) { return a*cos(t)+x1; });
     auto y=transform(t, [&a,&y1](auto t) { return a*sin(t)+y1; });
     ax->scatter(x,y);
-    hold(off);
+    hold(off);*/
 
+    std::stringstream ss;
+    ss<<"_N"<<N<<"_l"<<l<<"_a"<<a<<"_center"<<center;
+
+    std::ofstream out("res"+ss.str()+".txt");
+    dipoles::Dipoles d(N,coords);
+    d.solve_();
+
+    d.plotCoordinates("coord"+ss.str()+".png");
+
+    d.printSolutionFormat1(out);
+
+    MeshProcessor<double> meshProcessor;
+    d.getFullFunction();
+
+    meshProcessor.generateNoInt(d.getI2function());
+
+    meshProcessor.plotSpherical("function"+ss.str()+".png");
+
+
+    d.printCoordinates(out);
+    meshProcessor.printDec(out);
+    out.close();
 
 
     //ax->ezpolar(ss.str());
 
     //std::cout<<"\n\n\n";
 
-    save("result.png");
+    //save("result.png");
 
 
 }
