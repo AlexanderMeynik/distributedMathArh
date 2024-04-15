@@ -5,40 +5,74 @@
 #include "lib.h"
 #include <matplot/matplot.h>
 #include "MeshProcessor.h"
-
+#include <vector>
 
 //template <class T>
-std::array<std::vector<double>,2> triangularGrid(double l,double a)//a-r,l-длинна
+std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,double b=0)//r-r,l-длинна
 {
     long double c1= 1/2.0;
     long double c2= sqrt(3)/2.0;
-    //std::array<std::vector<T>,2> res={std::vector<T>(),std::vector<T>()};
-    int coef=a/l+100;//todo надо определить дургое улсовие для того, чтобы затронуть все
+    double k=c2/c1;
+    double c=0;
+
+    double D=sqrt(k*k*r*r/(k*k+1));
+    std::vector<double> x_t={-D,D};
+    std::vector<double> y_t(2);
+    for (int i = 0; i < 2; ++i) {
+        y_t[i]=-(x_t[i])/k;
+    }
+    std::vector<double> c_t(2);
+
+    for (int i = 0; i < 2; ++i) {
+        c_t[i]=y_t[i]-x_t[i]*k;
+    }
+    std::vector<int> l_t(2,0);
+
+    for (int i = 0; i < 2; ++i) {
+        l_t[i]=-(c_t[i])/(k*l);
+    }
+    if(l_t[0]>0)
+    {
+        std::swap(l_t[0],l_t[1]);
+    }
+
+
     //todo 2 круг симметричная фигура-> можно подсчитать результаты в 1 четверти
-    int funccount=(2*coef)+1;
-    std::vector<double> x1= myLinspace(-coef*l,coef*l,funccount);
+    //а что будет если поместить треугольники так, чробы центр центрального был в центре круга
+    int funccount=std::abs(l_t[1]-l_t[0])+1;
+    std::vector<double> x1= myLinspace(l_t[0]*l,l_t[1]*l,funccount);
     std::vector<double> y1(funccount,0);
 
     std::vector<double> x(funccount*funccount,0);
     std::vector<double> y(funccount*funccount,0);
+
+
 
     for (int i = 0; i < funccount; ++i) {
         for (int j = 0; j < funccount; ++j) {
 
             x[j+i*funccount]=x1[i]/2+x1[j]/2+(c1/c2)*(y1[i]+y1[j])/2;
             y[j+i*funccount]=(-c2/c1)*x[j+i*funccount]+(c2/c1)*x1[i]-y1[i];
+
+            x[j+i*funccount]+=a;
+            y[j+i*funccount]+=b;
         }
     }
+
+
+
 
     std::vector<double> x_filtered, y_filtered;
 
     for (int i = 0; i < funccount*funccount; ++i) {
-        if (std::sqrt(x[i]*x[i] + y[i]*y[i]) <= a) {
+        if (std::sqrt(pow(x[i]-a,2) + pow(y[i]-b,2)) <= r) {
             x_filtered.push_back(x[i]);
             y_filtered.push_back(y[i]);
         }
     }
 
+
+    std::cout<<x_filtered.size()<<'\t'<<x.size()<<'\t'<<x_filtered.size()/(1.0*x.size())<<"\n";
 
 
     return {x_filtered, y_filtered};
@@ -51,9 +85,12 @@ int main(int argc, char* argv[]) {
     double l=a/10.0;
     std::cin>>a>>l;
 
+    double x1,y1;
+    std::cin>>x1>>y1;
+
 
    // CoordGenerator<double> genr(0.0,a);
-    auto coords=triangularGrid(l,a);
+    auto coords=triangularGrid(l,a,x1,y1);
     N=coords[0].size();
 
     auto ax=gca();
@@ -71,8 +108,8 @@ int main(int argc, char* argv[]) {
 
     auto t= myLinspace(0.0,2*M_PI,200);
 
-    auto x=transform(t, [&a](auto t) { return a*cos(t); });
-    auto y=transform(t, [&a](auto t) { return a*sin(t); });
+    auto x=transform(t, [&a,&x1](auto t) { return a*cos(t)+x1; });
+    auto y=transform(t, [&a,&y1](auto t) { return a*sin(t)+y1; });
     ax->scatter(x,y);
     hold(off);
 
