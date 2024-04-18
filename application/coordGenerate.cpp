@@ -25,7 +25,7 @@ int main(int argc, char* argv[]) {
 #include "MeshProcessor.h"
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
 std::string getString(const std::string &dirname,std::string &&name, int i, std::string &&end) {
-    return dirname + name+"_i"+ to_string(i) +"."+ end;
+    return dirname + name+"_i"+ std::to_string(i) +"."+ end;
 }
 
 using dipoles::Dipoles;
@@ -35,6 +35,7 @@ int main(int argc, char* argv[]) {
     int Nsym=1000;
     double aRange=1e-6;
     bool print=false;
+    std::string subdirectory="";
     if(argc>=3)
     {
         char* end;
@@ -47,11 +48,17 @@ int main(int argc, char* argv[]) {
         aRange=std::strtod(argv[3],&end);
     }
 
-    if(argc==5)
+    if(argc>=5)
     {
         char* end;
         print=strtol(argv[4],&end,10);
     }
+    if(argc>=6)
+    {
+        subdirectory=argv[5];
+        subdirectory+='/';
+    }
+
     //todo добавить класс test runner
     //его задачи - инциализирвоать все компоненты
     //данный класс внутри будет хранить структуру с названием теста и его параметрами
@@ -63,8 +70,18 @@ int main(int argc, char* argv[]) {
     aStr.erase(std::remove(aStr.begin(), aStr.end(), '+'), aStr.end());// removing the '+' sign
     std::replace(aStr.begin(), aStr.end(), '-','_');//, aStr.end());// removing the '-' sign
     //std::cout<<aStr; // 1e16.csv
-    std::string dirname="results/experiment_N="+std::to_string(N)+
+    std::string dirname="results/"+subdirectory+"experiment_N="+std::to_string(N)+
             "_Nsym="+std::to_string(Nsym)+"_a="+aStr+"_print="+std::to_string(print)+"/";
+    if(!std::filesystem::exists("results/"))
+    {
+        std::filesystem::create_directory("results/");
+    }
+
+    if(subdirectory.size()&&!std::filesystem::exists("results/"+subdirectory))
+    {
+        std::filesystem::create_directory("results/"+subdirectory);
+    }
+
     if(!std::filesystem::exists(dirname)) {
         std::filesystem::create_directory(dirname);
     }
@@ -75,24 +92,43 @@ int main(int argc, char* argv[]) {
         coordinates[i]=genr.generateCoordinates(N);
     }
     Dipoles<double>dipoles1(N,coordinates[0]);
-
     MeshProcessor<double> mesh=MeshProcessor<double>();
     auto result = mesh.getMeshGliff();
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
+
+    std::vector<double>totalTime(omp_get_max_threads(),0);
+    std::vector<double>functionTime(omp_get_max_threads(),0);
+    std::vector<double>solveTime(omp_get_max_threads(),0);
     double stime = omp_get_wtime();
     if(!print) {
-        #pragma omp parallel for private(dipoles1,mesh),default(shared)
-        for (int i = 0; i < Nsym; ++i) {
-            dipoles1.setNewCoordinates(coordinates[i]);
-            dipoles1.solve_();
-            dipoles1.getFullFunction();
-            mesh.generateNoInt(dipoles1.getI2function());
-            auto mesht = mesh.getMeshdec()[2];
-            #pragma omp critical
-            {
-                addMesh(result, mesht);
+            stime = omp_get_wtime();
+            //solveTime= ;
+            #pragma omp parallel for private(dipoles1, mesh),default(shared)
+            for (int i = 0; i < Nsym; ++i) {
+                int tid = omp_get_thread_num();
+                double stmep[2]= {omp_get_wtime(),0};//todo создать библиотеку timeUtils и вынести это туда
+                dipoles1.setNewCoordinates(coordinates[i]);
+                dipoles1.solve_();
+                dipoles1.getFullFunction();
+                stmep[1]=omp_get_wtime();
+                solveTime[tid] += stmep[1]-stmep[0];
+
+
+                double stmep2[2]= {omp_get_wtime(),0};
+                //stmep= omp_get_wtime();
+                mesh.generateNoInt(dipoles1.getI2function());
+                auto mesht = mesh.getMeshdec()[2];
+                stmep2[1]=omp_get_wtime();
+                functionTime[tid] += stmep2[1]-stmep2[0];
+
+
+                #pragma omp critical
+                {
+                    addMesh(result, mesht);
+                    //std::cout<<tid<<"\t"<<functionTime[tid]<<'\t'<<solveTime[tid]<<'\n';
+                }
+                totalTime[tid]+=omp_get_wtime() - stmep[0];
             }
-        }
     }
     else
     {
@@ -126,7 +162,14 @@ int main(int argc, char* argv[]) {
     }
 
     double resulting_time = omp_get_wtime()-stime;
-    std::cout<<"Execution_time = "<<resulting_time<<"\tN = "<<N<<"\n";
+    //std::cout<<"Execution_time = "<<resulting_time<<"\tN = "<<N<<"\n";
+    std::vector<double> times={std::accumulate(solveTime.begin(), solveTime.end(),0.0)/omp_get_max_threads(),//,[](double a,double b){return a+b;}),
+                               std::accumulate(functionTime.begin(), functionTime.end(),0.0)/omp_get_max_threads(),
+                               std::accumulate(totalTime.begin(), totalTime.end(),0.0)/omp_get_max_threads()
+                               };
+    std::cout<<resulting_time<<'\t'<<times[0]
+    <<'\t'<<times[1]<<'\t'<<
+                          times[2]<<'\t'<<N<<'\n';
 
     for (int i = 0; i < result.size(); ++i) {
         for (int j = 0; j < result[0].size(); ++j) {

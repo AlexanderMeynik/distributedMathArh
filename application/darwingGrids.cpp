@@ -8,6 +8,66 @@
 #include <vector>
 
 //template <class T>
+std::array<std::vector<double>,2> squareGrid(double l,double r,double a=0,double b=0,bool center=false)
+{
+    //long double lim= ceil(r+r/l);
+    long double lims[2]={ceil(-r/l),floor(r/l)};
+
+    long funccount= floor(r/l)-ceil(-r/l)+1;
+
+    if(center)
+    {
+        lims[0]--;
+        funccount++;
+    }
+
+
+    std::vector<long double>x_1= myLinspace(lims[0]*l,lims[1]*l,funccount);
+    //std::vector<double>y= myLinspace(-lim[0]*l,-lim[1]*l,functiont);
+
+
+
+    std::vector<double> x(funccount*funccount,0);
+    std::vector<double> y(funccount*funccount,0);
+
+    for (int i = 0; i < funccount; ++i) {
+        for (int j = 0; j < funccount; ++j) {
+
+            x[j+i*funccount]=x_1[j];
+            y[j+i*funccount]=x_1[i];
+
+            x[j+i*funccount]+=a;
+            y[j+i*funccount]+=b;
+
+        }
+    }
+
+    if(center)
+    {
+        for (int i = 0; i < funccount; ++i) {
+            for (int j = 0; j < funccount; ++j) {
+
+                x[j+i*funccount]+=l/2.0;
+                y[j+i*funccount]+=l/2.0;
+
+            }
+        }
+    }
+
+
+
+    std::vector<double> x_filtered, y_filtered;
+
+    for (int i = 0; i < funccount*funccount; ++i) {
+        if (std::sqrt(pow(x[i]-a,2) + pow(y[i]-b,2)) <= r) {
+            x_filtered.push_back(x[i]);
+            y_filtered.push_back(y[i]);
+        }
+    }
+    std::cout<<x_filtered.size()<<'\t'<<x.size()<<'\t'<<x_filtered.size()/(1.0*x.size())<<"\n";
+    return {x_filtered, y_filtered};
+}
+
 std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,double b=0,bool center=false)//r-r,l-длинна
 {
     long double c1= 1/2.0;
@@ -30,6 +90,9 @@ std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,do
     for (int i = 0; i < 2; ++i) {
         l_t[i]=-(c_t[i])/(k*l);
     }
+
+
+
 
 
     //todo 2 круг симметричная фигура-> можно подсчитать результаты в 1 четверти
@@ -84,7 +147,10 @@ std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,do
     std::cout<<x_filtered.size()<<'\t'<<x.size()<<'\t'<<x_filtered.size()/(1.0*x.size())<<"\n";
     return {x_filtered, y_filtered};
 }
+
 int main(int argc, char* argv[]) {
+    char *end;
+    bool ssquare= strtol(argv[1],&end,10);
     int N=10;
     //std::cin>>N;
     using namespace Eigen;
@@ -100,7 +166,7 @@ int main(int argc, char* argv[]) {
 
 
    // CoordGenerator<double> genr(0.0,a);
-    auto coords=triangularGrid(l,a,0,0,center);
+    auto coords=((ssquare)?squareGrid(l,a,0,0,center):triangularGrid(l,a,0,0,center));
     N=coords[0].size();
 
    // auto ax=gca();

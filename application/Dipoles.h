@@ -39,9 +39,16 @@ namespace dipoles {
 
         void getFullFunction();
         void solve_() {
-            Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> tt = (M1_ * M1_ + M2_ * M2_).inverse();
-            solution_[0] = tt * (M1_ * f1 + M2_ * f2);
-            solution_[1] = tt * (M1_ * f2 - M2_ * f1);
+            auto tt = (M1_ * M1_ + M2_ * M2_).lu();
+           // M1_.as
+
+            solution_[0] = tt.solve(M1_ * f1 + M2_ * f2);
+            solution_[1] = tt.solve(M1_ * f2 - M2_ * f1);
+            //Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>Ms=M1_ * M1_ + M2_ * M2_;
+
+
+
+
         };
         const function<T(T, T, T)> &getIfunction() const {
             return Ifunction_;

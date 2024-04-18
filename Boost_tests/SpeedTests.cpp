@@ -307,7 +307,7 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
     }
 
 
-    static const boost::array< double, 5 > DATA{ 1,10,100,1000,2000};
+    static const boost::array< double, 6 > DATA{ 1,10,100,1000,2000,4000};
     BOOST_DATA_TEST_CASE( Foo, DATA )
 {
     CoordGenerator<double> genr(0,1e-6);
