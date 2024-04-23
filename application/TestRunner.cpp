@@ -44,11 +44,13 @@ TestRunner::TestRunner() {
 void TestRunner::solve(bool print) {
     using dipoles::Dipoles;
 
-    Dipoles<FloatType> d1(N_.value(), coords_[0]);
+    Dipoles<FloatType> d1;
     if (print)
         goto pp;
     {
-#pragma omp parallel for default(shared)
+
+#pragma omp parallel for default(none) shared(Nsym_,solutions_,coords_) firstprivate(d1)
+//#pragma omp parallel for default(shared)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.setNewCoordinates(coords_[i]);
             d1.solve_();
@@ -57,11 +59,11 @@ void TestRunner::solve(bool print) {
     }
     pp:
     for (int i = 0; i < Nsym_.value(); ++i) {
-        auto filename = getString(this->dir_.value(), "sim", i, "txt");
-        auto fout = openOrCreateFile(filename);
         d1.setNewCoordinates(coords_[i]);
         d1.solve_();
         solutions_[i] = d1.getSolution_();
+        auto filename = getString(this->dir_.value(), "sim", i, "txt");
+        auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";
         d1.printCoordinates(fout);
         fout << "\n";
@@ -89,11 +91,11 @@ std::fstream TestRunner::openOrCreateFile(std::string filename) {
 void TestRunner::generateFunction(bool print) {
     using dipoles::Dipoles;
 
-    Dipoles<FloatType> d1(N_.value(), coords_[0]);
+    Dipoles<FloatType> d1;
     MeshProcessor<FloatType> mesh;
     auto result = mesh.getMeshGliff();
     if (!print) {
-#pragma omp parallel for default(shared)
+#pragma omp parallel for default(none) shared(Nsym_,solutions_,result) firstprivate(d1,mesh)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.setSolution(solutions_[i]);
             d1.getFullFunction();
@@ -109,18 +111,17 @@ void TestRunner::generateFunction(bool print) {
 
     } else {
         for (int i = 0; i < Nsym_.value(); ++i) {
-            auto filename = getString(this->dir_.value(), "sim", i, "txt");
-            auto fout = openOrCreateFile(filename);
+
             d1.setSolution(solutions_[i]);
             d1.getFullFunction();
 
             mesh.generateNoInt(d1.getI2function());
             auto mesht = mesh.getMeshdec()[2];
 
-#pragma omp critical
-            {
-                addMesh(result, mesht);
-            }
+            addMesh(result, mesht);
+
+            auto filename = getString(this->dir_.value(), "sim", i, "txt");
+            auto fout = openOrCreateFile(filename);
             mesh.printDec(fout);
             mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));
             d1.plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value());
