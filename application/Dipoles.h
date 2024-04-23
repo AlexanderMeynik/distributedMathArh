@@ -36,7 +36,7 @@ namespace dipoles {
         Dipoles(int N, std::array<std::vector<T>, 2> &xi);
 
         void setNewCoordinates(std::array<std::vector<T>, 2> &xi);
-
+        void setSolution(std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
         void getFullFunction();
         void solve_() {
             auto tt = (M1_ * M1_ + M2_ * M2_).lu();
@@ -115,6 +115,12 @@ namespace dipoles {
 
         void setMatrixes();
     };
+
+    template<class T>
+    void Dipoles<T>::setSolution(array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol) {
+    this->solution_=sol;
+    this->N_=sol[0].size();
+    }
 
     template<class T>
     void Dipoles<T>::plotCoordinates(std::string name,T ar) {

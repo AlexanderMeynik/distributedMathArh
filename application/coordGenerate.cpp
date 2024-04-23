@@ -6,6 +6,7 @@
 #include <random>
 #include <map>
 #include <omp.h>
+#include "OpenmpParallelClock.h"
 /*
 int main(int argc, char* argv[]) {
  double alpha=1;
