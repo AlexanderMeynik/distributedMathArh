@@ -59,7 +59,7 @@ std::array<std::vector<double>,2> squareGrid(double l,double r,double a=0,double
     std::vector<double> x_filtered, y_filtered;
 
     for (int i = 0; i < funccount*funccount; ++i) {
-        if (std::sqrt(pow(x[i]-a,2) + pow(y[i]-b,2)) <= r) {
+        if (std::sqrt(pow(x[i]-a,2) + pow(y[i]-b,2)) < r) {
             x_filtered.push_back(x[i]);
             y_filtered.push_back(y[i]);
         }
@@ -139,7 +139,7 @@ std::array<std::vector<double>,2> triangularGrid(double l,double r,double a=0,do
     std::vector<double> x_filtered, y_filtered;
 
     for (int i = 0; i < funccount*funccount; ++i) {
-        if (std::sqrt(pow(x[i]-a,2) + pow(y[i]-b,2)) <= r) {
+        if (std::sqrt(pow(x[i]-a,2) + pow(y[i]-b,2)) < r) {
             x_filtered.push_back(x[i]);
             y_filtered.push_back(y[i]);
         }
@@ -196,7 +196,7 @@ int main(int argc, char* argv[]) {
     dipoles::Dipoles d(N,coords);
     d.solve_();
 
-    d.plotCoordinates("coord"+ss.str()+".png");
+    d.plotCoordinates("coord"+ss.str()+".png",a/8);
 
     d.printSolutionFormat1(out);
 

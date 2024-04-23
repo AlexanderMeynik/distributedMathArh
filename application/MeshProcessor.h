@@ -183,7 +183,8 @@ void MeshProcessor<T>::plotSpherical(std::string filename) {
     ax->zlim({0,90});
 
     matplot::save(filename);
-    ax->clear();
+    //ax->clear();
+    ax.reset();
 }
 
 template<typename T>

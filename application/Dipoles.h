@@ -65,7 +65,7 @@ namespace dipoles {
         void printSolution(std::ostream& out,Eigen::IOFormat& format);
         void printSolutionFormat1(std::ostream& out);
 
-        void plotCoordinates(std::string name);
+        void plotCoordinates(std::string name,T ar);
 
     private:
         T getDistance(int i1, int i2) {
@@ -117,7 +117,7 @@ namespace dipoles {
     };
 
     template<class T>
-    void Dipoles<T>::plotCoordinates(std::string name) {
+    void Dipoles<T>::plotCoordinates(std::string name,T ar) {
 
         auto ax=gca();
 
@@ -126,9 +126,14 @@ namespace dipoles {
         }*/
 
         ax->scatter(xi_[0],xi_[1]);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
-
+        ax->xlim({-8*ar,8*ar});
+        ax->ylim({-8*ar,8*ar});
         //std::cout<<"\n\n\n";
+        //ax->xlabel("x");
+       // ax->ylabel("y");
         matplot::save(name);
+        ax.reset();
+       // ax->clear();
     }
 
     template<class T>
