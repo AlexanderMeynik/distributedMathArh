@@ -53,21 +53,21 @@ void TestRunner::solve(bool print) {
 //#pragma omp parallel for default(shared)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.setNewCoordinates(coords_[i]);
-            d1.solve_();
-            solutions_[i] = d1.getSolution_();
+
+            solutions_[i] = d1.solve_();
         }
     }
     pp:
     for (int i = 0; i < Nsym_.value(); ++i) {
         d1.setNewCoordinates(coords_[i]);
-        d1.solve_();
-        solutions_[i] = d1.getSolution_();
+
+        solutions_[i] = d1.solve_();
         auto filename = getString(this->dir_.value(), "sim", i, "txt");
         auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";
-        d1.printCoordinates(fout);
+        d1.printCoordinates(fout,coords_[i]);
         fout << "\n";
-        d1.printSolutionFormat1(fout);
+        d1.printSolutionFormat1(fout,solutions_[i]);
         fout << "\n";
         fout << "\n";
         fout.close();
@@ -123,7 +123,7 @@ void TestRunner::generateFunction(bool print) {
             auto fout = openOrCreateFile(filename);
             mesh.printDec(fout);
             mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));
-            d1.plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value());
+            d1.plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
             fout.close();
         }
 

@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
     d.solve_();
 
     MeshProcessor<double> mmesh;
-    d.getFullFunction();
+    d.getFullFunction(coordinates,d.getSolution_());
     auto solut1=d.getSolution_();
     solut1[0][0]=5;
     mmesh.generateNoInt(d.getI2function());
@@ -50,7 +50,7 @@ int main(int argc, char* argv[]) {
         d.solve_();
         auto solut2=d.getSolution_();
 
-        d.getFullFunction();
+        d.getFullFunction(coordinates,solut2);
         mmesh.generateMeshes(d.getIfunction());
 
         //printToFile<double>(N, coordinates, d, dirname,i,2);

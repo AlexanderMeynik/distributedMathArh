@@ -175,7 +175,7 @@ printToFile(int N, array<std::vector<T>, 2> &a, dipoles::Dipoles<T> &d, string &
     }
 
     MeshProcessor<T> mesh;
-    d.getFullFunction();
+    d.getFullFunction(a,d.getSolution_());
     mesh.generateNoInt(d.getI2function());
 
     mesh.printDec(out);

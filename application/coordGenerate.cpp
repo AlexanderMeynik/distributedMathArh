@@ -158,8 +158,8 @@ int main(int argc, char* argv[]) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            dipoles1.solve_();
-            dipoles1.getFullFunction();
+            auto solution=dipoles1.solve_();
+            dipoles1.getFullFunction(coordinates[i],solution);
             stmep[1] = omp_get_wtime();
             solveTime[tid] += stmep[1] - stmep[0];
 
@@ -193,8 +193,8 @@ int main(int argc, char* argv[]) {
         for (int i = 0; i < Nsym; ++i) {
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            dipoles1.solve_();
-            dipoles1.getFullFunction();
+            auto solution =dipoles1.solve_();
+            dipoles1.getFullFunction(coordinates[i],solution);
             stmep[1] = omp_get_wtime();
             solveTimeS += stmep[1] - stmep[0];
 
@@ -216,8 +216,8 @@ int main(int argc, char* argv[]) {
         for (int i = 0; i < Nsym; ++i) {
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            dipoles1.solve_();
-            dipoles1.getFullFunction();
+            auto solution=dipoles1.solve_();
+            dipoles1.getFullFunction(coordinates[i],solution);
             stmep[1] = omp_get_wtime();
             solveTimeS += stmep[1] - stmep[0];
 
@@ -243,8 +243,8 @@ int main(int argc, char* argv[]) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            dipoles1.solve_();
-            dipoles1.getFullFunction();
+            auto solution=dipoles1.solve_();
+            dipoles1.getFullFunction(coordinates[i],solution);
             stmep[1] = omp_get_wtime();
             solveTime[tid] += stmep[1] - stmep[0];
 
@@ -279,18 +279,19 @@ int main(int argc, char* argv[]) {
         print_:for (int i = 0; i < Nsym; ++i) {
             std::ofstream out1(getString(dirname,"sim", i, "txt"));
             dipoles1.setNewCoordinates(coordinates[i]);
-            dipoles1.solve_();
-            dipoles1.getFullFunction();
+            auto solution=dipoles1.solve_();
+            //dipoles1.getFullFunction();
+            dipoles1.getFullFunction(coordinates[i],solution);
             mesh.generateNoInt(dipoles1.getI2function());
             auto mesht = mesh.getMeshdec()[2];
             {
                 addMesh(result, mesht);
             }
             out1 << "Итерация симуляции i = " << i << "\n\n";
-            dipoles1.printCoordinates(out1);
+            dipoles1.printCoordinates(out1,coordinates[i]);
             out1 << "\n";
 
-            dipoles1.printSolutionFormat1(out1);
+            dipoles1.printSolutionFormat1(out1,solution);
             out1 << "\n";
 
 
@@ -300,7 +301,7 @@ int main(int argc, char* argv[]) {
             out1.close();
             mesh.plotSpherical(getString(dirname,"sim", i, "png"));
             //std::string name = dirname + "coord_i=" + std::to_string(i) + ".png";
-            dipoles1.plotCoordinates(getString(dirname,"coord", i, "png"),aRange);
+            dipoles1.plotCoordinates(getString(dirname,"coord", i, "png"),aRange,coordinates[i]);
 
         }
     goto printtimes;

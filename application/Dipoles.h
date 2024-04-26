@@ -34,16 +34,16 @@ namespace dipoles {
         void setNewCoordinates(std::array<std::vector<T>, 2> &xi);
         //todo кто будет собственником x_i(нужно ли его вообще здесь хранить)
         void setSolution(std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
-        [[deprecated("Use NeogenePeriod() instead.")]]
 
-        void getFullFunction();
         void getFullFunction(const std::array<std::vector<T>, 2> &xi,
                              const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
 
-        void solve_() {
+        std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solve_() {
             auto tt = (M1_ * M1_ + M2_ * M2_).lu();
+            std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
             solution_[0] = tt.solve(M1_ * f1 + M2_ * f2);
             solution_[1] = tt.solve(M1_ * f2 - M2_ * f1);
+            return solution_;
         };
 
         const function<T(T, T, T)> &getIfunction() const {
@@ -54,7 +54,6 @@ namespace dipoles {
             return I2function_;
         }
 
-        const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &getSolution_() const;
 
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
 
@@ -62,16 +61,16 @@ namespace dipoles {
 
 
         void printMatrix(std::ostream &out, Eigen::IOFormat &format);
-
-        void printCoordinates(std::ostream &out);
+        //todo move
+        void printCoordinates(std::ostream &out,std::array<std::vector<T>, 2> &xi);
 
         void printRightPart(std::ostream &out, Eigen::IOFormat &format);
-
-        void printSolution(std::ostream &out, Eigen::IOFormat &format);
-
-        void printSolutionFormat1(std::ostream &out);
-
-        void plotCoordinates(std::string name, T ar);
+        //todo move
+        void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
+          //todo move
+        void printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
+        //todo move
+        void plotCoordinates(std::string name, T ar,std::array<std::vector<T>, 2> &xi);
 
         static constexpr T c = 3.0 * 1e8;
         static constexpr T yo = 1e7;
@@ -80,21 +79,21 @@ namespace dipoles {
         static constexpr T a = 1;
         static constexpr T eps = 1;
     private:
-        T getDistance(int i1, int i2) {
-            T d1 = xi_[0][i1] - xi_[0][i2];
-            T d2 = xi_[1][i1] - xi_[1][i2];
+        T getDistance(int i1, int i2,std::array<std::vector<T>, 2> &xi) {
+            T d1 = xi[0][i1] - xi[0][i2];
+            T d2 = xi[1][i1] - xi[1][i2];
 
             return std::sqrt(d1 * d1 + d2 * d2);
         };
 
-        Eigen::Vector<T, 2> getRIM(int i, int m) {
-            T d1 = xi_[0][i] - xi_[0][m];
-            T d2 = xi_[1][i] - xi_[1][m];
+        Eigen::Vector<T, 2> getRIM(int i, int m,std::array<std::vector<T>, 2> &xi) {
+            T d1 = xi[0][i] - xi[0][m];
+            T d2 = xi[1][i] - xi[1][m];
             return {d1, d2};
         };
 
         void initArrays(std::array<std::vector<T>, 2> &xi) {
-            xi_ = xi;
+            //xi_ = xi;
             an = a / N_;
             M1_.resize(2 * N_, 2 * N_);
             M2_.resize(2 * N_, 2 * N_);
@@ -109,11 +108,11 @@ namespace dipoles {
                 f2(2 * i + 1) = an * eps;
             }
         }
-        std::array<std::vector<T>, 2> xi_;
+        //std::array<std::vector<T>, 2> xi_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M1_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M2_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> matrixx;
-        std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
+        //std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
 
         std::function<T(T, T, T)> Ifunction_;
         std::function<T(T, T)> I2function_;
@@ -127,16 +126,16 @@ namespace dipoles {
         getMatrixes(const Eigen::Vector<T, 2> &rim, T rMode, Eigen::Matrix<T, 2, 2> &K1,
                     Eigen::Matrix<T, 2, 2> &K2) const;
 
-        void setMatrixes();
+        void setMatrixes(std::array<std::vector<T>, 2> &xi);
     };
 
 
 
 
     template<class T>
-    void Dipoles<T>::plotCoordinates(std::string name, T ar) {
+    void Dipoles<T>::plotCoordinates(std::string name, T ar,std::array<std::vector<T>, 2> &xi) {
         auto ax = gca();
-        ax->scatter(xi_[0], xi_[1]);
+        ax->scatter(xi[0], xi[1]);
         ax->xlim({-8 * ar, 8 * ar});
         ax->ylim({-8 * ar, 8 * ar});
         matplot::save(name);
@@ -144,7 +143,7 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::printSolutionFormat1(std::ostream &out) {
+    void Dipoles<T>::printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
         out << "Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
         for (int i = 0; i < N_; ++i) {
             auto cx = sqrt(solution_[0].coeffRef(2 * i) * solution_[0].coeffRef(2 * i) +
@@ -164,7 +163,7 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::printSolution(std::ostream &out, Eigen::IOFormat &format) {
+    void Dipoles<T>::printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
         out << "Вектор решения\n" << solution_[0].format(format) << '\n' << solution_[1].format(format) << "\n\n";
     }
 
@@ -175,10 +174,10 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::printCoordinates(std::ostream &out) {
+    void Dipoles<T>::printCoordinates(std::ostream &out,std::array<std::vector<T>, 2> &xi) {
         out << "Координаты диполей\n";
-        for (int i = 0; i < xi_[0].size(); ++i) {
-            out << xi_[0][i] << '\t' << xi_[1][i] << "\n";
+        for (int i = 0; i < xi[0].size(); ++i) {
+            out << xi[0][i] << '\t' << xi[1][i] << "\n";
         }
     }
 
@@ -189,13 +188,11 @@ namespace dipoles {
 
     template<class T>
     void Dipoles<T>::setNewCoordinates(std::array<std::vector<T>, 2> &xi) {
-        if (xi_[0].empty()) {
+        if (an==a) {
             this->N_ = xi[0].size();
             initArrays(xi);
-        } else {
-            xi_ = xi;
         }
-        setMatrixes();
+        setMatrixes(xi);
     }
 
     template<class T>
@@ -205,7 +202,7 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::setMatrixes() {
+    void Dipoles<T>::setMatrixes(std::array<std::vector<T>, 2> &xi) {
         vector<pair<int, int>> sectors(4);
         sectors[0] = {0, 0};
         sectors[1] = {0, 2 * N_};
@@ -218,8 +215,8 @@ namespace dipoles {
                     M1_.block(2 * I, 2 * M, 2, 2) = id;
                 } else {
 
-                    Eigen::Vector<T, 2> rim = getRIM(M, I);
-                    T rMode = getDistance(I, M);
+                    Eigen::Vector<T, 2> rim = getRIM(M, I,xi);
+                    T rMode = getDistance(I, M,xi);
                     Eigen::Matrix<T, 2, 2> K1;
                     Eigen::Matrix<T, 2, 2> K2;
                     getMatrixes(rim, rMode, K1, K2);
@@ -237,8 +234,8 @@ namespace dipoles {
                     M2_.block(2 * I, 2 * M, 2, 2) = -id;
                 } else {
 
-                    Eigen::Vector<T, 2> rim = getRIM(M, I);
-                    T rMode = getDistance(I, M);
+                    Eigen::Vector<T, 2> rim = getRIM(M, I,xi);
+                    T rMode = getDistance(I, M,xi);
                     Eigen::Matrix<T, 2, 2> K1;
                     Eigen::Matrix<T, 2, 2> K2;
                     getMatrixes(rim, rMode, K1, K2);
@@ -252,162 +249,7 @@ namespace dipoles {
         }
     }
 
-    template<class T>
-    const array<Eigen::Vector<T, Eigen::Dynamic>, 2> &Dipoles<T>::getSolution_() const {
-        return solution_;//todo может лучше возвращать hsared pointer
-    }
 
-    template<class T>
-    void Dipoles<T>::getFullFunction() {
-
-        this->Ifunction_ = [this](T theta, T phi, T t) {
-            int N = this->xi_[0].size();
-            T res = 0;
-            T s[2] = {cos(phi), sin(phi)};
-            T ress[3] = {0, 0, 0};
-            for (int i = 0; i < N; ++i) {
-                T ri[2] = {this->xi_[0][i], this->xi_[1][i]};
-                T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
-                T t0 = t - ys / c;
-                T Ai[2] = {this->solution_[0].coeffRef(2 * i), this->solution_[0].coeffRef(2 * i + 1)};
-                T Bi[2] = {this->solution_[1].coeffRef(2 * i), this->solution_[1].coeffRef(2 * i + 1)};
-
-
-                T Di[2] = {Ai[0] * cos((T) omega * t0) + Bi[0] * sin((T) omega * t0),
-                           Ai[1] * cos((T) omega * t0) + Bi[1] * sin((T) omega * t0)};
-
-                T vi[2] = {(T) omega * (Bi[0] * cos((T) omega * t0) - Ai[0] * sin((T) omega * t0)) / c,
-                           (T) omega * (Bi[1] * cos((T) omega * t0) - Ai[1] * sin((T) omega)) / c};
-                T ai[2] = {-pow((T) omega, 2) * Di[0], -pow((T) omega, 2) * Di[1]};
-
-                T vsi = vi[0] * s[0] + vi[1] * s[1];
-                T asi = ai[0] * s[0] + ai[1] * s[1];
-
-                for (int coord = 0; coord < 2; ++coord) {
-                    T ttt = ai[coord] * (vsi * sin(theta) - 1) +
-                            s[coord] * asi * pow(sin(theta), 2) -
-                            vi[coord] * asi * sin(theta);
-                    ress[coord] += ttt;
-                }
-
-                T t3 = asi * sin(theta) * cos(theta);
-                ress[2] += t3;
-            }
-            for (T elem: ress) {
-                res += elem * elem;
-            }
-            return res;
-        };
-
-
-        this->I2function_ = [this](T phi, T theta) {
-            int N = this->xi_[0].size();
-            T omega0 = omega;
-            T T0 = M_PI * 2 / omega0;
-            T res;
-            Eigen::Vector<T, 2> resxy = {0.0, 0.0};
-            T resz = 0.0;
-            T o3dc = pow(omega0, 3) / c;
-            T o2 = pow(omega0, 2);
-            T sinth2 = pow(sin(theta), 2);
-            Eigen::Vector<T, 2> s = {cos(phi),
-                                     sin(phi)};
-            for (int i = 0; i < N; ++i) {
-                Eigen::Vector<T, 2> ri = {this->xi_[0][i],
-                                          this->xi_[1][i]};
-                T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
-
-                Eigen::Vector<T, 2> Ai = {this->solution_[0].coeffRef(2 * i),
-                                          this->solution_[0].coeffRef(2 * i + 1)};
-                Eigen::Vector<T, 2> Bi = {this->solution_[1].coeffRef(2 * i),
-                                          this->solution_[1].coeffRef(2 * i + 1)};
-                T argument = omega0 * ys / c;
-                T Ais = Ai.dot(s);
-                T Bis = Bi.dot(s);
-                Eigen::Vector<T, 2> ABis = Ai * Bis;
-                Eigen::Vector<T, 2> BAis = Bi * Ais;
-
-                Eigen::Vector<T, 2> Pc1i = ((s * Ais * sinth2 - Ai) * cos(argument) -
-                                            (s * Bis * sinth2 - Bi) * sin(argument));
-                Eigen::Vector<T, 2> Ps1i = ((s * Ais * sinth2 - Ai) * sin(argument) +
-                                            (s * Bis * sinth2 - Bi) * cos(argument));
-                Eigen::Vector<T, 2> Pcomi = -(omega0 / c) * (sin(theta)) * (ABis - BAis);
-
-                T Pci = (Ais * cos(argument) - Bis * sin(argument));
-                T Psi = (Ais * sin(argument) + Bis * cos(argument));
-
-                Eigen::Vector<T, 2> rj;
-                T ysj;
-                Eigen::Vector<T, 2> Aj;
-                Eigen::Vector<T, 2> Bj;
-                T argumentj;
-
-                T Ajs;
-                T Bjs;
-
-
-                T Pcj;
-                T Psj;
-
-
-                Eigen::Vector<T, 2> Pc1j;
-                Eigen::Vector<T, 2> Ps1j;
-                Eigen::Vector<T, 2> Pcomj;
-
-
-                Eigen::Vector<T, 2> ABjs;
-                Eigen::Vector<T, 2> BAjs;
-                for (int j = 0; j < i; ++j) {
-
-                    rj = {this->xi_[0][j],
-                          this->xi_[1][j]};
-                    ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
-                    Aj = {this->solution_[0].coeffRef(2 * j),
-                          this->solution_[0].coeffRef(2 * j + 1)};
-                    Bj = {this->solution_[1].coeffRef(2 * j),
-                          this->solution_[1].coeffRef(2 * j + 1)};
-
-                    argumentj = omega0 * ysj / c;
-                    Ajs = Aj.dot(s);
-                    Bjs = Bj.dot(s);
-
-                    ABjs = Aj * Bjs;
-                    BAjs = Bi * Ajs;
-
-                    Pcj = (Ajs * cos(argumentj) - Bjs * sin(argumentj));
-                    Psj = (Ajs * sin(argumentj) + Bjs * cos(argumentj));
-
-
-                    Pc1j = ((s * Ajs * sinth2 - Aj) * cos(argumentj) -
-                            (s * Bjs * sinth2 - Bj) * sin(argumentj));
-                    Ps1j = ((s * Ajs * sinth2 - Aj) * sin(argumentj) +
-                            (s * Bjs * sinth2 - Bj) * cos(argumentj));
-                    Pcomj = -(omega0 / c) * (sin(theta)) * (ABjs - BAjs);
-
-
-                    Eigen::Vector<T, 2> rij_xy =
-                            Pc1i.cwiseProduct(Pc1j) + Ps1i.cwiseProduct(Ps1j)
-                            + 2 * Pcomi.cwiseProduct(Pcomj);
-
-                    T rij_z = (Pci * Pcj + Psi * Psj);
-                    resz += rij_z;
-                    resxy += rij_xy;
-                }
-                Eigen::Vector<T, 2> ri_xy =
-                        (Pc1i.cwiseProduct(Pc1i) + Ps1i.cwiseProduct(Ps1i)
-                         + 2 * Pcomi.cwiseProduct(Pcomi)) / 2.0;
-                resxy += ri_xy;
-
-                T ri_xz = (Pci * Pci + Psi * Psi) / 2;
-                resz += ri_xz;
-            }
-            resxy = resxy * T0 * o2 * o2;
-            resz = resz * T0 * (o2 * o2 * pow(sin(theta) * cos(theta), 2));
-            res = resxy.sum() + resz;
-            return res;
-
-        };
-    }
 
 
     template<class T>
@@ -594,7 +436,7 @@ namespace dipoles {
     Dipoles<T>::Dipoles(int N, std::array<std::vector<T>, 2> &xi):N_(
             N) {
         initArrays(xi);
-        setMatrixes();
+        setMatrixes(xi);
     }
 
 }
