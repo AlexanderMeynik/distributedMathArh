@@ -20,6 +20,33 @@ namespace dipoles {
     using std::function, std::pair, std::vector, std::array;
 
 
+    template <class T>
+    std::istream& operator>>(std::istream& in, std::array<std::vector<T>, 2>& xi) {
+        size_t size;
+        in>>size;
+        for (int i = 0; i < 2; ++i) {
+            xi[i].resize(size);
+            for (int j = 0; j < size; ++j) {
+                in >> xi[i][j];
+            }
+        }
+        return in;
+    }
+
+    template <class T>
+    std::istream& operator>>(std::istream& in, std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& sol) {
+        size_t size;
+        in>>size;
+        for (int i = 0; i < 2; ++i) {
+            sol[i].resize(size);
+            for (int j = 0; j < size; ++j) {
+                in >> sol[i][j];
+            }
+        }
+        return in;
+    }
+
+
 
 
     template<class T>
@@ -32,8 +59,6 @@ namespace dipoles {
         Dipoles(int N, std::array<std::vector<T>, 2> &xi);
 
         void setNewCoordinates(std::array<std::vector<T>, 2> &xi);
-        //todo кто будет собственником x_i(нужно ли его вообще здесь хранить)
-        void setSolution(std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
 
         void getFullFunction(const std::array<std::vector<T>, 2> &xi,
                              const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
@@ -195,11 +220,6 @@ namespace dipoles {
         setMatrixes(xi);
     }
 
-    template<class T>
-    void Dipoles<T>::setSolution(std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol) {//todo по большому счёту функцию можно вынуть
-        this->solution_ = sol;
-        this->N_ = sol[0].size();
-    }
 
     template<class T>
     void Dipoles<T>::setMatrixes(std::array<std::vector<T>, 2> &xi) {

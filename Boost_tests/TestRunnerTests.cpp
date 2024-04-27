@@ -96,6 +96,7 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
     BOOST_AUTO_TEST_CASE(testAll2DipoleConfs, *boost::unit_test::tolerance(1e-5))
     {
         int N = 2;
+
         int Nsym = 14;
         TestRunner testRunner(N, Nsym, aRange, "", "", state_t::openmp_new);
         auto &CoordRef = testRunner.getCoordRef();
@@ -154,7 +155,10 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
                  -3.51794e-24});
         testRunner.generateFunction();
         auto baseSol = testRunner.getSolRef();
-        //todo доделать 14 етстов гадости
+       /* std::vector<TestRunner::solution> sda;
+        sda.resize(2);
+        using namespace dipoles;
+        std::cin>>sda[0];*/
 
         CheckSolutions(baseSol, mySol);
     }
