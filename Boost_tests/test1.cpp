@@ -104,9 +104,8 @@ BOOST_AUTO_TEST_CASE( test_e_impement1 ,* utf::tolerance(pow(10,-12)))
     coordinates[1]={0.0};
     using dipoles::Dipoles;
     Dipoles<double> d(coordinates[0].size(),coordinates);
-    d.solve_();
-    auto sol=d.getSolution_();
-    d.getFullFunction();
+    auto sol=d.solve_();
+    d.getFullFunction(coordinates,sol);
     auto f1=d.getIfunction();
     auto f2=d.getI2function();
 
@@ -134,9 +133,8 @@ BOOST_AUTO_TEST_CASE( test_e_impementation2 ,* utf::tolerance(pow(10,-12)))
     coordinates[1]={0.0,l};
     using dipoles::Dipoles;
     Dipoles<double> d(coordinates[0].size(),coordinates);
-    d.solve_();
-    auto sol=d.getSolution_();
-    d.getFullFunction();
+    auto sol=d.solve_();
+    d.getFullFunction(coordinates,sol);
     auto f1=d.getIfunction();
     auto f2=d.getI2function();
 
@@ -165,9 +163,8 @@ BOOST_AUTO_TEST_CASE( test_e_impementation3 ,* utf::tolerance(pow(10,-12)))
     coordinates[1]={0.0,0.5*l,l};
     using dipoles::Dipoles;
     Dipoles<double> d(coordinates[0].size(),coordinates);
-    d.solve_();
-    auto sol=d.getSolution_();
-    d.getFullFunction();
+    auto sol=d.solve_();
+    d.getFullFunction(coordinates,sol);
     auto f1=d.getIfunction();
     auto f2=d.getI2function();
 
@@ -200,9 +197,8 @@ BOOST_AUTO_TEST_CASE( test_e_impementation4 ,* utf::tolerance(pow(10,-12)))
     coordinates[1]={0.0,0.0,0.5*l,0.5*l,l};
     using dipoles::Dipoles;
     Dipoles<double> d(coordinates[0].size(),coordinates);
-    d.solve_();
-    auto sol=d.getSolution_();
-    d.getFullFunction();
+    auto sol=d.solve_();
+    d.getFullFunction(coordinates,sol);
     auto f1=d.getIfunction();
     auto f2=d.getI2function();
 

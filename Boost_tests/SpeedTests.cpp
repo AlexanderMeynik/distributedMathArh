@@ -41,8 +41,8 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
         for (int i = 0; i < Nsym; ++i) {
             //std::ofstream out1(dirname+"sim_i="+std::to_string(i)+".txt");
             dipoles1.setNewCoordinates(coordinates[i]);
-            dipoles1.solve_();
-            dipoles1.getFullFunction();
+            auto solution=dipoles1.solve_();
+            dipoles1.getFullFunction(coordinates[i],solution);
             t_prev = std::chrono::high_resolution_clock::now();
             mesh.generateNoInt(dipoles1.getI2function());
             t_curr = std::chrono::high_resolution_clock::now();
@@ -123,8 +123,8 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
         for (int i = 0; i < Nsym; ++i) {
             coordinates[i]=genr.generateCoordinates(N);
             dipolearr[i].setNewCoordinates(coordinates[i]);
-            dipolearr[i].solve_();
-            dipolearr[i].getFullFunction();
+            auto sol=dipolearr[i].solve_();
+            dipolearr[i].getFullFunction(coordinates[i],sol);
         }
 
         MeshProcessor<double> mesh=MeshProcessor<double>();
@@ -232,8 +232,8 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
 
         auto coord= genr.generateCoordinates(N);
         dipoles::Dipoles<double> dipolearr(N,coord);
-        dipolearr.solve_();
-        dipolearr.getFullFunction();
+        auto solution=dipolearr.solve_();
+        dipolearr.getFullFunction(coord,solution);
         const int mag=7;
         const int mag2=5;
         unsigned const int Ns[mag2]={15,31,41,51,61};

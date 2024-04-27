@@ -148,11 +148,36 @@ private:
    long double c2= sqrt(3)/2.0;
 };
 
-template<class T>
+enum class state_t {
+    openmp_new,
+    new_,
+    openmp_old,
+    old,
+    print_
+};
+
+
+const static std::map<state_t, std::string> stateToString = {
+        { state_t::openmp_new,"openmp_new" },
+        { state_t::new_,"new"},
+        { state_t::openmp_old,"openmp_old"},
+        { state_t::old,"old"},
+        { state_t::print_,"print"},
+};
+const static std::map<std::string,state_t >  stringToState = {
+        { "openmp_new",state_t::openmp_new },
+        { "new",state_t::new_},
+        { "openmp_old",state_t::openmp_old},
+        { "old",state_t::old},
+        { "print",state_t::print_},
+};
+
+
+/*template<class T>
 void
 printToFile(int N, array<std::vector<T>, 2> &a, dipoles::Dipoles<T> &d, string &basicString, int id, int verboseLevel) {
     auto solut=d.getSolution_();
-    std::ofstream out(basicString+"/out"+std::to_string(N)+"_"+std::to_string(/*a[N-1][0]/l*/id)+"_.txt");
+    std::ofstream out(basicString+"/out"+std::to_string(N)+"_"+std::to_string(id)+"_.txt");
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
     if(verboseLevel>=3) {
         d.printMatrix(out,CleanFmt);
@@ -183,7 +208,7 @@ printToFile(int N, array<std::vector<T>, 2> &a, dipoles::Dipoles<T> &d, string &
 
 
     out.close();
-}
+}*/
 
 
 template<class T>

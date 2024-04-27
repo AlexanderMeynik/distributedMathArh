@@ -18,7 +18,7 @@ int main(int argc, char* argv[]) {
 
 }*/
 
-enum class state_t {
+/*enum class state_t {
     openmp_new,
     new_,
     openmp_old,
@@ -42,7 +42,7 @@ statemap_r state2 = {
         { "openmp_old",state_t::openmp_old},
         { "old",state_t::old},
         { "print",state_t::print_},
-};
+};*/
 
 
 #include <iostream>
@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
 
         std::string mode=argv[4];
 
-        state=state2.find(mode)->second;
+        state=stringToState.find(mode)->second;
 
 
         //print=strtol(argv[4],&end,10);
@@ -107,7 +107,7 @@ int main(int argc, char* argv[]) {
     std::replace(aStr.begin(), aStr.end(), '-','_');//, aStr.end());// removing the '-' sign
     //std::cout<<aStr; // 1e16.csv
     std::string dirname="results/"+subdirectory+"experiment_N="+std::to_string(N)+
-            "_Nsym="+std::to_string(Nsym)+"_a="+aStr+"_mode="+state1.find(state)->second+"/";
+            "_Nsym="+std::to_string(Nsym)+"_a="+aStr+"_mode="+stateToString.find(state)->second+"/";
     if(!std::filesystem::exists("results/"))
     {
         std::filesystem::create_directory("results/");

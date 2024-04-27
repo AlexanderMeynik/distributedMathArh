@@ -19,16 +19,18 @@ void TestRunner::createSubDirectory(const string &dirname, const string &subdire
     }
 }
 
-void TestRunner::generateGaus(size_t N, size_t Ns,
-                              double aRange) {//todo предавать генератор(абстраткный класс genrator) у него есть методы genrate
-    this->N_ = N;
-    this->Nsym_ = Ns;
-    this->aRange_ = aRange;
-    coords_.resize(Ns);
-    CoordGenerator<double> genr(0, aRange);
+void TestRunner::generateGaus(/*size_t N, size_t Ns,
+                              double aRange*/) {//todo предавать генератор(абстраткный класс genrator) у него есть методы genrate
+    //this->N_ = N;
+    //this->Nsym_ = Ns;
+    //this->aRange_ = aRange;
+    clocks_[0].tik();
+    coords_.resize(Nsym_.value());
+    CoordGenerator<double> genr(0, aRange_.value());
     for (int i = 0; i < Nsym_; ++i) {
-        coords_[i] = genr.generateCoordinates(N);
+        coords_[i] = genr.generateCoordinates(N_.value());
     }
+    clocks_[0].tak();
 }
 
 TestRunner::TestRunner() {
@@ -41,11 +43,12 @@ TestRunner::TestRunner() {
     N_ = std::nullopt;
 }
 
-void TestRunner::solve(bool print) {
+void TestRunner::solve() {
     using dipoles::Dipoles;
 
     Dipoles<FloatType> d1;
-    if (print)
+    clocks_[1].tik();
+    if (inner_state==state_t::openmp_new)
         goto pp;
     {
 
@@ -53,7 +56,6 @@ void TestRunner::solve(bool print) {
 //#pragma omp parallel for default(shared)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.setNewCoordinates(coords_[i]);
-
             solutions_[i] = d1.solve_();
         }
     }
@@ -72,6 +74,7 @@ void TestRunner::solve(bool print) {
         fout << "\n";
         fout.close();
     }
+    clocks_[1].tak();
 }
 
 std::string TestRunner::getString(const string &dirname, string &&name, int i, string &&end) {
@@ -88,13 +91,15 @@ std::fstream TestRunner::openOrCreateFile(std::string filename) {
     return appendFileToWorkWith;
 }
 
-void TestRunner::generateFunction(bool print) {
+void TestRunner::generateFunction() {
+
     using dipoles::Dipoles;
 
     Dipoles<FloatType> d1;
     MeshProcessor<FloatType> mesh;
     auto result = mesh.getMeshGliff();
-    if (!print) {
+    clocks_[2].tik();
+    if (inner_state==state_t::openmp_new) {
 #pragma omp parallel for default(none) shared(Nsym_,solutions_,result) firstprivate(d1,mesh)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.getFullFunction(coords_[i],solutions_[i]);
@@ -142,4 +147,5 @@ void TestRunner::generateFunction(bool print) {
         out1.close();
 
     }
+    clocks_[2].tak();
 }

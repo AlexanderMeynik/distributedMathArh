@@ -25,13 +25,12 @@ find_package(OpenMP REQUIRED)
 
 # Add Executable
 add_executable(Magister1  main.cpp) #lib.cpp printUtils.h MeshProcessor.cpp)
-add_executable(Magister2 Dipoles2.h main.cpp)
 add_executable(ConFReader configReader.cpp)
 add_executable(testIntegr gausTets.cpp)
 
 # Link Libraries
 
-add_library(myLibrary Dipoles.cpp lib.cpp MeshProcessor.h MeshProcessor.cpp printUtils.h OpenmpParralelClock.cpp)
+add_library(myLibrary Dipoles.cpp lib.cpp MeshProcessor.h MeshProcessor.cpp printUtils.h OpenmpParralelClock.cpp TestRunner.cpp)
 # Include Directories
 target_link_libraries(Magister1 PRIVATE ${GSL_LIBRARIES})
 target_link_libraries(Magister1 PRIVATE ${PQXX_LIB} ${PQ_LIB})
