@@ -45,9 +45,43 @@ namespace dipoles {
         }
         return in;
     }
+    template<class T>
+    static bool isSymmetric(Eigen::Matrix<T, -1, -1>&matr)
+    {
+        size_t N=matr.size();
+
+        for (int i = 0; i < N; ++i) {
+
+            for (int j = 0; j < i; ++j) {
+                if(matr.coeffRef(i,j)!=matr.coeffRef(j,i))
+                {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
 
 
+    template<class T>
+    static bool isSymmetric(Eigen::Matrix<T, -1, -1>&&matr)//todo проверить функцю
+    {
+        size_t N=matr.size();
 
+        for (int i = 0; i < N; ++i) {
+
+            for (int j = 0; j < i; ++j) {
+                if(matr.coeffRef(i,j)!=matr.coeffRef(j,i))
+                {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+    }
+#include <cassert>
 
     template<class T>
     class Dipoles {
@@ -64,6 +98,10 @@ namespace dipoles {
                              const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
 
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solve_() {
+            //assert(isSymmetric(M1_));
+            //assert(isSymmetric(M2_));
+           // assert(isSymmetric(M1_*M2_));
+
             auto tt = (M1_ * M1_ + M2_ * M2_).lu();
             std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
             solution_[0] = tt.solve(M1_ * f1 + M2_ * f2);

@@ -24,17 +24,13 @@
 BOOST_AUTO_TEST_SUITE(testRunnerTest)
     constexpr double aRange = 1e-7;
 
-    //bool operator==(const T& a, const U& b);
 
     void CheckSolutions(std::vector<TestRunner::solution> &sol1,
                         std::vector<TestRunner::solution> &sol2) {   //sol1[0][0].begin();
         for (int i = 0; i < sol1.size(); ++i) {
             for (int dim = 0; dim < 2; ++dim) {
                 BOOST_TEST_REQUIRE(sol1[i][dim] == sol2[i][dim], boost::test_tools::per_element());
-                //CHECK_CLOSE_COLLECTION(sol1[i][dim],sol2[i][dim],pow(10,-12));
-                //BOOST_CHECK_EQUAL_COLLECTIONS(sol1[i][dim].cbegin(),sol1[i][dim].cend(),
-                //                              sol2[i][dim].cbegin(),sol2[i][dim].cend());
-            }
+               }
         }
 
     }
@@ -87,9 +83,6 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
             onel.coeffRef(i) = data(ls)[i];
             oner.coeffRef(i) = data(ls)[i + size / 2];
         }
-        /*for (int i = 0; i < size / 2; ++i) {
-            std::cout<<onel.coeffRef(i)<<"\t"<< oner.coeffRef(i)<<"\n";
-        }*/
         return {onel, oner};
     }
 
@@ -155,10 +148,6 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
                  -3.51794e-24});
         testRunner.generateFunction();
         auto baseSol = testRunner.getSolRef();
-       /* std::vector<TestRunner::solution> sda;
-        sda.resize(2);
-        using namespace dipoles;
-        std::cin>>sda[0];*/
 
         CheckSolutions(baseSol, mySol);
     }
