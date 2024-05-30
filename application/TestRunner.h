@@ -26,6 +26,7 @@ public:
     {
         N_=N;
         Nsym_=Ns;
+        aRange_=aRange;
         subdir_=subdir;
         std::stringstream ss;
         ss<<aRange<<".csv";

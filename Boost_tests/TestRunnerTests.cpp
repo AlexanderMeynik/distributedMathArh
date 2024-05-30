@@ -152,4 +152,26 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
         CheckSolutions(baseSol, mySol);
     }
 
+
+
+    BOOST_AUTO_TEST_CASE(test_generate, *boost::unit_test::tolerance(pow(10, -12)))
+    {
+        int N = 2;
+        int Nsym = 4;
+        TestRunner testRunner(N, Nsym, aRange, "", "", state_t::openmp_new);
+        testRunner.generateGaus();
+        //std::vector<std::array<std::vector<FloatType>,2>>
+
+        testRunner.solve();
+        testRunner.generateFunction();
+        auto baseSol = testRunner.getSolRef();
+        BOOST_CHECK_EQUAL(baseSol[0][0].size(),N*2);
+        BOOST_CHECK_EQUAL(baseSol.size(),Nsym);
+        //todo check multip;
+        //CheckSolutions(baseSol, mySol);
+    }
+
 BOOST_AUTO_TEST_SUITE_END()
+
+
+

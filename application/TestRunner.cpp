@@ -26,7 +26,7 @@ void TestRunner::generateGaus(/*size_t N, size_t Ns,
     //this->aRange_ = aRange;
     clocks_[0].tik();
     coords_.resize(Nsym_.value());
-    CoordGenerator<double> genr(0, aRange_.value());//todo тут что-то стоприться
+    CoordGenerator<double> genr(0, aRange_.value());//todo тут что-то стоприться(тестик)
     for (int i = 0; i < Nsym_; ++i) {
         coords_[i] = genr.generateCoordinates(N_.value());
     }
