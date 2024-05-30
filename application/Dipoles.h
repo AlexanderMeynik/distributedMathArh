@@ -81,6 +81,21 @@ namespace dipoles {
         }
         return true;
     }
+
+    //todo move
+    template <class T>
+    void printCoordinates(std::ostream &out,std::array<std::vector<T>, 2> &xi);
+
+
+    //todo move
+    template <class T>
+    void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
+    //todo move
+    template <class T>
+    void printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
+    //todo move
+    template <class T>
+    void plotCoordinates(std::string name, T ar,std::array<std::vector<T>, 2> &xi);
 #include <cassert>
 
     template<class T>
@@ -124,17 +139,8 @@ namespace dipoles {
 
 
         void printMatrix(std::ostream &out, Eigen::IOFormat &format);
-        //todo move
-        void printCoordinates(std::ostream &out,std::array<std::vector<T>, 2> &xi);
 
         void printRightPart(std::ostream &out, Eigen::IOFormat &format);
-        //todo move
-        void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
-          //todo move
-        void printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
-        //todo move
-        void plotCoordinates(std::string name, T ar,std::array<std::vector<T>, 2> &xi);
-
         static constexpr T c = 3.0 * 1e8;
         static constexpr T yo = 1e7;
         static constexpr T omega = 1e15;
@@ -196,7 +202,7 @@ namespace dipoles {
 
 
     template<class T>
-    void Dipoles<T>::plotCoordinates(std::string name, T ar,std::array<std::vector<T>, 2> &xi) {
+    void plotCoordinates(std::string name, T ar,std::array<std::vector<T>, 2> &xi) {
         auto ax = gca();
         ax->scatter(xi[0], xi[1]);
         ax->xlim({-8 * ar, 8 * ar});
@@ -206,8 +212,9 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
+    void printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
         out << "Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
+        int N_=solution_[0].size()/2.0;
         for (int i = 0; i < N_; ++i) {
             auto cx = sqrt(solution_[0].coeffRef(2 * i) * solution_[0].coeffRef(2 * i) +
                            solution_[1].coeffRef(2 * i) * solution_[1].coeffRef(2 * i));
@@ -226,7 +233,7 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
+    void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
         out << "Вектор решения\n" << solution_[0].format(format) << '\n' << solution_[1].format(format) << "\n\n";
     }
 
@@ -237,7 +244,7 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::printCoordinates(std::ostream &out,std::array<std::vector<T>, 2> &xi) {
+    void printCoordinates(std::ostream &out,std::array<std::vector<T>, 2> &xi) {
         out << "Координаты диполей\n";
         for (int i = 0; i < xi[0].size(); ++i) {
             out << xi[0][i] << '\t' << xi[1][i] << "\n";

@@ -26,7 +26,7 @@ void TestRunner::generateGaus(/*size_t N, size_t Ns,
     //this->aRange_ = aRange;
     clocks_[0].tik();
     coords_.resize(Nsym_.value());
-    CoordGenerator<double> genr(0, aRange_.value());
+    CoordGenerator<double> genr(0, aRange_.value());//todo тут что-то стоприться
     for (int i = 0; i < Nsym_; ++i) {
         coords_[i] = genr.generateCoordinates(N_.value());
     }
@@ -48,7 +48,7 @@ void TestRunner::solve() {
 
     Dipoles<FloatType> d1;
     clocks_[1].tik();
-    if (inner_state==state_t::openmp_new)
+    if (inner_state!=state_t::openmp_new)
         goto pp;
     {
 
@@ -67,9 +67,9 @@ void TestRunner::solve() {
         auto filename = getString(this->dir_.value(), "sim", i, "txt");
         auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";
-        d1.printCoordinates(fout,coords_[i]);
+        dipoles::printCoordinates(fout,coords_[i]);
         fout << "\n";
-        d1.printSolutionFormat1(fout,solutions_[i]);
+        dipoles::printSolutionFormat1(fout,solutions_[i]);
         fout << "\n";
         fout << "\n";
         fout.close();
@@ -128,7 +128,7 @@ void TestRunner::generateFunction() {
             auto fout = openOrCreateFile(filename);
             mesh.printDec(fout);
             mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));
-            d1.plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
+            dipoles::plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
             fout.close();
         }
 
