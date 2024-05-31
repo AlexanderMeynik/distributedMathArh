@@ -6,7 +6,7 @@
 #include <memory>
 #include <eigen3/Eigen/Dense>
 #include <iostream>
-#include "printUtils.h"
+#include "../printUtils.h"
 #include <iomanip>
 #include <matplot/matplot.h>
 

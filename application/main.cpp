@@ -1,5 +1,5 @@
 #include <iostream>
-#include "Dipoles.h"
+#include "math_core/Dipoles.h"
 #include <vector>
 #include <algorithm>
 #include <numeric>
@@ -9,7 +9,7 @@
 #include <filesystem>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
-#include "lib.h"
+#include "commonFunctions/lib.h"
 
 
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;

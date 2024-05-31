@@ -1,8 +1,8 @@
-#include "../application/lib.h"
+#include "../application/commonFunctions/lib.h"
 #include <chrono>
 #include <boost/test/unit_test.hpp>
-#include "../application/MeshProcessor.h"
-#include "../application/Dipoles.h"
+#include "../application/math_core/MeshProcessor.h"
+#include "../application/math_core/Dipoles.h"
 #include <algorithm>
 #include <omp.h>
 #include <boost/test/parameterized_test.hpp>

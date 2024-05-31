@@ -1,10 +1,10 @@
 #include <eigen3/Eigen/Dense>
 #include <random>
 #include <iostream>
-#include "Dipoles.h"
-#include "lib.h"
+#include "math_core/Dipoles.h"
+#include "commonFunctions/lib.h"
 #include <matplot/matplot.h>
-#include "MeshProcessor.h"
+#include "math_core/MeshProcessor.h"
 #include <vector>
 
 //template <class T>
@@ -194,21 +194,21 @@ int main(int argc, char* argv[]) {
 
     std::ofstream out("res"+ss.str()+".txt");
     dipoles::Dipoles d(N,coords);
-    d.solve_();
+    auto solv=d.solve_();
 
-    d.plotCoordinates("coord"+ss.str()+".png",a/8);
+    dipoles::plotCoordinates("coord"+ss.str()+".png",a/8,coords);
 
-    d.printSolutionFormat1(out);
+    dipoles::printSolutionFormat1(out,solv);
 
     MeshProcessor<double> meshProcessor;
-    d.getFullFunction(coords,d.getSolution_());
+    d.getFullFunction(coords,solv);
 
     meshProcessor.generateNoInt(d.getI2function());
 
     meshProcessor.plotSpherical("function"+ss.str()+".png");
 
 
-    d.printCoordinates(out);
+    dipoles::printCoordinates(out,coords);
     meshProcessor.printDec(out);
     out.close();
 

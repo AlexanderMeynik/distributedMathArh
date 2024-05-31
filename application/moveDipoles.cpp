@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "Dipoles.h"
+#include "math_core/Dipoles.h"
 #include <vector>
 #include <algorithm>
 #include <numeric>
@@ -10,7 +10,9 @@
 #include <filesystem>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
-#include "lib.h"
+#include "commonFunctions/lib.h"
+#include "math_core/MeshProcessor.h"
+
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
 
@@ -32,11 +34,10 @@ int main(int argc, char* argv[]) {
     std::ofstream out(dirname+"results.txt");
 
     Dipoles< double> d(N,coordinates);
-    d.solve_();
+    auto solut1=d.solve_();
 
     MeshProcessor<double> mmesh;
-    d.getFullFunction(coordinates,d.getSolution_());
-    auto solut1=d.getSolution_();
+    d.getFullFunction(coordinates,solut1);
     solut1[0][0]=5;
     mmesh.generateNoInt(d.getI2function());
     auto prevMesh=mmesh.getMeshdec();
@@ -47,8 +48,7 @@ int main(int argc, char* argv[]) {
     {
         std::ofstream  fout(dirname+"out"+std::to_string(N)+"_iter"+std::to_string(i)+".txt");
         d.setNewCoordinates(coordinates);
-        d.solve_();
-        auto solut2=d.getSolution_();
+        auto solut2=d.solve_();
 
         d.getFullFunction(coordinates,solut2);
         mmesh.generateMeshes(d.getIfunction());
@@ -73,8 +73,8 @@ int main(int argc, char* argv[]) {
         ++i;
 
         d.printMatrix(fout,CleanFmt);
-        d.printCoordinates(fout);
-        d.printSolution(fout,CleanFmt);
+        dipoles::printCoordinates(fout,coordinates);
+        dipoles::printSolution(fout,CleanFmt,solut2);
 
 
 

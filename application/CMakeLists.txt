@@ -24,18 +24,27 @@ find_package(OpenMP REQUIRED)
 
 
 # Add Executable
-add_executable(Magister1  main.cpp) #lib.cpp printUtils.h MeshProcessor.cpp)
+add_executable(Magister1  main.cpp)
 add_executable(ConFReader configReader.cpp)
 add_executable(testIntegr gausTets.cpp)
 
-# Link Libraries
 
-add_library(myLibrary Dipoles.cpp lib.cpp MeshProcessor.h MeshProcessor.cpp printUtils.h OpenmpParralelClock.cpp TestRunner.cpp)
-# Include Directories
-target_link_libraries(Magister1 PRIVATE ${GSL_LIBRARIES})
-target_link_libraries(Magister1 PRIVATE ${PQXX_LIB} ${PQ_LIB})
-target_include_directories(Magister1 PRIVATE ${GSL_INCLUDE_DIRS})
-target_link_libraries(Magister1 PUBLIC Matplot++::matplot)
+add_executable(clock parUtils/clockTest.cpp parUtils/OpenmpParralelClock.cpp)
+target_link_libraries(clock PRIVATE OpenMP::OpenMP_CXX)
+
+add_library(Clock parUtils/OpenmpParralelClock.cpp)
+target_link_libraries(Clock PUBLIC OpenMP::OpenMP_CXX)
+
+add_library(myLibrary math_core/Dipoles.cpp commonFunctions/lib.cpp math_core/MeshProcessor.h math_core/MeshProcessor.cpp printUtils.h math_core/TestRunner.cpp)
+target_link_libraries(myLibrary PUBLIC ${GSL_LIBRARIES})
+target_link_libraries(myLibrary PUBLIC ${PQXX_LIB} ${PQ_LIB})
+target_include_directories(myLibrary PUBLIC ${GSL_INCLUDE_DIRS})
+target_link_libraries(myLibrary PUBLIC Matplot++::matplot)
+target_link_libraries(myLibrary PUBLIC OpenMP::OpenMP_CXX)
+
+
+
+
 target_link_libraries(Magister1 PUBLIC myLibrary)
 
 
@@ -44,50 +53,21 @@ target_link_libraries(ConFReader PRIVATE ${PQXX_LIB} ${PQ_LIB})
 target_include_directories(ConFReader PRIVATE ${GSL_INCLUDE_DIRS})
 
 
-target_link_libraries(testIntegr PUBLIC Matplot++::matplot)
-target_include_directories(testIntegr PRIVATE ${GSL_INCLUDE_DIRS})
-target_link_libraries(testIntegr PRIVATE ${GSL_LIBRARIES})
-target_link_libraries(testIntegr PRIVATE ${PQXX_LIB} ${PQ_LIB})
-
-
-# Include Directories
-
+target_link_libraries(testIntegr PUBLIC myLibrary)
 
 
 add_executable(moveDipoles moveDipoles.cpp)
-target_link_libraries(moveDipoles PUBLIC Matplot++::matplot)
 target_link_libraries(moveDipoles PUBLIC myLibrary)
-target_include_directories(moveDipoles PRIVATE ${GSL_INCLUDE_DIRS})
-target_link_libraries(moveDipoles PRIVATE ${GSL_LIBRARIES})
-target_link_libraries(moveDipoles PRIVATE ${PQXX_LIB} ${PQ_LIB})
 
 add_executable(generator coordGenerate.cpp)
 target_link_libraries(generator PUBLIC myLibrary)
-target_include_directories(generator PRIVATE ${GSL_INCLUDE_DIRS})
-target_link_libraries(generator PRIVATE ${GSL_LIBRARIES})
-target_link_libraries(generator PRIVATE Matplot++::matplot)
-
-target_link_libraries(generator PRIVATE OpenMP::OpenMP_CXX)
 
 
 add_executable(checker eigenTest.cpp)
 target_link_libraries(checker PUBLIC myLibrary)
-target_link_libraries(checker PRIVATE Matplot++::matplot)
-target_include_directories(checker PRIVATE ${GSL_INCLUDE_DIRS})
-target_link_libraries(checker PRIVATE ${GSL_LIBRARIES})
-
-target_link_libraries(checker PRIVATE OpenMP::OpenMP_CXX)
 
 
-add_executable(grids darwingGrids.cpp TestRunner.cpp)
-target_link_libraries(grids PUBLIC myLibrary)
-target_link_libraries(grids PRIVATE Matplot++::matplot)
-target_include_directories(grids PRIVATE ${GSL_INCLUDE_DIRS})
-target_link_libraries(grids PRIVATE ${GSL_LIBRARIES})
+add_executable(grids darwingGrids.cpp math_core/TestRunner.cpp)
+target_link_libraries(grids PUBLIC myLibrary Clock)
 
-target_link_libraries(grids PRIVATE OpenMP::OpenMP_CXX)
 
-add_executable(clock clockTest.cpp OpenmpParralelClock.cpp)
-target_link_libraries(clock PRIVATE OpenMP::OpenMP_CXX)
-
-add_library(Clock OpenmpParralelClock.cpp)

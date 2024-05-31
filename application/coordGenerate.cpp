@@ -6,7 +6,7 @@
 #include <random>
 #include <map>
 #include <omp.h>
-#include "OpenmpParallelClock.h"
+#include "prralelUtils/parUtils/OpenmpParallelClock.h"
 /*
 int main(int argc, char* argv[]) {
  double alpha=1;
@@ -49,9 +49,9 @@ statemap_r state2 = {
 #include <random>
 #include <cmath>
 #include <fstream>
-#include "lib.h"
-#include "Dipoles.h"
-#include "MeshProcessor.h"
+#include "commonFunctions/lib.h"
+#include "math_core/Dipoles.h"
+#include "math_core/MeshProcessor.h"
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
 std::string getString(const std::string &dirname,std::string &&name, int i, std::string &&end) {
     return dirname + name+"_i"+ std::to_string(i) +"."+ end;

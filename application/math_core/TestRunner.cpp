@@ -5,6 +5,7 @@
 
 #include "TestRunner.h"
 
+
 void TestRunner::createSubDirectory(const string &dirname, const string &subdirectory) {
     if (!std::filesystem::exists("results/")) {
         std::filesystem::create_directory("results/");

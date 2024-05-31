@@ -1,4 +1,4 @@
-#include "../application/lib.h"
+#include "../application/commonFunctions/lib.h"
 #include <gtest/gtest.h>
 //https://stackoverflow.com/questions/6759560/boosttest-and-mocking-framework
 

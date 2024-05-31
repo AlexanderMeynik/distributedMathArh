@@ -7,8 +7,9 @@
 #include <optional>
 #include <filesystem>
 #include <omp.h>
-#include "lib.h"
-#include "OpenmpParallelClock.h"
+#include "MeshProcessor.h"
+#include "../commonFunctions/lib.h"
+#include "../parUtils/OpenmpParallelClock.h"
 #include <fstream>
 
 

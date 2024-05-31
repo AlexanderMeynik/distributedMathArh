@@ -1,7 +1,7 @@
-#include "../application/lib.h"
+#include "../application/commonFunctions/lib.h"
 
 #include <boost/test/unit_test.hpp>
-#include "../application/TestRunner.h"
+#include "../application/math_core/TestRunner.h"
 #include <boost/test/parameterized_test.hpp>
 #include <iomanip>
 #include <boost/array.hpp>

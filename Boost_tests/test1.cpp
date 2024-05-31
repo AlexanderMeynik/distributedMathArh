@@ -1,10 +1,10 @@
-#include "../application/lib.h"
+#include "../application/commonFunctions/lib.h"
 #include <chrono>
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN  // in only one cpp file
 #include <boost/test/unit_test.hpp>
-#include "../application/MeshProcessor.h"
-#include "../application/Dipoles.h"
+#include "../application/math_core/MeshProcessor.h"
+#include "../application/math_core/Dipoles.h"
 #include <algorithm>
 //https://stackoverflow.com/questions/6759560/boosttest-and-mocking-framework
 #define BOOST_TEST_MODULE example

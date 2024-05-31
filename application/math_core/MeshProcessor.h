@@ -9,7 +9,7 @@
 #include <ostream>
 #include <vector>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
-#include "printUtils.h"
+#include "../printUtils.h"
 
 
 template<class T, unsigned N>

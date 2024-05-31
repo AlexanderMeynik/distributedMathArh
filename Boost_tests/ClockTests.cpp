@@ -1,8 +1,8 @@
-#include "../application/lib.h"
+#include "../application/commonFunctions/lib.h"
 
 #include <boost/test/unit_test.hpp>
 #include "../application/printUtils.h"
-#include "../application/OpenmpParallelClock.h"
+#include "../application/parUtils/OpenmpParallelClock.h"
 #include <iomanip>
 #include <omp.h>
 #define BOOST_TEST_MODULE printUtils
