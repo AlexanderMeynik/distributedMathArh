@@ -1,4 +1,4 @@
-#include "../application/commonFunctions/lib.h"
+#include "../application/common/lib.h"
 
 #include <boost/test/unit_test.hpp>
 #include "../application/printUtils.h"

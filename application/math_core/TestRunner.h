@@ -7,11 +7,12 @@
 #include <optional>
 #include <filesystem>
 #include <omp.h>
-#include "MeshProcessor.h"
-#include "../commonFunctions/lib.h"
-#include "../parUtils/OpenmpParallelClock.h"
 #include <fstream>
-
+#include <eigen3/Eigen/Core>
+#include "MeshProcessor.h"
+#include "../common/lib.h"
+#include "../parallelUtils//OpenmpParallelClock.h"
+#include "Dipoles.h"
 
 typedef double FloatType;
 class TestRunner {

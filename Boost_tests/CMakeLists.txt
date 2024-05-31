@@ -5,7 +5,6 @@ include_directories (${Boost_INCLUDE_DIRS})
 
 add_executable (Boost_Tests_run test1.cpp PrintUtilsTest.cpp SpeedTests.cpp ClockTests.cpp DipolesTests.cpp TestRunnerTests.cpp)
 target_link_libraries (Boost_Tests_run ${Boost_LIBRARIES})
-target_link_libraries (Boost_Tests_run myLibrary)
-target_link_libraries(Boost_Tests_run Clock)
+target_link_libraries (Boost_Tests_run math_core_lib parallelLib)
 
 

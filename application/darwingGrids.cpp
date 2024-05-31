@@ -2,7 +2,7 @@
 #include <random>
 #include <iostream>
 #include "math_core/Dipoles.h"
-#include "commonFunctions/lib.h"
+#include "common/lib.h"
 #include <matplot/matplot.h>
 #include "math_core/MeshProcessor.h"
 #include <vector>

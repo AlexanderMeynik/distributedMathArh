@@ -12,25 +12,16 @@
 #include <fstream>
 #include <iomanip>
 #include <filesystem>
-#include <boost/math/quadrature/gauss_kronrod.hpp>
-#include <matplot/matplot.h>
 #include <random>
-#include <eigen3/Eigen/Core>
-#include "../math_core/Dipoles.h"
+#include <map>
+#include <cassert>
 
-using Eigen::Vector2d;
 using std::function, std::pair, std::vector, std::array;
 using std::string;
 
 template<class T>
 std::vector<std::array<std::vector<T>, 2>> parseConf(string &filename);
 
-template<class T>
-void printToFile(int N, std::array<std::vector<T>, 2> &a, dipoles::Dipoles<T> &d, string &basicString, int id,
-                 int verboseLevel);
-
-template<class T>
-void generateMeshes(int N, int id, dipoles::Dipoles<T> &d, std::ostream &out, std::string &basicString);
 
 
 template<typename T>

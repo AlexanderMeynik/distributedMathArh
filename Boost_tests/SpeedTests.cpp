@@ -1,4 +1,4 @@
-#include "../application/commonFunctions/lib.h"
+#include "../application/common/lib.h"
 #include <chrono>
 #include <boost/test/unit_test.hpp>
 #include "../application/math_core/MeshProcessor.h"

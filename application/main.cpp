@@ -37,9 +37,9 @@ int main(int argc, char* argv[]) {
         std::array<std::vector<double>,2>a=avec[i];
         int N=a[0].size();
         Dipoles<double> d(N,a);
-        d.solve_();
-        auto solut2=d.getSolution_();
-        printToFile<double>(N, a, d, dirname,i,verbose);
+
+        auto solut2= d.solve_();//todo?
+        //printToFile<double>(N, a, d, dirname,i,verbose);
     }
 
     return 0;
