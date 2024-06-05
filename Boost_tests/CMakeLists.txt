@@ -1,3 +1,4 @@
+set(CMAKE_CXX_STANDARD 20)
 if(CMAKE_BUILD_TYPE STREQUAL "Debug-Coverage")
     set(-DCMAKE_CXX_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")
     set(-DCMAKE_C_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")

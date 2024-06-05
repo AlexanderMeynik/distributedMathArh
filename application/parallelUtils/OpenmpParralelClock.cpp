@@ -1,15 +1,5 @@
 #include "OpenmpParallelClock.h"
-double OpenmpParallelClock::getTime() {
-    double sumValueA = 0.0;
-    int num=0;
-    for (auto elme:timers) {
-        if(std::abs(elme)>std::numeric_limits<double>::epsilon()) {
-            sumValueA += elme;
-            num++;
-        }
-    }
-    return sumValueA  / (1.0*num);
-}
+
 
 void OpenmpParallelClock::tak() {
     size_t id=omp_get_thread_num();
