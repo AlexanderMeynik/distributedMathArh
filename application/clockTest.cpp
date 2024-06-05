@@ -1,4 +1,4 @@
-#include "OpenmpParallelClock.h"
+#include "parallelUtils/OpenmpParallelClock.h"
 #include <unistd.h>
 #include <iostream>
 

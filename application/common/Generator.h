@@ -4,32 +4,63 @@
 
 #ifndef DIPLOM_GENERATOR_H
 #define DIPLOM_GENERATOR_H
+
 #include <array>
 #include <vector>
 #include <random>
 #include <functional>
+
+namespace generators {
+    template<typename T,template<typename> typename DISTRIBUTION, typename... Args>
+    std::function<std::array<std::vector<T>, 2>(size_t N,Args ...)> generalDistribution= [](size_t N_,
+            Args ... args) {
+        std::random_device rd_;
+        auto rng_ = std::mt19937(rd_());
+        auto distribution_=DISTRIBUTION<T>(args...);
+        if (!N_) {
+            return std::array<std::vector<T>, 2>();
+        }
+        std::array<std::vector<T>, 2> res;
+        res[0] = std::vector<T>(N_, 0);
+        res[1] = std::vector<T>(N_, 0);
+        std::function<T()> function = [&]() { return distribution_(rng_); };
+        for (int i = 0; i < res[0].size(); ++i) {
+            res[0][i]= distribution_(rng_);
+            res[1][i]= distribution_(rng_);
+        }
+        return res;
+    };
+
+    template<typename T>
+    std::function<std::array<std::vector<T>, 2>(size_t,T mean, T stddev)> Gaus
+    =generalDistribution<T,std::normal_distribution,T,T>;
+
+    template<typename T>
+    std::function<std::array<std::vector<T>, 2>(size_t,T a, T b)> uniform_real
+            =generalDistribution<T,std::uniform_real_distribution,T,T>;
+
+}
 template<typename T>
 class Generator {
 public:
     virtual std::array<std::vector<T>, 2> generate() = 0;
 
-   // Generator(Generator &) = delete;
+    // Generator(Generator &) = delete;
 
-   // Generator(Generator &&) = delete;
+    // Generator(Generator &&) = delete;
 
-   // Generator &operator=(Generator &) = delete;
+    // Generator &operator=(Generator &) = delete;
 
     //Generator &operator=(Generator &&) = delete;
 };
 
 
-
 template<typename T>//todo напоминает по вещам лямбды, но не совсем
-class GausGenerator: public Generator<T>{
+class GausGenerator : public Generator<T> {
 public:
-    GausGenerator(T mean, T stddev,size_t N) : mean_(mean), stddev_(sqrt(2) * stddev) {
+    GausGenerator(T mean, T stddev, size_t N) : mean_(mean), stddev_(sqrt(2) * stddev) {
         distribution_ = std::normal_distribution<T>(mean_, stddev_);
-        N_=N;
+        N_ = N;
     }
 
     std::array<std::vector<T>, 2> generate() override {
@@ -47,7 +78,6 @@ public:
     }
 
 
-
 private:
     T mean_;
     T stddev_;
@@ -58,10 +88,10 @@ private:
 };
 
 template<typename T>//todo grid generator with features
-class TriangGenerator: public Generator<T>{
+class TriangGenerator : public Generator<T> {
 public:
 
-    TriangGenerator( T a, T b, T l, T r, bool center) :  a(a), b(b), l(l), r(r), center(center) {}
+    TriangGenerator(T a, T b, T l, T r, bool center) : a(a), b(b), l(l), r(r), center(center) {}
 
     std::array<std::vector<T>, 2> generate() override {
         T k = c2 / c1;
@@ -133,7 +163,8 @@ public:
 
 private:
     static constexpr T c1 = 1 / 2.0;
-    static constexpr T c2 = T(0.86602540378443864676372317075293618347140262690519031402790348972596650845440001854057309337862428783781307070770335151498497254749947623940582775604718682426404661595115279103398741005054233746163251);
+    static constexpr T c2 = T(
+            0.86602540378443864676372317075293618347140262690519031402790348972596650845440001854057309337862428783781307070770335151498497254749947623940582775604718682426404661595115279103398741005054233746163251);
     T a = 0;
     T b = 0;
     T l;

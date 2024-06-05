@@ -60,7 +60,7 @@ target_link_libraries(math_core_lib PUBLIC OpenMP::OpenMP_CXX)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
 
 
-add_executable(clock parallelUtils/clockTest.cpp)
+add_executable(clock clockTest.cpp)
 target_link_libraries(clock parallelLib)
 
 #add_library(myLibrary math_core/Dipoles.cpp  math_core/MeshProcessor.h math_core/MeshProcessor.cpp printUtils.h math_core/TestRunner.cpp)

@@ -40,7 +40,7 @@ int main(int argc, char* argv[])
                       return fileStream->close();
                   });
 
-    // Wait for all the outstanding I/O to complete and handle any exceptions
+    // Wait for generalDistribution the outstanding I/O to complete and handle any exceptions
     try
     {
         requestTask.wait();

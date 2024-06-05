@@ -20,23 +20,9 @@ void TestRunner::createSubDirectory(const string &dirname, const string &subdire
     }
 }
 
-void TestRunner::generateGaus(/*size_t N, size_t Ns,
-                              double aRange*/) {//todo предавать генератор(абстраткный класс genrator) у него есть методы genrate
-    //this->N_ = N;
-    //this->Nsym_ = Ns;
-    //this->aRange_ = aRange;
-    clocks_[0].tik();
-    coords_.resize(Nsym_.value());
-    CoordGenerator<double> genr(0, aRange_.value());
-    for (int i = 0; i < Nsym_; ++i) {
-        coords_[i] = genr.generateCoordinates(N_.value());
-    }
-    clocks_[0].tak();
-}
-
 void TestRunner::generateCoords(Generator<FloatType> &gen) {
 
-    clocks_[0].tik();
+    //clocks_[0].tik();
     coords_.resize(Nsym_.value());
     for (int i = 0; i < Nsym_; ++i) {
         coords_[i] = gen.generate();//todo пока так, можно потмо придумать способ с шаблонами, чтобы быдо побыстрее
@@ -46,7 +32,7 @@ void TestRunner::generateCoords(Generator<FloatType> &gen) {
         N_=coords_[0][0].size();
     }
 
-    clocks_[0].tak();
+   // clocks_[0].tak();
 }
 
 
@@ -64,7 +50,7 @@ void TestRunner::solve() {
     using dipoles::Dipoles;
 
     Dipoles<FloatType> d1;
-    clocks_[1].tik();
+    //clocks_[1].tik();
     if (inner_state!=state_t::openmp_new)
         goto pp;
     {
@@ -91,7 +77,7 @@ void TestRunner::solve() {
         fout << "\n";
         fout.close();
     }
-    clocks_[1].tak();
+    //clocks_[1].tak();
 }
 
 std::string TestRunner::getString(const string &dirname, string &&name, int i, string &&end) {
@@ -115,7 +101,7 @@ void TestRunner::generateFunction() {
     Dipoles<FloatType> d1;
     MeshProcessor<FloatType> mesh;
     auto result = mesh.getMeshGliff();
-    clocks_[2].tik();
+    //clocks_[2].tik();
     if (inner_state==state_t::openmp_new) {
 #pragma omp parallel for default(none) shared(Nsym_,solutions_,result) firstprivate(d1,mesh)
         for (int i = 0; i < Nsym_.value(); ++i) {
@@ -164,7 +150,7 @@ void TestRunner::generateFunction() {
         out1.close();
 
     }
-    clocks_[2].tak();
+    //clocks_[2].tak();
 }
 
 

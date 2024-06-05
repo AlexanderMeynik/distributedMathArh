@@ -35,13 +35,14 @@ void handle_get(http_request request) {
     }
     else if (path[0] == _XPLATSTR("calculate") && path.size() == 4) {
         try {
-            int N = std::stoi(path[1]);
+            size_t N = std::stoi(path[1]);
             int Ns = std::stoi(path[2]);
             double arange = std::stod(path[3]);
             TestRunner ts(N,Ns,arange);
             //auto gen=GausGenerator<double>(0,arange,N);
-            auto gen2=TriangGenerator<double>(0,0,arange/4.0,arange,false);
-            ts.generateCoords(gen2);//todo потестить
+            //auto gen2=TriangGenerator<double>(0,0,arange/4.0,arange,false);
+           // ts.generateCoords(gen2);//todo потестить
+           ts.generateGeneralized(generators::uniform_real<double>,N,0.0,arange*sqrt(2));
             ts.solve();
 
 

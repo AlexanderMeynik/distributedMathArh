@@ -49,7 +49,7 @@ int main() {
     //make_get_request(U("http://localhost:18080/"));
     //make_get_request(U("http://localhost:18080/json"));
     //make_get_request(U("http://localhost:18080/add/3/4"));
-    make_get_request(U("http://localhost:18080/calculate/20/4/1.0e-6"));//todo post лучше
+    make_get_request(U("http://localhost:18080/calculate/2/4/1.0e-6"));//todo post лучше
 
     // Create JSON body for POST request
     json::value postData;

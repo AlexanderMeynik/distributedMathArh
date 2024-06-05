@@ -2,7 +2,7 @@
 #include <random>
 #include <iostream>
 #include "math_core/Dipoles.h"
-#include "commonFunctions/lib.h"
+#include "common/lib.h"
 int main(int argc, char* argv[]) {
     int N=10;
     //std::cin>>N;

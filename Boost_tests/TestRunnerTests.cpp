@@ -25,8 +25,8 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
     constexpr double aRange = 1e-7;
 
 
-    void CheckSolutions(std::vector<TestRunner::solution> &sol1,
-                        std::vector<TestRunner::solution> &sol2) {   //sol1[0][0].begin();
+    void CheckSolutions(std::vector<solution> &sol1,
+                        std::vector<solution> &sol2) {   //sol1[0][0].begin();
         for (int i = 0; i < sol1.size(); ++i) {
             for (int dim = 0; dim < 2; ++dim) {
                 BOOST_TEST_REQUIRE(sol1[i][dim] == sol2[i][dim], boost::test_tools::per_element());
@@ -47,7 +47,7 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
         CoordRef[0][1] = std::vector<FloatType>(N, 0.0);
 
         testRunner.solve();
-        std::vector<TestRunner::solution> mySol;
+        std::vector<solution> mySol;
         mySol.resize(Nsym);
         mySol[0][0].resize(2);
         mySol[0][1].resize(2);
@@ -109,7 +109,7 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
         CoordRef[13] = parse({-1.87E-08, -4.33E-09}, {1.78E-07, 7.90E-08});
 
         testRunner.solve();
-        std::vector<TestRunner::solution> mySol;
+        std::vector<solution> mySol;
         mySol.resize(Nsym);
 
         mySol[0] = parse2(
@@ -156,10 +156,11 @@ BOOST_AUTO_TEST_SUITE(testRunnerTest)
 
     BOOST_AUTO_TEST_CASE(test_generate, *boost::unit_test::tolerance(pow(10, -12)))
     {
-        int N = 2;
+        size_t N = 2;
         int Nsym = 4;
         TestRunner testRunner(N, Nsym, aRange, "", "", state_t::openmp_new);
-        testRunner.generateGaus();
+        testRunner.generateGeneralized(generators::Gaus<double>,N,0.0,aRange*sqrt(2));
+        //testRunner.generateGaus();
         //std::vector<std::array<std::vector<FloatType>,2>>
 
         testRunner.solve();
