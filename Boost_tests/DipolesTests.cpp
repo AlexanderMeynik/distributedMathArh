@@ -1,7 +1,7 @@
 #include "../application/common/lib.h"
 
 #include <boost/test/unit_test.hpp>
-#include "../application/printUtils.h"
+#include "../application/common/printUtils.h"
 #include <iomanip>
 #define BOOST_TEST_MODULE dipolesTest
 BOOST_AUTO_TEST_SUITE( printUtils )

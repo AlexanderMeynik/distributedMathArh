@@ -196,9 +196,9 @@ int main(int argc, char* argv[]) {
     dipoles::Dipoles d(N,coords);
     auto solv=d.solve_();
 
-    dipoles::plotCoordinates("coord"+ss.str()+".png",a/8,coords);
+    plotCoordinates("coord"+ss.str()+".png",a/8,coords);
 
-    dipoles::printSolutionFormat1(out,solv);
+    printSolutionFormat1(out,solv);
 
     MeshProcessor<double> meshProcessor;
     d.getFullFunction(coords,solv);
@@ -208,7 +208,7 @@ int main(int argc, char* argv[]) {
     meshProcessor.plotSpherical("function"+ss.str()+".png");
 
 
-    dipoles::printCoordinates(out,coords);
+    printCoordinates(out,coords);
     meshProcessor.printDec(out);
     out.close();
 

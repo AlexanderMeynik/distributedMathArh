@@ -9,7 +9,7 @@
 #include <filesystem>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
-#include "commonFunctions/lib.h"
+#include "common/lib.h"
 
 
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;

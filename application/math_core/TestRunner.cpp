@@ -27,12 +27,28 @@ void TestRunner::generateGaus(/*size_t N, size_t Ns,
     //this->aRange_ = aRange;
     clocks_[0].tik();
     coords_.resize(Nsym_.value());
-    CoordGenerator<double> genr(0, aRange_.value());//todo тут что-то стоприться(тестик)
+    CoordGenerator<double> genr(0, aRange_.value());
     for (int i = 0; i < Nsym_; ++i) {
         coords_[i] = genr.generateCoordinates(N_.value());
     }
     clocks_[0].tak();
 }
+
+void TestRunner::generateCoords(Generator<FloatType> &gen) {
+
+    clocks_[0].tik();
+    coords_.resize(Nsym_.value());
+    for (int i = 0; i < Nsym_; ++i) {
+        coords_[i] = gen.generate(N_.value());//todo пока так, можно потмо придумать способ с шаблонами, чтобы быдо побыстрее
+    }
+    if(coords_[0][0].size()!=N_)//может ввести отдельнкю спецаилизацтю для данного случая
+    {
+        N_=coords_[0][0].size();
+    }
+
+    clocks_[0].tak();
+}
+
 
 TestRunner::TestRunner() {
     coords_ = std::vector<array<vector<FloatType>, 2>>();
@@ -68,9 +84,9 @@ void TestRunner::solve() {
         auto filename = getString(this->dir_.value(), "sim", i, "txt");
         auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";
-        dipoles::printCoordinates(fout,coords_[i]);
+        printCoordinates(fout,coords_[i]);
         fout << "\n";
-        dipoles::printSolutionFormat1(fout,solutions_[i]);
+        printSolutionFormat1(fout,solutions_[i]);
         fout << "\n";
         fout << "\n";
         fout.close();
@@ -129,7 +145,7 @@ void TestRunner::generateFunction() {
             auto fout = openOrCreateFile(filename);
             mesh.printDec(fout);
             mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));
-            dipoles::plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
+            plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
             fout.close();
         }
 
@@ -150,3 +166,5 @@ void TestRunner::generateFunction() {
     }
     clocks_[2].tak();
 }
+
+

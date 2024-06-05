@@ -10,7 +10,7 @@
 #include <filesystem>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
-#include "commonFunctions/lib.h"
+#include "common/lib.h"
 #include "math_core/MeshProcessor.h"
 
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;
@@ -73,8 +73,8 @@ int main(int argc, char* argv[]) {
         ++i;
 
         d.printMatrix(fout,CleanFmt);
-        dipoles::printCoordinates(fout,coordinates);
-        dipoles::printSolution(fout,CleanFmt,solut2);
+        printCoordinates(fout,coordinates);
+        printSolution(fout,CleanFmt,solut2);
 
 
 

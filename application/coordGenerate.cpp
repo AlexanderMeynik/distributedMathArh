@@ -6,7 +6,7 @@
 #include <random>
 #include <map>
 #include <omp.h>
-#include "prralelUtils/parUtils/OpenmpParallelClock.h"
+#include "parallelUtils/OpenmpParallelClock.h"
 /*
 int main(int argc, char* argv[]) {
  double alpha=1;
@@ -49,7 +49,7 @@ statemap_r state2 = {
 #include <random>
 #include <cmath>
 #include <fstream>
-#include "commonFunctions/lib.h"
+#include "common/lib.h"
 #include "math_core/Dipoles.h"
 #include "math_core/MeshProcessor.h"
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
@@ -288,10 +288,10 @@ int main(int argc, char* argv[]) {
                 addMesh(result, mesht);
             }
             out1 << "Итерация симуляции i = " << i << "\n\n";
-            dipoles1.printCoordinates(out1,coordinates[i]);
+            printCoordinates(out1,coordinates[i]);
             out1 << "\n";
 
-            dipoles1.printSolutionFormat1(out1,solution);
+            printSolutionFormat1(out1,solution);
             out1 << "\n";
 
 
@@ -301,7 +301,7 @@ int main(int argc, char* argv[]) {
             out1.close();
             mesh.plotSpherical(getString(dirname,"sim", i, "png"));
             //std::string name = dirname + "coord_i=" + std::to_string(i) + ".png";
-            dipoles1.plotCoordinates(getString(dirname,"coord", i, "png"),aRange,coordinates[i]);
+            plotCoordinates(getString(dirname,"coord", i, "png"),aRange,coordinates[i]);
 
         }
     goto printtimes;

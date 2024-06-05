@@ -25,7 +25,7 @@ std::vector<std::array<std::vector<T>, 2>> parseConf(string &filename);
 
 
 template<typename T>
-class CoordGenerator {
+class CoordGenerator{
 public:
     CoordGenerator(T mean, T stddev) : mean_(mean), stddev_(sqrt(2) * stddev) {
         distribution_ = std::normal_distribution<T>(mean_, stddev_);

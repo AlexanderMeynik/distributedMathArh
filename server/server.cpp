@@ -2,6 +2,7 @@
 #include <cpprest/http_listener.h>
 #include <cpprest/json.h>
 #include <iostream>
+#include <map>
 #include "../application/math_core/TestRunner.h"
 //#include "../application/TestRunner.h"
 using namespace web;
@@ -44,7 +45,7 @@ void handle_get(http_request request) {
 
             std::stringstream ss;
             for (int i = 0; i < Ns; ++i) {
-                dipoles::printSolutionFormat1(ss,ts.getSolRef()[i]);
+                printSolutionFormat1(ss,ts.getSolRef()[i]);
             }
 
             json::value jsonResponse;

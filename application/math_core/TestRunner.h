@@ -13,15 +13,15 @@
 #include "../common/lib.h"
 #include "../parallelUtils//OpenmpParallelClock.h"
 #include "Dipoles.h"
-
+#include "Generator.h"
 typedef double FloatType;
+//todo почитать про вариадичные шаблоны, чтобы указывать стратегию для генерации(или  сделать это отдельно для метода)
 class TestRunner {
 //для возможности запуска цепочки методов нужно сделать паттерн декоратор
 //инициализацию вещей стоит вынести в отдельные методы
 //создать хэш таблицу(массив) для всех функций-этапов
 //сериализатор для данных
 public:
-
     typedef  std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2> solution;
     TestRunner();
     TestRunner(size_t N,size_t Ns,double aRange,std::string dirname="",std::string subdir="",state_t state=state_t::openmp_new)
@@ -52,7 +52,10 @@ public:
 
     };
     //todo использовать паттерн стратегия(https://sourcemaking.com/design_patterns/strategy/cpp/1)
+
     void generateGaus(/*size_t N,size_t Ns,double aRange*/);
+
+    void generateCoords(Generator<FloatType>&gen);
     void solve();
     void generateFunction();
     //при первом тесте можно создавать бд с названием математического ядра под нужды пользаков
@@ -73,8 +76,6 @@ public:
         return solutions_;
     }
 private:
-
-
     static void createSubDirectory(const std::string& dirname,const std::string& subdirectory="");
     static std::fstream openOrCreateFile(std::string filename);
     static std::string getString(const std::string &dirname,std::string &&name, int i, std::string &&end);
@@ -83,9 +84,10 @@ private:
     std::optional<std::string> subdir_;
     std::optional<std::string> dir_;
     std::optional<FloatType > aRange_;
-    std::optional<int> N_;
-    std::optional<int> Nsym_;
-    std::array<OpenmpParallelClock,3> clocks_;
+    std::optional<size_t> N_;
+    std::optional<size_t> Nsym_;
+    static constexpr size_t NumCalc=3;
+    std::array<OpenmpParallelClock,NumCalc> clocks_;
     std::map<int,std::string>clock_names={{0,"Generate time"},
                                           {1,"Solve time"},
                                           {2,"Function time"}};
