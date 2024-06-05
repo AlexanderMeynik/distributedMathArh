@@ -39,7 +39,9 @@ void handle_get(http_request request) {
             int Ns = std::stoi(path[2]);
             double arange = std::stod(path[3]);
             TestRunner ts(N,Ns,arange);
-            ts.generateGaus();
+            //auto gen=GausGenerator<double>(0,arange,N);
+            auto gen2=TriangGenerator<double>(0,0,arange/4.0,arange,false);
+            ts.generateCoords(gen2);//todo потестить
             ts.solve();
 
 

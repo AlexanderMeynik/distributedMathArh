@@ -39,7 +39,7 @@ void TestRunner::generateCoords(Generator<FloatType> &gen) {
     clocks_[0].tik();
     coords_.resize(Nsym_.value());
     for (int i = 0; i < Nsym_; ++i) {
-        coords_[i] = gen.generate(N_.value());//todo пока так, можно потмо придумать способ с шаблонами, чтобы быдо побыстрее
+        coords_[i] = gen.generate();//todo пока так, можно потмо придумать способ с шаблонами, чтобы быдо побыстрее
     }
     if(coords_[0][0].size()!=N_)//может ввести отдельнкю спецаилизацтю для данного случая
     {

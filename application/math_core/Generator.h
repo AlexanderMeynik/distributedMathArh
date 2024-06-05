@@ -11,15 +11,15 @@
 template<typename T>
 class Generator {
 public:
-    virtual std::array<std::vector<T>, 2> generate(size_t N) = 0;
+    virtual std::array<std::vector<T>, 2> generate() = 0;
 
-    Generator(Generator &) = delete;
+   // Generator(Generator &) = delete;
 
-    Generator(Generator &&) = delete;
+   // Generator(Generator &&) = delete;
 
-    Generator &operator=(Generator &) = delete;
+   // Generator &operator=(Generator &) = delete;
 
-    Generator &operator=(Generator &&) = delete;
+    //Generator &operator=(Generator &&) = delete;
 };
 
 
@@ -27,17 +27,18 @@ public:
 template<typename T>//todo напоминает по вещам лямбды, но не совсем
 class GausGenerator: public Generator<T>{
 public:
-    GausGenerator(T mean, T stddev) : mean_(mean), stddev_(sqrt(2) * stddev) {
+    GausGenerator(T mean, T stddev,size_t N) : mean_(mean), stddev_(sqrt(2) * stddev) {
         distribution_ = std::normal_distribution<T>(mean_, stddev_);
+        N_=N;
     }
 
-    std::array<std::vector<T>, 2> generate(size_t N) override {
-        if (!N) {
+    std::array<std::vector<T>, 2> generate() override {
+        if (!N_) {
             return std::array<std::vector<T>, 2>();
         }
         std::array<std::vector<T>, 2> res;
-        res[0] = std::vector<T>(N, 0);
-        res[1] = std::vector<T>(N, 0);
+        res[0] = std::vector<T>(N_, 0);
+        res[1] = std::vector<T>(N_, 0);
         std::function<T()> generetor = [&]() { return distribution_(rng_); };
         //std::cout<<generetor()<<"\t"<<distribution_(rng_)<<"\n";
         std::generate(res[0].begin(), res[0].end(), generetor);
@@ -53,7 +54,7 @@ private:
     std::random_device rd_;
     std::mt19937 rng_ = std::mt19937(rd_());
     std::normal_distribution<T> distribution_;
-
+    size_t N_;
 };
 
 template<typename T>//todo grid generator with features
@@ -62,7 +63,7 @@ public:
 
     TriangGenerator( T a, T b, T l, T r, bool center) :  a(a), b(b), l(l), r(r), center(center) {}
 
-    std::array<std::vector<T>, 2> generate(size_t N) override {
+    std::array<std::vector<T>, 2> generate() override {
         T k = c2 / c1;
 
         T D = sqrt(k * k * r * r / (k * k + 1));//здесь мы находим x координаты для точек пересечения
@@ -132,7 +133,7 @@ public:
 
 private:
     static constexpr T c1 = 1 / 2.0;
-    static constexpr T c2 = sqrt(3) / 2.0;
+    static constexpr T c2 = T(0.86602540378443864676372317075293618347140262690519031402790348972596650845440001854057309337862428783781307070770335151498497254749947623940582775604718682426404661595115279103398741005054233746163251);
     T a = 0;
     T b = 0;
     T l;
