@@ -1,25 +1,28 @@
 cmake_minimum_required(VERSION 3.26)
 project(Magister1)
 
-#add_subdirectory(Boost_tests)
+
 
 set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-set(CMAKE_BUILD_TYPE RelWithDebInfo)
-set(CMAKE_CXX_FLAGS "-O0 -g")
-#SET( CMAKE_CXX_FLAGS_DEBUG   "-O1 -g -march=native -fpic -ftree-vectorize")
-set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g")
-#set(CMAKE_CXX_FLAGS_DEBUG   "-O3 -march=native -fpic -ffast-math -ftree-vectorize")
-SET( CMAKE_CXX_FLAGS_RELEASE    "-O3 -g -march=native -fpic -ffast-math -ftree-vectorize" )
-#find_package(OpenXLSX)
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug-Coverage")
+    set(-DCMAKE_CXX_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")
+    set(-DCMAKE_C_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")
+else()
+    set(CMAKE_BUILD_TYPE RelWithDebInfo)
+    set(CMAKE_CXX_FLAGS "-O0 -g")
+    set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g")
+    SET( CMAKE_CXX_FLAGS_RELEASE    "-O3 -g -march=native -fpic -ffast-math -ftree-vectorize" )
+endif()
+
 find_package(Matplot++ REQUIRED)
-#find_package(Matplot++ REQUIRED CONFIG)
 find_library(PQXX_LIB pqxx)
 find_library(PQ_LIB pq)
 find_package(GSL REQUIRED)
 find_package(OpenMP REQUIRED)
-#add_executable(Magister1 main.cpp) #Dipoles.cpp)
+
 
 
 
@@ -51,25 +54,16 @@ file(GLOB math_core_files CONFIGURE_DEPENDS
 )
 
 add_library(math_core_lib ${math_core_files})
-#target_link_libraries(math_core_lib PUBLIC OpenMP::OpenMP_CXX)
 target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
-target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})
+target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
 target_include_directories(math_core_lib PUBLIC ${GSL_INCLUDE_DIRS})
 target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
-target_link_libraries(math_core_lib PUBLIC OpenMP::OpenMP_CXX)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
 
 
 add_executable(clock clockTest.cpp)
 target_link_libraries(clock parallelLib)
 
-#add_library(myLibrary math_core/Dipoles.cpp  math_core/MeshProcessor.h math_core/MeshProcessor.cpp printUtils.h math_core/TestRunner.cpp)
-#target_link_libraries(myLibrary PUBLIC ${GSL_LIBRARIES})
-#target_link_libraries(myLibrary PUBLIC ${PQXX_LIB} ${PQ_LIB})
-#target_include_directories(myLibrary PUBLIC ${GSL_INCLUDE_DIRS})
-#target_link_libraries(myLibrary PUBLIC Matplot++::matplot)
-#target_link_libraries(myLibrary PUBLIC OpenMP::OpenMP_CXX)
-#target_link_libraries(myLibrary PUBLIC commonLib)
 
 
 

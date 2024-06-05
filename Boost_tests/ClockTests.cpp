@@ -10,7 +10,7 @@ BOOST_AUTO_TEST_SUITE( clockTest )
 
 BOOST_AUTO_TEST_CASE( test_parralel_time_all )
 {
-    double sleep_sec=2;
+    double sleep_sec=0.5;
     size_t iteartions=2;
     OpenmpParallelClock clock1;
     {
@@ -27,7 +27,7 @@ BOOST_AUTO_TEST_CASE( test_parralel_time_all )
 
 BOOST_AUTO_TEST_CASE( test_parralel_time_not_all )
     {
-        double sleep_sec=2;
+        double sleep_sec=1;
         size_t iteartions=2;
         OpenmpParallelClock clock1;
         {
@@ -43,7 +43,7 @@ BOOST_AUTO_TEST_CASE( test_parralel_time_not_all )
 
     BOOST_AUTO_TEST_CASE( test_parralel_time_single )
     {
-        double sleep_sec=2;
+        double sleep_sec=0.5;
         size_t iteartions=2;
         OpenmpParallelClock clock1;
         {
