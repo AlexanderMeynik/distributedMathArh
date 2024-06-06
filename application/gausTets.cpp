@@ -31,7 +31,7 @@ std::function<T(T,T,T)> getFullFunction(std::array<std::vector<T>, 2>&coefs,std:
 {
 
 
-    //T omeg=omega;//todo можно посчитать все величины заранее и потом прост оподставить
+    //Tr omeg=omega;//todo можно посчитать все величины заранее и потом прост оподставить
     return [&coords,&coefs](T theta,T phi,T t)
     {
         T omega=pow(10,15);
@@ -78,7 +78,7 @@ std::function<T(T,T,T)> getFullFunction(std::array<std::vector<T>, 2>&coefs,std:
 template<class T>
 T integrateFunctionBy1Val(std::function<T(T, T, T)>&ff, T theta, T phi,T left,T right)
 {
-    //std::function<T(T)> tt=ff(theta,phi);
+    //std::function<Tr(Tr)> tt=ff(theta,phi);
     std::function<T(T)> tt=[&theta,&phi,&ff](T t){return ff(theta,phi,t);};
     return integrate(tt,left,right);
 }

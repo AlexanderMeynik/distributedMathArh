@@ -137,11 +137,11 @@ namespace dipoles {
                 f2(2 * i + 1) = an *  params<T>::eps;
             }
         }
-        //std::array<std::vector<T>, 2> xi_;
+        //std::array<std::vector<Tr>, 2> xi_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M1_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M2_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> matrixx;
-        //std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
+        //std::array<Eigen::Vector<Tr, Eigen::Dynamic>, 2> solution_;
 
         std::function<T(T, T, T)> Ifunction_;
         std::function<T(T, T)> I2function_;

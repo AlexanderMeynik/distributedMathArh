@@ -119,7 +119,7 @@ private:
 };
 
 template<typename ...Args>
-functable<Args...> func_array[3] = {
+static constexpr functable<Args...> func_array[3] = {
         {&TestRunner::generateGeneralized, "coord_generation"},
         {&TestRunner::solve,               "system_of_equation_solution"},
         {&TestRunner::generateFunction,    "function_generation"}

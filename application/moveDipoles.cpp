@@ -55,7 +55,7 @@ int main(int argc, char* argv[]) {
 
         //printToFile<double>(N, coordinates, d, dirname,i,2);
         //когда разницы между ними почти не будет оставновка
-        //функция для подсчёта нормы от разницы 2 мешей принимет vector<vector<T>>&
+        //функция для подсчёта нормы от разницы 2 мешей принимет vector<vector<Tr>>&
         mmesh.printDec(out);
         std::vector<std::vector<double>> t1=prevMesh[2];
         std::vector<std::vector<double>> t2=mmesh.getMeshdec()[2];

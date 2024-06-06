@@ -7,7 +7,7 @@
 #include "math_core/MeshProcessor.h"
 #include <vector>
 
-//template <class T>
+//template <class Tr>
 std::array<std::vector<double>,2> squareGrid(double l,double r,double a=0,double b=0,bool center=false)
 {
     //long double lim= ceil(r+r/l);

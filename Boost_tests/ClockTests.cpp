@@ -5,11 +5,11 @@
 #include "../application/parallelUtils/OpenmpParallelClock.h"
 #include <iomanip>
 #include <omp.h>
-#define BOOST_TEST_MODULE printUtils
+#define BOOST_TEST_MODULE Clock
 #include <chrono>
 #include <thread>
 BOOST_AUTO_TEST_SUITE( clockTest )
-
+using namespace timing;
 void nanoSleep(int num)
 {
     std::this_thread::sleep_for(std::chrono::nanoseconds(num));
@@ -36,11 +36,12 @@ constexpr double tolerance=1;
     { return typename detail::deduce_type< decltype( &CLOSURE::operator() ) >::type(fn) ; }
 
 
-
+using openmpClock=OpenmpParallelClock<double,&omp_get_wtime,&omp_get_thread_num>;
 BOOST_AUTO_TEST_CASE( test_parralel_time_all )
 {
 
-    OpenmpParallelClock clock1;
+
+    openmpClock clock1;
     auto t1=omp_get_wtime();
     {
         #pragma omp parallel for shared(sleep_sec) num_threads(omp_get_max_threads())
@@ -57,7 +58,7 @@ BOOST_AUTO_TEST_CASE( test_parralel_time_all )
 
 BOOST_AUTO_TEST_CASE( test_parralel_time_not_all )
     {
-        OpenmpParallelClock clock1;
+        openmpClock clock1;
         auto t1=omp_get_wtime();
         {
 #pragma omp parallel for shared(sleep_sec) num_threads(8)
@@ -73,7 +74,7 @@ BOOST_AUTO_TEST_CASE( test_parralel_time_not_all )
 
     BOOST_AUTO_TEST_CASE( test_parralel_time_single )
     {
-        OpenmpParallelClock clock1;
+        openmpClock clock1;
         auto t1=omp_get_wtime();
         {
             for (int i = 0; i < omp_get_num_threads()*iteartions; ++i) {
@@ -90,7 +91,7 @@ BOOST_AUTO_TEST_CASE( test_parralel_time_not_all )
     BOOST_AUTO_TEST_CASE( test_parralel_one_thread_more )
     {
 
-        OpenmpParallelClock clock1;
+        openmpClock clock1;
         auto t1=omp_get_wtime();
         {
 #pragma omp parallel for shared(sleep_sec) num_threads(omp_get_max_threads())
@@ -105,8 +106,14 @@ BOOST_AUTO_TEST_CASE( test_parralel_time_not_all )
             }
         }
         auto t2=omp_get_wtime();
-        auto tt=clock1.aggregate<double,-1.0>(wrap([](double a, double b){ return std::max(a,b);}));
+        auto tt=clock1.aggregate(max<double>.value,max<double>.f);
         BOOST_CHECK_CLOSE(t2-t1,tt,tolerance);
+    }
+
+
+    BOOST_AUTO_TEST_CASE( test_implementation_proper_generation)
+    {
+
     }
 
 BOOST_AUTO_TEST_SUITE_END()
