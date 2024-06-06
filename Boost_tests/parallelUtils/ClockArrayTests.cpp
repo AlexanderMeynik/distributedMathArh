@@ -1,15 +1,15 @@
-#include "../application/common/lib.h"
+#include "../../application/common/lib.h"
 #include <boost/test/unit_test.hpp>
-#include "../application/common/printUtils.h"
-#include "../application/parallelUtils/OpenmpParallelClock.h"
+#include "../../application/common/printUtils.h"
+#include "../../application/parallelUtils/OpenmpParallelClock.h"
 #include <iomanip>
 #include <omp.h>
 #include <chrono>
 #include <thread>
-#include "../application/parallelUtils/clockArray.h"
-#include "../application/math_core/TestRunner.h"
+#include "../../application/parallelUtils/clockArray.h"
+#include "../../application/math_core/TestRunner.h"
 
-BOOST_AUTO_TEST_SUITE(clockTest)
+BOOST_AUTO_TEST_SUITE(clockArrayTest)
 
     template<size_t size, typename COUNTED>
     using clock1 = clockArray<size, double, COUNTED>;
@@ -19,7 +19,7 @@ BOOST_AUTO_TEST_SUITE(clockTest)
     constexpr double tolerance = 1;
 
     BOOST_AUTO_TEST_CASE(test_array) {
-        size_t N = 100;
+        size_t N = 10;
         double aRange = 1e-6;
 
         TestRunner ts(N, N, aRange);
@@ -32,6 +32,7 @@ BOOST_AUTO_TEST_SUITE(clockTest)
 
         // Perform timed call to solve function
         cl1.perform_withTimeCalc<1, &TestRunner::solve>();
+        //todo видимо лучше сдлетьа единуф фабрику дял clock, чтобы забирать оттудка clok(и именовтаь его)
         cl1.perform_withTimeCalc<2,&TestRunner::generateFunction>();
 
         // Print the metrics

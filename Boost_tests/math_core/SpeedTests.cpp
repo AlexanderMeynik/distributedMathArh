@@ -1,8 +1,11 @@
-#include "../application/common/lib.h"
+#include "../../application/common/lib.h"
 #include <chrono>
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MAIN  // in only one cpp file
+
 #include <boost/test/unit_test.hpp>
-#include "../application/math_core/MeshProcessor.h"
-#include "../application/math_core/Dipoles.h"
+#include "../../application/math_core/MeshProcessor.h"
+#include "../../application/math_core/Dipoles.h"
 #include <algorithm>
 #include <omp.h>
 #include <boost/test/parameterized_test.hpp>

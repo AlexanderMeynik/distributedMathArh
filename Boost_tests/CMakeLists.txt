@@ -15,9 +15,23 @@ set (Boost_USE_STATIC_LIBS OFF)
 find_package (Boost REQUIRED COMPONENTS unit_test_framework)
 include_directories (${Boost_INCLUDE_DIRS})
 
+file(GLOB common CONFIGURE_DEPENDS
+        "*common/*.h"
+        "*common/*.cpp"
+)
+add_executable(commonTests ${common})
+target_link_libraries (commonTests ${Boost_LIBRARIES})
 
+file(GLOB parallelUtils CONFIGURE_DEPENDS
+        "*parallelUtils/*.h"
+        "*parallelUtils/*.cpp"
+)
 
-add_executable (Boost_Tests_run test1.cpp PrintUtilsTest.cpp SpeedTests.cpp ClockTests.cpp DipolesTests.cpp TestRunnerTests.cpp ClockArrayTests.cpp)
+add_executable(parTests ${parallelUtils})
+target_link_libraries (parTests  ${Boost_LIBRARIES})
+target_link_libraries (parTests math_core_lib parallelLib)
+
+add_executable (Boost_Tests_run test1.cpp common/PrintUtilsTest.cpp math_core/SpeedTests.cpp parallelUtils/ClockTests.cpp DipolesTests.cpp math_core/TestRunnerTests.cpp parallelUtils/ClockArrayTests.cpp)
 target_link_libraries (Boost_Tests_run ${Boost_LIBRARIES})
 target_link_libraries (Boost_Tests_run math_core_lib parallelLib)
 

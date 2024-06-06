@@ -1,7 +1,11 @@
-#include "../application/common/lib.h"
+
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MAIN  // in only one cpp file
+
+#include "../../application/common/lib.h"
 
 #include <boost/test/unit_test.hpp>
-#include "../application/common/printUtils.h"
+#include "../../application/common/printUtils.h"
 #include <iomanip>
 #define BOOST_TEST_MODULE printUtils
 BOOST_AUTO_TEST_SUITE( printUtils )

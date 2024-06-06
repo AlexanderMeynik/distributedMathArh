@@ -1,4 +1,4 @@
-#include "../application/common//lib.h"
+#include "../application/common/lib.h"
 #include <chrono>
 #define BOOST_TEST_DYN_LINK
 #define BOOST_TEST_MAIN  // in only one cpp file

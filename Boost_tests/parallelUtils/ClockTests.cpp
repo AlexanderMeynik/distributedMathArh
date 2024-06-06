@@ -1,13 +1,23 @@
-#include "../application/common/lib.h"
+
+#include <chrono>
+
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MAIN  // in only one cpp file
+
+
+#include "../../application/common/lib.h"
 
 #include <boost/test/unit_test.hpp>
-#include "../application/common/printUtils.h"
-#include "../application/parallelUtils/OpenmpParallelClock.h"
+#include "../../application/common/printUtils.h"
+#include "../../application/parallelUtils/OpenmpParallelClock.h"
 #include <iomanip>
 #include <omp.h>
 #define BOOST_TEST_MODULE Clock
 #include <chrono>
 #include <thread>
+
+#define BOOST_TEST_DYN_LINK
+#define BOOST_TEST_MAIN  // in only one cpp file
 BOOST_AUTO_TEST_SUITE( clockTest )
 using namespace timing;
 void nanoSleep(int num)
