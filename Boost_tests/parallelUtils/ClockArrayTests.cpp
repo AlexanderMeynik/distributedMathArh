@@ -8,7 +8,8 @@
 #include <thread>
 #include "../../application/parallelUtils/clockArray.h"
 #include "../../application/math_core/TestRunner.h"
-
+//https://gitlab.com/redistd/redistd/-/blob/master/include/redi/exec_around.h
+//паттерн execute around
 BOOST_AUTO_TEST_SUITE(clockArrayTest)
 
     template<size_t size, typename COUNTED>

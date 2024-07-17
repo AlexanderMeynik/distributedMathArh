@@ -35,4 +35,11 @@ add_executable (Boost_Tests_run test1.cpp common/PrintUtilsTest.cpp math_core/Sp
 target_link_libraries (Boost_Tests_run ${Boost_LIBRARIES})
 target_link_libraries (Boost_Tests_run math_core_lib parallelLib)
 
+file(GLOB interfaces CONFIGURE_DEPENDS
+        "*interfaces/*.h"
+        "*interfaces/*.cpp"
+)
 
+add_executable(interTests ${interfaces})
+target_link_libraries (interTests ${Boost_LIBRARIES})
+target_link_libraries (interTests interfaces_lib)

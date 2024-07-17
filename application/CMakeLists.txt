@@ -8,8 +8,8 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if(CMAKE_BUILD_TYPE STREQUAL "Debug-Coverage")
-    set(-DCMAKE_CXX_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")
-    set(-DCMAKE_C_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")
+    set(-DCMAKE_CXX_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage -gstabs -DWARF")
+    set(-DCMAKE_C_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage -gstabs -DWARF")
 else()
     set(CMAKE_BUILD_TYPE RelWithDebInfo)
     set(CMAKE_CXX_FLAGS "-O0 -g")
@@ -39,7 +39,7 @@ file(GLOB common CONFIGURE_DEPENDS
 )
 add_library(commonLib ${common})
 
-file(GLOB parallelUtils CONFIGURE_DEPENDS
+file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
         "*parallelUtils/*.h"
         "*parallelUtils/*.cpp"
 )
@@ -48,10 +48,13 @@ add_library(parallelLib ${parallelUtils})
 target_link_libraries(parallelLib PUBLIC OpenMP::OpenMP_CXX)
 
 
-file(GLOB math_core_files CONFIGURE_DEPENDS
+file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
         "*math_core/*.h"
         "*math_core/*.cpp"
 )
+
+
+
 
 add_library(math_core_lib ${math_core_files})
 target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
@@ -66,8 +69,13 @@ target_link_libraries(clock parallelLib)
 
 
 
-
-
+file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
+        "*interfaces/*.h"
+        "*interfaces/*.cpp"
+)
+add_library(interfaces_lib ${interfaces_files})
+target_link_libraries(interfaces_lib PUBLIC parallelLib)
+target_link_libraries(interfaces_lib PUBLIC math_core_lib)
 
 
 target_link_libraries(Magister1 PUBLIC math_core_lib)
