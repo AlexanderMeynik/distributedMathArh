@@ -16,10 +16,10 @@ namespace inter {
         template<typename Tr>
         using CLOCK=timing::OpenmpParallelClock<Tr,&omp_get_wtime,&omp_get_thread_num>;//todo notify clock when it gets to be clocked
     template<typename ... Args>
-    class CalculationStep :public core_intrefaces::AbstractProduser<DataAcessInteface&,Args...>{
+class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<DataAcessInteface>,Args...>{
 
      public:
-        using core_intrefaces::AbstractProduser<Args...>::AbstractProduser;
+        using core_intrefaces::AbstractProduser<std::shared_ptr<DataAcessInteface>,Args...>::AbstractProduser;
         CalculationStep(int a,int b)
         {
             start_=a;

@@ -8,6 +8,7 @@
 #include <vector>
 #include <cassert>
 #include <tuple>
+#include <iostream>
 #include "DataAcessInteface.h"
 namespace core_intrefaces {
 
@@ -74,6 +75,12 @@ namespace core_intrefaces {
     private:
         std::vector<AbstractProduser<Args...>*> subs_;
     };
+    template<typename T,typename ... Args >
+    void printFirst(T elem,Args...args)
+    {
+        std::cout<< (typeid(elem).name())<<'\n';
+    }
+
     template<typename ... Args >
     class Event
     {
@@ -86,6 +93,7 @@ namespace core_intrefaces {
         }
         Event(AbstractProduser<Args...>* sender,Args ...args)
         {
+            printFirst(args ...);
             sender_=sender;
             params_={args...};
         }
