@@ -8,6 +8,7 @@
 #include <vector>
 #include <cassert>
 #include <tuple>
+#include "DataAcessInteface.h"
 namespace core_intrefaces {
 
     template<typename ... Args>
@@ -15,7 +16,7 @@ namespace core_intrefaces {
     template<typename ... Args>
     class Event;
     template<typename ... Args>
-    class AbstractProduser {
+    class AbstractProduser: public std::enable_shared_from_this<AbstractProduser<Args...>> {
     public:
         virtual std::string to_string()
         {
@@ -37,23 +38,25 @@ namespace core_intrefaces {
             ss_.erase(ss_.begin()+i);
         }
 
-        void notify(Args ...event)
+        virtual void notify(Args ...event)
         {
+            auto ss=std::make_shared<Event<Args...>>(this,event...);
             for (auto* ptr:ss_) {
-                ptr->getNotified(new Event<Args...>(this,event...));//std::forward<Args>(event)...));
+                ptr->getNotified(ss.get());//std::forward<Args>(event)...));
             }
         };
 
 
 
-        void notifySpec(size_t i,Args&&... event)
+        virtual void notifySpec(size_t i,Args&&... event)
         {
+            auto ss=std::make_shared<Event<Args...>>(this,event...);
             assert(i<ss_.size());
-            ss_[i]->getNotified(new Event<Args...>(this,event...));///getNotified(new Event<Args...>(this,std::forward<Args>(event)...));
+            ss_[i]->getNotified(ss.get());///getNotified(new Event<Args...>(this,std::forward<Args>(event)...));
         };
 
 
-    private:
+    protected:
         std::vector<AbstractSubsriber<Args...>*> ss_;
 
     };
@@ -86,10 +89,13 @@ namespace core_intrefaces {
             sender_=sender;
             params_={args...};
         }
+
     //protected:
-        AbstractProduser<Args...>* sender_;
+    AbstractProduser<Args...>*sender_;
+        //AbstractProduser<Args...>* sender_;
         std::tuple<Args ...> params_;
     };
+
 }
 
 #endif //DIPLOM_ABSTRACTSUBSRIBER_H

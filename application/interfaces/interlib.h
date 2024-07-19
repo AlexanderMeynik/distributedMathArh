@@ -8,6 +8,7 @@
 #include "CalculationStep.h"
 #include "AbstractSubsriber.h"
 #include "IOSub.h"
+#include "InitCalc.h"
 using namespace core_intrefaces;
 using namespace inter;
 

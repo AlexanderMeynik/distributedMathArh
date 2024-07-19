@@ -20,7 +20,6 @@ template<typename ...Args>
 
             std::apply([](auto&&... args) {((std::cout << args << '\t'), ...);}, event->params_);
             std::cout<<'\n';
-            delete event;
             /*for (int i = 0; i < size; ++i) {
                 std::cout<<event->params_.
             }*/

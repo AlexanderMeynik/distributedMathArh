@@ -27,4 +27,29 @@ BOOST_AUTO_TEST_SUITE( printUtils )
 
     }
 
+    BOOST_AUTO_TEST_CASE( test_event_construction )
+/* Compare with void free_test_function() */
+    {
+        DataAcessInteface dd;
+        IOSub<double,double> io;
+        Event<DataAcessInteface&,double,double> aa(&io,dd,1.0,2.0);
+        //Event<double,double>* aa=new Event<double,double>(&io,1.0,2.0);
+        //InitCalc<double,double> aa(1000,1000);
+        //aa.perform_calc(dd,1.0,1.2);
+
+
+    }
+
+    BOOST_AUTO_TEST_CASE( test_computational_steps )
+/* Compare with void free_test_function() */
+    {
+        DataAcessInteface dd;
+        IOSub<double> io;
+
+        //InitCalc<double,double> aa(1000,1000);
+        //aa.perform_calc(dd,1.0,1.2);
+
+
+    }
+
 BOOST_AUTO_TEST_SUITE_END()
