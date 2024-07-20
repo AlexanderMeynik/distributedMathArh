@@ -81,11 +81,19 @@ namespace core_intrefaces {
         std::cout<< (typeid(elem).name())<<'\n';
     }
 
+
+    template <typename Arg, typename... Args>
+    void doPrint(std::ostream& out, Arg&& arg, Args&&... args)
+    {
+        out << typeid(arg).name()<<'\t';
+        ((out << '\t' << typeid(args).name()), ...);
+    }
+
     template<typename ... Args >
     class Event
     {
        // friend class AbstractSubsriber<Args...>;
-    public:
+    public://todo abstarct producer with another set of arguments
         Event(AbstractProduser<Args...>* sender,Args &&...args)
         {
             sender_=sender;
@@ -93,7 +101,9 @@ namespace core_intrefaces {
         }
         Event(AbstractProduser<Args...>* sender,Args ...args)
         {
-            printFirst(args ...);
+            //todo log//std::cout<< typeid(*this).name()<<'\n';
+            //doPrint(std::cout,args...);
+            std::cout<<'\n';
             sender_=sender;
             params_={args...};
         }

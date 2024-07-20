@@ -19,13 +19,13 @@ namespace inter {
         }
 
     protected:
-        void perform_calculation(DataAcessInteface &dat,Args...args) override {
+        void perform_calculation(std::shared_ptr<DataAcessInteface> dat,Args...args) override {
             std::vector<std::vector<double>> temp;
             temp.resize(this->count_);
             for (int i = 0; i < this->count_; ++i) {
                 temp[i]=std::vector<double>(this->start_,i);
             }
-            dat.getdat(this->to_string())=temp;
+            dat->getdat(this->to_string())=temp;
             this->notify(dat,args...);
         }
 

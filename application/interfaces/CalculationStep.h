@@ -27,13 +27,13 @@ class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<
         }
 
          //virtual ~CalculationStep()=0;
-         void perform_calc(DataAcessInteface&dat,Args...args)
+         void perform_calc(std::shared_ptr<DataAcessInteface> dat,Args...args)
          {
              clock1.tik();
              perform_calculation(dat,args...);
              clock1.tak();
              std::string vv="clock"+this->to_string()+std::to_string(start_);
-             dat.getProperty(vv)=clock1.aggregate<double>();
+             dat->getProperty(vv)=clock1.aggregate<double>();
              /*if(next_)
              {
                 next_->perform_calc();
@@ -66,7 +66,7 @@ class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<
     protected:
          //CalculationStep* next_;
          CLOCK<FloatType> clock1;
-         virtual void perform_calculation(DataAcessInteface&dat,Args...args)=0;
+         virtual void perform_calculation(std::shared_ptr<DataAcessInteface> dat,Args...args)=0;
          int start_;
          int count_;
 
