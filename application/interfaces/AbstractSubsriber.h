@@ -17,7 +17,7 @@ namespace core_intrefaces {
     template<typename ... Args>
     class Event;
     template<typename ... Args>
-    class AbstractProduser: public std::enable_shared_from_this<AbstractProduser<Args...>> {
+    class AbstractProduser {
     public:
         virtual std::string to_string()
         {
@@ -41,9 +41,9 @@ namespace core_intrefaces {
 
         virtual void notify(Args ...event)
         {
-            auto ss=std::make_shared<Event<Args...>>(this,event...);
+            auto ss = std::make_shared<Event<Args...>>(this, std::forward<Args>(event)...);
             for (auto* ptr:ss_) {
-                ptr->getNotified(ss.get());//std::forward<Args>(event)...));
+                ptr->getNotified(ss);//std::forward<Args>(event)...));
             }
         };
 
@@ -51,14 +51,15 @@ namespace core_intrefaces {
 
         virtual void notifySpec(size_t i,Args&&... event)
         {
-            auto ss=std::make_shared<Event<Args...>>(this,event...);
+            auto ss = std::make_shared<Event<Args...>>(this, std::forward<Args>(event)...);
             assert(i<ss_.size());
-            ss_[i]->getNotified(ss.get());///getNotified(new Event<Args...>(this,std::forward<Args>(event)...));
+            ss_[i]->getNotified(ss);///getNotified(new Event<Args...>(this,std::forward<Args>(event)...));
         };
 
 
     protected:
         std::vector<AbstractSubsriber<Args...>*> ss_;
+        //todo implemnt Subs list get functions
 
     };
     template<typename ... Args>
@@ -68,7 +69,7 @@ namespace core_intrefaces {
         {
             producer->sub(this);
         }
-        virtual void getNotified(Event<Args...>*event)=0;
+        virtual void getNotified(std::shared_ptr<Event<Args...>> event)=0;
         friend class Event<Args ...>;
 
 
@@ -89,24 +90,48 @@ namespace core_intrefaces {
         ((out << '\t' << typeid(args).name()), ...);
     }
 
+    template <typename TupleT,char del='\t'>
+    void printTupleApply(std::ostream&out,const TupleT& tp) {//todo move to mpre suitable place
+        std::apply
+                (
+                        [&out](const auto& first, const auto&... restArgs)
+                        {
+                            auto printElem = [&out](const auto &x) {
+                                if(!std::is_pointer<decltype(x)>::value) {
+                                    out << del << x;
+                                }
+                            };
+
+
+                            out << '(';
+                            if(!std::is_pointer<decltype(first)>::value) {
+                                out << first;
+                            }
+                            (printElem(restArgs), ...);
+                        }, tp
+                );
+        out<<')';
+    }
+
     template<typename ... Args >
     class Event
     {
        // friend class AbstractSubsriber<Args...>;
     public://todo abstarct producer with another set of arguments
-        Event(AbstractProduser<Args...>* sender,Args &&...args)
+        /*Event(AbstractProduser<Args...>* sender,Args &&...args)
         {
             sender_=sender;
             params_={std::forward<Args>(args)...};
         }
-        Event(AbstractProduser<Args...>* sender,Args ...args)
+        Event(AbstractProduser<Args...>* sender,Args& ...args)
         {
-            //todo log//std::cout<< typeid(*this).name()<<'\n';
-            //doPrint(std::cout,args...);
-            std::cout<<'\n';
             sender_=sender;
             params_={args...};
-        }
+        }*/
+
+        template<typename ... U>
+        Event(AbstractProduser<Args...>* sender, U&& ... args)
+                : sender_(sender), params_(std::forward<U>(args)...) {}
 
     //protected:
     AbstractProduser<Args...>*sender_;

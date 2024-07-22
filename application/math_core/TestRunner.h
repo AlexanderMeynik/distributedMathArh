@@ -16,8 +16,8 @@
 #include "Dipoles.h"
 #include "../common/Generator.h"
 #include "../parallelUtils/clockArray.h"
-
-typedef double FloatType;
+#include "../common/constants.h"
+using const_::FloatType;
 template<typename T>
 using geNsolution = std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>;
 template<typename T>

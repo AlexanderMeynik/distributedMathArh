@@ -6,20 +6,9 @@
 #include <iomanip>
 #include <boost/array.hpp>
 #include <boost/test/data/test_case.hpp>
-
+#include "../BoostTestCommon.h"
 #define BOOST_TEST_MODULE testRunnerTest
 
-#define CHECK_CLOSE_COLLECTION(aa, bb, tolerance) { \
-    using std::distance; \
-    using std::begin; \
-    using std::end; \
-    auto a = begin(aa), ae = end(aa); \
-    auto b = begin(bb); \
-    BOOST_REQUIRE_EQUAL(distance(a, ae), distance(b, end(bb))); \
-    for(; a != ae; ++a, ++b) { \
-        BOOST_CHECK_CLOSE(*a, *b, tolerance); \
-    } \
-}
 //https://stackoverflow.com/questions/3999644/how-to-compare-vectors-with-boost-test/17503436#17503436
 BOOST_AUTO_TEST_SUITE(testRunnerTest)
     constexpr double aRange = 1e-7;

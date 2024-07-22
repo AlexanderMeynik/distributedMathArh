@@ -44,25 +44,6 @@ class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<
              return "CalcStep"+std::to_string(start_)+"_"+std::to_string(count_)+"_";
          }
 
-        /*virtual void notify(DataAcessInteface&dat,Args ...event)
-        {
-            for (auto* ptr:this->ss_) {
-                ptr->getNotified(new Event<DataAcessInteface&,Args...>(ptr_,dat,event...));//std::forward<Args>(event)...));
-            }
-        };
-
-
-
-        virtual void notifySpec(size_t i,DataAcessInteface&dat,Args&&... event)
-        {
-            assert(i<this->ss_.size());
-            this->ss_[i]->getNotified(new Event<DataAcessInteface&,Args...>(ptr_,dat,event...));///getNotified(new Event<Args...>(this,std::forward<Args>(event)...));
-        };*/
-         /*void setNext(CalculationStep*cc)
-         {
-             this->next_=cc;
-         }*/
-
     protected:
          //CalculationStep* next_;
          CLOCK<FloatType> clock1;

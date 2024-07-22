@@ -9,22 +9,24 @@
 #include "AbstractSubsriber.h"
 
 namespace core_intrefaces {
+
+
 template<typename ...Args>
 
     class IOSub :public AbstractSubsriber<Args...>{
     public:
-        void getNotified(Event<Args...> *event) override {
-
-            std::cout<<event->sender_->to_string()<<'\t';
-            //auto size=sizeof ... (Args);
-
-            std::apply([](auto&&... args) {((std::cout << args << '\t'), ...);}, event->params_);
-            std::cout<<'\n';
-            /*for (int i = 0; i < size; ++i) {
-                std::cout<<event->params_.
-            }*/
+        explicit IOSub<Args...>(std::ostream &out=std::cout):out_(out)
+        {
         }
+        void getNotified(std::shared_ptr<Event<Args...>> event) override {
 
+           // std::apply([this](auto&&... args) {((
+           //     out_ << args << '\t'), ...);}, event->params_);
+            printTupleApply(out_,event->params_);
+            out_<<'\n';
+        }
+    protected:
+        std::ostream &out_;
     };
 }
 
