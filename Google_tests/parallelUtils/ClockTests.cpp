@@ -11,7 +11,7 @@
 #include <omp.h>
 #include <chrono>
 #include <thread>
-
+#include "../GoogleCommon.h"
 #include <gtest/gtest.h>
 constexpr double tolerance=0.1;
 using namespace timing;

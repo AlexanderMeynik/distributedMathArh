@@ -2,39 +2,40 @@
 #include "../../application/interfaces/interlib.h"
 #include <iomanip>
 #include <typeinfo>
-
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <iomanip>
 
 
-#define BOOST_TEST_MODULE printUtils
+
 
 TEST(pub_sub_model,test_pub_sub_io)
 {
     std::stringstream ss;
-    testing::internal::CaptureStdout();
-    auto io = new IOSub<double>();
+    std::stringstream  res;
+    auto io = new IOSub<double>(res);
 
     for (int i = 0; i <10; ++i) {
         auto ptr=std::make_shared<Event<double>>(nullptr, i);
         io->getNotified(ptr);
         printTupleApply(ss,ptr->params_);
         ss<<'\n';
-        ASSERT_EQ(ss.str(),testing::internal::GetCapturedStdout());
+        EXPECT_EQ(ss.str(),res.str());
     }
 }
 TEST(pub_sub_model,test_all_sub_notified)//todo mock для event
 {
     std::stringstream ss;
-    testing::internal::CaptureStdout();
-    auto io = new IOSub<double>();
+    std::stringstream  res;
+    auto io = new IOSub<double>(res);
 
     for (int i = 0; i <10; ++i) {
         auto ptr=std::make_shared<Event<double>>(nullptr, i);
         io->getNotified(ptr);
         printTupleApply(ss,ptr->params_);
+        //ss<<'\n';
         ss<<'\n';
-        ASSERT_EQ(ss.str(),testing::internal::GetCapturedStdout());
+        EXPECT_EQ(ss.str(),res.str());
     }
 }
 
@@ -51,20 +52,20 @@ TEST(pub_sub_model,test_io_pub_sub_semantic)//todo mock для event
                               "(12\tssss)\n"
                               "(12\tssss)\n"
                               "(10\taaaa)\n";
-    testing::internal::CaptureStdout();
-
+    std::stringstream  res;
     AbstractProduser<double, std::string> pp;
+
     int a = 10;
     std::vector<std::shared_ptr<AbstractSubsriber<double, std::string>>> subs;
     for (int i = 0; i < a; ++i) {
         //subs.push_back(std::make_shared<IOSub<double,std::string>>());
-        pp.sub(new IOSub<double, std::string>());
+        pp.sub(new IOSub<double, std::string>(res));
     }
     pp.notify(12, "ssss");
-    pp.notifySpec(0, 10, "aaaa");//todo подумать над тем, как храним параметры в event(rvalue ссфлка или значения)
-    //std::cout<<buf.str();
 
-    ASSERT_EQ(res_buffer,testing::internal::GetCapturedStdout());
+    pp.notifySpec(0, 10, "aaaa");//todo подумать над тем, как храним параметры в event(rvalue ссфлка или значения)
+
+    EXPECT_EQ(res_buffer,res.str());
 
 }
 TEST(pub_sub_model,test_event_construction)//todo сделать
@@ -94,4 +95,11 @@ TEST(computation_step,test_init)//todo сделать
     int a = 0;
 }
 
+int main(int argc, char **argv)
+{//todo cmake+gtestmain
+    ::testing::InitGoogleTest(&argc, argv);
+    ::testing::InitGoogleMock(&argc, argv);
+
+    return RUN_ALL_TESTS();
+}
 

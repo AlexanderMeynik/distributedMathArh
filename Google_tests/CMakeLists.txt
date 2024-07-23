@@ -52,7 +52,7 @@ file(GLOB interfaces CONFIGURE_DEPENDS
 )
 
 add_executable(inter_Tests ${interfaces})
-target_link_libraries (inter_Tests gtest gtest_main)
+target_link_libraries (inter_Tests gtest gmock)
 target_link_libraries (inter_Tests interfaces_lib)
 
 file(GLOB core CONFIGURE_DEPENDS
