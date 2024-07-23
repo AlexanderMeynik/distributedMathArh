@@ -21,7 +21,7 @@ BOOST_AUTO_TEST_CASE( test_ios_state_preserve )
         out<<std::scientific<<std::setprecision(10);
         BOOST_TEST(out.flags()!=flags);
     }
-    BOOST_TEST(out.flags()=flags);
+    BOOST_TEST(out.flags()==flags);
 
 
 }

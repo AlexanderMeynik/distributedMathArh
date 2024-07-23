@@ -113,6 +113,19 @@ namespace core_intrefaces {
         out<<')';
     }
 
+    template<typename...>//todo првоерить
+    struct all_same_decay;
+
+    template<typename T>
+    struct all_same_decay<T> : std::true_type {};
+
+    template<typename T, typename U, typename... Rest>
+    struct all_same_decay<T, U, Rest...>
+            : std::conditional_t<std::is_same_v<std::decay_t<T>, std::decay_t<U>>, all_same_decay<T, Rest...>, std::false_type> {};
+
+    template<typename... T>
+    concept SameDecay = all_same_decay<T...>::value;
+
     template<typename ... Args >
     class Event
     {
