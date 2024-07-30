@@ -1,7 +1,3 @@
-//
-// Created by Lenovo on 16.07.2024.
-//
-
 #ifndef DIPLOM_ABSTRACTSUBSRIBER_H
 #define DIPLOM_ABSTRACTSUBSRIBER_H
 #include <memory>
@@ -49,7 +45,7 @@ namespace core_intrefaces {
 
 
 
-        virtual void notifySpec(size_t i,Args&&... event)
+        virtual void notifySpec(size_t i,Args ... event)
         {
             auto ss = std::make_shared<Event<Args...>>(this, std::forward<Args>(event)...);
             assert(i<ss_.size());
@@ -113,18 +109,6 @@ namespace core_intrefaces {
         out<<')';
     }
 
-    template<typename...>//todo првоерить
-    struct all_same_decay;
-
-    template<typename T>
-    struct all_same_decay<T> : std::true_type {};
-
-    template<typename T, typename U, typename... Rest>
-    struct all_same_decay<T, U, Rest...>
-            : std::conditional_t<std::is_same_v<std::decay_t<T>, std::decay_t<U>>, all_same_decay<T, Rest...>, std::false_type> {};
-
-    template<typename... T>
-    concept SameDecay = all_same_decay<T...>::value;
 
     template<typename ... Args >
     class Event

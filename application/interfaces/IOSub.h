@@ -25,7 +25,7 @@ template<typename ...Args>
             printTupleApply(out_,event->params_);
             out_<<'\n';
         }
-    protected:
+    //protected://todo неплохой костыль дял теста
         std::ostream &out_;
     };
 }
