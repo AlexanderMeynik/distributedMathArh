@@ -126,6 +126,11 @@ namespace core_intrefaces {
             params_={args...};
         }*/
 
+        bool operator==(const Event<Args...>& another) const
+        {
+            return this->params_==another.params_&& this->sender_==another.sender_;
+        }
+
         template<typename ... U>
         Event(AbstractProduser<Args...>* sender, U&& ... args)
                 : sender_(sender), params_(std::forward<U>(args)...) {}

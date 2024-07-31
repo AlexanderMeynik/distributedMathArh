@@ -41,18 +41,15 @@ TEST(pub_sub_model,test_all_sub_notified)//todo mock для event
 {
     std::stringstream ss;
     std::stringstream  res;
-    MockIOSub<double> io(res);
+    IOSub<double> io(res);
 
 
-    ON_CALL(io, getNotified(testing::_)).WillByDefault(testing::Invoke([&io](std::shared_ptr<Event<double>> event) {
+    /*ON_CALL(io, getNotified(testing::_)).WillByDefault(testing::Invoke([&io](std::shared_ptr<Event<double>> event) {
         printTupleApply(io.out_,event->params_);
         io.out_<<'\n';
-    }));
-    //todo поидее мы тут должны вызвать реализацию для метода из io sub, но увы и ах,
-    //
+    }));*/
 
-
-    EXPECT_CALL(io,getNotified(testing::_)).Times(10);
+   // EXPECT_CALL(io,getNotified(testing::_)).Times(10);
     for (int i = 0; i <10; ++i) {
         auto ptr=std::make_shared<MockEvent<double>>(nullptr, i);
         io.getNotified(ptr);
@@ -67,37 +64,31 @@ TEST(pub_sub_model,test_all_sub_notified)//todo mock для event
     }
 }
 
-/*TEST(pub_sub_model,test_io_pub_sub_semantic)//todo mock для event
+TEST(pub_sub_model,test_io_pub_sub_semantic)
 {
-    std::string res_buffer = "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(12\tssss)\n"
-                             "(10\taaaa)\n";
-    std::stringstream res;
-    MockAbstractProduser<double, std::string> pp;
+    const int spec_index=4;
+
+    AbstractProduser<double, std::string> pp;
+    std::vector<std::unique_ptr<MockIOSub<double, std::string>>> mock_subs;
 
     int a = 10;
     for (int i = 0; i < a; ++i) {
-        pp.sub(new MockIOSub<double, std::string>(res));
+        auto iootr=std::make_unique<MockIOSub<double, std::string>>();
+        pp.sub(iootr.get());
+
+        EXPECT_CALL(*iootr, getNotified(testing::_)).Times(1);
+        mock_subs.push_back(std::move(iootr));
+
     }
 
-    // Ensuring the notify call is mocked correctly
-    EXPECT_CALL(pp, notify(12, "ssss")).Times(a);
+
     pp.notify(12, "ssss");
 
-    // Ensuring the notifySpec call is mocked correctly
-    EXPECT_CALL(pp, notifySpec(0, 10, "aaaa")).Times(1);
-    pp.notifySpec(0, 10, "aaaa");
+    EXPECT_CALL(*mock_subs[spec_index].get(), getNotified(EventHasParams(10.0, std::string("aaaa")))).Times(1);
 
-    EXPECT_EQ(res_buffer, res.str());
-}*/
+
+    pp.notifySpec(spec_index, 10, "aaaa");
+}
 TEST(pub_sub_model,test_event_construction)//todo сделать
 {
     auto dd = std::make_shared<DataAcessInteface>();
@@ -110,6 +101,8 @@ TEST(pub_sub_model,test_event_construction)//todo сделать
     //InitCalc<double,double> aa(1000,1000);
     //aa.perform_calc(dd,1.0,1.2);
 
+
+
 }
 
 TEST(computation_step,test_init)//todo сделать
@@ -121,7 +114,7 @@ TEST(computation_step,test_init)//todo сделать
     InitCalc<double, double> aa(10, 10);
     auto func = [](int i1, int i2, double a, double b) { return std::vector<double>(i1, i2 + i2 * (a * b)); };
     aa.setFunction(func);
-    aa.perform_calc(dd, 1, 2);
+    aa.perform_calc(dd, 1, 2);//todo понять чё тестим
     int a = 0;
 }
 
