@@ -26,7 +26,7 @@ namespace core_intrefaces {
 
         void unsub(AbstractSubsriber<Args...>*ss)
         {
-            std::remove_if(ss_.begin(), ss_.end(),[&ss](auto *elem){return elem==ss;});
+            ss_.erase(std::remove_if(ss_.begin(), ss_.end(),[&ss](auto *elem){return elem==ss;}),ss_.end());
         }
 
         void unsub(size_t i)
@@ -42,6 +42,20 @@ namespace core_intrefaces {
                 ptr->getNotified(ss);//std::forward<Args>(event)...));
             }
         };
+        size_t getIndex(AbstractSubsriber<Args...>*ss) const
+        {
+            auto it=std::find_if(ss_.begin(), ss_.end(),[ss](auto *a){return ss==a;});
+            return (it==ss_.end())?-1:it-ss_.begin();
+        }
+
+        bool isPresent(AbstractSubsriber<Args...>*ss) const {
+            return getIndex(ss)!=-1;
+        }
+
+        [[nodiscard]] size_t get_size() const
+        {
+            return ss_.size();
+        }
 
 
 
@@ -49,23 +63,28 @@ namespace core_intrefaces {
         {
             auto ss = std::make_shared<Event<Args...>>(this, std::forward<Args>(event)...);
             assert(i<ss_.size());
-            ss_[i]->getNotified(ss);///getNotified(new Event<Args...>(this,std::forward<Args>(event)...));
+            ss_[i]->getNotified(ss);
         };
-
 
     protected:
         std::vector<AbstractSubsriber<Args...>*> ss_;
-        //todo implemnt Subs list get functions
-
     };
     template<typename ... Args>
     class AbstractSubsriber {
     public:
+        [[nodiscard]] std::string to_string() const
+        {
+            return typeid(this).name()+std::to_string((unsigned long long)(void**)this);
+        }
         void subscribe(AbstractProduser<Args...> *producer)
         {
             producer->sub(this);
         }
-        virtual void getNotified(std::shared_ptr<Event<Args...>> event)=0;
+        void unsubsribe(AbstractProduser<Args...> *producer)
+        {
+            producer->unsub(this);
+        }
+        virtual void getNotified(std::shared_ptr<Event<Args...>> event) { };
         friend class Event<Args ...>;
 
 

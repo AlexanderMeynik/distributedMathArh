@@ -13,13 +13,56 @@ using ::testing::Return;
 using ::testing::AtLeast;
 using ::testing::Exactly;
 
-TEST(pub_sub_model_test, io_pub_sub_semantic_Test) {
-    MockAbstractProduser<double, std::string> pp;
-    EXPECT_CALL(pp, notify(A<double>(), A<std::string>())).Times(1);
-    EXPECT_CALL(pp, notifySpec(0, A<double>(), A<std::string>())).Times(1);
 
+TEST(pub_sub_model_test, producer_sub_method_call) {
+    MockAbstractProduser<double, std::string> pp;
+
+    auto ssub=std::make_shared<AbstractSubsriber<double, std::string>>();
+
+    {
+        EXPECT_CALL(pp, sub(testing::_)).Times(1);
+        ssub->subscribe(&pp);
+    }
+
+    {
+        EXPECT_CALL(pp, unsub(testing::_)).Times(1);//todo mock these
+        ssub->unsubsribe(&pp);
+    }
+
+}
+
+TEST(pub_sub_model_test, io_pub_sub_semantic_Test) {
+    AbstractProduser<double, std::string> pp;
+    MockAbstractSubsriber<double, std::string> ssub;
+    ssub.subscribe(&pp);
+    ASSERT_TRUE(pp.isPresent(&ssub));
+
+    EXPECT_CALL(ssub, getNotified(EventHasParams(12.0, std::string("ssss")))).Times(1);
     pp.notify(12.0, "ssss");
-    pp.notifySpec(0, 10.0, "aaaa");
+}
+
+TEST(pub_sub_model_test, unsibscribe_semantic_test) {
+    AbstractProduser<double, std::string> pp;
+    MockAbstractSubsriber<double, std::string> ssub;
+    MockAbstractSubsriber<double, std::string> ssub2;
+    ssub.subscribe(&pp);
+    ssub2.subscribe(&pp);
+    {
+
+        EXPECT_CALL(ssub, getNotified(EventHasParams(12.0, std::string("ssss")))).Times(1);
+        EXPECT_CALL(ssub2, getNotified(EventHasParams(12.0, std::string("ssss")))).Times(1);
+
+        pp.notify(12.0, "ssss");
+    }
+    ssub2.unsubsribe(&pp);
+    ASSERT_TRUE(!pp.isPresent(&ssub2));
+
+    {
+        EXPECT_CALL(ssub, getNotified(EventHasParams(1.0, std::string("ssss")))).Times(1);
+        EXPECT_CALL(ssub2, getNotified(testing::_)).Times(0);
+        pp.notify(1.0, "ssss");
+    }
+
 }
 
 TEST(pub_sub_model,test_pub_sub_io)
@@ -122,6 +165,7 @@ int main(int argc, char **argv)
 {//todo cmake+gtestmain
     ::testing::InitGoogleTest(&argc, argv);
     ::testing::InitGoogleMock(&argc, argv);
+
 
     return RUN_ALL_TESTS();
 }
