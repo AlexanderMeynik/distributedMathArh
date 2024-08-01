@@ -1,7 +1,3 @@
-//
-// Created by Lenovo on 16.07.2024.
-//
-
 #ifndef DIPLOM_DATAACESSINTEFACE_H
 #define DIPLOM_DATAACESSINTEFACE_H
 
@@ -28,15 +24,40 @@ namespace core_intrefaces {
             //optinal_val a;
             //holds_alternative(a)
         }
-        std::vector<std::vector<double>> &getdat(std::string&&key)
+        virtual std::vector<std::vector<double>> &getdat(std::string&key)
         {
-            return data_[std::forward<decltype(key)>(key)];
+            return data_[key];
         }
-        optinal_val& getProperty(std::string&key)
+        virtual std::vector<std::vector<double>> &getdat(std::string&&key)
+        {
+            return data_[key];
+        }
+        virtual optinal_val& getProperty(std::string&key)
+        {
+            return properties_[key];
+        }
+        virtual optinal_val& getProperty(std::string&&key)
         {
             return properties_[key];
         }
 
+        virtual bool isPresent(std::string&key)
+        {
+            return data_.contains(key);
+        }
+        virtual bool isPresent(std::string&&key)
+        {
+            return data_.contains(key);
+        }
+
+        virtual bool isPPresent(std::string&key)
+        {
+            return properties_.contains(key);
+        }
+        virtual bool isPPresent(std::string&&key)
+        {
+            return properties_.contains(key);
+        }
 
     private:
         std::unordered_map<std::string, std::vector<std::vector<double>>> data_;

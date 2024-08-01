@@ -6,18 +6,31 @@
 #include <tuple>
 #include <iostream>
 #include "DataAcessInteface.h"
+#include <exception>
 namespace core_intrefaces {
 
     template<typename ... Args>
     class AbstractSubsriber;
     template<typename ... Args>
     class Event;
+
+
     template<typename ... Args>
-    class AbstractProduser {
+    class IProduser {
+    public:
+        virtual ~IProduser() = default;
+        virtual void sub(AbstractSubsriber<Args...>* ss) = 0;
+        virtual void unsub(AbstractSubsriber<Args...>* ss) = 0;
+        virtual void unsub(size_t i) = 0;
+    };
+
+    template<typename ... Args>
+
+    class AbstractProduser: public IProduser< Args ...>{
     public:
         virtual std::string to_string()
         {
-            return "default";
+             return typeid(this).name()+std::to_string((unsigned long long)(void**)this);;
         }
         void sub(AbstractSubsriber<Args...>*ss)
         {
@@ -26,12 +39,15 @@ namespace core_intrefaces {
 
         void unsub(AbstractSubsriber<Args...>*ss)
         {
-            ss_.erase(std::remove_if(ss_.begin(), ss_.end(),[&ss](auto *elem){return elem==ss;}),ss_.end());
+            erase_if(ss_,[&ss](auto *elem){return elem==ss;});
         }
 
         void unsub(size_t i)
         {
-            assert(i<ss_.size());
+            if(i>=ss_.size())
+            {
+                throw std::out_of_range("Argument "+std::to_string(i)+"is out of range");
+            }
             ss_.erase(ss_.begin()+i);
         }
 
@@ -132,20 +148,9 @@ namespace core_intrefaces {
     template<typename ... Args >
     class Event
     {
-       // friend class AbstractSubsriber<Args...>;
     public://todo abstarct producer with another set of arguments
-        /*Event(AbstractProduser<Args...>* sender,Args &&...args)
-        {
-            sender_=sender;
-            params_={std::forward<Args>(args)...};
-        }
-        Event(AbstractProduser<Args...>* sender,Args& ...args)
-        {
-            sender_=sender;
-            params_={args...};
-        }*/
 
-        bool operator==(const Event<Args...>& another) const
+        virtual bool operator==(const Event<Args...>& another) const
         {
             return this->params_==another.params_&& this->sender_==another.sender_;
         }
@@ -154,9 +159,7 @@ namespace core_intrefaces {
         Event(AbstractProduser<Args...>* sender, U&& ... args)
                 : sender_(sender), params_(std::forward<U>(args)...) {}
 
-    //protected:
-    AbstractProduser<Args...>*sender_;
-        //AbstractProduser<Args...>* sender_;
+        AbstractProduser<Args...>*sender_;
         std::tuple<Args ...> params_;
     };
 

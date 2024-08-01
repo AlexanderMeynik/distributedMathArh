@@ -16,21 +16,19 @@ using ::testing::Exactly;
 
 TEST(pub_sub_model_test, producer_sub_method_call) {
     MockAbstractProduser<double, std::string> pp;
-
     auto ssub=std::make_shared<AbstractSubsriber<double, std::string>>();
-
-    {
-        EXPECT_CALL(pp, sub(testing::_)).Times(1);
-        ssub->subscribe(&pp);
-    }
-
-    {
-        EXPECT_CALL(pp, unsub(testing::_)).Times(1);//todo mock these
-        ssub->unsubsribe(&pp);
-    }
+    EXPECT_CALL(pp, sub(testing::_)).Times(1);
+    ssub->subscribe(&pp);
 
 }
+TEST(pub_sub_model_test, producer_unsub_method_call) {
+    MockAbstractProduser<double, std::string> pp;
 
+    auto ssub=std::make_shared<AbstractSubsriber<double, std::string>>();
+    EXPECT_CALL(pp, unsub(testing::_)).Times(1);
+    ssub->unsubsribe(&pp);
+
+}
 TEST(pub_sub_model_test, io_pub_sub_semantic_Test) {
     AbstractProduser<double, std::string> pp;
     MockAbstractSubsriber<double, std::string> ssub;
@@ -65,6 +63,50 @@ TEST(pub_sub_model_test, unsibscribe_semantic_test) {
 
 }
 
+
+TEST(pub_sub_model_test, unsibsribe_size_t_sucessfull) {
+    AbstractProduser<double, std::string> pp;
+    MockAbstractSubsriber<double, std::string> ssub;
+    MockAbstractSubsriber<double, std::string> ssub2;
+    ssub.subscribe(&pp);
+    ssub2.subscribe(&pp);
+    {
+
+        EXPECT_CALL(ssub, getNotified(EventHasParams(12.0, std::string("ssss")))).Times(1);
+        EXPECT_CALL(ssub2, getNotified(EventHasParams(12.0, std::string("ssss")))).Times(1);
+
+        pp.notify(12.0, "ssss");
+    }
+    pp.unsub(1);
+    ASSERT_TRUE(!pp.isPresent(&ssub2));
+
+    {
+        EXPECT_CALL(ssub, getNotified(EventHasParams(1.0, std::string("ssss")))).Times(1);
+        EXPECT_CALL(ssub2, getNotified(testing::_)).Times(0);
+        pp.notify(1.0, "ssss");
+    }
+
+}
+
+
+TEST(pub_sub_model_test, unsibsribe_size_t_out_of_range) {
+    AbstractProduser<double, std::string> pp;
+    MockAbstractSubsriber<double, std::string> ssub;
+    MockAbstractSubsriber<double, std::string> ssub2;
+    ssub.subscribe(&pp);
+    ssub2.subscribe(&pp);
+    {
+
+        EXPECT_CALL(ssub, getNotified(EventHasParams(12.0, std::string("ssss")))).Times(1);
+        EXPECT_CALL(ssub2, getNotified(EventHasParams(12.0, std::string("ssss")))).Times(1);
+
+        pp.notify(12.0, "ssss");
+    }
+    EXPECT_THROW(pp.unsub(6),std::out_of_range);
+
+}
+
+
 TEST(pub_sub_model,test_pub_sub_io)
 {
     std::stringstream ss;
@@ -80,25 +122,15 @@ TEST(pub_sub_model,test_pub_sub_io)
     }
 }
 
-TEST(pub_sub_model,test_all_sub_notified)//todo mock для event
+TEST(pub_sub_model,test_all_sub_notified)//todo убрать
 {
     std::stringstream ss;
     std::stringstream  res;
     IOSub<double> io(res);
 
-
-    /*ON_CALL(io, getNotified(testing::_)).WillByDefault(testing::Invoke([&io](std::shared_ptr<Event<double>> event) {
-        printTupleApply(io.out_,event->params_);
-        io.out_<<'\n';
-    }));*/
-
-   // EXPECT_CALL(io,getNotified(testing::_)).Times(10);
     for (int i = 0; i <10; ++i) {
         auto ptr=std::make_shared<MockEvent<double>>(nullptr, i);
         io.getNotified(ptr);
-
-
-
 
         printTupleApply(ss,ptr->params_);
         //ss<<'\n';
@@ -132,32 +164,42 @@ TEST(pub_sub_model,test_io_pub_sub_semantic)
 
     pp.notifySpec(spec_index, 10, "aaaa");
 }
-TEST(pub_sub_model,test_event_construction)//todo сделать
+
+
+TEST(data_acess_interface,test_data_set)
 {
+    std::string inti("init string");
     auto dd = std::make_shared<DataAcessInteface>();
-    // IOSub<std::shared_ptr<DataAcessInteface>,double,double> io;
+    std::vector<std::vector<double>> sample(100, std::vector<double>(100,1));
+    dd->getdat(inti)=sample;
 
-    auto io = std::make_shared<AbstractProduser<std::shared_ptr<DataAcessInteface>, double, double>>();
-    std::cout << typeid(io).name() << '\n';
-    Event aa(io.get(), dd, 1.0, 2.0);//args are deduced using io
-    //Event<double,double>* aa=new Event<double,double>(&io,1.0,2.0);
-    //InitCalc<double,double> aa(1000,1000);
-    //aa.perform_calc(dd,1.0,1.2);
-
-
+    ASSERT_TRUE(dd->isPresent(inti));
+    EXPECT_TRUE(dd->getdat(inti).size()==sample.size());
+    size_t sz=sample.size();
+    for (int idx=0; idx<sz; idx++)
+    {
+       // SCOPED_TRACE(idx);
+        EXPECT_TRUE(dd->getdat(inti)[idx].size()==sample[idx].size());
+        size_t sz2=sample[idx].size();
+        for (int i = 0; i <sz2 ; ++i) {
+            SCOPED_TRACE("Indexes : i1 = "+std::to_string(idx)+" i2 = "+std::to_string(i)+
+            '\t'+std::to_string(dd->getdat(inti)[idx][i])+"!="+std::to_string(sample[idx][i]));
+            EXPECT_TRUE(dd->getdat(inti)[idx][i]+1==sample[idx][i]);
+        }
+    }
 
 }
+
+
 
 TEST(computation_step,test_init)//todo сделать
 {
     auto dd = std::make_shared<DataAcessInteface>();
-    IOSub<double> io;
-    //std:opti
-
     InitCalc<double, double> aa(10, 10);
+
     auto func = [](int i1, int i2, double a, double b) { return std::vector<double>(i1, i2 + i2 * (a * b)); };
     aa.setFunction(func);
-    aa.perform_calc(dd, 1, 2);//todo понять чё тестим
+    aa.perform_calc(dd, 1, 2);
     int a = 0;
 }
 

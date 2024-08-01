@@ -24,7 +24,17 @@ class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<
         {
             start_=a;
             count_=b;
+            next_= nullptr;
+            prev_= nullptr;
         }
+        void setPrev(CalculationStep *prev) {
+            prev_ = prev;
+        }
+
+        void setNext(CalculationStep *next) {
+            next_ = next;
+        }
+
 
          //virtual ~CalculationStep()=0;
          void perform_calc(std::shared_ptr<DataAcessInteface> dat,Args...args)
@@ -45,12 +55,12 @@ class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<
          }
 
     protected:
-         //CalculationStep* next_;
          CLOCK<FloatType> clock1;
          virtual void perform_calculation(std::shared_ptr<DataAcessInteface> dat,Args...args)=0;
          int start_;
          int count_;
-
+         CalculationStep* prev_;
+         CalculationStep* next_;
     };
 
 } // inter

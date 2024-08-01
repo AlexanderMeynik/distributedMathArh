@@ -18,8 +18,8 @@ public:
     //MOCK_METHOD(void, notify, (Args...), (override));
     //MOCK_METHOD(void, notifySpec, (size_t, Args...), (override));
 
-    MOCK_METHOD(void, sub, (core_intrefaces::AbstractSubsriber<Args...>*), ());
-    MOCK_METHOD(void, unsub, (core_intrefaces::AbstractSubsriber<Args...>*), ());
+    MOCK_METHOD(void, sub, (core_intrefaces::AbstractSubsriber<Args...>*), (override));
+    MOCK_METHOD(void, unsub, (core_intrefaces::AbstractSubsriber<Args...>*), (override));
 };
 
 template<typename ... Args>
