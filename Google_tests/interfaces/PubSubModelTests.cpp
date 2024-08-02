@@ -6,6 +6,7 @@
 #include <gtest/gtest.h>
 #include <iomanip>
 #include "mocks.h"
+#include "../../application/common/printUtils.h"
 
 using ::testing::_;
 using ::testing::A;

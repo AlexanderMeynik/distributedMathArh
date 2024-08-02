@@ -107,42 +107,6 @@ namespace core_intrefaces {
     private:
         std::vector<AbstractProduser<Args...>*> subs_;
     };
-    template<typename T,typename ... Args >
-    void printFirst(T elem,Args...args)
-    {
-        std::cout<< (typeid(elem).name())<<'\n';
-    }
-
-
-    template <typename Arg, typename... Args>
-    void doPrint(std::ostream& out, Arg&& arg, Args&&... args)
-    {
-        out << typeid(arg).name()<<'\t';
-        ((out << '\t' << typeid(args).name()), ...);
-    }
-
-    template <typename TupleT,char del='\t'>
-    void printTupleApply(std::ostream&out,const TupleT& tp) {//todo move to mpre suitable place
-        std::apply
-                (
-                        [&out](const auto& first, const auto&... restArgs)
-                        {
-                            auto printElem = [&out](const auto &x) {
-                                if(!std::is_pointer<decltype(x)>::value) {
-                                    out << del << x;
-                                }
-                            };
-
-
-                            out << '(';
-                            if(!std::is_pointer<decltype(first)>::value) {
-                                out << first;
-                            }
-                            (printElem(restArgs), ...);
-                        }, tp
-                );
-        out<<')';
-    }
 
 
     template<typename ... Args >

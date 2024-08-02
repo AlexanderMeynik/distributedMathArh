@@ -12,9 +12,8 @@ namespace inter {
     using core_intrefaces::DataAcessInteface;
     using core_intrefaces::Event;
     using FloatType=double;
-    //todo partial impelemtation;
         template<typename Tr>
-        using CLOCK=timing::OpenmpParallelClock<Tr,&omp_get_wtime,&omp_get_thread_num>;//todo notify clock when it gets to be clocked
+        using CLOCK=timing::OpenmpParallelClock<Tr,&omp_get_wtime,&omp_get_thread_num>;
     template<typename ... Args>
 class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<DataAcessInteface>,Args...>{
 
@@ -24,19 +23,18 @@ class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<
         {
             start_=a;
             count_=b;
-            next_= nullptr;
+            terminal= false;
+            next_= {};
             prev_= nullptr;
         }
         void setPrev(CalculationStep *prev) {
             prev_ = prev;
         }
-
-        void setNext(CalculationStep *next) {
-            next_ = next;
+        void apendNext(CalculationStep *next)
+        {
+            next_.push_back(next);//todo bfs logick
         }
 
-
-         //virtual ~CalculationStep()=0;
          void perform_calc(std::shared_ptr<DataAcessInteface> dat,Args...args)
          {
              clock1.tik();
@@ -59,8 +57,9 @@ class CalculationStep :public core_intrefaces::AbstractProduser<std::shared_ptr<
          virtual void perform_calculation(std::shared_ptr<DataAcessInteface> dat,Args...args)=0;
          int start_;
          int count_;
+         bool terminal;
          CalculationStep* prev_;
-         CalculationStep* next_;
+         std::vector<CalculationStep*> next_;//todo кто владеет
     };
 
 } // inter

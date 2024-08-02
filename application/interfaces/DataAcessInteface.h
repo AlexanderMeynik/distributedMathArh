@@ -7,7 +7,7 @@
 #include <variant>
 namespace core_intrefaces {
 
-    using optinal_val=std::variant<int,double,std::string,std::vector<double>>;
+    using optinal_val=std::variant<bool,int,double,std::string,std::vector<double>>;
 
     template<class... Ts>
     struct overload : Ts... {

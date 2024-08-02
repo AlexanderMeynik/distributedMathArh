@@ -3,7 +3,8 @@
 #include <iosfwd>
 #include <gmock/gmock.h>
 #include "../../application/interfaces/interlib.h"
-using core_intrefaces::printTupleApply;
+#include "../../application/common/printUtils.h"
+
 template<typename ... Args>
 class MockEvent : public core_intrefaces::Event<Args...> {
 public:

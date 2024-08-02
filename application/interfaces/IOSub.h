@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "AbstractSubsriber.h"
+#include "../common/printUtils.h"
 
 namespace core_intrefaces {
 

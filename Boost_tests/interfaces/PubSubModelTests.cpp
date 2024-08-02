@@ -8,6 +8,7 @@
 #include <iomanip>
 #include <typeinfo>
 #include "../BoostTestCommon.h"
+#include "printUtils.h"
 
 #define BOOST_TEST_MODULE printUtils
 BOOST_AUTO_TEST_SUITE(pubSub)
