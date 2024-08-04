@@ -41,7 +41,7 @@ file(GLOB parallelUtils CONFIGURE_DEPENDS
 )
 
 add_executable(par_Tests ${parallelUtils})
-target_link_libraries (par_Tests  gtest gtest_main)
+target_link_libraries (par_Tests  gtest gmock)
 target_link_libraries (par_Tests math_core_lib parallelLib)
 
 
@@ -61,5 +61,5 @@ file(GLOB core CONFIGURE_DEPENDS
 )
 
 add_executable(core_Tests ${core})
-target_link_libraries (core_Tests gtest gtest_main)
+target_link_libraries (core_Tests gtest gmock)
 target_link_libraries (core_Tests interfaces_lib)

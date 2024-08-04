@@ -6,11 +6,32 @@
 #include <algorithm>
 #include <omp.h>
 #include <gtest/gtest.h>
+#include <gmock/gmock.h>
+#include <eigen3/Eigen/Dense>
 
-TEST(perfomance_tests,get_calculation_times)
+
+double tool =std::numeric_limits<decltype(tool)>::epsilon();
+TEST(Dipoles, test_solve2_implementation)
 {
-    //todo т.к. мы переделали все интерфесы надо будет сделать все эти тесты заново
-    ASSERT_EQ(1,2);
+    const int N= 10;
+    CoordGenerator<double> genr(0,1e-6);
+
+    auto coord= genr.generateCoordinates(N);
+    dipoles::Dipoles<double> dipolearr(N,coord);
+    auto solution=dipolearr.solve2();
+    auto solution2=dipolearr.solve_();
+
+    EXPECT_TRUE(solution.size()==2*solution2[0].size());
+    auto ss=solution2[0].size();
+    for (int i = 0; i < ss; ++i) {
+        SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
+        EXPECT_NEAR(solution[i],solution2[0][i],tool);
+        EXPECT_NEAR(solution[ss+i],solution2[1][i],tool);
+    }
+
+    //auto nevyazk=(dipolearr.getMatrixx()*coord-solution)
+
+
 }
 
 
@@ -326,3 +347,12 @@ BOOST_AUTO_TEST_CASE( speed_of_implementations ,* utf::tolerance(pow(10,-12)))
 
 
 BOOST_AUTO_TEST_SUITE_END()*/
+
+int main(int argc, char **argv)
+{//todo cmake+gtestmain
+    ::testing::InitGoogleTest(&argc, argv);
+    ::testing::InitGoogleMock(&argc, argv);
+
+
+    return RUN_ALL_TESTS();
+}

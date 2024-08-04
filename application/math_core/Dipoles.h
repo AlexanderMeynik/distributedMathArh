@@ -89,6 +89,21 @@ namespace dipoles {
             return solution_;
         };
 
+        Eigen::Vector<T, Eigen::Dynamic> solve2()
+        {
+            auto tt = (M1_ * M1_ + M2_ * M2_).lu();
+           Eigen::Vector<T, Eigen::Dynamic> solution_;
+           solution_.resize(4*N_);
+            solution_.block(0,0,2*N_,1) = tt.solve(M1_ * f1 + M2_ * f2);
+            solution_.block(2*N_,0,2*N_,1) = tt.solve(M1_ * f2 - M2_ * f1);
+            return solution_;
+        }
+
+        Eigen::Vector<T, Eigen::Dynamic> getProduct()
+        {
+
+        }
+
         const function<T(T, T, T)> &getIfunction() const {
             return Ifunction_;
         }
@@ -96,6 +111,8 @@ namespace dipoles {
         const function<T(T, T)> &getI2function() const {
             return I2function_;
         }
+
+
 
 
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
@@ -121,8 +138,8 @@ namespace dipoles {
             return {d1, d2};
         };
 
-        void initArrays(std::array<std::vector<T>, 2> &xi) {
-            //xi_ = xi;
+        void initArrays() {
+
             an = params<T>::a / N_;
             M1_.resize(2 * N_, 2 * N_);
             M2_.resize(2 * N_, 2 * N_);
@@ -184,7 +201,7 @@ namespace dipoles {
     void Dipoles<T>::setNewCoordinates(std::array<std::vector<T>, 2> &xi) {
         if (an==params<T>::a) {
             this->N_ = xi[0].size();
-            initArrays(xi);
+            initArrays();
         }
         setMatrixes(xi);
     }
@@ -426,7 +443,7 @@ namespace dipoles {
     template<class T>
     Dipoles<T>::Dipoles(int N, std::array<std::vector<T>, 2> &xi):N_(
             N) {
-        initArrays(xi);
+        initArrays();
         setMatrixes(xi);
     }
 
