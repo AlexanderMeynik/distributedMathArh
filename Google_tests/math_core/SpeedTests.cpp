@@ -33,6 +33,46 @@ TEST(Dipoles, test_solve2_implementation)
 
 
 }
+TEST(transformations, reinterpret_vector_test)
+{
+    auto N=20;
+    CoordGenerator<double> genr(0,1e-6);
+    auto EigenVec=genr.generateCoordinates2(N);
+    auto arr2vec= reinterpretVector(EigenVec);
+    EXPECT_TRUE(EigenVec.size()==2*arr2vec[0].size()&&EigenVec.size()==2*N);
+    for (int i = 0; i < N; ++i) {
+        SCOPED_TRACE("Checked index "+std::to_string(i)+'\n');
+        EXPECT_NEAR(EigenVec[i],arr2vec[0][i],tool);
+        EXPECT_NEAR(EigenVec[i+N],arr2vec[1][i],tool);
+    }
+
+}
+
+TEST(Dipoles, test_init_vec_impl)
+{
+    const int N= 10;
+    CoordGenerator<double> genr(0,1e-6);
+
+    auto coord= genr.generateCoordinates2(N);
+    dipoles::Dipoles<double> dipolearr(N,coord);
+    auto solution=dipolearr.solve2();
+
+
+    auto coord2= reinterpretVector(coord);
+    dipoles::Dipoles<double> dipolearr2(N,coord);
+    auto solution2=dipolearr.solve2();
+
+    EXPECT_TRUE(solution.size()==solution2.size());
+    auto ss=solution2.size();
+    for (int i = 0; i < ss; ++i) {
+        SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
+        EXPECT_NEAR(solution[i],solution2[i],tool);
+    }
+
+    //auto nevyazk=(dipolearr.getMatrixx()*coord-solution)
+
+
+}
 
 
 /*

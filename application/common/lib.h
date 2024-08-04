@@ -15,6 +15,7 @@
 #include <random>
 #include <map>
 #include <cassert>
+#include <eigen3/Eigen/Core>
 
 using std::function, std::pair, std::vector, std::array;
 using std::string;
@@ -22,7 +23,23 @@ using std::string;
 template<class T>
 std::vector<std::array<std::vector<T>, 2>> parseConf(string &filename);
 
+template<class T>
+std::array<std::vector<T>, 2>reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> &xi)
+{
+    auto N=xi.size()/2;
+    if (!N) {
+        return std::array<std::vector<T>, 2>();
+    }
+    std::array<std::vector<T>, 2> res;
+    res[0] = std::vector<T>(N, 0);
+    res[1] = std::vector<T>(N, 0);
 
+    for (int i = 0; i < N; ++i) {
+        res[0][i]=xi[i];
+        res[1][i]=xi[i+N];
+    }
+    return res;
+}
 
 template<typename T>
 class CoordGenerator{
@@ -31,7 +48,7 @@ public:
         distribution_ = std::normal_distribution<T>(mean_, stddev_);
     }
 
-    std::array<std::vector<T>, 2> generateCoordinates(size_t N) {
+    [[deprecated("use generateCoordinates2")]]std::array<std::vector<T>, 2> generateCoordinates(size_t N) {
         if (!N) {
             return std::array<std::vector<T>, 2>();
         }
@@ -42,6 +59,20 @@ public:
         //std::cout<<generetor()<<"\t"<<distribution_(rng_)<<"\n";
         std::generate(res[0].begin(), res[0].end(), generetor);
         std::generate(res[1].begin(), res[1].end(), generetor);
+        return res;
+    }
+
+
+    Eigen::Vector<T, Eigen::Dynamic> generateCoordinates2(size_t N) {
+        if (!N) {
+            return Eigen::Vector<T, Eigen::Dynamic>();
+        }
+        Eigen::Vector<T, Eigen::Dynamic> res(2*N);
+       // res[0] = std::vector<T>(N, 0);
+        //res[1] = std::vector<T>(N, 0);
+        std::function<T()> generetor = [&]() { return distribution_(rng_); };
+        //std::cout<<generetor()<<"\t"<<distribution_(rng_)<<"\n";
+        std::generate(res.begin(), res.end(), generetor);
         return res;
     }
 
