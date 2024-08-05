@@ -19,9 +19,9 @@
 #include "../common/constants.h"
 using const_::FloatType;
 template<typename T>
-using geNsolution = std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>;
+using geNsolution = Eigen::Vector<T , Eigen::Dynamic>;
 template<typename T>
-using geNcoordinates = std::array<std::vector<T>, 2>;
+using geNcoordinates = std::vector<Eigen::Vector<T , Eigen::Dynamic>>;
 using solution = geNsolution<FloatType>;
 using coordinates = geNcoordinates<FloatType>;
 
@@ -64,16 +64,16 @@ public:
 
     void generateCoords(Generator<FloatType> &gen);
 
-    template<typename... Args>
+    template<typename... Args>//todo переделать часть в сервере для генерации какашек
     void generateGeneralized(std::function<coordinates(Args...)> &functor, Args ... args) {
         //clocks_[0].tik();
         coords_.resize(Nsym_.value());
         for (int i = 0; i < Nsym_; ++i) {
             coords_[i] = functor(args...);
         }
-        if (coords_[0][0].size() != N_)//может ввести отдельнкю спецаилизацтю для данного случая
+        if (coords_[0].size() != 2*N_.value())//может ввести отдельнкю спецаилизацтю для данного случая
         {
-            N_ = coords_[0][0].size();
+            N_ = coords_[0].size()/2;
         }
 
         //clocks_[0].tak();
@@ -86,7 +86,7 @@ public:
     //логика use if exists create if not(саму эту логику надо добавить в менеджер бд)
 
 
-    std::vector<array<vector<FloatType>, 2>> &getCoordRef() {
+    std::vector<Eigen::Vector<FloatType , Eigen::Dynamic>> &getCoordRef() {
         return coords_;
     }
 
@@ -100,8 +100,7 @@ private:
     static std::fstream openOrCreateFile(std::string filename);
 
     static std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end);
-
-    std::vector<array<vector<FloatType>, 2>> coords_;
+    std::vector<Eigen::Vector<FloatType , Eigen::Dynamic>> coords_;
     std::vector<solution> solutions_;
     std::optional<std::string> subdir_;
     std::optional<std::string> dir_;

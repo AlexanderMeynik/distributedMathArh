@@ -23,21 +23,22 @@ void TestRunner::createSubDirectory(const string &dirname, const string &subdire
 void TestRunner::generateCoords(Generator<FloatType> &gen) {
 
     //clocks_[0].tik();
-    coords_.resize(Nsym_.value());
+    /*coords_.resize(Nsym_.value());
     for (int i = 0; i < Nsym_; ++i) {
         coords_[i] = gen.generate();//todo пока так, можно потмо придумать способ с шаблонами, чтобы быдо побыстрее
     }
     if(coords_[0][0].size()!=N_)//может ввести отдельнкю спецаилизацтю для данного случая
     {
         N_=coords_[0][0].size();
-    }
+    }*///todo remove
 
    // clocks_[0].tak();
 }
 
 
 TestRunner::TestRunner() {
-    coords_ = std::vector<array<vector<FloatType>, 2>>();
+    coords_ =coordinates();
+           // std::vector<array<vector<FloatType>, 2>>();
     solutions_ = std::vector<solution>();
     subdir_ = std::nullopt;
     dir_ = std::nullopt;
@@ -59,14 +60,14 @@ void TestRunner::solve() {
 //#pragma omp parallel for default(shared)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.setNewCoordinates(coords_[i]);
-            solutions_[i] = d1.solve_();
+            solutions_[i] = d1.solve3();
         }
     }
     pp:
     for (int i = 0; i < Nsym_.value(); ++i) {
         d1.setNewCoordinates(coords_[i]);
 
-        solutions_[i] = d1.solve_();
+        solutions_[i] = d1.solve3();
         auto filename = getString(this->dir_.value(), "sim", i, "txt");
         auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";
@@ -131,7 +132,8 @@ void TestRunner::generateFunction() {
             auto fout = openOrCreateFile(filename);
             mesh.printDec(fout);
             mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));
-            plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
+            //plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
+            //todo переделать
             fout.close();
         }
 

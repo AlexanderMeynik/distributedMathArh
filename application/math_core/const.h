@@ -22,10 +22,11 @@ struct params {
 };
 
 template<class T>
-void printCoordinates(std::ostream &out,std::array<std::vector<T>, 2> &xi) {
+void printCoordinates(std::ostream &out,Eigen::Vector<T , Eigen::Dynamic> &xi) {
     out << "Координаты диполей\n";
-    for (int i = 0; i < xi[0].size(); ++i) {
-        out << xi[0][i] << '\t' << xi[1][i] << "\n";
+    auto N=xi.size()/2;
+    for (int i = 0; i <N; ++i) {
+        out << xi[i] << '\t' << xi[i+N] << "\n";
     }
 }
 
@@ -74,22 +75,22 @@ void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::
 
 
 template<class T>
-void printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
+void printSolutionFormat1(std::ostream &out,Eigen::Vector<T, Eigen::Dynamic>& solution_) {
     out << "Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
-    int N_=solution_[0].size()/2.0;
+    int N_=solution_.size()/4.0;
     for (int i = 0; i < N_; ++i) {
-        auto cx = sqrt(solution_[0].coeffRef(2 * i) * solution_[0].coeffRef(2 * i) +
-                       solution_[1].coeffRef(2 * i) * solution_[1].coeffRef(2 * i));
-        auto cy = sqrt(solution_[0].coeffRef(2 * i + 1) * solution_[0].coeffRef(2 * i + 1) +
-                       solution_[1].coeffRef(2 * i + 1) * solution_[1].coeffRef(2 * i + 1));
+        auto cx = sqrt(solution_.coeffRef(2 * i) * solution_.coeffRef(2 * i) +
+                       solution_.coeffRef(2 * i+2*N_) * solution_.coeffRef(2 * i+2*N_));
+        auto cy = sqrt(solution_.coeffRef(2 * i + 1) * solution_.coeffRef(2 * i + 1) +
+                       solution_.coeffRef(2 * i + 1+2*N_) * solution_.coeffRef(2 * i + 1+2*N_));
         IosStatePreserve state(out);
         out << std::scientific;
 
-        out << solution_[0].coeffRef(2 * i) << "\t"
-            << solution_[1].coeffRef(2 * i) << "\t"
+        out << solution_.coeffRef(2 * i) << "\t"
+            << solution_.coeffRef(2 * i+2*N_) << "\t"
             << cx << "\n";
-        out << solution_[0].coeffRef(2 * i + 1) << "\t"
-            << solution_[1].coeffRef(2 * i + 1) << "\t"
+        out << solution_.coeffRef(2 * i + 1) << "\t"
+            << solution_.coeffRef(2 * i + 1+2*N_) << "\t"
             << cy << "\n";
     }
 }

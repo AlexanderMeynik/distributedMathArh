@@ -70,34 +70,13 @@ namespace dipoles {
         //определить где и как будем хранить
         Dipoles() = default;
 
-        [[deprecated("use constructor that accepts Eigen::Vector<T, Eigen::Dynamic>")]]Dipoles(int N, std::array<std::vector<T>, 2> &xi);
         Dipoles(int N, Eigen::Vector<T, Eigen::Dynamic> &xi);
-        void setNewCoordinates(std::array<std::vector<T>, 2> &xi);
+        void setNewCoordinates(Eigen::Vector<T, Eigen::Dynamic> &xi);
 
-        void getFullFunction(const std::array<std::vector<T>, 2> &xi,
-                             const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
+        void getFullFunction(const Eigen::Vector<T, Eigen::Dynamic> &xi,
+                             const Eigen::Vector<T, Eigen::Dynamic> &sol);
 
-        std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solve_() {
-            //assert(isSymmetric(M1_));
-            //assert(isSymmetric(M2_));
-           // assert(isSymmetric(M1_*M2_));
 
-            auto tt = (M1_ * M1_ + M2_ * M2_).lu();
-            std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solution_;
-            solution_[0] = tt.solve(M1_ * f1 + M2_ * f2);
-            solution_[1] = tt.solve(M1_ * f2 - M2_ * f1);
-            return solution_;
-        };
-
-        Eigen::Vector<T, Eigen::Dynamic> solve2()
-        {
-            auto tt = (M1_ * M1_ + M2_ * M2_).lu();
-           Eigen::Vector<T, Eigen::Dynamic> solution_;
-           solution_.resize(4*N_);
-            solution_.block(0,0,2*N_,1) = tt.solve(M1_ * f1 + M2_ * f2);
-            solution_.block(2*N_,0,2*N_,1) = tt.solve(M1_ * f2 - M2_ * f1);
-            return solution_;
-        }
 
         Eigen::Vector<T, Eigen::Dynamic> solve3()
         {
@@ -121,7 +100,6 @@ namespace dipoles {
 
 
 
-        std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
 
 
         Eigen::Vector<T, Eigen::Dynamic>& getRightPart2();
@@ -134,12 +112,7 @@ namespace dipoles {
         void printRightPart(std::ostream &out, Eigen::IOFormat &format);
 
     private:
-        T getDistance(int i1, int i2,std::array<std::vector<T>, 2> &xi) {
-            T d1 = xi[0][i1] - xi[0][i2];
-            T d2 = xi[1][i1] - xi[1][i2];
 
-            return std::sqrt(d1 * d1 + d2 * d2);
-        };
 
         T getDistance(int i1, int i2,Eigen::Vector<T, Eigen::Dynamic> &xi) {
             T d1 = xi[i1] - xi[i2];
@@ -148,11 +121,7 @@ namespace dipoles {
             return std::sqrt(d1 * d1 + d2 * d2);
         };
 
-        Eigen::Vector<T, 2> getRIM(int i, int m,std::array<std::vector<T>, 2> &xi) {
-            T d1 = xi[0][i] - xi[0][m];
-            T d2 = xi[1][i] - xi[1][m];
-            return {d1, d2};
-        };
+
 
 
         Eigen::Vector<T, 2> getRIM(int i, int m,Eigen::Vector<T, Eigen::Dynamic> &xi) {
@@ -168,31 +137,21 @@ namespace dipoles {
             M2_.resize(2 * N_, 2 * N_);
 
 
-            f1.resize(2 * N_);
-            f2.resize(2 * N_);
+
             f.resize(4*N_);
             for (int i = 0; i < N_; ++i) {
                 f(2*i)= an * params<T>::eps;
                 f(2*i+1)= 0;
                 f(2*i+2*N_)= 0;
                 f(2*i+1+2*N_)= an * params<T>::eps;
-
-                f1(2 * i) = an * params<T>::eps;
-                f1(2 * i + 1) = 0;
-                f2(2 * i) = 0;
-                f2(2 * i + 1) = an *  params<T>::eps;
             }
         }
-        //std::array<std::vector<Tr>, 2> xi_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M1_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> M2_;
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> matrixx;
-        //std::array<Eigen::Vector<Tr, Eigen::Dynamic>, 2> solution_;
 
         std::function<T(T, T, T)> Ifunction_;
         std::function<T(T, T)> I2function_;
-        Eigen::Vector<T, Eigen::Dynamic> f1;
-        Eigen::Vector<T, Eigen::Dynamic> f2;
 
         Eigen::Vector<T, Eigen::Dynamic> f;
 
@@ -203,7 +162,7 @@ namespace dipoles {
         getMatrixes(const Eigen::Vector<T, 2> &rim, T rMode, Eigen::Matrix<T, 2, 2> &K1,
                     Eigen::Matrix<T, 2, 2> &K2) const;
 
-        void setMatrixes(std::array<std::vector<T>, 2> &xi);
+        void setMatrixes(Eigen::Vector<T, Eigen::Dynamic> &xi);
     };
 
 
@@ -217,7 +176,7 @@ namespace dipoles {
 
     template<class T>
     void Dipoles<T>::printRightPart(std::ostream &out, Eigen::IOFormat &format) {
-        out << "Правая часть\n" << this->f1.format(format) << '\n' << this->f2.format(format)
+        out << "Правая часть\n" << this->f.format(format)
             << "\n\n";
     }
 
@@ -229,17 +188,17 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::setNewCoordinates(std::array<std::vector<T>, 2> &xi) {
+    void Dipoles<T>::setNewCoordinates(Eigen::Vector<T, Eigen::Dynamic> &xi) {
         if (an==params<T>::a) {
-            this->N_ = xi[0].size();
+            this->N_ = xi.size();
             initArrays();
         }
         setMatrixes(xi);
     }
 
-
     template<class T>
-    void Dipoles<T>::setMatrixes(std::array<std::vector<T>, 2> &xi) {
+    void Dipoles<T>::setMatrixes(Eigen::Vector<T, Eigen::Dynamic> &xi)
+    {
         vector<pair<int, int>> sectors(4);
         sectors[0] = {0, 0};
         sectors[1] = {0, 2 * N_};
@@ -287,22 +246,20 @@ namespace dipoles {
     }
 
 
-
-
     template<class T>
-    void Dipoles<T>::getFullFunction(const std::array<std::vector<T>, 2> &xi,
-                                     const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol) {
-        this->Ifunction_ = [&xi,&sol](T theta, T phi, T t) {
-            int N = xi[0].size();
+    void Dipoles<T>::getFullFunction(const Eigen::Vector<T, Eigen::Dynamic> &xi,
+                                     const Eigen::Vector<T, Eigen::Dynamic> &sol) {
+        this->Ifunction_ = [&xi,&sol,this](T theta, T phi, T t) {
+            int N = this->N_;
             T res = 0;
             T s[2] = {cos(phi), sin(phi)};
             T ress[3] = {0, 0, 0};
             for (int i = 0; i < N; ++i) {
-                T ri[2] = {xi[0][i], xi[1][i]};
+                T ri[2] = {xi[i], xi[i+N]};
                 T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
                 T t0 = t - ys / params<T>::c;
-                T Ai[2] = {sol[0].coeffRef(2 * i), sol[0].coeffRef(2 * i + 1)};
-                T Bi[2] = {sol[1].coeffRef(2 * i), sol[1].coeffRef(2 * i + 1)};
+                T Ai[2] = {sol.coeffRef(2 * i), sol.coeffRef(2 * i + 1)};
+                T Bi[2] = {sol.coeffRef(2 * i+2*N), sol.coeffRef(2 * i + 1+2*N)};
 
 
                 T Di[2] = {Ai[0] * cos( params<T>::omega * t0) + Bi[0] * sin(params<T>::omega * t0),
@@ -334,8 +291,8 @@ namespace dipoles {
         };
 
 
-        this->I2function_ = [&xi,&sol](T phi, T theta) {
-            int N = xi[0].size();
+        this->I2function_ = [&xi,&sol,this](T phi, T theta) {
+            int N =this->N_;
             T omega0 = params<T>::omega;
             T T0 = M_PI * 2 / omega0;
             T res;
@@ -347,14 +304,14 @@ namespace dipoles {
             Eigen::Vector<T, 2> s = {cos(phi),
                                      sin(phi)};
             for (int i = 0; i < N; ++i) {
-                Eigen::Vector<T, 2> ri = {xi[0][i],
-                                          xi[1][i]};
+                Eigen::Vector<T, 2> ri = {xi[i],
+                                          xi[i+N]};
                 T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
 
-                Eigen::Vector<T, 2> Ai = {sol[0].coeffRef(2 * i),
-                                          sol[0].coeffRef(2 * i + 1)};
-                Eigen::Vector<T, 2> Bi = {sol[1].coeffRef(2 * i),
-                                          sol[1].coeffRef(2 * i + 1)};
+                Eigen::Vector<T, 2> Ai = {sol.coeffRef(2 * i),
+                                          sol.coeffRef(2 * i + 1)};
+                Eigen::Vector<T, 2> Bi = {sol.coeffRef(2 * i+2*N),
+                                          sol.coeffRef(2 * i + 2*N)};
                 T argument = omega0 * ys / params<T>::c;
                 T Ais = Ai.dot(s);
                 T Bis = Bi.dot(s);
@@ -393,13 +350,13 @@ namespace dipoles {
                 Eigen::Vector<T, 2> BAjs;
                 for (int j = 0; j < i; ++j) {
 
-                    rj = {xi[0][j],
-                          xi[1][j]};
+                    rj = {xi[j],
+                          xi[j+N]};
                     ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
-                    Aj = {sol[0].coeffRef(2 * j),
-                          sol[0].coeffRef(2 * j + 1)};
-                    Bj = {sol[1].coeffRef(2 * j),
-                          sol[1].coeffRef(2 * j + 1)};
+                    Aj = {sol.coeffRef(2 * j),
+                          sol.coeffRef(2 * j + 1)};
+                    Bj = {sol.coeffRef(2 * j+2*N_),
+                          sol.coeffRef(2 * j + 1+2*N_)};
 
                     argumentj = omega0 * ysj / params<T>::c;
                     Ajs = Aj.dot(s);
@@ -465,21 +422,11 @@ namespace dipoles {
         return matrixx;
     }
 
-    template<class T>
-    std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> Dipoles<T>::getRightPart() {
 
-        return {f1, f2};
-    }
 
     template<class T>
     Eigen::Vector<T, Eigen::Dynamic>& Dipoles<T>::getRightPart2() {
         return f;
-    }
-    template<class T>
-    Dipoles<T>::Dipoles(int N, std::array<std::vector<T>, 2> &xi):N_(
-            N) {
-        initArrays();
-        setMatrixes(xi);
     }
 
     template<class T>
@@ -488,50 +435,7 @@ namespace dipoles {
         initArrays();//todo move matrix init
 
 
-        vector<pair<int, int>> sectors(4);
-        sectors[0] = {0, 0};
-        sectors[1] = {0, 2 * N_};
-        sectors[2] = {2 * N_, 0};
-        sectors[3] = {2 * N_, 2 * N_};
-        for (int I = 0; I < N_; ++I) {//MAC
-            for (int M = 0; M < N_; ++M) {
-                if (I == M) {
-                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::omega0 * params<T>::omega0 - params<T>::omega * params<T>::omega);
-                    M1_.block(2 * I, 2 * M, 2, 2) = id;
-                } else {
-
-                    Eigen::Vector<T, 2> rim = getRIM(M, I,xi);
-                    T rMode = getDistance(I, M,xi);
-                    Eigen::Matrix<T, 2, 2> K1;
-                    Eigen::Matrix<T, 2, 2> K2;
-                    getMatrixes(rim, rMode, K1, K2);
-                    T arg = params<T>::omega * rMode / params<T>::c;
-                    auto tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
-                    M1_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
-                }
-            }
-        }
-
-        for (int I = 0; I < N_; ++I) {//MBC
-            for (int M = 0; M < N_; ++M) {
-                if (I == M) {
-                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::yo * params<T>::omega);
-                    M2_.block(2 * I, 2 * M, 2, 2) = -id;
-                } else {
-
-                    Eigen::Vector<T, 2> rim = getRIM(M, I,xi);
-                    T rMode = getDistance(I, M,xi);
-                    Eigen::Matrix<T, 2, 2> K1;
-                    Eigen::Matrix<T, 2, 2> K2;
-                    getMatrixes(rim, rMode, K1, K2);
-                    T arg = params<T>::omega * rMode / params<T>::c;
-                    auto tmpmatr = -an * (K2 * cos(arg) + K1 * sin(arg));
-
-                    M2_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
-                }
-
-            }
-        }
+        setMatrixes(xi);
     }
 
 }

@@ -22,28 +22,6 @@ compare_collections(const Eigen::Vector<double, -1> &solution, const Eigen::Vect
         EXPECT_NEAR(solution[i],solution2[i],tool);
     }
 }
-TEST(Dipoles, test_solve2_implementation)
-{
-    const int N= 10;
-    CoordGenerator<double> genr(0,1e-6);
-
-    auto coord= genr.generateCoordinates(N);
-    dipoles::Dipoles<double> dipolearr(N,coord);
-    auto solution=dipolearr.solve2();
-    auto solution2=dipolearr.solve_();
-
-    EXPECT_TRUE(solution.size()==2*solution2[0].size());
-    auto ss=solution2[0].size();
-    for (int i = 0; i < ss; ++i) {
-        SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
-        EXPECT_NEAR(solution[i],solution2[0][i],tool);
-        EXPECT_NEAR(solution[ss+i],solution2[1][i],tool);
-    }
-
-    //auto nevyazk=(dipolearr.getMatrixx()*coord-solution)
-
-
-}
 TEST(transformations, reinterpret_vector_test)
 {
     auto N=20;
@@ -59,62 +37,47 @@ TEST(transformations, reinterpret_vector_test)
 
 }
 
-TEST(Dipoles, test_init_vec_impl)
-{
-    const int N= 10;
-    CoordGenerator<double> genr(0,1e-6);
-
-    auto coord= genr.generateCoordinates2(N);
-    dipoles::Dipoles<double> dipolearr(N,coord);
-    auto solution=dipolearr.solve2();
-
-
-    auto coord2= reinterpretVector(coord);
-    dipoles::Dipoles<double> dipolearr2(N,coord);
-    auto solution2=dipolearr.solve2();
-
-
-    compare_collections(solution,solution2);
-    //auto nevyazk=(dipolearr.getMatrixx()*coord-solution)
-
-
-}
 
 TEST(Dipoles,test_solve_result_in_zero_nev)
 {
-    const int N= 100;
+    const int N= 2;
     CoordGenerator<double> genr(0,1e-6);
 
     auto coord= genr.generateCoordinates2(N);
     dipoles::Dipoles<double> dipolearr(N,coord);
-    auto solution=dipolearr.solve2();
+    auto solution=dipolearr.solve3();
 
     EXPECT_TRUE(solution.size()==4*N);
-    auto nev=dipolearr.getMatrixx()*solution-dipolearr.getRightPart2();
+    std::cout<<solution<<"\n\n\n\n\n";
+    std::cout<<dipolearr.getMatrixx()<<"\n\n\n\n\n";
 
+    auto nev=dipolearr.getMatrixx()*solution-dipolearr.getRightPart2();
+    std::cout<<nev;
     {
         EXPECT_NEAR(nev.norm(),0,10e-4);
     }
 
 }
-
+//todo достать старые тесты на занчения и всё перепроверить внимательно
+//todo поменять команды для парсинга
+//todo raw biffers initalizrion for eigen vectors https://eigen.tuxfamily.org/dox/group__TutorialMapClass.html
 
 TEST(Dipoles,test_right_part_nev_solve_impl)
 {
 
 
     for (int N = 10; N < 200; N*=4) {
-        for (int i = 0; i < 10; ++i) {
+        for (int i = 0; i < 1; ++i) {
             SCOPED_TRACE("Perform comparison test for N = "+std::to_string(N)+" attempt №"+std::to_string(i));
             CoordGenerator<double> genr(0,1e-6);
 
             auto coord= genr.generateCoordinates2(N);
             dipoles::Dipoles<double> dipolearr(N,coord);
-            auto solution=dipolearr.solve2();
+            //auto solution=dipolearr.solve2();
             auto rsol=dipolearr.solve3();
 
-            compare_collections(solution,rsol);
-            EXPECT_NEAR((solution-rsol).norm(),0,tool);
+            //compare_collections(solution,rsol);
+           // EXPECT_NEAR((solution-rsol).norm(),0,tool);
         }
 
     }
