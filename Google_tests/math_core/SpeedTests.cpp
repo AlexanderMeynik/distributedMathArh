@@ -74,6 +74,24 @@ TEST(Dipoles, test_init_vec_impl)
 
 }
 
+TEST(Dipoles,test_solve_result_in_zero_nev)
+{
+    const int N= 100;
+    CoordGenerator<double> genr(0,1e-6);
+
+    auto coord= genr.generateCoordinates2(N);
+    dipoles::Dipoles<double> dipolearr(N,coord);
+    auto solution=dipolearr.solve2();
+
+    EXPECT_TRUE(solution.size()==4*N);
+    auto nev=dipolearr.getMatrixx()*solution-dipolearr.getRightPart2();
+
+    {
+        EXPECT_NEAR(nev.norm(),0,10e-4);
+    }
+
+}
+
 
 /*
 BOOST_AUTO_TEST_SUITE( speedTest )

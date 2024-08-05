@@ -117,6 +117,9 @@ namespace dipoles {
 
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
 
+
+        Eigen::Vector<T, Eigen::Dynamic> getRightPart2();
+
         const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &getMatrixx();
 
 
@@ -454,6 +457,12 @@ namespace dipoles {
         return {f1, f2};
     }
 
+    template<class T>
+    Eigen::Vector<T, Eigen::Dynamic> Dipoles<T>::getRightPart2() {
+        Eigen::Vector<T, Eigen::Dynamic> result(f1.size()+f2.size());
+        result<<f1,f2;
+        return result;
+    }
     template<class T>
     Dipoles<T>::Dipoles(int N, std::array<std::vector<T>, 2> &xi):N_(
             N) {
