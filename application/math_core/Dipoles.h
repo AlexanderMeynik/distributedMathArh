@@ -99,10 +99,16 @@ namespace dipoles {
             return solution_;
         }
 
-        Eigen::Vector<T, Eigen::Dynamic> getProduct()
+        Eigen::Vector<T, Eigen::Dynamic> solve3()
         {
-
+            auto tt = (M1_ * M1_ + M2_ * M2_).lu();
+            Eigen::Vector<T, Eigen::Dynamic> solution_;
+            solution_.resize(4*N_);
+            solution_.block(0,0,2*N_,1) = tt.solve(M1_ * f.block(0,0,2*N_,1) + M2_ * f.block(2*N_,0,2*N_,1));
+            solution_.block(2*N_,0,2*N_,1) = tt.solve(M1_ * f.block(2*N_,0,2*N_,1) - M2_ * f.block(0,0,2*N_,1));
+            return solution_;
         }
+
 
         const function<T(T, T, T)> &getIfunction() const {
             return Ifunction_;
@@ -118,7 +124,7 @@ namespace dipoles {
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> getRightPart();
 
 
-        Eigen::Vector<T, Eigen::Dynamic> getRightPart2();
+        Eigen::Vector<T, Eigen::Dynamic>& getRightPart2();
 
         const Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &getMatrixx();
 
@@ -164,7 +170,13 @@ namespace dipoles {
 
             f1.resize(2 * N_);
             f2.resize(2 * N_);
+            f.resize(4*N_);
             for (int i = 0; i < N_; ++i) {
+                f(2*i)= an * params<T>::eps;
+                f(2*i+1)= 0;
+                f(2*i+2*N_)= 0;
+                f(2*i+1+2*N_)= an * params<T>::eps;
+
                 f1(2 * i) = an * params<T>::eps;
                 f1(2 * i + 1) = 0;
                 f2(2 * i) = 0;
@@ -181,6 +193,8 @@ namespace dipoles {
         std::function<T(T, T)> I2function_;
         Eigen::Vector<T, Eigen::Dynamic> f1;
         Eigen::Vector<T, Eigen::Dynamic> f2;
+
+        Eigen::Vector<T, Eigen::Dynamic> f;
 
         T an = params<T>::a;
         int N_;
@@ -458,10 +472,8 @@ namespace dipoles {
     }
 
     template<class T>
-    Eigen::Vector<T, Eigen::Dynamic> Dipoles<T>::getRightPart2() {
-        Eigen::Vector<T, Eigen::Dynamic> result(f1.size()+f2.size());
-        result<<f1,f2;
-        return result;
+    Eigen::Vector<T, Eigen::Dynamic>& Dipoles<T>::getRightPart2() {
+        return f;
     }
     template<class T>
     Dipoles<T>::Dipoles(int N, std::array<std::vector<T>, 2> &xi):N_(
