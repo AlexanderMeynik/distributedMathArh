@@ -1,6 +1,3 @@
-//
-// Created by Lenovo on 23.04.2024.
-//
 
 #ifndef DIPLOM_TESTRUNNER_H
 #define DIPLOM_TESTRUNNER_H
@@ -21,7 +18,7 @@ using const_::FloatType;
 template<typename T>
 using geNsolution = Eigen::Vector<T , Eigen::Dynamic>;
 template<typename T>
-using geNcoordinates = std::vector<Eigen::Vector<T , Eigen::Dynamic>>;
+using geNcoordinates = Eigen::Vector<T , Eigen::Dynamic>;
 using solution = geNsolution<FloatType>;
 using coordinates = geNcoordinates<FloatType>;
 

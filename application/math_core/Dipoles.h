@@ -62,6 +62,7 @@ namespace dipoles {
 
 
 #include <cassert>
+#include <eigen3/Eigen/Geometry>
 
     template<class T>
     class Dipoles {
@@ -71,6 +72,8 @@ namespace dipoles {
         Dipoles() = default;
 
         Dipoles(int N, Eigen::Vector<T, Eigen::Dynamic> &xi);
+
+        Dipoles(int N, std::vector<T> &xi);
         void setNewCoordinates(Eigen::Vector<T, Eigen::Dynamic> &xi);
 
         void getFullFunction(const Eigen::Vector<T, Eigen::Dynamic> &xi,
@@ -80,12 +83,28 @@ namespace dipoles {
 
         Eigen::Vector<T, Eigen::Dynamic> solve3()
         {
-            auto tt = (M1_ * M1_ + M2_ * M2_).lu();
+           // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
+            Eigen::PartialPivLU tt= (M1_ * M1_ + M2_ * M2_).lu();
             Eigen::Vector<T, Eigen::Dynamic> solution_;
             solution_.resize(4*N_);
             solution_.block(0,0,2*N_,1) = tt.solve(M1_ * f.block(0,0,2*N_,1) + M2_ * f.block(2*N_,0,2*N_,1));
             solution_.block(2*N_,0,2*N_,1) = tt.solve(M1_ * f.block(2*N_,0,2*N_,1) - M2_ * f.block(0,0,2*N_,1));
             return solution_;
+        }
+
+       std::vector<T> solve4()
+        {
+            // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
+            Eigen::PartialPivLU tt= (M1_ * M1_ + M2_ * M2_).lu();
+            Eigen::Vector<T, Eigen::Dynamic> solution_;
+            solution_.resize(4*N_);
+            solution_.block(0,0,2*N_,1) = tt.solve(M1_ * f.block(0,0,2*N_,1) + M2_ * f.block(2*N_,0,2*N_,1));
+            solution_.block(2*N_,0,2*N_,1) = tt.solve(M1_ * f.block(2*N_,0,2*N_,1) - M2_ * f.block(0,0,2*N_,1));
+            std::vector<T> sol(solution_.size());
+            for (int i = 0; i < sol.size(); ++i) {
+                sol[i]=solution_[i];
+            }
+            return sol;//todo copy
         }
 
 
@@ -168,12 +187,6 @@ namespace dipoles {
 
 
 
-
-
-
-
-
-
     template<class T>
     void Dipoles<T>::printRightPart(std::ostream &out, Eigen::IOFormat &format) {
         out << "Правая часть\n" << this->f.format(format)
@@ -207,8 +220,8 @@ namespace dipoles {
         for (int I = 0; I < N_; ++I) {//MAC
             for (int M = 0; M < N_; ++M) {
                 if (I == M) {
-                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::omega0 * params<T>::omega0 - params<T>::omega * params<T>::omega);
-                    M1_.block(2 * I, 2 * M, 2, 2) = id;
+                    Eigen::Matrix<T, 2, 2> id = Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::omega0 * params<T>::omega0 - params<T>::omega * params<T>::omega);
+                    M1_.block(2 * I, 2 * M, 2, 2) = id;//todo block are 2 by 2
                 } else {
 
                     Eigen::Vector<T, 2> rim = getRIM(M, I,xi);
@@ -217,7 +230,7 @@ namespace dipoles {
                     Eigen::Matrix<T, 2, 2> K2;
                     getMatrixes(rim, rMode, K1, K2);
                     T arg = params<T>::omega * rMode / params<T>::c;
-                    auto tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
+                    Eigen::Matrix<T, 2, 2> tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
                     M1_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
                 }
             }
@@ -226,7 +239,7 @@ namespace dipoles {
         for (int I = 0; I < N_; ++I) {//MBC
             for (int M = 0; M < N_; ++M) {
                 if (I == M) {
-                    auto id = Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::yo * params<T>::omega);
+                    Eigen::Matrix<T, 2, 2> id = Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::yo * params<T>::omega);
                     M2_.block(2 * I, 2 * M, 2, 2) = -id;
                 } else {
 
@@ -236,7 +249,8 @@ namespace dipoles {
                     Eigen::Matrix<T, 2, 2> K2;
                     getMatrixes(rim, rMode, K1, K2);
                     T arg = params<T>::omega * rMode / params<T>::c;
-                    auto tmpmatr = -an * (K2 * cos(arg) + K1 * sin(arg));
+
+                    Eigen::Matrix<T, 2, 2> tmpmatr = -an * (K2 * cos(arg) + K1 * sin(arg));
 
                     M2_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
                 }
@@ -436,6 +450,17 @@ namespace dipoles {
 
 
         setMatrixes(xi);
+    }
+
+    template<class T>
+    Dipoles<T>::Dipoles(int N, vector<T> &xi) :N_(
+            N) {
+
+        initArrays();
+        Eigen::Vector<T, Eigen::Dynamic> txx= Eigen::Map<const Eigen::Vector<T, Eigen::Dynamic>>(xi.data(),xi.size());
+        //todo copy (not share)
+        setMatrixes(txx);
+
     }
 
 }

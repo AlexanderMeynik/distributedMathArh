@@ -38,7 +38,7 @@ int main(int argc, char* argv[]) {
         int N=a[0].size();
         Dipoles<double> d(N,a);
 
-        auto solut2= d.solve_();//todo?
+        auto solut2= d.solve3();//todo?
         //printToFile<double>(N, a, d, dirname,i,verbose);
     }
 

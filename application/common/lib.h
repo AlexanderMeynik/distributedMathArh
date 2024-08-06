@@ -190,6 +190,72 @@ const static std::map<std::string, state_t> stringToState = {
         {"print",      state_t::print_},
 };
 
+template<class T, template<typename> typename Container>
+vector<Container<T>> parseConf2(string &filename) {
+    std::ifstream in(filename);
+    char c = in.get();
+    assert(c == 'C');
+    int Nconf;
+    in >> Nconf;
+    std::vector<Container<T>> avec(Nconf);
+    std::vector<int> Nvec(Nconf);
+    for (int j = 0; j < Nconf; ++j) {
+
+        int N;
+        in >> N;
+        Nvec[j] = N;
+        avec[j].resize(2*N);
+        //avec[j] = Container<T>(2*N,0);
+
+        if (in.peek() == 'l') {
+            in.get();
+            T lim[4];
+            in >> lim[0] >> lim[1] >> lim[2] >> lim[3];
+            T step[2] = {(lim[1] - lim[0]) / (N - 1), (lim[3] - lim[2]) / (N - 1)};
+            for (int i = 0; i < N; ++i) {
+
+                avec[j][i] = lim[0];
+                avec[j][i+N] = lim[2];
+                lim[0] += step[0];
+                lim[2] += step[1];
+            }
+        } else if (in.peek() == 'g') {
+            int N1 = 0;
+            in.get();
+            in >> N1;
+            int N2 = N / N1;
+            T lim[4];
+            in >> lim[0] >> lim[1] >> lim[2] >> lim[3];
+            T start[2] = {lim[0], lim[2]};
+            T step[2] = {(lim[1] - lim[0]) / (N1 - 1), (lim[3] - lim[2]) / (N2 - 1)};
+            for (int i = 0; i < N1; ++i) {
+                for (int k = 0; k < N2; ++k) {
+                    avec[j][i * N2 + k] = lim[0];
+                    avec[j][i * N2 + k+N] = lim[2];
+                    lim[2] += step[1];
+                }
+                lim[2] = start[1];
+                lim[0] += step[0];
+            }
+        } else {
+            for (int i = 0; i < N; ++i) {
+                in >> avec[j][i];
+            }
+            c = in.get();
+            if (c != '\n') {
+                if (c == '\r' && in.peek() != '\n') {
+                    errno = -1;
+                    std::cout << "Errno=" << errno;
+                }
+            }
+
+            for (int i = 0; i < N; ++i) {
+                in >> avec[j][i+N];
+            }
+        }
+    }
+    return avec;
+}
 
 template<class T>
 vector<std::array<std::vector<T>, 2>> parseConf(string &filename) {

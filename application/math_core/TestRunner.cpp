@@ -37,7 +37,7 @@ void TestRunner::generateCoords(Generator<FloatType> &gen) {
 
 
 TestRunner::TestRunner() {
-    coords_ =coordinates();
+    coords_ =std::vector<coordinates>();
            // std::vector<array<vector<FloatType>, 2>>();
     solutions_ = std::vector<solution>();
     subdir_ = std::nullopt;
