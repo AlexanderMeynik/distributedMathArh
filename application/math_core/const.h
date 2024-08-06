@@ -30,10 +30,10 @@ void printCoordinates(std::ostream &out,Eigen::Vector<T , Eigen::Dynamic> &xi) {
     }
 }
 
-
+/*
 template<class T>
 void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
-
+*/
 
 template <class T>
 void printSolutionFormat1(std::ostream &out,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
@@ -69,8 +69,8 @@ std::istream& operator>>(std::istream& in, std::array<Eigen::Vector<T, Eigen::Dy
 
 
 template<class T>
-void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_) {
-    out << "Вектор решения\n" << solution_[0].format(format) << '\n' << solution_[1].format(format) << "\n\n";
+void printSolution(std::ostream &out,Eigen::Vector<T, Eigen::Dynamic>& solution_,Eigen::IOFormat format=Eigen::IOFormat()) {
+    out << "Вектор решения\n" << solution_.format(format) << "\n\n";
 }
 
 

@@ -98,20 +98,32 @@ TEST(verification,test_on_10_basik_conf)
     std::string filename="config.txt";
 
 
+
     auto avec= parseConf2<double,DynVector>(filename);
     std::string dirname=filename.erase(filename.find('.'));
-    std::filesystem::create_directory(dirname+"osas");
+    auto subdir=dirname+"osas";
+    std::filesystem::create_directory(subdir);
     for (int i = 0; i < avec.size(); ++i) {
+        std::ofstream out(subdir+"/data"+std::to_string(i)+".txt");
         dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
         auto solution=dd.solve3();
+        out<<dd.getMatrixx()<<"\n\n";
+        printSolutionFormat1(out,solution);
+        out<<"\n\n";
+        printSolution(out,solution);
+        out<<"\n\n";
         std::vector<double> solvec(solution.begin(),solution.end());
         dd.getFullFunction(avec[i],solution);
-        auto func=dd.getI2function();
+        auto func=dd.getI2function();//тут происходит пиздец(почему?)
 
         MeshProcessor<double> meshProcessor;
         meshProcessor.generateNoInt(func);
         auto mesh1=meshProcessor.getMeshsph();//todo что-то не то промходит с функцийе(тест 1)
         auto mesh2=meshProcessor.getMeshdec();
+        meshProcessor.printDec(out);
+        out.close();
+        meshProcessor.plotSpherical(subdir+"/plot"+std::to_string(i)+".png");
+
 
 
     }
