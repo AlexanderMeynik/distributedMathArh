@@ -78,8 +78,21 @@ namespace dipoles {
 
         void getFullFunction(const Eigen::Vector<T, Eigen::Dynamic> &xi,
                              const Eigen::Vector<T, Eigen::Dynamic> &sol);
+        void getFullFunction2(const std::array<std::vector<T>, 2> &xi,
+                         const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol);
+        std::array<Eigen::Vector<T, Eigen::Dynamic>,2> solve2()
+        {
 
-
+            // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
+            Eigen::PartialPivLU tt= (M1_ * M1_ + M2_ * M2_).lu();
+            Eigen::Vector<T, Eigen::Dynamic> solution_1;
+            Eigen::Vector<T, Eigen::Dynamic> solution_2;
+            solution_1.resize(2*N_);
+            solution_2.resize(2*N_);
+            solution_1 = tt.solve(M1_ * f.block(0,0,2*N_,1) + M2_ * f.block(2*N_,0,2*N_,1));
+            solution_2 = tt.solve(M1_ * f.block(2*N_,0,2*N_,1) - M2_ * f.block(0,0,2*N_,1));
+            return {solution_1,solution_2};
+        }
 
         Eigen::Vector<T, Eigen::Dynamic> solve3()
         {
@@ -145,7 +158,7 @@ namespace dipoles {
 
         Eigen::Vector<T, 2> getRIM(int i, int m,Eigen::Vector<T, Eigen::Dynamic> &xi) {
             T d1 = xi[i] - xi[m];
-            T d2 = xi[i+N_] - xi[N_+m];
+            T d2 = xi[i+N_] - xi[m+N_];
             return {d1, d2};
         };
 
@@ -203,7 +216,7 @@ namespace dipoles {
     template<class T>
     void Dipoles<T>::setNewCoordinates(Eigen::Vector<T, Eigen::Dynamic> &xi) {
         if (an==params<T>::a) {
-            this->N_ = xi.size();
+            this->N_ = xi.size()/2;
             initArrays();
         }
         setMatrixes(xi);
@@ -257,6 +270,159 @@ namespace dipoles {
 
             }
         }
+    }
+
+
+    template<class T>
+    void Dipoles<T>::getFullFunction2(const std::array<std::vector<T>, 2> &xi,
+                                     const std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol) {
+        this->Ifunction_ = [&xi,&sol](T theta, T phi, T t) {
+            int N = xi[0].size();
+            T res = 0;
+            T s[2] = {cos(phi), sin(phi)};
+            T ress[3] = {0, 0, 0};
+            for (int i = 0; i < N; ++i) {
+                T ri[2] = {xi[0][i], xi[1][i]};
+                T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
+                T t0 = t - ys / params<T>::c;
+                T Ai[2] = {sol[0].coeffRef(2 * i), sol[0].coeffRef(2 * i + 1)};
+                T Bi[2] = {sol[1].coeffRef(2 * i), sol[1].coeffRef(2 * i + 1)};
+
+
+                T Di[2] = {Ai[0] * cos((T) params<T>::omega * t0) + Bi[0] * sin((T) params<T>::omega * t0),
+                           Ai[1] * cos((T) params<T>::omega * t0) + Bi[1] * sin((T) params<T>::omega * t0)};
+
+                T vi[2] = {(T) params<T>::omega * (Bi[0] * cos((T) params<T>::omega * t0) - Ai[0] * sin((T) params<T>::omega * t0)) / params<T>::c,
+                           (T) params<T>::omega * (Bi[1] * cos((T) params<T>::omega * t0) - Ai[1] * sin((T) params<T>::omega)) / params<T>::c};
+                T ai[2] = {-pow((T) params<T>::omega, 2) * Di[0], -pow((T) params<T>::omega, 2) * Di[1]};
+
+                T vsi = vi[0] * s[0] + vi[1] * s[1];
+                T asi = ai[0] * s[0] + ai[1] * s[1];
+
+                for (int coord = 0; coord < 2; ++coord) {
+                    T ttt = ai[coord] * (vsi * sin(theta) - 1) +
+                            s[coord] * asi * pow(sin(theta), 2) -
+                            vi[coord] * asi * sin(theta);
+                    ress[coord] += ttt;
+                }
+
+                T t3 = asi * sin(theta) * cos(theta);
+                ress[2] += t3;
+            }
+            for (T elem: ress) {
+                res += elem * elem;
+            }
+            return res;
+        };
+
+
+        this->I2function_ = [&xi,&sol](T phi, T theta) {
+            int N = xi[0].size();
+            T omega0 = params<T>::omega;
+            T T0 = M_PI * 2 / omega0;
+            T res;
+            Eigen::Vector<T, 2> resxy = {0.0, 0.0};
+            T resz = 0.0;
+            T o3dc = pow(omega0, 3) / params<T>::c;
+            T o2 = pow(omega0, 2);
+            T sinth2 = pow(sin(theta), 2);
+            Eigen::Vector<T, 2> s = {cos(phi),
+                                     sin(phi)};
+            for (int i = 0; i < N; ++i) {
+                Eigen::Vector<T, 2> ri = {xi[0][i],
+                                          xi[1][i]};
+                T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
+
+                Eigen::Vector<T, 2> Ai = {sol[0].coeffRef(2 * i),
+                                          sol[0].coeffRef(2 * i + 1)};
+                Eigen::Vector<T, 2> Bi = {sol[1].coeffRef(2 * i),
+                                          sol[1].coeffRef(2 * i + 1)};
+                T argument = omega0 * ys / params<T>::c;
+                T Ais = Ai.dot(s);
+                T Bis = Bi.dot(s);
+                Eigen::Vector<T, 2> ABis = Ai * Bis;
+                Eigen::Vector<T, 2> BAis = Bi * Ais;
+
+                Eigen::Vector<T, 2> Pc1i = ((s * Ais * sinth2 - Ai) * cos(argument) -
+                                            (s * Bis * sinth2 - Bi) * sin(argument));
+                Eigen::Vector<T, 2> Ps1i = ((s * Ais * sinth2 - Ai) * sin(argument) +
+                                            (s * Bis * sinth2 - Bi) * cos(argument));
+                Eigen::Vector<T, 2> Pcomi = -(omega0 / params<T>::c) * (sin(theta)) * (ABis - BAis);
+
+                T Pci = (Ais * cos(argument) - Bis * sin(argument));
+                T Psi = (Ais * sin(argument) + Bis * cos(argument));
+
+                Eigen::Vector<T, 2> rj;
+                T ysj;
+                Eigen::Vector<T, 2> Aj;
+                Eigen::Vector<T, 2> Bj;
+                T argumentj;
+
+                T Ajs;
+                T Bjs;
+
+
+                T Pcj;
+                T Psj;
+
+
+                Eigen::Vector<T, 2> Pc1j;
+                Eigen::Vector<T, 2> Ps1j;
+                Eigen::Vector<T, 2> Pcomj;
+
+
+                Eigen::Vector<T, 2> ABjs;
+                Eigen::Vector<T, 2> BAjs;
+                for (int j = 0; j < i; ++j) {
+
+                    rj = {xi[0][j],
+                          xi[1][j]};
+                    ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
+                    Aj = {sol[0].coeffRef(2 * j),
+                          sol[0].coeffRef(2 * j + 1)};
+                    Bj = {sol[1].coeffRef(2 * j),
+                          sol[1].coeffRef(2 * j + 1)};
+
+                    argumentj = omega0 * ysj / params<T>::c;
+                    Ajs = Aj.dot(s);
+                    Bjs = Bj.dot(s);
+
+                    ABjs = Aj * Bjs;
+                    BAjs = Bi * Ajs;
+
+                    Pcj = (Ajs * cos(argumentj) - Bjs * sin(argumentj));
+                    Psj = (Ajs * sin(argumentj) + Bjs * cos(argumentj));
+
+
+                    Pc1j = ((s * Ajs * sinth2 - Aj) * cos(argumentj) -
+                            (s * Bjs * sinth2 - Bj) * sin(argumentj));
+                    Ps1j = ((s * Ajs * sinth2 - Aj) * sin(argumentj) +
+                            (s * Bjs * sinth2 - Bj) * cos(argumentj));
+                    Pcomj = -(omega0 / params<T>::c) * (sin(theta)) * (ABjs - BAjs);
+
+
+                    Eigen::Vector<T, 2> rij_xy =
+                            Pc1i.cwiseProduct(Pc1j) + Ps1i.cwiseProduct(Ps1j)
+                            + 2 * Pcomi.cwiseProduct(Pcomj);
+
+                    T rij_z = (Pci * Pcj + Psi * Psj);
+                    resz += rij_z;
+                    resxy += rij_xy;
+                }
+                Eigen::Vector<T, 2> ri_xy =
+                        (Pc1i.cwiseProduct(Pc1i) + Ps1i.cwiseProduct(Ps1i)
+                         + 2 * Pcomi.cwiseProduct(Pcomi)) / 2.0;
+                resxy += ri_xy;
+
+                T ri_xz = (Pci * Pci + Psi * Psi) / 2;
+                resz += ri_xz;
+            }
+            resxy = resxy * T0 * o2 * o2;
+            resz = resz * T0 * (o2 * o2 * pow(sin(theta) * cos(theta), 2));
+            res = resxy.sum() + resz;
+            return res;
+
+        };
     }
 
 
