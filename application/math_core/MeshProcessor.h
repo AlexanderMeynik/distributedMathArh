@@ -133,7 +133,7 @@ private:
 
     static constexpr T philims[2] = {0, M_PI * 2};
     static constexpr T thelims[2] = {0, M_PI_2};
-    static constexpr T steps[2] = {M_PI / 12, M_PI / 120};
+    static constexpr T steps[2] = {M_PI / 12, M_PI / 12};
     static constexpr T nums[2] = {(philims[1] - philims[0]) / (steps[0]) + 1, (thelims[1] - thelims[0]) / (steps[1]) + 1};
     static constexpr const T rr = 2 * M_PI / params<T>::omega;
     static constexpr const T step = M_PI / 12;

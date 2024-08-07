@@ -96,7 +96,7 @@ namespace dipoles {
 
         Eigen::Vector<T, Eigen::Dynamic> solve3()
         {
-           // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
+           // auto tt = (M1_ * M1_ + M2_ * M2_).lu();
             Eigen::PartialPivLU tt= (M1_ * M1_ + M2_ * M2_).lu();
             Eigen::Vector<T, Eigen::Dynamic> solution_;
             solution_.resize(4*N_);
@@ -107,7 +107,7 @@ namespace dipoles {
 
        std::vector<T> solve4()
         {
-            // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
+            // auto tt = (M1_ * M1_ + M2_ * M2_).lu();
             Eigen::PartialPivLU tt= (M1_ * M1_ + M2_ * M2_).lu();
             Eigen::Vector<T, Eigen::Dynamic> solution_;
             solution_.resize(4*N_);
@@ -429,8 +429,8 @@ namespace dipoles {
     template<class T>
     void Dipoles<T>::getFullFunction(const Eigen::Vector<T, Eigen::Dynamic> &xi,
                                      const Eigen::Vector<T, Eigen::Dynamic> &sol) {
-        this->Ifunction_ = [&xi,&sol,this](T theta, T phi, T t) {
-            int N = this->N_;
+        this->Ifunction_ = [&xi,&sol](T theta, T phi, T t) {
+            int N =xi.size()/2;
             T res = 0;
             T s[2] = {cos(phi), sin(phi)};
             T ress[3] = {0, 0, 0};
@@ -471,8 +471,8 @@ namespace dipoles {
         };
 
 
-        this->I2function_ = [&xi,&sol,this](T phi, T theta) {
-            int N =this->N_;
+        this->I2function_ = [&xi,&sol](T phi, T theta) {
+            int N =xi.size()/2;
             T omega0 = params<T>::omega;
             T T0 = M_PI * 2 / omega0;
             T res;
@@ -491,7 +491,7 @@ namespace dipoles {
                 Eigen::Vector<T, 2> Ai = {sol.coeffRef(2 * i),
                                           sol.coeffRef(2 * i + 1)};
                 Eigen::Vector<T, 2> Bi = {sol.coeffRef(2 * i+2*N),
-                                          sol.coeffRef(2 * i + 2*N)};
+                                          sol.coeffRef(2 * i +1+ 2*N)};
                 T argument = omega0 * ys / params<T>::c;
                 T Ais = Ai.dot(s);
                 T Bis = Bi.dot(s);
@@ -535,8 +535,8 @@ namespace dipoles {
                     ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
                     Aj = {sol.coeffRef(2 * j),
                           sol.coeffRef(2 * j + 1)};
-                    Bj = {sol.coeffRef(2 * j+2*N_),
-                          sol.coeffRef(2 * j + 1+2*N_)};
+                    Bj = {sol.coeffRef(2 * j+2*N),
+                          sol.coeffRef(2 * j + 1+2*N)};
 
                     argumentj = omega0 * ysj / params<T>::c;
                     Ajs = Aj.dot(s);

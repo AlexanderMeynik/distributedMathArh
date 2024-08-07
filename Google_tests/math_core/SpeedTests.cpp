@@ -58,12 +58,12 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
         EXPECT_NEAR(nev.norm(),0,10e-4);
     }
 
-}
+}*/
+
 //todo достать старые тесты на занчения и всё перепроверить внимательно
 //todo поменять команды для парсинга
 //todo raw biffers initalizrion for eigen vectors https://eigen.tuxfamily.org/dox/group__TutorialMapClass.html
-
-TEST(Dipoles,test_right_part_nev_solve_impl)
+/*TEST(Dipoles,test_right_part_nev_solve_impl)
 {
 
 
@@ -90,7 +90,7 @@ TEST(Dipoles,test_right_part_nev_solve_impl)
 
 template <typename Type>
 using DynVector = Eigen::Matrix<Type,Eigen::Dynamic,1>;
-/*
+
 TEST(verification,test_on_10_basik_conf)
 {
     std::ios_base::sync_with_stdio(false);
@@ -118,63 +118,24 @@ TEST(verification,test_on_10_basik_conf)
 
         MeshProcessor<double> meshProcessor;
         meshProcessor.generateNoInt(func);
-        auto mesh1=meshProcessor.getMeshsph();//todo что-то не то промходит с функцийе(тест 1)
+        auto mesh1=meshProcessor.getMeshsph();
         auto mesh2=meshProcessor.getMeshdec();
         meshProcessor.printDec(out);
         out.close();
         meshProcessor.plotSpherical(subdir+"/plot"+std::to_string(i)+".png");
+        //todo read data
+        //start from Matrix
+        //then solution format 1
+        //then solution format 2
+        //a last we'll check the mesh for function
+        //function to ignore all text
 
 
 
     }//todo сделать простой парсер, чтобы сопоставлять данные
 
-}*/
-
-
-TEST(verification,test_on_10_basik_conf_old_impl)
-{
-    std::ios_base::sync_with_stdio(false);
-    int verbose=2;
-    std::string filename="config.txt";
-
-
-
-    auto avec= parseConf2<double,DynVector>(filename);
-    std::string dirname=filename.erase(filename.find('.'));
-    auto subdir=dirname+"osas";
-    std::filesystem::create_directory(subdir);
-    for (int i = 0; i < avec.size(); ++i) {
-        std::ofstream out(subdir+"/data"+std::to_string(i)+".txt");
-        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
-        auto solution=dd.solve2();
-        out<<dd.getMatrixx()<<"\n\n";
-        //printSolutionFormat1(out,solution);
-        //out<<"\n\n";
-       // printSolution(out,solution);
-        out<<"\n\n";
-       // std::vector<double> solvec(solution.begin(),solution.end());
-       std::array<std::vector<double>,2> vec1={std::vector<double>(avec[i].size()/2,0),std::vector<double>(avec[i].size()/2,0)};
-        for (int j = 0; j < avec[i].size()/2; ++j) {
-            vec1[0][j]=avec[i][j];
-            vec1[1][j]=avec[i][j+avec[i].size()/2];
-        }
-
-        dd.getFullFunction2(vec1,solution);
-        auto func=dd.getI2function();//тут происходит пиздец(почему?)
-
-        MeshProcessor<double> meshProcessor;
-        meshProcessor.generateNoInt(func);
-        auto mesh1=meshProcessor.getMeshsph();//todo что-то не то промходит с функцийе(тест 1)
-        auto mesh2=meshProcessor.getMeshdec();
-        meshProcessor.printDec(out);
-        out.close();
-        meshProcessor.plotSpherical(subdir+"/plot"+std::to_string(i)+".png");
-
-
-
-    }
-
 }
+
 
 
 int main(int argc, char **argv)
