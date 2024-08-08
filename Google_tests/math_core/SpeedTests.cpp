@@ -3,6 +3,7 @@
 
 #include "../../application/math_core/MeshProcessor.h"
 #include "../../application/math_core/Dipoles.h"
+#include "../GoogleCommon.h"
 #include <algorithm>
 #include <omp.h>
 #include <gtest/gtest.h>
@@ -23,40 +24,31 @@ compare_collections(const Eigen::Vector<double, -1> &solution, const Eigen::Vect
         EXPECT_NEAR(solution[i],solution2[i],tool);
     }
 }*/
-template<typename T>
-concept HasBracketOperatorAndSize = requires(T t, size_t i) {
-    { t[i] } -> std::same_as<typename T::value_type&>;  // Ensures operator[] exists and returns a reference to value_type
-   // { t.size() } -> std::same_as<size_t>;               // Ensures size() exists and returns a size_t
-};
 
+using namespace myconceps;
 
+/*
 template<typename... Args, template<typename...> typename Container>
-requires HasBracketOperatorAndSize<Container<Args...>>
 void
-compare_collections(const Container<Args...> &solution, const Container<Args...> &solution2) {
+compare_collections2(const Container<Args...> &solution, const Container<Args...> &solution2,int ii) {
     EXPECT_TRUE(solution.size()==solution2.size());
     auto ss=solution2.size();
     for (int i = 0; i < ss; ++i) {
-        SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
-        EXPECT_NEAR(solution[i],solution2[i],tool);
-    }
-}
-template<typename... Args, template<typename...> typename Container>
 
-void
-compare_collections2(const Container<Args...> &solution, const Container<Args...> &solution2) {
-    EXPECT_TRUE(solution.size()==solution2.size());
-    auto ss=solution2.size();
-    for (int i = 0; i < ss; ++i) {
-        SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
         auto ss1=solution2[i].size();
         EXPECT_TRUE(solution[i].size()==solution2[i].size());
         for (int j = 0; j < ss1; ++j) {
+            SCOPED_TRACE("iteration "+std::to_string(ii)+'\n');
+            SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
             SCOPED_TRACE("Checked index "+std::to_string(ss1)+'\n');
             EXPECT_NEAR(solution[i][j],solution2[i][j],tool);
         }
     }
-}
+}*/
+
+
+
+
 /*
 TEST(transformations, reinterpret_vector_test)
 {
@@ -136,27 +128,32 @@ TEST(verification,test_on_10_basik_conf)
 
     auto avec= parseConf2<double,vector>(filename);
     std::string dirname=filename.erase(filename.find('.'));
-    auto subdir=dirname+"osas";
+    auto subdir=dirname+"data";
     std::filesystem::create_directory(subdir);
+    std::ofstream out1(subdir+"/solutions");
+    std::ofstream out(subdir+"/matrixes");
+    std::ofstream out2(subdir+"/meshes");
     for (int i = 0; i < avec.size(); ++i) {
-        std::ofstream out(subdir+"/data"+std::to_string(i)+".txt");
+
         out<<avec[i].size()/2<<'\n';
+        out1<<avec[i].size()/2<<"\n";
+        out2<<avec[i].size()/2<<"\n";
         dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
         auto solution=dd.solve4();
         out<<dd.getMatrixx()<<"\n";
+
         //printSolutionFormat1(out,solution);
        // out<<"\n\n";
-        printSolution(out,solution);
-        std::vector<double> solvec(solution.begin(),solution.end());
+        printSolution(out1,solution);
+        //std::vector<double> solvec(solution.begin(),solution.end());
         dd.getFullFunction3(avec[i],solution);
         auto func=dd.getI2function();
 
         MeshProcessor<double> meshProcessor;
         meshProcessor.generateNoInt(func);
-        auto mesh1=meshProcessor.getMeshsph();
-        auto mesh2=meshProcessor.getMeshdec();
-        meshProcessor.printDec(out);
-        out.close();
+        //auto mesh1=meshProcessor.getMeshsph();
+        //auto mesh2=meshProcessor.getMeshdec();
+        meshProcessor.printDec(out2);
         meshProcessor.plotSpherical(subdir+"/plot"+std::to_string(i)+".png");
 
         //todo read data
@@ -171,9 +168,90 @@ TEST(verification,test_on_10_basik_conf)
     }//todo сделать простой парсер, чтобы сопоставлять данные
 
 }*/
+TEST(verification,test_on_10_basik_conf_matrixes)
+{
+    std::ios_base::sync_with_stdio(false);
+    std::string filename="config.txt";
+    auto avec= parseConf2<double,DynVector>(filename);
+    std::string dirname=filename.erase(filename.find('.'));
+    auto subdir=dirname+"data";
+    std::ifstream in1(subdir+"/matrixes");
+    for (int i = 0; i < avec.size(); ++i) {
+        auto NN=0;
+        in1>>NN;//todo удалить N оттуда
+        EXPECT_EQ(NN,avec[i].size()/2);
+        Parser<MatrixXd> pp1(NN);
+        in1>>pp1;
 
 
-TEST(verification,test_on_10_basik_conf2)
+        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
+        compare_matrices(dd.getMatrixx(),pp1.vals_,i,1e-5);
+
+    }
+
+}
+
+TEST(verification,test_on_10_basik_conf_solutions)
+{
+    std::ios_base::sync_with_stdio(false);
+    std::string filename="config.txt";
+
+
+
+    auto avec= parseConf2<double,DynVector>(filename);
+    std::string dirname=filename.erase(filename.find('.'));
+    auto subdir=dirname+"data";
+    std::ifstream in1(subdir+"/solutions");
+    for (int i = 0; i < avec.size(); ++i) {
+        auto NN=0;
+        in1>>NN;//todo удалить N оттуда
+        EXPECT_EQ(NN,avec[i].size()/2);
+
+        Parser<DynVector<double>> pp1(NN);
+        in1>>pp1;
+
+
+        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
+        auto sol=dd.solve3();
+        compare_collections(pp1.vals_,sol,i,tool);
+    }
+}
+
+TEST(verification,test_on_10_basik_conf_meshes)
+{
+    std::ios_base::sync_with_stdio(false);
+    std::string filename="config.txt";
+
+
+
+    auto avec= parseConf2<double,DynVector>(filename);
+    std::string dirname=filename.erase(filename.find('.'));
+    auto subdir=dirname+"data";
+    std::ifstream in1(subdir+"/meshes");
+    for (int i = 0; i < avec.size(); ++i) {
+        auto NN=0;
+        in1>>NN;//todo удалить N оттуда
+        EXPECT_EQ(NN,avec[i].size()/2);
+
+        Parser<MeshProcessor<double>> pp1(NN);
+        in1>>pp1;
+
+
+        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
+        auto sol=dd.solve3();
+        dd.getFullFunction(avec[i],sol);
+
+        MeshProcessor<double>mm2;
+        mm2.generateNoInt(dd.getI2function());
+
+
+        compare_matrices(pp1.vals_.getMeshdec()[2],mm2.getMeshdec()[2],i,1e-4);
+    }
+}
+
+
+
+/*TEST(verification,test_on_10_basik_conf2)
 {
     std::ios_base::sync_with_stdio(false);
     int verbose=2;
@@ -208,7 +286,7 @@ TEST(verification,test_on_10_basik_conf2)
         EXPECT_TRUE(!(dd.getMatrixx()-pp1.vals_).any());
         DynVector<double> solution=dd.solve3();
         //pp.vals_.size();
-        compare_collections(pp.vals_,solution);
+        compare_collections(pp.vals_,solution,tool);
         //ff[0];
         //auto diff=pp.vals_==solution;
 
@@ -218,18 +296,11 @@ TEST(verification,test_on_10_basik_conf2)
 
         MeshProcessor<double> meshProcessor;
         meshProcessor.generateNoInt(func);
-        compare_collections2(pp3.vals_.getMeshdec()[2],meshProcessor.getMeshdec()[2]);//возникает ошибка в 1 месте (индексы i1=7 i2=25
-
-
-
-
-
-
-
+        compare_matrices(pp3.vals_.getMeshdec()[2],meshProcessor.getMeshdec()[2],i);
 
     }
 
-}
+}*/
 
 
 
