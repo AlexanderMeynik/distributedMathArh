@@ -139,6 +139,38 @@ private:
     static constexpr const T step = M_PI / 12;
 };
 
+
+template<typename T>
+class Parser<MeshProcessor<T>>
+{
+public:
+    Parser() : size_(0), vals_() {}
+
+    Parser(int size) : size_(size), vals_() {}
+
+    friend std::istream& operator>>(std::istream& in, Parser& pp)
+    {
+        std::string dummy;
+        std::getline(in, dummy);
+        std::getline(in, dummy);
+        std::getline(in, dummy);
+        pp.vals_=MeshProcessor<T>();
+        std::vector<std::vector<T>> m=pp.vals_.getMeshGliff();
+        for (int i = 0; i <m[0].size() ; ++i) {
+            T temp=0;
+            in>>temp;//diskard first number
+            for (int j = 0; j < m.size(); ++j) {
+                in>>m[j][i];
+            }
+        }
+        pp.vals_.setMesh3(m);//todo мы не иницализируем финальную компоненту как надо, поэтому создаём глиф тут и печаетев всё в него
+        return in;
+    }
+
+    MeshProcessor<T> vals_;
+    int size_;
+};
+
 template<typename T>
 void MeshProcessor<T>::initCoordMeshes() {
     std::pair<std::vector<std::vector<T>>, std::vector<std::vector<T>>> meshgrid1 = mymeshGrid(
@@ -158,7 +190,7 @@ template<typename T>
 void MeshProcessor<T>::printDec(std::ostream &out) {
     out << "Функция I(phi,th)\n";
     out << "phi\\th\t\t";
-    for (T theta = thelims[0]; theta < thelims[1]; theta += steps[1]) {//todo не перепуктали ли мы аргументы
+    for (T theta = thelims[0]; theta < thelims[1]; theta += steps[1]) {
         out << scientificNumber(theta, 5) << "\t";
     }
     out << "\n";
