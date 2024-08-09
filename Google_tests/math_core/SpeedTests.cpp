@@ -1,54 +1,23 @@
 #include "../../application/common/lib.h"
 #include <chrono>
 
-#include "../../application/math_core/MeshProcessor.h"
-#include "../../application/math_core/Dipoles.h"
+#include "../../application/math_core/math_core.h"
+
 #include "../GoogleCommon.h"
 #include <algorithm>
-#include <omp.h>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <eigen3/Eigen/Dense>
-#include <filesystem>
-#include <type_traits>
-#include <concepts>
-constexpr double tool =std::numeric_limits<decltype(tool)>::epsilon();
 
-//todo обобщить при помощи рекурсивных шаблонов
-/*void
-compare_collections(const Eigen::Vector<double, -1> &solution, const Eigen::Vector<double, -1> &solution2) {
-    EXPECT_TRUE(solution.size()==solution2.size());
-    auto ss=solution2.size();
-    for (int i = 0; i < ss; ++i) {
-        SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
-        EXPECT_NEAR(solution[i],solution2[i],tool);
-    }
-}*/
+constexpr double tool =std::numeric_limits<decltype(tool)>::epsilon();
 
 using namespace myconceps;
 
-/*
-template<typename... Args, template<typename...> typename Container>
-void
-compare_collections2(const Container<Args...> &solution, const Container<Args...> &solution2,int ii) {
-    EXPECT_TRUE(solution.size()==solution2.size());
-    auto ss=solution2.size();
-    for (int i = 0; i < ss; ++i) {
-
-        auto ss1=solution2[i].size();
-        EXPECT_TRUE(solution[i].size()==solution2[i].size());
-        for (int j = 0; j < ss1; ++j) {
-            SCOPED_TRACE("iteration "+std::to_string(ii)+'\n');
-            SCOPED_TRACE("Checked index "+std::to_string(ss)+'\n');
-            SCOPED_TRACE("Checked index "+std::to_string(ss1)+'\n');
-            EXPECT_NEAR(solution[i][j],solution2[i][j],tool);
-        }
-    }
-}*/
-
-
-
-
+template<typename T>
+decltype(auto) get_Default_Configuration()
+{
+    MeshProcessor<T> sample;
+    return sample.export_conf();
+}
 /*
 TEST(transformations, reinterpret_vector_test)
 {
@@ -87,8 +56,6 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
 
 }*/
 
-//todo достать старые тесты на занчения и всё перепроверить внимательно
-//todo поменять команды для парсинга
 //todo raw biffers initalizrion for eigen vectors https://eigen.tuxfamily.org/dox/group__TutorialMapClass.html
 /*TEST(Dipoles,test_right_part_nev_solve_impl)
 {
@@ -117,22 +84,27 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
 
 template <typename Type>
 using DynVector = Eigen::Matrix<Type,Eigen::Dynamic,1>;
-/*
+std::string res_dir_path="../res/";
+std::string filename=res_dir_path.append("config.txt");
+string subdir=filename.substr(0, filename.rfind('.')) + "data1";
+#include <filesystem>
 TEST(verification,test_on_10_basik_conf)
 {
+
     std::ios_base::sync_with_stdio(false);
-    int verbose=2;
-    std::string filename="config.txt";
-
-
-
     auto avec= parseConf2<double,vector>(filename);
-    std::string dirname=filename.erase(filename.find('.'));
-    auto subdir=dirname+"data";
+
+
+
     std::filesystem::create_directory(subdir);
-    std::ofstream out1(subdir+"/solutions");
-    std::ofstream out(subdir+"/matrixes");
-    std::ofstream out2(subdir+"/meshes");
+    std::ofstream out1(subdir+"/solutions.txt");
+    std::ofstream out(subdir+"/matrixes.txt");
+    std::ofstream out2(subdir+"/meshes.txt");
+    auto conf=get_Default_Configuration<double>();
+
+    conf.second[0]*=4;
+    conf.second[1]*=4;
+    out2<<conf.second[0]<<'\t'<<conf.second[1]<<'\n';
     for (int i = 0; i < avec.size(); ++i) {
 
         out<<avec[i].size()/2<<'\n';
@@ -142,40 +114,34 @@ TEST(verification,test_on_10_basik_conf)
         auto solution=dd.solve4();
         out<<dd.getMatrixx()<<"\n";
 
-        //printSolutionFormat1(out,solution);
-       // out<<"\n\n";
-        printSolution(out1,solution);
-        //std::vector<double> solvec(solution.begin(),solution.end());
-        dd.getFullFunction3(avec[i],solution);
-        auto func=dd.getI2function();
 
+        printSolution(out1,solution);
+
+        dd.getFullFunction3(avec[i],solution);
+        auto func=dd.getI2function();//todo перепровретить печать мешей(правильно ли сопоатвлены координаты) верны ли шаги
+        std::cout<<func(1.04720e+0,6.28319e+0)<<'\n';
+        std::cout<<func(6.28319e+0,1.04720e+0)<<'\n';
         MeshProcessor<double> meshProcessor;
+        meshProcessor.importConf(conf, true);
         meshProcessor.generateNoInt(func);
         //auto mesh1=meshProcessor.getMeshsph();
         //auto mesh2=meshProcessor.getMeshdec();
         meshProcessor.printDec(out2);
         meshProcessor.plotSpherical(subdir+"/plot"+std::to_string(i)+".png");
 
-        //todo read data
-        //start from Matrix
-        //then solution format 1
-        //then solution format 2
-        //a last we'll check the mesh for function
-        //function to ignore all text
 
 
 
-    }//todo сделать простой парсер, чтобы сопоставлять данные
+    }
 
-}*/
+}
+/*
 TEST(verification,test_on_10_basik_conf_matrixes)
 {
     std::ios_base::sync_with_stdio(false);
-    std::string filename="config.txt";
     auto avec= parseConf2<double,DynVector>(filename);
-    std::string dirname=filename.erase(filename.find('.'));
-    auto subdir=dirname+"data";
-    std::ifstream in1(subdir+"/matrixes");
+
+    std::ifstream in1(subdir+"/matrixes.txt");
     for (int i = 0; i < avec.size(); ++i) {
         auto NN=0;
         in1>>NN;//todo удалить N оттуда
@@ -194,14 +160,12 @@ TEST(verification,test_on_10_basik_conf_matrixes)
 TEST(verification,test_on_10_basik_conf_solutions)
 {
     std::ios_base::sync_with_stdio(false);
-    std::string filename="config.txt";
 
 
 
     auto avec= parseConf2<double,DynVector>(filename);
-    std::string dirname=filename.erase(filename.find('.'));
-    auto subdir=dirname+"data";
-    std::ifstream in1(subdir+"/solutions");
+
+    std::ifstream in1(subdir+"/solutions.txt");
     for (int i = 0; i < avec.size(); ++i) {
         auto NN=0;
         in1>>NN;//todo удалить N оттуда
@@ -220,20 +184,24 @@ TEST(verification,test_on_10_basik_conf_solutions)
 TEST(verification,test_on_10_basik_conf_meshes)
 {
     std::ios_base::sync_with_stdio(false);
-    std::string filename="config.txt";
 
 
 
     auto avec= parseConf2<double,DynVector>(filename);
-    std::string dirname=filename.erase(filename.find('.'));
-    auto subdir=dirname+"data";
-    std::ifstream in1(subdir+"/meshes");
+    auto conf= get_Default_Configuration<double>();
+
+
+    std::ifstream in1(subdir+"/meshes.txt");
+    in1>>conf.second[0]>>conf.second[1];
     for (int i = 0; i < avec.size(); ++i) {
         auto NN=0;
         in1>>NN;//todo удалить N оттуда
         EXPECT_EQ(NN,avec[i].size()/2);
 
+
+
         Parser<MeshProcessor<double>> pp1(NN);
+        pp1.vals_.importConf(conf, true);
         in1>>pp1;
 
 
@@ -242,6 +210,7 @@ TEST(verification,test_on_10_basik_conf_meshes)
         dd.getFullFunction(avec[i],sol);
 
         MeshProcessor<double>mm2;
+       mm2.importConf(conf, true);
         mm2.generateNoInt(dd.getI2function());
 
 
@@ -249,7 +218,7 @@ TEST(verification,test_on_10_basik_conf_meshes)
     }
 }
 
-
+*/
 
 /*TEST(verification,test_on_10_basik_conf2)
 {

@@ -86,7 +86,7 @@ namespace timing {
         std::vector<T> startIngTimers;
         std::string name_;
     };
-};
+}
 
 
 

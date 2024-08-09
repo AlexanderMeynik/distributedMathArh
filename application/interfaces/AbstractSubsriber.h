@@ -30,7 +30,7 @@ namespace core_intrefaces {
     public:
         virtual std::string to_string()
         {
-             return typeid(this).name()+std::to_string((unsigned long long)(void**)this);;
+             return typeid(this).name()+std::to_string((unsigned long long)(void**)this);
         }
         void sub(AbstractSubsriber<Args...>*ss)
         {
