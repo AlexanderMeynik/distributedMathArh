@@ -88,6 +88,7 @@ std::string res_dir_path="../res/";
 std::string filename=res_dir_path.append("config.txt");
 string subdir=filename.substr(0, filename.rfind('.')) + "data1";
 #include <filesystem>
+/*
 TEST(verification,test_on_10_basik_conf)
 {
 
@@ -104,7 +105,7 @@ TEST(verification,test_on_10_basik_conf)
 
     conf.second[0]*=4;
     conf.second[1]*=4;
-    out2<<conf.second[0]<<'\t'<<conf.second[1]<<'\n';
+    out2<<scientificNumber(conf.second[0])<<'\t'<<scientificNumber(conf.second[1])<<'\n';
     for (int i = 0; i < avec.size(); ++i) {
 
         out<<avec[i].size()/2<<'\n';
@@ -119,8 +120,8 @@ TEST(verification,test_on_10_basik_conf)
 
         dd.getFullFunction3(avec[i],solution);
         auto func=dd.getI2function();//todo перепровретить печать мешей(правильно ли сопоатвлены координаты) верны ли шаги
-        std::cout<<func(1.04720e+0,6.28319e+0)<<'\n';
-        std::cout<<func(6.28319e+0,1.04720e+0)<<'\n';
+        std::cout<<func(1.57080e+0,6.28319e+0)<<'\n';
+        std::cout<<func(6.28319e+0,1.57080e+0)<<'\n';
         MeshProcessor<double> meshProcessor;
         meshProcessor.importConf(conf, true);
         meshProcessor.generateNoInt(func);
@@ -135,142 +136,88 @@ TEST(verification,test_on_10_basik_conf)
     }
 
 }
-/*
-TEST(verification,test_on_10_basik_conf_matrixes)
-{
-    std::ios_base::sync_with_stdio(false);
-    auto avec= parseConf2<double,DynVector>(filename);
-
-    std::ifstream in1(subdir+"/matrixes.txt");
-    for (int i = 0; i < avec.size(); ++i) {
-        auto NN=0;
-        in1>>NN;//todo удалить N оттуда
-        EXPECT_EQ(NN,avec[i].size()/2);
-        Parser<MatrixXd> pp1(NN);
-        in1>>pp1;
-
-
-        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
-        compare_matrices(dd.getMatrixx(),pp1.vals_,i,1e-5);
-
-    }
-
-}
-
-TEST(verification,test_on_10_basik_conf_solutions)
-{
-    std::ios_base::sync_with_stdio(false);
-
-
-
-    auto avec= parseConf2<double,DynVector>(filename);
-
-    std::ifstream in1(subdir+"/solutions.txt");
-    for (int i = 0; i < avec.size(); ++i) {
-        auto NN=0;
-        in1>>NN;//todo удалить N оттуда
-        EXPECT_EQ(NN,avec[i].size()/2);
-
-        Parser<DynVector<double>> pp1(NN);
-        in1>>pp1;
-
-
-        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
-        auto sol=dd.solve3();
-        compare_collections(pp1.vals_,sol,i,tool);
-    }
-}
-
-TEST(verification,test_on_10_basik_conf_meshes)
-{
-    std::ios_base::sync_with_stdio(false);
-
-
-
-    auto avec= parseConf2<double,DynVector>(filename);
-    auto conf= get_Default_Configuration<double>();
-
-
-    std::ifstream in1(subdir+"/meshes.txt");
-    in1>>conf.second[0]>>conf.second[1];
-    for (int i = 0; i < avec.size(); ++i) {
-        auto NN=0;
-        in1>>NN;//todo удалить N оттуда
-        EXPECT_EQ(NN,avec[i].size()/2);
-
-
-
-        Parser<MeshProcessor<double>> pp1(NN);
-        pp1.vals_.importConf(conf, true);
-        in1>>pp1;
-
-
-        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
-        auto sol=dd.solve3();
-        dd.getFullFunction(avec[i],sol);
-
-        MeshProcessor<double>mm2;
-       mm2.importConf(conf, true);
-        mm2.generateNoInt(dd.getI2function());
-
-
-        compare_matrices(pp1.vals_.getMeshdec()[2],mm2.getMeshdec()[2],i,1e-4);
-    }
-}
-
 */
 
-/*TEST(verification,test_on_10_basik_conf2)
-{
+
+namespace uu{
+TEST(verification, test_on_10_basik_conf_matrixes) {
     std::ios_base::sync_with_stdio(false);
-    int verbose=2;
-    std::string filename="config.txt";
+    auto avec = parseConf2<double, DynVector>(filename);
 
-
-
-    auto avec= parseConf2<double,DynVector>(filename);
-    std::string dirname=filename.erase(filename.find('.'));
-    auto subdir=dirname+"osas";
-    //std::filesystem::create_directory(subdir);
+    std::ifstream in1(subdir + "/matrixes.txt");
     for (int i = 0; i < avec.size(); ++i) {
-        std::cout<<i<<'\n';
-        std::ifstream in(subdir+"/data"+std::to_string(i)+".txt");
-        auto NN=0;
-        in>>NN;
-        EXPECT_EQ(NN,avec[i].size()/2);
-
-        //DynVector<double> solution1= parseFrom_file<double>(in,2*NN);
-
+        auto NN = 0;
+        in1 >> NN;//todo удалить N оттуда
+        EXPECT_EQ(NN, avec[i].size() / 2);
         Parser<MatrixXd> pp1(NN);
-        in>>pp1;
-
-        Parser<DynVector<double>> pp(NN);
-        in>>pp;
-
-        Parser<MeshProcessor<double>> pp3(NN);
-        in>>pp3;
+        in1 >> pp1;
 
 
-        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
-        EXPECT_TRUE(!(dd.getMatrixx()-pp1.vals_).any());
-        DynVector<double> solution=dd.solve3();
-        //pp.vals_.size();
-        compare_collections(pp.vals_,solution,tool);
-        //ff[0];
-        //auto diff=pp.vals_==solution;
-
-        //std::vector<double> solvec(solution.begin(),solution.end());
-        dd.getFullFunction(avec[i],solution);
-        auto func=dd.getI2function();
-
-        MeshProcessor<double> meshProcessor;
-        meshProcessor.generateNoInt(func);
-        compare_matrices(pp3.vals_.getMeshdec()[2],meshProcessor.getMeshdec()[2],i);
+        dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
+        compare_matrices(dd.getMatrixx(), pp1.vals_, i, 1e-5);
 
     }
 
-}*/
+}
 
+TEST(verification, test_on_10_basik_conf_solutions) {
+    std::ios_base::sync_with_stdio(false);
+
+
+    auto avec = parseConf2<double, DynVector>(filename);
+
+    std::ifstream in1(subdir + "/solutions.txt");
+    for (int i = 0; i < avec.size(); ++i) {
+        auto NN = 0;
+        in1 >> NN;//todo удалить N оттуда
+        EXPECT_EQ(NN, avec[i].size() / 2);
+
+        Parser<DynVector<double>> pp1(NN);
+        in1 >> pp1;
+
+
+        dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
+        auto sol = dd.solve3();
+        compare_collections(pp1.vals_, sol, i, tool);
+    }
+}
+
+TEST(verification, test_on_10_basik_conf_meshes) {
+    std::ios_base::sync_with_stdio(false);
+
+
+    auto avec = parseConf2<double, DynVector>(filename);
+    auto conf = get_Default_Configuration<double>();
+
+
+    std::ifstream in1(subdir + "/meshes.txt");
+    in1 >> conf.second[0] >> conf.second[1];
+    Parser<MeshProcessor<double>> pp1;
+
+    pp1.vals_.importConf(conf, true);
+    for (int i = 0; i < avec.size(); ++i) {
+        auto NN = 0;
+        in1 >> NN;//todo удалить N оттуда
+        EXPECT_EQ(NN, avec[i].size() / 2);
+
+
+        in1 >> pp1;
+
+        dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
+        auto sol = dd.solve3();
+        dd.getFullFunction(avec[i], sol);
+
+        MeshProcessor<double> mm2;
+        mm2.importConf(conf, true);
+        mm2.generateNoInt(dd.getI2function());
+
+        compare_matrices(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2], i, 1e-4);
+    }
+}
+
+}
+
+using namespace uu;
 
 
 int main(int argc, char **argv)

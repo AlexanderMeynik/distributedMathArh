@@ -1,7 +1,3 @@
-//
-// Created by Lenovo on 28.03.2024.
-//
-
 #ifndef DIPLOM_PRINTUTILS_H
 #define DIPLOM_PRINTUTILS_H
 
@@ -13,6 +9,7 @@
 #include <iostream>
 #include <ostream>
 #include <iomanip>
+#include <limits>
 class IosStatePreserve
 {
 public:
@@ -42,7 +39,7 @@ struct scientificNumberType
 };
 
 template<typename T>
-scientificNumberType<T> scientificNumber(T t, int decimalPlaces)
+scientificNumberType<T> scientificNumber(T t, int decimalPlaces=std::numeric_limits<T>::max_digits10)
 {
     return scientificNumberType<T>(t, decimalPlaces);
 }

@@ -10,8 +10,8 @@
 #include "const.h"
 
 #include "../common/Parsers.h"
-#include "../common/Printers.h"
-//todo получше организовать фаловую иерарзию
+#include "../common/Printers.h"//todo получше организовать фаловую иерарзию
+
 template<class T, unsigned N>
 T integrate(std::function<T(T)> &f1, T left, T right, unsigned int max_depth = 5, T tol = 1e-20) {
     T error;
@@ -238,10 +238,23 @@ template<typename T>
 void MeshProcessor<T>::printDec(std::ostream &out) {
     out << "Функция I(phi,th)\n";
     out << "phi\\th\t\t";
-    for (T theta = thelims[0]; theta < thelims[1]; theta += steps[1]) {
-        out << scientificNumber(theta, 5) << "\t";
+    for (int i = 0; i < meshdec[2].size()-1; ++i) {
+        out << scientificNumber(meshdec[1][i][0],5)<<'\t';
     }
-    out << "\n";
+    out << scientificNumber(meshdec[1][meshdec[2].size()-1][0],5)<<'\n';
+    /*for (T theta = thelims[0]; theta < thelims[1]; theta += steps[1]) {
+        out << scientificNumber(theta, 5) << "\t";
+    }*/
+
+    for (int i = 0; i < meshdec[2][0].size(); ++i) {
+        auto phi=meshdec[0][0][i];
+        out << scientificNumber(phi, 5) << "\t";
+        for (int j = 0; j < meshdec[2].size()-1; ++j) {
+            out << scientificNumber(meshdec[2][j][i], 5) << "\t";
+        }
+        out << scientificNumber(meshdec[2][meshdec[2].size()-1][i], 5)<< "\n";
+    }
+    /*
     int i1 = 0;
     int i2;
     for (T phi = philims[0]; phi < philims[1]; phi += steps[0]) {
@@ -253,7 +266,9 @@ void MeshProcessor<T>::printDec(std::ostream &out) {
             i2++;
         }
         out << "\n";
-    }
+    }*/
+
+
 }
 
 
@@ -325,9 +340,9 @@ template<typename T>
 class Parser<MeshProcessor<T>>
 {
 public:
-    Parser() : size_(0), vals_() {}
+    Parser() :  vals_() {}
 
-    Parser(int size) : size_(size), vals_() {}
+    Parser(int size) : vals_() {}
 
     friend std::istream& operator>>(std::istream& in, Parser& pp)
     {
@@ -341,7 +356,9 @@ public:
             T temp=0;
             in>>temp;//diskard first number
             for (int j = 0; j < m.size(); ++j) {
-                in>>m[j][i];
+                T val;
+                in>>val;
+               m[j][i]=val;
             }
         }
         pp.vals_.setMesh3(m);//todo мы не иницализируем финальную компоненту как надо, поэтому создаём глиф тут и печаетев всё в него
@@ -349,7 +366,7 @@ public:
     }
 
     MeshProcessor<T> vals_;
-    int size_;
+
 };
 
 
