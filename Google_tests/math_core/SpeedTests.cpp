@@ -86,8 +86,9 @@ template <typename Type>
 using DynVector = Eigen::Matrix<Type,Eigen::Dynamic,1>;
 std::string res_dir_path="../res/";
 std::string filename=res_dir_path.append("config.txt");
-string subdir=filename.substr(0, filename.rfind('.')) + "data1";
+string subdir=filename.substr(0, filename.rfind('.')) + "data7_25";
 #include <filesystem>
+//todo перместить это тметов генераторы(тесты, которые прост осоздаёт данные)
 /*
 TEST(verification,test_on_10_basik_conf)
 {
@@ -103,8 +104,8 @@ TEST(verification,test_on_10_basik_conf)
     std::ofstream out2(subdir+"/meshes.txt");
     auto conf=get_Default_Configuration<double>();
 
-    conf.second[0]*=4;
-    conf.second[1]*=4;
+    //conf.second[0]*=4;
+    //conf.second[1]*=4;
     out2<<scientificNumber(conf.second[0])<<'\t'<<scientificNumber(conf.second[1])<<'\n';
     for (int i = 0; i < avec.size(); ++i) {
 
@@ -119,14 +120,12 @@ TEST(verification,test_on_10_basik_conf)
         printSolution(out1,solution);
 
         dd.getFullFunction3(avec[i],solution);
-        auto func=dd.getI2function();//todo перепровретить печать мешей(правильно ли сопоатвлены координаты) верны ли шаги
-        std::cout<<func(1.57080e+0,6.28319e+0)<<'\n';
-        std::cout<<func(6.28319e+0,1.57080e+0)<<'\n';
+        auto func=dd.getI2function();
+
         MeshProcessor<double> meshProcessor;
         meshProcessor.importConf(conf, true);
         meshProcessor.generateNoInt(func);
-        //auto mesh1=meshProcessor.getMeshsph();
-        //auto mesh2=meshProcessor.getMeshdec();
+
         meshProcessor.printDec(out2);
         meshProcessor.plotSpherical(subdir+"/plot"+std::to_string(i)+".png");
 
@@ -135,8 +134,8 @@ TEST(verification,test_on_10_basik_conf)
 
     }
 
-}
-*/
+}*/
+
 
 
 namespace uu{
@@ -160,7 +159,7 @@ TEST(verification, test_on_10_basik_conf_matrixes) {
 
 }
 
-TEST(verification, test_on_10_basik_conf_solutions) {
+TEST(verification, test_on_10_basik_conf_solutions) {//todo изолировать(убрать все предыдущие этапы(читаем тут матрицу)
     std::ios_base::sync_with_stdio(false);
 
 
@@ -182,7 +181,7 @@ TEST(verification, test_on_10_basik_conf_solutions) {
     }
 }
 
-TEST(verification, test_on_10_basik_conf_meshes) {
+TEST(verification, test_on_10_basik_conf_meshes) {//todo считываем решение
     std::ios_base::sync_with_stdio(false);
 
 
