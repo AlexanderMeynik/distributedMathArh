@@ -24,9 +24,8 @@ template<class T>
 std::vector<std::array<std::vector<T>, 2>> parseConf(string &filename);
 
 template<class T>
-std::array<std::vector<T>, 2>reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> &xi)
-{
-    auto N=xi.size()/2;
+std::array<std::vector<T>, 2> reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> &xi) {
+    auto N = xi.size() / 2;
     if (!N) {
         return std::array<std::vector<T>, 2>();
     }
@@ -35,14 +34,14 @@ std::array<std::vector<T>, 2>reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> 
     res[1] = std::vector<T>(N, 0);
 
     for (int i = 0; i < N; ++i) {
-        res[0][i]=xi[i];
-        res[1][i]=xi[i+N];
+        res[0][i] = xi[i];
+        res[1][i] = xi[i + N];
     }
     return res;
 }
 
 template<typename T>
-class CoordGenerator{
+class CoordGenerator {
 public:
     CoordGenerator(T mean, T stddev) : mean_(mean), stddev_(sqrt(2) * stddev) {
         distribution_ = std::normal_distribution<T>(mean_, stddev_);
@@ -67,8 +66,8 @@ public:
         if (!N) {
             return Eigen::Vector<T, Eigen::Dynamic>();
         }
-        Eigen::Vector<T, Eigen::Dynamic> res(2*N);
-       // res[0] = std::vector<T>(N, 0);
+        Eigen::Vector<T, Eigen::Dynamic> res(2 * N);
+        // res[0] = std::vector<T>(N, 0);
         //res[1] = std::vector<T>(N, 0);
         std::function<T()> generetor = [&]() { return distribution_(rng_); };
         //std::cout<<generetor()<<"\t"<<distribution_(rng_)<<"\n";
@@ -190,6 +189,15 @@ const static std::map<std::string, state_t> stringToState = {
         {"print",      state_t::print_},
 };
 
+int getConfSize(string &filename) {
+    std::ifstream in(filename);
+    char c = in.get();
+    assert(c == 'C');
+    int Nconf;
+    in >>Nconf;
+    return Nconf;
+}
+
 template<class T, template<typename> typename Container>
 vector<Container<T>> parseConf2(string &filename) {
     std::ifstream in(filename);
@@ -204,7 +212,7 @@ vector<Container<T>> parseConf2(string &filename) {
         int N;
         in >> N;
         Nvec[j] = N;
-        avec[j].resize(2*N);
+        avec[j].resize(2 * N);
         //avec[j] = Container<T>(2*N,0);
 
         if (in.peek() == 'l') {
@@ -215,7 +223,7 @@ vector<Container<T>> parseConf2(string &filename) {
             for (int i = 0; i < N; ++i) {
 
                 avec[j][i] = lim[0];
-                avec[j][i+N] = lim[2];
+                avec[j][i + N] = lim[2];
                 lim[0] += step[0];
                 lim[2] += step[1];
             }
@@ -231,7 +239,7 @@ vector<Container<T>> parseConf2(string &filename) {
             for (int i = 0; i < N1; ++i) {
                 for (int k = 0; k < N2; ++k) {
                     avec[j][i * N2 + k] = lim[0];
-                    avec[j][i * N2 + k+N] = lim[2];
+                    avec[j][i * N2 + k + N] = lim[2];
                     lim[2] += step[1];
                 }
                 lim[2] = start[1];
@@ -250,10 +258,11 @@ vector<Container<T>> parseConf2(string &filename) {
             }
 
             for (int i = 0; i < N; ++i) {
-                in >> avec[j][i+N];
+                in >> avec[j][i + N];
             }
         }
     }
+    in.close();
     return avec;
 }
 

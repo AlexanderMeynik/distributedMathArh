@@ -8,13 +8,12 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-constexpr double tool =std::numeric_limits<decltype(tool)>::epsilon();
+constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
 
 using namespace myconceps;
 
 template<typename T>
-decltype(auto) get_Default_Configuration()
-{
+decltype(auto) get_Default_Configuration() {
     MeshProcessor<T> sample;
     return sample.export_conf();
 }
@@ -82,11 +81,12 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
 
 */
 
-template <typename Type>
-using DynVector = Eigen::Matrix<Type,Eigen::Dynamic,1>;
-std::string res_dir_path="../res/";
-std::string filename=res_dir_path.append("config.txt");
-string subdir=filename.substr(0, filename.rfind('.')) + "data7_25";
+template<typename Type>
+using DynVector = Eigen::Matrix<Type, Eigen::Dynamic, 1>;
+std::string res_dir_path = "../res/";
+std::string filename = res_dir_path.append("config.txt");
+string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
+
 #include <filesystem>
 //todo перместить это тметов генераторы(тесты, которые прост осоздаёт данные)
 /*
@@ -138,89 +138,101 @@ TEST(verification,test_on_10_basik_conf)
 
 
 
-namespace uu{
-TEST(verification, test_on_10_basik_conf_matrixes) {
-    std::ios_base::sync_with_stdio(false);
-    auto avec = parseConf2<double, DynVector>(filename);
+namespace uu {
+    TEST(verification, test_on_10_basik_conf_matrixes) {
+        std::ios_base::sync_with_stdio(false);
+        auto avec = parseConf2<double, DynVector>(filename);
 
-    std::ifstream in1(subdir + "/matrixes.txt");
-    for (int i = 0; i < avec.size(); ++i) {
-        auto NN = 0;
-        in1 >> NN;//todo удалить N оттуда
-        EXPECT_EQ(NN, avec[i].size() / 2);
-        Parser<MatrixXd> pp1(NN);
-        in1 >> pp1;
+        std::ifstream in1(subdir + "/matrixes.txt");
+        for (int i = 0; i < avec.size(); ++i) {
+            auto NN = 0;
+            in1 >> NN;//todo удалить N оттуда
+            EXPECT_EQ(NN, avec[i].size() / 2);
+            Parser<MatrixXd> pp1(NN);
+            in1 >> pp1;
 
 
-        dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
-        compare_matrices(dd.getMatrixx(), pp1.vals_, i, 1e-5);
+            dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
+            compare_matrices(dd.getMatrixx(), pp1.vals_, i, 1e-5);
+
+        }
 
     }
 
-}
-
-TEST(verification, test_on_10_basik_conf_solutions) {//todo изолировать(убрать все предыдущие этапы(читаем тут матрицу)
-    std::ios_base::sync_with_stdio(false);
-
-
-    auto avec = parseConf2<double, DynVector>(filename);
-
-    std::ifstream in1(subdir + "/solutions.txt");
-    for (int i = 0; i < avec.size(); ++i) {
-        auto NN = 0;
-        in1 >> NN;//todo удалить N оттуда
-        EXPECT_EQ(NN, avec[i].size() / 2);
-
-        Parser<DynVector<double>> pp1(NN);
-        in1 >> pp1;
+    TEST(verification,
+         test_on_10_basik_conf_solutions) {//todo изолировать(убрать все предыдущие этапы(читаем тут матрицу)
+        std::ios_base::sync_with_stdio(false);
 
 
-        dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
-        auto sol = dd.solve3();
-        compare_collections(pp1.vals_, sol, i, tool);
+        auto avec = getConfSize(filename);
+
+        std::ifstream in1(subdir + "/solutions.txt");
+        std::ifstream in2(subdir + "/matrixes.txt");
+        for (int i = 0; i < avec; ++i) {
+            auto NN = 0;
+            in1 >> NN;//todo удалить N оттуда
+
+            Parser<MatrixXd> pmatrix(NN);
+            in2 >> NN;
+            in2 >> pmatrix;
+
+            dipoles::Dipoles<double> dd;
+            dd.loadFromMatrix(pmatrix.vals_);
+
+            Parser<DynVector<double>> pp1(NN);
+            in1 >> pp1;
+
+
+            auto sol = dd.solve3();
+            compare_collections(pp1.vals_, sol, i, tool);
+        }
     }
-}
 
-TEST(verification, test_on_10_basik_conf_meshes) {//todo считываем решение
-    std::ios_base::sync_with_stdio(false);
-
-
-    auto avec = parseConf2<double, DynVector>(filename);
-    auto conf = get_Default_Configuration<double>();
+    TEST(verification, test_on_10_basik_conf_meshes) {
+        std::ios_base::sync_with_stdio(false);
 
 
-    std::ifstream in1(subdir + "/meshes.txt");
-    in1 >> conf.second[0] >> conf.second[1];
-    Parser<MeshProcessor<double>> pp1;
-
-    pp1.vals_.importConf(conf, true);
-    for (int i = 0; i < avec.size(); ++i) {
-        auto NN = 0;
-        in1 >> NN;//todo удалить N оттуда
-        EXPECT_EQ(NN, avec[i].size() / 2);
+        auto avec = parseConf2<double, DynVector>(filename);
+        auto conf = get_Default_Configuration<double>();
 
 
-        in1 >> pp1;
+        std::ifstream in1(subdir + "/meshes.txt");
+        std::ifstream in2(subdir + "/solutions.txt");
+        in1 >> conf.second[0] >> conf.second[1];
+        Parser<MeshProcessor<double>> pp1;
 
-        dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
-        auto sol = dd.solve3();
-        dd.getFullFunction(avec[i], sol);
+        pp1.vals_.importConf(conf, true);
+        for (int i = 0; i < avec.size(); ++i) {
+            auto NN = 0;
+            in1 >> NN;//todo удалить N оттуда
+            EXPECT_EQ(NN, avec[i].size() / 2);
 
-        MeshProcessor<double> mm2;
-        mm2.importConf(conf, true);
-        mm2.generateNoInt(dd.getI2function());
+            in1 >> pp1;
+            in2 >> NN;
 
-        compare_matrices(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2], i, 1e-4);
+            Parser<DynVector<double>> ppsol(NN);
+            in2 >> ppsol;
+
+
+            dipoles::Dipoles<double> dd;//это тут не нужно
+            dd.getFullFunction(avec[i], ppsol.vals_);//todo превартить в статческий метод
+
+            MeshProcessor<double> mm2;
+            mm2.importConf(conf, true);
+            mm2.generateNoInt(dd.getI2function());
+
+            compare_matrices(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2], i, 1e-4);
+        }
+        in1.close();
+        in2.close();
     }
-}
 
 }
 
 using namespace uu;
 
 
-int main(int argc, char **argv)
-{//todo cmake+gtestmain
+int main(int argc, char **argv) {//todo cmake+gtestmain
     ::testing::InitGoogleTest(&argc, argv);
     ::testing::InitGoogleMock(&argc, argv);
 
