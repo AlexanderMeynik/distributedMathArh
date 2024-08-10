@@ -106,7 +106,7 @@ void TestRunner::generateFunction() {
     if (inner_state==state_t::openmp_new) {
 #pragma omp parallel for default(none) shared(Nsym_,solutions_,result) firstprivate(d1,mesh)
         for (int i = 0; i < Nsym_.value(); ++i) {
-            d1.getFullFunction(coords_[i],solutions_[i]);
+            d1.getFullFunction_(coords_[i],solutions_[i]);
 
             mesh.generateNoInt(d1.getI2function());
 
@@ -121,7 +121,7 @@ void TestRunner::generateFunction() {
 
     } else {
         for (int i = 0; i < Nsym_.value(); ++i) {
-            d1.getFullFunction(coords_[i],solutions_[i]);
+            d1.getFullFunction_(coords_[i],solutions_[i]);
 
             mesh.generateNoInt(d1.getI2function());
             auto mesht = mesh.getMeshdec()[2];

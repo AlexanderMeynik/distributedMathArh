@@ -10,7 +10,7 @@
 
 constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
 
-using namespace myconceps;
+using namespace myconceps;//todo разобраться почему  у нас это дело включается без заголовка
 
 template<typename T>
 decltype(auto) get_Default_Configuration() {
@@ -55,8 +55,8 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
 
 }*/
 
-//todo raw biffers initalizrion for eigen vectors https://eigen.tuxfamily.org/dox/group__TutorialMapClass.html
-/*TEST(Dipoles,test_right_part_nev_solve_impl)
+
+TEST(Dipoles,test_right_part_nev_solve_impl)
 {
 
 
@@ -79,7 +79,7 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
 
 }
 
-*/
+
 
 template<typename Type>
 using DynVector = Eigen::Matrix<Type, Eigen::Dynamic, 1>;
@@ -160,7 +160,7 @@ namespace uu {
     }
 
     TEST(verification,
-         test_on_10_basik_conf_solutions) {//todo изолировать(убрать все предыдущие этапы(читаем тут матрицу)
+         test_on_10_basik_conf_solutions) {
         std::ios_base::sync_with_stdio(false);
 
 
@@ -192,7 +192,7 @@ namespace uu {
         std::ios_base::sync_with_stdio(false);
 
 
-        auto avec = parseConf2<double, DynVector>(filename);
+        auto avec = parseConf2<double, vector>(filename);
         auto conf = get_Default_Configuration<double>();
 
 
@@ -210,12 +210,14 @@ namespace uu {
             in1 >> pp1;
             in2 >> NN;
 
-            Parser<DynVector<double>> ppsol(NN);
+            Parser<vector<double>> ppsol(NN);
             in2 >> ppsol;
 
 
+
+
             dipoles::Dipoles<double> dd;//это тут не нужно
-            dd.getFullFunction(avec[i], ppsol.vals_);//todo превартить в статческий метод
+            dd.getFullFunction_(avec[i], ppsol.vals_);//todo превартить в статческий метод
 
             MeshProcessor<double> mm2;
             mm2.importConf(conf, true);

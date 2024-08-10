@@ -1,6 +1,3 @@
-//
-// Created by Lenovo on 23.07.2024.
-//
 
 #ifndef DIPLOM_GOOGLECOMMON_H
 #define DIPLOM_GOOGLECOMMON_H
@@ -16,65 +13,6 @@
 #include <concepts>
 
 
-namespace myconceps {
-    template<typename T>
-    concept HasBracketOperator = requires(T t, size_t i) {
-        { t[i] } -> std::same_as<typename T::value_type &>;  // Ensures operator[] exists and returns a reference to value_type
-        // { t.size() } -> std::same_as<size_t>;               // Ensures size() exists and returns a size_t
-    };
-
-
-    template<typename T>
-    concept HasSizeMethod = requires(T a) {
-        { a.size() } -> std::convertible_to<std::size_t>;
-    };
-
-    template<typename T>
-    concept twodVector=requires(T a, int i, int j) {
-        HasSizeMethod<T>;
-        HasBracketOperator<T>;
-        { a[i][j] } -> std::convertible_to<double>;
-    };
-
-    template<typename T>
-    concept RowCol = requires(T a) {
-        { a.rows() } -> std::convertible_to<std::size_t>;
-        { a.cols() } -> std::convertible_to<std::size_t>;
-    };
-
-    template<RowCol T>
-    std::array<long, 2> get_shape(const T &collection) {
-        return {collection.rows(), collection.cols()};
-    }
-
-    template<twodVector T>
-    std::array<long, 2> get_shape(const T &collection) {
-        return {static_cast<long>(collection.size()), static_cast<long>(collection[0].size())};
-    }
-
-    template<typename T>
-    requires (HasBracketOperator<T>) auto &
-    get_value(const T &collection, int i1) {
-        return collection[i1];
-    }
-
-
-    template<typename T>
-    requires (!twodVector<T>) auto &
-    get_value(const T &collection, int i1, int i2) {
-        return collection(i1, i2);
-    }
-
-
-    template<typename T>
-    requires (twodVector<T>) auto &
-    get_value(const T &collection, int i1, int i2) {
-
-        return collection[i1][i2];
-    }
-
-
-}
 using namespace myconceps;
 
 template <HasSizeMethod T1, HasSizeMethod T2>

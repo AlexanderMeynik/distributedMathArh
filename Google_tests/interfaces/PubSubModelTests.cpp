@@ -112,7 +112,7 @@ TEST(pub_sub_model,test_pub_sub_io)
 {
     std::stringstream ss;
     std::stringstream  res;
-    auto io = new IOSub<double>(res);
+    auto io = std::make_shared<IOSub<double>>(res);
 
     for (int i = 0; i <10; ++i) {
         auto ptr=std::make_shared<Event<double>>(nullptr, i);

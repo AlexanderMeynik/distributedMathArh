@@ -55,7 +55,7 @@ TEST(OpenmpParallelClock,test_parralel_time_all_threads)
         }
     }
     auto t2=omp_get_wtime();
-    ASSERT_NEAR(t2-t1,clock1.getTime(),tolerance);//todo asssert near + abs(common)
+    ASSERT_NEAR(t2-t1,clock1.getTime(),tolerance);
 }
 
 TEST(OpenmpParallelClock,test_parralel_time_4_threads)
@@ -71,7 +71,7 @@ TEST(OpenmpParallelClock,test_parralel_time_4_threads)
         }
     }
     auto t2=omp_get_wtime();
-    ASSERT_NEAR(t2-t1,clock1.getTime(),tolerance);//todo asssert near + abs(common)
+    ASSERT_NEAR(t2-t1,clock1.getTime(),tolerance);
 }
 
 TEST(OpenmpParallelClock,test_parralel_time_single_thread)
@@ -86,7 +86,7 @@ TEST(OpenmpParallelClock,test_parralel_time_single_thread)
         }
     }
     auto t2=omp_get_wtime();
-    ASSERT_NEAR(t2-t1,clock1.getTime(),tolerance);//todo asssert near + abs(common)
+    ASSERT_NEAR(t2-t1,clock1.getTime(),tolerance);
 
 }
 
@@ -112,6 +112,6 @@ TEST(OpenmpParallelClock,test_parralel_time_one_more_thread)
     }
     auto t2=omp_get_wtime();
     auto tt=clock1.aggregate(max<double>.value,max<double>.f);
-    ASSERT_NEAR(t2-t1,tt,tolerance);//todo asssert near + abs(common)
+    ASSERT_NEAR(t2-t1,tt,tolerance);
 }
 

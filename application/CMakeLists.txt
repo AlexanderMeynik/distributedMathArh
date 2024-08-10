@@ -22,7 +22,7 @@ find_library(PQXX_LIB pqxx)
 find_library(PQ_LIB pq)
 find_package(GSL REQUIRED)
 find_package(OpenMP REQUIRED)
-
+find_package (Eigen3 3.3 REQUIRED NO_MODULE)
 
 
 
@@ -38,7 +38,7 @@ file(GLOB common CONFIGURE_DEPENDS
         "*common/*.cpp"
 )
 add_library(commonLib ${common})
-
+target_link_libraries(commonLib PUBLIC Eigen3::Eigen)
 file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
         "*parallelUtils/*.h"
         "*parallelUtils/*.cpp"
@@ -59,6 +59,7 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 add_library(math_core_lib ${math_core_files})
 target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
 target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
+target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
 target_include_directories(math_core_lib PUBLIC ${GSL_INCLUDE_DIRS})
 target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
