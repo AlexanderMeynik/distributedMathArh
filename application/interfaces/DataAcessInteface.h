@@ -5,12 +5,13 @@
 #include <string>
 #include <vector>
 #include <variant>
+
 namespace core_intrefaces {
 
-    using optinal_val=std::variant<bool,int,double,std::string,std::vector<double>>;
+    using optinal_val = std::variant<bool, int, double, std::string, std::vector<double>>;
 
     template<class... Ts>
-    struct overload : Ts... {
+    struct overload : Ts ... {
         using Ts::operator()...;
     };
 
@@ -19,50 +20,47 @@ namespace core_intrefaces {
 
     class DataAcessInteface {
     public:
-        DataAcessInteface():data_()
-        {
+        DataAcessInteface() : data_() {
             //optinal_val a;
             //holds_alternative(a)
         }
-        virtual std::vector<std::vector<double>> &getdat(std::string&key)
-        {
+
+        virtual std::vector<std::vector<double>> &getdat(std::string &key) {
             return data_[key];
         }
-        virtual std::vector<std::vector<double>> &getdat(std::string&&key)
-        {
+
+        virtual std::vector<std::vector<double>> &getdat(std::string &&key) {
             return data_[key];
         }
-        virtual optinal_val& getProperty(std::string&key)
-        {
-            return properties_[key];
-        }
-        virtual optinal_val& getProperty(std::string&&key)
-        {
+
+        virtual optinal_val &getProperty(std::string &key) {
             return properties_[key];
         }
 
-        virtual bool isPresent(std::string&key)
-        {
-            return data_.contains(key);
+        virtual optinal_val &getProperty(std::string &&key) {
+            return properties_[key];
         }
-        virtual bool isPresent(std::string&&key)
-        {
+
+        virtual bool isPresent(std::string &key) {
             return data_.contains(key);
         }
 
-        virtual bool isPPresent(std::string&key)
-        {
+        virtual bool isPresent(std::string &&key) {
+            return data_.contains(key);
+        }
+
+        virtual bool isPPresent(std::string &key) {
             return properties_.contains(key);
         }
-        virtual bool isPPresent(std::string&&key)
-        {
+
+        virtual bool isPPresent(std::string &&key) {
             return properties_.contains(key);
         }
 
     private:
         std::unordered_map<std::string, std::vector<std::vector<double>>> data_;
 
-        std::unordered_map<std::string,optinal_val> properties_;
+        std::unordered_map<std::string, optinal_val> properties_;
     };
 }
 

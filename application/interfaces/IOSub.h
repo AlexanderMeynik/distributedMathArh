@@ -12,21 +12,22 @@
 namespace core_intrefaces {
 
 
-template<typename ...Args>
+    template<typename ...Args>
 
-    class IOSub :public AbstractSubsriber<Args...>{
+    class IOSub : public AbstractSubsriber<Args...> {
     public:
-        explicit IOSub<Args...>(std::ostream &out=std::cout):out_(out)
-        {
+        explicit IOSub<Args...>(std::ostream &out = std::cout) : out_(out) {
         }
+
         void getNotified(std::shared_ptr<Event<Args...>> event) override {
 
-           // std::apply([this](auto&&... args) {((
-           //     out_ << args << '\t'), ...);}, event->params_);
-            printTupleApply(out_,event->params_);
-            out_<<'\n';
+            // std::apply([this](auto&&... args) {((
+            //     out_ << args << '\t'), ...);}, event->params_);
+            printTupleApply(out_, event->params_);
+            out_ << '\n';
         }
-    //protected://todo неплохой костыль дял теста
+
+        //protected://todo неплохой костыль дял теста
         std::ostream &out_;
     };
 }

@@ -56,8 +56,6 @@ namespace dipoles {
     }
 
 
-
-
 #include <cassert>
 #include <eigen3/Eigen/Geometry>
 
@@ -83,7 +81,7 @@ namespace dipoles {
 
         template<template<typename ...> typename CONT, typename... Args>
         requires HasSizeMethod<CONT<Args...>>
-        void getFullFunction_(const CONT<Args...>&xi,const CONT<Args...>&sol);
+        void getFullFunction_(const CONT<Args...> &xi, const CONT<Args...> &sol);
 
 
         std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solve2() {
@@ -134,8 +132,11 @@ namespace dipoles {
         }
 
         Eigen::Vector<T, Eigen::Dynamic> &getRightPart2();
+
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> getMatrixx();
+
         void printMatrix(std::ostream &out, Eigen::IOFormat &format);
+
         void printRightPart(std::ostream &out, Eigen::IOFormat &format);
 
     private:
@@ -162,6 +163,7 @@ namespace dipoles {
         std::function<T(T, T)> I2function_;
 
         Eigen::Vector<T, Eigen::Dynamic> f;
+
         void
         getMatrixes(const Eigen::Vector<T, 2> &rim, T rMode, Eigen::Matrix<T, 2, 2> &K1,
                     Eigen::Matrix<T, 2, 2> &K2) const;
@@ -169,6 +171,7 @@ namespace dipoles {
         template<typename ... Args, template<typename ...> typename Container>
         //todo создать коцепт для котнейнера сметодами индексации
         void setMatrixes(Container<Args ...> &xi);
+
         T an = params<T>::a;
         int N_;
     };
@@ -318,20 +321,18 @@ namespace dipoles {
 
     template<class T>
     void Dipoles<T>::loadFromMatrix(Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &xi) {
-        this->N_ = xi.rows()/4;
+        this->N_ = xi.rows() / 4;
         initArrays();
 
-        M1_=xi.topLeftCorner(2 * N_, 2 * N_);
-        M2_=xi.bottomLeftCorner(2 * N_, 2 * N_);
+        M1_ = xi.topLeftCorner(2 * N_, 2 * N_);
+        M2_ = xi.bottomLeftCorner(2 * N_, 2 * N_);
     }
-
 
 
     template<typename T>
     template<template<typename ...> typename CONT, typename... Args>
     requires HasSizeMethod<CONT<Args...>>
-    void Dipoles<T>::getFullFunction_(const CONT<Args...>&xi,const CONT<Args...>&sol)
-    {
+    void Dipoles<T>::getFullFunction_(const CONT<Args...> &xi, const CONT<Args...> &sol) {
         {
             this->Ifunction_ = [&xi, &sol](T theta, T phi, T t) {
                 int N = xi.size() / 2;
@@ -339,11 +340,11 @@ namespace dipoles {
                 T s[2] = {cos(phi), sin(phi)};
                 T ress[3] = {0, 0, 0};
                 for (int i = 0; i < N; ++i) {
-                    T ri[2] = {get_value(xi,i), get_value(xi,i + N)};
+                    T ri[2] = {get_value(xi, i), get_value(xi, i + N)};
                     T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
                     T t0 = t - ys / params<T>::c;
-                    T Ai[2] = {get_value(sol,2 * i), get_value(sol,2 * i + 1)};
-                   T Bi[2] = {get_value(sol,2 * i+2*N), get_value(sol,2 * i + 1+2*N)};
+                    T Ai[2] = {get_value(sol, 2 * i), get_value(sol, 2 * i + 1)};
+                    T Bi[2] = {get_value(sol, 2 * i + 2 * N), get_value(sol, 2 * i + 1 + 2 * N)};
 
 
                     T Di[2] = {Ai[0] * cos(params<T>::omega * t0) + Bi[0] * sin(params<T>::omega * t0),
@@ -388,10 +389,10 @@ namespace dipoles {
                 Eigen::Vector<T, 2> s = {cos(phi),
                                          sin(phi)};
                 for (int i = 0; i < N; ++i) {
-                    T ri[2] = {get_value(xi,i), get_value(xi,i + N)};
+                    T ri[2] = {get_value(xi, i), get_value(xi, i + N)};
                     T ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
-                    Eigen::Vector<T, 2> Ai = {get_value(sol,2 * i), get_value(sol,2 * i + 1)};
-                    Eigen::Vector<T, 2> Bi = {get_value(sol,2 * i+2*N), get_value(sol,2 * i + 1+2*N)};
+                    Eigen::Vector<T, 2> Ai = {get_value(sol, 2 * i), get_value(sol, 2 * i + 1)};
+                    Eigen::Vector<T, 2> Bi = {get_value(sol, 2 * i + 2 * N), get_value(sol, 2 * i + 1 + 2 * N)};
 
                     T argument = omega0 * ys / params<T>::c;
                     T Ais = Ai.dot(s);
@@ -430,11 +431,11 @@ namespace dipoles {
                     Eigen::Vector<T, 2> ABjs;
                     Eigen::Vector<T, 2> BAjs;
                     for (int j = 0; j < i; ++j) {
-                        rj = {get_value(xi,j), get_value(xi,j + N)};
+                        rj = {get_value(xi, j), get_value(xi, j + N)};
                         ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
 
-                        Aj = {get_value(sol,2 * j), get_value(sol,2 * j + 1)};
-                        Bj = {get_value(sol,2 * j + 2 * N), get_value(sol,j + 1 + 2 * N)};
+                        Aj = {get_value(sol, 2 * j), get_value(sol, 2 * j + 1)};
+                        Bj = {get_value(sol, 2 * j + 2 * N), get_value(sol, j + 1 + 2 * N)};
 
                         argumentj = omega0 * ysj / params<T>::c;
                         Ajs = Aj.dot(s);
@@ -480,8 +481,6 @@ namespace dipoles {
     }
 
 
-
-
     template<class T>
     void Dipoles<T>::getMatrixes(const Eigen::Vector<T, 2> &rim, T rMode, Eigen::Matrix<T, 2, 2> &K1,
                                  Eigen::Matrix<T, 2, 2> &K2) const {
@@ -493,7 +492,7 @@ namespace dipoles {
     }
 
     template<class T>
-     Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> Dipoles<T>::getMatrixx() {
+    Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> Dipoles<T>::getMatrixx() {
         Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> matrixx;
         matrixx.resize(4 * N_, 4 * N_);
         matrixx.topLeftCorner(2 * N_, 2 * N_).noalias() = M1_;

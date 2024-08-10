@@ -32,13 +32,13 @@ void TestRunner::generateCoords(Generator<FloatType> &gen) {
         N_=coords_[0][0].size();
     }*///todo remove
 
-   // clocks_[0].tak();
+    // clocks_[0].tak();
 }
 
 
 TestRunner::TestRunner() {
-    coords_ =std::vector<coordinates>();
-           // std::vector<array<vector<FloatType>, 2>>();
+    coords_ = std::vector<coordinates>();
+    // std::vector<array<vector<FloatType>, 2>>();
     solutions_ = std::vector<solution>();
     subdir_ = std::nullopt;
     dir_ = std::nullopt;
@@ -52,11 +52,11 @@ void TestRunner::solve() {
 
     Dipoles<FloatType> d1;
     //clocks_[1].tik();
-    if (inner_state!=state_t::openmp_new)
+    if (inner_state != state_t::openmp_new)
         goto pp;
     {
 
-#pragma omp parallel for default(none) shared(Nsym_,solutions_,coords_) firstprivate(d1)
+#pragma omp parallel for default(none) shared(Nsym_, solutions_, coords_) firstprivate(d1)
 //#pragma omp parallel for default(shared)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.setNewCoordinates(coords_[i]);
@@ -71,9 +71,9 @@ void TestRunner::solve() {
         auto filename = getString(this->dir_.value(), "sim", i, "txt");
         auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";
-        printCoordinates(fout,coords_[i]);
+        printCoordinates(fout, coords_[i]);
         fout << "\n";
-        printSolutionFormat1(fout,solutions_[i]);
+        printSolutionFormat1(fout, solutions_[i]);
         fout << "\n";
         fout << "\n";
         fout.close();
@@ -103,10 +103,10 @@ void TestRunner::generateFunction() {
     MeshProcessor<FloatType> mesh;
     auto result = mesh.getMeshGliff();
     //clocks_[2].tik();
-    if (inner_state==state_t::openmp_new) {
-#pragma omp parallel for default(none) shared(Nsym_,solutions_,result) firstprivate(d1,mesh)
+    if (inner_state == state_t::openmp_new) {
+#pragma omp parallel for default(none) shared(Nsym_, solutions_, result) firstprivate(d1, mesh)
         for (int i = 0; i < Nsym_.value(); ++i) {
-            d1.getFullFunction_(coords_[i],solutions_[i]);
+            d1.getFullFunction_(coords_[i], solutions_[i]);
 
             mesh.generateNoInt(d1.getI2function());
 
@@ -121,7 +121,7 @@ void TestRunner::generateFunction() {
 
     } else {
         for (int i = 0; i < Nsym_.value(); ++i) {
-            d1.getFullFunction_(coords_[i],solutions_[i]);
+            d1.getFullFunction_(coords_[i], solutions_[i]);
 
             mesh.generateNoInt(d1.getI2function());
             auto mesht = mesh.getMeshdec()[2];

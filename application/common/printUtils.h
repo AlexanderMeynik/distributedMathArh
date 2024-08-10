@@ -10,18 +10,17 @@
 #include <ostream>
 #include <iomanip>
 #include <limits>
-class IosStatePreserve
-{
+
+class IosStatePreserve {
 public:
-    explicit IosStatePreserve(std::ostream&out):out_(out)
-    {
-        flags_=out.flags();
+    explicit IosStatePreserve(std::ostream &out) : out_(out) {
+        flags_ = out.flags();
         //out_=out;
 
     }
-    ~IosStatePreserve()
-    {
-        out_<<std::setiosflags(flags_);
+
+    ~IosStatePreserve() {
+        out_ << std::setiosflags(flags_);
         //out_.set(flags_);
     }
 
@@ -29,9 +28,9 @@ public:
 private:
     std::ostream &out_;
 };
+
 template<typename T>
-struct scientificNumberType
-{
+struct scientificNumberType {
     explicit scientificNumberType(T number, int decimalPlaces) : number(number), decimalPlaces(decimalPlaces) {}
 
     T number;
@@ -39,20 +38,17 @@ struct scientificNumberType
 };
 
 template<typename T>
-scientificNumberType<T> scientificNumber(T t, int decimalPlaces=std::numeric_limits<T>::max_digits10)
-{
+scientificNumberType<T> scientificNumber(T t, int decimalPlaces = std::numeric_limits<T>::max_digits10) {
     return scientificNumberType<T>(t, decimalPlaces);
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>& n)
-{
+std::ostream &operator<<(std::ostream &os, const scientificNumberType<T> &n) {
     double numberDouble = n.number;
-    char c=(n.number>0)?'+':'-';
+    char c = (n.number > 0) ? '+' : '-';
 
     int eToThe = 0;
-    for(; numberDouble > 9; ++eToThe)
-    {
+    for (; numberDouble > 9; ++eToThe) {
         numberDouble /= 10;
     }
 
@@ -60,7 +56,7 @@ std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>& n)
     std::ios oldState(nullptr);
     oldState.copyfmt(os);
 
-    os << std::fixed << std::setprecision(n.decimalPlaces) << numberDouble << "e"<<c << eToThe;
+    os << std::fixed << std::setprecision(n.decimalPlaces) << numberDouble << "e" << c << eToThe;
 
     // restore state
     os.copyfmt(oldState);
@@ -69,14 +65,12 @@ std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>& n)
 }
 
 template<typename T>
-std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>&& n)
-{
+std::ostream &operator<<(std::ostream &os, const scientificNumberType<T> &&n) {
     double numberDouble = n.number;
-    char c=(n.number>0)?'+':'-';
+    char c = (n.number > 0) ? '+' : '-';
 
     int eToThe = 0;
-    for(; numberDouble > 9; ++eToThe)
-    {
+    for (; numberDouble > 9; ++eToThe) {
         numberDouble /= 10;
     }
 
@@ -84,7 +78,7 @@ std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>&& n)
     std::ios oldState(nullptr);
     oldState.copyfmt(os);
 
-    os << std::fixed << std::setprecision(n.decimalPlaces) << numberDouble << "e"<<c << eToThe;
+    os << std::fixed << std::setprecision(n.decimalPlaces) << numberDouble << "e" << c << eToThe;
 
     // restore state
     os.copyfmt(oldState);
@@ -93,40 +87,37 @@ std::ostream& operator<<(std::ostream& os, const scientificNumberType<T>&& n)
 }
 
 
-template<typename T,typename ... Args >
-void printFirst(T elem,Args...args)
-{
-    std::cout<< (typeid(elem).name())<<'\n';
+template<typename T, typename ... Args>
+void printFirst(T elem, Args...args) {
+    std::cout << (typeid(elem).name()) << '\n';
 }
 
-template <typename Arg, typename... Args>
-void doPrint(std::ostream& out, Arg&& arg, Args&&... args)
-{
-    out << typeid(arg).name()<<'\t';
+template<typename Arg, typename... Args>
+void doPrint(std::ostream &out, Arg &&arg, Args &&... args) {
+    out << typeid(arg).name() << '\t';
     ((out << '\t' << typeid(args).name()), ...);
 }
 
-template <typename TupleT,char del='\t'>
-void printTupleApply(std::ostream&out,const TupleT& tp) {
+template<typename TupleT, char del = '\t'>
+void printTupleApply(std::ostream &out, const TupleT &tp) {
     std::apply
             (
-                    [&out](const auto& first, const auto&... restArgs)
-                    {
+                    [&out](const auto &first, const auto &... restArgs) {
                         auto printElem = [&out](const auto &x) {
-                            if(!std::is_pointer<decltype(x)>::value) {
+                            if (!std::is_pointer<decltype(x)>::value) {
                                 out << del << x;
                             }
                         };
 
 
                         out << '(';
-                        if(!std::is_pointer<decltype(first)>::value) {
+                        if (!std::is_pointer<decltype(first)>::value) {
                             out << first;
                         }
                         (printElem(restArgs), ...);
                     }, tp
             );
-    out<<')';
+    out << ')';
 }
 
 #endif //DIPLOM_PRINTUTILS_H

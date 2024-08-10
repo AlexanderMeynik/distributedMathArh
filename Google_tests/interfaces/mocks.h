@@ -1,5 +1,6 @@
 #ifndef DIPLOM_MOCKS_H
 #define DIPLOM_MOCKS_H
+
 #include <iosfwd>
 #include <gmock/gmock.h>
 #include "../../application/interfaces/interlib.h"
@@ -8,8 +9,9 @@
 template<typename ... Args>
 class MockEvent : public core_intrefaces::Event<Args...> {
 public:
-    MockEvent(core_intrefaces::AbstractProduser<Args...>* sender, Args&& ... args)
+    MockEvent(core_intrefaces::AbstractProduser<Args...> *sender, Args &&... args)
             : core_intrefaces::Event<Args...>(sender, std::forward<Args>(args)...) {}
+
     MOCK_METHOD(void, mockMethod, (), ());
 };
 
@@ -19,8 +21,8 @@ public:
     //MOCK_METHOD(void, notify, (Args...), (override));
     //MOCK_METHOD(void, notifySpec, (size_t, Args...), (override));
 
-    MOCK_METHOD(void, sub, (core_intrefaces::AbstractSubsriber<Args...>*), (override));
-    MOCK_METHOD(void, unsub, (core_intrefaces::AbstractSubsriber<Args...>*), (override));
+    MOCK_METHOD(void, sub, (core_intrefaces::AbstractSubsriber<Args...> * ), (override));
+    MOCK_METHOD(void, unsub, (core_intrefaces::AbstractSubsriber<Args...> * ), (override));
 };
 
 template<typename ... Args>
@@ -38,9 +40,6 @@ public:
     MOCK_METHOD(void, getNotified, (std::shared_ptr<core_intrefaces::Event<Args...>> event), (override));
 
 
-
-
-
 };
 
 
@@ -53,10 +52,9 @@ public:
             : expectedParams_(std::make_tuple(expectedArgs...)) {}
 
     bool MatchAndExplain(std::shared_ptr<core_intrefaces::Event<Args...>> event,
-                         testing::MatchResultListener* listener) const override {
+                         testing::MatchResultListener *listener) const override {
         if (!event) {
-            if (!listener->stream())
-            {
+            if (!listener->stream()) {
                 std::cout << "event is null";
                 return false;
             }
@@ -72,7 +70,7 @@ public:
                 printTupleApply(std::cout, expectedParams_);
                 std::cout << ", but got: ";
                 printTupleApply(std::cout, event->params_);
-                std::cout<<'\n';
+                std::cout << '\n';
                 return false;
             }
             *listener << "event parameters don't match. Expected: ";
@@ -85,7 +83,7 @@ public:
         return true;
     }
 
-    void DescribeTo(std::ostream* os) const override {
+    void DescribeTo(std::ostream *os) const override {
         if (os) {
             *os << "event with parameters ";
             printTupleApply(*os, expectedParams_);

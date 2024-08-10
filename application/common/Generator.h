@@ -10,33 +10,34 @@
 #include <random>
 #include <functional>
 #include <eigen3/Eigen/Dense>
+
 namespace generators {
     //todo млжет тогда вектора поделать
-    template<typename T,template<typename> typename DISTRIBUTION, typename... Args>
-    std::function<Eigen::Vector<T, Eigen::Dynamic>(size_t N,Args ...)> generalDistribution= [](size_t N_,
-            Args ... args) {
+    template<typename T, template<typename> typename DISTRIBUTION, typename... Args>
+    std::function<Eigen::Vector<T, Eigen::Dynamic>(size_t N, Args ...)> generalDistribution = [](size_t N_,
+                                                                                                 Args ... args) {
         std::random_device rd_;
         auto rng_ = std::mt19937(rd_());
-        auto distribution_=DISTRIBUTION<T>(args...);
+        auto distribution_ = DISTRIBUTION<T>(args...);
         if (!N_) {
             return Eigen::Vector<T, Eigen::Dynamic>();
         }
-        Eigen::Vector<T, Eigen::Dynamic> res(2*N_);
+        Eigen::Vector<T, Eigen::Dynamic> res(2 * N_);
         //std::function<T()> function = [&]() { return distribution_(rng_); };
         for (int i = 0; i < res.size(); ++i) {
-            res[i]= distribution_(rng_);
+            res[i] = distribution_(rng_);
             //res[1][i]= distribution_(rng_);
         }
         return res;
     };
 
     template<typename T>
-    std::function<Eigen::Vector<T, Eigen::Dynamic>(size_t,T mean, T stddev)> Gaus
-    =generalDistribution<T,std::normal_distribution,T,T>;
+    std::function<Eigen::Vector<T, Eigen::Dynamic>(size_t, T mean, T stddev)> Gaus
+            = generalDistribution<T, std::normal_distribution, T, T>;
 
     template<typename T>
-    std::function<Eigen::Vector<T, Eigen::Dynamic>(size_t,T a, T b)> uniform_real
-            =generalDistribution<T,std::uniform_real_distribution,T,T>;
+    std::function<Eigen::Vector<T, Eigen::Dynamic>(size_t, T a, T b)> uniform_real
+            = generalDistribution<T, std::uniform_real_distribution, T, T>;
 
 }
 template<typename T>

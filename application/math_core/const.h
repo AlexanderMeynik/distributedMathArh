@@ -4,6 +4,7 @@
 
 #ifndef DIPLOM_CONST_H
 #define DIPLOM_CONST_H
+
 #include <iostream>
 #include <array>
 #include <eigen3/Eigen/Dense>

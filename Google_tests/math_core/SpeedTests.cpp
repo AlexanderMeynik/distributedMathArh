@@ -56,29 +56,27 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
 }*/
 
 
-TEST(Dipoles,test_right_part_nev_solve_impl)
-{
+TEST(Dipoles, test_right_part_nev_solve_impl) {
 
 
-    for (int N = 10; N < 200; N*=4) {
+    for (int N = 10; N < 200; N *= 4) {
         for (int i = 0; i < 1; ++i) {
-            SCOPED_TRACE("Perform comparison test for N = "+std::to_string(N)+" attempt №"+std::to_string(i));
-            CoordGenerator<double> genr(0,1e-6);
+            SCOPED_TRACE("Perform comparison test for N = " + std::to_string(N) + " attempt №" + std::to_string(i));
+            CoordGenerator<double> genr(0, 1e-6);
 
-            auto coord= genr.generateCoordinates2(N);
-            dipoles::Dipoles<double> dipolearr(N,coord);
+            auto coord = genr.generateCoordinates2(N);
+            dipoles::Dipoles<double> dipolearr(N, coord);
             //auto solution=dipolearr.solve2();
-            auto rsol=dipolearr.solve3();
+            auto rsol = dipolearr.solve3();
 
             //compare_collections(solution,rsol);
-           // EXPECT_NEAR((solution-rsol).norm(),0,tool);
+            // EXPECT_NEAR((solution-rsol).norm(),0,tool);
         }
 
     }
 
 
 }
-
 
 
 template<typename Type>
@@ -212,8 +210,6 @@ namespace uu {
 
             Parser<vector<double>> ppsol(NN);
             in2 >> ppsol;
-
-
 
 
             dipoles::Dipoles<double> dd;//это тут не нужно

@@ -1,4 +1,3 @@
-
 Install google tests+gmock
 git clone https://github.com/google/googletest
 cd googletest

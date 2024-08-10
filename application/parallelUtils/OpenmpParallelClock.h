@@ -10,26 +10,27 @@
 #include <list>
 #include <iostream>
 #include <cmath>
+
 #ifndef DIPLOM_OPENMPPARRALELCLOCK_H
 #define DIPLOM_OPENMPPARRALELCLOCK_H
 
 namespace timing {
     template<typename T>
-    struct value_func_pair
-    {
+    struct value_func_pair {
         T value;
-        std::function<T(T,T)> f;
+        std::function<T(T, T)> f;
     };
     template<typename T>
-    value_func_pair<T> max{-1.0,[](T a, T b){ return std::max(a,b);}};
-    template<typename T,T(*timeGetter)(),int(*threadNumGetter)()>
+    value_func_pair<T> max{-1.0, [](T a, T b) { return std::max(a, b); }};
+
+    template<typename T, T(*timeGetter)(), int(*threadNumGetter)()>
     class OpenmpParallelClock {
     public:
         //todo почитать про parameter forwarding и сделать более общей
-        explicit OpenmpParallelClock(const std::string& name="anon") {
+        explicit OpenmpParallelClock(const std::string &name = "anon") {
             timers = std::vector<T>(omp_get_max_threads(), T(0.0));
             startIngTimers = std::vector<T>(omp_get_max_threads(), T(0.0));
-            name_=name;
+            name_ = name;
         }
 
         T getTime() {
@@ -52,28 +53,27 @@ namespace timing {
 
         template<typename Tp>
         Tp aggregate() {
-            return std::accumulate(timers.begin(), timers.end(), max<Tp>.value,max<Tp>.f);
+            return std::accumulate(timers.begin(), timers.end(), max<Tp>.value, max<Tp>.f);
         }
 
         void tak() {
             size_t id = (*threadNumGetter)();
             timers[id] += (*timeGetter)() - startIngTimers[id];
         }
+
         void tik() {
             startIngTimers[(*threadNumGetter)()] = (*timeGetter)();
         }
 
-        friend std::ostream& operator<<(std::ostream&out,OpenmpParallelClock<T,timeGetter,threadNumGetter>&clk)
-        {
-            out<<clk.name_<<'\t'<<clk.template aggregate<T>();
+        friend std::ostream &operator<<(std::ostream &out, OpenmpParallelClock<T, timeGetter, threadNumGetter> &clk) {
+            out << clk.name_ << '\t' << clk.template aggregate<T>();
             return out;
         }
 
         template<class StringType>
-        friend StringType to_string(std::ostream&out,OpenmpParallelClock<T,timeGetter,threadNumGetter>&clk)
-        {
+        friend StringType to_string(std::ostream &out, OpenmpParallelClock<T, timeGetter, threadNumGetter> &clk) {
             std::basic_stringstream<StringType> ss;
-            ss<<clk.name_<<'\t'<<clk.template aggregate<T>();//type deduction?
+            ss << clk.name_ << '\t' << clk.template aggregate<T>();//type deduction?
             return ss.str();
         }
 
@@ -87,7 +87,6 @@ namespace timing {
         std::string name_;
     };
 }
-
 
 
 #endif //DIPLOM_OPENMPPARRALELCLOCK_H

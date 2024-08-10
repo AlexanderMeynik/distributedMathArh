@@ -37,33 +37,34 @@ T integrateFunctionBy1Val(const std::function<T(T, T, T)> &ff, T theta, T phi, T
 #include <ranges>
 #include <concepts>
 #include <type_traits>
+
 template<typename T>
 concept ElementIterable = requires(std::ranges::range_value_t<T> x)
 {
     x.begin();          // must have `x.begin()`
     x.end();            // and `x.end()`
 };
-template<typename T, template<typename >typename CONT>
-concept has_size = requires( CONT<T> t)
+template<typename T, template<typename> typename CONT>
+concept has_size = requires(CONT<T> t)
 {
     { t.size() } -> std::convertible_to<std::size_t>;
 };
 
-template<typename T, template<typename >typename CONT>
-concept has_brackets= requires( CONT<T> t,size_t i)
+template<typename T, template<typename> typename CONT>
+concept has_brackets= requires(CONT<T> t, size_t i)
 {
-    { t[i] } -> std::convertible_to<T&>;
+    { t[i] } -> std::convertible_to<T &>;
 };
 
 template<typename T, typename U>
-concept has_elemet = requires( T t,int i)
+concept has_elemet = requires(T t, int i)
 {
-    { t[i]} -> std::convertible_to<U&>;
+    { t[i] } -> std::convertible_to<U &>;
 };
 
-template<typename T,typename U, template<typename >typename CONT>
-requires has_size<U,CONT>&&has_brackets<U,CONT>&&has_elemet<U,T>
-CONT<U> applyFunctionToVVD(const CONT<U>& a, const CONT<U>& b, const std::function<T(T, T)>& func) {
+template<typename T, typename U, template<typename> typename CONT>
+requires has_size<U, CONT> && has_brackets<U, CONT> && has_elemet<U, T>
+CONT<U> applyFunctionToVVD(const CONT<U> &a, const CONT<U> &b, const std::function<T(T, T)> &func) {
     size_t rows = a.size();
     size_t cols = a[0].size();
 
@@ -141,40 +142,38 @@ public:
         initCoordMeshes();
     }
 
-    std::pair<std::array<size_t,2 >,std::array<T,2>> export_conf()
-    {
-        return {{this->nums[0],this->nums[1]},{this->steps[0],this->steps[1]}};
+    std::pair<std::array<size_t, 2>, std::array<T, 2>> export_conf() {
+        return {{this->nums[0],  this->nums[1]},
+                {this->steps[0], this->steps[1]}};
     }
 
-    void importConf(std::pair<std::array<size_t,2 >,std::array<T,2>>&conf,bool precompute=false)
-    {
-        if(precompute)
-        {
+    void importConf(std::pair<std::array<size_t, 2>, std::array<T, 2>> &conf, bool precompute = false) {
+        if (precompute) {
             this->setSteps(conf.second);
             return;
         }
-        this->nums[0]=conf.first[0];
-        this->nums[1]=conf.first[1];
-        this->steps[0]=conf.second[0];
-        this->steps[1]=conf.second[1];
+        this->nums[0] = conf.first[0];
+        this->nums[1] = conf.first[1];
+        this->steps[0] = conf.second[0];
+        this->steps[1] = conf.second[1];
         initCoordMeshes();
     }
 
-    void setSteps(std::array<T , 2 > &elems) {
+    void setSteps(std::array<T, 2> &elems) {
         steps[0] = elems[0];
         steps[1] = elems[1];
         nums[0] = (philims[1] - philims[0]) / (steps[0]) + 1;
-        nums[1]=(thelims[1] - thelims[0]) / (steps[1]) + 1;//y=(a2-a1)/x+1
+        nums[1] = (thelims[1] - thelims[0]) / (steps[1]) + 1;//y=(a2-a1)/x+1
         initCoordMeshes();
         //y-1=(a2-a1)/x
         //x=(a2-a1)/(y-1)
     }
 
-    void setNums(std::array<size_t , 2 > &elems) {
-        nums[0]=elems[0];
-        nums[1]=elems[1];
-        steps[0]=(philims[1] - philims[0])/(nums[0]-1);
-        steps[1]=(thelims[1] -thelims[0])/(nums[1]-1);
+    void setNums(std::array<size_t, 2> &elems) {
+        nums[0] = elems[0];
+        nums[1] = elems[1];
+        steps[0] = (philims[1] - philims[0]) / (nums[0] - 1);
+        steps[1] = (thelims[1] - thelims[0]) / (nums[1] - 1);
         initCoordMeshes();
     }
 
@@ -211,12 +210,11 @@ private:
     T philims[2] = {0, M_PI * 2};
     T thelims[2] = {0, M_PI_2};
     T steps[2] = {M_PI / 12, M_PI / 12};
-    size_t nums[2] = {static_cast<size_t >((philims[1] - philims[0]) / (steps[0])) + 1, static_cast<size_t >((thelims[1] - thelims[0]) / (steps[1])) + 1};
+    size_t nums[2] = {static_cast<size_t >((philims[1] - philims[0]) / (steps[0])) + 1,
+                      static_cast<size_t >((thelims[1] - thelims[0]) / (steps[1])) + 1};
     static constexpr const T rr = 2 * M_PI / params<T>::omega;
     static constexpr const T step = M_PI / 12;
 };
-
-
 
 
 template<typename T>
@@ -238,21 +236,21 @@ template<typename T>
 void MeshProcessor<T>::printDec(std::ostream &out) {
     out << "Функция I(phi,th)\n";
     out << "phi\\th\t\t";
-    for (int i = 0; i < meshdec[2].size()-1; ++i) {
-        out << scientificNumber(meshdec[1][i][0],5)<<'\t';
+    for (int i = 0; i < meshdec[2].size() - 1; ++i) {
+        out << scientificNumber(meshdec[1][i][0], 5) << '\t';
     }
-    out << scientificNumber(meshdec[1][meshdec[2].size()-1][0],5)<<'\n';
+    out << scientificNumber(meshdec[1][meshdec[2].size() - 1][0], 5) << '\n';
     /*for (T theta = thelims[0]; theta < thelims[1]; theta += steps[1]) {
         out << scientificNumber(theta, 5) << "\t";
     }*/
 
     for (int i = 0; i < meshdec[2][0].size(); ++i) {
-        auto phi=meshdec[0][0][i];
+        auto phi = meshdec[0][0][i];
         out << scientificNumber(phi, 5) << "\t";
-        for (int j = 0; j < meshdec[2].size()-1; ++j) {
+        for (int j = 0; j < meshdec[2].size() - 1; ++j) {
             out << scientificNumber(meshdec[2][j][i], 5) << "\t";
         }
-        out << scientificNumber(meshdec[2][meshdec[2].size()-1][i], 5)<< "\n";
+        out << scientificNumber(meshdec[2][meshdec[2].size() - 1][i], 5) << "\n";
     }
     /*
     int i1 = 0;
@@ -292,8 +290,8 @@ void MeshProcessor<T>::generateNoInt(const std::function<T(T, T)> &func) {
     T rr1 = this->rr;
 
     //meshdec[2] = transform(meshdec[0], meshdec[1], func);
-    meshdec[2]= applyFunctionToVVD(meshdec[0], meshdec[1], func);
-   // std::transform(meshdec[0].begin(), meshdec[0].end(), meshdec[1].begin(), meshdec[1].end(),std::back_inserter(meshdec[2]),func);
+    meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], func);
+    // std::transform(meshdec[0].begin(), meshdec[0].end(), meshdec[1].begin(), meshdec[1].end(),std::back_inserter(meshdec[2]),func);
     sphericalTransformation();
 }
 
@@ -315,7 +313,7 @@ template<typename T>
 void MeshProcessor<T>::generateMeshes(const std::function<T(T, T, T)> &func) {
 
     T rr1 = this->rr;
-    meshdec[2]= applyFunctionToVVD(meshdec[0], meshdec[1], [&func, &rr1](T x, T y) {
+    meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], [&func, &rr1](T x, T y) {
         return integrateFunctionBy1Val<T, 61>(func, y, x, 0, rr1);
     });
     /*meshdec[2] = transform(meshdec[0], meshdec[1], [&func, &rr1](T x, T y) {
@@ -336,32 +334,32 @@ T getMeshDiffNorm(std::vector<std::vector<T>> &mesh1, std::vector<std::vector<T>
     }
     return sqrt(res);
 }
+
 template<typename T>
-class Parser<MeshProcessor<T>>
-{
+class Parser<MeshProcessor<T>> {
 public:
-    Parser() :  vals_() {}
+    Parser() : vals_() {}
 
     Parser(int size) : vals_() {}
 
-    friend std::istream& operator>>(std::istream& in, Parser& pp)
-    {
+    friend std::istream &operator>>(std::istream &in, Parser &pp) {
         std::string dummy;
         std::getline(in, dummy);
         std::getline(in, dummy);
         std::getline(in, dummy);
         //pp.vals_=MeshProcessor<T>();
-        std::vector<std::vector<T>> m=pp.vals_.getMeshGliff();
-        for (int i = 0; i <m[0].size() ; ++i) {
-            T temp=0;
-            in>>temp;//diskard first number
+        std::vector<std::vector<T>> m = pp.vals_.getMeshGliff();
+        for (int i = 0; i < m[0].size(); ++i) {
+            T temp = 0;
+            in >> temp;//diskard first number
             for (int j = 0; j < m.size(); ++j) {
                 T val;
-                in>>val;
-               m[j][i]=val;
+                in >> val;
+                m[j][i] = val;
             }
         }
-        pp.vals_.setMesh3(m);//todo мы не иницализируем финальную компоненту как надо, поэтому создаём глиф тут и печаетев всё в него
+        pp.vals_.setMesh3(
+                m);//todo мы не иницализируем финальную компоненту как надо, поэтому создаём глиф тут и печаетев всё в него
         return in;
     }
 

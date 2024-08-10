@@ -2,35 +2,32 @@ cmake_minimum_required(VERSION 3.26)
 project(Magister1)
 
 
-
 set(CMAKE_CXX_STANDARD 20)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-if(CMAKE_BUILD_TYPE STREQUAL "Debug-Coverage")
+if (CMAKE_BUILD_TYPE STREQUAL "Debug-Coverage")
     set(-DCMAKE_CXX_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage -gstabs -DWARF")
     set(-DCMAKE_C_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage -gstabs -DWARF")
-else()
+else ()
     set(CMAKE_BUILD_TYPE RelWithDebInfo)
     set(CMAKE_CXX_FLAGS "-O0 -g")
-    set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g")
-    SET( CMAKE_CXX_FLAGS_RELEASE    "-O3 -g -march=native -fpic -ffast-math -ftree-vectorize" )
-endif()
+    set(CMAKE_CXX_FLAGS_DEBUG "-O0 -g")
+    SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -march=native -fpic -ffast-math -ftree-vectorize")
+endif ()
 
 find_package(Matplot++ REQUIRED)
 find_library(PQXX_LIB pqxx)
 find_library(PQ_LIB pq)
 find_package(GSL REQUIRED)
 find_package(OpenMP REQUIRED)
-find_package (Eigen3 3.3 REQUIRED NO_MODULE)
-
+find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 
 # Add Executable
-add_executable(Magister1  main.cpp)
+add_executable(Magister1 main.cpp)
 add_executable(ConFReader configReader.cpp)
 add_executable(testIntegr gausTets.cpp)
-
 
 
 file(GLOB common CONFIGURE_DEPENDS
@@ -54,8 +51,6 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 )
 
 
-
-
 add_library(math_core_lib ${math_core_files})
 target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
 target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
@@ -67,7 +62,6 @@ target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
 
 add_executable(clock clockTest.cpp)
 target_link_libraries(clock parallelLib)
-
 
 
 file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS

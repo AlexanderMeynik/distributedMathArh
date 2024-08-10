@@ -7,7 +7,7 @@ using namespace web;
 using namespace web::http;
 using namespace web::http::client;
 
-void make_get_request(const uri& uri) {
+void make_get_request(const uri &uri) {
     http_client client(uri);
 
     client.request(methods::GET).then([](http_response response) {
@@ -18,13 +18,13 @@ void make_get_request(const uri& uri) {
     }).then([](pplx::task<utility::string_t> previousTask) {
         try {
             std::wcout << previousTask.get().data() << std::endl;
-        } catch (const http_exception& e) {
+        } catch (const http_exception &e) {
             std::wcout << e.what() << std::endl;
         }
     }).wait();
 }
 
-void make_post_request(const uri& uri, const json::value& body) {
+void make_post_request(const uri &uri, const json::value &body) {
     http_client client(uri);
 
     http_request request(methods::POST);
@@ -39,7 +39,7 @@ void make_post_request(const uri& uri, const json::value& body) {
     }).then([](pplx::task<utility::string_t> previousTask) {
         try {
             std::wcout << previousTask.get().data() << std::endl;
-        } catch (const http_exception& e) {
+        } catch (const http_exception &e) {
             std::wcout << e.what() << std::endl;
         }
     }).wait();

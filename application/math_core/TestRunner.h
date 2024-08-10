@@ -14,11 +14,12 @@
 #include "../common/Generator.h"
 #include "../parallelUtils/clockArray.h"
 #include "../common/constants.h"
+
 using const_::FloatType;
 template<typename T>
-using geNsolution = Eigen::Vector<T , Eigen::Dynamic>;
+using geNsolution = Eigen::Vector<T, Eigen::Dynamic>;
 template<typename T>
-using geNcoordinates = Eigen::Vector<T , Eigen::Dynamic>;
+using geNcoordinates = Eigen::Vector<T, Eigen::Dynamic>;
 using solution = geNsolution<FloatType>;
 using coordinates = geNcoordinates<FloatType>;
 
@@ -61,16 +62,17 @@ public:
 
     void generateCoords(Generator<FloatType> &gen);
 
-    template<typename... Args>//todo переделать часть в сервере для генерации какашек
+    template<typename... Args>
+    //todo переделать часть в сервере для генерации какашек
     void generateGeneralized(std::function<coordinates(Args...)> &functor, Args ... args) {
         //clocks_[0].tik();
         coords_.resize(Nsym_.value());
         for (int i = 0; i < Nsym_; ++i) {
             coords_[i] = functor(args...);
         }
-        if (coords_[0].size() != 2*N_.value())//может ввести отдельнкю спецаилизацтю для данного случая
+        if (coords_[0].size() != 2 * N_.value())//может ввести отдельнкю спецаилизацтю для данного случая
         {
-            N_ = coords_[0].size()/2;
+            N_ = coords_[0].size() / 2;
         }
 
         //clocks_[0].tak();
@@ -83,7 +85,7 @@ public:
     //логика use if exists create if not(саму эту логику надо добавить в менеджер бд)
 
 
-    std::vector<Eigen::Vector<FloatType , Eigen::Dynamic>> &getCoordRef() {
+    std::vector<Eigen::Vector<FloatType, Eigen::Dynamic>> &getCoordRef() {
         return coords_;
     }
 
@@ -97,7 +99,8 @@ private:
     static std::fstream openOrCreateFile(std::string filename);
 
     static std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end);
-    std::vector<Eigen::Vector<FloatType , Eigen::Dynamic>> coords_;
+
+    std::vector<Eigen::Vector<FloatType, Eigen::Dynamic>> coords_;
     std::vector<solution> solutions_;
     std::optional<std::string> subdir_;
     std::optional<std::string> dir_;

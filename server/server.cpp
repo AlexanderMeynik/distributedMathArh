@@ -1,4 +1,5 @@
 #define _TURN_OFF_PLATFORM_STRING
+
 #include <cpprest/http_listener.h>
 #include <cpprest/json.h>
 #include <iostream>
@@ -28,27 +29,26 @@ void handle_get(http_request request) {
             json::value jsonResponse;
             jsonResponse[_XPLATSTR("result")] = json::value::number(a + b);
             request.reply(status_codes::OK, jsonResponse);
-        } catch (const std::exception& e) {
+        } catch (const std::exception &e) {
             request.reply(status_codes::BadRequest, _XPLATSTR("Invalid parameters"));
         }
 
-    }
-    else if (path[0] == _XPLATSTR("calculate") && path.size() == 4) {
+    } else if (path[0] == _XPLATSTR("calculate") && path.size() == 4) {
         try {
             size_t N = std::stoi(path[1]);
             int Ns = std::stoi(path[2]);
             double arange = std::stod(path[3]);
-            TestRunner ts(N,Ns,arange);
+            TestRunner ts(N, Ns, arange);
             //auto gen=GausGenerator<double>(0,arange,N);
             //auto gen2=TriangGenerator<double>(0,0,arange/4.0,arange,false);
-           // ts.generateCoords(gen2);//todo потестить
-           ts.generateGeneralized(generators::uniform_real<double>,N,0.0,arange*sqrt(2));
+            // ts.generateCoords(gen2);//todo потестить
+            ts.generateGeneralized(generators::uniform_real<double>, N, 0.0, arange * sqrt(2));
             ts.solve();
 
 
             std::stringstream ss;
             for (int i = 0; i < Ns; ++i) {
-                printSolutionFormat1(ss,ts.getSolRef()[i]);
+                printSolutionFormat1(ss, ts.getSolRef()[i]);
             }
 
             json::value jsonResponse;
@@ -58,13 +58,13 @@ void handle_get(http_request request) {
         } catch (const std::exception &e) {
             request.reply(status_codes::BadRequest, _XPLATSTR("Invalid parameters"));
         }
-    }
-    else {
+    } else {
         request.reply(status_codes::NotFound, _XPLATSTR("Not Found"));
     }
 }
 
-void handle_post(http_request request) {//todo создать сервис для обработки post запросов(что-то типа хэш таблицы для поиска функции по методу)
+void handle_post(
+        http_request request) {//todo создать сервис для обработки post запросов(что-то типа хэш таблицы для поиска функции по методу)
     ucout << request.to_string() << std::endl;
 
     request.extract_json().then([request](pplx::task<json::value> task) {
@@ -74,7 +74,7 @@ void handle_post(http_request request) {//todo создать сервис дл�
 
             // Echo back the received JSON
             request.reply(status_codes::OK, json);
-        } catch (const http_exception& e) {
+        } catch (const http_exception &e) {
             request.reply(status_codes::BadRequest, _XPLATSTR("Invalid JSON"));
         }
     }).wait();
@@ -91,12 +91,14 @@ int main() {
     try {
         listener
                 .open()
-                .then([&listener]() { ucout << _XPLATSTR("Starting to listen at: ") << listener.uri().to_string() << std::endl; })
+                .then([&listener]() {
+                    ucout << _XPLATSTR("Starting to listen at: ") << listener.uri().to_string() << std::endl;
+                })
                 .wait();
 
         std::string line;
         std::getline(std::cin, line);
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cerr << "An error occurred: " << e.what() << std::endl;
     }
 

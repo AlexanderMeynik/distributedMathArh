@@ -194,7 +194,7 @@ int getConfSize(string &filename) {
     char c = in.get();
     assert(c == 'C');
     int Nconf;
-    in >>Nconf;
+    in >> Nconf;
     return Nconf;
 }
 

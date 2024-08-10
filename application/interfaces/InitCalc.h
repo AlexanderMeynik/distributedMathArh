@@ -2,53 +2,53 @@
 #define DIPLOM_INITCALC_H
 
 #define noImp
+
 #include "CalculationStep.h"
 #include <optional>
 #include "../math_core/Dipoles.h"
 #include <omp.h>
 #include <filesystem>
+
 namespace inter {
     template<typename ... Args>
-    class InitCalc: public CalculationStep<Args ...>{
+    class InitCalc : public CalculationStep<Args ...> {
     public:
         using CalculationStep<Args ...>::CalculationStep;
 
         std::string to_string() override {
-            return "init_"+CalculationStep<Args ...>::to_string();
+            return "init_" + CalculationStep<Args ...>::to_string();
         }
-        void setFunction(std::function<std::vector<double>(int,int,Args ...)>&&func)
-        {
-            source_=std::forward<decltype(func)>(func);
+
+        void setFunction(std::function<std::vector<double>(int, int, Args ...)> &&func) {
+            source_ = std::forward<decltype(func)>(func);
         }
 
     protected:
-        void perform_calculation(std::shared_ptr<DataAcessInteface> dat,Args...args) override {
-            if(source_.has_value())
-            {
+        void perform_calculation(std::shared_ptr<DataAcessInteface> dat, Args...args) override {
+            if (source_.has_value()) {
                 std::vector<std::vector<double>> temp;//tododo floattype
                 temp.resize(this->count_);
                 for (int i = 0; i < this->count_; ++i) {
-                    temp[i]=source_.value()(this->start_,i,args...);
+                    temp[i] = source_.value()(this->start_, i, args...);
                 }
-                dat->getdat(this->to_string())=temp;
-                this->notify(dat,args...);
+                dat->getdat(this->to_string()) = temp;
+                this->notify(dat, args...);
                 return;
             }
             std::vector<std::vector<double>> temp;//tododo floattype
             temp.resize(this->count_);
             for (int i = 0; i < this->count_; ++i) {
-                temp[i]=std::vector<double>(this->start_,i);
+                temp[i] = std::vector<double>(this->start_, i);
             }
-            dat->getdat(this->to_string())=temp;
-            this->notify(dat,args...);
+            dat->getdat(this->to_string()) = temp;
+            this->notify(dat, args...);
         }
 
-        std::optional<std::function<std::vector<double>(int,int,Args ...)>> source_;
+        std::optional<std::function<std::vector<double>(int, int, Args ...)>> source_;
 
     };
 
-    static void createSubDirectory(const std::string &dirname, const std::string &subdirectory = "")
-    {
+    static void createSubDirectory(const std::string &dirname, const std::string &subdirectory = "") {
 
         if (!std::filesystem::exists("results/")) {
             std::filesystem::create_directory("results/");
@@ -63,8 +63,7 @@ namespace inter {
         }
     }
 
-    static std::fstream openOrCreateFile(std::string filename)
-    {
+    static std::fstream openOrCreateFile(std::string filename) {
         std::fstream appendFileToWorkWith;
         appendFileToWorkWith.open(filename, std::fstream::in | std::fstream::out | std::fstream::app);
 
@@ -75,27 +74,30 @@ namespace inter {
     }
 
 
-    static std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end)//todo variadik шаблон с произвольными параметрами
+    static std::string getString(const std::string &dirname, std::string &&name, int i,
+                                 std::string &&end)//todo variadik шаблон с произвольными параметрами
     {
         return dirname + name + "_i" + std::to_string(i) + "." + end;
     }
+
     template<typename ... Args>
-    class CalculateMatrix: public CalculationStep<Args ...>{
+    class CalculateMatrix : public CalculationStep<Args ...> {
     public:
         using CalculationStep<Args ...>::CalculationStep;
 
         std::string to_string() override {
-            return "CalculateMatrix_"+CalculationStep<Args ...>::to_string();
+            return "CalculateMatrix_" + CalculationStep<Args ...>::to_string();
         }
 
     protected:
-        void perform_calculation(std::shared_ptr<DataAcessInteface> dat,Args...args) override {
+        void perform_calculation(std::shared_ptr<DataAcessInteface> dat, Args...args) override {
             using dipoles::Dipoles;
 
             Dipoles<FloatType> d1;
             //clocks_[1].tik();
-            bool state= get<bool>(dat->getProperty("prety_print"));//todo мы эти параметры должны откуда-то брать(чё-то типо конфигурации при создании dat
-            size_t Nsym=get<int>(dat->getProperty("Nsym"));
+            bool state = get<bool>(dat->getProperty(
+                    "prety_print"));//todo мы эти параметры должны откуда-то брать(чё-то типо конфигурации при создании dat
+            size_t Nsym = get<int>(dat->getProperty("Nsym"));
 #ifndef noImp
             std::vector<std::vector<double>> coords=dat->getdat(this->prev_->to_string());
             if (state)
@@ -128,7 +130,6 @@ namespace inter {
             }
 #endif
         }
-
 
 
     };
