@@ -16,8 +16,7 @@ struct functable {
     std::function<void(Args...)> func;
     const char *name;
 };
-
-//todo потестить данный класс
+//todo может мы его и уберём
 template<size_t size, typename Tr, typename COUNTED>
 class clockArray {
 public:

@@ -15,13 +15,11 @@ class IosStatePreserve {
 public:
     explicit IosStatePreserve(std::ostream &out) : out_(out) {
         flags_ = out.flags();
-        //out_=out;
 
     }
 
     ~IosStatePreserve() {
-        out_ << std::setiosflags(flags_);
-        //out_.set(flags_);
+        out_.flags(flags_);
     }
 
     std::ios_base::fmtflags flags_;

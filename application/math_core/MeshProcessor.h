@@ -8,7 +8,9 @@
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include "../common/printUtils.h"
 #include "const.h"
-
+#include <ranges>
+#include <concepts>
+#include <type_traits>
 #include "../common/Parsers.h"
 #include "../common/Printers.h"//todo получше организовать фаловую иерарзию
 
@@ -34,9 +36,7 @@ T integrateFunctionBy1Val(const std::function<T(T, T, T)> &ff, T theta, T phi, T
 }
 
 
-#include <ranges>
-#include <concepts>
-#include <type_traits>
+
 
 template<typename T>
 concept ElementIterable = requires(std::ranges::range_value_t<T> x)
@@ -240,9 +240,6 @@ void MeshProcessor<T>::printDec(std::ostream &out) {
         out << scientificNumber(meshdec[1][i][0], 5) << '\t';
     }
     out << scientificNumber(meshdec[1][meshdec[2].size() - 1][0], 5) << '\n';
-    /*for (T theta = thelims[0]; theta < thelims[1]; theta += steps[1]) {
-        out << scientificNumber(theta, 5) << "\t";
-    }*/
 
     for (int i = 0; i < meshdec[2][0].size(); ++i) {
         auto phi = meshdec[0][0][i];
@@ -252,20 +249,6 @@ void MeshProcessor<T>::printDec(std::ostream &out) {
         }
         out << scientificNumber(meshdec[2][meshdec[2].size() - 1][i], 5) << "\n";
     }
-    /*
-    int i1 = 0;
-    int i2;
-    for (T phi = philims[0]; phi < philims[1]; phi += steps[0]) {
-        out << scientificNumber(phi, 5) << "\t";
-        i2 = 0;
-        i1++;
-        for (T theta = thelims[0]; theta < thelims[1]; theta += steps[1]) {
-            out << scientificNumber(meshdec[2][i2][i1], 5) << "\t";
-            i2++;
-        }
-        out << "\n";
-    }*/
-
 
 }
 

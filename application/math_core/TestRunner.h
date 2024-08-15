@@ -58,7 +58,6 @@ public:
         coords_.resize(Nsym_.value());
         inner_state = state;
     };
-    //todo использовать паттерн стратегия(https://sourcemaking.com/design_patterns/strategy/cpp/1)
 
     void generateCoords(Generator<FloatType> &gen);
 

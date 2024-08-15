@@ -177,13 +177,12 @@ TEST(data_acess_interface, test_data_set) {
     EXPECT_TRUE(dd->getdat(inti).size() == sample.size());
     size_t sz = sample.size();
     for (int idx = 0; idx < sz; idx++) {
-        // SCOPED_TRACE(idx);
         EXPECT_TRUE(dd->getdat(inti)[idx].size() == sample[idx].size());
         size_t sz2 = sample[idx].size();
         for (int i = 0; i < sz2; ++i) {
             SCOPED_TRACE("Indexes : i1 = " + std::to_string(idx) + " i2 = " + std::to_string(i) +
                          '\t' + std::to_string(dd->getdat(inti)[idx][i]) + "!=" + std::to_string(sample[idx][i]));
-            EXPECT_TRUE(dd->getdat(inti)[idx][i] + 1 == sample[idx][i]);
+            EXPECT_TRUE(dd->getdat(inti)[idx][i]  == sample[idx][i]);
         }
     }
 

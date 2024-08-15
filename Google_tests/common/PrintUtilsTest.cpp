@@ -17,9 +17,5 @@ TEST(PrintUtils, test_ios_state_preserve) {
         out << std::scientific << std::setprecision(10);
         ASSERT_NE(out.flags(), flags);
     }
-
-
-//todo fix(it's not woking)
-
     ASSERT_EQ(out.flags(), flags);
 }

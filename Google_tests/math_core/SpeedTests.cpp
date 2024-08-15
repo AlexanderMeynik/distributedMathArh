@@ -17,7 +17,7 @@ decltype(auto) get_Default_Configuration() {
     MeshProcessor<T> sample;
     return sample.export_conf();
 }
-/*
+
 TEST(transformations, reinterpret_vector_test)
 {
     auto N=20;
@@ -32,7 +32,18 @@ TEST(transformations, reinterpret_vector_test)
     }
 
 }
+//todo add https://www.sandordargo.com/blog/2019/04/24/parameterized-testing-with-gtest
+TEST(Dipoles,test_is_symmetric)
+{
+    const int size = 2;
 
+    Eigen::MatrixXd mat = Eigen::MatrixXd::Random(size, size);
+
+    Eigen::MatrixXd symMat = (mat + mat.transpose()) / 2;
+
+    ASSERT_TRUE(dipoles::isSymmetric(symMat));
+
+}
 
 TEST(Dipoles,test_solve_result_in_zero_nev)
 {
@@ -44,16 +55,16 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
     auto solution=dipolearr.solve3();
 
     EXPECT_TRUE(solution.size()==4*N);
-    std::cout<<solution<<"\n\n\n\n\n";
-    std::cout<<dipolearr.getMatrixx()<<"\n\n\n\n\n";
+   // std::cout<<solution<<"\n\n\n\n\n";
+  //  std::cout<<dipolearr.getMatrixx()<<"\n\n\n\n\n";
 
     auto nev=dipolearr.getMatrixx()*solution-dipolearr.getRightPart2();
-    std::cout<<nev;
+    //std::cout<<nev;
     {
         EXPECT_NEAR(nev.norm(),0,10e-4);
     }
 
-}*/
+}
 
 
 TEST(Dipoles, test_right_part_nev_solve_impl) {
@@ -144,7 +155,7 @@ namespace uu {
         std::ifstream in1(subdir + "/matrixes.txt");
         for (int i = 0; i < avec.size(); ++i) {
             auto NN = 0;
-            in1 >> NN;//todo удалить N оттуда
+            in1 >> NN;
             EXPECT_EQ(NN, avec[i].size() / 2);
             Parser<MatrixXd> pp1(NN);
             in1 >> pp1;
@@ -168,7 +179,7 @@ namespace uu {
         std::ifstream in2(subdir + "/matrixes.txt");
         for (int i = 0; i < avec; ++i) {
             auto NN = 0;
-            in1 >> NN;//todo удалить N оттуда
+            in1 >> NN;
 
             Parser<MatrixXd> pmatrix(NN);
             in2 >> NN;
@@ -202,7 +213,7 @@ namespace uu {
         pp1.vals_.importConf(conf, true);
         for (int i = 0; i < avec.size(); ++i) {
             auto NN = 0;
-            in1 >> NN;//todo удалить N оттуда
+            in1 >> NN;
             EXPECT_EQ(NN, avec[i].size() / 2);
 
             in1 >> pp1;

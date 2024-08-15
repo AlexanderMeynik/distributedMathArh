@@ -23,7 +23,7 @@ namespace dipoles {
 
     template<class T>
     static bool isSymmetric(Eigen::Matrix<T, -1, -1> &matr) {
-        size_t N = matr.size();
+        size_t N = matr.rows();
 
         for (int i = 0; i < N; ++i) {
 
@@ -39,7 +39,7 @@ namespace dipoles {
 
 
     template<class T>
-    static bool isSymmetric(Eigen::Matrix<T, -1, -1> &&matr)//todo проверить функцю
+    static bool isSymmetric(Eigen::Matrix<T, -1, -1> &&matr)
     {
         size_t N = matr.size();
 
@@ -63,10 +63,7 @@ namespace dipoles {
     template<class T>
     class Dipoles {
     public:
-        //todo метод для импорта/экспорта данных
-        //определить где и как будем хранить
         Dipoles() = default;
-
         Dipoles(int N, Eigen::Vector<T, Eigen::Dynamic> &xi);
 
         Dipoles(int N, std::vector<T> &xi);
@@ -75,16 +72,13 @@ namespace dipoles {
 
         void loadFromMatrix(Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &xi);
 
-
-        template<template<typename ...> typename CONT, typename... Args>
-        CONT<T, Args...> solveFinal();
-
+        
         template<template<typename ...> typename CONT, typename... Args>
         requires HasSizeMethod<CONT<Args...>>
         void getFullFunction_(const CONT<Args...> &xi, const CONT<Args...> &sol);
 
-
-        std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solve2() {
+        std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> solve2() {//todo надо унифициоравть обращение к контенеру
+            //по своей сути мы делаем 1 действие(решаем блоучну систему, поэтому надо сей проецсс унифицировать
 
             // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
             Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
@@ -141,6 +135,7 @@ namespace dipoles {
 
     private:
         template<typename... Args, template<typename...> typename Container>
+        requires HasBracketOperator<Container<Args...>>
         T getDistance(int i1, int i2, Container<Args...> &xi) {
             T d1 = xi[i1] - xi[i2];
             T d2 = xi[i1 + N_] - xi[i2 + N_];
@@ -149,6 +144,7 @@ namespace dipoles {
         };
 
         template<typename... Args, template<typename...> typename Container>
+        requires HasBracketOperator<Container<Args...>>
         Eigen::Vector<T, 2> getRIM(int i, int m, Container<Args...> &xi) {
             T d1 = xi[i] - xi[m];
             T d2 = xi[i + N_] - xi[m + N_];
@@ -169,63 +165,12 @@ namespace dipoles {
                     Eigen::Matrix<T, 2, 2> &K2) const;
 
         template<typename ... Args, template<typename ...> typename Container>
-        //todo создать коцепт для котнейнера сметодами индексации
         void setMatrixes(Container<Args ...> &xi);
 
         T an = params<T>::a;
         int N_;
     };
 
-
-
-
-
-/*
-    template <typename T>
-    std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> Dipoles<T>::solveFinal<std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>>()
-    {
-        Eigen::PartialPivLU<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Vector<T, Eigen::Dynamic> solution_1(2 * N_);
-        Eigen::Vector<T, Eigen::Dynamic> solution_2(2 * N_);
-        solution_1 = tt.solve(M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_2 = tt.solve(M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return {solution_1, solution_2};
-    }*/
-/*
-    template<typename T>
-    template<>
-    std::array<std::vector<T>, 2> Dipoles<T>::solveFinal<std::array>() {
-        Eigen::PartialPivLU<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Vector<T, Eigen::Dynamic> solution_1(2 * N_);
-        Eigen::Vector<T, Eigen::Dynamic> solution_2(2 * N_);
-        solution_1 = tt.solve(M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_2 = tt.solve(M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return {solution_1, solution_2};
-    }
-
-// Specialization for Eigen::Vector<T, Eigen::Dynamic>
-    template<typename T>
-    template<>
-    Eigen::Vector<T, Eigen::Dynamic> Dipoles<T>::solveFinal<Eigen::Vector>() {
-        Eigen::PartialPivLU<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Vector<T, Eigen::Dynamic> solution_(4 * N_);
-        solution_.block(0, 0, 2 * N_, 1) = tt.solve(M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return solution_;
-    }
-
-// Specialization for std::vector<T>
-    template<typename T>
-    template<>
-    std::vector<T> Dipoles<T>::solveFinal<std::vector>() {
-        std::vector<T> sol(4 * N_);
-        Eigen::PartialPivLU<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> solution_(sol.data(), sol.size());
-        solution_.resize(4 * N_);
-        solution_.block(0, 0, 2 * N_, 1) = tt.solve(M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return sol;
-    }*/
 
     template<class T>
     template<typename ... Args, template<typename ...> typename Container>
@@ -241,7 +186,7 @@ namespace dipoles {
                     Eigen::Matrix<T, 2, 2> id = Eigen::Matrix<T, 2, 2>::Identity() *
                                                 (params<T>::omega0 * params<T>::omega0 -
                                                  params<T>::omega * params<T>::omega);
-                    M1_.block(2 * I, 2 * M, 2, 2) = id;//todo block are 2 by 2
+                    M1_.template block<2,2>(2 * I, 2 * M) = id;
                 } else {
 
                     Eigen::Vector<T, 2> rim = getRIM(M, I, xi);
@@ -251,7 +196,7 @@ namespace dipoles {
                     getMatrixes(rim, rMode, K1, K2);
                     T arg = params<T>::omega * rMode / params<T>::c;
                     Eigen::Matrix<T, 2, 2> tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
-                    M1_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
+                    M1_.template block<2,2>(2 * I, 2 * M) = tmpmatr;
                 }
             }
         }
@@ -261,7 +206,7 @@ namespace dipoles {
                 if (I == M) {
                     Eigen::Matrix<T, 2, 2> id =
                             Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::yo * params<T>::omega);
-                    M2_.block(2 * I, 2 * M, 2, 2) = -id;
+                    M2_.template block<2,2>(2 * I, 2 * M) = -id;
                 } else {
 
                     Eigen::Vector<T, 2> rim = getRIM(M, I, xi);
@@ -273,7 +218,7 @@ namespace dipoles {
 
                     Eigen::Matrix<T, 2, 2> tmpmatr = -an * (K2 * cos(arg) + K1 * sin(arg));
 
-                    M2_.block(2 * I, 2 * M, 2, 2) = tmpmatr;
+                    M2_.template block<2,2>(2 * I, 2 * M) = tmpmatr;
                 }
 
             }
@@ -511,7 +456,7 @@ namespace dipoles {
     template<class T>
     Dipoles<T>::Dipoles(int N, Eigen::Vector<T, Eigen::Dynamic> &xi):N_(
             N) {
-        initArrays();//todo move matrix init
+        initArrays();
         setMatrixes(xi);
     }
 
@@ -521,7 +466,6 @@ namespace dipoles {
 
         initArrays();
         Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> txx(xi.data(), xi.size());
-        //todo copy (not share)
         setMatrixes(txx);
 
     }
