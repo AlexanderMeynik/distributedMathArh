@@ -33,8 +33,10 @@ TEST(transformations, reinterpret_vector_test)
     }
 
 }
-//todo add https://www.sandordargo.com/blog/2019/04/24/parameterized-testing-with-gtest
-TEST(Dipoles,test_is_symmetric)
+
+class IsSymmetricTestSuite : public testing::TestWithParam<int> {};
+
+TEST_P(IsSymmetricTestSuite, CheckGenratedMatrixes)
 {
     const int size = 2;
 
@@ -43,8 +45,14 @@ TEST(Dipoles,test_is_symmetric)
     Eigen::MatrixXd symMat = (mat + mat.transpose()) / 2;
 
     ASSERT_TRUE(dipoles::isSymmetric(symMat));
-
 }
+
+INSTANTIATE_TEST_SUITE_P(Matrixes, IsSymmetricTestSuite, testing::Values(2,4,10,100,200,400,800),
+                         testing::PrintToStringParamName());
+//во 2 примере есть гайд на ток как именуются тесты
+// https://www.sandordargo.com/blog/2019/04/24/parameterized-testing-with-gtest
+//https://google.github.io/googletest/advanced.html#value-parameterized-tests
+
 
 TEST(Dipoles,test_solve_result_in_zero_nev)
 {
