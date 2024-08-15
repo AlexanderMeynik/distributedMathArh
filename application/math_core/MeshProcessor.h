@@ -36,8 +36,6 @@ T integrateFunctionBy1Val(const std::function<T(T, T, T)> &ff, T theta, T phi, T
 }
 
 
-
-
 template<typename T>
 concept ElementIterable = requires(std::ranges::range_value_t<T> x)
 {
