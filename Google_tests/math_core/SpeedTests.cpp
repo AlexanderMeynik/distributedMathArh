@@ -11,7 +11,8 @@
 constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
 
 using namespace myconceps;//todo разобраться почему  у нас это дело включается без заголовка
-
+//https://github.com/google/googletest/blob/main/docs/advanced.md#type-parameterized-tests
+//тут описана возможность запускать етсты с разными типами
 template<typename T>
 decltype(auto) get_Default_Configuration() {
     MeshProcessor<T> sample;

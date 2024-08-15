@@ -188,6 +188,4 @@ const static std::map<std::string, state_t> stringToState = {
 };
 
 
-
-
 #endif //MAGISTER1_LIB_H

@@ -39,8 +39,7 @@ namespace dipoles {
 
 
     template<class T>
-    static bool isSymmetric(Eigen::Matrix<T, -1, -1> &&matr)
-    {
+    static bool isSymmetric(Eigen::Matrix<T, -1, -1> &&matr) {
         size_t N = matr.size();
 
         for (int i = 0; i < N; ++i) {
@@ -64,6 +63,7 @@ namespace dipoles {
     class Dipoles {
     public:
         Dipoles() = default;
+
         Dipoles(int N, Eigen::Vector<T, Eigen::Dynamic> &xi);
 
         Dipoles(int N, std::vector<T> &xi);
@@ -72,7 +72,7 @@ namespace dipoles {
 
         void loadFromMatrix(Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &xi);
 
-        
+
         template<template<typename ...> typename CONT, typename... Args>
         requires HasSizeMethod<CONT<Args...>>
         void getFullFunction_(const CONT<Args...> &xi, const CONT<Args...> &sol);
@@ -186,7 +186,7 @@ namespace dipoles {
                     Eigen::Matrix<T, 2, 2> id = Eigen::Matrix<T, 2, 2>::Identity() *
                                                 (params<T>::omega0 * params<T>::omega0 -
                                                  params<T>::omega * params<T>::omega);
-                    M1_.template block<2,2>(2 * I, 2 * M) = id;
+                    M1_.template block<2, 2>(2 * I, 2 * M) = id;
                 } else {
 
                     Eigen::Vector<T, 2> rim = getRIM(M, I, xi);
@@ -196,7 +196,7 @@ namespace dipoles {
                     getMatrixes(rim, rMode, K1, K2);
                     T arg = params<T>::omega * rMode / params<T>::c;
                     Eigen::Matrix<T, 2, 2> tmpmatr = -an * (K1 * cos(arg) - K2 * sin(arg));
-                    M1_.template block<2,2>(2 * I, 2 * M) = tmpmatr;
+                    M1_.template block<2, 2>(2 * I, 2 * M) = tmpmatr;
                 }
             }
         }
@@ -206,7 +206,7 @@ namespace dipoles {
                 if (I == M) {
                     Eigen::Matrix<T, 2, 2> id =
                             Eigen::Matrix<T, 2, 2>::Identity() * (params<T>::yo * params<T>::omega);
-                    M2_.template block<2,2>(2 * I, 2 * M) = -id;
+                    M2_.template block<2, 2>(2 * I, 2 * M) = -id;
                 } else {
 
                     Eigen::Vector<T, 2> rim = getRIM(M, I, xi);
@@ -218,7 +218,7 @@ namespace dipoles {
 
                     Eigen::Matrix<T, 2, 2> tmpmatr = -an * (K2 * cos(arg) + K1 * sin(arg));
 
-                    M2_.template block<2,2>(2 * I, 2 * M) = tmpmatr;
+                    M2_.template block<2, 2>(2 * I, 2 * M) = tmpmatr;
                 }
 
             }

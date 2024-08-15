@@ -18,6 +18,7 @@
 #include <cassert>
 
 char parseChar(std::istream &in);
+
 int getConfSize(std::string &filename);
 
 template<class T, template<typename> typename Container>

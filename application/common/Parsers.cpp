@@ -1,4 +1,5 @@
 #include "Parsers.h"
+
 int getConfSize(std::string &filename) {
     std::ifstream in(filename);
     char c = parseChar(in);
@@ -9,8 +10,7 @@ int getConfSize(std::string &filename) {
 }
 
 char parseChar(std::istream &in) {
-    if(!in.eof())
-    {
+    if (!in.eof()) {
         return static_cast<char>(in.get());
     }
     return {};
