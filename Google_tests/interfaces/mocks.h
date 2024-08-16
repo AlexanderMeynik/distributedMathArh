@@ -31,6 +31,28 @@ public:
     MOCK_METHOD(void, getNotified, (std::shared_ptr<core_intrefaces::Event<Args...>> event), (override));
 };
 
+
+class MockDataAcessInteface : public DataAcessInteface {
+public:
+    //using DataAcessInteface::DataAcessInteface;
+    MockDataAcessInteface():DataAcessInteface()
+    {
+    }
+    MOCK_METHOD(std::vector<std::vector<double>>&, getdat, (std::string &key), (override));
+    MOCK_METHOD(std::vector<std::vector<double>>&, getdat, (std::string &&key), (override));
+
+
+    MOCK_METHOD(optinal_val&, getProperty, (std::string &key), (override));
+    MOCK_METHOD(optinal_val&, getProperty, (std::string &&key), (override));
+
+
+    MOCK_METHOD(bool, isPresent, (std::string &key), (override));
+    MOCK_METHOD(bool, isPresent, (std::string &&key), (override));
+
+    MOCK_METHOD(bool, isPPresent, (std::string &key), (override));
+    MOCK_METHOD(bool, isPPresent, (std::string &&key), (override));
+};
+
 template<typename ... Args>
 class MockIOSub : public core_intrefaces::IOSub<Args...> {
 public:

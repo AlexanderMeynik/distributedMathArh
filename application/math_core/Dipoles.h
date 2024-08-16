@@ -68,7 +68,9 @@ namespace dipoles {
 
         Dipoles(int N, std::vector<T> &xi);
 
-        void setNewCoordinates(Eigen::Vector<T, Eigen::Dynamic> &xi);
+        template<template<typename ...> typename CONT, typename... Args>
+        requires HasSizeMethod<CONT<Args...>>
+        void setNewCoordinates(CONT<Args...> &xi);
 
         void loadFromMatrix(Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> &xi);
 
@@ -256,7 +258,9 @@ namespace dipoles {
     }
 
     template<class T>
-    void Dipoles<T>::setNewCoordinates(Eigen::Vector<T, Eigen::Dynamic> &xi) {
+    template<template<typename ...> typename CONT, typename... Args>
+    requires HasSizeMethod<CONT<Args...>>
+    void Dipoles<T>::setNewCoordinates(CONT<Args...> &xi) {
         if (an == params<T>::a) {
             this->N_ = xi.size() / 2;
             initArrays();

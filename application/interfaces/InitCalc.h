@@ -1,11 +1,12 @@
 #ifndef DIPLOM_INITCALC_H
 #define DIPLOM_INITCALC_H
 
-#define noImp
+
 
 #include "CalculationStep.h"
 #include <optional>
 #include "../math_core/Dipoles.h"
+#include "../math_core/MeshProcessor.h"
 #include <omp.h>
 #include <filesystem>
 
@@ -98,42 +99,77 @@ namespace inter {
             bool state = get<bool>(dat->getProperty(
                     "prety_print"));//todo мы эти параметры должны откуда-то брать(чё-то типо конфигурации при создании dat
             size_t Nsym = get<int>(dat->getProperty("Nsym"));
-#ifndef noImp
-            std::vector<std::vector<double>> coords=dat->getdat(this->prev_->to_string());
+            std::vector<std::vector<FloatType>> coords = dat->getdat(this->prev_->to_string());
+            std::vector<std::vector<FloatType >> solutions(Nsym, std::vector<double>());
             if (state)
                 goto pp;
             {
 
 //todo привести solutions к виду double[][]
 
-#pragma omp parallel for default(none) shared(Nsym,solutions,coords) firstprivate(d1)
+#pragma omp parallel for default(none) shared(Nsym, solutions, coords) firstprivate(d1)
 //#pragma omp parallel for default(shared)
                 for (int i = 0; i < Nsym; ++i) {
                     d1.setNewCoordinates(coords[i]);
-                    solutions[i] = d1.solve_();
+                    solutions[i] = d1.solve4();
                 }
             }
             pp:
             for (int i = 0; i < Nsym; ++i) {
                 d1.setNewCoordinates(coords[i]);
 
-                solutions[i] = d1.solve_();//todo этот метода надо починить так, чтобы мы возвращали нужынй тип
+                solutions[i] = d1.solve4();//todo этот метода надо починить так, чтобы мы возвращали нужынй тип
                 auto filename = getString(this->dir_.value(), "sim", i, "txt");
                 auto fout = openOrCreateFile(filename);
                 fout << "Итерация симуляции i = " << i << "\n\n";
-                printCoordinates(fout,coords[i]);
+                printCoordinates(fout, coords[i]);
                 fout << "\n";
-                printSolutionFormat1(fout,solutions[i]);
+                printSolutionFormat1(fout, solutions[i]);
                 fout << "\n";
                 fout << "\n";
                 fout.close();
             }
-#endif
+
+            dat[this->to_string()] = std::move(solutions);
         }
 
 
     };
 
+
+    template<typename ... Args>
+    class CalculateMesh : public CalculationStep<Args ...> {//todo у этого этапа должно быть предыдущих
+
+    public:
+        using CalculationStep<Args ...>::CalculationStep;
+
+        std::string to_string() override {
+            return "CalculateMatrix_" + CalculationStep<Args ...>::to_string();
+        }
+
+    protected:
+        void perform_calculation(std::shared_ptr<DataAcessInteface> dat, Args...args) override {
+
+            bool state = get<bool>(dat->getProperty(
+                    "prety_print"));
+            size_t Nsym = get<int>(dat->getProperty("Nsym")); //todo 2 надо предать конфигурацию для меша(2 int или 2 double)
+            std::vector<std::vector<FloatType >> coords = dat->getdat(this->prev_->prev_->to_string());
+            std::vector<std::vector<FloatType >> solutions = dat->getdat(this->prev_->to_string());
+            dipoles::Dipoles<FloatType> d1;
+            MeshProcessor<FloatType > mh;
+            for (int i = 0; i < Nsym; ++i) {
+                d1.getFullFunction_(coords[i],solutions[i]);
+                mh.generateNoInt(d1.getI2function());
+            }
+            //todo std::vector<std::vector<double>> to std;:vector
+
+
+
+        };
+
+    };
+
 }
+
 
 #endif //DIPLOM_INITCALC_H

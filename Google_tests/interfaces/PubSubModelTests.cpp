@@ -191,13 +191,22 @@ TEST(data_acess_interface, test_data_set) {
 
 TEST(computation_step, test_init)//todo сделать
 {
-    auto dd = std::make_shared<DataAcessInteface>();
+    std::shared_ptr<MockDataAcessInteface> dd = std::make_shared<MockDataAcessInteface>();
+    //std::string duummy=typeid(*dd.get()).name();
+   // std::cout<<duummy;
     InitCalc<double, double> aa(10, 10);
 
     auto func = [](int i1, int i2, double a, double b) { return std::vector<double>(i1, i2 + i2 * (a * b)); };
     aa.setFunction(func);
+
+
+
+
     aa.perform_calc(dd, 1, 2);
-    int a = 0;
+    EXPECT_CALL(*dd,getdat(testing::An<std::string&&>())).Times(1);
+
+    //EXPECT_CALL(*dd.get(),getdat(aa.to_string())).Times(1);
+
 }
 
 int main(int argc, char **argv) {//todo cmake+gtestmain

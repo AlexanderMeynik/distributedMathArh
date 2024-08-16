@@ -20,7 +20,7 @@ namespace core_intrefaces {
 
     class DataAcessInteface {
     public:
-        DataAcessInteface() : data_() {
+        DataAcessInteface() : data_{},properties_{} {
             //optinal_val a;
             //holds_alternative(a)
         }
@@ -45,7 +45,7 @@ namespace core_intrefaces {
             return data_.contains(key);
         }
 
-        virtual bool isPresent(std::string &&key) {
+        virtual bool isPresent(std::string &&key) {//todo вот тут уместнее сделать perfect forwrding(как и со всеми схожим
             return data_.contains(key);
         }
 
@@ -57,7 +57,7 @@ namespace core_intrefaces {
             return properties_.contains(key);
         }
 
-    private:
+    protected:
         std::unordered_map<std::string, std::vector<std::vector<double>>> data_;
 
         std::unordered_map<std::string, optinal_val> properties_;
