@@ -1,0 +1,3 @@
+sudo apt-get install libcpprest-dev
+ZLiB
+OpenSSL

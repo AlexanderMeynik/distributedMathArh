@@ -203,7 +203,9 @@ TEST(computation_step, test_init)//todo сделать
 
 
     aa.perform_calc(dd, 1, 2);
-    EXPECT_CALL(*dd,getdat(testing::An<std::string&&>())).Times(1);
+    EXPECT_CALL(*dd,getdat(testing::An<std::string&&>())).Times(1);//todo Uninteresting mock function call - returning default value.
+   // Function call: getdat("init_CalcStep10_10_")
+
 
     //EXPECT_CALL(*dd.get(),getdat(aa.to_string())).Times(1);
 
