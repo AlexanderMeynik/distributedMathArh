@@ -4,3 +4,6 @@ add_subdirectory(application)
 add_subdirectory(Google_tests)
 add_subdirectory(server)
 add_subdirectory(somestuff)
+
+add_subdirectory(utilLib)
+add_subdirectory(computationalNode)
