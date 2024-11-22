@@ -1,6 +1,3 @@
-//
-// Created by Lenovo on 05.06.2024.
-//
 
 #ifndef DIPLOM_GENERATOR_H
 #define DIPLOM_GENERATOR_H
@@ -23,10 +20,9 @@ namespace generators {
             return Eigen::Vector<T, Eigen::Dynamic>();
         }
         Eigen::Vector<T, Eigen::Dynamic> res(2 * N_);
-        //std::function<T()> function = [&]() { return distribution_(rng_); };
+
         for (int i = 0; i < res.size(); ++i) {
             res[i] = distribution_(rng_);
-            //res[1][i]= distribution_(rng_);
         }
         return res;
     };

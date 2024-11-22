@@ -186,7 +186,7 @@ int main(int argc, char *argv[]) {
     ss << "_N" << N << "_l" << l << "_a" << a << "_center" << center;
 
     std::ofstream out("res" + ss.str() + ".txt");
-    dipoles::Dipoles d(N, coords);
+    dipoles::Dipoles d(N, coords);//this thing wont accept array
     auto solv = d.solve_();
 
     plotCoordinates("coord" + ss.str() + ".png", a / 8, coords);

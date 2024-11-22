@@ -164,7 +164,7 @@ int main(int argc, char *argv[]) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve_();
+            auto solution = dipoles1.solve2();
             dipoles1.getFullFunction(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTime[tid] += stmep[1] - stmep[0];

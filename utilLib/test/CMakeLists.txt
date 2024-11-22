@@ -15,5 +15,5 @@ file(GLOB parallelUtils CONFIGURE_DEPENDS
 )
 
 add_executable(par_Tests ${parallelUtils})
-target_link_libraries(par_Tests gtest gmock)
-target_link_libraries(par_Tests math_core_lib parallelLib)
+target_link_libraries(par_Tests gtest gmock gtest_main)
+target_link_libraries(par_Tests parallelLib)

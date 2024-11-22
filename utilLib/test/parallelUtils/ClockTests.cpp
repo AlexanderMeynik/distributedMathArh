@@ -45,69 +45,72 @@ auto wrap(const CLOSURE &fn) // EDIT: give it a better name
 
 using openmpClock = OpenmpParallelClock<double, &omp_get_wtime, &omp_get_thread_num>;
 
-TEST(OpenmpParallelClock, test_parralel_time_all_threads) {
-    openmpClock clock1;
+
+class ClockArrayTest : public ::testing::Test {
+protected:
+    openmpClock clk;
+};
+
+TEST_F(ClockArrayTest, test_parralel_time_all_threads) {
+    
     auto t1 = omp_get_wtime();
     {
 #pragma omp parallel for shared(sleep_sec) num_threads(omp_get_max_threads())
         for (int i = 0; i < omp_get_num_threads() * iteartions; ++i) {
-            clock1.tik();
+            clk.tik();
             Msleep(sleep_sec);
-            clock1.tak();
+            clk.tak();
         }
     }
     auto t2 = omp_get_wtime();
-    ASSERT_NEAR(t2 - t1, clock1.getTime(), tolerance);
+    ASSERT_NEAR(t2 - t1, clk.getTime(), tolerance);
 }
 
-TEST(OpenmpParallelClock, test_parralel_time_4_threads) {
-    openmpClock clock1;
+TEST_F(ClockArrayTest, test_parralel_time_4_threads) {
     auto t1 = omp_get_wtime();
     {
 #pragma omp parallel for shared(sleep_sec) num_threads(8)
         for (int i = 0; i < omp_get_num_threads() * iteartions; ++i) {
-            clock1.tik();
+            clk.tik();
             Msleep(sleep_sec);
-            clock1.tak();
+            clk.tak();
         }
     }
     auto t2 = omp_get_wtime();
-    ASSERT_NEAR(t2 - t1, clock1.getTime(), tolerance);
+    ASSERT_NEAR(t2 - t1, clk.getTime(), tolerance);
 }
 
-TEST(OpenmpParallelClock, test_parralel_time_single_thread) {
-    openmpClock clock1;
+TEST_F(ClockArrayTest, test_parralel_time_single_thread) {
     auto t1 = omp_get_wtime();
     {
         for (int i = 0; i < omp_get_num_threads() * iteartions; ++i) {
-            clock1.tik();
+            clk.tik();
             Msleep(sleep_sec);
-            clock1.tak();
+            clk.tak();
         }
     }
     auto t2 = omp_get_wtime();
-    ASSERT_NEAR(t2 - t1, clock1.getTime(), tolerance);
+    ASSERT_NEAR(t2 - t1, clk.getTime(), tolerance);
 
 }
 
 
-TEST(OpenmpParallelClock, test_parralel_time_one_more_thread) {
+TEST_F(ClockArrayTest, test_parralel_time_one_more_thread) {
 
-    openmpClock clock1;
     auto t1 = omp_get_wtime();
     {
 #pragma omp parallel for shared(sleep_sec) num_threads(omp_get_max_threads())
         for (int i = 0; i < omp_get_num_threads() * iteartions; ++i) {
-            clock1.tik();
+            clk.tik();
             Msleep(sleep_sec);
             if (omp_get_thread_num() == 0) {
                 Msleep(sleep_sec);
             }
-            clock1.tak();
+            clk.tak();
         }
     }
     auto t2 = omp_get_wtime();
-    auto tt = clock1.aggregate(max<double>.value, max<double>.f);
+    auto tt = clk.aggregate(max<double>.value, max<double>.f);
     ASSERT_NEAR(t2 - t1, tt, tolerance);
 }
 

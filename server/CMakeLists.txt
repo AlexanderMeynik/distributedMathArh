@@ -5,6 +5,9 @@ add_executable(main main.cpp)
 
 target_link_libraries(main PRIVATE cpprestsdk::cpprest)
 target_link_libraries(main PRIVATE -lssl -lcrypto)
+
+include_directories(../computationalNode/include)
+include_directories(../utilLib/include)
 file(GLOB services CONFIGURE_DEPENDS
         "*service/*.h"
         "service/*.cpp"

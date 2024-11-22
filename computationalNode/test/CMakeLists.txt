@@ -48,4 +48,4 @@ target_link_libraries(core_Tests interfaces_lib)
 file(GLOB resourse CONFIGURE_DEPENDS
         "res/*.*"
 )
-file(COPY res DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/computationalNode/test)
