@@ -3,8 +3,8 @@
 
 #include <iosfwd>
 #include <gmock/gmock.h>
-#include "../../application/interfaces/interlib.h"
-#include "../../application/common/printUtils.h"
+#include "computationalLib/interfaces/interlib.h"
+#include "common/printUtils.h"
 
 template<typename ... Args>
 class MockEvent : public core_intrefaces::Event<Args...> {

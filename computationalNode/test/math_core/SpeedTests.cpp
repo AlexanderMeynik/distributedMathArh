@@ -1,7 +1,7 @@
-#include "../../application/common/lib.h"
+#include "common/lib.h"
 #include <chrono>
 
-#include "../../application/math_core/math_core.h"
+#include "computationalLib/math_core/math_core.h"
 
 #include "../GoogleCommon.h"
 #include <algorithm>
