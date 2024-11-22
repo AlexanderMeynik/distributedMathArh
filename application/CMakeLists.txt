@@ -29,7 +29,7 @@ add_executable(Magister1 main.cpp)
 add_executable(ConFReader configReader.cpp)
 add_executable(testIntegr gausTets.cpp)
 
-
+#[[
 file(GLOB common CONFIGURE_DEPENDS
         "*common/*.h"
         "*common/*.cpp"
@@ -42,22 +42,22 @@ file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
 )
 
 add_library(parallelLib ${parallelUtils})
-target_link_libraries(parallelLib PUBLIC OpenMP::OpenMP_CXX)
+target_link_libraries(parallelLib PUBLIC OpenMP::OpenMP_CXX)]]
 
 
-file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
-        "*math_core/*.h"
-        "*math_core/*.cpp"
-)
-
-
-add_library(math_core_lib ${math_core_files})
-target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
-target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
-target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
-target_include_directories(math_core_lib PUBLIC ${GSL_INCLUDE_DIRS})
-target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
-target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
+#file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
+#        "*math_core/*.h"
+#        "*math_core/*.cpp"
+#)
+#
+#
+#add_library(math_core_lib ${math_core_files})
+#target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
+#target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
+#target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
+#target_include_directories(math_core_lib PUBLIC ${GSL_INCLUDE_DIRS})
+#target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
+#target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
 
 
 add_executable(clock clockTest.cpp)

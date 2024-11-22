@@ -1,12 +1,12 @@
 
-#include "../../application/interfaces/interlib.h"
+#include "computationalLib/interfaces/interlib.h"
 #include <iomanip>
 #include <typeinfo>
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 #include <iomanip>
 #include "mocks.h"
-#include "../../application/common/printUtils.h"
+#include "common/printUtils.h"
 
 using ::testing::_;
 using ::testing::A;

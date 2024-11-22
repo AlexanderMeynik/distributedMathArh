@@ -5,7 +5,7 @@
 #ifndef DIPLOM_CALCULATIONSTEP_H
 #define DIPLOM_CALCULATIONSTEP_H
 
-#include "../parallelUtils/OpenmpParallelClock.h"
+#include "parallelUtils/OpenmpParallelClock.h"
 #include "AbstractSubsriber.h"
 #include "DataAcessInteface.h"
 

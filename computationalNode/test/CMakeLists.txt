@@ -1,4 +1,4 @@
-project(Google_tests)
+#project(Google_tests)
 #todo remake
 #todo fix debug coverage
 set(CMAKE_CXX_STANDARD 20)
@@ -23,27 +23,14 @@ target_link_libraries(Google_Tests_run math_core_lib)
 target_link_libraries(Google_Tests_run gtest gtest_main)
 
 
-file(GLOB common CONFIGURE_DEPENDS
-        "*common/*.h"
-        "*common/*.cpp"
-)
-add_executable(common_Tests ${common})
-target_link_libraries(common_Tests gtest gtest_main)
-
-file(GLOB parallelUtils CONFIGURE_DEPENDS
-        "*parallelUtils/*.h"
-        "*parallelUtils/*.cpp"
-)
-
-add_executable(par_Tests ${parallelUtils})
-target_link_libraries(par_Tests gtest gmock)
-target_link_libraries(par_Tests math_core_lib parallelLib)
 
 
 file(GLOB interfaces CONFIGURE_DEPENDS
-        "*interfaces/*.h"
-        "*interfaces/*.cpp"
+        "interfaces/*.h"
+        "interfaces/*.cpp"
 )
+include_directories(../include)
+include_directories(../../utilLib/include)
 
 add_executable(inter_Tests ${interfaces})
 target_link_libraries(inter_Tests gtest gmock)

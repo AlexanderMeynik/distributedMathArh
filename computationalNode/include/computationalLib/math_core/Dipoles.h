@@ -6,7 +6,7 @@
 #include <memory>
 #include <eigen3/Eigen/Dense>
 #include <iostream>
-#include "../common/my_consepts.h"
+#include "common/my_consepts.h"
 #include <iomanip>
 
 #include "const.h"

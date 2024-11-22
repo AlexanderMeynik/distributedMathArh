@@ -16,7 +16,7 @@ public:
 
     // Primary template declaration
     template<typename CONT>
-    struct solution;//todo порпобовать сделать це при помощи "https://www.reddit.com/r/cpp/comments/aoidsi/what_is_the_solution_for_same_function_parameters/"
+    struct solution//todo порпобовать сделать це при помощи "https://www.reddit.com/r/cpp/comments/aoidsi/what_is_the_solution_for_same_function_parameters/"
     {
         using soltype = CONT;
         void solve();
@@ -52,7 +52,7 @@ struct nested<T>::solution
 
 template<typename T>
 //template<typename InnerType, std::size_t N>
-struct nested<T>::solution<T>
+struct nested<T>::solution
 {
     void solve()
     {

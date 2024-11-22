@@ -6,13 +6,13 @@
 #include <ostream>
 #include <vector>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
-#include "../common/printUtils.h"
+#include "common/Printers.h"
 #include "const.h"
 #include <ranges>
 #include <concepts>
 #include <type_traits>
-#include "../common/Parsers.h"
-#include "../common/Printers.h"//todo получше организовать фаловую иерарзию
+#include "common/Parsers.h"
+
 
 template<class T, unsigned N>
 T integrate(std::function<T(T)> &f1, T left, T right, unsigned int max_depth = 5, T tol = 1e-20) {

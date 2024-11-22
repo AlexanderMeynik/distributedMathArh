@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.26)
 project(Diplom)
-add_subdirectory(application)
-add_subdirectory(Google_tests)
+#add_subdirectory(application)
 add_subdirectory(server)
 add_subdirectory(somestuff)
 

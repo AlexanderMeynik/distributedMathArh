@@ -8,12 +8,12 @@
 #include <fstream>
 #include <eigen3/Eigen/Core>
 #include "MeshProcessor.h"
-#include "../common/lib.h"
-#include "../parallelUtils//OpenmpParallelClock.h"
+#include "common/lib.h"
+#include "parallelUtils/OpenmpParallelClock.h"
 #include "Dipoles.h"
-#include "../common/Generator.h"
-#include "../parallelUtils/clockArray.h"
-#include "../common/constants.h"
+#include "common/Generator.h"
+#include "parallelUtils/clockArray.h"
+#include "common/constants.h"
 
 using const_::FloatType;
 template<typename T>
