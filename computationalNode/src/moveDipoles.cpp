@@ -42,7 +42,7 @@ int main(int argc, char *argv[]) {
 
     auto solut1 = d.solve<EigenVec>();
 
-    MeshProcessor<FloatType> mmesh;
+    MeshProcessor mmesh;
 
     d.getFullFunction_(coordinates, solut1);
     solut1[0] = 5;

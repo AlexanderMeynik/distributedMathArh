@@ -128,7 +128,7 @@ int main(int argc, char *argv[]) {
         coordinates[i] = genr.generateCoordinates(N);
     }
     Dipoless dipoles1(N, coordinates[0]);
-    MeshProcessor<double> mesh = MeshProcessor<double>();
+    MeshProcessor mesh = MeshProcessor();//todo do ve need implicit constructor call
     auto result = mesh.getMeshGliff();
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
     std::vector<double> totalTime(omp_get_max_threads(), 0);

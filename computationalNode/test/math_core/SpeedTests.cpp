@@ -15,7 +15,7 @@ using namespace myconceps;
 //тут описана возможность запускать етсты с разными типами
 template<typename T>
 decltype(auto) get_Default_Configuration() {
-    MeshProcessor<T> sample;
+    MeshProcessor sample;
     return sample.export_conf();
 }
 
@@ -103,7 +103,7 @@ template<typename Type>
 using DynVector = Eigen::Matrix<Type, Eigen::Dynamic, 1>;
 std::string res_dir_path = "../res/";
 std::string filename = res_dir_path.append("config.txt");
-string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
+string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";//todo вот этот путь у нас теперь не верен
 
 #include <filesystem>
 //todo перместить это тметов генераторы(тесты, которые прост осоздаёт данные)
@@ -217,7 +217,7 @@ namespace uu {
         std::ifstream in1(subdir + "/meshes.txt");
         std::ifstream in2(subdir + "/solutions.txt");
         in1 >> conf.second[0] >> conf.second[1];
-        Parser<MeshProcessor<double>> pp1;
+        Parser<MeshProcessor> pp1;
 
         pp1.vals_.importConf(conf, true);
         for (int i = 0; i < avec.size(); ++i) {
@@ -235,7 +235,7 @@ namespace uu {
             dipoles1::Dipoless dd;//это тут не нужно
             dd.getFullFunction_(avec[i], ppsol.vals_);//todo превартить в статческий метод
 
-            MeshProcessor<double> mm2;
+            MeshProcessor mm2;
             mm2.importConf(conf, true);
             mm2.generateNoInt(dd.getI2function());
 

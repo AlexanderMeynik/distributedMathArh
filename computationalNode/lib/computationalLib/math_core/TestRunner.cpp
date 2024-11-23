@@ -49,7 +49,6 @@ void TestRunner::solve() {
     if (inner_state != state_t::openmp_new)
         goto pp;
     {
-
 #pragma omp parallel for default(none) shared(Nsym_, solutions_, coords_) firstprivate(d1)
 //#pragma omp parallel for default(shared)
         for (int i = 0; i < Nsym_.value(); ++i) {
@@ -94,7 +93,7 @@ void TestRunner::generateFunction() {
     using dipoles1::Dipoless;
 
     Dipoless d1;
-    MeshProcessor<FloatType> mesh;
+    MeshProcessor mesh;
     auto result = mesh.getMeshGliff();
     //clocks_[2].tik();
     if (inner_state == state_t::openmp_new) {

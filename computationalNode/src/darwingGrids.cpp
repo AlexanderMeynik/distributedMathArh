@@ -196,7 +196,7 @@ int main(int argc, char *argv[]) {
 
     printSolutionFormat1(out, solv);
 
-    MeshProcessor<double> meshProcessor;
+    MeshProcessor meshProcessor;
     d.getFullFunction_(coords, solv);
 
     meshProcessor.generateNoInt(d.getI2function());

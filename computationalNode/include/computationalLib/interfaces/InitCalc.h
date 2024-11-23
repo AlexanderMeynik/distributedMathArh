@@ -159,7 +159,7 @@ namespace inter {
             std::vector<std::vector<FloatType >> coords = dat->getdat(this->prev_->prev_->to_string());
             std::vector<std::vector<FloatType >> solutions = dat->getdat(this->prev_->to_string());
             dipoles1::Dipoless d1;
-            MeshProcessor<FloatType > mh;
+            MeshProcessor mh;
             for (int i = 0; i < Nsym; ++i) {
                 d1.getFullFunction_(coords[i],solutions[i]);
                 mh.generateNoInt(d1.getI2function());

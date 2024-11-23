@@ -32,6 +32,9 @@ namespace dipoles1
     using EigenVec=Eigen::Vector<FloatType, Eigen::Dynamic>;
     using standartVec=std::vector<FloatType>;
 
+    using integrableFunction = std::function<FloatType(FloatType, FloatType, FloatType)> ;
+    using directionGraph= std::function<FloatType(FloatType, FloatType)> ;
+    using matrixType=Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>;
 
 
 
@@ -48,6 +51,8 @@ namespace dipoles1
             {EigenVector, std::type_identity<EigenVec>{} },
             {StdVector,   std::type_identity<standartVec>{}}
     };//todo reverse
+
+
 
     class Dipoless
     {
@@ -80,7 +85,7 @@ namespace dipoles1
         template<typename Container>
         Container solve();
 
-        std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2> solve2() {//todo надо унифициоравть обращение к контенеру
+        std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2> solve2() {//todo  убрать
             //по своей сути мы делаем 1 действие(решаем блоучну систему, поэтому надо сей проецсс унифицировать
 
             // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
@@ -120,18 +125,18 @@ namespace dipoles1
         }
 
 
-        const std::function<FloatType(FloatType,FloatType ,FloatType )> &   getIfunction() const {
+        const integrableFunction &   getIfunction() const {
             return Ifunction_;
         }
 
-        const std::function<FloatType(FloatType ,FloatType )>  &getI2function() const {
+        const directionGraph &getI2function() const {
             return I2function_;
         }
 
 
         Eigen::Vector<FloatType, Eigen::Dynamic> &getRightPart2();
 
-        Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> getMatrixx();
+        matrixType getMatrixx();
 
         void printMatrix(std::ostream &out, Eigen::IOFormat &format);
 
@@ -180,10 +185,10 @@ namespace dipoles1
         };
 
 
-        Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> M1_;
-        Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> M2_;
-        std::function<FloatType(FloatType, FloatType, FloatType)> Ifunction_;
-        std::function<FloatType(FloatType, FloatType)> I2function_;
+        matrixType M1_;
+        matrixType M2_;
+        integrableFunction Ifunction_;
+        directionGraph I2function_;
 
         Eigen::Vector<FloatType, Eigen::Dynamic> f;
         void initArrays();
@@ -425,52 +430,6 @@ namespace dipoles1
 
     }
 
-
-
-   /* template<typename Container>
-    Container Dipoless::solve()
-    {
-        return Container{};
-    }*/
-
-    template<>
-    Arr2EigenVec Dipoless::solve() {
-
-        // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
-        Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Vector<FloatType, Eigen::Dynamic> solution_1;
-        Eigen::Vector<FloatType, Eigen::Dynamic> solution_2;
-        solution_1.resize(2 * N_);
-        solution_2.resize(2 * N_);
-        solution_1 = tt.solve(M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_2 = tt.solve(M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return {solution_1, solution_2};
-    }
-
-    template<>
-    EigenVec Dipoless::solve() {
-        Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Vector<FloatType, Eigen::Dynamic> solution_;
-        solution_.resize(4 * N_);
-        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return solution_;
-    }
-
-    template<>
-    standartVec Dipoless::solve() {
-        std::vector<FloatType>  sol(4 * N_);
-        Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(sol.data(), sol.size());
-        solution_.resize(4 * N_);
-        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return sol;
-    }
 
 }
 
