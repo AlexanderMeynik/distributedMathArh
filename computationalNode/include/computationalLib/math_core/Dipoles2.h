@@ -1,16 +1,17 @@
-
-
 #ifndef DIPLOM_DIPOLES2_H
 #define DIPLOM_DIPOLES2_H
 #include <vector>
 #include <memory>
-#include <eigen3/Eigen/Dense>
-#include <iostream>
-#include "common/my_consepts.h"
-#include <iomanip>
 
+#include <iostream>
+#include <iomanip>
+#include <variant>
+
+#include <eigen3/Eigen/Dense>
+
+#include "common/my_consepts.h"
+#include "common/constants.h"
 #include "const.h"
-#include "computationalLib/interfaces/CalculationStep.h"
 
 using namespace Eigen;
 using namespace myconceps;
@@ -18,27 +19,66 @@ namespace dipoles1
 {
     using matplot::gca;
     using std::function, std::pair, std::vector, std::array;
-    using inter::FloatType;
+    using const_::FloatType;
+
     bool isSymmetric(const Eigen::Matrix<FloatType , -1, -1> &matr);
+    enum ReturnType:size_t
+    {
+        ArrayEigenVectors=0,
+        EigenVector,
+        StdVector
+    };
+    using Arr2EigenVec=std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2>;
+    using EigenVec=Eigen::Vector<FloatType, Eigen::Dynamic>;
+    using standartVec=std::vector<FloatType>;
+
+
+
+
+    using retTypes =std::variant< std::type_identity<Arr2EigenVec>,
+            std::type_identity<EigenVec>,
+            std::type_identity<standartVec>>;
+
+
+    /**
+    *
+    */
+    static const std::unordered_map <size_t , retTypes> enumToType = {
+            {ArrayEigenVectors,   std::type_identity<Arr2EigenVec>{}},
+            {EigenVector, std::type_identity<EigenVec>{} },
+            {StdVector,   std::type_identity<standartVec>{}}
+    };//todo reverse
 
     class Dipoless
     {
+    public:
         Dipoless() = default;
 
-        Dipoless(int N,const Eigen::Vector<FloatType , Eigen::Dynamic> &xi);
+        template<typename Container>
+        requires HasSizeMethod<Container>
+        Dipoless(int N,const Container &xi)
+        {
+            initArrays();
+            setMatrixes(xi);
+        }
 
-        Dipoless(int N,const std::vector<FloatType > &xi);
+        /*Dipoless(int N,const Eigen::Vector<FloatType , Eigen::Dynamic> &xi);
+
+        Dipoless(int N,const std::vector<FloatType > &xi);*/
 
         template<typename Container>
-        //todo brackest operator
+        requires HasSizeMethod<Container>
         void setNewCoordinates(const Container &xi);
 
         void loadFromMatrix(const Eigen::Matrix<FloatType , Eigen::Dynamic, Eigen::Dynamic> &xi);
 
-        template<typename Container>
-        //todo brackest operator
-        void getFullFunction_(const Container &xi, const Container &sol);
+        template<typename Container,typename Container2>
+        requires HasSizeMethod<Container>&&HasSizeMethod<Container2>
+        void getFullFunction_(const Container &xi, const Container2 &sol);
 
+
+        template<typename Container>
+        Container solve();
 
         std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2> solve2() {//todo надо унифициоравть обращение к контенеру
             //по своей сути мы делаем 1 действие(решаем блоучну систему, поэтому надо сей проецсс унифицировать
@@ -80,11 +120,11 @@ namespace dipoles1
         }
 
 
-        auto &   getIfunction() const {
+        const std::function<FloatType(FloatType,FloatType ,FloatType )> &   getIfunction() const {
             return Ifunction_;
         }
 
-        auto &getI2function() const {
+        const std::function<FloatType(FloatType ,FloatType )>  &getI2function() const {
             return I2function_;
         }
 
@@ -101,17 +141,41 @@ namespace dipoles1
         template<typename Container>
         //todo bracket operator
         FloatType getDistance(int i1, int i2, Container &xi) {
-            FloatType d1 = xi[i1] - xi[i2];
-            FloatType d2 = xi[i1 + N_] - xi[i2 + N_];
+            FloatType d1;
+            FloatType d2;
+            if constexpr (HasSizeMethod<typename Container::value_type>)
+            {
+                d1 = xi[0][i1] - xi[0][i2];
+                d2 = xi[1][i1] - xi[1][i2];
+            }
+            else
+            {
+                d1 = xi[i1] - xi[i2];
+                d2 = xi[i1 + N_] - xi[i2 + N_];
+            }
+
 
             return std::sqrt(d1 * d1 + d2 * d2);
         };
 
         template<typename Container>
-        //todo bracket operator
+        //todo Container value type
         Eigen::Vector<FloatType , 2> getRIM(int i, int m, Container &xi) {
-            FloatType d1 = xi[i] - xi[m];
-            FloatType d2 = xi[i + N_] - xi[m + N_];
+
+            FloatType d1;
+            FloatType d2;
+            if constexpr (HasSizeMethod<typename Container::value_type>)
+            {
+                d1 = xi[0][i] - xi[0][m];
+                d2 = xi[1][i] - xi[1][m];
+            }
+            else
+            {
+                d1 = xi[i] - xi[m];
+                d2 = xi[i + N_] - xi[m + N_];
+            }
+            /*FloatType d1 = xi[i] - xi[m];
+            FloatType d2 = xi[i + N_] - xi[m + N_];*/
             return {d1, d2};
         };
 
@@ -139,16 +203,7 @@ namespace dipoles1
     };
 
 
-    void
-    Dipoless::getMatrixes(const Eigen::Vector<FloatType , 2> &rim, FloatType rMode, Eigen::Matrix<FloatType , 2, 2> &K1,
-                Eigen::Matrix<FloatType , 2, 2> &K2) const
-    {
-        K1 << 3 * rim(0) * rim(0) / pow(rMode, 5) - 1 / pow(rMode, 3), 3 * rim(0) * rim(1) / pow(rMode, 5),
-                3 * rim(0) * rim(1) / pow(rMode, 5), 3 * rim(1) * rim(1) / pow(rMode, 5) - 1 / pow(rMode, 3);
 
-        K2 << params2::omega / (params2::c * pow(rMode, 2)), 0,
-                0, params2::omega / (params2::c * pow(rMode, 2));
-    }
 
 
 
@@ -206,6 +261,7 @@ namespace dipoles1
     }
 
     template<typename Container>
+    requires HasSizeMethod<Container>
     void Dipoless::setNewCoordinates(const Container &xi)
     {
         if (an == params2::a) {
@@ -216,9 +272,9 @@ namespace dipoles1
     }
 
 
-    template<typename Container>
-    //todo brackest operator
-    void Dipoless::getFullFunction_(const Container &xi, const Container &sol)
+    template<typename Container,typename Container2>
+    requires HasSizeMethod<Container>&&HasSizeMethod<Container2>
+    void Dipoless::getFullFunction_(const Container &xi, const Container2 &sol)
     {
 
 
@@ -228,7 +284,7 @@ namespace dipoles1
             FloatType s[2] = {cos(phi), sin(phi)};
             FloatType ress[3] = {0, 0, 0};
             for (int i = 0; i < N; ++i) {
-                FloatType ri[2] = {get_value(xi, i), get_value(xi, i + N)};
+                FloatType ri[2] = {getElement(xi,0, i,N), getElement(xi,1, i,N)};//todo what are those mgick numbers for x and y
                 FloatType ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
                 FloatType t0 = t - ys / params2::c;
                 FloatType Ai[2] = {get_value(sol, 2 * i), get_value(sol, 2 * i + 1)};
@@ -277,7 +333,7 @@ namespace dipoles1
             Eigen::Vector<FloatType , 2> s = {cos(phi),
                                      sin(phi)};
             for (int i = 0; i < N; ++i) {
-                FloatType ri[2] = {get_value(xi, i), get_value(xi, i + N)};
+                FloatType ri[2] = {getElement(xi,0, i,N), getElement(xi,1, i,N)};
                 FloatType ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
                 Eigen::Vector<FloatType , 2> Ai = {get_value(sol, 2 * i), get_value(sol, 2 * i + 1)};
                 Eigen::Vector<FloatType , 2> Bi = {get_value(sol, 2 * i + 2 * N), get_value(sol, 2 * i + 1 + 2 * N)};
@@ -319,7 +375,7 @@ namespace dipoles1
                 Eigen::Vector<FloatType , 2> ABjs;
                 Eigen::Vector<FloatType , 2> BAjs;
                 for (int j = 0; j < i; ++j) {
-                    rj = {get_value(xi, j), get_value(xi, j + N)};
+                    rj = {getElement(xi,0, j,N), getElement(xi,1, j,N)};
                     ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);
 
                     Aj = {get_value(sol, 2 * j), get_value(sol, 2 * j + 1)};
@@ -365,12 +421,56 @@ namespace dipoles1
             return res;
 
         };
+        //todo serialize part of this(sve result into table)
 
     }
 
 
 
+   /* template<typename Container>
+    Container Dipoless::solve()
+    {
+        return Container{};
+    }*/
 
+    template<>
+    Arr2EigenVec Dipoless::solve() {
+
+        // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
+        Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
+        Eigen::Vector<FloatType, Eigen::Dynamic> solution_1;
+        Eigen::Vector<FloatType, Eigen::Dynamic> solution_2;
+        solution_1.resize(2 * N_);
+        solution_2.resize(2 * N_);
+        solution_1 = tt.solve(M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
+        solution_2 = tt.solve(M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
+        return {solution_1, solution_2};
+    }
+
+    template<>
+    EigenVec Dipoless::solve() {
+        Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
+        Eigen::Vector<FloatType, Eigen::Dynamic> solution_;
+        solution_.resize(4 * N_);
+        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
+                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
+        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
+                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
+        return solution_;
+    }
+
+    template<>
+    standartVec Dipoless::solve() {
+        std::vector<FloatType>  sol(4 * N_);
+        Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
+        Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(sol.data(), sol.size());
+        solution_.resize(4 * N_);
+        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
+                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
+        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
+                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
+        return sol;
+    }
 
 }
 

@@ -5,10 +5,14 @@
 
 #include <iostream>
 #include <array>
-#include <eigen3/Eigen/Dense>
 #include <vector>
+
+#include <eigen3/Eigen/Dense>
 #include <matplot/matplot.h>
-using inter::FloatType;
+
+#include "common/constants.h"
+
+using const_::FloatType;
 
 template<typename T>
 struct params {

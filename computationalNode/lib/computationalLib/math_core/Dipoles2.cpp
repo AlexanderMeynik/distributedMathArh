@@ -17,7 +17,7 @@ namespace dipoles1
         return true;
     }
 
-    Dipoless::Dipoless(int N, const Vector<FloatType, -1> &xi) {
+   /* Dipoless::Dipoless(int N, const Vector<FloatType, -1> &xi) {
         initArrays();
         setMatrixes(xi);
     }
@@ -25,10 +25,21 @@ namespace dipoles1
     Dipoless::Dipoless(int N, const vector<FloatType> &xi) {
         initArrays();
         //todo if we hve const qualifier than interfacing wont work
-       /* const Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> txx(xi.data(), xi.size());*/
+       *//* const Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> txx(xi.data(), xi.size());*//*
         setMatrixes(xi);
     }
+*/
 
+   void
+   Dipoless::getMatrixes(const Eigen::Vector<FloatType , 2> &rim, FloatType rMode, Eigen::Matrix<FloatType , 2, 2> &K1,
+                         Eigen::Matrix<FloatType , 2, 2> &K2) const
+   {
+       K1 << 3 * rim(0) * rim(0) / pow(rMode, 5) - 1 / pow(rMode, 3), 3 * rim(0) * rim(1) / pow(rMode, 5),
+               3 * rim(0) * rim(1) / pow(rMode, 5), 3 * rim(1) * rim(1) / pow(rMode, 5) - 1 / pow(rMode, 3);
+
+       K2 << params2::omega / (params2::c * pow(rMode, 2)), 0,
+               0, params2::omega / (params2::c * pow(rMode, 2));
+   }
     void Dipoless::initArrays() {
         an = params2::a / N_;
         M1_.resize(2 * N_, 2 * N_);

@@ -44,7 +44,7 @@ TEST_P(IsSymmetricTestSuite, CheckGenratedMatrixes)
 
     Eigen::MatrixXd symMat = (mat + mat.transpose()) / 2;
 
-    ASSERT_TRUE(dipoles::isSymmetric(symMat));
+    ASSERT_TRUE(dipoles1::isSymmetric(symMat));
 }
 
 INSTANTIATE_TEST_SUITE_P(Matrixes, IsSymmetricTestSuite, testing::Values(2,4,10,100,200,400,800),
@@ -60,7 +60,7 @@ TEST(Dipoles,test_solve_result_in_zero_nev)
     CoordGenerator<double> genr(0,1e-6);
 
     auto coord= genr.generateCoordinates2(N);
-    dipoles::Dipoles<double> dipolearr(N,coord);
+    dipoles1::Dipoless dipolearr(N,coord);
     auto solution=dipolearr.solve3();
 
     EXPECT_TRUE(solution.size()==4*N);
@@ -85,10 +85,10 @@ TEST(Dipoles, test_right_part_nev_solve_impl) {
             CoordGenerator<double> genr(0, 1e-6);
 
             auto coord = genr.generateCoordinates2(N);
-            dipoles::Dipoles<double> dipolearr(N, coord);
+            dipoles1::Dipoless dipolearr(N, coord);
             //auto solution=dipolearr.solve2();
             auto rsol = dipolearr.solve3();
-
+            //todo solve 3
             //compare_collections(solution,rsol);
             // EXPECT_NEAR((solution-rsol).norm(),0,tool);
         }
@@ -170,7 +170,7 @@ namespace uu {
             in1 >> pp1;
 
 
-            dipoles::Dipoles<double> dd(avec[i].size() / 2, avec[i]);
+            dipoles1::Dipoless dd(avec[i].size() / 2, avec[i]);
             compare_matrices(dd.getMatrixx(), pp1.vals_, i, 1e-5);
 
         }
@@ -194,7 +194,7 @@ namespace uu {
             in2 >> NN;
             in2 >> pmatrix;
 
-            dipoles::Dipoles<double> dd;
+            dipoles1::Dipoless dd;
             dd.loadFromMatrix(pmatrix.vals_);
 
             Parser<DynVector<double>> pp1(NN);
@@ -232,7 +232,7 @@ namespace uu {
             in2 >> ppsol;
 
 
-            dipoles::Dipoles<double> dd;//это тут не нужно
+            dipoles1::Dipoless dd;//это тут не нужно
             dd.getFullFunction_(avec[i], ppsol.vals_);//todo превартить в статческий метод
 
             MeshProcessor<double> mm2;

@@ -1,11 +1,14 @@
-#include <eigen3/Eigen/Dense>
+
 #include <random>
 #include <iostream>
-#include "computationalLib//math_core/Dipoles.h"
-#include "common/lib.h"
-#include <matplot/matplot.h>
-#include "computationalLib//math_core/MeshProcessor.h"
 #include <vector>
+
+#include <eigen3/Eigen/Dense>
+#include <matplot/matplot.h>
+
+#include "computationalLib//math_core/MeshProcessor.h"
+#include "computationalLib//math_core/Dipoles2.h"
+#include "common/lib.h"
 
 //template <class Tr>
 std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, double b = 0, bool center = false) {
@@ -186,22 +189,22 @@ int main(int argc, char *argv[]) {
     ss << "_N" << N << "_l" << l << "_a" << a << "_center" << center;
 
     std::ofstream out("res" + ss.str() + ".txt");
-    dipoles::Dipoles d(N, coords);//this thing wont accept array
-    auto solv = d.solve_();
+    dipoles1::Dipoless d(N, coords);//this thing wont accept array
+    auto solv = d.solve<dipoles1::EigenVec>();
 
     plotCoordinates("coord" + ss.str() + ".png", a / 8, coords);
 
     printSolutionFormat1(out, solv);
 
     MeshProcessor<double> meshProcessor;
-    d.getFullFunction(coords, solv);
+    d.getFullFunction_(coords, solv);
 
     meshProcessor.generateNoInt(d.getI2function());
 
     meshProcessor.plotSpherical("function" + ss.str() + ".png");
 
 
-    printCoordinates(out, coords);
+    printCoordinates2(out, coords);
     meshProcessor.printDec(out);
     out.close();
 

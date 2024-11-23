@@ -2,13 +2,16 @@
 #define DIPLOM_INITCALC_H
 
 
-
-#include "CalculationStep.h"
-#include <optional>
-#include "../math_core/Dipoles.h"
-#include "../math_core/MeshProcessor.h"
-#include <omp.h>
 #include <filesystem>
+
+#include <optional>
+#include <omp.h>
+
+
+#include "computationalLib/math_core/Dipoles2.h"
+#include "computationalLib/math_core/MeshProcessor.h"
+#include "CalculationStep.h"
+
 
 namespace inter {
     template<typename ... Args>
@@ -92,9 +95,9 @@ namespace inter {
 
     protected:
         void perform_calculation(std::shared_ptr<DataAcessInteface> dat, Args...args) override {
-            using dipoles::Dipoles;
+            using dipoles1::Dipoless;
 
-            Dipoles<FloatType> d1;
+            Dipoless d1;
             //clocks_[1].tik();
             bool state = get<bool>(dat->getProperty(
                     "prety_print"));//todo мы эти параметры должны откуда-то брать(чё-то типо конфигурации при создании dat
@@ -155,7 +158,7 @@ namespace inter {
             size_t Nsym = get<int>(dat->getProperty("Nsym")); //todo 2 надо предать конфигурацию для меша(2 int или 2 double)
             std::vector<std::vector<FloatType >> coords = dat->getdat(this->prev_->prev_->to_string());
             std::vector<std::vector<FloatType >> solutions = dat->getdat(this->prev_->to_string());
-            dipoles::Dipoles<FloatType> d1;
+            dipoles1::Dipoless d1;
             MeshProcessor<FloatType > mh;
             for (int i = 0; i < Nsym; ++i) {
                 d1.getFullFunction_(coords[i],solutions[i]);

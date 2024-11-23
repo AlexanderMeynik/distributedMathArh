@@ -1,8 +1,9 @@
 #include <eigen3/Eigen/Dense>
 #include <random>
 #include <iostream>
-#include "computationalLib/math_core/Dipoles.h"
+
 #include "common/lib.h"
+#include "computationalLib/math_core/Dipoles2.h"
 
 int main(int argc, char *argv[]) {
     int N = 10;
@@ -10,7 +11,7 @@ int main(int argc, char *argv[]) {
     using namespace Eigen;
     CoordGenerator<double> genr(0, 1e-6);
     auto coords = genr.generateCoordinates2(N);
-    dipoles::Dipoles d(N, coords);//todo old implementation used
+    dipoles1::Dipoless d(N, coords);//todo old implementation used
 
 
     double stime = omp_get_wtime();

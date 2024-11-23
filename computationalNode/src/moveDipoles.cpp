@@ -1,6 +1,6 @@
 
 #include <iostream>
-#include "computationalLib/math_core/Dipoles.h"
+
 #include <vector>
 #include <algorithm>
 #include <numeric>
@@ -8,15 +8,18 @@
 #include <fstream>
 #include <iomanip>
 #include <filesystem>
+
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
+
 #include "common/lib.h"
 #include "computationalLib/math_core/MeshProcessor.h"
+#include "computationalLib/math_core/Dipoles2.h"
 
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
 
-using namespace dipoles;
+using namespace dipoles1;
 const double l = 1E-7;
 double eps = 0.01;//todo метод печати матрицы в диполи
 //todo сравнивать штуки
@@ -33,26 +36,30 @@ int main(int argc, char *argv[]) {
     int N = coordinates[0].size();
     std::ofstream out(dirname + "results.txt");
 
-    Dipoles<double> d(N, coordinates);//todo old implementation used
-    auto solut1 = d.solve_();
+    Dipoless d(N, coordinates);//todo old implementation used
 
-    MeshProcessor<double> mmesh;
-    d.getFullFunction(coordinates, solut1);
-    solut1[0][0] = 5;
+
+
+    auto solut1 = d.solve<EigenVec>();
+
+    MeshProcessor<FloatType> mmesh;
+
+    d.getFullFunction_(coordinates, solut1);
+    solut1[0] = 5;
     mmesh.generateNoInt(d.getI2function());
     auto prevMesh = mmesh.getMeshdec();
     prevMesh[2][0][0] = 10000000000;
     double multip = start_multip;
     double res = 5;
     while (i < 30 &&
-           (solut1[0].norm() + solut1[1].norm()) / 1000000 < res)//(coordinates[0]-coordinates[1]).norm()>limit)
+           (solut1.head(N).norm() + solut1.tail(N).norm()) / 1000000 < res)//(coordinates[0]-coordinates[1]).norm()>limit)
     {
         std::ofstream fout(dirname + "out" + std::to_string(N) + "_iter" + std::to_string(i) + ".txt");
         d.setNewCoordinates(coordinates);
-        auto solut2 = d.solve_();
+        auto solut2 = d.solve<EigenVec>();
 
-        d.getFullFunction(coordinates, solut2);
-        mmesh.generateMeshes(d.getIfunction());
+        d.getFullFunction_(coordinates, solut2);
+        mmesh.generateMeshes(d.getIfunction());//todo not working since inner function is bad
 
         //printToFile<double>(N, coordinates, d, dirname,i,2);
         //когда разницы между ними почти не будет оставновка
@@ -60,7 +67,7 @@ int main(int argc, char *argv[]) {
         mmesh.printDec(out);
         std::vector<std::vector<double>> t1 = prevMesh[2];
         std::vector<std::vector<double>> t2 = mmesh.getMeshdec()[2];
-        res = (solut1[0] - solut2[0]).norm() + (solut1[1] - solut2[1]).norm();//getMeshDiffNorm(t1,t2);
+        res = (solut1.head(N) - solut2.head(N)).norm() + (solut1.tail(N) - solut2.tail(N)).norm();//getMeshDiffNorm(t1,t2);
         out << res << "\n\n\n\n\n";
         Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
 
@@ -74,8 +81,8 @@ int main(int argc, char *argv[]) {
         ++i;
 
         d.printMatrix(fout, CleanFmt);
-        printCoordinates(fout, coordinates);
-        printSolution(fout, CleanFmt, solut2);
+        printCoordinates2(fout, coordinates);
+        printSolution(fout,  solut2,CleanFmt);
 
 
         mmesh.printDec(fout);

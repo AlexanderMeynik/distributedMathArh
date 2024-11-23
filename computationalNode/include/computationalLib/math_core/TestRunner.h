@@ -6,7 +6,10 @@
 #include <filesystem>
 #include <omp.h>
 #include <fstream>
+
 #include <eigen3/Eigen/Core>
+
+
 #include "MeshProcessor.h"
 #include "common/lib.h"
 #include "parallelUtils/OpenmpParallelClock.h"
@@ -14,6 +17,7 @@
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
 #include "common/constants.h"
+#include "computationalLib/math_core/Dipoles2.h"
 
 using const_::FloatType;
 template<typename T>

@@ -1,10 +1,4 @@
-//
-// Created by Lenovo on 23.04.2024.
-//
-
-
-#include "../../../include/computationalLib/math_core/TestRunner.h"
-
+#include "computationalLib/math_core/TestRunner.h"
 
 void TestRunner::createSubDirectory(const string &dirname, const string &subdirectory) {
     if (!std::filesystem::exists("results/")) {
@@ -48,9 +42,9 @@ TestRunner::TestRunner() {
 }
 
 void TestRunner::solve() {
-    using dipoles::Dipoles;
+    using dipoles1::Dipoless;
 
-    Dipoles<FloatType> d1;
+    Dipoless d1;
     //clocks_[1].tik();
     if (inner_state != state_t::openmp_new)
         goto pp;
@@ -97,9 +91,9 @@ std::fstream TestRunner::openOrCreateFile(std::string filename) {
 
 void TestRunner::generateFunction() {
 
-    using dipoles::Dipoles;
+    using dipoles1::Dipoless;
 
-    Dipoles<FloatType> d1;
+    Dipoless d1;
     MeshProcessor<FloatType> mesh;
     auto result = mesh.getMeshGliff();
     //clocks_[2].tik();

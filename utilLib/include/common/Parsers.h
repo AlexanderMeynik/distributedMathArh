@@ -156,25 +156,7 @@ std::vector<std::array<std::vector<T>, 2>> parseConf(std::string &filename) {
 }
 
 
-template<class T>
-void printCoordinates(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &xi) {
-    out << "Координаты диполей\n";
-    auto N = xi.size() / 2;
-    for (int i = 0; i < N; ++i) {
-        out << xi[i] << '\t' << xi[i + N] << "\n";
-    }
-}
 
-/*
-template<class T>
-void printSolution(std::ostream &out, Eigen::IOFormat &format,std::array<Eigen::Vector<T, Eigen::Dynamic>, 2>& solution_);
-*/
-
-template<class T>
-void printSolutionFormat1(std::ostream &out, std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &solution_);
-
-template<class T>
-void plotCoordinates(std::string name, T ar, std::array<std::vector<T>, 2> &xi);
 
 template<typename T>
 std::istream &operator>>(std::istream &in, std::array<std::vector<T>, 2> &xi) {

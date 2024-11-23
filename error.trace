@@ -1,0 +1,137 @@
+/usr/local/bin/cmake --build /mnt/c/Users/Lenovo/CLionProjects/Magister1/cmake-build-debug --target all -- -j 14
+[  3%] Built target serviceLib
+[  9%] Built target client
+[ 15%] Built target parallelLib
+[ 19%] Built target main
+[ 25%] Built target commonLibrary
+[ 29%] Built target common_Tests
+[ 37%] Built target commonLib
+[ 41%] Built target par_Tests
+[ 52%] Built target math_core_lib
+[ 56%] Built target controllerLib
+[ 60%] Built target Google_Tests_run
+[ 72%] Built target interfaces_lib
+[ 74%] Linking CXX executable bin/checker
+[ 76%] Building CXX object computationalNode/CMakeFiles/moveDipoles.dir/src/moveDipoles.cpp.o
+[ 80%] Linking CXX executable bin/grids
+[ 80%] Building CXX object computationalNode/CMakeFiles/generator.dir/src/coordGenerate.cpp.o
+[ 84%] Linking CXX executable core_Tests
+[ 84%] Linking CXX executable inter_Tests
+[ 86%] Linking CXX executable server
+/usr/bin/ld: /usr/bin/ld: /usr/bin/ld: /usr/bin/ld: /usr/bin/ld: lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `void Eigen::internal::check_size_for_overflow<bool>(unsigned long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `void Eigen::internal::check_size_for_overflow<bool>(unsigned long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; ../lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `void Eigen::internal::check_size_for_overflow<bool>(unsigned long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; ../lib/libmath_core_lib.a(TestRunner.cpp.o): in function `void Eigen::internal::check_size_for_overflow<bool>(unsigned long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; CMakeFiles/checker.dir/src/eigenTest.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/checker.dir/src/eigenTest.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/checker.dir/src/eigenTest.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/Dipoles2.h:463: first defined here
+../computationalNode/lib/libmath_core_lib.a(TestRunner.cpp.o): in function `void Eigen::internal::check_size_for_overflow<bool>(unsigned long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/coordGenerate.cpp: In function ‘int main(int, char**)’:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/coordGenerate.cpp:128:50: warning: ‘std::array<std::vector<_RealType>, 2> CoordGenerator<T>::generateCoordinates(size_t) [with T = double; size_t = long unsigned int]’ is deprecated: use generateCoordinates2 [-Wdeprecated-declarations]
+  128 |         coordinates[i] = genr.generateCoordinates(N);
+      |                          ~~~~~~~~~~~~~~~~~~~~~~~~^~~
+In file included from /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/coordGenerate.cpp:56:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/../utilLib/include/common/lib.h:48:77: note: declared here
+   48 |     [[deprecated("use generateCoordinates2")]]std::array<std::vector<T>, 2> generateCoordinates(size_t N) {
+      |                                                                             ^~~~~~~~~~~~~~~~~~~
+In file included from /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/moveDipoles.cpp:16:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h: In instantiation of ‘void MeshProcessor<T>::generateMeshes(const std::function<T(T, T, T)>&) [with T = double]’:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/moveDipoles.cpp:62:29:   required from here
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:297:36: error: no matching function for call to ‘applyFunctionToVVD(std::array<std::vector<std::vector<double> >, 3>::value_type&, std::array<std::vector<std::vector<double> >, 3>::value_type&, MeshProcessor<double>::generateMeshes(const std::function<double(double, double, double)>&)::<lambda(double, double)>)’
+  297 |     meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], [&func, &rr1](T x, T y) {
+      |                  ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  298 |         return integrateFunctionBy1Val<T, 61>(func, y, x, 0, rr1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  299 |     });
+      |     ~~
+In file included from /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/moveDipoles.cpp:16:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:65:9: note: candidate: ‘template<class T, class U, template<class> class CONT>  requires (has_size<U, CONT>) && (has_brackets<U, CONT>) && (has_elemet<U, T>) CONT<U> applyFunctionToVVD(const CONT<U>&, const CONT<U>&, const std::function<T(T, T)>&)’
+   65 | CONT<U> applyFunctionToVVD(const CONT<U> &a, const CONT<U> &b, const std::function<T(T, T)> &func) {
+      |         ^~~~~~~~~~~~~~~~~~
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:65:9: note:   template argument deduction/substitution failed:
+In file included from /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/moveDipoles.cpp:16:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:297:36: note:   ‘MeshProcessor<double>::generateMeshes(const std::function<double(double, double, double)>&)::<lambda(double, double)>’ is not derived from ‘const std::function<T(T, T)>’
+  297 |     meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], [&func, &rr1](T x, T y) {
+      |                  ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  298 |         return integrateFunctionBy1Val<T, 61>(func, y, x, 0, rr1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  299 |     });
+      |     ~~
+In file included from /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/coordGenerate.cpp:58:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h: In instantiation of ‘void MeshProcessor<T>::generateMeshes(const std::function<T(T, T, T)>&) [with T = double]’:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/coordGenerate.cpp:235:32:   required from here
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:297:36: error: no matching function for call to ‘applyFunctionToVVD(std::array<std::vector<std::vector<double> >, 3>::value_type&, std::array<std::vector<std::vector<double> >, 3>::value_type&, MeshProcessor<double>::generateMeshes(const std::function<double(double, double, double)>&)::<lambda(double, double)>)’
+  297 |     meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], [&func, &rr1](T x, T y) {
+      |                  ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  298 |         return integrateFunctionBy1Val<T, 61>(func, y, x, 0, rr1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  299 |     });
+      |     ~~
+In file included from /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/coordGenerate.cpp:58:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:65:9: note: candidate: ‘template<class T, class U, template<class> class CONT>  requires (has_size<U, CONT>) && (has_brackets<U, CONT>) && (has_elemet<U, T>) CONT<U> applyFunctionToVVD(const CONT<U>&, const CONT<U>&, const std::function<T(T, T)>&)’
+   65 | CONT<U> applyFunctionToVVD(const CONT<U> &a, const CONT<U> &b, const std::function<T(T, T)> &func) {
+      |         ^~~~~~~~~~~~~~~~~~
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:65:9: note:   template argument deduction/substitution failed:
+In file included from /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/src/coordGenerate.cpp:58:
+/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib/math_core/MeshProcessor.h:297:36: note:   ‘MeshProcessor<double>::generateMeshes(const std::function<double(double, double, double)>&)::<lambda(double, double)>’ is not derived from ‘const std::function<T(T, T)>’
+  297 |     meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], [&func, &rr1](T x, T y) {
+      |                  ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  298 |         return integrateFunctionBy1Val<T, 61>(func, y, x, 0, rr1);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  299 |     });
+      |     ~~
+CMakeFiles/grids.dir/src/darwingGrids.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib//math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/grids.dir/src/darwingGrids.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib//math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/grids.dir/src/darwingGrids.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/include/computationalLib//math_core/Dipoles2.h:463: first defined here
+lto-wrapper: warning: using serial compilation of 7 LTRANS jobs
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [computationalNode/CMakeFiles/checker.dir/build.make:111: computationalNode/bin/checker] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:594: computationalNode/CMakeFiles/checker.dir/all] Error 2
+gmake[1]: *** Waiting for unfinished jobs....
+CMakeFiles/core_Tests.dir/math_core/SpeedTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/core_Tests.dir/math_core/SpeedTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/core_Tests.dir/math_core/SpeedTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:463: first defined here
+/usr/bin/ld: CMakeFiles/inter_Tests.dir/interfaces/PubSubModelTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(TestRunner.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/inter_Tests.dir/interfaces/PubSubModelTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(TestRunner.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/inter_Tests.dir/interfaces/PubSubModelTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:463: first defined here
+gmake[2]: *** [computationalNode/CMakeFiles/generator.dir/build.make:76: computationalNode/CMakeFiles/generator.dir/src/coordGenerate.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:566: computationalNode/CMakeFiles/generator.dir/all] Error 2
+gmake[2]: *** [computationalNode/CMakeFiles/moveDipoles.dir/build.make:76: computationalNode/CMakeFiles/moveDipoles.dir/src/moveDipoles.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:538: computationalNode/CMakeFiles/moveDipoles.dir/all] Error 2
+/usr/bin/ld: CMakeFiles/server.dir/server.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/server/../computationalNode/include/computationalLib/math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: ../computationalNode/lib/libmath_core_lib.a(TestRunner.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/server.dir/server.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/server/../computationalNode/include/computationalLib/math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: ../computationalNode/lib/libmath_core_lib.a(TestRunner.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/server.dir/server.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/server/../computationalNode/include/computationalLib/math_core/Dipoles2.h:463: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `void Eigen::internal::check_size_for_overflow<bool>(unsigned long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; CMakeFiles/inter_Tests.dir/interfaces/PubSubModelTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/inter_Tests.dir/interfaces/PubSubModelTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/inter_Tests.dir/interfaces/PubSubModelTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:463: first defined here
+../lib/libmath_core_lib.a(TestRunner.cpp.o): in function `void Eigen::internal::check_rows_cols_for_overflow<2, 2, 1>::run<long>(long, long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; CMakeFiles/core_Tests.dir/math_core/SpeedTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(TestRunner.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/core_Tests.dir/math_core/SpeedTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: ../lib/libmath_core_lib.a(TestRunner.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/core_Tests.dir/math_core/SpeedTests.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalNode/test/../include/computationalLib/math_core/Dipoles2.h:463: first defined here
+lto-wrapper: warning: using serial compilation of 7 LTRANS jobs
+../computationalNode/lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `void Eigen::internal::check_size_for_overflow<bool>(unsigned long)':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:1424: multiple definition of `std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> dipoles1::Dipoless::solve<std::array<Eigen::Matrix<double, -1, 1, 0, -1, 1>, 2ul> >()'; CMakeFiles/server.dir/server.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/server/../computationalNode/include/computationalLib/math_core/Dipoles2.h:437: first defined here
+/usr/bin/ld: ../computationalNode/lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2130: multiple definition of `Eigen::Matrix<double, -1, 1, 0, -1, 1> dipoles1::Dipoless::solve<Eigen::Matrix<double, -1, 1, 0, -1, 1> >()'; CMakeFiles/server.dir/server.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/server/../computationalNode/include/computationalLib/math_core/Dipoles2.h:451: first defined here
+/usr/bin/ld: ../computationalNode/lib/libmath_core_lib.a(Dipoles2.cpp.o): in function `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()':
+/usr/local/include/eigen3/Eigen/src/Core/products/GeneralBlockPanelKernel.h:2175: multiple definition of `std::vector<double, std::allocator<double> > dipoles1::Dipoless::solve<std::vector<double, std::allocator<double> > >()'; CMakeFiles/server.dir/server.cpp.o:/mnt/c/Users/Lenovo/CLionProjects/Magister1/server/../computationalNode/include/computationalLib/math_core/Dipoles2.h:463: first defined here
+lto-wrapper: warning: using serial compilation of 7 LTRANS jobs
+lto-wrapper: warning: using serial compilation of 7 LTRANS jobs
+collect2: error: ld returned 1 exit status
+gmake[2]: *** [computationalNode/CMakeFiles/grids.dir/build.make:111: computationalNode/bin/grids] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:622: computationalNode/CMakeFiles/grids.dir/all] Error 2

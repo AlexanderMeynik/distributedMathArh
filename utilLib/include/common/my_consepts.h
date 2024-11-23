@@ -43,6 +43,23 @@ namespace myconceps {
         return {static_cast<long>(collection.size()), static_cast<long>(collection[0].size())};
     }
 
+
+    template<typename Collection>
+    //todo requerements
+    const auto& getElement(const Collection &collection, size_t i1,size_t i2,size_t N)
+    {
+        if constexpr (not std::is_compound_v<typename Collection::value_type>)
+        {
+            return collection[i1*N+i2];
+        }
+        else
+        {
+            return collection[i1][i2];
+        }
+    }
+
+
+
     template<typename T>
     requires (HasBracketOperator<T>) auto &
     get_value(const T &collection, int i1) {
