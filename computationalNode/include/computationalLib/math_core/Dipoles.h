@@ -9,6 +9,8 @@
 #include "common/my_consepts.h"
 #include <iomanip>
 
+#include <cassert>
+#include <eigen3/Eigen/Geometry>
 #include "const.h"
 
 using Eigen::MatrixXd;
@@ -21,7 +23,7 @@ namespace dipoles {
     using std::function, std::pair, std::vector, std::array;
 
 
-    template<class T>
+    template<class T>//todo move to dipoles lib
     static bool isSymmetric(Eigen::Matrix<T, -1, -1> &matr) {
         size_t N = matr.rows();
 
@@ -55,8 +57,6 @@ namespace dipoles {
     }
 
 
-#include <cassert>
-#include <eigen3/Eigen/Geometry>
 
 
     template<class T>

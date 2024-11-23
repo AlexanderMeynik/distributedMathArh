@@ -1,6 +1,4 @@
-//
-// Created by Lenovo on 05.06.2024.
-//
+
 
 #ifndef DIPLOM_CONST_H
 #define DIPLOM_CONST_H
@@ -10,7 +8,7 @@
 #include <eigen3/Eigen/Dense>
 #include <vector>
 #include <matplot/matplot.h>
-
+using inter::FloatType;
 
 template<typename T>
 struct params {
@@ -20,6 +18,16 @@ struct params {
     static constexpr T omega0 = omega;
     static constexpr T a = 1;
     static constexpr T eps = 1;
+};
+
+
+struct params2 {
+    static constexpr FloatType c = 3.0 * 1e8;
+    static constexpr FloatType yo = 1e7;
+    static constexpr FloatType omega = 1e15;
+    static constexpr FloatType omega0 = omega;
+    static constexpr FloatType a = 1;
+    static constexpr FloatType eps = 1;
 };
 
 
