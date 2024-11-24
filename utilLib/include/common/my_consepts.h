@@ -6,49 +6,95 @@
 #include <type_traits>
 #include <concepts>
 
+//myconcepts namespace
+namespace myConcepts {
 
-namespace myconceps {
+    /**
+     * @brief Concept to check whether type T has subscript operator
+     * @tparam T
+     */
     template<typename T>
     concept HasBracketOperator = requires(T t, size_t i) {
-        { t[i] } -> std::same_as<typename T::value_type &>;  // Ensures operator[] exists and returns a reference to value_type
-// { t.size() } -> std::same_as<size_t>;               // Ensures size() exists and returns a size_t
+        { t[i] } -> std::same_as<typename T::value_type &>;
+    };
+
+    /**
+     * @brief Concept to check whether type T element have subscript operation
+     * @tparam T
+     */
+    template<typename T>
+    concept HasBracketsNested = HasBracketOperator<T> && requires(T t, size_t i) {
+        { t[i][i] } -> std::same_as<typename T::value_type::value_type &>;
     };
 
 
+    /**
+     * @brief Concept to check whether type T hash size method
+     * @tparam T
+     */
     template<typename T>
     concept HasSizeMethod = requires(T a) {
         { a.size() } -> std::convertible_to<std::size_t>;
     };
 
+    /**
+     * @brief Concept to check whether type T is 2d vector
+     * @tparam T
+     */
     template<typename T>
-    concept twodVector=requires(T a, int i, int j) {
-        HasSizeMethod<T>;
-        HasBracketOperator<T>;
-        { a[i][j] } -> std::convertible_to<double>;
-    };
+    concept twodVector=
+        HasSizeMethod<T>&&
+        HasBracketOperator<T>&&
+        HasBracketsNested<T>&&
+        HasSizeMethod<typename T::value_type>;
 
+
+    /**
+     * @brief Concept to check whether type T has rows and columns methods
+     * @tparam T
+     */
     template<typename T>
     concept RowCol = requires(T a) {
         { a.rows() } -> std::convertible_to<std::size_t>;
         { a.cols() } -> std::convertible_to<std::size_t>;
     };
 
+    /*
+     * @brief Returns dimentsions of structure
+     * @tparam T
+     * @param collection
+     * @return
+     */
     template<RowCol T>
     std::array<long, 2> get_shape(const T &collection) {
         return {collection.rows(), collection.cols()};
     }
 
+    /**
+     * @brief Returns dimentsions of structure
+     * @tparam T
+     * @param collection
+     * @return
+     */
     template<twodVector T>
     std::array<long, 2> get_shape(const T &collection) {
         return {static_cast<long>(collection.size()), static_cast<long>(collection[0].size())};
     }
 
-
+    /**
+     * @brief Specializes return method depending on dimensions of Collection
+     * @tparam Collection
+     * @param collection
+     * @param i1
+     * @param i2
+     * @param N
+     * @return
+     */
     template<typename Collection>
-    //todo requerements
+    requires HasBracketOperator<Collection>
     const auto& getElement(const Collection &collection, size_t i1,size_t i2,size_t N)
     {
-        if constexpr (not std::is_compound_v<typename Collection::value_type>)
+        if constexpr (not HasBracketsNested<Collection>)
         {
             return collection[i1*N+i2];
         }

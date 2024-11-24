@@ -1,71 +1,27 @@
 #ifndef DIPLOM_DIPOLES2_H
 #define DIPLOM_DIPOLES2_H
-#include <vector>
-#include <memory>
 
-#include <iostream>
-#include <iomanip>
-#include <variant>
 
-#include <eigen3/Eigen/Dense>
-
-#include "common/my_consepts.h"
-#include "common/constants.h"
-#include "const.h"
+#include "computationalLib/math_core/dipolesCommon.h"
 
 using namespace Eigen;
-using namespace myconceps;
-namespace dipoles1
+using namespace myConcepts;
+namespace dipoles
 {
-    using matplot::gca;
-    using std::function, std::pair, std::vector, std::array;
-    using const_::FloatType;
-
-    bool isSymmetric(const Eigen::Matrix<FloatType , -1, -1> &matr);
-    enum ReturnType:size_t
-    {
-        ArrayEigenVectors=0,
-        EigenVector,
-        StdVector
-    };
-    //todo https://godbolt.org/z/qaohWfvfe
-    //https://stackoverflow.com/questions/68059855/map-enum-values-to-corresponding-types-with-templates-at-compile-time
-    using Arr2EigenVec=std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2>;
-    using EigenVec=Eigen::Vector<FloatType, Eigen::Dynamic>;
-    using standartVec=std::vector<FloatType>;
-
-    using integrableFunction = std::function<FloatType(FloatType, FloatType, FloatType)> ;
-    using directionGraph= std::function<FloatType(FloatType, FloatType)> ;
-    using matrixType=Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>;
 
 
 
-    using retTypes =std::variant< std::type_identity<Arr2EigenVec>,
-            std::type_identity<EigenVec>,
-            std::type_identity<standartVec>>;
 
-
-    /**
-    *
-    */
-    static const std::unordered_map <size_t , retTypes> enumToType = {
-            {ArrayEigenVectors,   std::type_identity<Arr2EigenVec>{}},
-            {EigenVector, std::type_identity<EigenVec>{} },
-            {StdVector,   std::type_identity<standartVec>{}}
-    };//todo reverse
-
-
-
-    class Dipoless
+    class Dipoles
     {
     public:
-        Dipoless() = default;
+        Dipoles() = default;
 
         template<typename Container>
         requires HasSizeMethod<Container>
-        Dipoless(int N,const Container &xi):Dipoless()
+        Dipoles(int N, const Container &xi):Dipoles()
         {
-            if constexpr  (not std::is_compound_v<typename Container::value_type>)
+            if constexpr  (not  HasBracketsNested<Container>)
             {
                 this->N_=xi.size()/2;
             }
@@ -223,7 +179,7 @@ namespace dipoles1
 
 
     template<typename Container>
-    void Dipoless::setMatrixes(const Container &xi)
+    void Dipoles::setMatrixes(const Container &xi)
     {
         vector<pair<int, int>> sectors(4);
         sectors[0] = {0, 0};
@@ -277,7 +233,7 @@ namespace dipoles1
 
     template<typename Container>
     requires HasSizeMethod<Container>
-    void Dipoless::setNewCoordinates(const Container &xi)
+    void Dipoles::setNewCoordinates(const Container &xi)
     {
         if (an == params2::a) {
             this->N_ = xi.size() / 2;
@@ -289,7 +245,7 @@ namespace dipoles1
 
     template<typename Container,typename Container2>
     requires HasSizeMethod<Container>&&HasSizeMethod<Container2>
-    void Dipoless::getFullFunction_(const Container &xi, const Container2 &sol)
+    void Dipoles::getFullFunction_(const Container &xi, const Container2 &sol)
     {
 
 

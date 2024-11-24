@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
     using namespace Eigen;
     CoordGenerator<double> genr(0, 1e-6);
     auto coords = genr.generateCoordinates2(N);
-    dipoles1::Dipoless d(N, coords);//todo old implementation used
+    dipoles::Dipoles d(N, coords);//todo old implementation used
 
 
     double stime = omp_get_wtime();

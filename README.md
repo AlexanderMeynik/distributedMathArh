@@ -35,5 +35,20 @@
 - [ ] Почитать и избавиться огт ненужных todo;
 - [x] Решить проблему с solve методами для dipoles
   - [x] адаптировать MeshProcessor 
-  - [ ] Протестировать новую реализацию см. [SpeedTests.cpp](computationalNode%2Ftest%2Fmath_core%2FSpeedTests.cpp)
+  - [x] Протестировать новую реализацию см. [SpeedTests.cpp](computationalNode%2Ftest%2Fmath_core%2FSpeedTests.cpp)
 - [ ] Стандартизировать представления для генераторов
+  - [ ] создать функцию для генераици разных вариантов конфигураций(мссив векторов, 1 вектор);
+  - [ ] Починить grids для диполей
+## Проверенные конфигурации
+Генератор конфигураций
+```c++
+cd build/computationalNode/bin
+./generator 10 10000 1e-6 openmp_new otest
+```
+
+
+Генератор конфигураций
+```c++
+cd build/computationalNode/test
+./core_Tests
+```

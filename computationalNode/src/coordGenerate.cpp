@@ -12,7 +12,6 @@
 #include "parallelUtils/OpenmpParallelClock.h"
 #include "computationalLib/math_core/Dipoles2.h"
 #include "common/lib.h"
-#include "computationalLib/math_core/Dipoles.h"
 #include "computationalLib/math_core/MeshProcessor.h"
 
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
@@ -20,7 +19,7 @@ std::string getString(const std::string &dirname, std::string &&name, int i, std
     return dirname + name + "_i" + std::to_string(i) + "." + end;
 }
 
-using dipoles1::Dipoless;
+using dipoles::Dipoles;
 
 int main(int argc, char *argv[]) {
     int N = 5;
@@ -85,7 +84,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < Nsym; ++i) {
         coordinates[i] = genr.generateCoordinates(N);
     }
-    Dipoless dipoles1(N, coordinates[0]);
+    Dipoles dipoles1(N, coordinates[0]);
     MeshProcessor mesh = MeshProcessor();//todo do ve need implicit constructor call
     auto result = mesh.getMeshGliff();
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
@@ -126,7 +125,7 @@ int main(int argc, char *argv[]) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles1::EigenVec>();
+            auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTime[tid] += stmep[1] - stmep[0];
@@ -161,7 +160,7 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < Nsym; ++i) {
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles1::EigenVec>();
+            auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTimeS += stmep[1] - stmep[0];
@@ -184,7 +183,7 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < Nsym; ++i) {
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles1::EigenVec >();
+            auto solution = dipoles1.solve<dipoles::EigenVec >();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTimeS += stmep[1] - stmep[0];
@@ -210,7 +209,7 @@ int main(int argc, char *argv[]) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles1::EigenVec>();
+            auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTime[tid] += stmep[1] - stmep[0];
@@ -247,7 +246,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < Nsym; ++i) {
         std::ofstream out1(getString(dirname, "sim", i, "txt"));
         dipoles1.setNewCoordinates(coordinates[i]);
-        auto solution = dipoles1.solve<dipoles1::EigenVec>();
+        auto solution = dipoles1.solve<dipoles::EigenVec>();
         //dipoles1.getFullFunction();
         dipoles1.getFullFunction_(coordinates[i], solution);
         mesh.generateNoInt(dipoles1.getI2function());

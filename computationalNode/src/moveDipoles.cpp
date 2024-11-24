@@ -19,7 +19,7 @@
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
 
-using namespace dipoles1;
+using namespace dipoles;
 const double l = 1E-7;
 double eps = 0.01;//todo метод печати матрицы в диполи
 //todo сравнивать штуки
@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     int N = coordinates[0].size();
     std::ofstream out(dirname + "results.txt");
 
-    Dipoless d(N, coordinates);//todo old implementation used
+    Dipoles d(N, coordinates);//todo old implementation used
 
 
 

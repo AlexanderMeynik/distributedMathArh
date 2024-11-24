@@ -42,9 +42,9 @@ TestRunner::TestRunner() {
 }
 
 void TestRunner::solve() {
-    using dipoles1::Dipoless;
+    using dipoles::Dipoles;
 
-    Dipoless d1;
+    Dipoles d1;
     //clocks_[1].tik();
     if (inner_state != state_t::openmp_new)
         goto pp;
@@ -90,9 +90,9 @@ std::fstream TestRunner::openOrCreateFile(std::string filename) {
 
 void TestRunner::generateFunction() {
 
-    using dipoles1::Dipoless;
+    using dipoles::Dipoles;
 
-    Dipoless d1;
+    Dipoles d1;
     MeshProcessor mesh;
     auto result = mesh.getMeshGliff();
     //clocks_[2].tik();

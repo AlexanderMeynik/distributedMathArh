@@ -1,38 +1,11 @@
 #include "computationalLib/math_core/Dipoles2.h"
-namespace dipoles1
+namespace dipoles
 {
 
-    bool isSymmetric(const Matrix<FloatType, -1, -1> &matr) {
-        size_t N = matr.rows();
-
-        for (int i = 0; i < N; ++i) {
-
-            for (int j = 0; j < i; ++j) {
-                if (matr.coeffRef(i, j) != matr.coeffRef(j, i)) {
-                    return false;
-                }
-            }
-
-        }
-        return true;
-    }
-
-   /* Dipoless::Dipoless(int N, const Vector<FloatType, -1> &xi) {
-        initArrays();
-        setMatrixes(xi);
-    }
-
-    Dipoless::Dipoless(int N, const vector<FloatType> &xi) {
-        initArrays();
-        //todo if we hve const qualifier than interfacing wont work
-       *//* const Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> txx(xi.data(), xi.size());*//*
-        setMatrixes(xi);
-    }
-*/
 
    void
-   Dipoless::getMatrixes(const Eigen::Vector<FloatType , 2> &rim, FloatType rMode, Eigen::Matrix<FloatType , 2, 2> &K1,
-                         Eigen::Matrix<FloatType , 2, 2> &K2) const
+   Dipoles::getMatrixes(const Eigen::Vector<FloatType , 2> &rim, FloatType rMode, Eigen::Matrix<FloatType , 2, 2> &K1,
+                        Eigen::Matrix<FloatType , 2, 2> &K2) const
    {
        K1 << 3 * rim(0) * rim(0) / pow(rMode, 5) - 1 / pow(rMode, 3), 3 * rim(0) * rim(1) / pow(rMode, 5),
                3 * rim(0) * rim(1) / pow(rMode, 5), 3 * rim(1) * rim(1) / pow(rMode, 5) - 1 / pow(rMode, 3);
@@ -40,7 +13,7 @@ namespace dipoles1
        K2 << params2::omega / (params2::c * pow(rMode, 2)), 0,
                0, params2::omega / (params2::c * pow(rMode, 2));
    }
-    void Dipoless::initArrays() {
+    void Dipoles::initArrays() {
         an = params2::a / N_;
         M1_.resize(2 * N_, 2 * N_);
         M2_.resize(2 * N_, 2 * N_);
@@ -55,7 +28,7 @@ namespace dipoles1
         }
     }
 
-    void Dipoless::loadFromMatrix(const Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> &xi) {
+    void Dipoles::loadFromMatrix(const Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> &xi) {
         this->N_ = xi.rows() / 4;
         initArrays();
 
@@ -63,11 +36,11 @@ namespace dipoles1
         M2_ = xi.bottomLeftCorner(2 * N_, 2 * N_);
     }
 
-    Eigen::Vector<FloatType, Eigen::Dynamic> &Dipoless::getRightPart2() {
+    Eigen::Vector<FloatType, Eigen::Dynamic> &Dipoles::getRightPart2() {
         return f;
     }
 
-    matrixType Dipoless::getMatrixx() {
+    matrixType Dipoles::getMatrixx() {
         matrixType matrixx;
         matrixx.resize(4 * N_, 4 * N_);
         matrixx.topLeftCorner(2 * N_, 2 * N_).noalias() = M1_;
@@ -77,11 +50,11 @@ namespace dipoles1
         return matrixx;
     }
 
-    void Dipoless::printMatrix(std::ostream &out, IOFormat &format) {
+    void Dipoles::printMatrix(std::ostream &out, IOFormat &format) {
         out << "Матрица\n" << getMatrixx().format(format) << "\n\n";
     }
 
-    void Dipoless::printRightPart(std::ostream &out, IOFormat &format) {
+    void Dipoles::printRightPart(std::ostream &out, IOFormat &format) {
         out << "Правая часть\n" << this->f.format(format)
             << "\n\n";
     }
@@ -89,7 +62,7 @@ namespace dipoles1
 
 
     template<>
-    Arr2EigenVec Dipoless::solve() {
+    Arr2EigenVec Dipoles::solve() {
 
         // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
         Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
@@ -103,7 +76,7 @@ namespace dipoles1
     }
 
     template<>
-    EigenVec Dipoless::solve() {
+    EigenVec Dipoles::solve() {
         Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_;
         solution_.resize(4 * N_);
@@ -115,7 +88,7 @@ namespace dipoles1
     }
 
     template<>
-    standartVec Dipoless::solve() {
+    standartVec Dipoles::solve() {
         std::vector<FloatType>  sol(4 * N_);
         Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(sol.data(), sol.size());

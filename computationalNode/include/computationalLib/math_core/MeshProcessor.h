@@ -45,7 +45,7 @@ FloatType integrate(const std::function<FloatType(FloatType)> &function,
 }
 
 template<unsigned N>
-FloatType integrateFunctionBy1Val(const dipoles1::integrableFunction &function,
+FloatType integrateFunctionBy1Val(const dipoles::integrableFunction &function,
                                   FloatType theta,
                                   FloatType phi,
                                   FloatType left,
@@ -103,8 +103,8 @@ std::vector<T> myLinspace(T lower_bound, T upper_bound, size_t n, bool end=true)
     return result;
 }
 
-using dipoles1::integrableFunction;
-using dipoles1::directionGraph;
+using dipoles::integrableFunction;
+using dipoles::directionGraph;
 
 class MeshProcessor {
 public:
