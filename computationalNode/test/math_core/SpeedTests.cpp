@@ -101,7 +101,7 @@ TEST(Dipoles, test_right_part_nev_solve_impl) {
 
 template<typename Type>
 using DynVector = Eigen::Matrix<Type, Eigen::Dynamic, 1>;
-std::string res_dir_path = "../res/";
+std::string res_dir_path = "../../res/";
 std::string filename = res_dir_path.append("config.txt");
 string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";//todo вот этот путь у нас теперь не верен
 
@@ -154,10 +154,12 @@ TEST(verification,test_on_10_basik_conf)
 
 }*/
 
+class DipolesVerificationTS : public ::testing::Test {
+protected:
 
+};
 
-namespace uu {
-    TEST(verification, test_on_10_basik_conf_matrixes) {
+    TEST_F(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
         std::ios_base::sync_with_stdio(false);
         auto avec = parseConf2<double, DynVector>(filename);
 
@@ -171,13 +173,16 @@ namespace uu {
 
 
             dipoles1::Dipoless dd(avec[i].size() / 2, avec[i]);
+
             compare_matrices(dd.getMatrixx(), pp1.vals_, i, 1e-5);
+            std::cout<<i<<'\n';
+            std::cout<<dd.getMatrixx()<<"\n\n";
 
         }
 
     }
 
-    TEST(verification,
+    TEST_F(DipolesVerificationTS,
          test_on_10_basik_conf_solutions) {
         std::ios_base::sync_with_stdio(false);
 
@@ -206,7 +211,7 @@ namespace uu {
         }
     }
 
-    TEST(verification, test_on_10_basik_conf_meshes) {
+    TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
         std::ios_base::sync_with_stdio(false);
 
 
@@ -240,14 +245,14 @@ namespace uu {
             mm2.generateNoInt(dd.getI2function());
 
             compare_matrices(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2], i, 1e-4);
+
+            std::cout<<i<<"\n\n";
+            mm2.printDec(std::cout);
         }
         in1.close();
         in2.close();
     }
 
-}
-
-using namespace uu;
 
 
 int main(int argc, char **argv) {//todo cmake+gtestmain

@@ -67,8 +67,8 @@ namespace dipoles1
         return f;
     }
 
-    Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> Dipoless::getMatrixx() {
-        Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> matrixx;
+    matrixType Dipoless::getMatrixx() {
+        matrixType matrixx;
         matrixx.resize(4 * N_, 4 * N_);
         matrixx.topLeftCorner(2 * N_, 2 * N_).noalias() = M1_;
         matrixx.topRightCorner(2 * N_, 2 * N_).noalias() = -M2_;

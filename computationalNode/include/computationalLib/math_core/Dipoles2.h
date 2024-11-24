@@ -28,6 +28,8 @@ namespace dipoles1
         EigenVector,
         StdVector
     };
+    //todo https://godbolt.org/z/qaohWfvfe
+    //https://stackoverflow.com/questions/68059855/map-enum-values-to-corresponding-types-with-templates-at-compile-time
     using Arr2EigenVec=std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2>;
     using EigenVec=Eigen::Vector<FloatType, Eigen::Dynamic>;
     using standartVec=std::vector<FloatType>;
@@ -61,8 +63,16 @@ namespace dipoles1
 
         template<typename Container>
         requires HasSizeMethod<Container>
-        Dipoless(int N,const Container &xi)
+        Dipoless(int N,const Container &xi):Dipoless()
         {
+            if constexpr  (not std::is_compound_v<typename Container::value_type>)
+            {
+                this->N_=xi.size()/2;
+            }
+            else
+            {
+                this->N_=xi[0].size();
+            }
             initArrays();
             setMatrixes(xi);
         }

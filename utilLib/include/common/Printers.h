@@ -81,15 +81,17 @@ template<typename Collection>
 void printCoordinates2(std::ostream &out, const Collection &xi)
 {
     out << "Координаты диполей\n";
-    auto N = xi.size() / 2;
+
     if constexpr (not std::is_compound_v<typename Collection::value_type>)
     {
+        auto N = xi.size() / 2;
         for (int i = 0; i < N; ++i) {
             out << xi[i] << '\t' << xi[i + N] << "\n";
         }
     }
     else
     {
+        auto N = xi[0].size();
         for (int i = 0; i < N; ++i) {
             out << xi[0][i] << '\t' << xi[1][i] << "\n";
         }
