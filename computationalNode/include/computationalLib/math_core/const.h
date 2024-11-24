@@ -14,18 +14,8 @@
 
 using const_::FloatType;
 
-template<typename T>
+
 struct params {
-    static constexpr T c = 3.0 * 1e8;
-    static constexpr T yo = 1e7;
-    static constexpr T omega = 1e15;
-    static constexpr T omega0 = omega;
-    static constexpr T a = 1;
-    static constexpr T eps = 1;
-};
-
-
-struct params2 {
     static constexpr FloatType c = 3.0 * 1e8;
     static constexpr FloatType yo = 1e7;
     static constexpr FloatType omega = 1e15;

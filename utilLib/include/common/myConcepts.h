@@ -1,6 +1,6 @@
 
-#ifndef DIPLOM_MY_CONSEPTS_H
-#define DIPLOM_MY_CONSEPTS_H
+#ifndef DIPLOM_MYCONCEPTS_H
+#define DIPLOM_MYCONCEPTS_H
 
 #include <eigen3/Eigen/Dense>
 #include <type_traits>
@@ -10,12 +10,19 @@
 namespace myConcepts {
 
     /**
+     * @brief concept to check whether T has value_type
+     * @tparam T
+     */
+    template<typename T>
+    concept valueTyped = requires { typename T::value_type; };
+
+    /**
      * @brief Concept to check whether type T has subscript operator
      * @tparam T
      */
     template<typename T>
-    concept HasBracketOperator = requires(T t, size_t i) {
-        { t[i] } -> std::same_as<typename T::value_type &>;
+    concept HasBracketOperator = valueTyped<T> && requires(T t, size_t i) {
+        { t[i] };
     };
 
     /**
@@ -23,10 +30,7 @@ namespace myConcepts {
      * @tparam T
      */
     template<typename T>
-    concept HasBracketsNested = HasBracketOperator<T> && requires(T t, size_t i) {
-        { t[i][i] } -> std::same_as<typename T::value_type::value_type &>;
-    };
-
+    concept HasBracketsNested = HasBracketOperator<T> && HasBracketOperator<typename T::value_type>;
 
     /**
      * @brief Concept to check whether type T hash size method
@@ -43,10 +47,10 @@ namespace myConcepts {
      */
     template<typename T>
     concept twodVector=
-        HasSizeMethod<T>&&
-        HasBracketOperator<T>&&
-        HasBracketsNested<T>&&
-        HasSizeMethod<typename T::value_type>;
+    HasSizeMethod<T> &&
+    HasBracketOperator<T> &&
+    HasBracketsNested<T> &&
+    HasSizeMethod<typename T::value_type>;
 
 
     /**
@@ -92,18 +96,13 @@ namespace myConcepts {
      */
     template<typename Collection>
     requires HasBracketOperator<Collection>
-    const auto& getElement(const Collection &collection, size_t i1,size_t i2,size_t N)
-    {
-        if constexpr (not HasBracketsNested<Collection>)
-        {
-            return collection[i1*N+i2];
-        }
-        else
-        {
+    const auto &getElement(const Collection &collection, size_t i1, size_t i2, size_t N) {
+        if constexpr (not HasBracketsNested<Collection>) {
+            return collection[i1 * N + i2];
+        } else {
             return collection[i1][i2];
         }
     }
-
 
 
     template<typename T>
@@ -129,4 +128,4 @@ namespace myConcepts {
 
 
 }
-#endif //DIPLOM_MY_CONSEPTS_H
+#endif //DIPLOM_MYCONCEPTS_H

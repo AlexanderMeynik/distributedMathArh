@@ -10,7 +10,7 @@
 #include <omp.h>
 
 #include "parallelUtils/OpenmpParallelClock.h"
-#include "computationalLib/math_core/Dipoles2.h"
+#include "computationalLib/math_core/Dipoles.h"
 #include "common/lib.h"
 #include "computationalLib/math_core/MeshProcessor.h"
 
@@ -183,7 +183,7 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < Nsym; ++i) {
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles::EigenVec >();
+            auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTimeS += stmep[1] - stmep[0];

@@ -35,22 +35,22 @@ public:
 class MockDataAcessInteface : public DataAcessInteface {
 public:
     //using DataAcessInteface::DataAcessInteface;
-    MockDataAcessInteface():DataAcessInteface()
-    {
+    MockDataAcessInteface() : DataAcessInteface() {
     }
-    MOCK_METHOD(std::vector<std::vector<double>>&, getdat, (std::string &key), (override));
-    MOCK_METHOD(std::vector<std::vector<double>>&, getdat, (std::string &&key), (override));
+
+    MOCK_METHOD(std::vector<std::vector<double>> &, getdat, (std::string & key), (override));
+    MOCK_METHOD(std::vector<std::vector<double>> &, getdat, (std::string && key), (override));
 
 
-    MOCK_METHOD(optinal_val&, getProperty, (std::string &key), (override));
-    MOCK_METHOD(optinal_val&, getProperty, (std::string &&key), (override));
+    MOCK_METHOD(optinal_val &, getProperty, (std::string & key), (override));
+    MOCK_METHOD(optinal_val &, getProperty, (std::string && key), (override));
 
 
-    MOCK_METHOD(bool, isPresent, (std::string &key), (override));
-    MOCK_METHOD(bool, isPresent, (std::string &&key), (override));
+    MOCK_METHOD(bool, isPresent, (std::string & key), (override));
+    MOCK_METHOD(bool, isPresent, (std::string && key), (override));
 
-    MOCK_METHOD(bool, isPPresent, (std::string &key), (override));
-    MOCK_METHOD(bool, isPPresent, (std::string &&key), (override));
+    MOCK_METHOD(bool, isPPresent, (std::string & key), (override));
+    MOCK_METHOD(bool, isPPresent, (std::string && key), (override));
 };
 
 template<typename ... Args>

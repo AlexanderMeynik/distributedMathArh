@@ -16,14 +16,14 @@
 
 #include "common/Printers.h"
 #include "const.h"
-#include "computationalLib/math_core/Dipoles2.h"//todo move typedefs to header
+#include "computationalLib/math_core/Dipoles.h"//todo move typedefs to header
 
 #include "common/Parsers.h"
 #include "common/constants.h"
 
 using const_::FloatType;
-using floatVector=std::vector<FloatType>;
-using meshClass=std::vector<floatVector >;
+using floatVector = std::vector<FloatType>;
+using meshClass = std::vector<floatVector>;
 
 //todo add local namespace
 
@@ -52,17 +52,14 @@ FloatType integrateFunctionBy1Val(const dipoles::integrableFunction &function,
                                   FloatType right,
                                   unsigned int max_depth = 5,
                                   FloatType tol = 1e-20) {
-    std::function<FloatType (FloatType)> tt = [&theta, &phi, &function](FloatType t)
-            { return function(theta, phi, t); };
+    std::function<FloatType(FloatType)> tt = [&theta, &phi, &function](FloatType t) { return function(theta, phi, t); };
     return integrate<N>(tt, left, right, max_depth, tol);
 }
 
 
-
-
 template<typename Container>
 meshClass applyFunctionToVVD(const Container &a, const Container &b,
-                           const std::function<FloatType(FloatType, FloatType)> &func) {
+                             const std::function<FloatType(FloatType, FloatType)> &func) {
     size_t rows = a.size();
     size_t cols = a[0].size();
 
@@ -78,24 +75,23 @@ meshClass applyFunctionToVVD(const Container &a, const Container &b,
 }
 
 
+FloatType getMeshDiffNorm(const meshClass &mesh1, const meshClass &mesh2);
 
-FloatType getMeshDiffNorm(const meshClass &mesh1,const  meshClass &mesh2);
-
-void addMesh( meshClass &a, meshClass &b);
+void addMesh(meshClass &a, meshClass &b);
 
 
 using namespace matplot;
 
 
-std::pair<meshClass , meshClass> mymeshGrid(const floatVector &a, const floatVector &b);
+std::pair<meshClass, meshClass> mymeshGrid(const floatVector &a, const floatVector &b);
 
 
 template<typename T>
-std::vector<T> myLinspace(T lower_bound, T upper_bound, size_t n, bool end=true) {
-    std::vector<T> result(n,T());
+std::vector<T> myLinspace(T lower_bound, T upper_bound, size_t n, bool end = true) {
+    std::vector<T> result(n, T());
 
     size_t div = (end) ? (n - 1) : n;
-    T step = (upper_bound - lower_bound) / (T)div;
+    T step = (upper_bound - lower_bound) / (T) div;
 
     for (int i = 0; i < n; ++i) {
         result[i] = i * step + lower_bound;
@@ -112,7 +108,9 @@ public:
     MeshProcessor() {
         initCoordMeshes();
     }
-    using confType=std::pair<std::array<size_t, 2>, std::array<FloatType , 2>>;
+
+    using confType = std::pair<std::array<size_t, 2>, std::array<FloatType, 2>>;
+
     confType export_conf() {
         return {{this->nums[0],  this->nums[1]},
                 {this->steps[0], this->steps[1]}};
@@ -130,7 +128,7 @@ public:
         initCoordMeshes();
     }
 
-    void setSteps(const std::array<FloatType , 2> &elems) {
+    void setSteps(const std::array<FloatType, 2> &elems) {
         steps[0] = elems[0];
         steps[1] = elems[1];
         nums[0] = (philims[1] - philims[0]) / (steps[0]) + 1;
@@ -153,7 +151,7 @@ public:
     }
 
     meshClass getMeshGliff() {
-        return meshClass (this->nums[1], floatVector(this->nums[0], 0.0));
+        return meshClass(this->nums[1], floatVector(this->nums[0], 0.0));
     }
 
     const std::array<meshClass, 3> &getMeshsph() const {
@@ -175,20 +173,17 @@ private:
 
     void sphericalTransformation();
 
-    std::array<meshClass , 3> meshdec;
-    std::array<meshClass , 3> meshsph;
+    std::array<meshClass, 3> meshdec;
+    std::array<meshClass, 3> meshsph;
 
     FloatType philims[2] = {0, M_PI * 2};
     FloatType thelims[2] = {0, M_PI_2};
     FloatType steps[2] = {M_PI / 12, M_PI / 12};
     size_t nums[2] = {static_cast<size_t >((philims[1] - philims[0]) / (steps[0])) + 1,
                       static_cast<size_t >((thelims[1] - thelims[0]) / (steps[1])) + 1};
-    static constexpr const FloatType rr = 2 * M_PI / params2::omega;
+    static constexpr const FloatType rr = 2 * M_PI / params::omega;
     static constexpr const FloatType step = M_PI / 12;
 };
-
-
-
 
 
 template<>

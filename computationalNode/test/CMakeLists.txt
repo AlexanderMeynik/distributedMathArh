@@ -23,8 +23,6 @@ target_link_libraries(Google_Tests_run math_core_lib)
 target_link_libraries(Google_Tests_run gtest gtest_main)
 
 
-
-
 file(GLOB interfaces CONFIGURE_DEPENDS
         "interfaces/*.h"
         "interfaces/*.cpp"

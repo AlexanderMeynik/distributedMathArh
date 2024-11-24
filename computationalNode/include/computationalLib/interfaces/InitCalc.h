@@ -8,7 +8,7 @@
 #include <omp.h>
 
 
-#include "computationalLib/math_core/Dipoles2.h"
+#include "computationalLib/math_core/Dipoles.h"
 #include "computationalLib/math_core/MeshProcessor.h"
 #include "CalculationStep.h"
 
@@ -114,14 +114,14 @@ namespace inter {
 //#pragma omp parallel for default(shared)
                 for (int i = 0; i < Nsym; ++i) {
                     d1.setNewCoordinates(coords[i]);
-                    solutions[i] = d1.solve4();
+                    solutions[i] = d1.solve<dipoles::standartVec>();
                 }
             }
             pp:
             for (int i = 0; i < Nsym; ++i) {
                 d1.setNewCoordinates(coords[i]);
 
-                solutions[i] = d1.solve4();//todo этот метода надо починить так, чтобы мы возвращали нужынй тип
+                solutions[i] = d1.solve<dipoles::standartVec>();//todo этот метода надо починить так, чтобы мы возвращали нужынй тип
                 auto filename = getString(this->dir_.value(), "sim", i, "txt");
                 auto fout = openOrCreateFile(filename);
                 fout << "Итерация симуляции i = " << i << "\n\n";
@@ -155,13 +155,14 @@ namespace inter {
 
             bool state = get<bool>(dat->getProperty(
                     "prety_print"));
-            size_t Nsym = get<int>(dat->getProperty("Nsym")); //todo 2 надо предать конфигурацию для меша(2 int или 2 double)
+            size_t Nsym = get<int>(
+                    dat->getProperty("Nsym")); //todo 2 надо предать конфигурацию для меша(2 int или 2 double)
             std::vector<std::vector<FloatType >> coords = dat->getdat(this->prev_->prev_->to_string());
             std::vector<std::vector<FloatType >> solutions = dat->getdat(this->prev_->to_string());
             dipoles::Dipoles d1;
             MeshProcessor mh;
             for (int i = 0; i < Nsym; ++i) {
-                d1.getFullFunction_(coords[i],solutions[i]);
+                d1.getFullFunction_(coords[i], solutions[i]);
                 mh.generateNoInt(d1.getI2function());
             }
             //todo std::vector<std::vector<double>> to std;:vector

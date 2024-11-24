@@ -3,7 +3,7 @@
 #include <iostream>
 
 #include "common/lib.h"
-#include "computationalLib/math_core/Dipoles2.h"
+#include "computationalLib/math_core/Dipoles.h"
 
 int main(int argc, char *argv[]) {
     int N = 10;
@@ -15,7 +15,7 @@ int main(int argc, char *argv[]) {
 
 
     double stime = omp_get_wtime();
-    d.solve2();
+    d.solve<dipoles::Arr2EigenVec>();
     double ftime = omp_get_wtime() - stime;
     std::cout << ftime << "\t" << N << "\n";
     /*Eigen::Matrix<Tr, Eigen::Dynamic, Eigen::Dynamic> tt = (M1_ * M1_ + M2_ * M2_).inverse();

@@ -1,6 +1,6 @@
 #include "../../../include/computationalLib/math_core/MeshProcessor.h"
 
-FloatType getMeshDiffNorm(const meshClass &mesh1,const  meshClass &mesh2) {
+FloatType getMeshDiffNorm(const meshClass &mesh1, const meshClass &mesh2) {
     FloatType res = 0;
     for (size_t i = 0; i < mesh1.size(); ++i) {
         for (int j = 0; j < mesh1[0].size(); ++j) {
@@ -10,7 +10,7 @@ FloatType getMeshDiffNorm(const meshClass &mesh1,const  meshClass &mesh2) {
     return sqrt(res);
 }
 
-void addMesh( meshClass &a,  meshClass &b) {
+void addMesh(meshClass &a, meshClass &b) {
     size_t size2 = a[0].size();
     for (int i = 0; i < a.size(); ++i) {
         for (int j = 0; j < size2; ++j) {
@@ -20,8 +20,8 @@ void addMesh( meshClass &a,  meshClass &b) {
 }
 
 std::pair<meshClass, meshClass> mymeshGrid(const floatVector &a, const floatVector &b) {
-    meshClass x_mesh(b.size(), floatVector (a.size()));
-    meshClass y_mesh(b.size(), floatVector (a.size()));
+    meshClass x_mesh(b.size(), floatVector(a.size()));
+    meshClass y_mesh(b.size(), floatVector(a.size()));
     for (size_t i = 0; i < b.size(); ++i) {
         x_mesh[i] = a;
         for (size_t j = 0; j < a.size(); ++j) {
@@ -33,12 +33,8 @@ std::pair<meshClass, meshClass> mymeshGrid(const floatVector &a, const floatVect
 }
 
 
-
-
-
-
 void MeshProcessor::initCoordMeshes() {
-    std::pair<meshClass ,meshClass > meshgrid1 = mymeshGrid(
+    std::pair<meshClass, meshClass> meshgrid1 = mymeshGrid(
             myLinspace(philims[0], philims[1], nums[0]), myLinspace(thelims[0], thelims[1], nums[1]));
     meshdec[0] = meshgrid1.first;
     meshdec[1] = meshgrid1.second;

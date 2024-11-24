@@ -2,6 +2,7 @@
 
 #ifndef DIPLOM_PRINTERS_H
 #define DIPLOM_PRINTERS_H
+
 #include <vector>
 
 
@@ -10,7 +11,7 @@
 
 
 #include "printUtils.h"
-#include "common/my_consepts.h"
+#include "common/myConcepts.h"
 
 template<class T>
 void printSolutionFormat1(std::ostream &out, std::vector<T> &solution) {
@@ -80,30 +81,22 @@ void printSolution(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &solution
 }
 
 
-
 template<typename Collection>
-void printCoordinates2(std::ostream &out, const Collection &xi)
-{
+void printCoordinates2(std::ostream &out, const Collection &xi) {
     out << "Координаты диполей\n";
 
-    if constexpr (not  myConcepts::HasBracketsNested<Collection>)
-    {
+    if constexpr (not myConcepts::HasBracketsNested<Collection>) {
         auto N = xi.size() / 2;
         for (int i = 0; i < N; ++i) {
             out << xi[i] << '\t' << xi[i + N] << "\n";
         }
-    }
-    else
-    {
+    } else {
         auto N = xi[0].size();
         for (int i = 0; i < N; ++i) {
             out << xi[0][i] << '\t' << xi[1][i] << "\n";
         }
     }
 }
-
-
-
 
 
 template<class T>
@@ -114,7 +107,6 @@ void printCoordinates(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &xi) {
         out << xi[i] << '\t' << xi[i + N] << "\n";
     }
 }
-
 
 
 #endif //DIPLOM_PRINTERS_H

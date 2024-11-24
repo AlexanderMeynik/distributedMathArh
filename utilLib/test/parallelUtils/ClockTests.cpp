@@ -52,7 +52,7 @@ protected:
 };
 
 TEST_F(ClockArrayTest, test_parralel_time_all_threads) {
-    
+
     auto t1 = omp_get_wtime();
     {
 #pragma omp parallel for shared(sleep_sec) num_threads(omp_get_max_threads())

@@ -14,7 +14,7 @@
 
 #include "common/lib.h"
 #include "computationalLib/math_core/MeshProcessor.h"
-#include "computationalLib/math_core/Dipoles2.h"
+#include "computationalLib/math_core/Dipoles.h"
 
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
@@ -52,7 +52,8 @@ int main(int argc, char *argv[]) {
     double multip = start_multip;
     double res = 5;
     while (i < 30 &&
-           (solut1.head(N).norm() + solut1.tail(N).norm()) / 1000000 < res)//(coordinates[0]-coordinates[1]).norm()>limit)
+           (solut1.head(N).norm() + solut1.tail(N).norm()) / 1000000 <
+           res)//(coordinates[0]-coordinates[1]).norm()>limit)
     {
         std::ofstream fout(dirname + "out" + std::to_string(N) + "_iter" + std::to_string(i) + ".txt");
         d.setNewCoordinates(coordinates);
@@ -67,7 +68,8 @@ int main(int argc, char *argv[]) {
         mmesh.printDec(out);
         std::vector<std::vector<double>> t1 = prevMesh[2];
         std::vector<std::vector<double>> t2 = mmesh.getMeshdec()[2];
-        res = (solut1.head(N) - solut2.head(N)).norm() + (solut1.tail(N) - solut2.tail(N)).norm();//getMeshDiffNorm(t1,t2);
+        res = (solut1.head(N) - solut2.head(N)).norm() +
+              (solut1.tail(N) - solut2.tail(N)).norm();//getMeshDiffNorm(t1,t2);
         out << res << "\n\n\n\n\n";
         Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
 
@@ -82,7 +84,7 @@ int main(int argc, char *argv[]) {
 
         d.printMatrix(fout, CleanFmt);
         printCoordinates2(fout, coordinates);
-        printSolution(fout,  solut2,CleanFmt);
+        printSolution(fout, solut2, CleanFmt);
 
 
         mmesh.printDec(fout);

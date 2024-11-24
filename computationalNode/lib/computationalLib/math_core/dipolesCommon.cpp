@@ -2,7 +2,7 @@
 
 namespace dipoles {
 
-    bool isSymmetric(const Matrix<FloatType, -1, -1> &matr) {
+    bool isSymmetric(const matrixType &matr) {
         size_t N = matr.rows();
 
         for (int i = 0; i < N; ++i) {

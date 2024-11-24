@@ -53,14 +53,14 @@ void TestRunner::solve() {
 //#pragma omp parallel for default(shared)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.setNewCoordinates(coords_[i]);
-            solutions_[i] = d1.solve3();
+            solutions_[i] = d1.solve<dipoles::EigenVec>();
         }
     }
     pp:
     for (int i = 0; i < Nsym_.value(); ++i) {
         d1.setNewCoordinates(coords_[i]);
 
-        solutions_[i] = d1.solve3();
+        solutions_[i] = d1.solve<dipoles::EigenVec>();
         auto filename = getString(this->dir_.value(), "sim", i, "txt");
         auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";

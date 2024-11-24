@@ -16,7 +16,7 @@
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
 #include "common/constants.h"
-#include "computationalLib/math_core/Dipoles2.h"
+#include "computationalLib/math_core/Dipoles.h"
 
 using const_::FloatType;
 template<typename T>

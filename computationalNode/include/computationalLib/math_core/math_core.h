@@ -2,7 +2,7 @@
 #define DIPLOM_MATH_CORE_H
 
 #include "const.h"
-#include "Dipoles2.h"
+#include "Dipoles.h"
 #include "MeshProcessor.h"
 #include "TestRunner.h"
 

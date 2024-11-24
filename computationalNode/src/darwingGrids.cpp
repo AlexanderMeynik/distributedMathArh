@@ -7,7 +7,7 @@
 #include <matplot/matplot.h>
 
 #include "computationalLib//math_core/MeshProcessor.h"
-#include "computationalLib//math_core/Dipoles2.h"
+#include "computationalLib//math_core/Dipoles.h"
 #include "common/lib.h"
 
 //template <class Tr>

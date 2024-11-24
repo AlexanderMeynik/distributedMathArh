@@ -2,57 +2,78 @@
 #define DIPLOM_DIPOLESCOMMON_H
 
 #include <vector>
-#include <memory>
-
-#include <iostream>
-#include <iomanip>
-#include <variant>
+#include <array>
 
 #include <eigen3/Eigen/Dense>
-#include "common/my_consepts.h"
+
+#include "common/myConcepts.h"
 #include "const.h"
 
 using namespace Eigen;
 using namespace myConcepts;
 
-
+///dipoles namespace
 namespace dipoles {
+
     using matplot::gca;
     using std::function, std::pair, std::vector, std::array;
+
     using const_::FloatType;
 
-    bool isSymmetric(const Eigen::Matrix<FloatType , -1, -1> &matr);
-    enum ReturnType:size_t
-    {
-        ArrayEigenVectors=0,
+    /**
+     * @brief Enum for return types
+     */
+    enum class ReturnType : size_t {
+        ArrayEigenVectors = 0,
         EigenVector,
         StdVector
     };
-    //todo https://godbolt.org/z/qaohWfvfe
-    //https://stackoverflow.com/questions/68059855/map-enum-values-to-corresponding-types-with-templates-at-compile-time
-    using Arr2EigenVec=std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2>;
-    using EigenVec=Eigen::Vector<FloatType, Eigen::Dynamic>;
-    using standartVec=std::vector<FloatType>;
 
-    using integrableFunction = std::function<FloatType(FloatType, FloatType, FloatType)> ;
-    using directionGraph= std::function<FloatType(FloatType, FloatType)> ;
-    using matrixType=Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>;
+    using Arr2EigenVec = std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2>;
+    using EigenVec = Eigen::Vector<FloatType, Eigen::Dynamic>;
+    using standartVec = std::vector<FloatType>;
 
+    /**
+     * @brief Type for function thta will be integrated to get directional graph
+     */
+    using integrableFunction = std::function<FloatType(FloatType, FloatType, FloatType)>;
 
-
-    using retTypes =std::variant< std::type_identity<Arr2EigenVec>,
-            std::type_identity<EigenVec>,
-            std::type_identity<standartVec>>;
+    /**
+     * @brief type for a direction graph
+     */
+    using directionGraph = std::function<FloatType(FloatType, FloatType)>;
+    using matrixType = Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>;
 
 
     /**
-    *
-    */
-    static const std::unordered_map <size_t , retTypes> enumToType = {
-            {ArrayEigenVectors,   std::type_identity<Arr2EigenVec>{}},
-            {EigenVector, std::type_identity<EigenVec>{} },
-            {StdVector,   std::type_identity<standartVec>{}}
-    };//todo reverse
+     * @brief Enum to return type conversion struct
+     */
+    template<ReturnType>
+    struct ReturnToDataType_t;
+    template<>
+    struct ReturnToDataType_t<ReturnType::ArrayEigenVectors> {
+        using type = Arr2EigenVec;
+    };
+    template<>
+    struct ReturnToDataType_t<ReturnType::EigenVector> {
+        using type = EigenVec;
+    };
+    template<>
+    struct ReturnToDataType_t<ReturnType::StdVector> {
+        using type = standartVec;
+    };
+
+    /**
+     * @brief Converter to return type
+     */
+    template<ReturnType T>
+    using ReturnToDataType = typename ReturnToDataType_t<T>::type;
+
+    /**
+     * Check that matrix is symmetric
+     * @param matr
+     */
+    bool isSymmetric(const matrixType &matr);
 }
 
 #endif //DIPLOM_DIPOLESCOMMON_H

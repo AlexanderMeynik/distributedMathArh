@@ -1,5 +1,5 @@
 
-SET( CMAKE_CXX_FLAGS_RELEASE    "-O3 -g -march=native -fpic -ffast-math -ftree-vectorize" )
+SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -march=native -fpic -ffast-math -ftree-vectorize")
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 #[[
 add_executable (test1 test1.cpp)

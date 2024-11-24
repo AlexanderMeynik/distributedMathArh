@@ -1,30 +1,30 @@
-#include "computationalLib/math_core/Dipoles2.h"
-namespace dipoles
-{
+#include "computationalLib/math_core/Dipoles.h"
+
+namespace dipoles {
 
 
-   void
-   Dipoles::getMatrixes(const Eigen::Vector<FloatType , 2> &rim, FloatType rMode, Eigen::Matrix<FloatType , 2, 2> &K1,
-                        Eigen::Matrix<FloatType , 2, 2> &K2) const
-   {
-       K1 << 3 * rim(0) * rim(0) / pow(rMode, 5) - 1 / pow(rMode, 3), 3 * rim(0) * rim(1) / pow(rMode, 5),
-               3 * rim(0) * rim(1) / pow(rMode, 5), 3 * rim(1) * rim(1) / pow(rMode, 5) - 1 / pow(rMode, 3);
+    void
+    Dipoles::getMatrices(const Eigen::Vector<FloatType, 2> &rim, FloatType rMode, Eigen::Matrix<FloatType, 2, 2> &K1,
+                         Eigen::Matrix<FloatType, 2, 2> &K2) const {
+        K1 << 3 * rim(0) * rim(0) / pow(rMode, 5) - 1 / pow(rMode, 3), 3 * rim(0) * rim(1) / pow(rMode, 5),
+                3 * rim(0) * rim(1) / pow(rMode, 5), 3 * rim(1) * rim(1) / pow(rMode, 5) - 1 / pow(rMode, 3);
 
-       K2 << params2::omega / (params2::c * pow(rMode, 2)), 0,
-               0, params2::omega / (params2::c * pow(rMode, 2));
-   }
+        K2 << params::omega / (params::c * pow(rMode, 2)), 0,
+                0, params::omega / (params::c * pow(rMode, 2));
+    }
+
     void Dipoles::initArrays() {
-        an = params2::a / N_;
+        an = params::a / N_;
         M1_.resize(2 * N_, 2 * N_);
         M2_.resize(2 * N_, 2 * N_);
 
 
         f.resize(4 * N_);
         for (int i = 0; i < N_; ++i) {
-            f(2 * i) = an * params2::eps;
+            f(2 * i) = an * params::eps;
             f(2 * i + 1) = 0;
             f(2 * i + 2 * N_) = 0;
-            f(2 * i + 1 + 2 * N_) = an * params2::eps;
+            f(2 * i + 1 + 2 * N_) = an * params::eps;
         }
     }
 
@@ -36,7 +36,7 @@ namespace dipoles
         M2_ = xi.bottomLeftCorner(2 * N_, 2 * N_);
     }
 
-    Eigen::Vector<FloatType, Eigen::Dynamic> &Dipoles::getRightPart2() {
+    Eigen::Vector<FloatType, Eigen::Dynamic> &Dipoles::getRightPart() {
         return f;
     }
 
@@ -58,7 +58,6 @@ namespace dipoles
         out << "Правая часть\n" << this->f.format(format)
             << "\n\n";
     }
-
 
 
     template<>
@@ -89,7 +88,7 @@ namespace dipoles
 
     template<>
     standartVec Dipoles::solve() {
-        std::vector<FloatType>  sol(4 * N_);
+        std::vector<FloatType> sol(4 * N_);
         Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(sol.data(), sol.size());
         solution_.resize(4 * N_);
@@ -99,7 +98,6 @@ namespace dipoles
                 M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
         return sol;
     }
-
 
 
 }

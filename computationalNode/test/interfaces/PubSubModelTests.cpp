@@ -182,7 +182,7 @@ TEST(data_acess_interface, test_data_set) {
         for (int i = 0; i < sz2; ++i) {
             SCOPED_TRACE("Indexes : i1 = " + std::to_string(idx) + " i2 = " + std::to_string(i) +
                          '\t' + std::to_string(dd->getdat(inti)[idx][i]) + "!=" + std::to_string(sample[idx][i]));
-            EXPECT_TRUE(dd->getdat(inti)[idx][i]  == sample[idx][i]);
+            EXPECT_TRUE(dd->getdat(inti)[idx][i] == sample[idx][i]);
         }
     }
 
@@ -193,18 +193,17 @@ TEST(computation_step, test_init)//todo сделать
 {
     std::shared_ptr<MockDataAcessInteface> dd = std::make_shared<MockDataAcessInteface>();
     //std::string duummy=typeid(*dd.get()).name();
-   // std::cout<<duummy;
+    // std::cout<<duummy;
     InitCalc<double, double> aa(10, 10);
 
     auto func = [](int i1, int i2, double a, double b) { return std::vector<double>(i1, i2 + i2 * (a * b)); };
     aa.setFunction(func);
 
 
-
-
     aa.perform_calc(dd, 1, 2);
-    EXPECT_CALL(*dd,getdat(testing::An<std::string&&>())).Times(1);//todo Uninteresting mock function call - returning default value.
-   // Function call: getdat("init_CalcStep10_10_")
+    EXPECT_CALL(*dd, getdat(testing::An<std::string &&>())).Times(
+            1);//todo Uninteresting mock function call - returning default value.
+    // Function call: getdat("init_CalcStep10_10_")
 
 
     //EXPECT_CALL(*dd.get(),getdat(aa.to_string())).Times(1);
