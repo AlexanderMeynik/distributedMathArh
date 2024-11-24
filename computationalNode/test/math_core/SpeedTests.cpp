@@ -101,58 +101,12 @@ TEST(Dipoles, test_right_part_nev_solve_impl) {
 
 template<typename Type>
 using DynVector = Eigen::Matrix<Type, Eigen::Dynamic, 1>;
-std::string res_dir_path = "../../res/";
+std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
 string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";//todo вот этот путь у нас теперь не верен
 
 #include <filesystem>
-//todo перместить это тметов генераторы(тесты, которые прост осоздаёт данные)
-/*
-TEST(verification,test_on_10_basik_conf)
-{
 
-    std::ios_base::sync_with_stdio(false);
-    auto avec= parseConf2<double,vector>(filename);
-
-
-
-    std::filesystem::create_directory(subdir);
-    std::ofstream out1(subdir+"/solutions.txt");
-    std::ofstream out(subdir+"/matrixes.txt");
-    std::ofstream out2(subdir+"/meshes.txt");
-    auto conf=get_Default_Configuration<double>();
-
-    //conf.second[0]*=4;
-    //conf.second[1]*=4;
-    out2<<scientificNumber(conf.second[0])<<'\t'<<scientificNumber(conf.second[1])<<'\n';
-    for (int i = 0; i < avec.size(); ++i) {
-
-        out<<avec[i].size()/2<<'\n';
-        out1<<avec[i].size()/2<<"\n";
-        out2<<avec[i].size()/2<<"\n";
-        dipoles::Dipoles<double> dd(avec[i].size()/2,avec[i]);
-        auto solution=dd.solve4();
-        out<<dd.getMatrixx()<<"\n";
-
-
-        printSolution(out1,solution);
-
-        dd.getFullFunction3(avec[i],solution);
-        auto func=dd.getI2function();
-
-        MeshProcessor<double> meshProcessor;
-        meshProcessor.importConf(conf, true);
-        meshProcessor.generateNoInt(func);
-
-        meshProcessor.printDec(out2);
-        meshProcessor.plotSpherical(subdir+"/plot"+std::to_string(i)+".png");
-
-
-
-
-    }
-
-}*/
 
 class DipolesVerificationTS : public ::testing::Test {
 protected:
@@ -175,8 +129,8 @@ protected:
             dipoles1::Dipoless dd(avec[i].size() / 2, avec[i]);
 
             compare_matrices(dd.getMatrixx(), pp1.vals_, i, 1e-5);
-            std::cout<<i<<'\n';
-            std::cout<<dd.getMatrixx()<<"\n\n";
+            /*std::cout<<i<<'\n';
+            std::cout<<dd.getMatrixx()<<"\n\n";*/
 
         }
 
@@ -246,8 +200,8 @@ protected:
 
             compare_matrices(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2], i, 1e-4);
 
-            std::cout<<i<<"\n\n";
-            mm2.printDec(std::cout);
+            /*std::cout<<i<<"\n\n";
+            mm2.printDec(std::cout);*/
         }
         in1.close();
         in2.close();

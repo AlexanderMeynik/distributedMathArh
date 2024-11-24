@@ -145,6 +145,7 @@ triangularGrid(double l, double r, double a = 0, double b = 0, bool center = fal
 }
 
 int main(int argc, char *argv[]) {
+    //todo fix parameter calcultaion for array
     char *end;
     bool ssquare = strtol(argv[1], &end, 10);
     int N = 10;
@@ -156,34 +157,9 @@ int main(int argc, char *argv[]) {
     l = a / l;
     bool center = true;
     std::cin >> center;
-
-    //double x1,y1;
-    //std::cin>>x1>>y1;
-
-
-    // CoordGenerator<double> genr(0.0,a);
     auto coords = ((ssquare) ? squareGrid(l, a, 0, 0, center) : triangularGrid(l, a, 0, 0, center));
     N = coords[0].size();
 
-    // auto ax=gca();
-
-    /* for (int i = 0; i < xi_[0].size(); ++i) {
-         std::cout<<xi_[0][i]<<'\t'<<xi_[1][i]<<"\n";
-     }*/
-
-    //ax->scatter(coords[0],coords[1]);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
-
-    //hold(on);
-
-    /*std::stringstream ss;
-    ss<<a;
-
-    auto t= myLinspace(0.0,2*M_PI,200);
-
-    auto x=transform(t, [&a,&x1](auto t) { return a*cos(t)+x1; });
-    auto y=transform(t, [&a,&y1](auto t) { return a*sin(t)+y1; });
-    ax->scatter(x,y);
-    hold(off);*/
 
     std::stringstream ss;
     ss << "_N" << N << "_l" << l << "_a" << a << "_center" << center;
@@ -207,13 +183,5 @@ int main(int argc, char *argv[]) {
     printCoordinates2(out, coords);
     meshProcessor.printDec(out);
     out.close();
-
-
-    //ax->ezpolar(ss.str());
-
-    //std::cout<<"\n\n\n";
-
-    //save("result.png");
-
 
 }

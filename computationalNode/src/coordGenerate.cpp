@@ -11,48 +11,6 @@
 
 #include "parallelUtils/OpenmpParallelClock.h"
 #include "computationalLib/math_core/Dipoles2.h"
-/*
-int main(int argc, char* argv[]) {
- double alpha=1;
-    int NN=10;
-    std::random_device rd;  // Will be used to obtain a seed for the random number engine
-    std::mt19937 gen(rd()); // Standard mersenne_twister_engine seeded with rd()
-    std::uniform_real_distribution<> dis(0, 1);
-    std::vector<Eigen::Vector<double,2>> array(NN);
-
-}*/
-
-/*enum class state_t {
-    openmp_new,
-    new_,
-    openmp_old,
-    old,
-    print_
-};
-
-typedef std::map<state_t, std::string> statemap_t;
-
-statemap_t state1 = {
-        { state_t::openmp_new,"openmp_new" },
-        { state_t::new_,"new"},
-        { state_t::openmp_old,"openmp_old"},
-        { state_t::old,"old"},
-        { state_t::print_,"print"},
-};
-typedef std::map<std::string,state_t > statemap_r;
-statemap_r state2 = {
-        { "openmp_new",state_t::openmp_new },
-        { "new",state_t::new_},
-        { "openmp_old",state_t::openmp_old},
-        { "old",state_t::old},
-        { "print",state_t::print_},
-};*/
-
-
-#include <iostream>
-#include <random>
-#include <cmath>
-#include <fstream>
 #include "common/lib.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "computationalLib/math_core/MeshProcessor.h"
