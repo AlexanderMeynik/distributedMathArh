@@ -28,7 +28,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/bin)
 
 include_directories(include)
 include_directories(../utilLib/include)#todo if we have target include dir, do we need this
-
+include_directories(../mdspan/include)
 
 file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
         "lib/computationalLib/math_core/*.cpp"
@@ -83,3 +83,6 @@ target_link_libraries(checker PUBLIC math_core_lib)
 
 add_executable(grids src/darwingGrids.cpp)
 target_link_libraries(grids PUBLIC math_core_lib parallelLib)
+
+add_executable(vall src/valarrMdSpan.cpp)
+target_link_libraries(vall Matplot++::matplot)

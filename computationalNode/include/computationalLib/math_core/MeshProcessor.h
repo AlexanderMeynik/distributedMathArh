@@ -7,23 +7,26 @@
 #include <vector>
 #include <span>
 
+
+
 #include <ranges>
 #include <concepts>
 #include <type_traits>
+
 
 #include <matplot/matplot.h>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 
 #include "common/Printers.h"
 #include "const.h"
-#include "computationalLib/math_core/Dipoles.h"//todo move typedefs to header
+#include "computationalLib/math_core/dipolesCommon.h"
 
 #include "common/Parsers.h"
 #include "common/constants.h"
 
 using const_::FloatType;
 using floatVector = std::vector<FloatType>;
-using meshClass = std::vector<floatVector>;
+using meshDrawClass = std::vector<floatVector>;
 
 //todo add local namespace
 
@@ -58,12 +61,12 @@ FloatType integrateFunctionBy1Val(const dipoles::integrableFunction &function,
 
 
 template<typename Container>
-meshClass applyFunctionToVVD(const Container &a, const Container &b,
-                             const std::function<FloatType(FloatType, FloatType)> &func) {
+meshDrawClass applyFunctionToVVD(const Container &a, const Container &b,
+                                 const std::function<FloatType(FloatType, FloatType)> &func) {
     size_t rows = a.size();
     size_t cols = a[0].size();
 
-    meshClass result(rows, floatVector(cols));
+    meshDrawClass result(rows, floatVector(cols));
 
     for (size_t i = 0; i < rows; ++i) {
         for (size_t j = 0; j < cols; ++j) {
@@ -75,15 +78,16 @@ meshClass applyFunctionToVVD(const Container &a, const Container &b,
 }
 
 
-FloatType getMeshDiffNorm(const meshClass &mesh1, const meshClass &mesh2);
 
-void addMesh(meshClass &a, meshClass &b);
+FloatType getMeshDiffNorm(const meshDrawClass &mesh1, const meshDrawClass &mesh2);
+
+void addMesh(meshDrawClass &a, meshDrawClass &b);
 
 
 using namespace matplot;
 
 
-std::pair<meshClass, meshClass> mymeshGrid(const floatVector &a, const floatVector &b);
+std::pair<meshDrawClass, meshDrawClass> mymeshGrid(const floatVector &a, const floatVector &b);
 
 
 template<typename T>
@@ -146,15 +150,15 @@ public:
         initCoordMeshes();
     }
 
-    const std::array<meshClass, 3> &getMeshdec() const {
+    const std::array<meshDrawClass, 3> &getMeshdec() const {
         return meshdec;
     }
 
-    meshClass getMeshGliff() {
-        return meshClass(this->nums[1], floatVector(this->nums[0], 0.0));
+    meshDrawClass getMeshGliff() {
+        return meshDrawClass(this->nums[1], floatVector(this->nums[0], 0.0));
     }
 
-    const std::array<meshClass, 3> &getMeshsph() const {
+    const std::array<meshDrawClass, 3> &getMeshsph() const {
         return meshsph;
     }
 
@@ -166,15 +170,15 @@ public:
 
     void printDec(std::ostream &out);
 
-    void setMesh3(meshClass &val);
+    void setMesh3(meshDrawClass &val);
 
 private:
     void initCoordMeshes();
 
     void sphericalTransformation();
 
-    std::array<meshClass, 3> meshdec;
-    std::array<meshClass, 3> meshsph;
+    std::array<meshDrawClass, 3> meshdec;
+    std::array<meshDrawClass, 3> meshsph;
 
     FloatType philims[2] = {0, M_PI * 2};
     FloatType thelims[2] = {0, M_PI_2};
@@ -199,7 +203,7 @@ public:
         std::getline(in, dummy);
         std::getline(in, dummy);
         //pp.vals_=MeshProcessor<T>();
-        meshClass m = pp.vals_.getMeshGliff();
+        meshDrawClass m = pp.vals_.getMeshGliff();
         for (int i = 0; i < m[0].size(); ++i) {
             FloatType temp = 0;
             in >> temp;//diskard first number

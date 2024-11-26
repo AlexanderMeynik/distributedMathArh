@@ -1,5 +1,5 @@
 #include <iostream>
-#include "math_core/Dipoles.h"
+
 #include <vector>
 #include <algorithm>
 #include <numeric>
@@ -7,10 +7,11 @@
 #include <fstream>
 #include <iomanip>
 #include <filesystem>
+
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
 #include "common/lib.h"
-
+#include "computationalLib/math_core/Dipoles.h"
 
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
@@ -29,13 +30,13 @@ int main(int argc, char *argv[]) {
         char *end;
         verbose = std::strtol(argv[2], &end, 10);
     }
-    auto avec = parseConf<double>(filename);
+    auto avec = parseConf2<double>(filename);
     std::string dirname = filename.erase(filename.find('.'));
     std::filesystem::create_directory(dirname);
     for (int i = 0; i < avec.size(); ++i) {
         std::array<std::vector<double>, 2> a = avec[i];
         int N = a[0].size();
-        Dipoles<double> d(N, a);
+        Dipoles d(N, a);
 
         auto solut2 = d.solve3();//todo?
         //printToFile<double>(N, a, d, dirname,i,verbose);
