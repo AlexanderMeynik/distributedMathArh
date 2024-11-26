@@ -12,7 +12,7 @@ namespace meshStorage
         auto sz=a.size();
         meshStorageType result(sz);
         for (size_t i = 0; i < sz; ++i) {
-            result=func(a[i],b[i]);
+            result[i]=func(a[i],b[i]);
         }
         return result;
     }
@@ -25,22 +25,7 @@ namespace meshStorage
         a+=b;
     }
 
-    std::array<meshStorageType, 2> myMeshGrid(const floatVector &a, const floatVector &b) {
-        std::array<meshStorageType,2> ret={meshStorageType(b.size()*a.size()),
-                                           meshStorageType(b.size()*a.size())};
 
-
-        auto x_mesh=Kokkos::mdspan(&(ret[0][0]),b.size(),a.size());
-        auto y_mesh =Kokkos::mdspan(&(ret[1][0]),b.size(),a.size());
-
-        for (size_t i = 0; i < b.size(); ++i) {
-            for (size_t j = 0; j < a.size(); ++j) {
-                x_mesh[std::array{i,j}]=a[j];
-                y_mesh[std::array{i, j}] = b[i];
-            }
-        }
-        return ret;
-    }
 
 
     void MeshProcessor::generateMeshes(const MeshProcessor::integrableFunction &func) {

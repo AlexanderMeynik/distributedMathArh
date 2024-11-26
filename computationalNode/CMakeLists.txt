@@ -26,15 +26,17 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/bin)
 
-include_directories(include)
+#[[include_directories(include)
 include_directories(../utilLib/include)#todo if we have target include dir, do we need this
-include_directories(../mdspan/include)
+include_directories(../mdspan/include)]]
+
 
 file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
         "lib/computationalLib/math_core/*.cpp"
 )
 
 message(message (PROJECT_SOURCE_DIR="${math_core_files}"))
+
 
 add_library(math_core_lib ${math_core_files})
 target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
@@ -43,6 +45,10 @@ target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
 target_include_directories(math_core_lib PUBLIC ${GSL_INCLUDE_DIRS})
 target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
+
+target_include_directories(math_core_lib PUBLIC ../mdspan/include)
+target_include_directories(math_core_lib PUBLIC include)
+target_include_directories(math_core_lib PUBLIC ../utilLib/include)
 
 file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
         "lib/computationalLib/interfaces/*.cpp"

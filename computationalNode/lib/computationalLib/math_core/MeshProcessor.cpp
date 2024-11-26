@@ -81,14 +81,7 @@ void MeshProcessor::plotSpherical(std::string filename) {
     ax.reset();
 }
 
-void MeshProcessor::generateNoInt(const directionGraph &func) {
-    FloatType rr1 = this->rr;
 
-    //meshdec[2] = transform(meshdec[0], meshdec[1], func);
-    meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], func);
-    // std::transform(meshdec[0].begin(), meshdec[0].end(), meshdec[1].begin(), meshdec[1].end(),std::back_inserter(meshdec[2]),func);
-    sphericalTransformation();
-}
 
 void MeshProcessor::sphericalTransformation() {
     this->meshsph[0] = this->meshdec[0];
@@ -113,6 +106,15 @@ void MeshProcessor::generateMeshes(const integrableFunction &func) {
         return integrateFunctionBy1Val<T, 61>(func, y, x, 0, rr1);
     });*/
 
+    sphericalTransformation();
+}
+
+void MeshProcessor::generateNoInt(const directionGraph &func) {
+    FloatType rr1 = this->rr;
+
+    //meshdec[2] = transform(meshdec[0], meshdec[1], func);
+    meshdec[2] = applyFunctionToVVD(meshdec[0], meshdec[1], func);
+    // std::transform(meshdec[0].begin(), meshdec[0].end(), meshdec[1].begin(), meshdec[1].end(),std::back_inserter(meshdec[2]),func);
     sphericalTransformation();
 }
 

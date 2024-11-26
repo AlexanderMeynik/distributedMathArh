@@ -1,17 +1,19 @@
-#include "common/lib.h"
+
 #include <chrono>
+#include <filesystem>
 
+#include "common/lib.h"
 #include "computationalLib/math_core/math_core.h"
-
 #include "../GoogleCommon.h"
+
 #include <algorithm>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
-constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
+
 
 using namespace myConcepts;
-
+using namespace testCommon;
 //https://github.com/google/googletest/blob/main/docs/advanced.md#type-parameterized-tests
 //тут описана возможность запускать етсты с разными типами
 template<typename T>
@@ -104,7 +106,7 @@ std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
 string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";//todo вот этот путь у нас теперь не верен
 
-#include <filesystem>
+
 
 
 class DipolesVerificationTS : public ::testing::Test {

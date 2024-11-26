@@ -39,7 +39,7 @@ namespace meshStorage
      * @param max_depth
      * @param tol
      */
-    template<unsigned Ndots>
+    template<unsigned Ndots=61>
     FloatType integrate(const std::function<FloatType(FloatType)> &function,
                         FloatType left,
                         FloatType right,
@@ -58,7 +58,7 @@ namespace meshStorage
 
 
 
-    template<unsigned Ndots>
+    template<unsigned Ndots=61>
     FloatType integrateLambdaForOneVariable(const dipoles::integrableFunction &function,
                                             FloatType theta,
                                             FloatType phi,
@@ -115,18 +115,24 @@ namespace meshStorage
      * @param b
      * @return
      */
-    std::array<meshStorageType,2> myMeshGrid(const floatVector &a, const floatVector &b);
+     template<template<typename ...> typename container =std::vector>
+    std::array<meshStorageType,2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b);
+
+
+
 
     /**
      * @brief Generates linearly spaced vectors
+     * @tparam container
      * @tparam T
      * @tparam end
      * @param lower_bound
      * @param upper_bound
-     * @param n number of elements
+     * @param n
+     * @return
      */
-    template<typename T,bool end = true>
-    std::vector<T> myLinspace(T lower_bound, T upper_bound, size_t n);
+    template<template<typename ...> typename container =std::vector,typename T=FloatType,bool end = true>
+    container<T> myLinspace(T lower_bound, T upper_bound, size_t n);
 
 
     class MeshProcessor {
@@ -265,10 +271,15 @@ namespace meshStorage
 
 
 
+    template<template<typename ...> typename container,typename T,bool end>
+    container<T> myLinspace(T lower_bound, T upper_bound, size_t n) {
 
-    template<typename T, bool end>
-    std::vector<T> myLinspace(T lower_bound, T upper_bound, size_t n) {
-        std::vector<T> result(n, T());
+        if(n==0)
+        {
+            throw std::invalid_argument("Zero linspace size");
+        }
+
+        container<T> result(n);
 
         size_t div;
         if constexpr (end)
@@ -285,6 +296,24 @@ namespace meshStorage
             result[i] = i * step + lower_bound;
         }
         return result;
+    }
+
+    template<template<typename ...> typename container>
+    std::array<meshStorageType,2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b) {
+        std::array<meshStorageType,2> ret={meshStorageType(b.size()*a.size()),
+                                           meshStorageType(b.size()*a.size())};
+
+
+        auto x_mesh=Kokkos::mdspan(&(ret[0][0]),b.size(),a.size());
+        auto y_mesh =Kokkos::mdspan(&(ret[1][0]),b.size(),a.size());
+
+        for (size_t i = 0; i < b.size(); ++i) {
+            for (size_t j = 0; j < a.size(); ++j) {
+                x_mesh[std::array{i,j}]=a[j];
+                y_mesh[std::array{i, j}] = b[i];
+            }
+        }
+        return ret;
     }
 }
 

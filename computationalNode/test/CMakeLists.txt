@@ -27,8 +27,7 @@ file(GLOB interfaces CONFIGURE_DEPENDS
         "interfaces/*.h"
         "interfaces/*.cpp"
 )
-include_directories(../include)
-include_directories(../../utilLib/include)
+
 
 add_executable(inter_Tests ${interfaces})
 target_link_libraries(inter_Tests gtest gmock)
@@ -47,3 +46,5 @@ file(GLOB resourse CONFIGURE_DEPENDS
         "res/*.*"
 )
 file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/computationalNode/test)
+
+
