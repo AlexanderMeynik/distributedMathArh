@@ -11,9 +11,9 @@
 #include <matplot/matplot.h>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 
-#include "common/Printers.h"
+#include "iolib/Printers.h"
 #include "computationalLib/math_core/dipolesCommon.h"
-#include "common/Parsers.h"
+#include "iolib/Parsers.h"
 
 using const_::FloatType;
 using floatVector = std::vector<FloatType>;

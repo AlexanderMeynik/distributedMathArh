@@ -4,12 +4,8 @@
 #define MAGISTER1_LIB_H
 
 
-#include <iostream>
 #include <vector>
-#include <algorithm>
-#include <numeric>
-#include <ostream>
-#include <fstream>
+
 #include <iomanip>
 #include <filesystem>
 #include <random>
@@ -17,6 +13,7 @@
 #include <cassert>
 #include <eigen3/Eigen/Core>
 
+//todo delete some things
 using std::function, std::pair, std::vector, std::array;
 using std::string;
 

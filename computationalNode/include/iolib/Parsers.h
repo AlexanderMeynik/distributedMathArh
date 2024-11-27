@@ -1,4 +1,4 @@
-
+#pragma once
 #ifndef DIPLOM_PARSERS_H
 #define DIPLOM_PARSERS_H
 

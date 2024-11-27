@@ -30,7 +30,7 @@ file(GLOB core CONFIGURE_DEPENDS
 
 add_executable(core_Tests ${core})
 target_link_libraries(core_Tests gtest gmock)
-target_link_libraries(core_Tests interfaces_lib)
+target_link_libraries(core_Tests math_core_lib io_lib)
 
 file(GLOB resourse CONFIGURE_DEPENDS
         "res/*.*"

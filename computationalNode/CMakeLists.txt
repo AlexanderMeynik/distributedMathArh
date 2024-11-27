@@ -32,7 +32,6 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
         "lib/computationalLib/math_core/*.cpp"
 )
 
-message(message (PROJECT_SOURCE_DIR="${math_core_files}"))
 
 
 add_library(math_core_lib ${math_core_files})
@@ -53,6 +52,13 @@ file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
 add_library(interfaces_lib ${interfaces_files})
 target_link_libraries(interfaces_lib PUBLIC parallelLib)
 target_link_libraries(interfaces_lib PUBLIC math_core_lib)
+
+
+file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
+        "lib/iolib/*cpp"
+)
+add_library(io_lib ${iolib_files})
+target_link_libraries(io_lib PUBLIC math_core_lib)
 
 option(BUILD_DOC "Build documentation" OFF)
 if (BUILD_DOC)

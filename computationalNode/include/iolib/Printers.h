@@ -9,7 +9,7 @@
 #include <eigen3/Eigen/Dense>
 
 
-#include "printUtils.h"
+#include "common/printUtils.h"
 #include "common/myConcepts.h"
 
 template<class T>

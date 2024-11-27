@@ -24,6 +24,17 @@ decltype(auto) get_Default_Configuration() {
     return sample.export_conf();
 }
 
+static inline double C1=0;
+static inline double C2=0;
+auto dipole1Function(double theta, double phi)
+{
+    2*M_PI*pow(params::omega,3)*
+    (pow(params::omega*sin(theta)/params::c,2)*
+        (pow(C1,4)+pow(C2,4)+2*pow(C1*C2,2))+
+    (C1*C1+C2*C2)-
+    (pow(sin(theta),2)*(C1*C1+C2*C2)/2.));
+}
+
 TEST(transformations, reinterpret_vector_test) {
     auto N = 20;
     CoordGenerator<double> genr(0, 1e-6);
@@ -204,6 +215,7 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
         mm2.importConf(conf, true);
         mm2.generateNoInt(dd.getI2function());
 
+        //todo дело не в функции дело в меше
         compareArrays(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2],double_comparator2,1e-3);
 
     }
