@@ -21,11 +21,7 @@ auto firstValueTuplePrinter(const testing::TestParamInfo<typename TestSuite::Par
 class MeshCommonFunctionsTests : public ::testing::Test {
 protected:
     static inline double abs = std::numeric_limits<double>::epsilon();
-    static inline auto double_comparator = [](double a, double b, size_t i) {
-        const testing::internal::FloatingPoint<double> lhs(a), rhs(b);
 
-        return lhs.AlmostEquals(rhs);
-    };
 };
 
 using tType = std::tuple<std::string, double, double, size_t, std::valarray<double>>;

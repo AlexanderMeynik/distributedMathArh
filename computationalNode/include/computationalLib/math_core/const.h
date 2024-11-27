@@ -1,16 +1,7 @@
-
-
 #ifndef DIPLOM_CONST_H
 #define DIPLOM_CONST_H
 
-#include <iostream>
-#include <array>
-#include <vector>
-
-#include <eigen3/Eigen/Dense>
-#include <matplot/matplot.h>
-
-#include "common/constants.h"
+#include "common/constants.h"//todo ambiguous name
 
 using const_::FloatType;
 

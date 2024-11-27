@@ -28,8 +28,9 @@ namespace meshStorage
 
 
 
-    void MeshProcessor::generateMeshes(const MeshProcessor::integrableFunction &func) {
+    void MeshProcessor2::generateMeshes(const MeshProcessor2::integrableFunction &func) {
         FloatType rr1 = this->rr;
+        //todo inverted function argument order
         meshdec[2] = meshStorage::computeFunction(meshdec[0], meshdec[1], [&func, &rr1](FloatType x, FloatType y) {
             return meshStorage::integrateLambdaForOneVariable<61>(func, y, x, 0, rr1);
         });
@@ -39,13 +40,13 @@ namespace meshStorage
         updateSpans();
     }
 
-    void MeshProcessor::generateNoInt(const MeshProcessor::directionGraph &func) {
-        meshdec[2] = computeFunction(meshdec[0], meshdec[1], func);
+    void MeshProcessor2::generateNoInt(const MeshProcessor2::directionGraph &func) {
+        meshdec[2] = computeFunction(meshdec[1], meshdec[0], func);
         sphericalTransformation();
         updateSpans();
     }
 
-    void MeshProcessor::plotSpherical(std::string filename) {
+    void MeshProcessor2::plotSpherical(std::string filename) {
         auto ax = gca();
         ax->surf(unflatten(meshsph[0],nums),
                  unflatten(meshsph[1],nums),
@@ -60,7 +61,7 @@ namespace meshStorage
         ax.reset();
     }
 
-    void MeshProcessor::printDec(std::ostream &out) {
+    void MeshProcessor2::printDec(std::ostream &out) {
         out << "Функция I(phi,th)\n";
         out << "phi\\th\t\t";
         for (size_t i = 0; i < meshDecSpans[2].extent(0) - 1; ++i) {
@@ -80,20 +81,20 @@ namespace meshStorage
         }
     }
 
-    void MeshProcessor::setMesh3(meshStorageType &val) {
+    void MeshProcessor2::setMesh3(meshStorageType &val) {
         meshdec[2]=val;
         sphericalTransformation();
         updateSpans();
     }
 
-    void MeshProcessor::initCoordMeshes() {
+    void MeshProcessor2::initCoordMeshes() {
         std::array<meshStorageType , 2> meshgrid1 = myMeshGrid(
                 myLinspace(philims[0], philims[1], nums[0]), myLinspace(thelims[0], thelims[1], nums[1]));
         meshdec[0] = meshgrid1[0];
         meshdec[1] = meshgrid1[1];
     }
 
-    void MeshProcessor::sphericalTransformation() {
+    void MeshProcessor2::sphericalTransformation() {
         this->meshsph[0] = this->meshdec[0];
         this->meshsph[1] = this->meshdec[1];
         this->meshsph[2] = this->meshdec[2];

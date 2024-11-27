@@ -1,10 +1,12 @@
+#pragma once
 #ifndef DIPLOM_DIPOLES_H
 #define DIPLOM_DIPOLES_H
 
-#include <iostream>
+#include <iosfwd>
 #include <iomanip>
 
 #include "computationalLib/math_core/dipolesCommon.h"
+
 ///dipoles namespace
 namespace dipoles {
     using namespace Eigen;

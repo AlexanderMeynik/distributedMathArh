@@ -1,5 +1,6 @@
 #include "computationalLib/math_core/dipolesCommon.h"
 
+
 namespace dipoles {
 
     bool isSymmetric(const matrixType &matr) {

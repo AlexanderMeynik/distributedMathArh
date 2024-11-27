@@ -2,7 +2,6 @@
 
 namespace dipoles {
 
-
     void
     Dipoles::getMatrices(const Eigen::Vector<FloatType, 2> &rim, FloatType rMode, Eigen::Matrix<FloatType, 2, 2> &K1,
                          Eigen::Matrix<FloatType, 2, 2> &K2) const {

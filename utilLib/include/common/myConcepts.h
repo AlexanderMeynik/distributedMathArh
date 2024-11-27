@@ -1,8 +1,7 @@
-
+#pragma once
 #ifndef DIPLOM_MYCONCEPTS_H
 #define DIPLOM_MYCONCEPTS_H
 
-#include <eigen3/Eigen/Dense>
 #include <type_traits>
 #include <concepts>
 

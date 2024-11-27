@@ -1,3 +1,4 @@
+#pragma once
 #ifndef DIPLOM_DIPOLESCOMMON_H
 #define DIPLOM_DIPOLESCOMMON_H
 
@@ -9,14 +10,12 @@
 #include "common/myConcepts.h"
 #include "const.h"
 
-using namespace Eigen;
 using namespace myConcepts;
 
 ///dipoles namespace
 namespace dipoles {
 
-    using matplot::gca;
-    using std::function, std::pair, std::vector, std::array;
+    using std::pair, std::vector, std::array;
 
     using const_::FloatType;
 

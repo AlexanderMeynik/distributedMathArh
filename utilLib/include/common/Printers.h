@@ -7,7 +7,6 @@
 
 
 #include <eigen3/Eigen/Dense>
-#include <matplot/matplot.h>
 
 
 #include "printUtils.h"

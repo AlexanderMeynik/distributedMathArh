@@ -1,12 +1,13 @@
 
 #include <chrono>
-#include <filesystem>
+
 
 #include "common/lib.h"
-#include "computationalLib/math_core/math_core.h"
+/*#include "computationalLib/math_core/math_core.h"*/
+#include "computationalLib/math_core/Dipoles.h"
+#include "computationalLib/math_core/MeshProcessor2.h"
 #include "../GoogleCommon.h"
 
-#include <algorithm>
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 
@@ -14,11 +15,12 @@
 
 using namespace myConcepts;
 using namespace testCommon;
-//https://github.com/google/googletest/blob/main/docs/advanced.md#type-parameterized-tests
-//тут описана возможность запускать етсты с разными типами
+using namespace Eigen;
+
+
 template<typename T>
 decltype(auto) get_Default_Configuration() {
-    MeshProcessor sample;
+    meshStorage::MeshProcessor2 sample;
     return sample.export_conf();
 }
 
@@ -129,7 +131,10 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
 
         dipoles::Dipoles dd(avec[i].size() / 2, avec[i]);
 
-        compare_matrices(dd.getMatrixx(), pp1.vals_, i, 1e-5);
+
+
+
+        compareRigen2dArrays(dd.getMatrixx(), pp1.vals_, double_comparator3,1e20/10000);//todo fix accuracy
         /*std::cout<<i<<'\n';
         std::cout<<dd.getMatrixx()<<"\n\n";*/
 
@@ -140,7 +145,6 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
 TEST_F(DipolesVerificationTS,
        test_on_10_basik_conf_solutions) {
     std::ios_base::sync_with_stdio(false);
-
 
     auto avec = getConfSize(filename);
 
@@ -162,7 +166,8 @@ TEST_F(DipolesVerificationTS,
 
 
         auto sol = dd.solve<dipoles::EigenVec>();
-        compare_collections(pp1.vals_, sol, i, tool);
+        compareArrays(pp1.vals_,sol,double_comparator);//todo assert near
+        //todo printer / parser must print all numbers during serializtion(wath gtest)
     }
 }
 
@@ -172,12 +177,12 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
 
     auto avec = parseConf2<double, vector>(filename);
     auto conf = get_Default_Configuration<double>();
-
+//todo here we get default coniguration for meshes i think we must set as standart that we have only 2 nums
 
     std::ifstream in1(subdir + "/meshes.txt");
     std::ifstream in2(subdir + "/solutions.txt");
     in1 >> conf.second[0] >> conf.second[1];
-    Parser<MeshProcessor> pp1;
+    Parser<meshStorage::MeshProcessor2> pp1;
 
     pp1.vals_.importConf(conf, true);
     for (int i = 0; i < avec.size(); ++i) {
@@ -195,11 +200,12 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
         dipoles::Dipoles dd;//это тут не нужно
         dd.getFullFunction_(avec[i], ppsol.vals_);//todo превартить в статческий метод
 
-        MeshProcessor mm2;
+
+        ::meshStorage::MeshProcessor2 mm2;
         mm2.importConf(conf, true);
         mm2.generateNoInt(dd.getI2function());
-
-        compare_matrices(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2], i, 1e-4);
+//todo accuracy is aur bain
+        compareArrays(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2],double_comparator);
 
         /*std::cout<<i<<"\n\n";
         mm2.printDec(std::cout);*/

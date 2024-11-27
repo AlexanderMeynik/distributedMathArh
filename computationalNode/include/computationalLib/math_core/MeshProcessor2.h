@@ -1,35 +1,29 @@
-
+#pragma once
 #ifndef DIPLOM_MESHPROCESSOR_H
 #define DIPLOM_MESHPROCESSOR_H
 
 
-#include <ostream>
+#include <iosfwd>
 #include <vector>
 #include <valarray>
 #include "mdspan/mdspan.hpp"
-
-#include <ranges>
-#include <concepts>
-#include <type_traits>
 
 #include <matplot/matplot.h>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 
 #include "common/Printers.h"
-#include "const.h"
 #include "computationalLib/math_core/dipolesCommon.h"
-
 #include "common/Parsers.h"
-#include "common/constants.h"
 
 using const_::FloatType;
 using floatVector = std::vector<FloatType>;
 using meshDrawClass = std::vector<floatVector>;
 using meshStorageType =std::valarray<FloatType>;
 
-namespace meshStorage
-{
+namespace meshStorage {
+
     using namespace matplot;
+
     /**
      *
      * @tparam Ndots
@@ -39,7 +33,7 @@ namespace meshStorage
      * @param max_depth
      * @param tol
      */
-    template<unsigned Ndots=61>
+    template<unsigned Ndots = 61>
     FloatType integrate(const std::function<FloatType(FloatType)> &function,
                         FloatType left,
                         FloatType right,
@@ -57,8 +51,7 @@ namespace meshStorage
     }
 
 
-
-    template<unsigned Ndots=61>
+    template<unsigned Ndots = 61>
     FloatType integrateLambdaForOneVariable(const dipoles::integrableFunction &function,
                                             FloatType theta,
                                             FloatType phi,
@@ -66,7 +59,9 @@ namespace meshStorage
                                             FloatType right,
                                             unsigned int max_depth = 5,
                                             FloatType tol = 1e-20) {
-        std::function<FloatType(FloatType)> tt = [&theta, &phi, &function](FloatType t) { return function(theta, phi, t); };
+        std::function<FloatType(FloatType)> tt = [&theta, &phi, &function](FloatType t) {
+            return function(theta, phi, t);
+        };
         return integrate<Ndots>(tt, left, right, max_depth, tol);
     }
 
@@ -76,14 +71,13 @@ namespace meshStorage
      * @tparam T
      * @tparam Args
      */
-    template<typename T, typename... Args>
-    requires (std::is_same_v<T,Args>&&...)
-    T computeFunction_t(size_t size,const Args&... args,const std::function<FloatType (FloatType ...)>&function)
-    {
+    template<typename T, typename... Args> requires (std::is_same_v<T, Args> &&...)
+
+    T computeFunction_t(size_t size, const Args &... args, const std::function<FloatType(FloatType ...)> &function) {
         //todo size checks
         T result(size);
         for (size_t i = 0; i < size; ++i) {
-            result[i]=func(args[i]...);
+            result[i] = func(args[i]...);
         }
         return result;
     }
@@ -94,10 +88,9 @@ namespace meshStorage
      * @param b
      * @param func
      */
-    meshStorageType computeFunction(const meshStorageType&a,
-                                    const meshStorageType&b,
-                                    const dipoles::directionGraph&func);
-
+    meshStorageType computeFunction(const meshStorageType &a,
+                                    const meshStorageType &b,
+                                    const dipoles::directionGraph &func);
 
 
     /**
@@ -115,10 +108,8 @@ namespace meshStorage
      * @param b
      * @return
      */
-     template<template<typename ...> typename container =std::vector>
-    std::array<meshStorageType,2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b);
-
-
+    template<template<typename ...> typename container =std::vector>
+    std::array<meshStorageType, 2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b);
 
 
     /**
@@ -131,30 +122,30 @@ namespace meshStorage
      * @param n
      * @return
      */
-    template<template<typename ...> typename container =std::vector,typename T=FloatType,bool end = true>
+    template<template<typename ...> typename container =std::vector, typename T=FloatType, bool end = true>
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n);
 
 
-    class MeshProcessor {
+    class MeshProcessor2 {
     public:
 
         template<size_t N>
-        using meshArr = std::array<meshStorageType,N>;
+        using meshArr = std::array<meshStorageType, N>;
 
-        using etx=Kokkos::extents<size_t,Kokkos::dynamic_extent,Kokkos::dynamic_extent>;
-        using mdSpanType= Kokkos::mdspan<FloatType,etx>;
+        using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;
+        using mdSpanType = Kokkos::mdspan<FloatType, etx>;
 
         typedef dipoles::integrableFunction integrableFunction;
         typedef dipoles::directionGraph directionGraph;
 
-        MeshProcessor() {
+        MeshProcessor2() {
             initCoordMeshes();
         }
 
         using confType = std::pair<std::array<size_t, 2>, std::array<FloatType, 2>>;
 
         confType export_conf() {
-            return {{this->nums[0],  this->nums[1]},
+            return {{this->nums[0], this->nums[1]},
                     {this->steps[0], this->steps[1]}};
         }
 
@@ -190,8 +181,9 @@ namespace meshStorage
             return meshdec;
         }
 
+        //todo dimensions of this thing
         meshStorageType getMeshGliff() {
-            return meshStorageType(this->nums[1]*this->nums[0]);
+            return meshStorageType(this->nums[1] * this->nums[0]);
         }
 
         const meshArr<3> &getMeshsph() const {
@@ -207,38 +199,56 @@ namespace meshStorage
         void printDec(std::ostream &out);
 
         void setMesh3(meshStorageType &val);
-
-    private:
-        static meshDrawClass unflatten(const meshStorageType &mm,size_t  numss[2])
+        const auto& getNums()
         {
-            auto res=meshDrawClass(numss[1], floatVector(numss[1], 0.0));
+            return nums;
+        }
+        static meshStorageType transpose(mdSpanType&tt)
+        {
+            auto rows=tt.extent(0);
+            auto cols=tt.extent(1);
+
+            meshStorageType mesh(rows*cols);
+            auto begin=&(mesh[0]);
+            mdSpanType res=mdSpanType(begin,cols,rows);
+            for (size_t i = 0; i < rows; ++i) {
+                for (size_t j = 0; j < cols; ++j) {
+                    res[std::array{j,i}]=tt[std::array{i,j}];
+                }
+            }
+            return mesh;
+        }
+    private:
+        static meshDrawClass unflatten(const meshStorageType &mm, size_t numss[2]) {
+            auto res = meshDrawClass(numss[1], floatVector(numss[1], 0.0));
 
 
-            mdSpanType resSpan=Kokkos::mdspan((FloatType *)&(mm[0]),numss[1],numss[1]);
+            mdSpanType resSpan = Kokkos::mdspan((FloatType *) &(mm[0]), numss[1], numss[1]);
 
             for (size_t i = 0; i < resSpan.extent(0); ++i) {
                 for (size_t j = 0; j < resSpan.extent(1); ++j) {
-                    res[i][j]=resSpan[std::array{i,j}];
+                    res[i][j] = resSpan[std::array{i, j}];
                 }
             }
 
             return res;
         }
+
         void initCoordMeshes();
 
         void sphericalTransformation();
-        void updateSpans()
-        {
-            for (size_t i = 0; i < meshdec.size() ; ++i) {
-                meshDecSpans[i]=mdSpanType((FloatType *)&(meshdec[0]),nums[1],nums[0]);
-                meshSphSpans[i]=mdSpanType((FloatType *)&(meshsph[0]),nums[1],nums[0]);
+
+        void updateSpans() {
+            for (size_t i = 0; i < meshdec.size(); ++i) {
+                meshDecSpans[i] = mdSpanType((FloatType *) &(meshdec[0]), nums[1], nums[0]);
+                meshSphSpans[i] = mdSpanType((FloatType *) &(meshsph[0]), nums[1], nums[0]);
             }
         }
 
-        meshArr<3>  meshdec;
-        meshArr<3>  meshsph;
-        std::array<mdSpanType ,3> meshDecSpans;
-        std::array<mdSpanType ,3> meshSphSpans;
+        meshArr<3> meshdec;
+        meshArr<3> meshsph;
+        std::array<mdSpanType, 3> meshDecSpans;
+        std::array<mdSpanType, 3> meshSphSpans;
 
 
         FloatType philims[2] = {0, M_PI * 2};
@@ -251,44 +261,20 @@ namespace meshStorage
     };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    template<template<typename ...> typename container,typename T,bool end>
+    template<template<typename ...> typename container, typename T, bool end>
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n) {
 
-        if(n==0)
-        {
+        if (n == 0) {
             throw std::invalid_argument("Zero linspace size");
         }
 
         container<T> result(n);
 
         size_t div;
-        if constexpr (end)
-        {
-            div=n-1;
-        }
-        else
-        {
-            div=n;
+        if constexpr (end) {
+            div = n - 1;
+        } else {
+            div = n;
         }
         T step = (upper_bound - lower_bound) / (T) div;
 
@@ -299,23 +285,66 @@ namespace meshStorage
     }
 
     template<template<typename ...> typename container>
-    std::array<meshStorageType,2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b) {
-        std::array<meshStorageType,2> ret={meshStorageType(b.size()*a.size()),
-                                           meshStorageType(b.size()*a.size())};
+    std::array<meshStorageType, 2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b) {
+        std::array<meshStorageType, 2> ret = {meshStorageType(b.size() * a.size()),
+                                              meshStorageType(b.size() * a.size())};
 
 
-        auto x_mesh=Kokkos::mdspan(&(ret[0][0]),b.size(),a.size());
-        auto y_mesh =Kokkos::mdspan(&(ret[1][0]),b.size(),a.size());
+        auto x_mesh = Kokkos::mdspan(&(ret[0][0]), b.size(), a.size());
+        auto y_mesh = Kokkos::mdspan(&(ret[1][0]), b.size(), a.size());
 
         for (size_t i = 0; i < b.size(); ++i) {
             for (size_t j = 0; j < a.size(); ++j) {
-                x_mesh[std::array{i,j}]=a[j];
+                x_mesh[std::array{i, j}] = a[j];
                 y_mesh[std::array{i, j}] = b[i];
             }
         }
         return ret;
     }
+
 }
+
+template<>
+class Parser<meshStorage::MeshProcessor2> {
+public:
+    Parser() : vals_() {}
+
+    Parser(int size) : vals_() {}
+
+    friend std::istream &operator>>(std::istream &in, Parser &pp) {
+        std::string dummy;
+        std::getline(in, dummy);//todo introduce printers that wont produce this
+        std::getline(in, dummy);
+        std::getline(in, dummy);
+        //pp.vals_=MeshProcessor<T>();
+        meshStorageType m = pp.vals_.getMeshGliff();
+        //todo read coord meshes;
+        auto n=pp.vals_.getNums();
+
+        meshStorage::MeshProcessor2::mdSpanType span=meshStorage::MeshProcessor2::mdSpanType
+                (&(m[0]),n[1],n[0]);
+
+        for (int i = 0; i < span.extent(0); ++i) {
+            FloatType temp = 0;
+            in >> temp;//diskard first number
+            for (int j = 0; j < span.extent(1); ++j) {
+                FloatType val;
+                in >> val;
+                span[std::array{i,j}] = val;
+            }
+        }
+
+        /*auto ss=meshStorage::MeshProcessor2::transpose(span);*/
+
+        pp.vals_.setMesh3(
+                m);//todo мы не иницализируем финальную компоненту как надо, поэтому создаём глиф тут и печаетев всё в него
+        return in;
+    }
+
+    meshStorage::MeshProcessor2 vals_;
+
+};
+
 
 
 #endif //DIPLOM_MESHPROCESSOR_H

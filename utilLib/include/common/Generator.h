@@ -2,11 +2,13 @@
 #ifndef DIPLOM_GENERATOR_H
 #define DIPLOM_GENERATOR_H
 
+#include <eigen3/Eigen/Dense>
+
 #include <array>
 #include <vector>
 #include <random>
 #include <functional>
-#include <eigen3/Eigen/Dense>
+
 
 namespace generators {
     //todo млжет тогда вектора поделать
