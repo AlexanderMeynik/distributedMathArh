@@ -223,7 +223,7 @@ namespace meshStorage {
             auto res = meshDrawClass(numss[1], floatVector(numss[1], 0.0));
 
 
-            mdSpanType resSpan = Kokkos::mdspan((FloatType *) &(mm[0]), numss[1], numss[1]);
+            mdSpanType resSpan = Kokkos::mdspan((FloatType *) &(mm[0]), numss[1], numss[0]);
 
             for (size_t i = 0; i < resSpan.extent(0); ++i) {
                 for (size_t j = 0; j < resSpan.extent(1); ++j) {
@@ -313,7 +313,7 @@ public:
 
     friend std::istream &operator>>(std::istream &in, Parser &pp) {
         std::string dummy;
-        std::getline(in, dummy);//todo introduce printers that wont produce this
+        std::getline(in, dummy);
         std::getline(in, dummy);
         std::getline(in, dummy);
         //pp.vals_=MeshProcessor<T>();
@@ -322,15 +322,15 @@ public:
         auto n=pp.vals_.getNums();
 
         meshStorage::MeshProcessor2::mdSpanType span=meshStorage::MeshProcessor2::mdSpanType
-                (&(m[0]),n[1],n[0]);
+                (&(m[0]),n[0],n[1]);
 
         for (int i = 0; i < span.extent(0); ++i) {
             FloatType temp = 0;
-            in >> temp;//diskard first number
+            in >> temp;
             for (int j = 0; j < span.extent(1); ++j) {
                 FloatType val;
                 in >> val;
-                span[std::array{i,j}] = val;
+                span[std::array{i,j}] = val;//todo error on position 7
             }
         }
 

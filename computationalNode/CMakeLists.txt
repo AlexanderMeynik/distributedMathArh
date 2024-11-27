@@ -26,9 +26,6 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/bin)
 
-#[[include_directories(include)
-include_directories(../utilLib/include)#todo if we have target include dir, do we need this
-include_directories(../mdspan/include)]]
 
 
 file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS

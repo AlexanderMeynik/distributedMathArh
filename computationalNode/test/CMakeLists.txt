@@ -2,16 +2,6 @@
 #todo remake
 #todo fix debug coverage
 set(CMAKE_CXX_STANDARD 20)
-if (CMAKE_BUILD_TYPE STREQUAL "Debug-Coverage")
-    set(-DCMAKE_CXX_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")
-    set(-DCMAKE_C_FLAGS="-g -fprofile-instr-generate -fcoverage-mapping --coverage")
-else ()
-    SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -g -march=native -fpic -ffast-math -ftree-vectorize")
-endif ()
-function(target_link_libraries_with_coverage targetName library)
-    target_link_libraries(${targetName} ${library})
-    set_target_properties(${library} PROPERTIES COMPILE_FLAGS "-fprofile-arcs -ftest-coverage")
-endfunction()
 
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})

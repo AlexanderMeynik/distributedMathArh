@@ -1,6 +1,3 @@
-//
-// Created by Lenovo on 23.04.2024.
-//
 #include <omp.h>
 #include <array>
 #include <ranges>

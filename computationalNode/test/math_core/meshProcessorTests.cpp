@@ -74,7 +74,7 @@ TEST_P(TestsIntegrateOneVar, testIntegrateLambdaForOneVariable) {
     });
     auto g2 = meshStorage::computeFunction(grid[0], grid[1], resultFunction);
 
-    compareArrays(g1, g2, double_comparator);
+    compareArrays(g1, g2, double_comparator2);
 
 }
 
@@ -83,7 +83,7 @@ TEST_P(TestLinspace, linspaceValueTest) {
     auto [_, start, end, n, result] = GetParam();
 
     auto r = ::myLinspace(start, end, n);
-    compareArrays(r, result, double_comparator);
+    compareArrays(r, result, double_comparator2);
 
 }
 

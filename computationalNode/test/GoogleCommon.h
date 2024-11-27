@@ -18,6 +18,11 @@ using namespace myConcepts;
 namespace testCommon {
     constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
 
+    template<typename T>
+    bool is_near(T val1, T val2, T abs_error) {
+        const T diff = std::abs(val1 - val2);
+        return  diff <= abs_error;
+    }
 
 
     template<HasSizeMethod T1, HasSizeMethod T2>
@@ -26,15 +31,20 @@ namespace testCommon {
     void compareArrays(const T1 &solution,
                        const T2 &solution2,
                        const std::function<bool
-                        (const typename T1::value_type & a,
-                                const typename T2::value_type & b,size_t i)
-                                >& eqOperator
+                        (
+                                const typename T1::value_type & a,
+                                const typename T2::value_type & b,
+                                size_t i,
+                                FloatType tol
+                                )
+                                >& eqOperator,
+                                FloatType tol=tool
                         )
     {
         ASSERT_TRUE(solution.size() == solution2.size())<< "Collections have different sizes:("
                                                         <<solution.size()<<", "<<solution2.size()<<")\n";
         for (size_t i = 0; i < solution.size(); ++i) {
-            ASSERT_PRED3(eqOperator, solution[i], solution2[i], i);
+            ASSERT_PRED4(eqOperator, solution[i], solution2[i], i,tol);
         }
     }
 
@@ -47,7 +57,7 @@ namespace testCommon {
 
     template<parenthesisOperator M1_t,parenthesisOperator M2_t>
     void compareRigen2dArrays(const M1_t &mat1, const M2_t &mat2,
-    const std::function<void
+    const std::function<bool
     (
                     const typename M1_t::value_type & a,
                     const typename M2_t::value_type & b,
@@ -55,7 +65,8 @@ namespace testCommon {
                     size_t j,
                     FloatType tol
                     )
-                    >& eqOperator,FloatType tol=tool
+                    >& eqOperator,
+                    FloatType tol=tool
     )
     {
         auto shape = get_shape(mat1);
@@ -71,8 +82,7 @@ namespace testCommon {
         for (int i = 0; i < rows; ++i) {
 
             for (int j = 0; j < cols; ++j) {
-                ASSERT_NO_FATAL_FAILURE(eqOperator(mat1(i,j),mat2(i,j),i,j,tol));
-               // ASSERT_PRED5(eqOperator,mat1(i,j),mat2(i,j),i,j,tool);
+                ASSERT_PRED5(eqOperator,mat1(i,j),mat2(i,j),i,j,tol);
             }
         }
 
@@ -86,19 +96,18 @@ namespace testCommon {
         return lhs.AlmostEquals(rhs);
     };
 
+    static inline auto double_comparator2=[]<typename FType=FloatType>
+            (FType a,FType b ,size_t i, FType tol)
+    {
+        return is_near(a,b,tol);
+    };
+
     static inline auto double_comparator3=[]<typename FType=FloatType>
             (FType a,FType b, size_t i,size_t j, FType tol)
     {
-        ASSERT_NEAR(a,b,tol);
+        return is_near(a,b,tol);
     };
 
-    /*template<typename FType=FloatType>
-    bool double_comparator(FType a,FType b,size_t i)
-    {
-        const testing::internal::FloatingPoint<FType> lhs(a), rhs(b);
-
-        return lhs.AlmostEquals(rhs);
-    }*/
 
 
 
