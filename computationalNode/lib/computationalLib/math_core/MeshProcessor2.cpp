@@ -41,7 +41,7 @@ namespace meshStorage
     }
 
     void MeshProcessor2::generateNoInt(const MeshProcessor2::directionGraph &func) {
-        meshdec[2] = computeFunction(meshdec[1], meshdec[0], func);
+        meshdec[2] = computeFunction(meshdec[0], meshdec[1], [&func](FloatType x,FloatType y){return func(y,x);});
         sphericalTransformation();
         updateSpans();
     }

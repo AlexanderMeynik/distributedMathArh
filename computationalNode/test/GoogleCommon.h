@@ -25,7 +25,7 @@ namespace testCommon {
     }
 
 
-    template<HasSizeMethod T1, HasSizeMethod T2>
+    template<bool Expect=false,HasSizeMethod T1, HasSizeMethod T2>
     requires valueTyped<T1>&&valueTyped<T2>
             && std::common_with<typename T1::value_type,typename T2::value_type>
     void compareArrays(const T1 &solution,
@@ -44,7 +44,14 @@ namespace testCommon {
         ASSERT_TRUE(solution.size() == solution2.size())<< "Collections have different sizes:("
                                                         <<solution.size()<<", "<<solution2.size()<<")\n";
         for (size_t i = 0; i < solution.size(); ++i) {
-            ASSERT_PRED4(eqOperator, solution[i], solution2[i], i,tol);
+            if constexpr (!Expect)
+            {
+                ASSERT_PRED4(eqOperator, solution[i], solution2[i], i, tol);
+            }
+            else
+            {
+                EXPECT_PRED4(eqOperator, solution[i], solution2[i], i, tol);
+            }
         }
     }
 
@@ -55,7 +62,7 @@ namespace testCommon {
         {Cont(i1,i2)}->std::common_with<typename  Container::value_type>;
     };
 
-    template<parenthesisOperator M1_t,parenthesisOperator M2_t>
+    template<bool Expect=false,parenthesisOperator M1_t,parenthesisOperator M2_t>
     void compareRigen2dArrays(const M1_t &mat1, const M2_t &mat2,
     const std::function<bool
     (
@@ -82,7 +89,15 @@ namespace testCommon {
         for (int i = 0; i < rows; ++i) {
 
             for (int j = 0; j < cols; ++j) {
-                ASSERT_PRED5(eqOperator,mat1(i,j),mat2(i,j),i,j,tol);
+                if constexpr (!Expect)
+                {
+                    ASSERT_PRED5(eqOperator,mat1(i,j),mat2(i,j),i,j,tol);
+                }
+                else
+                {
+                    EXPECT_PRED5(eqOperator,mat1(i,j),mat2(i,j),i,j,tol);
+                }
+
             }
         }
 

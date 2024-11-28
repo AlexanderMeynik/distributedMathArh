@@ -290,11 +290,11 @@ namespace meshStorage {
                                               meshStorageType(b.size() * a.size())};
 
 
-        auto x_mesh = Kokkos::mdspan(&(ret[0][0]), b.size(), a.size());
-        auto y_mesh = Kokkos::mdspan(&(ret[1][0]), b.size(), a.size());
+        auto x_mesh = Kokkos::mdspan(&(ret[0][0]), a.size(), b.size());
+        auto y_mesh = Kokkos::mdspan(&(ret[1][0]), a.size(), b.size());
 
-        for (size_t i = 0; i < b.size(); ++i) {
-            for (size_t j = 0; j < a.size(); ++j) {
+        for (size_t i = 0; i < a.size(); ++i) {//todof use library mesh or compy one from net
+            for (size_t j = 0; j < b.size(); ++j) {
                 x_mesh[std::array{i, j}] = a[j];
                 y_mesh[std::array{i, j}] = b[i];
             }

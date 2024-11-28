@@ -180,7 +180,11 @@ INSTANTIATE_TEST_SUITE_P(
                 std::make_tuple("simple_range",
                                 std::array{std::valarray<FloatType>{0,1,0,1},std::valarray<FloatType>{1,1,2,2}},
                                 [](FloatType x,FloatType y){return x+y;},
-                                std::valarray<FloatType >{1,2,2,3})
+                                std::valarray<FloatType >{1,2,2,3}),
+                std::make_tuple("nonLinearFunction",
+                                std::array{std::valarray<FloatType>{-1,1,-1,1},std::valarray<FloatType>{1,1,2,2}},
+                                [](FloatType x,FloatType y){return x*x+y*y*y;},
+                                std::valarray<FloatType >{2,2,9,9})
         ), firstValueTuplePrinter<TestFunctionApply>);
 
 //todo tests for size =0;

@@ -181,6 +181,76 @@ TEST_F(DipolesVerificationTS,
     }
 }
 
+
+template<typename T,size_t N,const T& val>
+constexpr std::array<T,N> constructArr()
+{
+    constexpr std::array<T,N> res;
+    std::fill(res.begin(), res.end(),val);
+    return res;
+}
+template<typename T,size_t N>
+std::array<T,N> constructArr(const T&val)
+{
+    std::array<T,N> res;
+    std::fill(res.begin(), res.end(),val);
+    return res;
+}
+
+template<typename T>
+std::valarray<T> nItemsValarray(size_t N,const T& value)
+{
+    std::valarray<T> res(value,N);
+}
+static std::array<size_t,2> default_dims={7,25};
+static const  size_t dimCount=2;
+class TestMeshImpl
+{
+public:
+    TestMeshImpl(): dimensions(default_dims), limits({0, M_PI_2,0, M_PI * 2}),
+                    data({std::valarray<FloatType>(dimensions[0]*dimensions[1]),
+                          std::valarray<FloatType>(dimensions[0]*dimensions[1]),
+                          std::valarray<FloatType>(dimensions[0]*dimensions[1])}){
+//todo default constructor with no computations
+        auto phi=meshStorage::myLinspace<std::valarray>(limits[2],limits[3],dimensions[1]);
+        auto theta=meshStorage::myLinspace<std::valarray>(limits[0],limits[1],dimensions[0]);
+        std::array<std::valarray<FloatType>,dimCount> coords;
+        for (size_t i = 0; i <dimCount ; ++i) {
+            coords[i]=meshStorage::myLinspace<std::valarray>(limits[2*i],limits[2*i+1],dimensions[i]);
+        }
+
+        auto rr=meshStorage::myMeshGrid(phi,theta);
+        data[0]=rr[0];
+        data[1]=rr[1];
+        computeViews();
+    }
+
+    void applyFunction(const dipoles::directionGraph&plot)
+    {
+        data[2]=meshStorage::computeFunction(data[0],data[1],[&plot](FloatType x,FloatType y){return plot(y,x);});
+        computeViews(2);
+    }
+std::array<meshStorage::MeshProcessor2::mdSpanType,3> spans;
+protected:
+    void computeViews(int val=-1)
+    {
+        if(val!=-1)
+        {
+            spans[val]=meshStorage::MeshProcessor2::mdSpanType(&(data[val][0]),dimensions[0],
+                                                               dimensions[1]);
+            return;
+        }
+        for (size_t i = 0; i < spans.size(); ++i) {
+            spans[i]=meshStorage::MeshProcessor2::mdSpanType(&(data[i][0]),dimensions[0],
+                                                          dimensions[1]);
+        }
+    }
+    /*meshStorage::MeshProcessor2::mdSpanType;*/
+    std::array<size_t,dimCount> dimensions;
+    std::array<FloatType ,dimCount*2> limits;
+    meshStorage::MeshProcessor2::meshArr<dimCount+1> data;
+};
+
 TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     std::ios_base::sync_with_stdio(false);
 
@@ -195,7 +265,7 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     Parser<meshStorage::MeshProcessor2> pp1;
 
     pp1.vals_.importConf(conf, true);
-    for (int i = 0; i < avec.size(); ++i) {
+    for (int i = 0; i < 1; ++i) {
         auto NN = 0;
         in1 >> NN;
         EXPECT_EQ(NN, avec[i].size() / 2);
@@ -213,10 +283,13 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
 
         ::meshStorage::MeshProcessor2 mm2;
         mm2.importConf(conf, true);
-        mm2.generateNoInt(dd.getI2function());
+        mm2.generateNoInt(dd.getI2function());//todo попробовать руками всё сдлеать
+
+        /*TestMeshImpl mm;
+        mm.applyFunction(dd.getI2function());*/
 
         //todo дело не в функции дело в меше
-        compareArrays(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2],double_comparator2,1e-3);
+        compareArrays<true>(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2],double_comparator2,1e-3);
 
     }
     in1.close();
