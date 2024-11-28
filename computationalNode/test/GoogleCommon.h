@@ -56,24 +56,20 @@ namespace testCommon {
     }
 
 
-    template<typename Container>
-    concept parenthesisOperator = requires(Container Cont,size_t i1,size_t i2)
-    {
-        {Cont(i1,i2)}->std::common_with<typename  Container::value_type>;
-    };
 
-    template<bool Expect=false,parenthesisOperator M1_t,parenthesisOperator M2_t>
-    void compareRigen2dArrays(const M1_t &mat1, const M2_t &mat2,
-    const std::function<bool
+
+    template<bool Expect=false,typename M1_t,typename M2_t>
+    void compare2dArrays(const M1_t &mat1, const M2_t &mat2,
+                         const std::function<bool
     (
-                    const typename M1_t::value_type & a,
-                    const typename M2_t::value_type & b,
+                    const FloatType & a,
+                    const FloatType & b,
                     size_t i,
                     size_t j,
                     FloatType tol
                     )
                     >& eqOperator,
-                    FloatType tol=tool
+                         FloatType tol= tool
     )
     {
         auto shape = get_shape(mat1);
@@ -91,11 +87,11 @@ namespace testCommon {
             for (int j = 0; j < cols; ++j) {
                 if constexpr (!Expect)
                 {
-                    ASSERT_PRED5(eqOperator,mat1(i,j),mat2(i,j),i,j,tol);
+                    ASSERT_PRED5(eqOperator,getMatrElement(mat1,i,j),getMatrElement(mat2,i,j),i,j,tol);
                 }
                 else
                 {
-                    EXPECT_PRED5(eqOperator,mat1(i,j),mat2(i,j),i,j,tol);
+                    EXPECT_PRED5(eqOperator,getMatrElement(mat1,i,j),getMatrElement(mat2,i,j),i,j,tol);
                 }
 
             }

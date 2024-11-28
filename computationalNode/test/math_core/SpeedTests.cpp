@@ -6,6 +6,7 @@
 /*#include "computationalLib/math_core/math_core.h"*/
 #include "computationalLib/math_core/Dipoles.h"
 #include "computationalLib/math_core/MeshProcessor2.h"
+#include "computationalLib/math_core/MeshProcessor.h"
 #include "../GoogleCommon.h"
 
 #include <gtest/gtest.h>
@@ -143,9 +144,7 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
         dipoles::Dipoles dd(avec[i].size() / 2, avec[i]);
 
 
-
-
-        compareRigen2dArrays(dd.getMatrixx(), pp1.vals_, double_comparator3,1e20/10000);
+        compare2dArrays(dd.getMatrixx(), pp1.vals_, double_comparator3, 1e20 / 10000);
 
 
     }
@@ -182,36 +181,29 @@ TEST_F(DipolesVerificationTS,
 }
 
 
-template<typename T,size_t N,const T& val>
-constexpr std::array<T,N> constructArr()
-{
-    constexpr std::array<T,N> res;
-    std::fill(res.begin(), res.end(),val);
-    return res;
-}
-template<typename T,size_t N>
-std::array<T,N> constructArr(const T&val)
-{
-    std::array<T,N> res;
-    std::fill(res.begin(), res.end(),val);
-    return res;
-}
-
-template<typename T>
-std::valarray<T> nItemsValarray(size_t N,const T& value)
-{
-    std::valarray<T> res(value,N);
-}
-static std::array<size_t,2> default_dims={7,25};
 static const  size_t dimCount=2;
 class TestMeshImpl
 {
 public:
-    TestMeshImpl(): dimensions(default_dims), limits({0, M_PI_2,0, M_PI * 2}),
+    TestMeshImpl(): dimensions({7,25}), limits({0, M_PI_2,0, M_PI * 2}),
                     data({std::valarray<FloatType>(dimensions[0]*dimensions[1]),
                           std::valarray<FloatType>(dimensions[0]*dimensions[1]),
                           std::valarray<FloatType>(dimensions[0]*dimensions[1])}){
-//todo default constructor with no computations
+
+    }
+
+    void constructMeshes(const std::optional<std::array<size_t,2>> dimenstion=std::nullopt,
+                         const std::optional<std::array<FloatType ,4>> limit=std::nullopt)
+    {
+        if(dimenstion.has_value())
+        {
+            this->dimensions=dimenstion.value();
+        }
+        if(limit.has_value())
+        {
+            this->limits=limit.value();
+        }
+
         auto phi=meshStorage::myLinspace<std::valarray>(limits[2],limits[3],dimensions[1]);
         auto theta=meshStorage::myLinspace<std::valarray>(limits[0],limits[1],dimensions[0]);
         std::array<std::valarray<FloatType>,dimCount> coords;
@@ -225,23 +217,37 @@ public:
         computeViews();
     }
 
+    meshStorage::MeshProcessor2::meshArr<dimCount+1> sphericalTransformation() {
+        meshStorage::MeshProcessor2::meshArr<dimCount+1> res;
+        for (size_t i = 0; i < dimCount+1; ++i) {
+            res[i]=data[i];
+        }
+
+
+        res[0] = this->data[2] * sin(this->data[1]) * cos(this->data[0]);
+        res[1] = this->data[2] * sin(this->data[1]) * sin(this->data[0]);
+        res[2] = this->data[2] * cos(this->data[1]);
+        return res;
+
+    }
+
     void applyFunction(const dipoles::directionGraph&plot)
     {
-        data[2]=meshStorage::computeFunction(data[0],data[1],[&plot](FloatType x,FloatType y){return plot(y,x);});
+        data[2]=meshStorage::computeFunction(data[0],data[1],plot/*[&plot](FloatType x,FloatType y){return plot(y,x);}*/);
         computeViews(2);
     }
-std::array<meshStorage::MeshProcessor2::mdSpanType,3> spans;
-protected:
+std::array<meshStorage::mdSpanType,3> spans;
+public:
     void computeViews(int val=-1)
     {
         if(val!=-1)
         {
-            spans[val]=meshStorage::MeshProcessor2::mdSpanType(&(data[val][0]),dimensions[0],
+            spans[val]=meshStorage::mdSpanType(&(data[val][0]),dimensions[0],
                                                                dimensions[1]);
             return;
         }
         for (size_t i = 0; i < spans.size(); ++i) {
-            spans[i]=meshStorage::MeshProcessor2::mdSpanType(&(data[i][0]),dimensions[0],
+            spans[i]=meshStorage::mdSpanType(&(data[i][0]),dimensions[0],
                                                           dimensions[1]);
         }
     }
@@ -249,6 +255,55 @@ protected:
     std::array<size_t,dimCount> dimensions;
     std::array<FloatType ,dimCount*2> limits;
     meshStorage::MeshProcessor2::meshArr<dimCount+1> data;
+};
+
+
+
+template<>
+class Parser<TestMeshImpl> {
+public:
+    Parser() : vals_() {}
+
+    Parser(int size) : vals_() {}
+
+    friend std::istream &operator>>(std::istream &in, Parser &pp) {
+        using namespace meshStorage;
+        std::string dummy;
+        std::getline(in, dummy);
+        std::getline(in, dummy);
+        std::getline(in, dummy);
+        //pp.vals_=MeshProcessor<T>();
+
+        //todo read coord meshes;
+        auto n=pp.vals_.dimensions;
+
+        pp.vals_.constructMeshes();
+
+        meshStorageType m = pp.vals_.data[0];
+
+        mdSpanType span=mdSpanType
+                (&(m[0]),n[0],n[1]);
+
+        for (int i = 0; i < span.extent(1); ++i) {
+            FloatType temp = 0;
+            in >> temp;
+            for (int j = 0; j < span.extent(0); ++j) {
+                FloatType val;
+                in >> val;
+                m[j*span.extent(1)+i]=val;
+
+                /*span[std::array{j,i}] = val;*/
+            }
+        }
+
+        /*auto ss=meshStorage::MeshProcessor2::transpose(span);*/
+
+        pp.vals_.data[2]=m;
+        return in;
+    }
+
+    TestMeshImpl vals_;
+
 };
 
 TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
@@ -262,10 +317,9 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     std::ifstream in1(subdir + "/meshes.txt");
     std::ifstream in2(subdir + "/solutions.txt");
     in1 >> conf.second[0] >> conf.second[1];
-    Parser<meshStorage::MeshProcessor2> pp1;
+    Parser<TestMeshImpl> pp1;
 
-    pp1.vals_.importConf(conf, true);
-    for (int i = 0; i < 1; ++i) {
+    for (int i = 0; i < avec.size(); ++i) {
         auto NN = 0;
         in1 >> NN;
         EXPECT_EQ(NN, avec[i].size() / 2);
@@ -281,15 +335,19 @@ TEST_F(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
         dd.getFullFunction_(avec[i], ppsol.vals_);//todo превартить в статческий метод
 
 
-        ::meshStorage::MeshProcessor2 mm2;
+       MeshProcessor mm2;
         mm2.importConf(conf, true);
         mm2.generateNoInt(dd.getI2function());//todo попробовать руками всё сдлеать
 
-        /*TestMeshImpl mm;
-        mm.applyFunction(dd.getI2function());*/
+        TestMeshImpl mm;
+        mm.constructMeshes();
+        mm.applyFunction(dd.getI2function());
+        auto r2=meshStorage::unflatten(mm.data[2],mm.dimensions.data());
 
+        auto ress=meshStorage::unflatten(pp1.vals_.spans[2]);
         //todo дело не в функции дело в меше
-        compareArrays<true>(pp1.vals_.getMeshdec()[2], mm2.getMeshdec()[2],double_comparator2,1e-3);
+        compare2dArrays<true>(ress, r2, double_comparator3, 1e-3);
+        compare2dArrays<true>(ress, mm2.getMeshdec()[2], double_comparator3, 1e-3);
 
     }
     in1.close();

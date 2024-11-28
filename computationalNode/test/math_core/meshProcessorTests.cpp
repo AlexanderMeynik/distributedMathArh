@@ -146,7 +146,6 @@ TEST_P(TestMeshGenerate, TestMeshGenerate) {
 
     compareArrays(grid[0],res[0],double_comparator2,anotherErr);
     compareArrays(grid[1],res[1],double_comparator2,anotherErr);
-    //compareArrays(r, result, double_comparator2,anotherErr);
 
 }
 

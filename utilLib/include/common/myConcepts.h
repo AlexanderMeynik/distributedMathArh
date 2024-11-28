@@ -84,6 +84,26 @@ namespace myConcepts {
         return {static_cast<long>(collection.size()), static_cast<long>(collection[0].size())};
     }
 
+    template<typename Container>
+    concept parenthesisOperator = requires(Container Cont,size_t i1,size_t i2)
+    {
+        {Cont(i1,i2)}->std::common_with<typename  Container::value_type>;
+    };
+
+    template<typename Collection>
+    requires HasBracketsNested<Collection>||parenthesisOperator<Collection>
+    auto &getMatrElement(const Collection &collection, size_t i1, size_t i2) {
+        if constexpr(parenthesisOperator<Collection>)
+        {
+            return collection(i1,i2);
+        }
+        else
+        {
+            return collection[i1][i2];
+        }
+    }
+
+
     /**
      * @brief Specializes return method depending on dimensions of Collection
      * @tparam Collection
