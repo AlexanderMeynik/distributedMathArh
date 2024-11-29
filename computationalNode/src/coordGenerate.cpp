@@ -12,7 +12,8 @@
 #include "parallelUtils/OpenmpParallelClock.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/lib.h"
-#include "computationalLib/math_core/MeshProcessor.h"
+#include "computationalLib/math_core/MeshCreator.h"
+#include "iolib/Printers.h"
 
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
@@ -85,8 +86,11 @@ int main(int argc, char *argv[]) {
         coordinates[i] = genr.generateCoordinates(N);
     }
     Dipoles dipoles1(N, coordinates[0]);
-    MeshProcessor mesh = MeshProcessor();//todo do ve need implicit constructor call
-    auto result = mesh.getMeshGliff();
+    using meshStorage::MeshCreator;
+    MeshCreator mesh = MeshCreator();//todo do ve need implicit constructor call
+    mesh.constructMeshes();
+    auto result = mesh.data[2];
+
     Eigen::IOFormat CleanFmt(Eigen::StreamPrecision, 0, "\t", "\n", "", "");
     std::vector<double> totalTime(omp_get_max_threads(), 0);
     std::vector<double> functionTime(omp_get_max_threads(), 0);
@@ -133,15 +137,15 @@ int main(int argc, char *argv[]) {
 
             double stmep2[2] = {omp_get_wtime(), 0};
             //stmep= omp_get_wtime();
-            mesh.generateNoInt(dipoles1.getI2function());
-            auto mesht = mesh.getMeshdec()[2];
+            mesh.applyFunction(dipoles1.getI2function());
+            auto mesht = mesh.data[2];
             stmep2[1] = omp_get_wtime();
             functionTime[tid] += stmep2[1] - stmep2[0];
 
 
 #pragma omp critical
             {
-                addMesh(result, mesht);
+                meshStorage::addMesh(result, mesht);
                 //std::cout<<tid<<"\t"<<functionTime[tid]<<'\t'<<solveTime[tid]<<'\n';
             }
             totalTime[tid] += omp_get_wtime() - stmep[0];
@@ -166,11 +170,11 @@ int main(int argc, char *argv[]) {
             solveTimeS += stmep[1] - stmep[0];
 
             double stmep2[2] = {omp_get_wtime(), 0};
-            mesh.generateNoInt(dipoles1.getI2function());
-            auto mesht = mesh.getMeshdec()[2];
+            mesh.applyFunction(dipoles1.getI2function());
+            auto mesht = mesh.data[2];
             stmep2[1] = omp_get_wtime();
             functionTimeS += stmep2[1] - stmep2[0];
-            addMesh(result, mesht);
+            meshStorage::addMesh(result, mesht);
             totalTimeS += omp_get_wtime() - stmep[0];
         }
         goto printtimes;
@@ -189,11 +193,11 @@ int main(int argc, char *argv[]) {
             solveTimeS += stmep[1] - stmep[0];
 
             double stmep2[2] = {omp_get_wtime(), 0};
-            mesh.generateMeshes(dipoles1.getIfunction());
-            auto mesht = mesh.getMeshdec()[2];
+            mesh.applyIntegrate(dipoles1.getIfunction());//todo check
+            auto mesht = mesh.data[2];
             stmep2[1] = omp_get_wtime();
             functionTimeS += stmep2[1] - stmep2[0];
-            addMesh(result, mesht);
+            meshStorage::addMesh(result, mesht);
             totalTimeS += omp_get_wtime() - stmep[0];
         }
         goto printtimes;
@@ -217,15 +221,15 @@ int main(int argc, char *argv[]) {
 
             double stmep2[2] = {omp_get_wtime(), 0};
             //stmep= omp_get_wtime();
-            mesh.generateMeshes(dipoles1.getIfunction());
-            auto mesht = mesh.getMeshdec()[2];
+            mesh.applyIntegrate(dipoles1.getIfunction());
+            auto mesht = mesh.data[2];
             stmep2[1] = omp_get_wtime();
             functionTime[tid] += stmep2[1] - stmep2[0];
 
 
 #pragma omp critical
             {
-                addMesh(result, mesht);
+                meshStorage::addMesh(result, mesht);
                 //std::cout<<tid<<"\t"<<functionTime[tid]<<'\t'<<solveTime[tid]<<'\n';
             }
             totalTime[tid] += omp_get_wtime() - stmep[0];
@@ -249,10 +253,10 @@ int main(int argc, char *argv[]) {
         auto solution = dipoles1.solve<dipoles::EigenVec>();
         //dipoles1.getFullFunction();
         dipoles1.getFullFunction_(coordinates[i], solution);
-        mesh.generateNoInt(dipoles1.getI2function());
-        auto mesht = mesh.getMeshdec()[2];
+        mesh.applyFunction(dipoles1.getI2function());
+        auto mesht = mesh.data[2];
         {
-            addMesh(result, mesht);
+            meshStorage::addMesh(result, mesht);
         }
         out1 << "Итерация симуляции i = " << i << "\n\n";
         printCoordinates2(out1, coordinates[i]);
@@ -263,10 +267,10 @@ int main(int argc, char *argv[]) {
 
 
         out1 << "\n";
-        mesh.printDec(out1);
+        //mesh.printDec(out1);//todo implement
 
         out1.close();
-        mesh.plotSpherical(getString(dirname, "sim", i, "png"));
+        //mesh.plotSpherical(getString(dirname, "sim", i, "png"));//todo implement
         //std::string name = dirname + "coord_i=" + std::to_string(i) + ".png";
         plotCoordinates(getString(dirname, "coord", i, "png"), aRange, coordinates[i]);
 
@@ -286,17 +290,36 @@ int main(int argc, char *argv[]) {
               << '\t' << functionTimeS << '\t' <<
               totalTimeS << '\t' << N << '\t';
 
-    for (int i = 0; i < result.size(); ++i) {
+    /*for (int i = 0; i < result.size(); ++i) {
         for (int j = 0; j < result[0].size(); ++j) {
             result[i][j] /= Nsym;
         }
-    }
+    }*/
+    result/=Nsym;
     std::ofstream out1(dirname + "avg.txt");
     out1 << "Значение  целевой функции усреднённой по " << Nsym << " симуляциям "
          << "для конфигураций, состоящих из " << N << " диполей\n";
-    mesh.setMesh3(result);
-    mesh.printDec(out1);
-    mesh.plotSpherical(dirname + "avg.png");
+
+    mesh.data[2]=result;
+    /*mesh.setMesh3(result);*/
+    //mesh.printDec(out1);//todo implement
+    mesh.plotAndSave(dirname + "avg.png",[&mesh](auto filename)
+    {
+        using namespace meshStorage;
+        auto ax = matplot::gca();
+        ax->surf(unflatten(mesh.data[0],mesh.dimensions.data()),
+                 unflatten(mesh.data[1],mesh.dimensions.data()),
+                 unflatten(mesh.data[2],mesh.dimensions.data()))
+                ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+        ax->view(213, 22);
+        ax->xlim({-40, 40});
+        ax->ylim({-40, 40});
+        ax->zlim({0, 90});
+        //todo spherical transformation
+
+        matplot::save(filename);
+        ax.reset();
+    });
     out1.close();
 
     return 0;

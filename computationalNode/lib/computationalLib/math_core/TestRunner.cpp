@@ -1,5 +1,5 @@
 #include "computationalLib/math_core/TestRunner.h"
-
+#include "iolib/Printers.h"
 void TestRunner::createSubDirectory(const string &dirname, const string &subdirectory) {
     if (!std::filesystem::exists("results/")) {
         std::filesystem::create_directory("results/");
@@ -93,22 +93,22 @@ void TestRunner::generateFunction() {
     using dipoles::Dipoles;
 
     Dipoles d1;
-    MeshProcessor mesh;
-    auto result = mesh.getMeshGliff();
+    meshStorage::MeshCreator mesh;
+    mesh.constructMeshes();
+    auto result = mesh.data[2];
     //clocks_[2].tik();
     if (inner_state == state_t::openmp_new) {
 #pragma omp parallel for default(none) shared(Nsym_, solutions_, result) firstprivate(d1, mesh)
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.getFullFunction_(coords_[i], solutions_[i]);
 
-            mesh.generateNoInt(d1.getI2function());
+            mesh.applyFunction(d1.getI2function());
 
-            mesh.generateNoInt(d1.getI2function());
-            auto mesht = mesh.getMeshdec()[2];
+            auto mesht = mesh.data[2];
 
 #pragma omp critical
             {
-                addMesh(result, mesht);
+                meshStorage::addMesh(result, mesht);
             }
         }
 
@@ -116,32 +116,33 @@ void TestRunner::generateFunction() {
         for (int i = 0; i < Nsym_.value(); ++i) {
             d1.getFullFunction_(coords_[i], solutions_[i]);
 
-            mesh.generateNoInt(d1.getI2function());
-            auto mesht = mesh.getMeshdec()[2];
+            mesh.applyFunction(d1.getI2function());
+            auto mesht = mesh.data[2];
 
-            addMesh(result, mesht);
+            meshStorage::addMesh(result, mesht);
 
             auto filename = getString(this->dir_.value(), "sim", i, "txt");
             auto fout = openOrCreateFile(filename);
-            mesh.printDec(fout);
+            /*mesh.printDec(fout);//todo redo
             mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));//todo переделать
-            //plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
+            *///plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
 
             fout.close();
         }
 
-        for (int i = 0; i < result.size(); ++i) {
+        /*for (int i = 0; i < result.size(); ++i) {
             for (int j = 0; j < result[0].size(); ++j) {
                 result[i][j] /= Nsym_.value();
             }
-        }
+        }*/
+        result/=Nsym_.value();
 
         std::ofstream out1(dir_.value() + "avg.txt");
         out1 << "Значение  целевой функции усреднённой по " << Nsym_.value() << " симуляциям "
              << "для конфигураций, состоящих из " << N_.value() << " диполей\n";
-        mesh.setMesh3(result);
-        mesh.printDec(out1);
-        mesh.plotSpherical(dir_.value() + "avg.png");
+        mesh.data[2]=result;
+       /* mesh.printDec(out1);
+        mesh.plotSpherical(dir_.value() + "avg.png");*///todo redo
         out1.close();
 
     }

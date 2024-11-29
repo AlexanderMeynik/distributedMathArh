@@ -9,7 +9,7 @@
 
 
 #include "computationalLib/math_core/Dipoles.h"
-#include "computationalLib/math_core/MeshProcessor.h"
+#include "computationalLib/math_core/MeshCreator.h"
 #include "CalculationStep.h"
 
 
@@ -160,7 +160,7 @@ namespace inter {
             std::vector<std::vector<FloatType >> coords = dat->getdat(this->prev_->prev_->to_string());
             std::vector<std::vector<FloatType >> solutions = dat->getdat(this->prev_->to_string());
             dipoles::Dipoles d1;
-            MeshProcessor mh;
+            mMeshProcessor2 mh;
             for (int i = 0; i < Nsym; ++i) {
                 d1.getFullFunction_(coords[i], solutions[i]);
                 mh.generateNoInt(d1.getI2function());

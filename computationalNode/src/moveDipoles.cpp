@@ -13,9 +13,9 @@
 #include <matplot/matplot.h>
 
 #include "common/lib.h"
-#include "computationalLib/math_core/MeshProcessor.h"
+#include "computationalLib/math_core/MeshCreator.h"
 #include "computationalLib/math_core/Dipoles.h"
-
+#include "iolib/Printers.h"
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
 
@@ -42,13 +42,14 @@ int main(int argc, char *argv[]) {
 
     auto solut1 = d.solve<EigenVec>();
 
-    MeshProcessor mmesh;
+    meshStorage::MeshCreator mmesh;
 
     d.getFullFunction_(coordinates, solut1);
     solut1[0] = 5;
-    mmesh.generateNoInt(d.getI2function());
-    auto prevMesh = mmesh.getMeshdec();
-    prevMesh[2][0][0] = 10000000000;
+    mmesh.constructMeshes();
+    mmesh.applyFunction(d.getI2function());
+    auto prevMesh = mmesh.data;
+    prevMesh[2][0] = 10000000000;
     double multip = start_multip;
     double res = 5;
     while (i < 30 &&
@@ -60,14 +61,14 @@ int main(int argc, char *argv[]) {
         auto solut2 = d.solve<EigenVec>();
 
         d.getFullFunction_(coordinates, solut2);
-        mmesh.generateMeshes(d.getIfunction());//todo not working since inner function is bad
+        mmesh.applyIntegrate(d.getIfunction());//todo not working since inner function is bad
 
         //printToFile<double>(N, coordinates, d, dirname,i,2);
         //когда разницы между ними почти не будет оставновка
         //функция для подсчёта нормы от разницы 2 мешей принимет vector<vector<Tr>>&
-        mmesh.printDec(out);
-        std::vector<std::vector<double>> t1 = prevMesh[2];
-        std::vector<std::vector<double>> t2 = mmesh.getMeshdec()[2];
+        //mmesh.printDec(out);//todo print
+        auto t1 = prevMesh[2];
+        auto t2 = mmesh.data[2];
         res = (solut1.head(N) - solut2.head(N)).norm() +
               (solut1.tail(N) - solut2.tail(N)).norm();//getMeshDiffNorm(t1,t2);
         out << res << "\n\n\n\n\n";
@@ -79,25 +80,26 @@ int main(int argc, char *argv[]) {
         //fout<<coordinates[0][1]<<"\t"<<coordinates[1][1]<<"\n";
         fout << "Номер итерации\tНорма разницы векторов решений\n";
         fout << i << "\t\t" << res << "\n";
-        mmesh.plotSpherical(dirname + "out" + std::to_string(N) + "_iter" + std::to_string(i) + ".png");
+        //mmesh.plotSpherical(dirname + "out" + std::to_string(N) + "_iter" + std::to_string(i) + ".png");
         ++i;
+        //todo plot
 
         d.printMatrix(fout, CleanFmt);
         printCoordinates2(fout, coordinates);
         printSolution(fout, solut2, CleanFmt);
 
 
-        mmesh.printDec(fout);
+        //mmesh.printDec(fout);
 
         coordinates[0][1] = coordinates[0][1] + multip * l;
         coordinates[1][1] = coordinates[1][1] + multip * l;
         solut1 = solut2;
-        prevMesh = mmesh.getMeshdec();
+        prevMesh = mmesh.data;
         if (i % 4) {
             multip *= 2;
         }
         if (i == 29) {
-            show();
+            matplot::show();
         }
 
         fout.close();

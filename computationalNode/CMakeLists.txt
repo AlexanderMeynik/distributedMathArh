@@ -58,8 +58,10 @@ file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
         "lib/iolib/*cpp"
 )
 add_library(io_lib ${iolib_files})
-target_link_libraries(io_lib PUBLIC math_core_lib)
 
+
+target_link_libraries(io_lib PUBLIC math_core_lib)
+target_include_directories(io_lib PUBLIC ../mdspan/include)
 option(BUILD_DOC "Build documentation" OFF)
 if (BUILD_DOC)
     add_subdirectory(doc)

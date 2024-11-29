@@ -6,9 +6,10 @@
 #include <eigen3/Eigen/Dense>
 #include <matplot/matplot.h>
 
-#include "computationalLib//math_core/MeshProcessor.h"
-#include "computationalLib//math_core/Dipoles.h"
+#include "computationalLib/math_core/MeshCreator.h"
+#include "computationalLib/math_core/Dipoles.h"
 #include "common/lib.h"
+#include "iolib/Printers.h"
 
 //template <class Tr>
 std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, double b = 0, bool center = false) {
@@ -23,7 +24,7 @@ std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, 
     }
 
 
-    std::vector<long double> x_1 = myLinspace(lims[0] * l, lims[1] * l, funccount);
+    std::vector<long double> x_1 = meshStorage::myLinspace(lims[0] * l, lims[1] * l, funccount);
     //std::vector<double>y= myLinspace(-lim[0]*l,-lim[1]*l,functiont);
 
 
@@ -102,7 +103,7 @@ triangularGrid(double l, double r, double a = 0, double b = 0, bool center = fal
         //l_t[1];
     }
     int funccount = std::abs(l_t[1] - l_t[0]) + 1;
-    std::vector<double> x1 = myLinspace(l_t[0] * l, l_t[1] * l, funccount);
+    std::vector<double> x1 = meshStorage::myLinspace(l_t[0] * l, l_t[1] * l, funccount);
     std::vector<double> y1(funccount, 0);
 
     std::vector<double> x(funccount * funccount, 0);
@@ -172,16 +173,17 @@ int main(int argc, char *argv[]) {
 
     printSolutionFormat1(out, solv);
 
-    MeshProcessor meshProcessor;
+    meshStorage::MeshCreator meshProcessor;
+    meshProcessor.constructMeshes();
     d.getFullFunction_(coords, solv);
 
-    meshProcessor.generateNoInt(d.getI2function());
+    meshProcessor.applyFunction(d.getI2function());
 
-    meshProcessor.plotSpherical("function" + ss.str() + ".png");
-
+   // meshProcessor.plotSpherical("function" + ss.str() + ".png");
+    //todo copy from generatoirs
 
     printCoordinates2(out, coords);
-    meshProcessor.printDec(out);
+    //meshProcessor.printDec(out);//todo redo
     out.close();
 
 }

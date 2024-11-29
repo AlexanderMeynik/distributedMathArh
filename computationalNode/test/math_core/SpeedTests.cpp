@@ -5,8 +5,8 @@
 #include "common/lib.h"
 /*#include "computationalLib/math_core/math_core.h"*/
 #include "computationalLib/math_core/Dipoles.h"
-#include "computationalLib/math_core/MeshProcessor2.h"
-#include "computationalLib/math_core/MeshProcessor.h"
+#include "computationalLib/math_core/MeshCreator.h"
+#include "iolib/Parsers.h"
 #include "../GoogleCommon.h"
 
 #include <gtest/gtest.h>
