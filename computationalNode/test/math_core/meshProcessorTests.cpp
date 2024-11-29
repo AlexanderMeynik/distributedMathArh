@@ -12,10 +12,7 @@
 
 using namespace testCommon;
 
-template<typename TestSuite>
-auto firstValueTuplePrinter(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
-    return get<0>(info.param);
-}
+
 
 
 class MeshCommonFunctionsTests : public ::testing::Test {

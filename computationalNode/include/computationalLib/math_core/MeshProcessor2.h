@@ -6,14 +6,14 @@
 #include <iosfwd>
 #include <vector>
 #include <valarray>
+#include <optional>
 #include "mdspan/mdspan.hpp"
 
 #include <matplot/matplot.h>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 
-#include "iolib/Printers.h"
+/*#include "iolib/Printers.h"*/
 #include "computationalLib/math_core/dipolesCommon.h"
-#include "iolib/Parsers.h"
 
 
 
@@ -26,7 +26,10 @@ namespace meshStorage {
     using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;
     using mdSpanType = Kokkos::mdspan<FloatType, etx>;
 
-    using namespace matplot;
+    template<size_t N>
+    using meshArr=std::array<meshStorageType,N>;
+
+    using namespace matplot;//todo move
 
     /**
      *
@@ -157,85 +160,10 @@ namespace meshStorage {
 
         return res;
     }
-
-
-    class MeshProcessor2 {
-    public:
-
-        template<size_t N>
-        using meshArr = std::array<meshStorageType, N>;
-
-
-
-        typedef dipoles::integrableFunction integrableFunction;
+    /**
+     *  typedef dipoles::integrableFunction integrableFunction;
         typedef dipoles::directionGraph directionGraph;
-
-        MeshProcessor2() {
-            initCoordMeshes();
-        }
-
-        using confType = std::pair<std::array<size_t, 2>, std::array<FloatType, 2>>;
-
-        confType export_conf() {
-            return {{this->nums[0], this->nums[1]},
-                    {this->steps[0], this->steps[1]}};
-        }
-
-        void importConf(const confType &conf, bool precompute = false) {
-            if (precompute) {
-                this->setSteps(conf.second);
-                return;
-            }
-            this->nums[0] = conf.first[0];
-            this->nums[1] = conf.first[1];
-            this->steps[0] = conf.second[0];
-            this->steps[1] = conf.second[1];
-            initCoordMeshes();
-        }
-
-        void setSteps(const std::array<FloatType, 2> &elems) {
-            steps[0] = elems[0];
-            steps[1] = elems[1];
-            nums[0] = (philims[1] - philims[0]) / (steps[0]) + 1;
-            nums[1] = (thelims[1] - thelims[0]) / (steps[1]) + 1;
-            initCoordMeshes();
-        }
-
-        void setNums(const std::array<size_t, 2> &elems) {
-            nums[0] = elems[0];
-            nums[1] = elems[1];
-            steps[0] = (philims[1] - philims[0]) / (nums[0] - 1);
-            steps[1] = (thelims[1] - thelims[0]) / (nums[1] - 1);
-            initCoordMeshes();
-        }
-
-        const meshArr<3> &getMeshdec() const {
-            return meshdec;
-        }
-
-        //todo dimensions of this thing
-        meshStorageType getMeshGliff() {
-            return meshStorageType(this->nums[1] * this->nums[0]);
-        }
-
-        const meshArr<3> &getMeshsph() const {
-            return meshsph;
-        }
-
-        void generateMeshes(const integrableFunction &func);
-
-        void generateNoInt(const directionGraph &func);
-
-        void plotSpherical(std::string filename);
-
-        void printDec(std::ostream &out);
-
-        void setMesh3(meshStorageType &val);
-        const auto& getNums()
-        {
-            return nums;
-        }
-        static meshStorageType transpose(mdSpanType&tt)
+         static meshStorageType transpose(mdSpanType&tt)
         {
             auto rows=tt.extent(0);
             auto cols=tt.extent(1);
@@ -250,34 +178,101 @@ namespace meshStorage {
             }
             return mesh;
         }
-    private:
 
 
-        void initCoordMeshes();
 
-        void sphericalTransformation();
+        void MeshProcessor2::sphericalTransformation() {
+        this->meshsph[0] = this->meshdec[0];
+        this->meshsph[1] = this->meshdec[1];
+        this->meshsph[2] = this->meshdec[2];
 
-        void updateSpans() {
-            for (size_t i = 0; i < meshdec.size(); ++i) {
-                meshDecSpans[i] = mdSpanType((FloatType *) &(meshdec[0]), nums[1], nums[0]);
-                meshSphSpans[i] = mdSpanType((FloatType *) &(meshsph[0]), nums[1], nums[0]);
-            }
+        this->meshsph[0] = this->meshsph[2] * sin(this->meshdec[1]) * cos(this->meshdec[0]);
+        this->meshsph[1] = this->meshsph[2] * sin(this->meshdec[1]) * sin(this->meshdec[0]);
+        this->meshsph[2] = this->meshsph[2] * cos(this->meshdec[1]);
+
+    }
+
+     void MeshProcessor2::printDec(std::ostream &out) {
+        out << "Функция I(phi,th)\n";
+        out << "phi\\th\t\t";
+        for (size_t i = 0; i < meshDecSpans[2].extent(0) - 1; ++i) {
+            out << scientificNumber(meshDecSpans[1][std::array{i,0UL}], 5) << '\t';
         }
 
-        meshArr<3> meshdec;
-        meshArr<3> meshsph;
-        std::array<mdSpanType, 3> meshDecSpans;
-        std::array<mdSpanType, 3> meshSphSpans;
+        out << scientificNumber(meshDecSpans[1][std::array{(meshDecSpans[2].extent(0) - 1),1UL}], 5)
+        << '\n';
+
+        for (size_t i = 0; i < meshDecSpans[2].extent(1); ++i) {
+            auto phi = meshDecSpans[0][std::array{0UL,i}];
+            out << scientificNumber(phi, 5) << "\t";
+            for (size_t j = 0; j < meshDecSpans[2].extent(0) - 1; ++j) {
+                out << scientificNumber(meshDecSpans[2][std::array{j,i}], 5) << "\t";
+            }
+            out << scientificNumber(meshDecSpans[2][std::array{meshdec[2].size() - 1,i}], 5) << "\n";
+        }
+    }
+
+     void MeshProcessor2::plotSpherical(std::string filename) {
+        auto ax = gca();
+        ax->surf(unflatten(meshsph[0],nums),
+                 unflatten(meshsph[1],nums),
+                 unflatten(meshsph[2],nums))
+                ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+        ax->view(213, 22);
+        ax->xlim({-40, 40});
+        ax->ylim({-40, 40});
+        ax->zlim({0, 90});
+
+        matplot::save(filename);
+        ax.reset();
+    }
+     */
 
 
-        FloatType philims[2] = {0, M_PI * 2};
-        FloatType thelims[2] = {0, M_PI_2};
-        FloatType steps[2] = {M_PI / 12, M_PI / 12};
-        size_t nums[2] = {static_cast<size_t >((philims[1] - philims[0]) / (steps[0])) + 1,
-                          static_cast<size_t >((thelims[1] - thelims[0]) / (steps[1])) + 1};
-        static constexpr const FloatType rr = 2 * M_PI / params::omega;
-        static constexpr const FloatType step = M_PI / 12;
+    static const  size_t dimCount=2;
+    static constexpr inline const FloatType rr = 2 * M_PI / params::omega;
+
+
+    /**
+     * @brief Class that  handles 3d mesh creation and parameters management
+     */
+    class MeshCreator
+    {
+    public:
+        MeshCreator(): dimensions({7, 25}), limits({0, M_PI_2, 0, M_PI * 2}),
+                       data({std::valarray<FloatType>(dimensions[0]*dimensions[1]),
+                              std::valarray<FloatType>(dimensions[0]*dimensions[1]),
+                              std::valarray<FloatType>(dimensions[0]*dimensions[1])}){
+        }
+
+        void constructMeshes(const std::optional<std::array<size_t,2>> dimenstion=std::nullopt,
+                             const std::optional<std::array<FloatType ,4>> limit=std::nullopt);//todo test
+
+        meshArr<dimCount+1> sphericalTransformation();
+
+        void applyFunction(const dipoles::directionGraph&plot);
+
+        void applyIntegrate(const dipoles::integrableFunction&func,FloatType a=0,FloatType b=rr)
+        {
+            this->applyFunction([&func, &a,b](FloatType x, FloatType y) {
+                return integrateLambdaForOneVariable<61>(func, y, x, a, b);
+            });
+
+        }
+
+        std::array<meshStorage::mdSpanType,3> spans;
+        void computeViews(int val=-1);
+
+        void plotAndSave(const std::string&filename,const std::function<void(const std::string&filename)>&plotCallback)
+        {
+            plotCallback(filename);
+        }
+
+        std::array<size_t,dimCount> dimensions;
+        std::array<FloatType ,dimCount*2> limits;
+        meshArr<dimCount+1> data;
     };
+
 
 
     template<template<typename ...> typename container, typename T, bool end>

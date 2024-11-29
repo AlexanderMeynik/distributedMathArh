@@ -17,6 +17,8 @@
 
 #include <cassert>
 
+#include "computationalLib/math_core/MeshProcessor2.h"
+
 char parseChar(std::istream &in);
 
 int getConfSize(std::string &filename);
@@ -192,7 +194,7 @@ public:
 
     Container vals_;
 };
-
+using meshStorage::MeshCreator;
 template<typename T>
 class Parser<Eigen::Vector<T, -1>> {
 public:
@@ -268,6 +270,57 @@ public:
     Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic> vals_;
     int size_;
 };
+
+
+
+
+template<>
+class Parser<MeshCreator> {
+public:
+    Parser() : vals_() {}
+
+    Parser(int size) : vals_() {}
+
+    friend std::istream &operator>>(std::istream &in, Parser &pp) {
+        using namespace meshStorage;
+        std::string dummy;
+        std::getline(in, dummy);
+        std::getline(in, dummy);
+        std::getline(in, dummy);
+        //pp.vals_=MeshProcessor<T>();
+
+        //todo read coord meshes;
+        auto n=pp.vals_.dimensions;
+
+        pp.vals_.constructMeshes();
+
+        meshStorageType m = pp.vals_.data[0];
+
+        mdSpanType span=mdSpanType
+                (&(m[0]),n[0],n[1]);
+
+        for (int i = 0; i < span.extent(1); ++i) {
+            FloatType temp = 0;
+            in >> temp;
+            for (int j = 0; j < span.extent(0); ++j) {
+                FloatType val;
+                in >> val;
+                m[j*span.extent(1)+i]=val;
+
+                /*span[std::array{j,i}] = val;*/
+            }
+        }
+
+        /*auto ss=meshStorage::MeshProcessor2::transpose(span);*/
+
+        pp.vals_.data[2]=m;
+        return in;
+    }
+
+    MeshCreator vals_;
+
+};
+
 
 
 #endif //DIPLOM_PARSERS_H

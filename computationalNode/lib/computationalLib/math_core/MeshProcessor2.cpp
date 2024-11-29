@@ -26,82 +26,58 @@ namespace meshStorage
     }
 
 
-
-
-    void MeshProcessor2::generateMeshes(const MeshProcessor2::integrableFunction &func) {
-        FloatType rr1 = this->rr;
-        //todo inverted function argument order
-        meshdec[2] = meshStorage::computeFunction(meshdec[0], meshdec[1], [&func, &rr1](FloatType x, FloatType y) {
-            return meshStorage::integrateLambdaForOneVariable<61>(func, y, x, 0, rr1);
-        });
-
-
-        sphericalTransformation();
-        updateSpans();
-    }
-
-    void MeshProcessor2::generateNoInt(const MeshProcessor2::directionGraph &func) {
-        meshdec[2] = computeFunction(meshdec[0], meshdec[1], [&func](FloatType x,FloatType y){return func(y,x);});
-        sphericalTransformation();
-        updateSpans();
-    }
-
-    void MeshProcessor2::plotSpherical(std::string filename) {
-        auto ax = gca();
-        ax->surf(unflatten(meshsph[0],nums),
-                 unflatten(meshsph[1],nums),
-                 unflatten(meshsph[2],nums))
-                ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
-        ax->view(213, 22);
-        ax->xlim({-40, 40});
-        ax->ylim({-40, 40});
-        ax->zlim({0, 90});
-
-        matplot::save(filename);
-        ax.reset();
-    }
-
-    void MeshProcessor2::printDec(std::ostream &out) {
-        out << "Функция I(phi,th)\n";
-        out << "phi\\th\t\t";
-        for (size_t i = 0; i < meshDecSpans[2].extent(0) - 1; ++i) {
-            out << scientificNumber(meshDecSpans[1][std::array{i,0UL}], 5) << '\t';
+    meshArr<3> MeshCreator::sphericalTransformation() {
+        meshArr<dimCount+1> res;
+        for (size_t i = 0; i < dimCount+1; ++i) {
+            res[i]=data[i];
         }
 
-        out << scientificNumber(meshDecSpans[1][std::array{(meshDecSpans[2].extent(0) - 1),1UL}], 5)
-        << '\n';
 
-        for (size_t i = 0; i < meshDecSpans[2].extent(1); ++i) {
-            auto phi = meshDecSpans[0][std::array{0UL,i}];
-            out << scientificNumber(phi, 5) << "\t";
-            for (size_t j = 0; j < meshDecSpans[2].extent(0) - 1; ++j) {
-                out << scientificNumber(meshDecSpans[2][std::array{j,i}], 5) << "\t";
-            }
-            out << scientificNumber(meshDecSpans[2][std::array{meshdec[2].size() - 1,i}], 5) << "\n";
+        res[0] = this->data[2] * sin(this->data[1]) * cos(this->data[0]);
+        res[1] = this->data[2] * sin(this->data[1]) * sin(this->data[0]);
+        res[2] = this->data[2] * cos(this->data[1]);
+        return res;
+    }
+
+    void MeshCreator::applyFunction(const dipoles::directionGraph &plot) {
+        data[2]=meshStorage::computeFunction(data[0],data[1],plot);
+        computeViews(2);
+    }
+
+    void MeshCreator::constructMeshes(const std::optional<std::array<size_t, 2>> dimenstion,
+                                      const std::optional<std::array<FloatType, 4>> limit) {
+        if(dimenstion.has_value())
+        {
+            this->dimensions=dimenstion.value();
         }
+        if(limit.has_value())
+        {
+            this->limits=limit.value();
+        }
+
+        auto phi=meshStorage::myLinspace<std::valarray>(limits[2],limits[3],dimensions[1]);
+        auto theta=meshStorage::myLinspace<std::valarray>(limits[0],limits[1],dimensions[0]);
+        std::array<std::valarray<FloatType>,dimCount> coords;
+        for (size_t i = 0; i <dimCount ; ++i) {
+            coords[i]=meshStorage::myLinspace<std::valarray>(limits[2*i],limits[2*i+1],dimensions[i]);
+        }
+
+        auto rr=meshStorage::myMeshGrid(phi,theta);
+        data[0]=rr[0];
+        data[1]=rr[1];
+        computeViews();
     }
 
-    void MeshProcessor2::setMesh3(meshStorageType &val) {
-        meshdec[2]=val;
-        sphericalTransformation();
-        updateSpans();
-    }
-
-    void MeshProcessor2::initCoordMeshes() {
-        std::array<meshStorageType , 2> meshgrid1 = myMeshGrid(
-                myLinspace(philims[0], philims[1], nums[0]), myLinspace(thelims[0], thelims[1], nums[1]));
-        meshdec[0] = meshgrid1[0];
-        meshdec[1] = meshgrid1[1];
-    }
-
-    void MeshProcessor2::sphericalTransformation() {
-        this->meshsph[0] = this->meshdec[0];
-        this->meshsph[1] = this->meshdec[1];
-        this->meshsph[2] = this->meshdec[2];
-
-        this->meshsph[0] = this->meshsph[2] * sin(this->meshdec[1]) * cos(this->meshdec[0]);
-        this->meshsph[1] = this->meshsph[2] * sin(this->meshdec[1]) * sin(this->meshdec[0]);
-        this->meshsph[2] = this->meshsph[2] * cos(this->meshdec[1]);
-
+    void MeshCreator::computeViews(int val) {
+        if(val!=-1)
+        {
+            spans[val]=meshStorage::mdSpanType(&(data[val][0]),dimensions[0],
+                                               dimensions[1]);
+            return;
+        }
+        for (size_t i = 0; i < spans.size(); ++i) {
+            spans[i]=meshStorage::mdSpanType(&(data[i][0]),dimensions[0],
+                                             dimensions[1]);
+        }
     }
 }

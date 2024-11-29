@@ -12,6 +12,10 @@
 #include "common/printUtils.h"
 #include "common/myConcepts.h"
 
+
+/*template <typename Printable>*///todo printer
+
+
 template<class T>
 void printSolutionFormat1(std::ostream &out, std::vector<T> &solution) {
     Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> solution_(solution.data(), solution.size());

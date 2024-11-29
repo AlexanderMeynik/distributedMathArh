@@ -5,6 +5,7 @@
 #include <chrono>
 #include <type_traits>
 #include <concepts>
+#include <tuple>
 
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
@@ -18,12 +19,43 @@ using namespace myConcepts;
 namespace testCommon {
     constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
 
+
+
+
     template<typename T>
     bool is_near(T val1, T val2, T abs_error) {
         const T diff = std::abs(val1 - val2);
         return  diff <= abs_error;
     }
 
+
+    template<typename TestSuite,typename ...Args>
+    auto firstValueTuplePrinter(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
+        return get<0>(info.param);
+    }
+
+
+    template<class TupType, size_t... I>
+    void print(std::ostream &out,const TupType& _tup, std::index_sequence<I...>,const char* delim=", ",const char* start="(",const char* end=")")
+    {
+        out << start;
+        (..., (out << (I == 0? "" : delim) << std::get<I>(_tup)));
+        out << end;
+    }
+
+    template<class... T>
+    void print (std::ostream &out,const std::tuple<T...>& _tup,const char* delim=", ",const char* start="(",const char* end=")")
+    {
+        print(out,_tup, std::make_index_sequence<sizeof...(T)>(),delim,start,end);
+    }
+
+    template<typename TestSuite>
+    auto tupleToString(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
+        std::stringstream result;
+        print(result,info.param,"_","","");
+
+        return result.str();
+    }
 
     template<bool Expect=false,HasSizeMethod T1, HasSizeMethod T2>
     requires valueTyped<T1>&&valueTyped<T2>
