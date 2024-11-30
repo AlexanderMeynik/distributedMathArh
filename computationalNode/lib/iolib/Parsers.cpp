@@ -1,6 +1,6 @@
 #include "iolib/Parsers.h"
 
-#include "computationalLib/math_core/MeshProcessor2.h"
+#include "computationalLib/math_core/MeshCreator.h"
 #include "computationalLib/math_core/dipolesCommon.h"
 
 int getConfSize(std::string &filename) {

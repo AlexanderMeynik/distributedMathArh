@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DIPLOM_MESHPROCESSOR2_H
-#define DIPLOM_MESHPROCESSOR2_H
+#ifndef DIPLOM_MESHCREATOR_H
+#define DIPLOM_MESHCREATOR_H
 
 
 #include <iosfwd>
@@ -321,4 +321,4 @@ namespace meshStorage {
 
 
 
-#endif //DIPLOM_MESHPROCESSOR2_H
+#endif //DIPLOM_MESHCREATOR_H

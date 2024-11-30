@@ -17,7 +17,7 @@
 
 #include <cassert>
 
-#include "computationalLib/math_core/MeshProcessor2.h"
+#include "computationalLib/math_core/MeshCreator.h"
 
 char parseChar(std::istream &in);
 

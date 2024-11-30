@@ -3,7 +3,7 @@
 #include <limits>
 
 #include "common/lib.h"
-#include "computationalLib/math_core/MeshProcessor2.h"
+#include "computationalLib/math_core/MeshCreator.h"
 #include "../GoogleCommon.h"
 
 #include <algorithm>
