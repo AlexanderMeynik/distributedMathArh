@@ -54,6 +54,11 @@ target_link_libraries(interfaces_lib PUBLIC parallelLib)
 target_link_libraries(interfaces_lib PUBLIC math_core_lib)
 
 
+
+target_include_directories(interfaces_lib PUBLIC ../mdspan/include)
+target_include_directories(interfaces_lib PUBLIC include)
+target_include_directories(interfaces_lib PUBLIC ../utilLib/include)
+
 file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
         "lib/iolib/*cpp"
 )

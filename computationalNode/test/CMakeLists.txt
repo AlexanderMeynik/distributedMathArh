@@ -1,4 +1,3 @@
-#project(Google_tests)
 #todo remake
 #todo fix debug coverage
 set(CMAKE_CXX_STANDARD 20)

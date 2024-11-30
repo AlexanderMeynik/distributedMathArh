@@ -8,6 +8,7 @@ target_link_libraries(main PRIVATE -lssl -lcrypto)
 
 include_directories(../computationalNode/include)
 include_directories(../utilLib/include)
+include_directories(../mdspan/include)
 file(GLOB services CONFIGURE_DEPENDS
         "*service/*.h"
         "service/*.cpp"

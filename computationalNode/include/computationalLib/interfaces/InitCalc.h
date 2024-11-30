@@ -160,10 +160,11 @@ namespace inter {
             std::vector<std::vector<FloatType >> coords = dat->getdat(this->prev_->prev_->to_string());
             std::vector<std::vector<FloatType >> solutions = dat->getdat(this->prev_->to_string());
             dipoles::Dipoles d1;
-            mMeshProcessor2 mh;
+            meshStorage::MeshCreator mh;
+            mh.constructMeshes();
             for (int i = 0; i < Nsym; ++i) {
                 d1.getFullFunction_(coords[i], solutions[i]);
-                mh.generateNoInt(d1.getI2function());
+                mh.applyFunction(d1.getI2function());
             }
             //todo std::vector<std::vector<double>> to std;:vector
 
