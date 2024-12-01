@@ -9,9 +9,8 @@
 #include <random>
 #include <functional>
 
-
+//todo redo everyting
 namespace generators {
-    //todo млжет тогда вектора поделать
     template<typename T, template<typename> typename DISTRIBUTION, typename... Args>
     std::function<Eigen::Vector<T, Eigen::Dynamic>(size_t N, Args ...)> generalDistribution = [](size_t N_,
                                                                                                  Args ... args) {

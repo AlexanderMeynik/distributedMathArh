@@ -18,19 +18,26 @@
 #include <cassert>
 
 #include "computationalLib/math_core/MeshCreator.h"
+#include "common/myConcepts.h"
 
 char parseChar(std::istream &in);
 
 int getConfSize(std::string &filename);
 
-template<class T, template<typename> typename Container>
-std::vector<Container<T>> parseConf2(std::string &filename) {
+template<typename Container>
+requires HasBracketsNested<Container>
+Container parseDipoleCoordinates(const std::string &filename) {
+    using val=typename Container::value_type::value_type;
     std::ifstream in(filename);
     char c = parseChar(in);
-    assert(c == 'C');
+    if(c!='C')
+    {
+        throw std::invalid_argument("Missing letter \'C\' at start of configuration file");
+    }
+
     int Nconf;
     in >> Nconf;
-    std::vector<Container<T>> avec(Nconf);
+    Container avec(Nconf);
     std::vector<int> Nvec(Nconf);
     for (int j = 0; j < Nconf; ++j) {
 
@@ -38,13 +45,13 @@ std::vector<Container<T>> parseConf2(std::string &filename) {
         in >> N;
         Nvec[j] = N;
         avec[j].resize(2 * N);
-        //avec[j] = Container<T>(2*N,0);
+
 
         if (in.peek() == 'l') {
             in.get();
-            T lim[4];
+            val lim[4];
             in >> lim[0] >> lim[1] >> lim[2] >> lim[3];
-            T step[2] = {(lim[1] - lim[0]) / (N - 1), (lim[3] - lim[2]) / (N - 1)};
+            val step[2] = {(lim[1] - lim[0]) / (N - 1), (lim[3] - lim[2]) / (N - 1)};
             for (int i = 0; i < N; ++i) {
 
                 avec[j][i] = lim[0];
@@ -57,10 +64,10 @@ std::vector<Container<T>> parseConf2(std::string &filename) {
             in.get();
             in >> N1;
             int N2 = N / N1;
-            T lim[4];
+            val lim[4];
             in >> lim[0] >> lim[1] >> lim[2] >> lim[3];
-            T start[2] = {lim[0], lim[2]};
-            T step[2] = {(lim[1] - lim[0]) / (N1 - 1), (lim[3] - lim[2]) / (N2 - 1)};
+            val start[2] = {lim[0], lim[2]};
+            val step[2] = {(lim[1] - lim[0]) / (N1 - 1), (lim[3] - lim[2]) / (N2 - 1)};
             for (int i = 0; i < N1; ++i) {
                 for (int k = 0; k < N2; ++k) {
                     avec[j][i * N2 + k] = lim[0];
@@ -91,75 +98,10 @@ std::vector<Container<T>> parseConf2(std::string &filename) {
     return avec;
 }
 
-template<class T>
-std::vector<std::array<std::vector<T>, 2>> parseConf(std::string &filename) {
-    std::ifstream in(filename);
-    char c = parseChar(in);
-    assert(c == 'C');
-    int Nconf;
-    in >> Nconf;
-    std::vector<std::array<std::vector<T>, 2>> avec(Nconf);
-    std::vector<int> Nvec(Nconf);
-    for (int j = 0; j < Nconf; ++j) {
-
-        int N;
-        in >> N;
-        Nvec[j] = N;
-        avec[j] = std::array<std::vector<T>, 2>({std::vector<T>(N, 0), std::vector<T>(N, 0)});
-
-        if (in.peek() == 'l') {
-            in.get();
-            T lim[4];
-            in >> lim[0] >> lim[1] >> lim[2] >> lim[3];
-            T step[2] = {(lim[1] - lim[0]) / (N - 1), (lim[3] - lim[2]) / (N - 1)};
-            for (int i = 0; i < N; ++i) {
-
-                avec[j][0][i] = lim[0];
-                avec[j][1][i] = lim[2];
-                lim[0] += step[0];
-                lim[2] += step[1];
-            }
-        } else if (in.peek() == 'g') {
-            int N1 = 0;
-            in.get();
-            in >> N1;
-            int N2 = N / N1;
-            T lim[4];
-            in >> lim[0] >> lim[1] >> lim[2] >> lim[3];
-            T start[2] = {lim[0], lim[2]};
-            T step[2] = {(lim[1] - lim[0]) / (N1 - 1), (lim[3] - lim[2]) / (N2 - 1)};
-            for (int i = 0; i < N1; ++i) {
-                for (int k = 0; k < N2; ++k) {
-                    avec[j][0][i * N2 + k] = lim[0];
-                    avec[j][1][i * N2 + k] = lim[2];
-                    lim[2] += step[1];
-                }
-                lim[2] = start[1];
-                lim[0] += step[0];
-            }
-        } else {
-            for (int i = 0; i < N; ++i) {
-                in >> avec[j][0][i];
-            }
-            c = parseChar(in);
-            if (c != '\n') {
-                if (c == '\r' && in.peek() != '\n') {
-                    errno = -1;
-                    std::cout << "Errno=" << errno;
-                }
-            }
-
-            for (int i = 0; i < N; ++i) {
-                in >> avec[j][1][i];
-            }
-        }
-    }
-    return avec;
-}
 
 
 
-
+//todo use template typename for structure parsiong
 template<typename T>
 std::istream &operator>>(std::istream &in, std::array<std::vector<T>, 2> &xi) {
     size_t size;
@@ -287,9 +229,7 @@ public:
         std::getline(in, dummy);
         std::getline(in, dummy);
         std::getline(in, dummy);
-        //pp.vals_=MeshProcessor<T>();
 
-        //todo read coord meshes;
         auto n=pp.vals_.dimensions;
 
         pp.vals_.constructMeshes();
@@ -307,11 +247,9 @@ public:
                 in >> val;
                 m[j*span.extent(1)+i]=val;
 
-                /*span[std::array{j,i}] = val;*/
             }
         }
 
-        /*auto ss=meshStorage::MeshProcessor2::transpose(span);*/
 
         pp.vals_.data[2]=m;
         return in;

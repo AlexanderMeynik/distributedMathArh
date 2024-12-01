@@ -57,15 +57,17 @@ public:
     }
 
 
+
+
+    //todo remake
     Eigen::Vector<T, Eigen::Dynamic> generateCoordinates2(size_t N) {
         if (!N) {
             return Eigen::Vector<T, Eigen::Dynamic>();
         }
         Eigen::Vector<T, Eigen::Dynamic> res(2 * N);
-        // res[0] = std::vector<T>(N, 0);
-        //res[1] = std::vector<T>(N, 0);
+
         std::function<T()> generetor = [&]() { return distribution_(rng_); };
-        //std::cout<<generetor()<<"\t"<<distribution_(rng_)<<"\n";
+
         std::generate(res.begin(), res.end(), generetor);
         return res;
     }

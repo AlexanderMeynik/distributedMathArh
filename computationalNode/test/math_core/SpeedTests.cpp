@@ -3,7 +3,6 @@
 
 
 #include "common/lib.h"
-/*#include "computationalLib/math_core/math_core.h"*/
 #include "computationalLib/math_core/Dipoles.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Parsers.h"
@@ -21,6 +20,7 @@ using namespace Eigen;
 static inline double C1 = 0;
 static inline double C2 = 0;
 
+//todo try to test
 auto dipole1Function(double theta, double phi) {
     2 * M_PI * pow(params::omega, 3) *
     (pow(params::omega * sin(theta) / params::c, 2) *
@@ -70,9 +70,10 @@ TEST(Dipoles, test_solve_result_in_zero_nev) {
 
     EXPECT_TRUE(solution.size() == 4 * N);
 
-    auto nev = dipolearr.getMatrixx() * solution - dipolearr.getRightPart();
+    Eigen::Vector<FloatType,Eigen::Dynamic> nev = dipolearr.getMatrixx() * solution - dipolearr.getRightPart();
+    auto nev_norm=nev.norm();
     {
-        EXPECT_NEAR(nev.norm(), 0, 10e-4);
+        EXPECT_NEAR(nev_norm, 0, 10e-4);
     }
 
 }
@@ -97,11 +98,11 @@ TEST_P(DipoleSolveMethodNevTests, test_right_part_nev_solve_impl) {
     auto coord = genr.generateCoordinates2(N);
     dipoles::Dipoles dipolearr(N, coord);
     auto rsol = dipolearr.solve<dipoles::EigenVec>();
-    auto nev = dipolearr.getMatrixx() * rsol - dipolearr.getRightPart();
+    Eigen::Vector<FloatType,Eigen::Dynamic> nev = dipolearr.getMatrixx() * rsol - dipolearr.getRightPart();
+    FloatType nev_norm=nev.norm();
     {
-        EXPECT_NEAR(nev.norm(), 0, 10e-4);
+        EXPECT_NEAR(nev_norm, 0, 10e-4);
     }
-//todo fails for 2
 
 }
 
@@ -110,7 +111,7 @@ template<typename Type>
 using DynVector = Eigen::Matrix<Type, Eigen::Dynamic, 1>;
 std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
-string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";//todo вот этот путь у нас теперь не верен
+string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
 
 
@@ -120,15 +121,14 @@ string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";//todo во
 
 
 
-
+using coordType=std::vector<std::vector<FloatType >>;
 using meshStorage::MeshCreator;
 using ttype = std::tuple<std::string, std::vector<FloatType>, Parser<MatrixXd>, Parser<DynVector<FloatType>>, Parser<MeshCreator>>;
 
-std::vector<ttype> testFixtureGetter(std::string filename) {
+std::vector<ttype> testFixtureGetter(const std::string & file) {
 
     std::vector<ttype> values;
-    std::vector<std::vector<FloatType >> avec;
-    avec = parseConf2<double, vector>(filename);//todo fixi string prameter
+    auto avec= parseDipoleCoordinates<coordType>(file);
 
     std::ifstream sols(subdir + "/solutions.txt");
     std::ifstream matrixes(subdir + "/matrixes.txt");
@@ -174,7 +174,8 @@ protected:
 
 INSTANTIATE_TEST_SUITE_P(
         ValidationTest, DipolesVerificationTS,
-        ::testing::ValuesIn(testFixtureGetter(filename)), firstValueTuplePrinter<DipolesVerificationTS>);
+        ::testing::ValuesIn(testFixtureGetter(filename)),
+        firstValueTuplePrinter<DipolesVerificationTS>);
 
 TEST_P(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
     auto [nn, conf, matr, _, pp] = GetParam();
@@ -220,7 +221,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
 }
 
 
-int main(int argc, char **argv) {//todo cmake+gtestmain
+int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     ::testing::InitGoogleMock(&argc, argv);
 

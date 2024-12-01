@@ -61,8 +61,6 @@ namespace dipoles {
 
     template<>
     Arr2EigenVec Dipoles::solve() {
-
-        // auto tt = (M1_ * M1_ + M2_ * M2_).lu();//todo посомотреть как auto влияет на наши вещи
         Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_1;
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_2;
