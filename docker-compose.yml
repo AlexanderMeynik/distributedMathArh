@@ -1,6 +1,6 @@
 services:
   service:
-    image: envi
+    image: alexandermey/distirbutedmastservice:env1
     volumes:
       - .:/usr/application/src
       - build-data:/usr/application/build

@@ -99,6 +99,3 @@ target_link_libraries(checker PUBLIC math_core_lib)
 
 add_executable(grids src/darwingGrids.cpp)
 target_link_libraries(grids PUBLIC math_core_lib parallelLib)
-
-add_executable(vall src/valarrMdSpan.cpp)
-target_link_libraries(vall Matplot++::matplot)
