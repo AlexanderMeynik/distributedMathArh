@@ -1,12 +1,14 @@
 name: Build and test
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - .github/workflows/ci.yml
-      - src/**
-      - include/**
-      - test/**
+      - computationalNode/**
+      - utilLib/**
+      - server/**
+      - somestuff/**
       - CMakeLists.txt
 jobs:
   build-and-test:
