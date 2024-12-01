@@ -6,7 +6,7 @@
 #include <concepts>
 
 //myconcepts namespace
-namespace myConcepts {
+namespace commonDeclarations {
 
     /**
      * @brief concept to check whether T has value_type

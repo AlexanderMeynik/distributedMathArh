@@ -10,7 +10,7 @@
 ///dipoles namespace
 namespace dipoles {
     using namespace Eigen;
-    using namespace myConcepts;
+    using namespace commonDeclarations;
 
     /**
      * @brief Provides interface to solve system of dipoles(todo link to task)
@@ -392,7 +392,7 @@ namespace dipoles {
     FloatType Dipoles::getDistance(size_t i1, size_t i2, Container &xi) {
         FloatType d1;
         FloatType d2;
-        if constexpr (myConcepts::HasBracketsNested<Container>) {
+        if constexpr (commonDeclarations::HasBracketsNested<Container>) {
             d1 = xi[0][i1] - xi[0][i2];
             d2 = xi[1][i1] - xi[1][i2];
         } else {
@@ -408,7 +408,7 @@ namespace dipoles {
     Eigen::Vector<FloatType, 2> Dipoles::twoDVecDifference(size_t i1, size_t i2, Container &xi) {
         FloatType d1;
         FloatType d2;
-        if constexpr (myConcepts::HasBracketsNested<Container>) {
+        if constexpr (commonDeclarations::HasBracketsNested<Container>) {
             d1 = xi[0][i1] - xi[0][i2];
             d2 = xi[1][i1] - xi[1][i2];
         } else {

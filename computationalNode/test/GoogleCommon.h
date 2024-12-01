@@ -14,7 +14,7 @@
 #include "common/myConcepts.h"
 
 
-using namespace myConcepts;
+using namespace commonDeclarations;
 
 namespace testCommon {
     constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();

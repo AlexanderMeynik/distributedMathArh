@@ -35,10 +35,7 @@ add_library(parallelLib ${parallelUtils})
 target_link_libraries(parallelLib PUBLIC OpenMP::OpenMP_CXX)
 
 
-#todo copy include
-
-add_library(commonLibrary lib/myConcepts.cpp lib/clockArray.cpp lib/HashUtils.cpp)
-target_link_libraries(commonLibrary glog::glog OpenSSL::SSL -lcrypto)
+add_library(commonLibrary lib/parallelUtils/commonDeclarations.cpp lib/parallelUtils/clockArray.cpp)
 target_include_directories(commonLibrary PUBLIC include)
 
 option(BUILD_DOC "Build documentation" OFF)

@@ -12,7 +12,7 @@
 #include <concepts>
 #include "common/myConcepts.h"
 
-using namespace myConcepts;
+using namespace commonDeclarations;
 
 template<HasSizeMethod T1, HasSizeMethod T2>
 void compare_collections(const T1 &solution, const T2 &solution2, int ii, double tool) {

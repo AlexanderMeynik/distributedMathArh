@@ -6,18 +6,29 @@
 #include <filesystem>
 #include <omp.h>
 #include <fstream>
+#include <functional>
 
 #include <eigen3/Eigen/Core>
 
 
+
+
+
+
 #include "MeshCreator.h"//todo it's not used hert
 #include "common/lib.h"
-#include "parallelUtils/OpenmpParallelClock.h"
+#include "parallelUtils/commonDeclarations.h"
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
 #include "common/constants.h"
 #include "computationalLib/math_core/Dipoles.h"
 
+template<typename ...Args>
+struct functable {
+    std::function<void(Args...)> func;
+    const char *name;
+};
+using commonDeclarations::gClk;
 using const_::FloatType;
 template<typename T>
 using geNsolution = Eigen::Vector<T, Eigen::Dynamic>;
@@ -27,12 +38,8 @@ using solution = geNsolution<FloatType>;
 using coordinates = geNcoordinates<FloatType>;
 
 
-//todo почитать про вариадичные шаблоны, чтобы указывать стратегию для генерации(или  сделать это отдельно для метода)
 class TestRunner {
-//для возможности запуска цепочки методов нужно сделать паттерн декоратор
-//инициализацию вещей стоит вынести в отдельные методы
-//создать хэш таблицу(массив) для всех функций-этапов
-//сериализатор для данных
+
 public:
 
 

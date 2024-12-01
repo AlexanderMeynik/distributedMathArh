@@ -9,12 +9,12 @@
 #include <eigen3/Eigen/Dense>
 #include <omp.h>
 
-#include "parallelUtils/OpenmpParallelClock.h"
+#include "parallelUtils/commonDeclarations.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/lib.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Printers.h"
-
+//todo openmp routines
 // Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;

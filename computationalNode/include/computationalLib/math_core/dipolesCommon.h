@@ -10,7 +10,7 @@
 #include "common/myConcepts.h"
 #include "const.h"
 
-using namespace myConcepts;
+using namespace commonDeclarations;
 
 ///dipoles namespace
 namespace dipoles {

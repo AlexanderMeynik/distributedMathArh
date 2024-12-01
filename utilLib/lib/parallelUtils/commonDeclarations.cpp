@@ -1,10 +1,10 @@
-#include "timing/myConcepts.h"
+#include "parallelUtils/commonDeclarations.h"
 
 #include <vector>
 #include <string>
 #include <cstdio>
 
-namespace myConcepts {
+namespace commonDeclarations {
 
     clockType gClk{};
 

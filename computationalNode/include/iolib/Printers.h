@@ -88,7 +88,7 @@ template<typename Collection>
 void printCoordinates2(std::ostream &out, const Collection &xi) {
     out << "Координаты диполей\n";
 
-    if constexpr (not myConcepts::HasBracketsNested<Collection>) {
+    if constexpr (not commonDeclarations::HasBracketsNested<Collection>) {
         auto N = xi.size() / 2;
         for (int i = 0; i < N; ++i) {
             out << xi[i] << '\t' << xi[i + N] << "\n";

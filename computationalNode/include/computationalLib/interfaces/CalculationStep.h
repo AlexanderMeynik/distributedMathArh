@@ -1,20 +1,17 @@
-//
-// Created by Lenovo on 16.07.2024.
-//
 
 #ifndef DIPLOM_CALCULATIONSTEP_H
 #define DIPLOM_CALCULATIONSTEP_H
 
-#include "parallelUtils/OpenmpParallelClock.h"
 #include "AbstractSubsriber.h"
 #include "DataAcessInteface.h"
+#include "parallelUtils/commonDeclarations.h"
 
 namespace inter {
     using core_intrefaces::DataAcessInteface;
     using core_intrefaces::Event;
     using FloatType = double;
-    template<typename Tr>
-    using CLOCK = timing::OpenmpParallelClock<Tr, &omp_get_wtime, &omp_get_thread_num>;
+
+    using commonDeclarations::gClk;
 
     template<typename ... Args>
     class CalculationStep : public core_intrefaces::AbstractProduser<std::shared_ptr<DataAcessInteface>, Args...> {
@@ -39,11 +36,11 @@ namespace inter {
         }
 
         void perform_calc(std::shared_ptr<DataAcessInteface> dat, Args...args) {
-            clock1.tik();
+            auto loc=gClk.tikLoc();
             perform_calculation(dat, args...);
-            clock1.tak();
+            gClk.tak();
             std::string vv = "clock" + this->to_string() + std::to_string(start_);
-            dat->getProperty(vv) = clock1.aggregate<double>();
+            dat->getProperty(vv) = (double)gClk[loc].time;
             /*if(next_)
             {
                next_->perform_calc();
@@ -55,7 +52,6 @@ namespace inter {
         }
 
     protected:
-        CLOCK<FloatType> clock1;
 
         virtual void perform_calculation(std::shared_ptr<DataAcessInteface> dat, Args...args) = 0;
 

@@ -42,3 +42,8 @@ jobs:
         run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test
           ./core_Tests
+      - name: Run clock_tests
+        if: success() || failure()
+        run: |
+          cd ${GITHUB_WORKSPACE}/build/utilLib/test
+          ./par_Tests

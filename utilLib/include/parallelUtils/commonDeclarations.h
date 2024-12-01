@@ -2,7 +2,6 @@
 #ifndef DATA_DEDUPLICATION_SERVICE_MYCONCEPTS_H
 #define DATA_DEDUPLICATION_SERVICE_MYCONCEPTS_H
 
-#include <glog/logging.h>
 
 #include <cstdarg>
 #include <concepts>
@@ -11,8 +10,8 @@
 #include <type_traits>
 #include "clockArray.h"
 
-/// concepts namespace
-namespace myConcepts {
+/// commonDeclarations namespace
+namespace commonDeclarations {
     /**
     * Global clock used for time measurement
     */
@@ -33,7 +32,6 @@ namespace myConcepts {
 
 
 
-    // from https://stackoverflow.com/questions/2342162/stdstring-formatting-like-sprintf
     /**
      * Print format function
      * @param zcFormat
@@ -59,6 +57,6 @@ namespace myConcepts {
     };
 
 
-} // namespace myConcepts
+} // namespace commonDeclarations
 
 #endif  // DATA_DEDUPLICATION_SERVICE_MYCONCEPTS_H

@@ -4,7 +4,8 @@
 
 #include "common/lib.h"
 #include "computationalLib/math_core/Dipoles.h"
-
+#include "parallelUtils/commonDeclarations.h"
+//todo maybe remove
 int main(int argc, char *argv[]) {
     int N = 10;
     //std::cin>>N;
@@ -14,11 +15,9 @@ int main(int argc, char *argv[]) {
     dipoles::Dipoles d(N, coords);//todo old implementation used
 
 
-    double stime = omp_get_wtime();
+    auto stime = commonDeclarations::gClk.tikLoc();
     d.solve<dipoles::Arr2EigenVec>();
-    double ftime = omp_get_wtime() - stime;
-    std::cout << ftime << "\t" << N << "\n";
-    /*Eigen::Matrix<Tr, Eigen::Dynamic, Eigen::Dynamic> tt = (M1_ * M1_ + M2_ * M2_).inverse();
-            solution_[0] = tt * (M1_ * f1 + M2_ * f2);
-            solution_[1] = tt * (M1_ * f2 - M2_ * f1);*/
+    commonDeclarations::gClk.tak();
+    std::cout << commonDeclarations::gClk[stime].time << "\t" << N << "\n";
+
 }

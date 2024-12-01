@@ -6,11 +6,6 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 
-add_executable(Google_Tests_run test1.cpp)
-target_link_libraries(Google_Tests_run math_core_lib)
-
-target_link_libraries(Google_Tests_run gtest gtest_main)
-
 
 file(GLOB interfaces CONFIGURE_DEPENDS
         "interfaces/*.h"
@@ -31,9 +26,7 @@ add_executable(core_Tests ${core})
 target_link_libraries(core_Tests gtest gmock)
 target_link_libraries(core_Tests math_core_lib io_lib)
 
-file(GLOB resourse CONFIGURE_DEPENDS
-        "res/*.*"
-)
-file(COPY res DESTINATION ${CMAKE_BINARY_DIR}/computationalNode/test)
 
+add_executable(benchmark benchmark.cpp)
+target_link_libraries(benchmark math_core_lib io_lib)#todo fix interfaces
 

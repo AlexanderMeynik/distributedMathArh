@@ -12,7 +12,7 @@
 #include <gmock/gmock.h>
 
 
-using namespace myConcepts;
+using namespace commonDeclarations;
 using namespace testCommon;
 using namespace Eigen;
 
