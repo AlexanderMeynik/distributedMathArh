@@ -1,0 +1,8 @@
+services:
+  service:
+    image: envi
+    volumes:
+      - .:/usr/application/src
+      - build-data:/usr/application/build
+volumes:
+  build-data:

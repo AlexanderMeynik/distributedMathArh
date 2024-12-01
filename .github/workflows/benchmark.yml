@@ -1,0 +1,37 @@
+name: Run benchmark
+
+on:
+  workflow_dispatch:
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+    container:
+      image: alexandermey/distirbutedmastservice:env1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          path: ./src
+      - name: Build
+        run: |
+          cp -r src/res/ res/
+          
+          mkdir build && cd build
+          
+          cmake -G Ninja \
+          ../src/
+          ninja
+      - name: Run benchmark
+        if: success() || failure()
+        run: |
+          cd ${GITHUB_WORKSPACE}/build/computationalNode/test
+          ./benchmark
+      - name: Save benchmake results
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench
+          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/test
+          if-no-files-found: warn
+          include-hidden-files: true

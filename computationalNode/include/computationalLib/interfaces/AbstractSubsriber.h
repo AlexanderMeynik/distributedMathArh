@@ -8,6 +8,7 @@
 #include <iostream>
 #include "DataAcessInteface.h"
 #include <exception>
+#include <algorithm>
 
 namespace core_intrefaces {
 

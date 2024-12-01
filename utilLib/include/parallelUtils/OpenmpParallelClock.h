@@ -1,5 +1,7 @@
 #include <omp.h>
 #include <array>
+#include <vector>
+#include <functional>
 #include <ranges>
 #include <limits>
 #include <algorithm>
