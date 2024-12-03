@@ -27,6 +27,6 @@ target_link_libraries(core_Tests gtest gmock)
 target_link_libraries(core_Tests math_core_lib io_lib)
 
 
-add_executable(benchmark benchmark.cpp)
+add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)
 target_link_libraries(benchmark math_core_lib io_lib)#todo fix interfaces
 
