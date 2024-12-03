@@ -1,5 +1,6 @@
 #include "fileHandler.h"
 #include "benchmarkHandler.h"
+#include "common/Generator.h"
 #include <iostream>
 #include <utility>
 #include <tuple>
@@ -24,18 +25,17 @@ constexpr auto expand(std::tuple<Args...>&t,const calee_&call)
     constexpr auto seq=std::index_sequence_for<Args...>{};
     return call(get<seq>(call)...);
 }*/
+#include "eigen3/Eigen/Dense"
 constexpr auto chararr=std::array<char,3>{'a','b','c'};
 constexpr auto intarr=std::array<int,4>{1,2,3,4};
+template<typename T>
+using dynVec=Eigen::Vector<T,-1>;
 int main()
 {
-    std::tuple<int,char,uint> tuple{0,69,2};
 
-    constexpr auto seq= std::make_index_sequence<10>{};
-    std::apply(func,tuple);
-    /*constexpr auto indFor=getIndForTuple(tuple);
-    func(*//*indFor...*//*get<indFor>(tuple)...)*/
-    /*constexpr auto sz=seq.size();
-    constexpr auto sz2=indFor.size();*/
+    dynVec<FloatType> aa;
+
+    auto a=generators::normal<dynVec>(2ul,0,1);
     std::function<std::string(char, int)>nameGenerator = [](char a, int b) { return a + std::to_string(b); };
 
     auto ff=[&nameGenerator](benchUtils::clockType&clk,fileUtils::fileHandler&handler,char a,int b){
@@ -52,7 +52,7 @@ int main()
         return ;
     };
     benchmarkHandler bh("bench1",{"benhc1"});
-    bh.runThing(nameGenerator, ff, chararr, intarr);
+    bh.runThing(nameGenerator, ff, std::array{'a','b','c'}, intarr);
 
 
 

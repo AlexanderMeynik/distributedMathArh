@@ -28,6 +28,7 @@ struct functable {
     std::function<void(Args...)> func;
     const char *name;
 };
+//todo clean up all redudndant types
 using commonDeclarations::gClk;
 using const_::FloatType;
 template<typename T>
@@ -36,6 +37,8 @@ template<typename T>
 using geNcoordinates = Eigen::Vector<T, Eigen::Dynamic>;
 using solution = geNsolution<FloatType>;
 using coordinates = geNcoordinates<FloatType>;
+template<typename T>
+using dynVec=Eigen::Vector<T,-1>;
 
 
 class TestRunner {
@@ -69,11 +72,10 @@ public:
         inner_state = state;
     };
 
-    void generateCoords(Generator<FloatType> &gen);
 
     template<typename... Args>
-    //todo переделать часть в сервере для генерации какашек
-    void generateGeneralized(std::function<coordinates(Args...)> &functor, Args ... args) {
+    //todo переделать часть в сервере для генерации конфигураций
+    void generateGeneralized(const std::function<coordinates(Args...)> &functor, Args ... args) {
         //clocks_[0].tik();
         coords_.resize(Nsym_.value());
         for (int i = 0; i < Nsym_; ++i) {
@@ -83,8 +85,6 @@ public:
         {
             N_ = coords_[0].size() / 2;
         }
-
-        //clocks_[0].tak();
     }
 
     void solve();
@@ -116,8 +116,7 @@ private:
     std::optional<FloatType> aRange_;
     std::optional<size_t> N_;
     std::optional<size_t> Nsym_;
-    //static constexpr size_t NumCalc=3;
-    //std::array<OpenmpParallelClock,NumCalc> clocks_;
+
     std::map<int, std::string> clock_names = {{0, "Generate time"},
                                               {1, "Solve time"},
                                               {2, "Function time"}};

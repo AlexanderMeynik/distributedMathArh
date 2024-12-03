@@ -14,21 +14,6 @@ void TestRunner::createSubDirectory(const string &dirname, const string &subdire
     }
 }
 
-void TestRunner::generateCoords(Generator<FloatType> &gen) {
-
-    //clocks_[0].tik();
-    /*coords_.resize(Nsym_.value());
-    for (int i = 0; i < Nsym_; ++i) {
-        coords_[i] = gen.generate();
-    }
-    if(coords_[0][0].size()!=N_)//может ввести отдельнкю спецаилизацтю для данного случая
-    {
-        N_=coords_[0][0].size();
-    }*///todo remove
-
-    // clocks_[0].tak();
-}
-
 
 TestRunner::TestRunner() {
     coords_ = std::vector<coordinates>();
