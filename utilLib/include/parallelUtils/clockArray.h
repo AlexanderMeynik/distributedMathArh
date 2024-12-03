@@ -201,6 +201,26 @@ namespace timing {
             return timers.contains(loc);
         }
 
+        /**
+         * @brief adds up all timers from other timer current timer
+         * @param other
+         */
+        void advance(clockArray&other)
+        {
+
+            for (auto& otherclk:other) {
+                if(this->contains(otherclk.first))
+                {
+                    this->timers[otherclk.first].time+=otherclk.second.time;
+                    this->timers[otherclk.first].count+=otherclk.second.count;
+                }
+                else
+                {
+                    this->timers[otherclk.first]=otherclk.second;
+                }
+            }
+        }
+
     private:
         std::map<locationType, timeStore, cmpArr> timers;
         std::map<locationType, inType, cmpArr> startIngTimers;

@@ -11,6 +11,7 @@
 namespace benchUtils {
     namespace fu= fileUtils;
     namespace tu=timing;
+    using clockType= tu::chronoClockTemplate<std::milli> ;
 
     template<typename...ARRAYS>
     constexpr auto cartesian_product(ARRAYS...arrays) {
@@ -36,40 +37,71 @@ namespace benchUtils {
         }();
     }
 
+
+
     class benchmarkHandler {
         public:
         //todo check whether benchmark name can be used as a path
         explicit benchmarkHandler(std::string_view name,
-                         std::optional<std::string>path=std::nullopt):
-                         benchmarkName(name),
-                         fh(path.has_value()?fu::getNormalAbs(path.value()):""),
-                            clkArr()
+                         std::optional<std::string>path=std::nullopt);
+
+
+        static inline std::filesystem::path ddpath="timers";
+        template<typename...ARRAYS>
+        constexpr auto runThing(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
+                                const std::function<void(clockType &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+                                ARRAYS...arrays);
+        void snapshotTimers(clockType&clk);
+        void printClocks()
         {
+            auto name="benchTimers.txt";
+            fh.upsert(name);
+            fh.output(name,clkArr);
         }
-
-        template<typename...ARRAYS>
-        using tupleType=std::tuple<typename ARRAYS::value_type...>;
-
-        template<typename...ARRAYS>
-        constexpr auto runThing(ARRAYS...arrays,const std::function<std::string(typename ARRAYS::value_type ...)>&ff){
-            auto cart= cartesian_product(std::forward<ARRAYS>(arrays)...);
-            auto size=std::tuple_size<typename decltype(cart)::value_type>{};
-            size_t innerCounter=0;
-            for (auto&tuple:cart) {
-
-                auto itername=benchmarkName+std::apply(ff,tuple);
-                std::cout<<itername<<'\n';
-                innerCounter++;
-               /* std::cout<<ff(benchmarkName,*//*tuple.*//*)*/
-            }
+        ~benchmarkHandler()
+        {
+            printClocks();
+            fh.closeFiles();
         }
 
 
     private:
         fu::fileHandler fh;
         std::string benchmarkName;
-        tu::chronoClockTemplate<std::milli> clkArr;
+        clockType clkArr;
     };
+
+
+
+    template<typename... ARRAYS>
+    constexpr auto
+    benchmarkHandler::runThing(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
+                               const std::function<void(clockType &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+                               ARRAYS...arrays) {
+        clockType clkdc= this->clkArr;
+
+        auto cart= cartesian_product(std::forward<ARRAYS>(arrays)...);
+        auto size=std::tuple_size<typename decltype(cart)::value_type>{};
+        size_t innerCounter=0;
+        auto lambda=[this,&benchFunction]<ARRAYS>(typename ARRAYS::value_type ... vals)
+        {
+            return benchFunction(clkArr,fh,std::forward<typename ARRAYS::value_type>(vals)...);
+        };
+
+
+        fileUtils::createDirIfNotPresent(fh.getParentPath()/ddpath);
+
+        for (auto&tuple:cart) {
+            auto itername=benchmarkName+std::apply(benchNameGenerator, tuple);
+            std::apply(lambda,tuple);
+            snapshotTimers(clkArr);
+
+            innerCounter++;
+            clkdc.advance(clkArr);
+            clkArr.reset();
+        }
+        clkArr=clkdc;//todo think of the way to have wo clock arrays
+    }
 }
 
 #endif //DIPLOM_BENCHMARKHANDLER_H

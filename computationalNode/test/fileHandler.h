@@ -12,6 +12,8 @@ namespace fileUtils {
     namespace fs = std::filesystem;
     fs::path getNormalAbs(const fs::path &path);
 
+    bool createDirIfNotPresent(const std::string&path);
+
     using osPtr = std::shared_ptr<std::ofstream>;
 
     class fileHandler {
@@ -58,7 +60,6 @@ namespace fileUtils {
                 if (bool res = upsert(filename);!res) {
                     return;
                 }
-
             }
         }
         print(fileMap[filePath], pr);

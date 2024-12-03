@@ -7,12 +7,17 @@ namespace fileUtils
         return fs::absolute(path).lexically_normal();
     }
 
+    bool createDirIfNotPresent(const std::string &path) {
+        if (!fs::exists(path)) {
+            return fs::create_directories(path);
+        }
+        return fs::is_directory(path);
+    }
+
 
     fileHandler::fileHandler(const std::string &parent_path) :
             parentPath(parent_path) {
-        if (!fs::exists(parentPath)) {
-            fs::create_directories(parentPath);
-        }
+        createDirIfNotPresent(parentPath);
     }
 
     void fileHandler::open(const std::string &filename, std::ios_base::openmode mode) {
