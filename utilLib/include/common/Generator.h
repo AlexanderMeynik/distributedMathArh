@@ -13,6 +13,7 @@
 
 using const_::FloatType;
 namespace generators {
+
     template<typename randomDevice>
     struct generator {
         //todo this one work only for 1 dimenstional arrays
@@ -64,6 +65,9 @@ namespace generators {
             exponential = [](size_t N, FloatType lam) {
         return gen_mt19937.generate<cont, std::exponential_distribution, FloatType>(N, lam);
     };
+
+    //todo generate array of arrays(or use md span)
+
 
 
     /*auto generateCoordinates=3;*/

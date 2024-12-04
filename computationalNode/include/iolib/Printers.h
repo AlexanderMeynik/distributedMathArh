@@ -8,9 +8,11 @@
 
 #include <eigen3/Eigen/Dense>
 
+#include "matplot/matplot.h"
 
 #include "common/printUtils.h"
 #include "common/myConcepts.h"
+#include "computationalLib/math_core/MeshCreator.h"
 
 
 /*template <typename Printable>*///todo printer
@@ -61,13 +63,52 @@ void printSolutionFormat1(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &s
 }
 
 template<class T>
-void plotCoordinates(std::string name, T ar, std::array<std::vector<T>, 2> &xi) {
+void plotCoordinates(const std::string& name, T ar, std::array<std::vector<T>, 2> &xi) {
     auto ax = matplot::gca();
     ax->scatter(xi[0], xi[1]);
     ax->xlim({-8 * ar, 8 * ar});
     ax->ylim({-8 * ar, 8 * ar});
     matplot::save(name);
     ax.reset();
+}
+
+//todo N x's then N y'x in xi
+void inline plotCoordinates(const std::string& name, FloatType ar, const std::vector<FloatType> &xi) {
+
+    auto vit=xi.begin();
+    auto middle=vit+xi.size()/2;
+
+    std::array<std::vector<FloatType>, 2> dumm=
+            {
+                    std::vector<FloatType>(vit,middle),
+                    std::vector<FloatType>(middle,xi.end())
+            };
+    plotCoordinates(name,ar,dumm);
+}
+
+
+void inline printDec(meshStorage::MeshCreator&mmesh,std::ostream &out,int N=std::numeric_limits<double>::digits10-1) {
+    out << "Функция I(phi,th)\n";
+    out << "phi\\th\t\t";
+
+    /*auto [exet0,ext1]=mmesh.spans[2].extents();*/
+    auto ext0=mmesh.spans[2].extent(0);
+    auto ext1=mmesh.spans[2].extent(1);
+    for (size_t i = 0; i < ext0 - 1; ++i) {
+        out << scientificNumber(mmesh.spans[1][std::array{i,0UL}], N) << '\t';
+    }
+
+    out << scientificNumber(mmesh.spans[1][std::array{(ext0 - 1),1UL}], N)
+        << '\n';
+
+    for (size_t i = 0; i < ext1; ++i) {
+        auto phi = mmesh.spans[0][std::array{0UL,i}];
+        out << scientificNumber(phi, 5) << "\t";
+        for (size_t j = 0; j < ext0 - 1; ++j) {
+            out << scientificNumber(mmesh.spans[2][std::array{j,i}], N) << "\t";
+        }
+        out << scientificNumber(mmesh.spans[2][std::array{ext0- 1,i}], N) << "\n";
+    }
 }
 
 

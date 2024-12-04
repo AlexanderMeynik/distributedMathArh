@@ -4,6 +4,7 @@
 
 #include <vector>
 #include <array>
+#include <valarray>
 
 #include <eigen3/Eigen/Dense>
 
@@ -25,12 +26,14 @@ namespace dipoles {
     enum class ReturnType : size_t {
         ArrayEigenVectors = 0,
         EigenVector,
-        StdVector
+        StdVector,
+        StdValarray
     };
 
     using Arr2EigenVec = std::array<Eigen::Vector<FloatType, Eigen::Dynamic>, 2>;
     using EigenVec = Eigen::Vector<FloatType, Eigen::Dynamic>;
     using standartVec = std::vector<FloatType>;
+    using standartValarr = std::valarray<FloatType>;
 
     /**
      * @brief Type for function thta will be integrated to get directional graph
@@ -60,6 +63,11 @@ namespace dipoles {
     template<>
     struct ReturnToDataType_t<ReturnType::StdVector> {
         using type = standartVec;
+    };
+
+    template<>
+    struct ReturnToDataType_t<ReturnType::StdValarray> {
+        using type = standartValarr ;
     };
 
     /**

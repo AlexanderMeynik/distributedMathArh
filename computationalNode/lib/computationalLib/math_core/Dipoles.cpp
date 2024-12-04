@@ -96,5 +96,18 @@ namespace dipoles {
         return sol;
     }
 
+    template<>
+    standartValarr Dipoles::solve() {
+        standartValarr sol(4 * N_);
+        Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
+        Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(&(sol[0]), sol.size());
+        solution_.resize(4 * N_);
+        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
+                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
+        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
+                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
+        return sol;
+    }
+
 
 }

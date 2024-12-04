@@ -19,6 +19,7 @@
 
 namespace meshStorage {
 
+
     using const_::FloatType;
     using floatVector = std::vector<FloatType>;
     using meshDrawClass = std::vector<floatVector>;
@@ -133,7 +134,7 @@ namespace meshStorage {
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n);
 
 
-    meshDrawClass inline unflatten(const meshStorageType &mm, size_t numss[2]) {
+    meshDrawClass inline unflatten(const meshStorageType &mm, const std::array<size_t,2> &numss) {
         auto res = meshDrawClass(numss[0], floatVector(numss[1], 0.0));
 
 
@@ -248,7 +249,7 @@ namespace meshStorage {
         void constructMeshes(const std::optional<std::array<size_t,2>> dimenstion=std::nullopt,
                              const std::optional<std::array<FloatType ,4>> limit=std::nullopt);//todo test
 
-        meshArr<dimCount+1> sphericalTransformation();
+        friend meshArr<dimCount+1> sphericalTransformation(const MeshCreator&oth);
 
         void applyFunction(const dipoles::directionGraph&plot);
 
@@ -263,9 +264,9 @@ namespace meshStorage {
         std::array<meshStorage::mdSpanType,3> spans;
         void computeViews(int val=-1);
 
-        void plotAndSave(const std::string&filename,const std::function<void(const std::string&filename)>&plotCallback)
+        void plotAndSave(const std::string&filename,const std::function<void(const std::string&filename,const MeshCreator&)>&plotCallback)
         {
-            plotCallback(filename);
+            plotCallback(filename, *this);
         }
 
         std::array<size_t,dimCount> dimensions;
@@ -315,6 +316,25 @@ namespace meshStorage {
         }
         return ret;
     }
+
+    //todo move
+    static const std::function<void(const std::string&,const MeshCreator&)> plotFunction=[](const std::string& filename,const MeshCreator&mesh)
+    {
+        using namespace meshStorage;
+        auto ax = matplot::gca();
+        auto data_arr=sphericalTransformation(mesh);
+        ax->surf(unflatten(data_arr[0],mesh.dimensions),
+                 unflatten(data_arr[1],mesh.dimensions),
+                 unflatten(data_arr[2],mesh.dimensions))
+                ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+        ax->view(213, 22);
+        ax->xlim({-40, 40});
+        ax->ylim({-40, 40});
+        ax->zlim({0, 90});
+
+        matplot::save(filename);
+        ax.reset();
+    };
 
 }
 

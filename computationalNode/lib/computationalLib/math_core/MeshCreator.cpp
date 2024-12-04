@@ -26,18 +26,7 @@ namespace meshStorage
     }
 
 
-    meshArr<3> MeshCreator::sphericalTransformation() {
-        meshArr<dimCount+1> res;
-        for (size_t i = 0; i < dimCount+1; ++i) {
-            res[i]=data[i];
-        }
 
-
-        res[0] = this->data[2] * sin(this->data[1]) * cos(this->data[0]);
-        res[1] = this->data[2] * sin(this->data[1]) * sin(this->data[0]);
-        res[2] = this->data[2] * cos(this->data[1]);
-        return res;
-    }
 
     void MeshCreator::applyFunction(const dipoles::directionGraph &plot) {
         data[2]=meshStorage::computeFunction(data[0],data[1],plot);
@@ -79,5 +68,18 @@ namespace meshStorage
             spans[i]=meshStorage::mdSpanType(&(data[i][0]),dimensions[0],
                                              dimensions[1]);
         }
+    }
+
+    meshArr<dimCount + 1> sphericalTransformation(const MeshCreator &oth) {
+        meshArr<dimCount+1> res;
+        for (size_t i = 0; i < dimCount+1; ++i) {
+            res[i]=oth.data[i];
+        }
+
+
+        res[0] = oth.data[2] * sin(oth.data[1]) * cos(oth.data[0]);
+        res[1] = oth.data[2] * sin(oth.data[1]) * sin(oth.data[0]);
+        res[2] = oth.data[2] * cos(oth.data[1]);
+        return res;
     }
 }

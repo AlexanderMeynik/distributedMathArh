@@ -6,6 +6,7 @@
 #include "computationalLib/math_core/Dipoles.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Parsers.h"
+#include "common/Generator.h"
 #include "../GoogleCommon.h"
 
 #include <gtest/gtest.h>
@@ -29,10 +30,14 @@ auto dipole1Function(double theta, double phi) {
      (pow(sin(theta), 2) * (C1 * C1 + C2 * C2) / 2.));
 }
 
+template<typename T>
+using dynEigenVec=Eigen::Vector<T,-1>;
+static inline FloatType aRange=1e-6;
 TEST(transformations, reinterpret_vector_test) {
     auto N = 20;
-    CoordGenerator<double> genr(0, 1e-6);
-    auto EigenVec = genr.generateCoordinates2(N);
+
+
+    auto EigenVec = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
     auto arr2vec = reinterpretVector(EigenVec);
     EXPECT_TRUE(EigenVec.size() == 2 * arr2vec[0].size() && EigenVec.size() == 2 * N);
     for (int i = 0; i < N; ++i) {
@@ -62,9 +67,8 @@ INSTANTIATE_TEST_SUITE_P(Matrixes, IsSymmetricTestSuite, testing::Values(2, 4, 1
 
 TEST(Dipoles, test_solve_result_in_zero_nev) {
     const int N = 2;
-    CoordGenerator<double> genr(0, 1e-6);
 
-    auto coord = genr.generateCoordinates2(N);
+    auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
     dipoles::Dipoles dipolearr(N, coord);
     auto solution = dipolearr.solve<dipoles::EigenVec>();
 
@@ -93,9 +97,9 @@ TEST_P(DipoleSolveMethodNevTests, test_right_part_nev_solve_impl) {
 
     auto [N, i] = GetParam();
     SCOPED_TRACE("Perform comparison test for N = " + std::to_string(N) + " attempt №" + std::to_string(i));
-    CoordGenerator<double> genr(0, 1e-6);
 
-    auto coord = genr.generateCoordinates2(N);
+
+    auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
     dipoles::Dipoles dipolearr(N, coord);
     auto rsol = dipolearr.solve<dipoles::EigenVec>();
     Eigen::Vector<FloatType,Eigen::Dynamic> nev = dipolearr.getMatrixx() * rsol - dipolearr.getRightPart();
@@ -214,7 +218,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     mm.applyFunction(dd.getI2function());
     auto r2 = meshStorage::unflatten(mm.spans[2]/*,mm.dimensions.data()*/);
 
-    auto ress = meshStorage::unflatten(mesh.vals_.data[2], mesh.vals_.dimensions.data());
+    auto ress = meshStorage::unflatten(mesh.vals_.data[2], mesh.vals_.dimensions);
 
     auto ll = mesh.vals_.spans[2][std::array{0, 0}];
     compare2dArrays<true>(ress, r2, double_comparator3, 1e-3);

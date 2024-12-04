@@ -35,6 +35,7 @@ std::array<std::vector<T>, 2> reinterpretVector(Eigen::Vector<T, Eigen::Dynamic>
     return res;
 }
 
+/*
 template<typename T>
 class CoordGenerator {
 public:
@@ -160,7 +161,7 @@ private:
     std::normal_distribution<T> distribution_;
     long double c1 = 1 / 2.0;
     long double c2 = sqrt(3) / 2.0;
-};
+};*/
 
 enum class state_t {
     openmp_new,

@@ -51,7 +51,7 @@ namespace benchUtils {
         constexpr auto runThing(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
                                 const std::function<void(clockType &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
                                 ARRAYS...arrays);
-        void snapshotTimers(clockType&clk);
+        void snapshotTimers(clockType&clk,const std::string&preprint,const std::string&delim="\n");
         void printClocks()
         {
             auto name="benchTimers.txt";
@@ -71,6 +71,33 @@ namespace benchUtils {
         clockType clkArr;
     };
 
+
+    template <typename TupleT, std::size_t... Is>
+    void printTupleManual(const TupleT& tp, std::index_sequence<Is...>) {
+        (printElem(std::get<Is>(tp)), ...);
+    }
+
+    template <typename TupleT, std::size_t TupSize = std::tuple_size_v<TupleT>>
+    void printTupleGetSize(const TupleT& tp) {
+        printTupleManual(tp, std::make_index_sequence<TupSize>{});
+    }
+    template<typename TupleT, std::size_t TupSize = std::tuple_size_v<TupleT>>
+    std::string tupleToString(const TupleT& tp,
+                              const char* delim=",",const char* left="(",
+                              const char* right=")")
+    {
+        return []<typename TupleTy, std::size_t... Is>(const TupleTy& tp,const char* delim,const char* left,
+                                             const char* right,std::index_sequence<Is...>)->std::string
+        {
+            std::stringstream res;
+            res<<left;
+
+            (...,(res<<(Is==0?"":delim)<<get<Is>(tp)));
+
+            res<<right;
+            return res.str();
+        }.operator()(tp,delim,left,right,std::make_index_sequence<TupSize>{});
+    }
 
 
     template<typename... ARRAYS>
@@ -94,13 +121,13 @@ namespace benchUtils {
         for (auto&tuple:cart) {
             auto itername=benchmarkName+std::apply(benchNameGenerator, tuple);
             std::apply(lambda,tuple);
-            snapshotTimers(clkArr);
+            snapshotTimers(clkArr, tupleToString(tuple,"\t","","")+"\t");
 
             innerCounter++;
             clkdc.advance(clkArr);
             clkArr.reset();
         }
-        clkArr=clkdc;//todo think of the way to have wo clock arrays
+        clkArr=clkdc;
     }
 }
 

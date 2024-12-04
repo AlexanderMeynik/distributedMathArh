@@ -2,12 +2,14 @@
 
 namespace benchUtils {
 
-    void benchmarkHandler::snapshotTimers(clockType&clk) {
+    void benchmarkHandler::snapshotTimers(clockType&clk,const std::string&preprint,const std::string&delim) {
         for (auto &val:clk) {
+
             std::string name=ddpath/(val.first[3] + "_" + val.first[1]);
             fh.upsert(name);
+            fh.output(name,preprint);
             fh.output(name,val.second.time);
-            fh.output(name,'\t');
+            fh.output(name,delim);
         }
     }
 

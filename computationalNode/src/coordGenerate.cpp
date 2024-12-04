@@ -12,6 +12,7 @@
 #include "parallelUtils/commonDeclarations.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/lib.h"
+#include "common/Generator.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Printers.h"
 //todo openmp routines
@@ -54,10 +55,6 @@ int main(int argc, char *argv[]) {
         subdirectory += '/';
     }
 
-    //todo добавить класс test runner
-    //его задачи - инциализирвоать все компоненты
-    //данный класс внутри будет хранить структуру с названием теста и его параметрами
-    //в стуркутре теста можно задать статусы
 
     std::stringstream ss;
     ss << aRange << ".csv";
@@ -80,10 +77,10 @@ int main(int argc, char *argv[]) {
         std::filesystem::create_directory(dirname);
     }
 
-    CoordGenerator<double> genr(0, aRange);
-    std::vector<std::array<vector<double>, 2>> coordinates(Nsym);
+    /*CoordGenerator<double> genr(0, aRange);*/
+    std::vector<vector<double>> coordinates(Nsym);
     for (int i = 0; i < Nsym; ++i) {
-        coordinates[i] = genr.generateCoordinates(N);
+        coordinates[i] = generators::normal<std::vector>(N,0.0,aRange* sqrt(2))/*genr.generateCoordinates(N)*/;
     }
     Dipoles dipoles1(N, coordinates[0]);
     using meshStorage::MeshCreator;
@@ -303,23 +300,7 @@ int main(int argc, char *argv[]) {
     mesh.data[2]=result;
     /*mesh.setMesh3(result);*/
     //mesh.printDec(out1);//todo implement
-    mesh.plotAndSave(dirname + "avg.png",[&mesh](auto filename)
-    {
-        using namespace meshStorage;
-        auto ax = matplot::gca();
-        ax->surf(unflatten(mesh.data[0],mesh.dimensions.data()),
-                 unflatten(mesh.data[1],mesh.dimensions.data()),
-                 unflatten(mesh.data[2],mesh.dimensions.data()))
-                ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
-        ax->view(213, 22);
-        ax->xlim({-40, 40});
-        ax->ylim({-40, 40});
-        ax->zlim({0, 90});
-        //todo spherical transformation
-
-        matplot::save(filename);
-        ax.reset();
-    });
+    mesh.plotAndSave(dirname + "avg.png",meshStorage::plotFunction);
     out1.close();
 
     return 0;
