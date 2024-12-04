@@ -15,8 +15,7 @@
 #include "common/Generator.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Printers.h"
-//todo openmp routines
-// Функция для генерации нормально распределенного случайного числа средствами преобразования Бокса-Мюллера
+
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;
 }
@@ -121,7 +120,8 @@ int main(int argc, char *argv[]) {
         run_new_openmp:
         stime = omp_get_wtime();
         //solveTime= ;
-#pragma omp parallel for private(dipoles1, mesh), default(shared)
+#pragma omp parallel for firstprivate(dipoles1, mesh), default(shared)
+//todo test this solution with older ones
         for (int i = 0; i < Nsym; ++i) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
@@ -264,11 +264,11 @@ int main(int argc, char *argv[]) {
 
 
         out1 << "\n";
-        //mesh.printDec(out1);//todo implement
+
+        printDec(mesh,out1);
 
         out1.close();
-        //mesh.plotSpherical(getString(dirname, "sim", i, "png"));//todo implement
-        //std::string name = dirname + "coord_i=" + std::to_string(i) + ".png";
+        mesh.plotAndSave(getString(dirname, "sim", i, "png"),meshStorage::plotFunction);
         plotCoordinates(getString(dirname, "coord", i, "png"), aRange, coordinates[i]);
 
     }
@@ -298,8 +298,7 @@ int main(int argc, char *argv[]) {
          << "для конфигураций, состоящих из " << N << " диполей\n";
 
     mesh.data[2]=result;
-    /*mesh.setMesh3(result);*/
-    //mesh.printDec(out1);//todo implement
+    printDec(mesh,out1);
     mesh.plotAndSave(dirname + "avg.png",meshStorage::plotFunction);
     out1.close();
 

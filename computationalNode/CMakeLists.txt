@@ -4,8 +4,8 @@ project(data_deduplication_service)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-SET(CMAKE_CXX_FLAGS_DEBUG "-g")
-SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
+SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+SET(CMAKE_CXX_FLAGS_RELEASE "-g -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
 SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
 
 if (NOT CMAKE_BUILD_TYPE)

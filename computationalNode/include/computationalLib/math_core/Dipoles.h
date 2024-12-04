@@ -228,9 +228,13 @@ namespace dipoles {
     template<typename Container>
     requires HasSizeMethod<Container>
     void Dipoles::setNewCoordinates(const Container &xi) {
-        if (an == params::a) {
+        if(this->f.size()!=xi.size()*2) {
             this->N_ = xi.size() / 2;
             initArrays();
+           /* if (an == params::a) {
+                this->N_ = xi.size() / 2;
+                initArrays();
+            }*/
         }
         setMatrixes(xi);
     }

@@ -164,11 +164,13 @@ private:
 };*/
 
 enum class state_t {
-    openmp_new,
     new_,
-    openmp_old,
     old,
+    openmp_new,
+    openmp_old,
     print_
+
+
 };
 
 
@@ -186,6 +188,6 @@ const static std::map<std::string, state_t> stringToState = {
         {"old",        state_t::old},
         {"print",      state_t::print_},
 };
-
+std::ostream& operator<<  (std::ostream &out,const state_t&st);
 
 #endif //MAGISTER1_LIB_H

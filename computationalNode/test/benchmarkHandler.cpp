@@ -2,7 +2,7 @@
 
 namespace benchUtils {
 
-    void benchmarkHandler::snapshotTimers(clockType&clk,const std::string&preprint,const std::string&delim) {
+    void benchmarkHandler::snapshotTimers(clk1&clk,const std::string&preprint,const std::string&delim) {
         for (auto &val:clk) {
 
             std::string name=ddpath/(val.first[3] + "_" + val.first[1]);

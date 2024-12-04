@@ -11,7 +11,10 @@
 namespace benchUtils {
     namespace fu= fileUtils;
     namespace tu=timing;
-    using clockType= tu::chronoClockTemplate<std::milli> ;
+    template<typename ratio=std::milli>
+    using clockType= tu::chronoClockTemplate<ratio>;
+
+    using clk1=clockType<std::micro>;
 
     template<typename...ARRAYS>
     constexpr auto cartesian_product(ARRAYS...arrays) {
@@ -38,9 +41,9 @@ namespace benchUtils {
     }
 
 
-
     class benchmarkHandler {
         public:
+
         //todo check whether benchmark name can be used as a path
         explicit benchmarkHandler(std::string_view name,
                          std::optional<std::string>path=std::nullopt);
@@ -49,9 +52,9 @@ namespace benchUtils {
         static inline std::filesystem::path ddpath="timers";
         template<typename...ARRAYS>
         constexpr auto runThing(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
-                                const std::function<void(clockType &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+                                const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
                                 ARRAYS...arrays);
-        void snapshotTimers(clockType&clk,const std::string&preprint,const std::string&delim="\n");
+        void snapshotTimers(clk1&clk,const std::string&preprint,const std::string&delim="\n");
         void printClocks()
         {
             auto name="benchTimers.txt";
@@ -68,7 +71,7 @@ namespace benchUtils {
     private:
         fu::fileHandler fh;
         std::string benchmarkName;
-        clockType clkArr;
+        clk1 clkArr;
     };
 
 
@@ -103,9 +106,9 @@ namespace benchUtils {
     template<typename... ARRAYS>
     constexpr auto
     benchmarkHandler::runThing(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
-                               const std::function<void(clockType &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+                               const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
                                ARRAYS...arrays) {
-        clockType clkdc= this->clkArr;
+        clk1 clkdc= this->clkArr;
 
         auto cart= cartesian_product(std::forward<ARRAYS>(arrays)...);
         auto size=std::tuple_size<typename decltype(cart)::value_type>{};

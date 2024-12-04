@@ -22,7 +22,8 @@ int main(int argc, char *argv[]) {
     dipoles::Dipoles d(N, coords);
     auto dur=std::chrono::duration<double,std::milli>(10);
 
-
+//todo printing
+ //to etc.
 
     auto stime = clk.tikLoc();
     *//*std::this_thread::sleep_for(dur);*//*
@@ -30,6 +31,6 @@ int main(int argc, char *argv[]) {
    clk.tak();
     std::cout << clk[stime].time << "\t" << N << "\n";*/
     std::vector<double> a={0,1,6,1,0,-6};
-    plotCoordinates("ass.png",1,a);
+    plotCoordinates("result.png",1,a);
 
 }
