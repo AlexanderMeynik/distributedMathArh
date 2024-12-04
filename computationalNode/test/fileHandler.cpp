@@ -1,5 +1,6 @@
 #include "fileHandler.h"
 #include <fstream>
+/// fileUtils namespace
 namespace fileUtils
 {
 
@@ -51,6 +52,10 @@ namespace fileUtils
 
     const fs::path &fileHandler::getParentPath() const {
         return parentPath;
+    }
+
+    bool fileHandler::contains(const std::string &filename) {
+        return fileMap.contains(parentPath/filename);
     }
 
 

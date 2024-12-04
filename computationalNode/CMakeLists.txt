@@ -4,13 +4,23 @@ project(data_deduplication_service)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-SET(CMAKE_CXX_FLAGS_RELEASE "-g -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
-SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif ()
+
+SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+SET(CMAKE_CXX_FLAGS_RELEASE "-g -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
+SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
+
+#[[if(CMAKE_BUILD_TYPE=="Release-Coverage")
+    message("coverage")
+    list(append CMAKE_CXX_FLAGS_RELEASE "-coverage -fprofile-arcs -ftest-coverage")
+endif ()]]
+
+
+
+
 
 add_subdirectory(test)
 
@@ -35,10 +45,8 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 
 
 add_library(math_core_lib ${math_core_files})
-target_link_libraries(math_core_lib PUBLIC ${GSL_LIBRARIES})
-target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
+#target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
 target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
-target_include_directories(math_core_lib PUBLIC ${GSL_INCLUDE_DIRS})
 target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
 
@@ -90,7 +98,7 @@ add_executable(moveDipoles src/moveDipoles.cpp)
 target_link_libraries(moveDipoles PUBLIC math_core_lib)
 
 add_executable(generator src/coordGenerate.cpp)
-target_link_libraries(generator PUBLIC math_core_lib)
+target_link_libraries(generator PUBLIC math_core_lib OpenMP::OpenMP_CXX)
 
 
 add_executable(checker src/eigenTest.cpp)

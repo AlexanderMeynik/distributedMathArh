@@ -9,10 +9,6 @@ SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
 project(utilLib)
 add_subdirectory(test)
 
-find_package(libpqxx REQUIRED)
-find_package(glog 0.7.1 REQUIRED)
-find_package(OpenSSL REQUIRED)
-find_package(OpenMP REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 include_directories(include)
@@ -32,7 +28,6 @@ file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
 )
 
 add_library(parallelLib ${parallelUtils})
-target_link_libraries(parallelLib PUBLIC OpenMP::OpenMP_CXX)
 
 
 add_library(commonLibrary lib/parallelUtils/commonDeclarations.cpp lib/parallelUtils/clockArray.cpp)

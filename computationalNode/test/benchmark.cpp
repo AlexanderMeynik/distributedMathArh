@@ -185,18 +185,18 @@ int main() {
 
 
     benchmarkHandler bh("benchFirst", {"benchFirst"});
-    bh.runThing(nameGenerator1, firstBench, std::array{1ul, 2ul, 4ul, 8ul,10ul,20ul},
-                std::array{state_t::new_, state_t::old});
+    bh.runBenchmark(nameGenerator1, firstBench, std::array{1ul, 2ul, 4ul, 8ul, 10ul, 20ul},
+                    std::array{state_t::new_, state_t::old});
 
 
     benchmarkHandler bh2("benchSecond", {"benchSecond"});
-    bh2.runThing(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul, 8ul,10ul,
-                                                         20ul,40ul,50ul,100ul,200ul}
-                );
+    bh2.runBenchmark(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul, 8ul, 10ul,
+                                                             20ul, 40ul, 50ul, 100ul, 200ul}
+    );
 
     benchmarkHandler bh3("benchThird", {"benchThird"});
-    bh3.runThing(nameGenerator3, thirdBench,std::array{1ul, 2ul, 4ul, 8ul,10ul,20ul},
-                 std::array{state_t::new_, state_t::old,state_t::openmp_new,state_t::openmp_old}
+    bh3.runBenchmark(nameGenerator3, thirdBench, std::array{1ul, 2ul, 4ul, 8ul, 10ul, 20ul},
+                     std::array{state_t::new_, state_t::old, state_t::openmp_new, state_t::openmp_old}
     );
 
 }

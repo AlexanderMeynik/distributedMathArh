@@ -1,5 +1,6 @@
 #include "benchmarkHandler.h"
 
+/// benchUtils namespace
 namespace benchUtils {
 
     void benchmarkHandler::snapshotTimers(clk1&clk,const std::string&preprint,const std::string&delim) {

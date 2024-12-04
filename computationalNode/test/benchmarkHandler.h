@@ -1,13 +1,15 @@
-
+#pragma once
 #ifndef DIPLOM_BENCHMARKHANDLER_H
 #define DIPLOM_BENCHMARKHANDLER_H
+
 #include <functional>
 #include <optional>
 #include <concepts>
 #include <tuple>
+
 #include "fileHandler.h"
 #include "parallelUtils/commonDeclarations.h"
-
+/// benchUtils namespace
 namespace benchUtils {
     namespace fu= fileUtils;
     namespace tu=timing;
@@ -16,8 +18,28 @@ namespace benchUtils {
 
     using clk1=clockType<std::micro>;
 
+
+    /**
+     * @brief Prints tuple to string
+     * @tparam TupleT
+     * @tparam TupSize
+     * @param tp
+     * @param delim - is printed after each tuple element
+     * @param left - is printed before all tuple elements
+     * @param right  - is printed after all tuple elements
+     */
+    template<typename TupleT, std::size_t TupSize = std::tuple_size_v<TupleT>>
+    std::string tupleToString(const TupleT& tp,
+                              const char* delim=",",const char* left="(",
+                              const char* right=")");
+
+    /**
+     * @brief Compile time function to compute cartessian product for arbitrary number of arrays
+     * @tparam ARRAYS
+     * @param arrays
+     */
     template<typename...ARRAYS>
-    constexpr auto cartesian_product(ARRAYS...arrays) {
+    constexpr auto cartesianProduct(ARRAYS...arrays) {
         using type = std::tuple<typename ARRAYS::value_type...>;
 
         constexpr std::size_t N = (1 * ... * arrays.size());
@@ -41,20 +63,44 @@ namespace benchUtils {
     }
 
 
+    /**
+     * @brief Class that handles benchmark file creation time measurements and other functionality
+     */
     class benchmarkHandler {
         public:
 
         //todo check whether benchmark name can be used as a path
+        /**
+         *
+         * @param name -
+         * @param path - may be optional -> current directory will be used
+         */
         explicit benchmarkHandler(std::string_view name,
                          std::optional<std::string>path=std::nullopt);
 
 
+        /**
+         * @tparam ARRAYS - input arrays types for cartessian product
+         * @param benchNameGenerator - function that generates iteration name
+         * @param benchFunction - function that performs benchmark iteration
+         * @param arrays - arrays for cartessian product
+         */
         static inline std::filesystem::path ddpath="timers";
         template<typename...ARRAYS>
-        constexpr auto runThing(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
-                                const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
-                                ARRAYS...arrays);
+        constexpr auto runBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
+                                    const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+                                    ARRAYS...arrays);
+        /**
+         * @brief Prints each entry in clk to a designated file
+         * @param clk
+         * @param preprint - is printed before each entry
+         * @param delim - delimeter that is printed after each timer record
+         */
         void snapshotTimers(clk1&clk,const std::string&preprint,const std::string&delim="\n");
+
+        /**
+         * @brief Prints global clock results into designated file
+         */
         void printClocks()
         {
             auto name="benchTimers.txt";
@@ -74,20 +120,10 @@ namespace benchUtils {
         clk1 clkArr;
     };
 
-
-    template <typename TupleT, std::size_t... Is>
-    void printTupleManual(const TupleT& tp, std::index_sequence<Is...>) {
-        (printElem(std::get<Is>(tp)), ...);
-    }
-
-    template <typename TupleT, std::size_t TupSize = std::tuple_size_v<TupleT>>
-    void printTupleGetSize(const TupleT& tp) {
-        printTupleManual(tp, std::make_index_sequence<TupSize>{});
-    }
-    template<typename TupleT, std::size_t TupSize = std::tuple_size_v<TupleT>>
+    template<typename TupleT, std::size_t TupSize>
     std::string tupleToString(const TupleT& tp,
-                              const char* delim=",",const char* left="(",
-                              const char* right=")")
+                              const char* delim,const char* left,
+                              const char* right)
     {
         return []<typename TupleTy, std::size_t... Is>(const TupleTy& tp,const char* delim,const char* left,
                                              const char* right,std::index_sequence<Is...>)->std::string
@@ -105,12 +141,12 @@ namespace benchUtils {
 
     template<typename... ARRAYS>
     constexpr auto
-    benchmarkHandler::runThing(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
-                               const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
-                               ARRAYS...arrays) {
+    benchmarkHandler::runBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
+                                   const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+                                   ARRAYS...arrays) {
         clk1 clkdc= this->clkArr;
 
-        auto cart= cartesian_product(std::forward<ARRAYS>(arrays)...);
+        auto cart= cartesianProduct(std::forward<ARRAYS>(arrays)...);
         auto size=std::tuple_size<typename decltype(cart)::value_type>{};
         size_t innerCounter=0;
         auto lambda=[this,&benchFunction]<ARRAYS>(typename ARRAYS::value_type ... vals)
