@@ -1,13 +1,18 @@
-#include "fileHandler.h"
-#include "benchmarkHandler.h"
-#include "common/Generator.h"
+
 #include <iostream>
 #include <utility>
 #include <tuple>
+
+
+#include <omp.h>
+
+#include "fileHandler.h"
+#include "benchmarkHandler.h"
+#include "common/Generator.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "common/lib.h"
-#include "omp.h"
+
 
 using fileUtils::fileHandler;
 std::filesystem::path dir("becnhmarkData");
@@ -18,11 +23,6 @@ void func(int a, char b, uint c) {
 }
 
 
-#include "eigen3/Eigen/Dense"
-//todo dipoles solve(create 2 variants)
-//todo dipoles function create/generate + 4 confs and N
-//todo integration methods metrics
-/*std::valarray<FloatType> solve()*/
 constexpr auto chararr = std::array<char, 3>{'a', 'b', 'c'};
 constexpr auto intarr = std::array<int, 4>{1, 2, 3, 4};
 constexpr FloatType arange = 1e-6;
@@ -160,7 +160,7 @@ auto thirdBench = []
     }
     else
     {
-#pragma omp parallel for firstprivate(dipoles1), default(shared)
+#pragma omp parallel for firstprivate(dipoles1,ms), default(shared)
         for (size_t i = 0; i < confNum; ++i) {
 
             if (st == state_t::openmp_new) {
@@ -201,6 +201,5 @@ int main() {
 
 }
 
-////todo depenedecy of computation time from N
 ////todo integration accuracy/speed depending on Ndots and quadrature
 ////todo gbench
