@@ -27,8 +27,9 @@ constexpr auto chararr = std::array<char, 3>{'a', 'b', 'c'};
 constexpr auto intarr = std::array<int, 4>{1, 2, 3, 4};
 constexpr FloatType arange = 1e-6;
 
+
 void
-loop(const std::valarray<FloatType> &coordinates, benchUtils::clk1 &clk, dipoles::Dipoles &dipoles1,
+loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &dipoles1,
      meshStorage::MeshCreator &ms, size_t confNum, state_t st) {
     for (size_t i = 0; i < confNum; ++i) {
         clk.tik();
@@ -60,17 +61,11 @@ loop(const std::valarray<FloatType> &coordinates, benchUtils::clk1 &clk, dipoles
 
 
 auto firstBench = []
-        (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
+        (auto &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
     auto confNum = 10;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
-    /*std::vector<std::valarray<FloatType>> coordinates;
-    coordinates.resize(confNum);
-    clk.tik();
-    for (auto &it: coordinates) {
-        it = generators::normal<std::valarray>(N, 0.0, arange);
-    }
-    clk.tak();*/
+
 
     dipoles::Dipoles dipoles1;
 
@@ -88,16 +83,11 @@ std::function<std::string(size_t, state_t)> nameGenerator1 =
         };
 
 auto secondBench = []
-        (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N) {
+        (auto & clk, fileUtils::fileHandler &handler, size_t N) {
     auto confNum = 1000;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, arange);
-   /* coordinates.resize(confNum);*/
-    /*clk.tik();
-    for (auto &it: coordinates) {
-        it = generators::normal<std::valarray>(N, 0.0, arange);
-    }
-    clk.tak();*/
+
 
     dipoles::Dipoles dipoles1;
 
@@ -135,7 +125,7 @@ std::function<std::string(size_t)> nameGenerator2 =
             return std::to_string(N) + "_";
         };
 auto thirdBench = []
-        (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
+        (auto &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
     auto confNum = 10;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, arange);
@@ -190,7 +180,7 @@ int main() {
                     std::array{state_t::new_, state_t::old});
 
 
-    benchmarkHandler bh2("benchSecond", {"benchSecond"});
+    benchmarkHandler<std::milli> bh2("benchSecond", {"benchSecond"});
     bh2.runBenchmark(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul,
                                                              20ul, 40ul, 50ul, 100ul, 200ul,400ul,500ul,800ul,1000ul,2000ul}
     );

@@ -16,7 +16,7 @@ namespace benchUtils {
     template<typename ratio=std::milli>
     using clockType= tu::chronoClockTemplate<ratio>;
 
-    using clk1=clockType<std::micro>;
+
 
 
     /**
@@ -66,8 +66,10 @@ namespace benchUtils {
     /**
      * @brief Class that handles benchmark file creation time measurements and other functionality
      */
+    template<typename range=std::micro>
     class benchmarkHandler {
         public:
+        using clk1=clockType<range>;
 
         //todo check whether benchmark name can be used as a path
         /**
@@ -139,9 +141,32 @@ namespace benchUtils {
     }
 
 
+    template<typename range>
+    void benchmarkHandler<range>::snapshotTimers(clk1&clk,const std::string&preprint,const std::string&delim) {
+        for (auto &val:clk) {
+
+            std::string name=ddpath/(val.first[3] + "_" + val.first[1]);
+            fh.upsert(name);
+            fh.output(name,preprint);
+            fh.output(name,val.second.time);
+            fh.output(name,delim);
+        }
+    }
+
+
+    template<typename range>
+    benchmarkHandler<range>::benchmarkHandler(std::string_view name, std::optional<std::string> path):
+            benchmarkName(name),
+            fh(path.has_value()?fu::getNormalAbs(path.value()):""),
+            clkArr()
+    {
+
+    }
+
+    template<typename range>
     template<typename... ARRAYS>
     constexpr auto
-    benchmarkHandler::runBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
+    benchmarkHandler<range>::runBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
                                    const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
                                    ARRAYS...arrays) {
         clk1 clkdc= this->clkArr;
