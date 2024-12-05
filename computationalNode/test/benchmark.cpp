@@ -61,7 +61,7 @@ loop(const std::valarray<FloatType> &coordinates, benchUtils::clk1 &clk, dipoles
 
 auto firstBench = []
         (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
-    auto confNum = 100;
+    auto confNum = 10;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
     /*std::vector<std::valarray<FloatType>> coordinates;
@@ -89,7 +89,7 @@ std::function<std::string(size_t, state_t)> nameGenerator1 =
 
 auto secondBench = []
         (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N) {
-    auto confNum = 10000;
+    auto confNum = 1000;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, arange);
    /* coordinates.resize(confNum);*/
@@ -136,7 +136,7 @@ std::function<std::string(size_t)> nameGenerator2 =
         };
 auto thirdBench = []
         (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
-    auto confNum = 100;
+    auto confNum = 10;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, arange);
 
@@ -186,7 +186,7 @@ int main() {
 
 
     benchmarkHandler bh("benchFirst", {"benchFirst"});
-    bh.runBenchmark(nameGenerator1, firstBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul},
+    bh.runBenchmark(nameGenerator1, firstBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul,50ul},
                     std::array{state_t::new_, state_t::old});
 
 
@@ -196,7 +196,7 @@ int main() {
     );
 
     benchmarkHandler bh3("benchThird", {"benchThird"});
-    bh3.runBenchmark(nameGenerator3, thirdBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul},
+    bh3.runBenchmark(nameGenerator3, thirdBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul,50ul},
                      std::array{state_t::new_, state_t::old, state_t::openmp_new, state_t::openmp_old}
     );
 
