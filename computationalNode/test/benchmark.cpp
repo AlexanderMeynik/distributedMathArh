@@ -28,11 +28,11 @@ constexpr auto intarr = std::array<int, 4>{1, 2, 3, 4};
 constexpr FloatType arange = 1e-6;
 
 void
-loop(const std::vector<std::valarray<FloatType>> &coordinates, benchUtils::clk1 &clk, dipoles::Dipoles &dipoles1,
+loop(const std::valarray<FloatType> &coordinates, benchUtils::clk1 &clk, dipoles::Dipoles &dipoles1,
      meshStorage::MeshCreator &ms, size_t confNum, state_t st) {
     for (size_t i = 0; i < confNum; ++i) {
         clk.tik();
-        dipoles1.setNewCoordinates(coordinates[i]);
+        dipoles1.setNewCoordinates(coordinates);
         clk.tak();
         clk.tik();
         auto sol = dipoles1.solve();
@@ -40,7 +40,7 @@ loop(const std::vector<std::valarray<FloatType>> &coordinates, benchUtils::clk1 
 
 
         clk.tik();
-        dipoles1.getFullFunction_(coordinates[i], sol);
+        dipoles1.getFullFunction_(coordinates, sol);
         clk.tak();
 
         clk.tik();
@@ -63,13 +63,14 @@ auto firstBench = []
         (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
     auto confNum = 100;
     auto sig = arange * sqrt(2);
-    std::vector<std::valarray<FloatType>> coordinates;
+    auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
+    /*std::vector<std::valarray<FloatType>> coordinates;
     coordinates.resize(confNum);
     clk.tik();
     for (auto &it: coordinates) {
         it = generators::normal<std::valarray>(N, 0.0, arange);
     }
-    clk.tak();
+    clk.tak();*/
 
     dipoles::Dipoles dipoles1;
 
@@ -90,13 +91,13 @@ auto secondBench = []
         (benchUtils::clk1 &clk, fileUtils::fileHandler &handler, size_t N) {
     auto confNum = 10000;
     auto sig = arange * sqrt(2);
-    std::vector<std::valarray<FloatType>> coordinates;
-    coordinates.resize(confNum);
-    clk.tik();
+    auto coordinates=generators::normal<std::valarray>(N, 0.0, arange);
+   /* coordinates.resize(confNum);*/
+    /*clk.tik();
     for (auto &it: coordinates) {
         it = generators::normal<std::valarray>(N, 0.0, arange);
     }
-    clk.tak();
+    clk.tak();*/
 
     dipoles::Dipoles dipoles1;
 
@@ -106,7 +107,7 @@ auto secondBench = []
 
     for (size_t i = 0; i < confNum; ++i) {
         clk.tik();
-        dipoles1.setNewCoordinates(coordinates[i]);
+        dipoles1.setNewCoordinates(coordinates);
         clk.tak();
         clk.tik();
         auto sol = dipoles1.solve();
@@ -114,7 +115,7 @@ auto secondBench = []
 
 
         clk.tik();
-        dipoles1.getFullFunction_(coordinates[i], sol);
+        dipoles1.getFullFunction_(coordinates, sol);
         clk.tak();
 
         clk.tik();
@@ -185,17 +186,17 @@ int main() {
 
 
     benchmarkHandler bh("benchFirst", {"benchFirst"});
-    bh.runBenchmark(nameGenerator1, firstBench, std::array{1ul, 2ul, 4ul, 8ul, 10ul, 20ul},
+    bh.runBenchmark(nameGenerator1, firstBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul},
                     std::array{state_t::new_, state_t::old});
 
 
     benchmarkHandler bh2("benchSecond", {"benchSecond"});
-    bh2.runBenchmark(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul, 8ul, 10ul,
-                                                             20ul, 40ul, 50ul, 100ul, 200ul}
+    bh2.runBenchmark(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul,
+                                                             20ul, 40ul, 50ul, 100ul, 200ul,400ul,500ul,800ul,1000ul,2000ul}
     );
 
     benchmarkHandler bh3("benchThird", {"benchThird"});
-    bh3.runBenchmark(nameGenerator3, thirdBench, std::array{1ul, 2ul, 4ul, 8ul, 10ul, 20ul},
+    bh3.runBenchmark(nameGenerator3, thirdBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul},
                      std::array{state_t::new_, state_t::old, state_t::openmp_new, state_t::openmp_old}
     );
 
