@@ -74,7 +74,7 @@ namespace benchUtils {
         //todo check whether benchmark name can be used as a path
         /**
          *
-         * @param name -
+         * @param name -benchmark name
          * @param path - may be optional -> current directory will be used
          */
         explicit benchmarkHandler(std::string_view name,
@@ -89,16 +89,18 @@ namespace benchUtils {
          */
         static inline std::filesystem::path ddpath="timers";
         template<typename...ARRAYS>
-        constexpr auto runBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
-                                    const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+        constexpr void runBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
+                                    const std::function<void(clk1 &,fu::fileHandler&,size_t &, typename ARRAYS::value_type ...)>&benchFunction,
                                     ARRAYS...arrays);
         /**
          * @brief Prints each entry in clk to a designated file
          * @param clk
          * @param preprint - is printed before each entry
          * @param delim - delimeter that is printed after each timer record
+         * @param multiplier - timer time is multiplied by given multiplier(defaults to 1)
          */
-        void snapshotTimers(clk1&clk,const std::string&preprint,const std::string&delim="\n");
+        void snapshotTimers(clk1 &clk, const std::string &preprint, const std::string &delim="\n",
+                            size_t multiplier=1);
 
         /**
          * @brief Prints global clock results into designated file
@@ -120,6 +122,7 @@ namespace benchUtils {
         fu::fileHandler fh;
         std::string benchmarkName;
         clk1 clkArr;
+        size_t mul;
     };
 
     template<typename TupleT, std::size_t TupSize>
@@ -142,13 +145,14 @@ namespace benchUtils {
 
 
     template<typename range>
-    void benchmarkHandler<range>::snapshotTimers(clk1&clk,const std::string&preprint,const std::string&delim) {
+    void benchmarkHandler<range>::snapshotTimers(clk1 &clk, const std::string &preprint, const std::string &delim,
+                                                 size_t multiplier) {
         for (auto &val:clk) {
 
             std::string name=ddpath/(val.first[3] + "_" + val.first[1]);
             fh.upsert(name);
             fh.output(name,preprint);
-            fh.output(name,val.second.time);
+            fh.output(name,val.second.time*(unsigned long long int)(multiplier));
             fh.output(name,delim);
         }
     }
@@ -158,16 +162,17 @@ namespace benchUtils {
     benchmarkHandler<range>::benchmarkHandler(std::string_view name, std::optional<std::string> path):
             benchmarkName(name),
             fh(path.has_value()?fu::getNormalAbs(path.value()):""),
-            clkArr()
+            clkArr(),
+            mul(1)
     {
 
     }
 
     template<typename range>
     template<typename... ARRAYS>
-    constexpr auto
+    constexpr void
     benchmarkHandler<range>::runBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)>&benchNameGenerator,
-                                   const std::function<void(clk1 &,fu::fileHandler&, typename ARRAYS::value_type ...)>&benchFunction,
+                                   const std::function<void(clk1 &,fu::fileHandler&,size_t &, typename ARRAYS::value_type ...)>&benchFunction,
                                    ARRAYS...arrays) {
         clk1 clkdc= this->clkArr;
 
@@ -176,7 +181,7 @@ namespace benchUtils {
         size_t innerCounter=0;
         auto lambda=[this,&benchFunction]<ARRAYS>(typename ARRAYS::value_type ... vals)
         {
-            return benchFunction(clkArr,fh,std::forward<typename ARRAYS::value_type>(vals)...);
+            return benchFunction(clkArr,fh,mul,std::forward<typename ARRAYS::value_type>(vals)...);
         };
 
 
@@ -185,7 +190,9 @@ namespace benchUtils {
         for (auto&tuple:cart) {
             auto itername=benchmarkName+std::apply(benchNameGenerator, tuple);
             std::apply(lambda,tuple);
-            snapshotTimers(clkArr, tupleToString(tuple,"\t","","")+"\t");
+            /*std::cout<<itername<<'\t'<<mul<<'\n';*///todo logging
+
+            snapshotTimers(clkArr, tupleToString(tuple,"\t","","")+"\t","\n",mul);
 
             innerCounter++;
             clkdc.advance(clkArr);

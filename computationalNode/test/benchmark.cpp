@@ -2,7 +2,7 @@
 #include <iostream>
 #include <utility>
 #include <tuple>
-
+#include <algorithm>
 
 #include <omp.h>
 
@@ -61,7 +61,7 @@ loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &d
 
 
 auto firstBench = []
-        (auto &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
+        (auto &clk, fileUtils::fileHandler &handler,size_t &mul,state_t st ,size_t N) {
     auto confNum = 10;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
@@ -77,16 +77,33 @@ auto firstBench = []
 };
 
 
-std::function<std::string(size_t, state_t)> nameGenerator1 =
-        [](size_t N, state_t st) {
-            return std::to_string(N) + "_" + stateToString.at(st);
+auto nameGenerator1 =
+        [](state_t st,size_t N) {
+            return  stateToString.at(st)+ "_" +std::to_string(N) ;
         };
 
+
+
+const std::array<size_t,5> rlims={10,50,200,500,1000};
+const std::array<size_t,6> divs
+        {
+                1,10,40,100,200,400
+        };
+
+auto rangeFinder=[](size_t N)->size_t
+{
+    auto rangeNum=std::lower_bound(rlims.begin(), rlims.end(),N)-rlims.begin();
+    auto currdiv=divs[rangeNum];
+    return currdiv;
+};
+
 auto secondBench = []
-        (auto & clk, fileUtils::fileHandler &handler, size_t N) {
-    auto confNum = 1000;
+        (auto & clk, fileUtils::fileHandler &handler,size_t &mul, size_t N) {
+    auto div=rangeFinder(N);
+    mul=div;
+    auto confNum = 10000/div;
     auto sig = arange * sqrt(2);
-    auto coordinates=generators::normal<std::valarray>(N, 0.0, arange);
+    auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
 
 
     dipoles::Dipoles dipoles1;
@@ -125,10 +142,10 @@ std::function<std::string(size_t)> nameGenerator2 =
             return std::to_string(N) + "_";
         };
 auto thirdBench = []
-        (auto &clk, fileUtils::fileHandler &handler, size_t N, state_t st) {
+        (auto &clk, fileUtils::fileHandler &handler,size_t &mul,state_t st, size_t N ) {
     auto confNum = 10;
     auto sig = arange * sqrt(2);
-    auto coordinates=generators::normal<std::valarray>(N, 0.0, arange);
+    auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
 
 
     dipoles::Dipoles dipoles1;
@@ -167,27 +184,92 @@ auto thirdBench = []
 
 };
 
-
-std::function<std::string(size_t, state_t)> nameGenerator3 =
-        [](size_t N, state_t st) {
-            return std::to_string(N) + "_" + stateToString.at(st);
+auto nameGenerator3 =
+        [](state_t st,size_t N) {
+            return  stateToString.at(st)+ "_" + std::to_string(N);
         };
+
+
+
+
+
+auto fourthBench = []
+        (auto & clk, fileUtils::fileHandler &handler,size_t &mul,  size_t confNum,size_t N) {
+    /*auto confNum = 1000;*/
+    auto sig = arange * sqrt(2);
+    auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
+
+
+    dipoles::Dipoles dipoles1;
+
+    meshStorage::MeshCreator ms;
+    ms.constructMeshes();
+
+
+    for (size_t i = 0; i < confNum; ++i) {
+        clk.tik();
+        dipoles1.setNewCoordinates(coordinates);
+        clk.tak();
+        clk.tik();
+        auto sol = dipoles1.solve();
+        clk.tak();
+
+
+        clk.tik();
+        dipoles1.getFullFunction_(coordinates, sol);
+        clk.tak();
+
+        clk.tik();
+        ms.applyFunction(dipoles1.getI2function());
+        clk.tak();
+
+    }
+    std::cout<<N<<'\n';
+    std::cout<<clk<<"\n\n";
+
+
+};
+
+
+auto nameGenerator4 =
+        [](size_t confNum,size_t N) {
+            return std::to_string(confNum) + "_"+std::to_string(N);
+        };
+
+
+
+
 int main() {
+
+    for (auto&N: std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul,
+                            20ul, 40ul, 50ul, 100ul, 200ul,400ul,500ul,800ul,1000ul,2000ul}) {
+        std::cout<<N<<'\t'<<rangeFinder(N)<<'\n';
+    }
 
 
     benchmarkHandler bh("benchFirst", {"benchFirst"});
-    bh.runBenchmark(nameGenerator1, firstBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul,50ul},
-                    std::array{state_t::new_, state_t::old});
+    bh.runBenchmark(nameGenerator1, firstBench,std::array{state_t::new_, state_t::old}
+                    , std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul,50ul}
+                    );
 
 
-    benchmarkHandler<std::milli> bh2("benchSecond", {"benchSecond"});
+    benchmarkHandler bh2("benchSecond", {"benchSecond"});
     bh2.runBenchmark(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul,
                                                              20ul, 40ul, 50ul, 100ul, 200ul,400ul,500ul,800ul,1000ul,2000ul}
     );
 
     benchmarkHandler bh3("benchThird", {"benchThird"});
-    bh3.runBenchmark(nameGenerator3, thirdBench, std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul,50ul},
-                     std::array{state_t::new_, state_t::old, state_t::openmp_new, state_t::openmp_old}
+    bh3.runBenchmark(nameGenerator3, thirdBench, std::array{state_t::new_, state_t::old, state_t::openmp_new, state_t::openmp_old}
+                     ,std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul, 20ul,40ul,50ul}
+
+    );
+
+    benchmarkHandler bh4("benchFourth", {"benchFourth"});
+    bh4.runBenchmark(nameGenerator4, fourthBench,
+                     std::array{1ul,10ul,100ul,1000ul,10000ul},
+                     std::array{1ul, 2ul, 4ul,5ul, 8ul, 10ul,
+                                                            20ul, 40ul, 50ul, 100ul, 200ul}
+
     );
 
 }
