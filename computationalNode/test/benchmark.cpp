@@ -62,7 +62,7 @@ loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &d
 
 auto firstBench = []
         (auto &clk, fileUtils::fileHandler &handler,size_t &mul,state_t st ,size_t N) {
-    auto confNum = 10;
+    auto confNum = 1000;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
 
@@ -143,7 +143,7 @@ std::function<std::string(size_t)> nameGenerator2 =
         };
 auto thirdBench = []
         (auto &clk, fileUtils::fileHandler &handler,size_t &mul,state_t st, size_t N ) {
-    auto confNum = 10;
+    auto confNum = 1000;
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
 
