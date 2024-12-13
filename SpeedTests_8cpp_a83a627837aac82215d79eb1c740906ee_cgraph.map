@@ -1,0 +1,6 @@
+<map id="TEST_P" name="TEST_P">
+<area shape="rect" id="node1" title=" " alt="" coords="5,56,75,83"/>
+<area shape="rect" id="node2" href="$classdipoles_1_1Dipoles.html#a9a2cf917e5f2e44b4c36163491b6e97b" title="Retrieves matrix computed for system of equations." alt="" coords="127,5,333,32"/>
+<area shape="rect" id="node3" href="$classdipoles_1_1Dipoles.html#ac78e36b7f09264e0d9d1e35b787f99ab" title="Retrieves right part for system of equations." alt="" coords="123,56,337,83"/>
+<area shape="rect" id="node4" href="$classdipoles_1_1Dipoles.html#a4f48fbd130f8c36aaf164f030f79f890" title="Computes solution vector for dipole parameters and returns it in available format." alt="" coords="145,107,315,133"/>
+</map>

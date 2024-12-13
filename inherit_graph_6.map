@@ -1,0 +1,12 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classcore__intrefaces_1_1IProduser.html" title=" " alt="" coords="5,79,196,120"/>
+<area shape="rect" id="node2" href="$classcore__intrefaces_1_1AbstractProduser.html" title=" " alt="" coords="271,5,455,47"/>
+<area shape="rect" id="node4" href="$classcore__intrefaces_1_1AbstractProduser.html" title=" " alt="" coords="244,71,483,127"/>
+<area shape="rect" id="node10" href="$classcore__intrefaces_1_1AbstractProduser.html" title=" " alt="" coords="271,152,455,193"/>
+<area shape="rect" id="node3" href="$classMockAbstractProduser.html" title=" " alt="" coords="531,5,699,47"/>
+<area shape="rect" id="node5" href="$classinter_1_1CalculationStep.html" title=" " alt="" coords="533,75,696,116"/>
+<area shape="rect" id="node9" href="$classinter_1_1CalculationStep.html" title=" " alt="" coords="533,140,696,181"/>
+<area shape="rect" id="node6" href="$classinter_1_1CalculateMatrix.html" title=" " alt="" coords="749,9,912,51"/>
+<area shape="rect" id="node7" href="$classinter_1_1CalculateMesh.html" title=" " alt="" coords="753,75,909,116"/>
+<area shape="rect" id="node8" href="$classinter_1_1InitCalc.html" title=" " alt="" coords="747,141,915,167"/>
+</map>

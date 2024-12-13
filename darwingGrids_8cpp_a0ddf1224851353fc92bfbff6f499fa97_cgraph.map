@@ -1,0 +1,18 @@
+<map id="main" name="main">
+<area shape="rect" id="node1" title=" " alt="" coords="5,296,60,323"/>
+<area shape="rect" id="node2" href="$classmeshStorage_1_1MeshCreator.html#aeb221c5966ebb4e7d5c504284a4f9583" title=" " alt="" coords="119,23,317,65"/>
+<area shape="rect" id="node6" href="$classmeshStorage_1_1MeshCreator.html#aee6e739b00862cd5c000aa04a092aa75" title=" " alt="" coords="119,89,317,130"/>
+<area shape="rect" id="node8" href="$classdipoles_1_1Dipoles.html#a2d6eb23cf70a3f49bc3eb8fbf316e4c1" title=" " alt="" coords="129,154,307,195"/>
+<area shape="rect" id="node9" href="$classdipoles_1_1Dipoles.html#a08a8ca13925e1700d77a389995fa0fc3" title=" " alt="" coords="108,220,328,247"/>
+<area shape="rect" id="node10" href="$Printers_8h.html#ad060f505f0d7fbf155eadcc03bc291ac" title=" " alt="" coords="155,271,281,297"/>
+<area shape="rect" id="node11" href="$Printers_8h.html#acaaa201e676e93dfa4e5f9fd83f7a46c" title=" " alt="" coords="149,321,287,348"/>
+<area shape="rect" id="node12" href="$Printers_8h.html#ac098af405ee0657be8feb5112c9dff31" title=" " alt="" coords="139,372,297,399"/>
+<area shape="rect" id="node13" href="$classdipoles_1_1Dipoles.html#a4f48fbd130f8c36aaf164f030f79f890" title="Computes solution vector for dipole parameters and returns it in available format." alt="" coords="133,423,303,449"/>
+<area shape="rect" id="node14" href="$darwingGrids_8cpp.html#ae021c6140e6d288cad9be7acf811dce5" title=" " alt="" coords="171,473,265,500"/>
+<area shape="rect" id="node16" href="$darwingGrids_8cpp.html#a2c3137c39b2f8010fd95dc886e8591df" title=" " alt="" coords="162,524,274,551"/>
+<area shape="rect" id="node3" href="$namespacemeshStorage.html#afff362294c6845915236d5c3340c7ed3" title="Computes functional mesh for 2 coordinates." alt="" coords="376,5,604,32"/>
+<area shape="rect" id="node5" href="$classmeshStorage_1_1MeshCreator.html#a446791b8b9728e532961906da0d3ebc8" title=" " alt="" coords="391,57,589,98"/>
+<area shape="rect" id="node4" href="$benchmark_8cpp.html#afbb83008ea50ad958180e7490618cb15" title=" " alt="" coords="652,5,703,32"/>
+<area shape="rect" id="node7" href="$namespacemeshStorage.html#a80423d61ef86d14fa2b58bcd6030e734" title="Computes meshes using 2 double arrays." alt="" coords="391,123,589,149"/>
+<area shape="rect" id="node15" href="$namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb" title="Generates linearly spaced vectors." alt="" coords="393,499,587,525"/>
+</map>

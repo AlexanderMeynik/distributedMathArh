@@ -1,0 +1,7 @@
+<map id="TEST_P" name="TEST_P">
+<area shape="rect" id="node1" title=" " alt="" coords="5,64,75,91"/>
+<area shape="rect" id="node2" href="$namespacetestCommon.html#a7e701ec9e23a600faa34dddf8c7687b0" title=" " alt="" coords="123,5,336,32"/>
+<area shape="rect" id="node3" href="$classdipoles_1_1Dipoles.html#aa5ef667154c2ce5b0452a50cd2c64d6a" title="Loads ststem of equations matrix." alt="" coords="132,57,327,98"/>
+<area shape="rect" id="node5" href="$classdipoles_1_1Dipoles.html#a4f48fbd130f8c36aaf164f030f79f890" title="Computes solution vector for dipole parameters and returns it in available format." alt="" coords="145,123,314,149"/>
+<area shape="rect" id="node4" href="$classdipoles_1_1Dipoles.html#a2a2128b516dfd096db85f140b241471a" title="Intializes dimensions for system of equations matrices." alt="" coords="384,64,581,91"/>
+</map>

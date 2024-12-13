@@ -1,0 +1,28 @@
+var classdipoles_1_1Dipoles =
+[
+    [ "Dipoles", "classdipoles_1_1Dipoles.html#a971a189cd9cff9dcef6febed98a26f8d", null ],
+    [ "Dipoles", "classdipoles_1_1Dipoles.html#a5c36a2a7415cbc5098124b531db051af", null ],
+    [ "getDistance", "classdipoles_1_1Dipoles.html#a59b509a2249dd1d8cbe3fead68e050c6", null ],
+    [ "getFullFunction_", "classdipoles_1_1Dipoles.html#a2d6eb23cf70a3f49bc3eb8fbf316e4c1", null ],
+    [ "getI2function", "classdipoles_1_1Dipoles.html#a08a8ca13925e1700d77a389995fa0fc3", null ],
+    [ "getIfunction", "classdipoles_1_1Dipoles.html#a9426239e7608fccb631a8137822de050", null ],
+    [ "getMatrices", "classdipoles_1_1Dipoles.html#a1e2481db2189621f0cd3bfa43f0c243a", null ],
+    [ "getMatrixx", "classdipoles_1_1Dipoles.html#a9a2cf917e5f2e44b4c36163491b6e97b", null ],
+    [ "getRightPart", "classdipoles_1_1Dipoles.html#ac78e36b7f09264e0d9d1e35b787f99ab", null ],
+    [ "initArrays", "classdipoles_1_1Dipoles.html#a2a2128b516dfd096db85f140b241471a", null ],
+    [ "loadFromMatrix", "classdipoles_1_1Dipoles.html#aa5ef667154c2ce5b0452a50cd2c64d6a", null ],
+    [ "printMatrix", "classdipoles_1_1Dipoles.html#a6f464c763dce1063a6e071840831026b", null ],
+    [ "printRightPart", "classdipoles_1_1Dipoles.html#a3e98b9dcfd92e16fe3c11149dc0db3d1", null ],
+    [ "setMatrixes", "classdipoles_1_1Dipoles.html#ab68eecc35d35f3184ac22bc87d8edc0e", null ],
+    [ "setNewCoordinates", "classdipoles_1_1Dipoles.html#a9e30dad2165a83d6d1440dde84bc508e", null ],
+    [ "solve", "classdipoles_1_1Dipoles.html#a4f48fbd130f8c36aaf164f030f79f890", null ],
+    [ "solve", "classdipoles_1_1Dipoles.html#a32d2abf13169f17faa9a2a81487d914c", null ],
+    [ "twoDVecDifference", "classdipoles_1_1Dipoles.html#a5bf05b006536f17e5972f6d2b516eb3b", null ],
+    [ "an", "classdipoles_1_1Dipoles.html#a16373157b11c16aed4ec94cdfdf99ca6", null ],
+    [ "f", "classdipoles_1_1Dipoles.html#afd4d0f900caaae854115463fa5acb4de", null ],
+    [ "I2function_", "classdipoles_1_1Dipoles.html#ab763fd95197a84859fee89f471ce1c11", null ],
+    [ "Ifunction_", "classdipoles_1_1Dipoles.html#ade89205c5d452356e4e9194787ba158e", null ],
+    [ "M1_", "classdipoles_1_1Dipoles.html#a8b09adc30a34db0cd3624364f65d1c1b", null ],
+    [ "M2_", "classdipoles_1_1Dipoles.html#acdcbd21ff0b2343f223fbaab1af79ec7", null ],
+    [ "N_", "classdipoles_1_1Dipoles.html#a6e46174a0866ff6b7cedc117e863a37a", null ]
+];
