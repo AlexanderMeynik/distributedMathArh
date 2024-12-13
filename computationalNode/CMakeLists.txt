@@ -45,7 +45,6 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 
 
 add_library(math_core_lib ${math_core_files})
-#target_link_libraries(math_core_lib PUBLIC ${PQXX_LIB} ${PQ_LIB})#todo убрать
 target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
 target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
@@ -75,10 +74,7 @@ add_library(io_lib ${iolib_files})
 
 target_link_libraries(io_lib PUBLIC math_core_lib)
 target_include_directories(io_lib PUBLIC ../mdspan/include)
-option(BUILD_DOC "Build documentation" OFF)
-if (BUILD_DOC)
-    add_subdirectory(doc)
-endif (BUILD_DOC)
+
 
 
 #option(BUILD_GUI "Build GUI" OFF)

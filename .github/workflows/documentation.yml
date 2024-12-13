@@ -1,0 +1,24 @@
+name: Deploy documentation
+
+on:
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Build and set logging directory
+        run: |
+          sudo apt-get install doxygen graphviz -y
+          mkdir -p build/doc 
+          cp -r doc/. build/doc 
+          cd build/doc
+          doxygen Doxyfile.in
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          folder: build/doc/doxygen-html

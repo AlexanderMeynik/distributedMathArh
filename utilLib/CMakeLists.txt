@@ -33,10 +33,7 @@ add_library(parallelLib ${parallelUtils})
 add_library(commonLibrary lib/parallelUtils/commonDeclarations.cpp lib/parallelUtils/clockArray.cpp)
 target_include_directories(commonLibrary PUBLIC include)
 
-option(BUILD_DOC "Build documentation" OFF)
-if (BUILD_DOC)
-    add_subdirectory(doc)
-endif (BUILD_DOC)
+
 
 install(TARGETS commonLibrary
         LIBRARY DESTINATION lib

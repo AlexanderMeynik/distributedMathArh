@@ -1,5 +1,6 @@
 set(CMAKE_CXX_STANDARD 23)
 
+find_package(OpenMP)
 
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
@@ -28,6 +29,10 @@ target_link_options(core_Tests PUBLIC -coverage -fprofile-arcs -ftest-coverage)
 
 add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)
 target_link_libraries(benchmark math_core_lib io_lib)
+
+if(OpenMP_CXX_FOUND)
+    target_link_libraries(benchmark OpenMP::OpenMP_CXX)
+endif()
 
 
 add_executable(samplePerExample simplePerExample.cpp)

@@ -15,7 +15,7 @@
 
 
 using fileUtils::fileHandler;
-std::filesystem::path dir("becnhmarkData");
+
 using benchUtils::benchmarkHandler;
 
 void func(int a, char b, uint c) {
@@ -195,7 +195,6 @@ auto nameGenerator3 =
 
 auto fourthBench = []
         (auto & clk, fileUtils::fileHandler &handler,size_t &mul,  size_t confNum,size_t N) {
-    /*auto confNum = 1000;*/
     auto sig = arange * sqrt(2);
     auto coordinates=generators::normal<std::valarray>(N, 0.0, sig);
 
