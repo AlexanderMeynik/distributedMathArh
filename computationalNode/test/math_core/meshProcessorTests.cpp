@@ -205,7 +205,7 @@ INSTANTIATE_TEST_SUITE_P(
                                 std::valarray<FloatType >{2,2,9,9})
         ), firstValueTuplePrinter<TestFunctionApply>);
 
-//typed tests for different containers and value of end
+
 
 
 

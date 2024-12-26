@@ -4,7 +4,9 @@
 
 #include <type_traits>
 #include <concepts>
+#include <array>
 
+using size_t = decltype(sizeof 1);
 //myconcepts namespace
 namespace commonDeclarations {
 
@@ -145,6 +147,8 @@ namespace commonDeclarations {
 
         return collection[i1][i2];
     }
+
+
 
 
 }

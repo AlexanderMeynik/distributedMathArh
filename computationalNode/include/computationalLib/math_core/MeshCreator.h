@@ -12,7 +12,6 @@
 #include <matplot/matplot.h>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 
-/*#include "iolib/Printers.h"*/
 #include "computationalLib/math_core/dipolesCommon.h"
 
 
@@ -21,7 +20,7 @@ namespace meshStorage {
 
 
     using const_::FloatType;
-    using floatVector = std::vector<FloatType>;
+    using floatVector = std::vector<FloatType>;//todo some of those types are aslredy defined
     using meshDrawClass = std::vector<floatVector>;
     using meshStorageType =std::valarray<FloatType>;
     using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;

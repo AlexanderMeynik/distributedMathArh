@@ -62,7 +62,7 @@ TEST(Dipoles, test_solve_result_in_zero_nev) {
 
     auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
     dipoles::Dipoles dipolearr(coord);
-    auto solution = dipolearr.solve<dipoles::EigenVec>();
+    auto solution = dipolearr.solve<co::EigenVec>();
 
     EXPECT_TRUE(solution.size() == 4 * N);
 
@@ -93,7 +93,7 @@ TEST_P(DipoleSolveMethodNevTests, test_right_part_nev_solve_impl) {
 
     auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
     dipoles::Dipoles dipolearr(coord);
-    auto rsol = dipolearr.solve<dipoles::EigenVec>();
+    auto rsol = dipolearr.solve<co::EigenVec>();
     Eigen::Vector<FloatType,Eigen::Dynamic> nev = dipolearr.getMatrixx() * rsol - dipolearr.getRightPart();
     FloatType nev_norm=nev.norm();
     {
@@ -191,7 +191,7 @@ TEST_P(DipolesVerificationTS,
     dipoles::Dipoles dd;
     dd.loadFromMatrix(matr.vals_);
 
-    auto solut = dd.solve<dipoles::EigenVec>();
+    auto solut = dd.solve<co::EigenVec>();
     compareArrays(sol.vals_, solut, double_comparator2);
 }
 

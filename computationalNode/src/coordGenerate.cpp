@@ -1,12 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include <vector>
-#include <cassert>
 
 #include <random>
-#include <map>
 
-#include <eigen3/Eigen/Dense>
 #include <omp.h>
 
 #include "parallelUtils/commonDeclarations.h"
@@ -126,7 +122,7 @@ int main(int argc, char *argv[]) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles::EigenVec>();
+            auto solution = dipoles1.solve<co::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTime[tid] += stmep[1] - stmep[0];
@@ -161,7 +157,7 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < Nsym; ++i) {
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles::EigenVec>();
+            auto solution = dipoles1.solve<co::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTimeS += stmep[1] - stmep[0];
@@ -184,7 +180,7 @@ int main(int argc, char *argv[]) {
         for (int i = 0; i < Nsym; ++i) {
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles::EigenVec>();
+            auto solution = dipoles1.solve<co::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTimeS += stmep[1] - stmep[0];
@@ -210,7 +206,7 @@ int main(int argc, char *argv[]) {
             int tid = omp_get_thread_num();
             double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
             dipoles1.setNewCoordinates(coordinates[i]);
-            auto solution = dipoles1.solve<dipoles::EigenVec>();
+            auto solution = dipoles1.solve<co::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
             stmep[1] = omp_get_wtime();
             solveTime[tid] += stmep[1] - stmep[0];
@@ -247,7 +243,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < Nsym; ++i) {
         std::ofstream out1(getString(dirname, "sim", i, "txt"));
         dipoles1.setNewCoordinates(coordinates[i]);
-        auto solution = dipoles1.solve<dipoles::EigenVec>();
+        auto solution = dipoles1.solve<co::EigenVec>();
         //dipoles1.getFullFunction();
         dipoles1.getFullFunction_(coordinates[i], solution);
         mesh.applyFunction(dipoles1.getI2function());

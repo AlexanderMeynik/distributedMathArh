@@ -6,15 +6,6 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 
 
-file(GLOB interfaces CONFIGURE_DEPENDS
-        "interfaces/*.h"
-        "interfaces/*.cpp"
-)
-
-
-add_executable(inter_Tests ${interfaces})
-target_link_libraries(inter_Tests gtest gmock)
-target_link_libraries(inter_Tests interfaces_lib)
 
 file(GLOB core CONFIGURE_DEPENDS
         "*math_core/*.h"

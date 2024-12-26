@@ -29,13 +29,3 @@ file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
 
 add_library(parallelLib ${parallelUtils})
 
-
-add_library(commonLibrary lib/parallelUtils/commonDeclarations.cpp lib/parallelUtils/clockArray.cpp)
-target_include_directories(commonLibrary PUBLIC include)
-
-
-
-install(TARGETS commonLibrary
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-        INCLUDES DESTINATION INCLUDE)

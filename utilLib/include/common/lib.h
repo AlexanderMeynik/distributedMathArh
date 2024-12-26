@@ -14,7 +14,7 @@
 #include <eigen3/Eigen/Core>
 
 //todo where do we use this file
-// do we actually nned it and where
+// do we actually need it and where
 using std::function, std::pair, std::vector, std::array;
 using std::string;
 
@@ -42,8 +42,6 @@ enum class state_t {
     openmp_new,
     openmp_old,
     print_
-
-
 };
 
 

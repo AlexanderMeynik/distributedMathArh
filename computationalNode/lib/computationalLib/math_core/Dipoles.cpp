@@ -60,7 +60,7 @@ namespace dipoles {
 
 
     template<>
-    Arr2EigenVec Dipoles::solve() {
+    co::Arr2EigenVec Dipoles::solve() {
         Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_1;
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_2;
@@ -72,7 +72,7 @@ namespace dipoles {
     }
 
     template<>
-    EigenVec Dipoles::solve() {
+    co::EigenVec Dipoles::solve() {
         Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_;
         solution_.resize(4 * N_);
@@ -84,7 +84,7 @@ namespace dipoles {
     }
 
     template<>
-    standartVec Dipoles::solve() {
+    co::standartVec Dipoles::solve() {
         std::vector<FloatType> sol(4 * N_);
         Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(sol.data(), sol.size());
@@ -97,8 +97,8 @@ namespace dipoles {
     }
 
     template<>
-    standartValarr Dipoles::solve() {
-        standartValarr sol(4 * N_);
+    co::standartValarr Dipoles::solve() {
+        co::standartValarr sol(4 * N_);
         Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(&(sol[0]), sol.size());
         solution_.resize(4 * N_);

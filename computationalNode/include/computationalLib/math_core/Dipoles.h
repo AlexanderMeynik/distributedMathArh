@@ -64,7 +64,7 @@ namespace dipoles {
          * @brief Computes solution vector for dipole parameters and returns it in available format
          * @tparam Container
          */
-        template<typename Container=dipoles::ReturnToDataType<dipoles::ReturnType::EigenVector>>
+        template<typename Container=co::ReturnToDataType<co::ReturnType::EigenVector>>
         Container solve();
 
 

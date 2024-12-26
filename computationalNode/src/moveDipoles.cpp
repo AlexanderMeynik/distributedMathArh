@@ -40,7 +40,7 @@ int main(int argc, char *argv[]) {
 
 
 
-    auto solut1 = d.solve<EigenVec>();
+    auto solut1 = d.solve<co::EigenVec>();
 
     meshStorage::MeshCreator mmesh;
 
@@ -58,7 +58,7 @@ int main(int argc, char *argv[]) {
     {
         std::ofstream fout(dirname + "out" + std::to_string(N) + "_iter" + std::to_string(i) + ".txt");
         d.setNewCoordinates(coordinates);
-        auto solut2 = d.solve<EigenVec>();
+        auto solut2 = d.solve<co::EigenVec>();
 
         d.getFullFunction_(coordinates, solut2);
         mmesh.applyIntegrate(d.getIfunction());//todo not working since inner function is bad
