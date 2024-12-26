@@ -35,7 +35,7 @@ NUM_PROC_THREADS = 0
 EXTRACT_LOCAL_CLASSES = NO
 
 
-# EXTRACT_ALL = YES
+EXTRACT_ALL = YES
 HAVE_DOT = YES
 
 CALL_GRAPH = YES
@@ -46,7 +46,7 @@ HIDE_IN_BODY_DOCS = YES
 
 SHOW_HEADERFILE = NO
 
-INPUT = ../../computationalNode ../../computationalNode/utilLib md
+INPUT = ../../computationalNode/include ../../utilLib/include md
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.

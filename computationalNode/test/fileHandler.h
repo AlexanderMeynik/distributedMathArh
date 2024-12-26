@@ -77,12 +77,12 @@ namespace fileUtils {
         void print(osPtr &outPtr, const T &pr);
 
         /**
-         * @brief Wrapper for fileHandler::print to print data to designated file
+         * @brief Wrapper for fileHandler::print to printImpl data to designated file
          * @tparam checks
          * @tparam T
          * @param filename
          * @param printee
-         * @see fileHandler::print
+         * @see fileHandler::printImpl
          */
         template<bool checks = true, typename T>
         void output(const std::string &filename, const T &printee);

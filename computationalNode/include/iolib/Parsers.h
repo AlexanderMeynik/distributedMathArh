@@ -18,7 +18,7 @@ char parseChar(std::istream &in);
 int getConfSize(std::string &filename);
 
 template<typename Container>
-requires HasBracketsNested<Container>
+requires commonDeclarations::HasBracketsNested<Container>
 Container parseDipoleCoordinates(const std::string &filename) {
     using val=typename Container::value_type::value_type;
     std::ifstream in(filename);
@@ -242,7 +242,7 @@ public:
 
         pp.vals_.constructMeshes();
 
-        meshStorageType m = pp.vals_.data[0];
+        co::meshStorageType m = pp.vals_.data[0];
 
         mdSpanType span=mdSpanType
                 (&(m[0]),n[0],n[1]);

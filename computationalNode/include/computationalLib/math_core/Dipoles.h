@@ -64,15 +64,15 @@ namespace dipoles {
          * @brief Computes solution vector for dipole parameters and returns it in available format
          * @tparam Container
          */
-        template<typename Container=co::ReturnToDataType<co::ReturnType::EigenVector>>
+        template<typename Container=co::returnToDataType<co::returnType::EigenVector>>
         Container solve();
 
 
-        const integrableFunction &getIfunction() const {
+        const co::integrableFunction &getIfunction() const {
             return Ifunction_;
         }
 
-        const directionGraph &getI2function() const {
+        const co::directionGraph &getI2function() const {
             return I2function_;
         }
 
@@ -84,7 +84,7 @@ namespace dipoles {
         /**
          * @brief Retrieves matrix computed for system of equations
          */
-        matrixType getMatrixx();
+        co::matrixType getMatrixx();
 
         /**
          *  @brief Print matrix to out
@@ -145,10 +145,10 @@ namespace dipoles {
         void setMatrixes(const Container &xi);
 
 
-        matrixType M1_;
-        matrixType M2_;
-        integrableFunction Ifunction_;
-        directionGraph I2function_;
+        co::matrixType M1_;
+        co::matrixType M2_;
+        co::integrableFunction Ifunction_;
+        co::directionGraph I2function_;
         Eigen::Vector<FloatType, Eigen::Dynamic> f;
 
         FloatType an = params::a;

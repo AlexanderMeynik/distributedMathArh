@@ -3,7 +3,7 @@
 
 namespace dipoles {
 
-    bool isSymmetric(const matrixType &matr) {
+    bool isSymmetric(const co::matrixType &matr) {
         size_t N = matr.rows();
 
         for (int i = 0; i < N; ++i) {

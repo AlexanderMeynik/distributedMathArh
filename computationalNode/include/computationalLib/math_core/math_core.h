@@ -3,7 +3,7 @@
 
 #include "const.h"
 #include "Dipoles.h"
-#include "MeshProcessor.h"
+#include "MeshCreator.h"
 #include "TestRunner.h"
 
 #endif //DIPLOM_MATH_CORE_H

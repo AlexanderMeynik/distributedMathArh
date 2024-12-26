@@ -14,12 +14,12 @@ file(GLOB core CONFIGURE_DEPENDS
 
 add_executable(core_Tests ${core})
 target_link_libraries(core_Tests gtest gmock)
-target_link_libraries(core_Tests math_core_lib io_lib)
+target_link_libraries(core_Tests io_lib)#todo what components of iolib we actually use here
 target_compile_options(core_Tests PUBLIC -coverage)
 target_link_options(core_Tests PUBLIC -coverage -fprofile-arcs -ftest-coverage)
 
 add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)
-target_link_libraries(benchmark math_core_lib io_lib)
+target_link_libraries(benchmark  io_lib)#todo smae as prev
 
 if(OpenMP_CXX_FOUND)
     target_link_libraries(benchmark OpenMP::OpenMP_CXX)

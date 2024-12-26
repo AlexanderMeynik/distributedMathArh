@@ -37,7 +37,6 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 
 
 add_library(math_core_lib ${math_core_files})
-target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
 
 target_include_directories(math_core_lib PUBLIC ../mdspan/include)
@@ -86,12 +85,12 @@ add_executable(moveDipoles src/moveDipoles.cpp)
 target_link_libraries(moveDipoles PUBLIC math_core_lib Matplot++::matplot)
 
 add_executable(generator src/coordGenerate.cpp)
-target_link_libraries(generator PUBLIC math_core_lib io_lib OpenMP::OpenMP_CXX)
+target_link_libraries(generator PUBLIC io_lib OpenMP::OpenMP_CXX)
 
 
 add_executable(checker src/eigenTest.cpp)
-target_link_libraries(checker PUBLIC math_core_lib io_lib)
+target_link_libraries(checker PUBLIC  io_lib)
 
 
 add_executable(grids src/darwingGrids.cpp)
-target_link_libraries(grids PUBLIC math_core_lib io_lib parallelLib)#todo io_lib includes math_core?
+target_link_libraries(grids PUBLIC io_lib)#todo io_lib includes math_core?

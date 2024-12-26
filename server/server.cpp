@@ -90,7 +90,7 @@ int main() {
 
     listener.support(methods::GET, handle_get);
     listener.support(methods::POST, handle_post);
-
+//todo double free?
     try {
         listener
                 .open()

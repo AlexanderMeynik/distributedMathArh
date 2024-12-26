@@ -1,5 +1,4 @@
 #include "fileHandler.h"
-#include <fstream>
 /// fileUtils namespace
 namespace fileUtils
 {

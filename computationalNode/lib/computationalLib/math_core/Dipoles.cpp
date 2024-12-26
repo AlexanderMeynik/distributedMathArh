@@ -39,8 +39,8 @@ namespace dipoles {
         return f;
     }
 
-    matrixType Dipoles::getMatrixx() {
-        matrixType matrixx;
+    co::matrixType Dipoles::getMatrixx() {
+        co::matrixType matrixx;
         matrixx.resize(4 * N_, 4 * N_);
         matrixx.topLeftCorner(2 * N_, 2 * N_).noalias() = M1_;
         matrixx.topRightCorner(2 * N_, 2 * N_).noalias() = -M2_;

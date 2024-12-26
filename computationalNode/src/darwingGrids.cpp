@@ -3,12 +3,11 @@
 #include <iostream>
 #include <vector>
 
-#include <eigen3/Eigen/Dense>
 #include <matplot/matplot.h>
 
 #include "computationalLib/math_core/MeshCreator.h"
 #include "computationalLib/math_core/Dipoles.h"
-#include "common/lib.h"
+
 #include "iolib/plotingUtils.h"
 #include "iolib/Printers.h"
 

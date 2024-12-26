@@ -1,18 +1,16 @@
-#include <chrono>
 #include <tuple>
 #include <limits>
 
-#include "common/lib.h"
 #include "computationalLib/math_core/MeshCreator.h"
+#include "common/commonDecl.h"
 #include "../GoogleCommon.h"
 
-#include <algorithm>
 #include <gtest/gtest.h>
-#include <gmock/gmock.h>
+
 
 using namespace testCommon;
 
-
+namespace co = const_;
 
 
 class MeshCommonFunctionsTests : public ::testing::Test {
@@ -23,15 +21,13 @@ protected:
 
 using tType = std::tuple<std::string, double, double, size_t, std::valarray<double>>;
 using tType1 = std::tuple<std::string, std::function<double(double)>, double, double, double>;
-using tType2 = std::tuple<std::string, dipoles::integrableFunction, double, double, dipoles::directionGraph>;
+using tType2 = std::tuple<std::string, co::integrableFunction, double, double, co::directionGraph>;
 using tType3 = std::tuple<std::string, std::vector<FloatType>, std::vector<FloatType>, std::array<std::valarray<FloatType>,2>>;
 using tType4 = std::tuple<std::string, std::array<std::valarray<FloatType>,2>,
-        dipoles::directionGraph,std::valarray<FloatType>>;
-dipoles::directionGraph dummy=[](double a,double b){return 0.0;};
+        co::directionGraph,std::valarray<FloatType>>;
+co::directionGraph dummy=[](double a,double b){return 0.0;};
 using namespace meshStorage;
 
-
-using MyTypes = ::testing::Types<std::valarray<FloatType>, int, unsigned int>;
 
 
 class TestLinspace :
@@ -107,7 +103,7 @@ TEST_P(TestsIntegrateOneVar, testIntegrateLambdaForOneVariable) {
     });
     auto g2 = meshStorage::computeFunction(grid[0], grid[1], resultFunction);
 
-    compareArrays(g1, g2, double_comparator2,anotherErr);
+    compareArrays(g1, g2, arrayDoubleComparator, anotherErr);
 
 }
 
@@ -131,7 +127,7 @@ TEST_P(TestLinspace, linspaceValueTest) {
     auto [_, start, end, n, result] = GetParam();
 
     auto r = ::myLinspace(start, end, n);
-    compareArrays(r, result, double_comparator2,anotherErr);
+    compareArrays(r, result, arrayDoubleComparator, anotherErr);
 
 }
 
@@ -151,8 +147,8 @@ TEST_P(TestMeshGenerate, TestMeshGenerate) {
 
     auto grid= myMeshGrid(a,b);
 
-    compareArrays(grid[0],res[0],double_comparator2,anotherErr);
-    compareArrays(grid[1],res[1],double_comparator2,anotherErr);
+    compareArrays(grid[0], res[0], arrayDoubleComparator, anotherErr);
+    compareArrays(grid[1], res[1], arrayDoubleComparator, anotherErr);
 
 }
 
@@ -187,7 +183,7 @@ TEST_P(TestFunctionApply, TestFunctionApply) {
 
     auto r= computeFunction(mesh[0],mesh[1],func);
 
-    compareArrays(r,res,double_comparator2,anotherErr);
+    compareArrays(r, res, arrayDoubleComparator, anotherErr);
 
 }
 

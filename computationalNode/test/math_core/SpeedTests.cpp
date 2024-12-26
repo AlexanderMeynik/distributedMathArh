@@ -2,15 +2,12 @@
 #include <chrono>
 
 
-#include "common/lib.h"
+#include "common/lib.h"//todo only fo reinterpret vector
 #include "computationalLib/math_core/Dipoles.h"
-#include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Parsers.h"
 #include "common/Generator.h"
 #include "../GoogleCommon.h"
 
-#include <gtest/gtest.h>
-#include <gmock/gmock.h>
 
 
 using namespace commonDeclarations;
@@ -25,6 +22,7 @@ static inline double C2 = 0;
 template<typename T>
 using dynEigenVec=Eigen::Vector<T,-1>;
 static inline FloatType aRange=1e-6;
+//todo this test must be for caster
 TEST(transformations, reinterpret_vector_test) {
     auto N = 20;
 
@@ -179,7 +177,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
 
     EXPECT_EQ(matr.size_, conf.size() / 2);
     dipoles::Dipoles dd(conf);
-    compare2dArrays(dd.getMatrixx(), matr.vals_, double_comparator3, 1e20 / 10000);
+    compare2dArrays(dd.getMatrixx(), matr.vals_, twoDArrayDoubleComparator, 1e20 / 10000);
 
 }
 
@@ -192,7 +190,7 @@ TEST_P(DipolesVerificationTS,
     dd.loadFromMatrix(matr.vals_);
 
     auto solut = dd.solve<co::EigenVec>();
-    compareArrays(sol.vals_, solut, double_comparator2);
+    compareArrays(sol.vals_, solut, arrayDoubleComparator);
 }
 
 
@@ -213,13 +211,12 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     auto ress = meshStorage::unflatten(mesh.vals_.data[2], mesh.vals_.dimensions);
 
     auto ll = mesh.vals_.spans[2][std::array{0, 0}];
-    compare2dArrays<true>(ress, r2, double_comparator3, 1e-3);
+    compare2dArrays<true>(ress, r2, twoDArrayDoubleComparator, 1e-3);
 }
 
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
-    ::testing::InitGoogleMock(&argc, argv);
 
 
     return RUN_ALL_TESTS();

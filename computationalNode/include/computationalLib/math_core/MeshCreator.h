@@ -4,27 +4,22 @@
 
 
 #include <iosfwd>
-#include <vector>
 #include "mdspan/mdspan.hpp"
 
 #include <boost/math/quadrature/gauss_kronrod.hpp>
-
-#include "computationalLib/math_core/dipolesCommon.h"
-
+#include "common/commonDecl.h"
+#include "computationalLib/math_core/const.h"
 
 
 namespace meshStorage {
-
-
+    namespace co=const_;
     using const_::FloatType;
-    using floatVector = std::vector<FloatType>;//todo some of those types are aslredy defined
-    using meshDrawClass = std::vector<floatVector>;
-    using meshStorageType =std::valarray<FloatType>;
+
     using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;
     using mdSpanType = Kokkos::mdspan<FloatType, etx>;
 
     template<size_t N>
-    using meshArr=std::array<meshStorageType,N>;
+    using meshArr=std::array<co::meshStorageType,N>;
 
     /**
      *
@@ -54,7 +49,7 @@ namespace meshStorage {
 
 
     template<unsigned Ndots = 61>
-    FloatType integrateLambdaForOneVariable(const dipoles::integrableFunction &function,
+    FloatType integrateLambdaForOneVariable(const co::integrableFunction &function,
                                             FloatType theta,
                                             FloatType phi,
                                             FloatType left,
@@ -76,9 +71,9 @@ namespace meshStorage {
      * @param b
      * @param func
      */
-    meshStorageType computeFunction(const meshStorageType &a,
-                                    const meshStorageType &b,
-                                    const dipoles::directionGraph &func);
+    co::meshStorageType computeFunction(const co::meshStorageType &a,
+                                    const co::meshStorageType &b,
+                                    const co::directionGraph &func);
 
 
     /**
@@ -86,9 +81,9 @@ namespace meshStorage {
      * @param mesh1
      * @param mesh2
      */
-    FloatType getMeshDiffNorm(const meshStorageType &mesh1, const meshStorageType &mesh2);
+    FloatType getMeshDiffNorm(const co::meshStorageType &mesh1, const co::meshStorageType &mesh2);
 
-    void addMesh(meshStorageType &a, const meshStorageType &b);
+    void addMesh(co::meshStorageType &a, const co::meshStorageType &b);
 
     /**
      * @brief Computes meshes using 2 double arrays
@@ -97,7 +92,7 @@ namespace meshStorage {
      * @return
      */
     template<template<typename ...> typename container =std::vector>
-    std::array<meshStorageType, 2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b);
+    std::array<co::meshStorageType, 2> myMeshGrid(const container<co::FloatType> &a, const container<co::FloatType> &b);
 
 
     /**
@@ -114,8 +109,8 @@ namespace meshStorage {
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n);
 
 
-    meshDrawClass inline unflatten(const meshStorageType &mm, const std::array<size_t,2> &numss) {
-        auto res = meshDrawClass(numss[0], floatVector(numss[1], 0.0));
+    co::meshDrawClass inline unflatten(const co::meshStorageType &mm, const std::array<size_t,2> &numss) {
+        auto res = co::meshDrawClass(numss[0], co::standartVec(numss[1], 0.0));
 
 
         mdSpanType resSpan = Kokkos::mdspan((FloatType *) &(mm[0]), numss[0], numss[1]);
@@ -129,8 +124,8 @@ namespace meshStorage {
         return res;
     }
 
-    meshDrawClass inline unflatten(const mdSpanType &resSpan) {
-        auto res = meshDrawClass(resSpan.extent(0), floatVector(resSpan.extent(1), 0.0));
+    co::meshDrawClass inline unflatten(const mdSpanType &resSpan) {
+        auto res = co::meshDrawClass(resSpan.extent(0), co::standartVec(resSpan.extent(1), 0.0));
 
 
         for (size_t i = 0; i < resSpan.extent(0); ++i) {
@@ -178,9 +173,9 @@ namespace meshStorage {
         }
         friend meshArr<dimCount+1> sphericalTransformation(const MeshCreator&oth);
 
-        void applyFunction(const dipoles::directionGraph&plot);
+        void applyFunction(const co::directionGraph&plot);
 
-        void applyIntegrate(const dipoles::integrableFunction&func,FloatType a=0,FloatType b=rr)
+        void applyIntegrate(const co::integrableFunction&func,FloatType a=0,FloatType b=rr)
         {
             this->applyFunction([&func, &a,b](FloatType x, FloatType y) {
                 return integrateLambdaForOneVariable<61>(func, y, x, a, b);
@@ -227,9 +222,9 @@ namespace meshStorage {
     }
 
     template<template<typename ...> typename container>
-    std::array<meshStorageType, 2> myMeshGrid(const container<FloatType> &a, const container<FloatType> &b) {
-        std::array<meshStorageType, 2> ret = {meshStorageType(b.size() * a.size()),
-                                              meshStorageType(b.size() * a.size())};
+    std::array<co::meshStorageType, 2> myMeshGrid(const container<co::FloatType> &a, const container<co::FloatType> &b) {
+        std::array<co::meshStorageType, 2> ret = {co::meshStorageType(b.size() * a.size()),
+                                                  co::meshStorageType(b.size() * a.size())};
 
 
         auto x_mesh = Kokkos::mdspan(&(ret[0][0]), b.size(), a.size());

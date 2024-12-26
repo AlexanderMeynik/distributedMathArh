@@ -1,15 +1,9 @@
 
-#include <iostream>
 
 #include <vector>
-#include <algorithm>
-#include <numeric>
-#include <ostream>
 #include <fstream>
-#include <iomanip>
 #include <filesystem>
 
-#include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
 
 #include "common/lib.h"

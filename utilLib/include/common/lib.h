@@ -3,10 +3,11 @@
 #ifndef MAGISTER1_LIB_H
 #define MAGISTER1_LIB_H
 
-#include <functional>
 #include <string>
 #include <vector>
-#include "eigen3/Eigen/Dense"
+#include <array>
+
+#include <eigen3/Eigen/Dense>
 
 #include <map>
 
@@ -14,7 +15,7 @@
 
 //todo where do we use this file
 // do we actually need it and where
-using std::function, std::pair, std::vector, std::array;
+using  std::vector, std::array;
 using std::string;
 
 
@@ -44,20 +45,20 @@ enum class state_t {
     print_
 };
 
-
+//todo actually is same as lookup table(does it need to be here
 const static std::map<state_t, std::string> stateToString = {
         {state_t::openmp_new, "openmp_new"},
         {state_t::new_,       "new"},
         {state_t::openmp_old, "openmp_old"},
         {state_t::old,        "old"},
-        {state_t::print_,     "print"},
+        {state_t::print_,     "printImpl"},
 };
 const static std::map<std::string, state_t> stringToState = {
         {"openmp_new", state_t::openmp_new},
         {"new",        state_t::new_},
         {"openmp_old", state_t::openmp_old},
         {"old",        state_t::old},
-        {"print",      state_t::print_},
+        {"printImpl",      state_t::print_},
 };
 std::ostream& operator<<  (std::ostream &out,const state_t&st);
 

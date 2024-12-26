@@ -1,7 +1,7 @@
 #ifndef DIPLOM_CONST_H
 #define DIPLOM_CONST_H
 
-#include "common/commonDecl.h"
+#include "common/commonDecl.h"//todo only for float type(maybe can be redeclared
 
 using const_::FloatType;
 

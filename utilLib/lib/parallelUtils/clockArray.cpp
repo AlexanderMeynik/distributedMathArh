@@ -1,5 +1,5 @@
 #include "parallelUtils/clockArray.h"
-
+#include <sstream>
 namespace timing {
 
     locationType getFileState(std::source_location location) {

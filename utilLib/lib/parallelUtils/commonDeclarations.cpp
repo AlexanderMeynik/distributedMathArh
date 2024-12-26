@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include <cstdio>
+#include <cstdarg>
 
 namespace commonDeclarations {
 

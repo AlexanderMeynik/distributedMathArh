@@ -2,53 +2,83 @@
 #ifndef DIPLOM_GOOGLECOMMON_H
 #define DIPLOM_GOOGLECOMMON_H
 
-#include <chrono>
-#include <type_traits>
-#include <concepts>
+
 #include <tuple>
-
 #include <gtest/gtest.h>
-#include <gmock/gmock.h>
-#include <eigen3/Eigen/Dense>
-
 #include "common/myConcepts.h"
 
 
 using namespace commonDeclarations;
 
+/// Testing utilities namespace
 namespace testCommon {
     constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
 
 
-
-
+    /**
+     * @brief Custom check for double near
+     * @tparam T
+     * @param val1
+     * @param val2
+     * @param abs_error
+     */
     template<typename T>
-    bool is_near(T val1, T val2, T abs_error) {
+    bool isNear(T val1, T val2, T abs_error) {
         const T diff = std::abs(val1 - val2);
         return  diff <= abs_error;
     }
 
 
+    /**
+     * @brief Printer function used to name tests in parameterized test suites
+     * @tparam TestSuite
+     * @tparam Args
+     * @param info
+     */
     template<typename TestSuite,typename ...Args>
     auto firstValueTuplePrinter(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
         return get<0>(info.param);
     }
 
 
+    /**
+     * @brief
+     * @tparam TupType
+     * @tparam I
+     * @param out
+     * @param _tup
+     * @param delim
+     * @param start
+     * @param end
+     */
     template<class TupType, size_t... I>
-    void print(std::ostream &out,const TupType& _tup, std::index_sequence<I...>,const char* delim=", ",const char* start="(",const char* end=")")
+    void printImpl(std::ostream &out, const TupType& _tup, std::index_sequence<I...>, const char* delim= ", ", const char* start= "(", const char* end= ")")
     {
         out << start;
         (..., (out << (I == 0? "" : delim) << std::get<I>(_tup)));
         out << end;
     }
 
+    /**
+     * @brief Pritns tuple contents to out with given delimeter and start and end symbols
+     * @tparam T
+     * @param out
+     * @param _tup
+     * @param delim
+     * @param start
+     * @param end
+     */
     template<class... T>
     void print (std::ostream &out,const std::tuple<T...>& _tup,const char* delim=", ",const char* start="(",const char* end=")")
     {
-        print(out,_tup, std::make_index_sequence<sizeof...(T)>(),delim,start,end);
+        printImpl(out, _tup, std::make_index_sequence<sizeof...(T)>(), delim, start, end);
     }
 
+    /**
+     * @brief converts tuple to string with _ as a delimiter
+     * @tparam TestSuite
+     * @param info
+     */
     template<typename TestSuite>
     auto tupleToString(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
         std::stringstream result;
@@ -57,6 +87,16 @@ namespace testCommon {
         return result.str();
     }
 
+    /**
+     * @brief Compares two continious collections
+     * @tparam Expect - if true will use Expect pred instead of assert
+     * @tparam T1
+     * @tparam T2
+     * @param solution
+     * @param solution2
+     * @param eqOperator - some user defined comparison function
+     * @param tol
+     */
     template<bool Expect=false,HasSizeMethod T1, HasSizeMethod T2>
     requires valueTyped<T1>&&valueTyped<T2>
             && std::common_with<typename T1::value_type,typename T2::value_type>
@@ -90,6 +130,16 @@ namespace testCommon {
 
 
 
+    /**
+     * @brief Compares 2d arrays
+     * @tparam Expect - if true will use Expect pred instead of assert
+     * @tparam M1_t
+     * @tparam M2_t
+     * @param mat1
+     * @param mat2
+     * @param eqOperator
+     * @param tol
+     */
     template<bool Expect=false,typename M1_t,typename M2_t>
     void compare2dArrays(const M1_t &mat1, const M2_t &mat2,
                          const std::function<bool
@@ -131,60 +181,20 @@ namespace testCommon {
 
     }
 
-    static inline auto double_comparator=[]<typename FType=FloatType>
-            (FType a,FType b, size_t i)
-    {
-        const testing::internal::FloatingPoint<FType> lhs(a), rhs(b);
 
-        return lhs.AlmostEquals(rhs);
-    };
-
-    static inline auto double_comparator2=[]<typename FType=FloatType>
+//todo move to cpp?
+    static inline auto arrayDoubleComparator=[]<typename FType=FloatType>
             (FType a,FType b ,size_t i, FType tol)
     {
-        return is_near(a,b,tol);
+        return isNear(a, b, tol);
     };
 
-    static inline auto double_comparator3=[]<typename FType=FloatType>
+    static inline auto twoDArrayDoubleComparator=[]<typename FType=FloatType>
             (FType a,FType b, size_t i,size_t j, FType tol)
     {
-        return is_near(a,b,tol);
+        return isNear(a, b, tol);
     };
 
-
-
-
-
-
-   /* template<typename T1, typename T2>
-    void compare_matrices(const T1 &mat1, const T2 &mat2, int ii, double tool) {
-        auto shape = get_shape(mat1);
-        auto shape2 = get_shape(mat2);
-        int rows = shape[0];
-        int cols = shape[1];
-        EXPECT_EQ(rows, shape2[0]);
-        EXPECT_EQ(cols, shape2[1]);
-
-        for (int i = 0; i < rows; ++i) {
-
-            for (int j = 0; j < cols; ++j) {
-
-                SCOPED_TRACE("iteration " + std::to_string(ii) + '\n');
-                SCOPED_TRACE("Checked index " + std::to_string(i) + '\n');
-                SCOPED_TRACE("Checked index " + std::to_string(j) + '\n');
-                auto a1 = get_value(mat1, i, j);
-                auto a2 = get_value(mat2, i, j);
-                //std::stringstream ss;
-
-                SCOPED_TRACE("Values to check:" + std::to_string(a1) + "," + std::to_string(a2));
-                if (std::abs(a2) >= tool) {
-                    EXPECT_NEAR(a1 / a2, 1.0, tool);
-                } else {
-                    EXPECT_NEAR(a1, 0.0, tool);
-                }
-            }
-        }
-    }*/
 }
 
 

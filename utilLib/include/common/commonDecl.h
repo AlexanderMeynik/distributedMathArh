@@ -7,15 +7,16 @@
 #include <array>
 #include <valarray>
 
+/// namespace for some const declarations
 namespace const_ {
-    //todo move some common things here
+    //todo some of the decalred types need to be pulled away
     using FloatType = double;
 
 
     /**
      * @brief Enum for return types
      */
-    enum class ReturnType : size_t {
+    enum class returnType : size_t {
         ArrayEigenVectors = 0,
         EigenVector,
         StdVector,
@@ -26,34 +27,47 @@ namespace const_ {
     using EigenVec = Eigen::Vector<FloatType, Eigen::Dynamic>;
     using standartVec = std::vector<FloatType>;
     using standartValarr = std::valarray<FloatType>;
+    using meshDrawClass = std::vector<standartVec>;
+    using meshStorageType =std::valarray<FloatType>;
+
+    /**
+     * @brief Type for function thta will be integrated to get directional graph
+     */
+    using integrableFunction = std::function<FloatType(FloatType, FloatType, FloatType)>;
+
+    /**
+     * @brief type for a direction graph
+     */
+    using directionGraph = std::function<FloatType(FloatType, FloatType)>;
+    using matrixType = Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>;
 
     /**
      * @brief Enum to return type conversion struct
      */
-    template<ReturnType>
-    struct ReturnToDataType_t;
+    template<returnType>
+    struct returnToDataTypeT;
     template<>
-    struct ReturnToDataType_t<ReturnType::ArrayEigenVectors> {
+    struct returnToDataTypeT<returnType::ArrayEigenVectors> {
         using type = Arr2EigenVec;
     };
     template<>
-    struct ReturnToDataType_t<ReturnType::EigenVector> {
+    struct returnToDataTypeT<returnType::EigenVector> {
         using type = EigenVec;
     };
     template<>
-    struct ReturnToDataType_t<ReturnType::StdVector> {
+    struct returnToDataTypeT<returnType::StdVector> {
         using type = standartVec;
     };
 
     template<>
-    struct ReturnToDataType_t<ReturnType::StdValarray> {
+    struct returnToDataTypeT<returnType::StdValarray> {
         using type = standartValarr ;
     };
 
     /**
      * @brief Converter to return type
      */
-    template<ReturnType T>
-    using ReturnToDataType = typename ReturnToDataType_t<T>::type;
+    template<returnType T>
+    using returnToDataType = typename returnToDataTypeT<T>::type;
 }
 #endif //DIPLOM_COMMONDECL_H

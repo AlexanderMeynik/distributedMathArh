@@ -1,15 +1,9 @@
 #ifndef DIPLOM_PRINTUTILS_H
 #define DIPLOM_PRINTUTILS_H
 
-#include <exception>
-#include <tuple>
-#include <cassert>
-#include <vector>
-#include <memory>
-#include <iostream>
 #include <ostream>
 #include <iomanip>
-#include <limits>
+#include <limits>//todo used only once for precision defaults
 
 class IosStatePreserve {
 public:
@@ -27,6 +21,7 @@ private:
     std::ostream &out_;
 };
 
+//todo redo this completely
 template<typename T>
 struct scientificNumberType {
     explicit scientificNumberType(T number, int decimalPlaces) : number(number), decimalPlaces(decimalPlaces) {}

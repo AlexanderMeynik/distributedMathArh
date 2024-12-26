@@ -9,6 +9,7 @@
 
 #include "fileHandler.h"
 #include "parallelUtils/commonDeclarations.h"
+//todo here we import only clock
 /// benchUtils namespace
 namespace benchUtils {
     namespace fu= fileUtils;
@@ -19,6 +20,7 @@ namespace benchUtils {
 
 
 
+    //todo duplicated function Google common 81
     /**
      * @brief Prints tuple to string
      * @tparam TupleT

@@ -48,7 +48,8 @@
 - [ ] Стандартизировать представления для генераторов
     - [x] создать функцию для генерации разных вариантов конфигураций(массив векторов, 1 вектор);
     - [ ] Починить grids для диполей
-
+#todo dependecy tree https://cmake.org/cmake/help/latest/module/CMakeGraphVizOptions.html
+    - or https://embeddeduse.com/2022/03/01/visualising-module-dependencies-with-cmake-and-graphviz/
 ## Проверенные конфигурации
 
 Генератор конфигураций

@@ -16,25 +16,11 @@ namespace dipoles {
 
 
 
-
-    /**
-     * @brief Type for function thta will be integrated to get directional graph
-     */
-    using integrableFunction = std::function<FloatType(FloatType, FloatType, FloatType)>;
-
-    /**
-     * @brief type for a direction graph
-     */
-    using directionGraph = std::function<FloatType(FloatType, FloatType)>;
-    using matrixType = Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>;
-
-
-
     /**
      * Check that matrix is symmetric
      * @param matr
      */
-    bool isSymmetric(const matrixType &matr);
+    bool isSymmetric(const co::matrixType &matr);
 }
 
 #endif //DIPLOM_DIPOLESCOMMON_H

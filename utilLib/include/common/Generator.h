@@ -3,8 +3,7 @@
 #define DIPLOM_GENERATOR_H
 
 
-#include <array>
-#include <vector>
+
 #include <random>
 #include <functional>
 

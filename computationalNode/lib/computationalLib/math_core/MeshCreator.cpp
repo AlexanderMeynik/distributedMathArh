@@ -3,7 +3,7 @@
 namespace meshStorage
 {
 
-    meshStorageType computeFunction(const meshStorageType &a, const meshStorageType &b, const dipoles::directionGraph &func) {
+    co::meshStorageType computeFunction(const co::meshStorageType &a, const co::meshStorageType &b, const co::directionGraph &func) {
         if(!a.size())//todo create my exception type with error type and message
         {
             throw std::length_error("Invalid container sizes for input : a.size = "
@@ -17,25 +17,25 @@ namespace meshStorage
         }
 
         auto sz=a.size();
-        meshStorageType result(sz);
+        co::meshStorageType result(sz);
         for (size_t i = 0; i < sz; ++i) {
             result[i]=func(a[i],b[i]);
         }
         return result;
     }
 
-    FloatType getMeshDiffNorm(const meshStorageType &mesh1, const meshStorageType &mesh2) {
+    FloatType getMeshDiffNorm(const co::meshStorageType &mesh1, const co::meshStorageType &mesh2) {
         return sqrt(pow((mesh1 - mesh2),2).sum());
     }
 
-    void addMesh(meshStorageType &a, const meshStorageType &b) {
+    void addMesh(co::meshStorageType &a, const co::meshStorageType &b) {
         a+=b;
     }
 
 
 
 
-    void MeshCreator::applyFunction(const dipoles::directionGraph &plot) {
+    void MeshCreator::applyFunction(const co::directionGraph &plot) {
         data[2]=meshStorage::computeFunction(data[0],data[1],plot);
         computeViews(2);
     }
