@@ -5,11 +5,8 @@
 
 #include <iosfwd>
 #include <vector>
-#include <valarray>
-#include <optional>
 #include "mdspan/mdspan.hpp"
 
-#include <matplot/matplot.h>
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 
 #include "computationalLib/math_core/dipolesCommon.h"
@@ -28,8 +25,6 @@ namespace meshStorage {
 
     template<size_t N>
     using meshArr=std::array<meshStorageType,N>;
-
-    using namespace matplot;//todo move
 
     /**
      *
@@ -165,9 +160,22 @@ namespace meshStorage {
                               std::valarray<FloatType>(dimensions[0]*dimensions[1])}){
         }
 
-        void constructMeshes(const std::optional<std::array<size_t,2>> dimenstion=std::nullopt,
-                             const std::optional<std::array<FloatType ,4>> limit=std::nullopt);
-
+        void constructMeshes();
+        void constructMeshes(const std::array<size_t,2>& dimenstion)
+        {
+            this->dimensions=dimenstion;
+        }
+        void constructMeshes(
+                             const std::array<FloatType ,4>& limit)
+        {
+            this->limits=limit;
+        }
+        void constructMeshes(const std::array<size_t,2>& dimenstion,
+                             const std::array<FloatType ,4>& limit)
+        {
+            this->dimensions=dimenstion;
+            this->limits=limit;
+        }
         friend meshArr<dimCount+1> sphericalTransformation(const MeshCreator&oth);
 
         void applyFunction(const dipoles::directionGraph&plot);
@@ -236,24 +244,7 @@ namespace meshStorage {
         return ret;
     }
 
-    //todo move
-    static const std::function<void(const std::string&,const MeshCreator&)> plotFunction=[](const std::string& filename,const MeshCreator&mesh)
-    {
-        using namespace meshStorage;
-        auto ax = matplot::gca();
-        auto data_arr=sphericalTransformation(mesh);
-        ax->surf(unflatten(data_arr[0],mesh.dimensions),
-                 unflatten(data_arr[1],mesh.dimensions),
-                 unflatten(data_arr[2],mesh.dimensions))
-                ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
-        ax->view(213, 22);
-        ax->xlim({-40, 40});
-        ax->ylim({-40, 40});
-        ax->zlim({0, 90});
 
-        matplot::save(filename);
-        ax.reset();
-    };
 
 }
 

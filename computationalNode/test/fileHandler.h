@@ -81,10 +81,11 @@ namespace fileUtils {
          * @tparam checks
          * @tparam T
          * @param filename
+         * @param printee
          * @see fileHandler::print
          */
         template<bool checks = true, typename T>
-        void output(const std::string &filename, const T &pr);
+        void output(const std::string &filename, const T &printee);
         /**
          *
          */
@@ -103,7 +104,7 @@ namespace fileUtils {
 
 
     template<bool checks, typename T>
-    void fileHandler::output(const std::string &filename, const T &pr) {
+    void fileHandler::output(const std::string &filename, const T &printee) {
         auto filePath = parentPath / filename;
         if constexpr (checks) {
             if (fileMap.contains(filePath) || fileMap[filePath]->is_open()) {
@@ -112,7 +113,7 @@ namespace fileUtils {
                 }
             }
         }
-        print(fileMap[filePath], pr);
+        print(fileMap[filePath], printee);
     }
 }
 #endif //DIPLOM_FILEHANDLER_H

@@ -13,14 +13,6 @@ SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 SET(CMAKE_CXX_FLAGS_RELEASE "-g -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
 SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
 
-#[[if(CMAKE_BUILD_TYPE=="Release-Coverage")
-    message("coverage")
-    list(append CMAKE_CXX_FLAGS_RELEASE "-coverage -fprofile-arcs -ftest-coverage")
-endif ()]]
-
-
-
-
 
 add_subdirectory(test)
 
@@ -46,7 +38,6 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 
 add_library(math_core_lib ${math_core_files})
 target_link_libraries(math_core_lib PUBLIC Eigen3::Eigen)
-target_link_libraries(math_core_lib PUBLIC Matplot++::matplot)
 target_link_libraries(math_core_lib PUBLIC commonLib parallelLib)
 
 target_include_directories(math_core_lib PUBLIC ../mdspan/include)
@@ -73,6 +64,7 @@ add_library(io_lib ${iolib_files})
 
 
 target_link_libraries(io_lib PUBLIC math_core_lib)
+target_link_libraries(io_lib PUBLIC Matplot++::matplot)
 target_include_directories(io_lib PUBLIC ../mdspan/include)
 
 
@@ -91,15 +83,15 @@ target_include_directories(io_lib PUBLIC ../mdspan/include)
 
 
 add_executable(moveDipoles src/moveDipoles.cpp)
-target_link_libraries(moveDipoles PUBLIC math_core_lib)
+target_link_libraries(moveDipoles PUBLIC math_core_lib Matplot++::matplot)
 
 add_executable(generator src/coordGenerate.cpp)
-target_link_libraries(generator PUBLIC math_core_lib OpenMP::OpenMP_CXX)
+target_link_libraries(generator PUBLIC math_core_lib io_lib OpenMP::OpenMP_CXX)
 
 
 add_executable(checker src/eigenTest.cpp)
-target_link_libraries(checker PUBLIC math_core_lib)
+target_link_libraries(checker PUBLIC math_core_lib io_lib)
 
 
 add_executable(grids src/darwingGrids.cpp)
-target_link_libraries(grids PUBLIC math_core_lib parallelLib)
+target_link_libraries(grids PUBLIC math_core_lib io_lib parallelLib)#todo io_lib includes math_core?

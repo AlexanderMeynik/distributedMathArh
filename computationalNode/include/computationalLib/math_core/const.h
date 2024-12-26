@@ -5,7 +5,9 @@
 
 using const_::FloatType;
 
-
+/**
+ * @brief Common numeric parameters values
+ */
 struct params {
     static constexpr FloatType c = 3.0 * 1e8;
     static constexpr FloatType yo = 1e7;

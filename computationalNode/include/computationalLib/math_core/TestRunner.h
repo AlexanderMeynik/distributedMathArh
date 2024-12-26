@@ -40,7 +40,9 @@ using coordinates = geNcoordinates<FloatType>;
 template<typename T>
 using dynVec=Eigen::Vector<T,-1>;
 
-
+/**
+ * @brief testRunner class todo doc
+ */
 class TestRunner {
 
 public:

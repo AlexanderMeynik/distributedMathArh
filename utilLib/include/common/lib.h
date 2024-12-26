@@ -3,15 +3,14 @@
 #ifndef MAGISTER1_LIB_H
 #define MAGISTER1_LIB_H
 
-
+#include <functional>
+#include <string>
 #include <vector>
+#include "eigen3/Eigen/Dense"
 
-#include <iomanip>
-#include <filesystem>
-#include <random>
 #include <map>
-#include <cassert>
-#include <eigen3/Eigen/Core>
+
+
 
 //todo where do we use this file
 // do we actually need it and where
@@ -19,6 +18,7 @@ using std::function, std::pair, std::vector, std::array;
 using std::string;
 
 
+//todo remake this function into universal caster(implementations for casts
 template<class T>
 std::array<std::vector<T>, 2> reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> &xi) {
     auto N = xi.size() / 2;

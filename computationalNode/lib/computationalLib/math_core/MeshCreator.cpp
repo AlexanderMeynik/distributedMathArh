@@ -1,4 +1,5 @@
 #include "computationalLib/math_core/MeshCreator.h"
+
 namespace meshStorage
 {
 
@@ -39,16 +40,8 @@ namespace meshStorage
         computeViews(2);
     }
 
-    void MeshCreator::constructMeshes(const std::optional<std::array<size_t, 2>> dimenstion,
-                                      const std::optional<std::array<FloatType, 4>> limit) {
-        if(dimenstion.has_value())
-        {
-            this->dimensions=dimenstion.value();
-        }
-        if(limit.has_value())
-        {
-            this->limits=limit.value();
-        }
+    void MeshCreator::constructMeshes() {
+
 
         auto phi=meshStorage::myLinspace<std::valarray>(limits[2],limits[3],dimensions[1]);
         auto theta=meshStorage::myLinspace<std::valarray>(limits[0],limits[1],dimensions[0]);
@@ -57,9 +50,9 @@ namespace meshStorage
             coords[i]=meshStorage::myLinspace<std::valarray>(limits[2*i],limits[2*i+1],dimensions[i]);
         }
 
-        auto rr=meshStorage::myMeshGrid(phi,theta);
-        data[0]=rr[0];
-        data[1]=rr[1];
+        auto rrr=meshStorage::myMeshGrid(phi,theta);
+        data[0]=rrr[0];
+        data[1]=rrr[1];
         computeViews();
     }
 

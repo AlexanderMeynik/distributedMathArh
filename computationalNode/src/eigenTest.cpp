@@ -1,13 +1,11 @@
-#include <eigen3/Eigen/Dense>
-#include <random>
-#include <iostream>
 
-#include "common/lib.h"
-#include "computationalLib/math_core/Dipoles.h"
+#include <random>
+
+
+
 #include "parallelUtils/commonDeclarations.h"
-#include "common/Generator.h"
-#include "iolib/Printers.h"
-#include "computationalLib/math_core/MeshCreator.h"
+#include "iolib/plotingUtils.h"
+
 auto aRange=1.0e-6;
 
 using commonDeclarations::gClk;

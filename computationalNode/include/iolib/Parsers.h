@@ -2,20 +2,13 @@
 #ifndef DIPLOM_PARSERS_H
 #define DIPLOM_PARSERS_H
 
-#include <istream>
-#include <eigen3/Eigen/Dense>
-#include <filesystem>
 #include <iostream>
-#include <vector>
+
 #include <algorithm>
 #include <numeric>
-#include <ostream>
 #include <fstream>
 #include <iomanip>
-#include <filesystem>
 
-
-#include <cassert>
 
 #include "computationalLib/math_core/MeshCreator.h"
 #include "common/myConcepts.h"
@@ -101,7 +94,7 @@ Container parseDipoleCoordinates(const std::string &filename) {
 
 
 
-//todo use template typename for structure parsiong
+
 template<typename T>
 std::istream &operator>>(std::istream &in, std::array<std::vector<T>, 2> &xi) {
     size_t size;
@@ -136,7 +129,12 @@ public:
 
     Container vals_;
 };
-using meshStorage::MeshCreator;
+
+
+/**
+ * @begin Eigen vector specialization for Parser
+ * @tparam T
+ */
 template<typename T>
 class Parser<Eigen::Vector<T, -1>> {
 public:
@@ -162,7 +160,10 @@ public:
     int size_;
 };
 
-
+/**
+ * @begin Standart vector specialization for Parser
+ * @tparam T
+ */
 template<typename T>
 class Parser<std::vector<T>> {
 public:
@@ -188,7 +189,11 @@ public:
     int size_;
 };
 
-
+//todo we have classes declarations in utils commonDecl
+/**
+ * @begin Eigen vector specialization for Parser
+ * @tparam T
+ */
 template<typename T>
 class Parser<Eigen::Matrix<T, Eigen::Dynamic, Eigen::Dynamic>> {
 public:
@@ -214,8 +219,11 @@ public:
 };
 
 
-
-
+using meshStorage::MeshCreator;
+/**
+ * @begin Mesh creator specialization for Parser
+ * @tparam T
+ */
 template<>
 class Parser<MeshCreator> {
 public:

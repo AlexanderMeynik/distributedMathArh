@@ -5,12 +5,17 @@
 
 #include <omp.h>
 
-#include "parallelUtils/commonDeclarations.h"
+
+
+
+#include <filesystem>
+
 #include "computationalLib/math_core/Dipoles.h"
-#include "common/lib.h"
 #include "common/Generator.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Printers.h"
+#include "iolib/plotingUtils.h"
+#include "common/lib.h"
 
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;
@@ -264,7 +269,7 @@ int main(int argc, char *argv[]) {
         printDec(mesh,out1);
 
         out1.close();
-        mesh.plotAndSave(getString(dirname, "sim", i, "png"),meshStorage::plotFunction);
+        mesh.plotAndSave(getString(dirname, "sim", i, "png"),plotFunction);
         plotCoordinates(getString(dirname, "coord", i, "png"), aRange, coordinates[i]);
 
     }
@@ -295,7 +300,7 @@ int main(int argc, char *argv[]) {
 
     mesh.data[2]=result;
     printDec(mesh,out1);
-    mesh.plotAndSave(dirname + "avg.png",meshStorage::plotFunction);
+    mesh.plotAndSave(dirname + "avg.png",plotFunction);
     out1.close();
 
     return 0;

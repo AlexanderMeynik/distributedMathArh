@@ -18,6 +18,9 @@ namespace core_intrefaces {
     template<class... Ts>
     overload(Ts...) -> overload<Ts...>;
 
+    /**
+     * Data acess interface todo doc
+     */
     class DataAcessInteface {
     public:
         DataAcessInteface() : data_{},properties_{} {
