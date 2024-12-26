@@ -273,5 +273,4 @@ int main() {
 
 }
 
-////todo integration accuracy/speed depending on Ndots and quadrature
 ////todo gbench

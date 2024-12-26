@@ -68,6 +68,7 @@ std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, 
     return {x_filtered, y_filtered};
 }
 
+//todo implement generator
 std::array<std::vector<double>, 2>
 triangularGrid(double l, double r, double a = 0, double b = 0, bool center = false)//r-r,l-длинна
 {
@@ -166,7 +167,7 @@ int main(int argc, char *argv[]) {
     ss << "_N" << N << "_l" << l << "_a" << a << "_center" << center;
 
     std::ofstream out("res" + ss.str() + ".txt");
-    dipoles::Dipoles d(N, coords);//this thing wont accept array
+    dipoles::Dipoles d(coords);
     auto solv = d.solve<dipoles::EigenVec>();
 
     plotCoordinates("coord" + ss.str() + ".png", a / 8, coords);

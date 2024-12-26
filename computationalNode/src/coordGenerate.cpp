@@ -81,7 +81,7 @@ int main(int argc, char *argv[]) {
     for (int i = 0; i < Nsym; ++i) {
         coordinates[i] = generators::normal<std::vector>(N,0.0,aRange* sqrt(2))/*genr.generateCoordinates(N)*/;
     }
-    Dipoles dipoles1(N, coordinates[0]);
+    Dipoles dipoles1(coordinates[0]);
     using meshStorage::MeshCreator;
     MeshCreator mesh = MeshCreator();//todo do ve need implicit constructor call
     mesh.constructMeshes();

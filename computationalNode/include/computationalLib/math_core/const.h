@@ -1,7 +1,7 @@
 #ifndef DIPLOM_CONST_H
 #define DIPLOM_CONST_H
 
-#include "common/constants.h"//todo ambiguous name
+#include "common/commonDecl.h"
 
 using const_::FloatType;
 

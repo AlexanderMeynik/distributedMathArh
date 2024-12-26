@@ -8,7 +8,7 @@ int main()
     constexpr size_t N=100;
     auto coordinates=generators::normal<std::valarray>(N,0.0,1.e-6*sqrt(2));
 
-    dipoles::Dipoles dip(N,coordinates);
+    dipoles::Dipoles dip(coordinates);
     auto solution =dip.solve<std::valarray<FloatType>>();
 
     dip.getFullFunction_(coordinates,solution);

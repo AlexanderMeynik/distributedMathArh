@@ -21,14 +21,6 @@ using namespace Eigen;
 static inline double C1 = 0;
 static inline double C2 = 0;
 
-//todo try to test
-auto dipole1Function(double theta, double phi) {
-    2 * M_PI * pow(params::omega, 3) *
-    (pow(params::omega * sin(theta) / params::c, 2) *
-     (pow(C1, 4) + pow(C2, 4) + 2 * pow(C1 * C2, 2)) +
-     (C1 * C1 + C2 * C2) -
-     (pow(sin(theta), 2) * (C1 * C1 + C2 * C2) / 2.));
-}
 
 template<typename T>
 using dynEigenVec=Eigen::Vector<T,-1>;
@@ -69,7 +61,7 @@ TEST(Dipoles, test_solve_result_in_zero_nev) {
     const int N = 2;
 
     auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
-    dipoles::Dipoles dipolearr(N, coord);
+    dipoles::Dipoles dipolearr(coord);
     auto solution = dipolearr.solve<dipoles::EigenVec>();
 
     EXPECT_TRUE(solution.size() == 4 * N);
@@ -100,7 +92,7 @@ TEST_P(DipoleSolveMethodNevTests, test_right_part_nev_solve_impl) {
 
 
     auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
-    dipoles::Dipoles dipolearr(N, coord);
+    dipoles::Dipoles dipolearr(coord);
     auto rsol = dipolearr.solve<dipoles::EigenVec>();
     Eigen::Vector<FloatType,Eigen::Dynamic> nev = dipolearr.getMatrixx() * rsol - dipolearr.getRightPart();
     FloatType nev_norm=nev.norm();
@@ -186,7 +178,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
 
 
     EXPECT_EQ(matr.size_, conf.size() / 2);
-    dipoles::Dipoles dd(conf.size() / 2, conf);
+    dipoles::Dipoles dd(conf);
     compare2dArrays(dd.getMatrixx(), matr.vals_, double_comparator3, 1e20 / 10000);
 
 }

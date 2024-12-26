@@ -111,7 +111,8 @@ namespace commonDeclarations {
      * @param i1
      * @param i2
      * @param N
-     * @return
+     * @details if collection is 2 dimensional array then it's equivalent to collections[i1][i1]
+     * @details in other case it's use collection[i1 * N + i2]
      */
     template<typename Collection>
     requires HasBracketOperator<Collection>

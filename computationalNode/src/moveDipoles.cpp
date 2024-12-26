@@ -36,7 +36,7 @@ int main(int argc, char *argv[]) {
     int N = coordinates[0].size();
     std::ofstream out(dirname + "results.txt");
 
-    Dipoles d(N, coordinates);//todo old implementation used
+    Dipoles d(coordinates);
 
 
 

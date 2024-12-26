@@ -15,12 +15,12 @@
 
 
 
-#include "MeshCreator.h"//todo it's not used hert
+#include "MeshCreator.h"//todo it's not used here
 #include "common/lib.h"
 #include "parallelUtils/commonDeclarations.h"
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
-#include "common/constants.h"
+#include "common/commonDecl.h"
 #include "computationalLib/math_core/Dipoles.h"
 
 template<typename ...Args>

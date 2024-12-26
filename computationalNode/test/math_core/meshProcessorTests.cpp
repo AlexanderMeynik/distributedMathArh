@@ -26,15 +26,14 @@ using tType1 = std::tuple<std::string, std::function<double(double)>, double, do
 using tType2 = std::tuple<std::string, dipoles::integrableFunction, double, double, dipoles::directionGraph>;
 using tType3 = std::tuple<std::string, std::vector<FloatType>, std::vector<FloatType>, std::array<std::valarray<FloatType>,2>>;
 using tType4 = std::tuple<std::string, std::array<std::valarray<FloatType>,2>,
-std::function<FloatType(FloatType,FloatType)>,std::valarray<FloatType>>;
-
+        dipoles::directionGraph,std::valarray<FloatType>>;
+dipoles::directionGraph dummy=[](double a,double b){return 0.0;};
 using namespace meshStorage;
 
 
 using MyTypes = ::testing::Types<std::valarray<FloatType>, int, unsigned int>;
 
 
-/*template<template<typename ...> typename container>*/
 class TestLinspace :
         public MeshCommonFunctionsTests,
         public ::testing::WithParamInterface<tType> {
@@ -59,6 +58,17 @@ class TestFunctionApply :
         public ::testing::WithParamInterface<tType4> {
 };
 
+TEST_P(TestsIntegrate, testIntegrateZeroSpan)
+{
+    auto [_, function, l, r, result] = GetParam();
+
+    auto res = integrate(function, 0.0, 0.0);
+
+    ASSERT_DOUBLE_EQ(res, 0.0);
+}
+
+
+
 TEST_P(TestsIntegrate, testIntegrate) {
     auto [_, function, l, r, result] = GetParam();
 
@@ -81,6 +91,8 @@ INSTANTIATE_TEST_SUITE_P(
         ), firstValueTuplePrinter<TestsIntegrate>);
 
 
+
+
 TEST_P(TestsIntegrateOneVar, testIntegrateLambdaForOneVariable) {
     auto [_, function, l, r, resultFunction] = GetParam();
 
@@ -95,7 +107,7 @@ TEST_P(TestsIntegrateOneVar, testIntegrateLambdaForOneVariable) {
     });
     auto g2 = meshStorage::computeFunction(grid[0], grid[1], resultFunction);
 
-    compareArrays(g1, g2, double_comparator2,anotherErr);//todo variant with another function
+    compareArrays(g1, g2, double_comparator2,anotherErr);
 
 }
 
@@ -109,9 +121,7 @@ INSTANTIATE_TEST_SUITE_P(
                                 [](double x, double y) { return 2 * x + 2 * y + 8 / 3.0; }),
                 std::make_tuple("non_divisible_z_function", [](double x, double y, double z) { return x*z+y*z; }, 0, 2,
                                 [](double x, double y) { return x*2+y*2; })
-                /*std::make_tuple("non_divisible_z_function", [](double x, double y, double z) { return x*cos(z)+y*sin(z); }, 0, 2,
-                                [](double x, double y) { return x*(sin(2)-sin(0))+y*(-cos(2)+cos(0)); })*/
-                /*todo add more*/), firstValueTuplePrinter<TestsIntegrateOneVar>);
+               ), firstValueTuplePrinter<TestsIntegrateOneVar>);
 
 
 
@@ -159,6 +169,18 @@ INSTANTIATE_TEST_SUITE_P(
                 ), firstValueTuplePrinter<TestMeshGenerate>);
 
 
+TEST_F(TestFunctionApply, testZeroContainerSize)
+{
+    auto a=std::valarray<FloatType>{};
+    ASSERT_THROW(computeFunction(a,a,dummy),std::length_error);
+}
+
+TEST_F(TestFunctionApply, testMismathcedContainerSizez)
+{
+    auto a=std::valarray<FloatType>{};
+    auto b=std::valarray<FloatType>{1,2,3};
+    ASSERT_THROW(computeFunction(a,a,dummy),std::length_error);
+}
 
 TEST_P(TestFunctionApply, TestFunctionApply) {
     auto [_, mesh, func, res] = GetParam();
@@ -183,7 +205,6 @@ INSTANTIATE_TEST_SUITE_P(
                                 std::valarray<FloatType >{2,2,9,9})
         ), firstValueTuplePrinter<TestFunctionApply>);
 
-//todo tests for size =0;
 //typed tests for different containers and value of end
 
 
@@ -194,5 +215,6 @@ INSTANTIATE_TEST_SUITE_P(
 
 
 
-//test mesh processor
-//todo test that integral is zero for (0,0)- same for integrate with one
+//todo test mesh processor
+    //use fake function framework to test function invocations
+    //compare calculated plot views

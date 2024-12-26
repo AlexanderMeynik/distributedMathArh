@@ -35,7 +35,7 @@ namespace dipoles {
         M2_ = xi.bottomLeftCorner(2 * N_, 2 * N_);
     }
 
-    Eigen::Vector<FloatType, Eigen::Dynamic> &Dipoles::getRightPart() {
+    const Eigen::Vector<FloatType, Eigen::Dynamic> &Dipoles::getRightPart() {
         return f;
     }
 

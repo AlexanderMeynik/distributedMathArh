@@ -8,13 +8,14 @@
 #include "computationalLib/math_core/dipolesCommon.h"
 
 ///dipoles namespace
+//*todo template size argument
 namespace dipoles {
     using namespace Eigen;
     using namespace commonDeclarations;
 
     /**
-     * @brief Provides interface to solve system of dipoles(todo link to task)
-     * @details Allows to construct and solve system of equtions for the selected mathematical model.
+     * @brief Provides interface to solve system of dipoles
+     * @details Allows to construct and solve system of equations for the selected mathematical model.
      * @details Can accept various input formats for coordinates and solutions to crete system,
      * @details to solve it, to generate direction graph for magnetic field.
      */
@@ -25,12 +26,11 @@ namespace dipoles {
         /**
          * @brief Basic constructor that acccepts dipole coordinates Container
          * @tparam Container
-         * @param N
          * @param xi
          */
         template<typename Container>
         requires HasSizeMethod<Container>
-        Dipoles(int N, const Container &xi);//todo remove N;
+        Dipoles(const Container &xi);
 
         /**
          * @brief Function that allows to reset dipole coordinates
@@ -43,14 +43,13 @@ namespace dipoles {
         void setNewCoordinates(const Container &xi);
 
         /**
-         * @brief Loads ststem of equations matrix
+         * @brief Loads system of equations matrix
          * @param xi
          */
-        //todo maybe &&
         void loadFromMatrix(const Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> &xi);
 
         /**
-         * Calculates directrion grapth and/or other it variants
+         * Calculates directional graph and/or other it variants
          * @tparam Container
          * @tparam Container2
          * @param xi
@@ -64,7 +63,6 @@ namespace dipoles {
         /**
          * @brief Computes solution vector for dipole parameters and returns it in available format
          * @tparam Container
-         * @return
          */
         template<typename Container=dipoles::ReturnToDataType<dipoles::ReturnType::EigenVector>>
         Container solve();
@@ -79,11 +77,9 @@ namespace dipoles {
         }
 
         /**
-         * @brief Retrieves right part for system of equations
-         * @return
+         * @brief Returns reference to the right part for system of equations
          */
-        //todo template
-        Eigen::Vector<FloatType, Eigen::Dynamic> &getRightPart();
+        const Eigen::Vector<FloatType, Eigen::Dynamic> &getRightPart();
 
         /**
          * @brief Retrieves matrix computed for system of equations
@@ -162,7 +158,7 @@ namespace dipoles {
 
     template<typename Container>
     requires HasSizeMethod<Container>
-    Dipoles::Dipoles(int N, const Container &xi) {
+    Dipoles::Dipoles(const Container &xi) {
         if constexpr (not HasBracketsNested<Container>) {
             this->N_ = xi.size() / 2;
         } else {
@@ -231,10 +227,6 @@ namespace dipoles {
         if(this->f.size()!=xi.size()*2) {
             this->N_ = xi.size() / 2;
             initArrays();
-           /* if (an == params::a) {
-                this->N_ = xi.size() / 2;
-                initArrays();
-            }*/
         }
         setMatrixes(xi);
     }
@@ -250,7 +242,7 @@ namespace dipoles {
             FloatType ress[3] = {0, 0, 0};
             for (int i = 0; i < N; ++i) {
                 FloatType ri[2] = {getElement(xi, 0, i, N),
-                                   getElement(xi, 1, i, N)};//todo what are those mgick numbers for x and y
+                                   getElement(xi, 1, i, N)};
                 FloatType ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);
                 FloatType t0 = t - ys / params::c;
                 FloatType Ai[2] = {get_value(sol, 2 * i), get_value(sol, 2 * i + 1)};
@@ -387,7 +379,6 @@ namespace dipoles {
             return res;
 
         };
-        //todo serialize part of this(sve result into table)
 
     }
 

@@ -5,7 +5,7 @@
 #ifndef DIPLOM_COMMONLIB_H
 #define DIPLOM_COMMONLIB_H
 
-#include "constants.h"
+#include "commonDecl.h"
 #include "Generator.h"
 #include "myConcepts.h"
 #include "iolib/Printers.h"

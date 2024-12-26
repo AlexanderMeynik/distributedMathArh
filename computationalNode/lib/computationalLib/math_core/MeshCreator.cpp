@@ -3,10 +3,16 @@ namespace meshStorage
 {
 
     meshStorageType computeFunction(const meshStorageType &a, const meshStorageType &b, const dipoles::directionGraph &func) {
+        if(!a.size())//todo create my exception type with error type and message
+        {
+            throw std::length_error("Invalid container sizes for input : a.size = "
+            +std::to_string(a.size())+", b.size() = "+std::to_string(b.size()));
+        }
 
         if(a.size()!=b.size())
         {
-            return {};
+            throw std::length_error("Mismatched container sizes for input : a.size = "
+                                    +std::to_string(a.size())+", b.size() = "+std::to_string(b.size()));
         }
 
         auto sz=a.size();

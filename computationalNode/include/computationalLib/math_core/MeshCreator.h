@@ -74,21 +74,7 @@ namespace meshStorage {
     }
 
 
-    /**
-     * @brief Computes functional mesh for N coordinates
-     * @tparam T
-     * @tparam Args
-     */
-    template<typename T, typename... Args> requires (std::is_same_v<T, Args> &&...)
 
-    T computeFunction_t(size_t size, const Args &... args, const std::function<FloatType(FloatType ...)> &function) {
-        //todo size checks
-        T result(size);
-        for (size_t i = 0; i < size; ++i) {
-            result[i] = func(args[i]...);
-        }
-        return result;
-    }
 
     /**
      * @brief Computes functional mesh for 2 coordinates
@@ -161,73 +147,6 @@ namespace meshStorage {
 
         return res;
     }
-    /**
-     *  typedef dipoles::integrableFunction integrableFunction;
-        typedef dipoles::directionGraph directionGraph;
-         static meshStorageType transpose(mdSpanType&tt)
-        {
-            auto rows=tt.extent(0);
-            auto cols=tt.extent(1);
-
-            meshStorageType mesh(rows*cols);
-            auto begin=&(mesh[0]);
-            mdSpanType res=mdSpanType(begin,cols,rows);
-            for (size_t i = 0; i < rows; ++i) {
-                for (size_t j = 0; j < cols; ++j) {
-                    res[std::array{j,i}]=tt[std::array{i,j}];
-                }
-            }
-            return mesh;
-        }
-
-
-
-        void MeshProcessor2::sphericalTransformation() {
-        this->meshsph[0] = this->meshdec[0];
-        this->meshsph[1] = this->meshdec[1];
-        this->meshsph[2] = this->meshdec[2];
-
-        this->meshsph[0] = this->meshsph[2] * sin(this->meshdec[1]) * cos(this->meshdec[0]);
-        this->meshsph[1] = this->meshsph[2] * sin(this->meshdec[1]) * sin(this->meshdec[0]);
-        this->meshsph[2] = this->meshsph[2] * cos(this->meshdec[1]);
-
-    }
-
-     void MeshProcessor2::printDec(std::ostream &out) {
-        out << "Функция I(phi,th)\n";
-        out << "phi\\th\t\t";
-        for (size_t i = 0; i < meshDecSpans[2].extent(0) - 1; ++i) {
-            out << scientificNumber(meshDecSpans[1][std::array{i,0UL}], 5) << '\t';
-        }
-
-        out << scientificNumber(meshDecSpans[1][std::array{(meshDecSpans[2].extent(0) - 1),1UL}], 5)
-        << '\n';
-
-        for (size_t i = 0; i < meshDecSpans[2].extent(1); ++i) {
-            auto phi = meshDecSpans[0][std::array{0UL,i}];
-            out << scientificNumber(phi, 5) << "\t";
-            for (size_t j = 0; j < meshDecSpans[2].extent(0) - 1; ++j) {
-                out << scientificNumber(meshDecSpans[2][std::array{j,i}], 5) << "\t";
-            }
-            out << scientificNumber(meshDecSpans[2][std::array{meshdec[2].size() - 1,i}], 5) << "\n";
-        }
-    }
-
-     void MeshProcessor2::plotSpherical(std::string filename) {
-        auto ax = gca();
-        ax->surf(unflatten(meshsph[0],nums),
-                 unflatten(meshsph[1],nums),
-                 unflatten(meshsph[2],nums))
-                ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
-        ax->view(213, 22);
-        ax->xlim({-40, 40});
-        ax->ylim({-40, 40});
-        ax->zlim({0, 90});
-
-        matplot::save(filename);
-        ax.reset();
-    }
-     */
 
 
     static const  size_t dimCount=2;
@@ -240,6 +159,7 @@ namespace meshStorage {
     class MeshCreator
     {
     public:
+        //todo designated separated printer for bulk print
         MeshCreator(): dimensions({7, 25}), limits({0, M_PI_2, 0, M_PI * 2}),
                        data({std::valarray<FloatType>(dimensions[0]*dimensions[1]),
                               std::valarray<FloatType>(dimensions[0]*dimensions[1]),
@@ -247,7 +167,7 @@ namespace meshStorage {
         }
 
         void constructMeshes(const std::optional<std::array<size_t,2>> dimenstion=std::nullopt,
-                             const std::optional<std::array<FloatType ,4>> limit=std::nullopt);//todo test
+                             const std::optional<std::array<FloatType ,4>> limit=std::nullopt);
 
         friend meshArr<dimCount+1> sphericalTransformation(const MeshCreator&oth);
 

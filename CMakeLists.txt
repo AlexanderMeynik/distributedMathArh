@@ -3,7 +3,6 @@ project(Diplom)
 
 
 add_subdirectory(server)
-add_subdirectory(somestuff)
 
 add_subdirectory(utilLib)
 add_subdirectory(computationalNode)
