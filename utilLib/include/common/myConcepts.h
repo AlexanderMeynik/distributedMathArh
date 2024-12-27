@@ -27,13 +27,6 @@ namespace commonDeclarations {
     };
 
     /**
-     * @brief Concept to check whether type T element have subscript operation
-     * @tparam T
-     */
-    template<typename T>
-    concept HasBracketsNested = HasBracketOperator<T> && HasBracketOperator<typename T::value_type>;
-
-    /**
      * @brief Concept to check whether type T hash size method
      * @tparam T
      */
@@ -41,6 +34,19 @@ namespace commonDeclarations {
     concept HasSizeMethod = requires(T a) {
         { a.size() } -> std::convertible_to<std::size_t>;
     };
+
+
+    template<typename T>
+    concept isFloatArray = HasBracketOperator<T> && HasSizeMethod<T>&&std::is_floating_point_v<typename T::value_type>;
+
+    /**
+     * @brief Concept to check whether type T element have subscript operation
+     * @tparam T
+     */
+    template<typename T>
+    concept HasBracketsNested = HasBracketOperator<T> && HasBracketOperator<typename T::value_type>;
+
+
 
     /**
      * @brief Concept to check whether type T is 2d vector

@@ -19,7 +19,7 @@ namespace core_intrefaces {
     overload(Ts...) -> overload<Ts...>;
 
     /**
-     * Data acess interface todo doc
+     * Data acess interface todo переосмыслить и переделать
      */
     class DataAcessInteface {
     public:
@@ -48,17 +48,11 @@ namespace core_intrefaces {
             return data_.contains(key);
         }
 
-        virtual bool isPresent(std::string &&key) {//todo вот тут уместнее сделать perfect forwrding(как и со всеми схожим
-            return data_.contains(key);
-        }
 
         virtual bool isPPresent(std::string &key) {
             return properties_.contains(key);
         }
 
-        virtual bool isPPresent(std::string &&key) {
-            return properties_.contains(key);
-        }
 
     protected:
         std::unordered_map<std::string, std::vector<std::vector<double>>> data_;

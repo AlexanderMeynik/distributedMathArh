@@ -22,6 +22,7 @@ private:
 };
 
 //todo redo this completely
+//do we actually need this if we can map everything to Eigen types and format them https://eigen.tuxfamily.org/dox/structEigen_1_1IOFormat.html
 template<typename T>
 struct scientificNumberType {
     explicit scientificNumberType(T number, int decimalPlaces) : number(number), decimalPlaces(decimalPlaces) {}
