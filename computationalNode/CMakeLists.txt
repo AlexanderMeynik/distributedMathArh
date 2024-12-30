@@ -94,3 +94,7 @@ target_link_libraries(checker PUBLIC  io_lib)
 
 add_executable(grids src/darwingGrids.cpp)
 target_link_libraries(grids PUBLIC io_lib)#todo io_lib includes math_core?
+
+
+add_executable(printerssst src/printersTests.cpp)
+target_link_libraries(grids PUBLIC  Eigen3::Eigen)#todo io_lib includes math_core?

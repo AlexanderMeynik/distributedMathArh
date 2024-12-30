@@ -36,8 +36,12 @@ namespace commonDeclarations {
     };
 
 
+    /**
+     * @brief Checks whether T is a one dimensional continuous array of elements
+     * @tparam T
+     */
     template<typename T>
-    concept isFloatArray = HasBracketOperator<T> && HasSizeMethod<T>&&std::is_floating_point_v<typename T::value_type>;
+    concept isOneDimensionalContinuous = HasBracketOperator<T> && HasSizeMethod < T>;
 
     /**
      * @brief Concept to check whether type T element have subscript operation

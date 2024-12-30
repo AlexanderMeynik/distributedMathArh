@@ -27,7 +27,7 @@ void  printDec(meshStorage::MeshCreator&mmesh,std::ostream &out,int N=std::numer
 
 
 template<typename Container>
-requires commonDeclarations::isFloatArray<Container>
+requires commonDeclarations::isOneDimensionalContinuous<Container> && std::is_floating_point_v<typename Container::value_type>
 int printSolutionFormat1(std::ostream &out, const Container &solution)
 {
     out << "Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";

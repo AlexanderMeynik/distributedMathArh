@@ -16,8 +16,12 @@ public:
         out_.flags(flags_);
     }
 
-    std::ios_base::fmtflags flags_;
+    std::ios_base::fmtflags getFlags() const {
+        return flags_;
+    }
+
 private:
+    std::ios_base::fmtflags flags_;
     std::ostream &out_;
 };
 
