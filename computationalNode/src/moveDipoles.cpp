@@ -6,7 +6,7 @@
 
 #include <matplot/matplot.h>
 
-#include "common/lib.h"
+#include "common/typeCasts.h"
 #include "computationalLib/math_core/MeshCreator.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "iolib/Printers.h"

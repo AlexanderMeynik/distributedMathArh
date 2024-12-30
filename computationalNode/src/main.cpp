@@ -10,7 +10,7 @@
 
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 #include <matplot/matplot.h>
-#include "common/lib.h"
+#include "common/typeCasts.h"
 #include "computationalLib/math_core/Dipoles.h"
 
 const std::size_t maxPrecision = std::numeric_limits<double>::digits;

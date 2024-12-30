@@ -155,10 +155,10 @@ toEigenMatrix(Container&container, int columns)
 
 namespace printEnums {
     std::array<Eigen::IOFormat, 4> enumTo
-            = {Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "","[","]","","")=0,
-               Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "","","","",""),
+            = {Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "","[","]","","\n")=0,
+               Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "","","","","\n"),
                Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "\n", "[", "]", "","\n"),
-               Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "\n", "", "", "",""),
+               Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "\n", "", "", "","\n")
             };
     enum class EigenPrintFormats {//todo remake this format
         BasicOneDimensionalVector = 0,
@@ -243,9 +243,18 @@ int main()
     std::cout << toEigenVector(ass2).format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
 
 
+    auto r0= toEigenMatrix(ass2,2);
+    std::cout<<r0.format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
+    std::cout<<r0.format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
+
     std::cout<<"\n\n\n";
     auto rr=toEigenRowVector(ass2);
-    std::cout << rr.format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
+    std::cout << rr.format(printEnumToFormat(EigenPrintFormats::VecctorFormat1));
+
+
+    Eigen::Vector<double,6> vec={6.232131313243e-23,6e-23,6e-23,1,1,1};
+    auto rr2 = toEigenVector(vec);
+    std::cout << rr.format(printEnumToFormat(EigenPrintFormats::VecctorFormat1));
 
     int a=0;
 }

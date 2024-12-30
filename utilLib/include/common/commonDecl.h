@@ -2,11 +2,11 @@
 #ifndef DIPLOM_COMMONDECL_H
 #define DIPLOM_COMMONDECL_H
 
-#include <eigen3/Eigen/Dense>
 #include <vector>
 #include <array>
 #include <valarray>
 
+#include <eigen3/Eigen/Dense>
 /// namespace for some const declarations
 namespace const_ {
     //todo some of the decalred types need to be pulled away

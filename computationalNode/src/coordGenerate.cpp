@@ -15,7 +15,7 @@
 #include "computationalLib/math_core/MeshCreator.h"
 #include "iolib/Printers.h"
 #include "iolib/plotingUtils.h"
-#include "common/lib.h"
+#include "common/typeCasts.h"
 
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;

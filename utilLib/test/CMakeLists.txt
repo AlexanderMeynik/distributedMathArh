@@ -7,7 +7,7 @@ file(GLOB common CONFIGURE_DEPENDS
 #todo tests for all other components
 message(${common})
 add_executable(common_Tests ${common})
-target_link_libraries(common_Tests gtest gtest_main)
+target_link_libraries(common_Tests  commonLib gtest gtest_main)
 
 
 file(GLOB parallelUtils CONFIGURE_DEPENDS

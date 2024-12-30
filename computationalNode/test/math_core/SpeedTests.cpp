@@ -2,7 +2,7 @@
 #include <chrono>
 
 
-#include "common/lib.h"//todo only fo reinterpret vector
+#include "common/typeCasts.h"//todo only fo reinterpret vector
 #include "computationalLib/math_core/Dipoles.h"
 #include "iolib/Parsers.h"
 #include "common/Generator.h"

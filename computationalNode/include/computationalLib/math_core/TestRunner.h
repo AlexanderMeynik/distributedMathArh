@@ -16,7 +16,7 @@
 
 
 #include "MeshCreator.h"//todo it's not used here
-#include "common/lib.h"
+#include "common/typeCasts.h"
 #include "parallelUtils/commonDeclarations.h"
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
