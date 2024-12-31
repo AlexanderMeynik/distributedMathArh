@@ -181,10 +181,10 @@ int main(int argc, char *argv[]) {
     meshProcessor.applyFunction(d.getI2function());
 
    // meshProcessor.plotSpherical("function" + ss.str() + ".png");
-    //todo copy from generatoirs
+
 
     printCoordinates2(out, coords);
-    //meshProcessor.printDec(out);//todo redo
+    //meshProcessor.printDec(out);//todo use print dec
     out.close();
 
 }

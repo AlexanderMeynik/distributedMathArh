@@ -17,7 +17,7 @@ using namespace testCommon;
 
 std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
-string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
+std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
 
 using coordType=std::vector<std::vector<FloatType >>;

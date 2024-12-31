@@ -34,7 +34,6 @@ template<class T>
 std::function<T(T, T, T)> getFullFunction(std::array<std::vector<T>, 2> &coefs, std::array<std::vector<T>, 2> &coords) {
 
 
-    //Tr omeg=omega;//todo можно посчитать все величины заранее и потом прост оподставить
     return [&coords, &coefs](T theta, T phi, T t) {
         T omega = pow(10, 15);
         T c = 3 * pow(10, 8);

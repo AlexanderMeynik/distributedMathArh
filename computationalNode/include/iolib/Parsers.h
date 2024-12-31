@@ -189,7 +189,6 @@ public:
     int size_;
 };
 
-//todo we have classes declarations in utils commonDecl
 /**
  * @begin Eigen vector specialization for Parser
  * @tparam T

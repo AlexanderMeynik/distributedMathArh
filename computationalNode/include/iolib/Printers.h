@@ -3,11 +3,14 @@
 
 
 #include "common/printUtils.h"
-#include "common/myConcepts.h"
-#include "common/commonTypes.h"
+#include "common/typeCasts.h"
 
 using commonTypes::FloatType;
 using printUtils::IosStatePreserve, printUtils::IosStateScientific;
+
+//todo printer for vectors,
+//todo printer for matrix
+//todo find and get solutions form
 
 template<typename PrintType>
 int floatPrinter(std::ostream&out,const PrintType& printee,int N=std::numeric_limits<FloatType>::digits10-1);
@@ -39,14 +42,6 @@ int printSolutionFormat1(std::ostream &out, const Container &solution)
     }
     return 0;
 }
-
-template<typename T>
-concept has_data=requires(T& t)
-{
-    {t.data()}->std::common_with<typename T::value_type*>;
-};
-
-
 
 
 
@@ -84,14 +79,7 @@ void printCoordinates2(std::ostream &out, const Collection &xi) {
 }
 
 
-template<class T>
-void printCoordinates(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &xi) {
-    out << "Координаты диполей\n";
-    auto N = xi.size() / 2;
-    for (int i = 0; i < N; ++i) {
-        out << xi[i] << '\t' << xi[i + N] << "\n";
-    }
-}
+
 
 
 #endif //DIPLOM_PRINTERS_H

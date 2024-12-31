@@ -1,6 +1,6 @@
 #include "computationalLib/math_core/TestRunner.h"
 #include "iolib/Printers.h"
-void TestRunner::createSubDirectory(const string &dirname, const string &subdirectory) {
+void TestRunner::createSubDirectory(const std::string &dirname, const std::string &subdirectory) {
     if (!std::filesystem::exists("results/")) {
         std::filesystem::create_directory("results/");
     }
@@ -49,7 +49,7 @@ void TestRunner::solve() {
         auto filename = getString(this->dir_.value(), "sim", i, "txt");
         auto fout = openOrCreateFile(filename);
         fout << "Итерация симуляции i = " << i << "\n\n";
-        printCoordinates(fout, coords_[i]);
+        printCoordinates2(fout, coords_[i]);
         fout << "\n";
         printSolutionFormat1(fout, solutions_[i]);
         fout << "\n";
@@ -59,7 +59,7 @@ void TestRunner::solve() {
     //clocks_[1].tak();
 }
 
-std::string TestRunner::getString(const string &dirname, string &&name, int i, string &&end) {
+std::string TestRunner::getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;
 }
 
@@ -108,8 +108,8 @@ void TestRunner::generateFunction() {
 
             auto filename = getString(this->dir_.value(), "sim", i, "txt");
             auto fout = openOrCreateFile(filename);
-            /*mesh.printDec(fout);//todo redo
-            mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));//todo переделать
+            /*mesh.printDec(fout);//todo reuse
+            mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));//todo вставить реализацию
             *///plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
 
             fout.close();

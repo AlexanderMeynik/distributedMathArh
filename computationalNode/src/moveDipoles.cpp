@@ -15,8 +15,8 @@ const std::size_t maxPrecision = std::numeric_limits<double>::digits;
 
 using namespace dipoles;
 const double l = 1E-7;
-double eps = 0.01;//todo метод печати матрицы в диполи
-//todo сравнивать штуки
+double eps = 0.01;
+
 int main(int argc, char *argv[]) {
     std::ios_base::sync_with_stdio(false);
     std::string dirname = "movemovemove/";
@@ -55,12 +55,12 @@ int main(int argc, char *argv[]) {
         auto solut2 = d.solve<dipoles::EigenVec>();
 
         d.getFullFunction_(coordinates, solut2);
-        mmesh.applyIntegrate(d.getIfunction());//todo not working since inner function is bad
+        mmesh.applyIntegrate(d.getIfunction());
 
         //printToFile<double>(N, coordinates, d, dirname,i,2);
         //когда разницы между ними почти не будет оставновка
         //функция для подсчёта нормы от разницы 2 мешей принимет vector<vector<Tr>>&
-        //mmesh.printDec(out);//todo print
+        //mmesh.printDec(out);
         auto t1 = prevMesh[2];
         auto t2 = mmesh.data[2];
         res = (solut1.head(N) - solut2.head(N)).norm() +

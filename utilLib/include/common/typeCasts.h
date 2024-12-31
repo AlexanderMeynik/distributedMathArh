@@ -9,10 +9,11 @@
 #include "commonTypes.h"
 #include "myConcepts.h"
 
-using  std::vector, std::array;
-using std::string;
+
 using commonDeclarations::isOneDimensionalContinuous;
 
+
+//todo array<coll,2>->vector or matrix(2 columns)
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>

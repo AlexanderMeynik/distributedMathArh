@@ -22,12 +22,9 @@ int printEigenVectorMap(Eigen::Map<Eigen::Vector<T
 {
 
 }*/
-//todo test
-//todo play with formats https://eigen.tuxfamily.org/dox/structEigen_1_1IOFormat.html
 
 
 //todo printer for eigen things
-//todo printer/splitter for coordinates
 //printer for solutions(with and without additions)
 //todo https://stackoverflow.com/questions/16470893/how-do-you-make-a-matrix-out-of-vectors-in-eigen/16476372 for solution printing
 

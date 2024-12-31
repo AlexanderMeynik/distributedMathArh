@@ -78,13 +78,13 @@ int main(int argc, char *argv[]) {
     }
 
     /*CoordGenerator<double> genr(0, aRange);*/
-    std::vector<vector<double>> coordinates(Nsym);
+    std::vector<std::vector<double>> coordinates(Nsym);
     for (int i = 0; i < Nsym; ++i) {
         coordinates[i] = generators::normal<std::vector>(N,0.0,aRange* sqrt(2))/*genr.generateCoordinates(N)*/;
     }
     Dipoles dipoles1(coordinates[0]);
     using meshStorage::MeshCreator;
-    MeshCreator mesh = MeshCreator();//todo do ve need implicit constructor call
+    MeshCreator mesh = MeshCreator();
     mesh.constructMeshes();
     auto result = mesh.data[2];
 
@@ -122,10 +122,9 @@ int main(int argc, char *argv[]) {
         stime = omp_get_wtime();
         //solveTime= ;
 #pragma omp parallel for firstprivate(dipoles1, mesh), default(shared)
-//todo test this solution with older ones
         for (int i = 0; i < Nsym; ++i) {
             int tid = omp_get_thread_num();
-            double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
+            double stmep[2] = {omp_get_wtime(), 0};
             dipoles1.setNewCoordinates(coordinates[i]);
             auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
@@ -160,7 +159,7 @@ int main(int argc, char *argv[]) {
         stime = omp_get_wtime();
         //solveTime= ;
         for (int i = 0; i < Nsym; ++i) {
-            double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
+            double stmep[2] = {omp_get_wtime(), 0};
             dipoles1.setNewCoordinates(coordinates[i]);
             auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
@@ -183,7 +182,7 @@ int main(int argc, char *argv[]) {
         stime = omp_get_wtime();
         //solveTime= ;
         for (int i = 0; i < Nsym; ++i) {
-            double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
+            double stmep[2] = {omp_get_wtime(), 0};
             dipoles1.setNewCoordinates(coordinates[i]);
             auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
@@ -191,7 +190,7 @@ int main(int argc, char *argv[]) {
             solveTimeS += stmep[1] - stmep[0];
 
             double stmep2[2] = {omp_get_wtime(), 0};
-            mesh.applyIntegrate(dipoles1.getIfunction());//todo check
+            mesh.applyIntegrate(dipoles1.getIfunction());
             auto mesht = mesh.data[2];
             stmep2[1] = omp_get_wtime();
             functionTimeS += stmep2[1] - stmep2[0];
@@ -209,7 +208,7 @@ int main(int argc, char *argv[]) {
 #pragma omp parallel for private(dipoles1, mesh), default(shared)
         for (int i = 0; i < Nsym; ++i) {
             int tid = omp_get_thread_num();
-            double stmep[2] = {omp_get_wtime(), 0};//todo создать библиотеку timeUtils и вынести это туда
+            double stmep[2] = {omp_get_wtime(), 0};
             dipoles1.setNewCoordinates(coordinates[i]);
             auto solution = dipoles1.solve<dipoles::EigenVec>();
             dipoles1.getFullFunction_(coordinates[i], solution);
