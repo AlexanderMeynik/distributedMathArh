@@ -7,10 +7,10 @@
 #include <random>
 #include <functional>
 
-#include "common/commonDecl.h"
+#include "common/commonTypes.h"
 #include "common/myConcepts.h"
 
-using const_::FloatType;
+using commonTypes::FloatType;
 namespace generators {
 
     template<typename randomDevice>
@@ -34,11 +34,6 @@ namespace generators {
             return container;
 
         }
-
-
-
-
-
     private:
         randomDevice device;
     };

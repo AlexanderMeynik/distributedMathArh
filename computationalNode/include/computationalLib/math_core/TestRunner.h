@@ -20,7 +20,7 @@
 #include "parallelUtils/commonDeclarations.h"
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
-#include "common/commonDecl.h"
+#include "common/commonTypes.h"
 #include "computationalLib/math_core/Dipoles.h"
 
 template<typename ...Args>
@@ -30,7 +30,7 @@ struct functable {
 };
 //todo clean up all redudndant types
 using commonDeclarations::gClk;
-using const_::FloatType;
+using commonTypes::FloatType;
 template<typename T>
 using geNsolution = Eigen::Vector<T, Eigen::Dynamic>;
 template<typename T>

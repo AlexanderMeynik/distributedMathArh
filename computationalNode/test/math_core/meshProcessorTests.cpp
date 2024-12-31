@@ -2,7 +2,7 @@
 #include <limits>
 
 #include "computationalLib/math_core/MeshCreator.h"
-#include "common/commonDecl.h"
+#include "common/commonTypes.h"
 #include "../GoogleCommon.h"
 
 #include <gtest/gtest.h>
@@ -10,7 +10,7 @@
 
 using namespace testCommon;
 
-namespace co = const_;
+namespace co = commonTypes;
 
 
 class MeshCommonFunctionsTests : public ::testing::Test {
@@ -200,12 +200,6 @@ INSTANTIATE_TEST_SUITE_P(
                                 [](FloatType x,FloatType y){return x*x+y*y*y;},
                                 std::valarray<FloatType >{2,2,9,9})
         ), firstValueTuplePrinter<TestFunctionApply>);
-
-
-
-
-
-
 
 
 

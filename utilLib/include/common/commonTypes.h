@@ -1,17 +1,17 @@
 #pragma once
-#ifndef DIPLOM_COMMONDECL_H
-#define DIPLOM_COMMONDECL_H
+#ifndef DIPLOM_COMMONTYPES_H
+#define DIPLOM_COMMONTYPES_H
 
 #include <vector>
 #include <array>
 #include <valarray>
 
 #include <eigen3/Eigen/Dense>
-/// namespace for some const declarations
-namespace const_ {
-    //todo some of the decalred types need to be pulled away
-    using FloatType = double;
 
+#include "sharedDeclarations.h"
+/// namespace for some common types used elsewhere
+namespace commonTypes {
+    using shared::FloatType;
 
     /**
      * @brief Enum for return types
@@ -70,4 +70,4 @@ namespace const_ {
     template<returnType T>
     using returnToDataType = typename returnToDataTypeT<T>::type;
 }
-#endif //DIPLOM_COMMONDECL_H
+#endif //DIPLOM_COMMONTYPES_H

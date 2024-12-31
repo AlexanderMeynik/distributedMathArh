@@ -7,13 +7,14 @@
 #include "mdspan/mdspan.hpp"
 
 #include <boost/math/quadrature/gauss_kronrod.hpp>
-#include "common/commonDecl.h"
-#include "computationalLib/math_core/const.h"
+#include "common/commonTypes.h"
+#include "common/printUtils.h"
 
 
 namespace meshStorage {
-    namespace co=const_;
-    using const_::FloatType;
+    namespace co=commonTypes;
+    using shared::FloatType,shared::params;
+    using printUtils::IosStateScientific;
 
     using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;
     using mdSpanType = Kokkos::mdspan<FloatType, etx>;
@@ -196,6 +197,10 @@ namespace meshStorage {
         meshArr<dimCount+1> data;
     };
 
+    void  printDec(meshStorage::MeshCreator&mmesh,std::ostream &out,int N=std::numeric_limits<FloatType>::digits10-1);
+
+
+
 
 
     template<template<typename ...> typename container, typename T, bool end>
@@ -230,7 +235,7 @@ namespace meshStorage {
         auto x_mesh = Kokkos::mdspan(&(ret[0][0]), b.size(), a.size());
         auto y_mesh = Kokkos::mdspan(&(ret[1][0]), b.size(), a.size());
 
-        for (size_t i = 0; i < b.size(); ++i) {//todof use library mesh or compy one from net
+        for (size_t i = 0; i < b.size(); ++i) {
             for (size_t j = 0; j < a.size(); ++j) {
                 x_mesh[std::array{i, j}] = a[j];
                 y_mesh[std::array{i, j}] = b[i];

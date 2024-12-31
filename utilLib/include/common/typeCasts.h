@@ -6,7 +6,7 @@
 #include <string>
 #include <map>
 
-#include "commonDecl.h"
+#include "commonTypes.h"
 #include "myConcepts.h"
 
 using  std::vector, std::array;

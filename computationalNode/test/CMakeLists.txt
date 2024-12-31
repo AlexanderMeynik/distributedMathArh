@@ -7,16 +7,14 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 
 
-file(GLOB core CONFIGURE_DEPENDS
-        "*math_core/*.h"
-        "*math_core/*.cpp"
-)
 
-add_executable(core_Tests ${core})
-target_link_libraries(core_Tests gtest gmock)
+add_executable(core_Tests math_core/smokeTests.cpp math_core/dipoleCommonTests.cpp math_core/meshProcessorTests.cpp)
+target_link_libraries(core_Tests gtest gtest_main)
 target_link_libraries(core_Tests io_lib)#todo what components of iolib we actually use here
 target_compile_options(core_Tests PUBLIC -coverage)
 target_link_options(core_Tests PUBLIC -coverage -fprofile-arcs -ftest-coverage)
+
+
 
 add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)
 target_link_libraries(benchmark  io_lib)#todo smae as prev

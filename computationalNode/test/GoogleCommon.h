@@ -6,10 +6,10 @@
 #include <tuple>
 #include <gtest/gtest.h>
 #include "common/myConcepts.h"
-
+#include "common/sharedDeclarations.h"
 
 using namespace commonDeclarations;
-
+using shared::FloatType;
 /// Testing utilities namespace
 namespace testCommon {
     constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();

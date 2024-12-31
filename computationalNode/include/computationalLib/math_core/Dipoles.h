@@ -8,11 +8,10 @@
 #include "computationalLib/math_core/dipolesCommon.h"
 
 ///dipoles namespace
-//*todo template size argument
 namespace dipoles {
     using namespace Eigen;
     using namespace commonDeclarations;
-
+    using shared::FloatType,shared::params;
     /**
      * @brief Provides interface to solve system of dipoles
      * @details Allows to construct and solve system of equations for the selected mathematical model.
@@ -46,7 +45,7 @@ namespace dipoles {
          * @brief Loads system of equations matrix
          * @param xi
          */
-        void loadFromMatrix(const Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> &xi);
+        void loadFromMatrix(const matrixType &xi);
 
         /**
          * Calculates directional graph and/or other it variants
@@ -64,27 +63,27 @@ namespace dipoles {
          * @brief Computes solution vector for dipole parameters and returns it in available format
          * @tparam Container
          */
-        template<typename Container=co::returnToDataType<co::returnType::EigenVector>>
+        template<typename Container=returnToDataType<returnType::EigenVector>>
         Container solve();
 
 
-        const co::integrableFunction &getIfunction() const {
+        const integrableFunction &getIfunction() const {
             return Ifunction_;
         }
 
-        const co::directionGraph &getI2function() const {
+        const directionGraph &getI2function() const {
             return I2function_;
         }
 
         /**
          * @brief Returns reference to the right part for system of equations
          */
-        const Eigen::Vector<FloatType, Eigen::Dynamic> &getRightPart();
+        const EigenVec &getRightPart();
 
         /**
          * @brief Retrieves matrix computed for system of equations
          */
-        co::matrixType getMatrixx();
+        matrixType getMatrixx();
 
         /**
          *  @brief Print matrix to out
@@ -145,10 +144,10 @@ namespace dipoles {
         void setMatrixes(const Container &xi);
 
 
-        co::matrixType M1_;
-        co::matrixType M2_;
-        co::integrableFunction Ifunction_;
-        co::directionGraph I2function_;
+        matrixType M1_;
+        matrixType M2_;
+        integrableFunction Ifunction_;
+        directionGraph I2function_;
         Eigen::Vector<FloatType, Eigen::Dynamic> f;
 
         FloatType an = params::a;
@@ -171,7 +170,7 @@ namespace dipoles {
 
     template<typename Container>
     void Dipoles::setMatrixes(const Container &xi) {
-        vector<pair<int, int>> sectors(4);
+        std::vector<std::pair<int, int>> sectors(4);
         sectors[0] = {0, 0};
         sectors[1] = {0, 2 * N_};
         sectors[2] = {2 * N_, 0};

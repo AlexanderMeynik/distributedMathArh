@@ -168,7 +168,7 @@ int main(int argc, char *argv[]) {
 
     std::ofstream out("res" + ss.str() + ".txt");
     dipoles::Dipoles d(coords);
-    auto solv = d.solve<co::EigenVec>();
+    auto solv = d.solve<dipoles::EigenVec>();
 
     plotCoordinates("coord" + ss.str() + ".png", a / 8, coords);
 

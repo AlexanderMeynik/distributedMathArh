@@ -8,6 +8,8 @@
 #include <iomanip>
 #include <iostream>
 
+using printUtils::IosStatePreserve;
+
 TEST(PrintUtils, test_ios_state_preserve) {
     std::ostream &out = std::cout;
     auto flags = out.flags();

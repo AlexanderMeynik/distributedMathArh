@@ -27,7 +27,7 @@ namespace dipoles {
         }
     }
 
-    void Dipoles::loadFromMatrix(const Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic> &xi) {
+    void Dipoles::loadFromMatrix(const matrixType &xi) {
         this->N_ = xi.rows() / 4;
         initArrays();
 
@@ -35,12 +35,12 @@ namespace dipoles {
         M2_ = xi.bottomLeftCorner(2 * N_, 2 * N_);
     }
 
-    const Eigen::Vector<FloatType, Eigen::Dynamic> &Dipoles::getRightPart() {
+    const EigenVec &Dipoles::getRightPart() {
         return f;
     }
 
-    co::matrixType Dipoles::getMatrixx() {
-        co::matrixType matrixx;
+    matrixType Dipoles::getMatrixx() {
+        matrixType matrixx;
         matrixx.resize(4 * N_, 4 * N_);
         matrixx.topLeftCorner(2 * N_, 2 * N_).noalias() = M1_;
         matrixx.topRightCorner(2 * N_, 2 * N_).noalias() = -M2_;
@@ -60,7 +60,7 @@ namespace dipoles {
 
 
     template<>
-    co::Arr2EigenVec Dipoles::solve() {
+    Arr2EigenVec Dipoles::solve() {
         Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_1;
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_2;
@@ -72,7 +72,7 @@ namespace dipoles {
     }
 
     template<>
-    co::EigenVec Dipoles::solve() {
+    EigenVec Dipoles::solve() {
         Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Vector<FloatType, Eigen::Dynamic> solution_;
         solution_.resize(4 * N_);
@@ -84,7 +84,7 @@ namespace dipoles {
     }
 
     template<>
-    co::standartVec Dipoles::solve() {
+    standartVec Dipoles::solve() {
         std::vector<FloatType> sol(4 * N_);
         Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(sol.data(), sol.size());
@@ -97,8 +97,8 @@ namespace dipoles {
     }
 
     template<>
-    co::standartValarr Dipoles::solve() {
-        co::standartValarr sol(4 * N_);
+    standartValarr Dipoles::solve() {
+        standartValarr sol(4 * N_);
         Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
         Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(&(sol[0]), sol.size());
         solution_.resize(4 * N_);

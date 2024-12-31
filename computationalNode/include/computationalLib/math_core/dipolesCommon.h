@@ -4,23 +4,20 @@
 
 
 #include "common/myConcepts.h"
-#include "const.h"
+#include "common/commonTypes.h"
 
-using namespace commonDeclarations;
-namespace co=const_;
+
 ///dipoles namespace
 namespace dipoles {
-
-    using std::pair, std::vector, std::array;
-
-
+    using namespace commonDeclarations;
+    using namespace commonTypes;
 
 
     /**
      * Check that matrix is symmetric
      * @param matr
      */
-    bool isSymmetric(const co::matrixType &matr);
+    bool isSymmetric(const matrixType &matr);
 }
 
 #endif //DIPLOM_DIPOLESCOMMON_H

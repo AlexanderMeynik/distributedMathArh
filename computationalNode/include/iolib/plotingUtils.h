@@ -6,8 +6,8 @@
 /*
 
 ;*/
-#include "common/commonDecl.h"
-using const_::FloatType;
+#include "common/commonTypes.h"
+using commonTypes::FloatType;
 namespace meshStorage
 {
     class MeshCreator;

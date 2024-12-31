@@ -165,15 +165,11 @@ namespace printEnums {
         VecctorFormat1,
         MatrixFormat,
         MatrixFormat1
-        //todo list of formats
-        //1. Simple columns vector(default for eigen)
-        //2. Simple row vector(if transposed we can do it), the same thing may be achieved if we cast it to matrix(with columns=size)
-        //3. Solution format 1 - since solution contains parts for A and Bs we need to print them accordingly(think of row start)
-        //4. Coordinates - mau be same as 3 but  have different line starts.
-        //5. Transposed 3 - if we want to print in columns as rows
-        //6. Matrix (delims ...)
+        //todo  think about mesh print formats
+        //todo reimplement functions for them
 
-        //play with precisition so that double are printed with full prec(sstream prec)
+
+        //play with precisition so that double are printed with full prec(sstream prec) +
         //Function vecToMatrCanBeRedone - maybe we can implement it's inverse(for which types?)(when we read coords)
         // 1. and /2 can be canonical(serializable+pbuff) for any vector data
         // If we add dimensions to 6.(maybe not) we can get canonical representation for our meshes

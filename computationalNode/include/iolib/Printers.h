@@ -1,29 +1,17 @@
-
-
 #ifndef DIPLOM_PRINTERS_H
 #define DIPLOM_PRINTERS_H
 
-#include <vector>
-
-
-#include <eigen3/Eigen/Dense>
-
-#include <matplot/matplot.h>
 
 #include "common/printUtils.h"
 #include "common/myConcepts.h"
-#include "computationalLib/math_core/MeshCreator.h"
+#include "common/commonTypes.h"
+
+using commonTypes::FloatType;
+using printUtils::IosStatePreserve, printUtils::IosStateScientific;
 
 template<typename PrintType>
 int floatPrinter(std::ostream&out,const PrintType& printee,int N=std::numeric_limits<FloatType>::digits10-1);
 
-
-
-
-
-
-
-void  printDec(meshStorage::MeshCreator&mmesh,std::ostream &out,int N=std::numeric_limits<FloatType>::digits10-1);
 
 
 template<typename Container>
@@ -58,28 +46,8 @@ concept has_data=requires(T& t)
     {t.data()}->std::common_with<typename T::value_type*>;
 };
 
-/*template< typename T>
-requires std::is_floating_point_v<T>
-int printEigenVectorMap(Eigen::Map<Eigen::Vector<T
-        , Eigen::Dynamic>>&map, const Eigen::IOFormat& format = Eigen::IOFormat())
-{
-
-}*/
-//todo test
-//todo play with formats https://eigen.tuxfamily.org/dox/structEigen_1_1IOFormat.html
 
 
-//todo printer for eigen things
-
-template<typename Container>
-requires has_data<Container>&&commonDeclarations::HasSizeMethod<Container>
-int printVectorEigen(std::ostream &out,const Container &solution_, const Eigen::IOFormat& format = Eigen::IOFormat())
-{
-    Eigen::Map<Eigen::Vector<std::remove_reference<typename Container::value_type>
-            , Eigen::Dynamic>> map(solution_.data(), solution_.size());
-    out<<map.format(format);
-    return 0;
-}
 
 
 
