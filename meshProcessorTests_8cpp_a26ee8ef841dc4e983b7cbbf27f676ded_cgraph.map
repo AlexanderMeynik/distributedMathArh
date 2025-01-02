@@ -1,9 +1,0 @@
-<map id="TEST_P" name="TEST_P">
-<area shape="rect" id="node1" title=" " alt="" coords="5,115,75,141"/>
-<area shape="rect" id="node2" href="$namespacetestCommon.html#a7e701ec9e23a600faa34dddf8c7687b0" title=" " alt="" coords="130,5,343,32"/>
-<area shape="rect" id="node3" href="$namespacemeshStorage.html#afff362294c6845915236d5c3340c7ed3" title="Computes functional mesh for 2 coordinates." alt="" coords="123,56,351,83"/>
-<area shape="rect" id="node5" href="$namespacemeshStorage.html#a12208417507152086a61fb14a0d0648f" title=" " alt="" coords="123,107,350,149"/>
-<area shape="rect" id="node6" href="$namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb" title="Generates linearly spaced vectors." alt="" coords="139,173,334,200"/>
-<area shape="rect" id="node7" href="$namespacemeshStorage.html#a80423d61ef86d14fa2b58bcd6030e734" title="Computes meshes using 2 double arrays." alt="" coords="137,224,336,251"/>
-<area shape="rect" id="node4" href="$benchmark_8cpp.html#afbb83008ea50ad958180e7490618cb15" title=" " alt="" coords="399,56,449,83"/>
-</map>

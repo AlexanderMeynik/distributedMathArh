@@ -1,6 +1,0 @@
-<map id="fileUtils::fileHandler::print" name="fileUtils::fileHandler::print">
-<area shape="rect" id="node1" title="Print pr to selected outPtr." alt="" coords="745,5,896,47"/>
-<area shape="rect" id="node2" href="$classfileUtils_1_1fileHandler.html#ad8e2d76664c8f28f8c72ca3c591e4bfe" title="Wrapper for fileHandler::print to print data to designated file." alt="" coords="547,5,697,47"/>
-<area shape="rect" id="node3" href="$classbenchUtils_1_1benchmarkHandler.html#a458c92eeb524d971cfa673512739467c" title="Prints global clock results into designated file." alt="" coords="276,5,499,47"/>
-<area shape="rect" id="node4" href="$classbenchUtils_1_1benchmarkHandler.html#a2bf534fa8ad9f596b8c662e4927a8b1c" title=" " alt="" coords="5,5,228,47"/>
-</map>

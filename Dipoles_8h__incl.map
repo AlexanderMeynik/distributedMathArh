@@ -1,13 +1,15 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/Dipoles.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/Dipoles.h">
-<area shape="rect" id="node1" title=" " alt="" coords="21,5,240,91"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,146,69,173"/>
-<area shape="rect" id="node3" title=" " alt="" coords="93,146,168,173"/>
-<area shape="rect" id="node4" href="$dipolesCommon_8h.html" title=" " alt="" coords="192,139,371,180"/>
-<area shape="rect" id="node5" title=" " alt="" coords="7,228,70,255"/>
-<area shape="rect" id="node6" title=" " alt="" coords="95,228,151,255"/>
-<area shape="rect" id="node7" title=" " alt="" coords="175,228,251,255"/>
-<area shape="rect" id="node8" title=" " alt="" coords="275,228,426,255"/>
-<area shape="rect" id="node9" title=" " alt="" coords="451,228,627,255"/>
-<area shape="rect" id="node10" href="$const_8h.html" title=" " alt="" coords="651,228,720,255"/>
-<area shape="rect" id="node11" title=" " alt="" coords="606,303,765,329"/>
+<area shape="rect" id="node1" title=" " alt="" coords="43,5,262,91"/>
+<area shape="rect" id="node2" title=" " alt="" coords="27,146,91,173"/>
+<area shape="rect" id="node3" title=" " alt="" coords="115,146,190,173"/>
+<area shape="rect" id="node4" href="$dipolesCommon_8h.html" title=" " alt="" coords="214,139,393,180"/>
+<area shape="rect" id="node5" href="$myConcepts_8h.html" title=" " alt="" coords="105,228,281,255"/>
+<area shape="rect" id="node9" href="$commonTypes_8h.html" title=" " alt="" coords="321,228,510,255"/>
+<area shape="rect" id="node6" title=" " alt="" coords="5,303,97,329"/>
+<area shape="rect" id="node7" title=" " alt="" coords="122,303,202,329"/>
+<area shape="rect" id="node8" title=" " alt="" coords="226,303,282,329"/>
+<area shape="rect" id="node10" title=" " alt="" coords="307,303,369,329"/>
+<area shape="rect" id="node11" title=" " alt="" coords="393,303,469,329"/>
+<area shape="rect" id="node12" title=" " alt="" coords="493,303,644,329"/>
+<area shape="rect" id="node13" href="$sharedDeclarations_8h.html" title=" " alt="" coords="669,303,829,329"/>
 </map>

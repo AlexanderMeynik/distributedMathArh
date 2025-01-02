@@ -1,7 +1,0 @@
-<map id="dipoles::Dipoles::getMatrixx" name="dipoles::Dipoles::getMatrixx">
-<area shape="rect" id="node1" title="Retrieves matrix computed for system of equations." alt="" coords="363,56,568,83"/>
-<area shape="rect" id="node2" href="$classdipoles_1_1Dipoles.html#a6f464c763dce1063a6e071840831026b" title="Print matrix to out." alt="" coords="108,5,315,32"/>
-<area shape="rect" id="node4" href="$SpeedTests_8cpp.html#afc34e4d9bef02066320005eff6109bc0" title=" " alt="" coords="184,56,239,83"/>
-<area shape="rect" id="node5" href="$SpeedTests_8cpp.html#a83a627837aac82215d79eb1c740906ee" title=" " alt="" coords="177,107,246,133"/>
-<area shape="rect" id="node3" href="$moveDipoles_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="5,5,60,32"/>
-</map>

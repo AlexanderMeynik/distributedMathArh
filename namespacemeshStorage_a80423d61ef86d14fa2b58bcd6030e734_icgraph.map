@@ -1,9 +1,0 @@
-<map id="meshStorage::myMeshGrid" name="meshStorage::myMeshGrid">
-<area shape="rect" id="node1" title="Computes meshes using 2 double arrays." alt="" coords="515,115,713,141"/>
-<area shape="rect" id="node2" href="$classmeshStorage_1_1MeshCreator.html#aee6e739b00862cd5c000aa04a092aa75" title=" " alt="" coords="268,78,467,119"/>
-<area shape="rect" id="node7" href="$meshProcessorTests_8cpp.html#a26ee8ef841dc4e983b7cbbf27f676ded" title=" " alt="" coords="333,144,402,171"/>
-<area shape="rect" id="node3" href="$classTestRunner.html#a27539e00bc2c5295d9811c57f22cb407" title=" " alt="" coords="5,5,220,32"/>
-<area shape="rect" id="node4" href="$darwingGrids_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97" title=" " alt="" coords="85,56,140,83"/>
-<area shape="rect" id="node5" href="$classinter_1_1CalculateMesh.html#a23c7f577bd2ca37c5d87a6d355b8f34e" title=" " alt="" coords="33,107,193,149"/>
-<area shape="rect" id="node6" href="$SpeedTests_8cpp.html#af38d49ea51dffd67071d21f31f349511" title=" " alt="" coords="78,173,147,200"/>
-</map>

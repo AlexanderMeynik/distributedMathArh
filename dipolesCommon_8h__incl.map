@@ -1,10 +1,12 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/dipolesCommon.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/dipolesCommon.h">
-<area shape="rect" id="node1" title=" " alt="" coords="170,5,389,91"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,139,68,165"/>
-<area shape="rect" id="node3" title=" " alt="" coords="93,139,149,165"/>
-<area shape="rect" id="node4" title=" " alt="" coords="173,139,249,165"/>
-<area shape="rect" id="node5" title=" " alt="" coords="273,139,424,165"/>
-<area shape="rect" id="node6" title=" " alt="" coords="449,139,625,165"/>
-<area shape="rect" id="node7" href="$const_8h.html" title=" " alt="" coords="649,139,718,165"/>
-<area shape="rect" id="node8" title=" " alt="" coords="604,213,763,240"/>
+<area shape="rect" id="node1" title=" " alt="" coords="186,5,405,91"/>
+<area shape="rect" id="node2" href="$myConcepts_8h.html" title=" " alt="" coords="105,139,281,165"/>
+<area shape="rect" id="node6" href="$commonTypes_8h.html" title=" " alt="" coords="321,139,510,165"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,213,97,240"/>
+<area shape="rect" id="node4" title=" " alt="" coords="122,213,202,240"/>
+<area shape="rect" id="node5" title=" " alt="" coords="226,213,282,240"/>
+<area shape="rect" id="node7" title=" " alt="" coords="307,213,369,240"/>
+<area shape="rect" id="node8" title=" " alt="" coords="393,213,469,240"/>
+<area shape="rect" id="node9" title=" " alt="" coords="493,213,644,240"/>
+<area shape="rect" id="node10" href="$sharedDeclarations_8h.html" title=" " alt="" coords="669,213,829,240"/>
 </map>

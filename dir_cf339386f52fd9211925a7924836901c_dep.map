@@ -1,7 +1,8 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib">
-<area shape="rect" id="node2" href="dir_a7cd64017ad8a192608a8c4e7d34378f.html" title="interfaces" alt="" coords="38,63,125,111"/>
-<area shape="rect" id="node3" href="dir_2d5240a7b7f7d29c0b0939312ae5734d.html" title="math_core" alt="" coords="37,159,128,207"/>
-<area shape="rect" id="edge1-headlabel" href="dir_000004_000005.html" title="2" alt="" coords="86,133,95,148"/>
-<area shape="rect" id="clust2" href="dir_cf339386f52fd9211925a7924836901c.html" alt="" coords="27,52,295,217"/>
-<area shape="rect" id="clust1" href="dir_36effbc328a2bdde8cfe08d2e0a01455.html" title="include" alt="" coords="16,16,305,228"/>
+<area shape="rect" id="node2" href="dir_a7cd64017ad8a192608a8c4e7d34378f.html" title="interfaces" alt="" coords="153,63,239,111"/>
+<area shape="rect" id="node3" href="dir_2d5240a7b7f7d29c0b0939312ae5734d.html" title="math_core" alt="" coords="37,63,128,111"/>
+<area shape="rect" id="node4" href="dir_c1e9ad1dd36132d3988884018ffa8754.html" title="utilLib" alt="" coords="47,159,119,207"/>
+<area shape="rect" id="edge1-headlabel" href="dir_000005_000007.html" title="9" alt="" coords="86,133,96,148"/>
+<area shape="rect" id="clust2" href="dir_cf339386f52fd9211925a7924836901c.html" alt="" coords="27,52,409,121"/>
+<area shape="rect" id="clust1" href="dir_36effbc328a2bdde8cfe08d2e0a01455.html" title="include" alt="" coords="16,16,420,132"/>
 </map>

@@ -86,173 +86,102 @@ $(document).ready(function(){initNavTree('Printers_8h_source.html',''); initResi
 <div class="title">Printers.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<a href="Printers_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#ifndef DIPLOM_PRINTERS_H</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#define DIPLOM_PRINTERS_H</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<a href="Printers_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef DIPLOM_PRINTERS_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define DIPLOM_PRINTERS_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="printUtils_8h.html">common/printUtils.h</a>&quot;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="typeCasts_8h.html">common/typeCasts.h</a>&quot;</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;eigen3/Eigen/Dense&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">using</span> <a class="code" href="namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b">commonTypes::FloatType</a>;</div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">using</span> <a class="code" href="classprintUtils_1_1IosStatePreserve.html">printUtils::IosStatePreserve</a>, <a class="code" href="classprintUtils_1_1IosStateScientific.html">printUtils::IosStateScientific</a>;</div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;matplot/matplot.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;common/printUtils.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;common/myConcepts.h&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="MeshCreator_8h.html">computationalLib/math_core/MeshCreator.h</a>&quot;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">//todo printer for vectors,</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="comment">//todo printer for matrix</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="comment">//todo find and get solutions form</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Pr<span class="keywordtype">int</span>Type&gt;</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="Printers_8h.html#ad099aa61947c7a5cc3db8680ae8f16cf">   16</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="Printers_8h.html#ad099aa61947c7a5cc3db8680ae8f16cf">floatPrinter</a>(std::ostream&amp;out,<span class="keyword">const</span> PrintType&amp; printee,<span class="keywordtype">int</span> N=std::numeric_limits&lt;FloatType&gt;::digits10-1);</div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="comment">/*template &lt;typename Printable&gt;*/</span><span class="comment">//todo printer</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="Printers_8h.html#ac098af405ee0657be8feb5112c9dff31">   22</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#ac098af405ee0657be8feb5112c9dff31">printSolutionFormat1</a>(std::ostream &amp;out, std::vector&lt;T&gt; &amp;<a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>) {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    Eigen::Map&lt;Eigen::Vector&lt;T, Eigen::Dynamic&gt;&gt; solution_(<a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>.data(), <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>.size());</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n&quot;</span>;<span class="comment">//todo copied code(that can be temlated)</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> N_ = solution_.size() / 4.0;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N_; ++i) {</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;        <span class="keyword">auto</span> cx = sqrt(solution_.coeffRef(2 * i) * solution_.coeffRef(2 * i) +</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                       solution_.coeffRef(2 * i + 2 * N_) * solution_.coeffRef(2 * i + 2 * N_));</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keyword">auto</span> cy = sqrt(solution_.coeffRef(2 * i + 1) * solution_.coeffRef(2 * i + 1) +</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                       solution_.coeffRef(2 * i + 1 + 2 * N_) * solution_.coeffRef(2 * i + 1 + 2 * N_));</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;        IosStatePreserve state(out);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        out &lt;&lt; std::scientific;</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;        out &lt;&lt; solution_.coeffRef(2 * i) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            &lt;&lt; solution_.coeffRef(2 * i + 2 * N_) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            &lt;&lt; cx &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;        out &lt;&lt; solution_.coeffRef(2 * i + 1) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;            &lt;&lt; solution_.coeffRef(2 * i + 1 + 2 * N_) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            &lt;&lt; cy &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;    }</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;}</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="Printers_8h.html#afc9c6dac168a2ab855ca6a3770941a48">   45</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#ac098af405ee0657be8feb5112c9dff31">printSolutionFormat1</a>(std::ostream &amp;out, Eigen::Vector&lt;T, Eigen::Dynamic&gt; &amp;solution_) {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n&quot;</span>;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">int</span> N_ = solution_.size() / 4.0;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N_; ++i) {</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;        <span class="keyword">auto</span> cx = sqrt(solution_.coeffRef(2 * i) * solution_.coeffRef(2 * i) +</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                       solution_.coeffRef(2 * i + 2 * N_) * solution_.coeffRef(2 * i + 2 * N_));</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <span class="keyword">auto</span> cy = sqrt(solution_.coeffRef(2 * i + 1) * solution_.coeffRef(2 * i + 1) +</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;                       solution_.coeffRef(2 * i + 1 + 2 * N_) * solution_.coeffRef(2 * i + 1 + 2 * N_));</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        IosStatePreserve state(out);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        out &lt;&lt; std::scientific;</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        out &lt;&lt; solution_.coeffRef(2 * i) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            &lt;&lt; solution_.coeffRef(2 * i + 2 * N_) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;            &lt;&lt; cx &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        out &lt;&lt; solution_.coeffRef(2 * i + 1) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;            &lt;&lt; solution_.coeffRef(2 * i + 1 + 2 * N_) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;            &lt;&lt; cy &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    }</div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;}</div>
-<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
-<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="Printers_8h.html#ad060f505f0d7fbf155eadcc03bc291ac">   66</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#ad060f505f0d7fbf155eadcc03bc291ac">plotCoordinates</a>(<span class="keyword">const</span> std::string&amp; name, T ar, std::array&lt;std::vector&lt;T&gt;, 2&gt; &amp;xi) {</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    <span class="keyword">auto</span> ax = matplot::gca();</div>
-<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    ax-&gt;scatter(xi[0], xi[1]);</div>
-<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    ax-&gt;xlim({-8 * ar, 8 * ar});</div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;    ax-&gt;ylim({-8 * ar, 8 * ar});</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    matplot::save(name);</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    ax.reset();</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;}</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;<span class="comment">//todo N x&#39;s then N y&#39;x in xi</span></div>
-<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="Printers_8h.html#ada457f9280cdc12d6e55b82e443c19c7">   76</a></span>&#160;<span class="keywordtype">void</span> <span class="keyword">inline</span> <a class="code" href="Printers_8h.html#ad060f505f0d7fbf155eadcc03bc291ac">plotCoordinates</a>(<span class="keyword">const</span> std::string&amp; name, <a class="code" href="namespaceinter.html#ae6a6d5edcfa5e32b8d6453ea9a7a4b18">FloatType</a> ar, <span class="keyword">const</span> std::vector&lt;FloatType&gt; &amp;xi) {</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160; </div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keyword">auto</span> vit=xi.begin();</div>
-<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keyword">auto</span> middle=vit+xi.size()/2;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container&gt;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<a class="code" href="namespacecommonDeclarations.html#aedfcf924c8f964a893fb845b89db2a2b">requires</a> commonDeclarations::isOneDimensionalContinuous&lt;Container&gt; &amp;&amp; std::is_floating_point_v&lt;typename Container::value_type&gt;</div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="Printers_8h.html#abf3138f4917f76649f1ed3890f314da6">   22</a></span>&#160;<span class="keywordtype">int</span> <a class="code" href="Printers_8h.html#abf3138f4917f76649f1ed3890f314da6">printSolutionFormat1</a>(std::ostream &amp;out, <span class="keyword">const</span> Container &amp;<a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n&quot;</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">int</span> N_ = <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>.size() / 4.0;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N_; i++) {</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keyword">auto</span> cx = sqrt(<a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i] * <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i] +</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                       <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 2 * N_] * <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 2 * N_]);</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;        <span class="keyword">auto</span> cy = sqrt(<a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 1] * <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 1] +</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                       <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 1 + 2 * N_] * <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 1 + 2 * N_]);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;        <a class="code" href="classprintUtils_1_1IosStatePreserve.html">IosStatePreserve</a> state(out);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        out &lt;&lt; std::scientific;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;        out &lt;&lt; <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            &lt;&lt; <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 2 * N_] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            &lt;&lt; cx &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        out &lt;&lt; <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 1] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;            &lt;&lt; <a class="code" href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a>[2 * i + 1 + 2 * N_] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;            &lt;&lt; cy &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;    }</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;}</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">   52</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">printSolution</a>(std::ostream &amp;out, std::vector&lt;T&gt; &amp;solution_, Eigen::IOFormat format = Eigen::IOFormat()) {</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    Eigen::Map&lt;Eigen::Vector&lt;T, Eigen::Dynamic&gt;&gt; map(solution_.data(), solution_.size());<span class="comment">//todo copy impl(as template</span></div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Вектор решения\n&quot;</span> &lt;&lt; map.format(format) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="Printers_8h.html#a6d86fdf0a46005a9a2259e7e3eb32e27">   58</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">printSolution</a>(std::ostream &amp;out, Eigen::Vector&lt;T, Eigen::Dynamic&gt; &amp;solution_,</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;                   Eigen::IOFormat format = Eigen::IOFormat()) {</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Вектор решения\n&quot;</span> &lt;&lt; solution_.format(format) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;}</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Collection&gt;</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="Printers_8h.html#acaaa201e676e93dfa4e5f9fd83f7a46c">   65</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#acaaa201e676e93dfa4e5f9fd83f7a46c">printCoordinates2</a>(std::ostream &amp;out, <span class="keyword">const</span> Collection &amp;xi) {</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Координаты диполей\n&quot;</span>;</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span> constexpr (not commonDeclarations::HasBracketsNested&lt;Collection&gt;) {</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <span class="keyword">auto</span> N = xi.size() / 2;</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i) {</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;            out &lt;&lt; xi[i] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span> &lt;&lt; xi[i + N] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        }</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    } <span class="keywordflow">else</span> {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="keyword">auto</span> N = xi[0].size();</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i) {</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;            out &lt;&lt; xi[0][i] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span> &lt;&lt; xi[1][i] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        }</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    }</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;}</div>
 <div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
-<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    std::array&lt;std::vector&lt;FloatType&gt;, 2&gt; dumm=</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;            {</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;                    std::vector&lt;FloatType&gt;(vit,middle),</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;                    std::vector&lt;FloatType&gt;(middle,xi.end())</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;            };</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <a class="code" href="Printers_8h.html#ad060f505f0d7fbf155eadcc03bc291ac">plotCoordinates</a>(name,ar,dumm);</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
-<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
-<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
-<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="Printers_8h.html#afcf18b15cc8c6b6c22dce2b9de831516">   90</a></span>&#160;<span class="keywordtype">void</span> <span class="keyword">inline</span> <a class="code" href="Printers_8h.html#afcf18b15cc8c6b6c22dce2b9de831516">printDec</a>(<a class="code" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a>&amp;mmesh,std::ostream &amp;out,<span class="keywordtype">int</span> N=std::numeric_limits&lt;double&gt;::digits10-1) {</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Функция I(phi,th)\n&quot;</span>;</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;phi\\th\t\t&quot;</span>;</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160; </div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    <span class="comment">/*auto [exet0,ext1]=mmesh.spans[2].extents();*/</span></div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;    <span class="keyword">auto</span> ext0=mmesh.<a class="code" href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">spans</a>[2].extent(0);</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    <span class="keyword">auto</span> ext1=mmesh.<a class="code" href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">spans</a>[2].extent(1);</div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; ext0 - 1; ++i) {</div>
-<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        out &lt;&lt; scientificNumber(mmesh.<a class="code" href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">spans</a>[1][std::array{i,0UL}], N) &lt;&lt; <span class="charliteral">&#39;\t&#39;</span>;</div>
-<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
-<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160; </div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;    out &lt;&lt; scientificNumber(mmesh.<a class="code" href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">spans</a>[1][std::array{(ext0 - 1),1UL}], N)</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160; </div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; ext1; ++i) {</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;        <span class="keyword">auto</span> phi = mmesh.<a class="code" href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">spans</a>[0][std::array{0UL,i}];</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;        out &lt;&lt; scientificNumber(phi, 5) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span>;</div>
-<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; ext0 - 1; ++j) {</div>
-<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;            out &lt;&lt; scientificNumber(mmesh.<a class="code" href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">spans</a>[2][std::array{j,i}], N) &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span>;</div>
-<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;        }</div>
-<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;        out &lt;&lt; scientificNumber(mmesh.<a class="code" href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">spans</a>[2][std::array{ext0- 1,i}], N) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    }</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;}</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160; </div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00116"></a><span class="lineno"><a class="line" href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">  116</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">printSolution</a>(std::ostream &amp;out, std::vector&lt;T&gt; &amp;solution_, Eigen::IOFormat format = Eigen::IOFormat()) {</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    Eigen::Map&lt;Eigen::Vector&lt;T, Eigen::Dynamic&gt;&gt; map(solution_.data(), solution_.size());<span class="comment">//todo copy impl(as template</span></div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Вектор решения\n&quot;</span> &lt;&lt; map.format(format) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;}</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00122"></a><span class="lineno"><a class="line" href="Printers_8h.html#a6d86fdf0a46005a9a2259e7e3eb32e27">  122</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">printSolution</a>(std::ostream &amp;out, Eigen::Vector&lt;T, Eigen::Dynamic&gt; &amp;solution_,</div>
-<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;                   Eigen::IOFormat format = Eigen::IOFormat()) {</div>
-<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Вектор решения\n&quot;</span> &lt;&lt; solution_.format(format) &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;}</div>
-<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160; </div>
-<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
-<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> Collection&gt;</div>
-<div class="line"><a name="l00129"></a><span class="lineno"><a class="line" href="Printers_8h.html#acaaa201e676e93dfa4e5f9fd83f7a46c">  129</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#acaaa201e676e93dfa4e5f9fd83f7a46c">printCoordinates2</a>(std::ostream &amp;out, <span class="keyword">const</span> Collection &amp;xi) {</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Координаты диполей\n&quot;</span>;</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <span class="keywordflow">if</span> constexpr (not commonDeclarations::HasBracketsNested&lt;Collection&gt;) {</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;        <span class="keyword">auto</span> N = xi.size() / 2;</div>
-<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i) {</div>
-<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;            out &lt;&lt; xi[i] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span> &lt;&lt; xi[i + N] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        }</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;        <span class="keyword">auto</span> N = xi[0].size();</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i) {</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;            out &lt;&lt; xi[0][i] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span> &lt;&lt; xi[1][i] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        }</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    }</div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;}</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160; </div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160; </div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">class</span> T&gt;</div>
-<div class="line"><a name="l00147"></a><span class="lineno"><a class="line" href="Printers_8h.html#a5d5ba93e033aaf8cb327e8419525c16d">  147</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="Printers_8h.html#a5d5ba93e033aaf8cb327e8419525c16d">printCoordinates</a>(std::ostream &amp;out, Eigen::Vector&lt;T, Eigen::Dynamic&gt; &amp;xi) {</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    out &lt;&lt; <span class="stringliteral">&quot;Координаты диполей\n&quot;</span>;</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;    <span class="keyword">auto</span> N = xi.size() / 2;</div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; N; ++i) {</div>
-<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        out &lt;&lt; xi[i] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span> &lt;&lt; xi[i + N] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
-<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;    }</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;}</div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160; </div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//DIPLOM_PRINTERS_H</span></div>
-<div class="ttc" id="aMeshCreator_8h_html"><div class="ttname"><a href="MeshCreator_8h.html">MeshCreator.h</a></div></div>
-<div class="ttc" id="aPrinters_8h_html_a1f81fd90bb410e99936b0829a712667f"><div class="ttname"><a href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">printSolution</a></div><div class="ttdeci">void printSolution(std::ostream &amp;out, std::vector&lt; T &gt; &amp;solution_, Eigen::IOFormat format=Eigen::IOFormat())</div><div class="ttdef"><b>Definition:</b> Printers.h:116</div></div>
-<div class="ttc" id="aPrinters_8h_html_a5d5ba93e033aaf8cb327e8419525c16d"><div class="ttname"><a href="Printers_8h.html#a5d5ba93e033aaf8cb327e8419525c16d">printCoordinates</a></div><div class="ttdeci">void printCoordinates(std::ostream &amp;out, Eigen::Vector&lt; T, Eigen::Dynamic &gt; &amp;xi)</div><div class="ttdef"><b>Definition:</b> Printers.h:147</div></div>
-<div class="ttc" id="aPrinters_8h_html_ac098af405ee0657be8feb5112c9dff31"><div class="ttname"><a href="Printers_8h.html#ac098af405ee0657be8feb5112c9dff31">printSolutionFormat1</a></div><div class="ttdeci">void printSolutionFormat1(std::ostream &amp;out, std::vector&lt; T &gt; &amp;solution)</div><div class="ttdef"><b>Definition:</b> Printers.h:22</div></div>
-<div class="ttc" id="aPrinters_8h_html_acaaa201e676e93dfa4e5f9fd83f7a46c"><div class="ttname"><a href="Printers_8h.html#acaaa201e676e93dfa4e5f9fd83f7a46c">printCoordinates2</a></div><div class="ttdeci">void printCoordinates2(std::ostream &amp;out, const Collection &amp;xi)</div><div class="ttdef"><b>Definition:</b> Printers.h:129</div></div>
-<div class="ttc" id="aPrinters_8h_html_ad060f505f0d7fbf155eadcc03bc291ac"><div class="ttname"><a href="Printers_8h.html#ad060f505f0d7fbf155eadcc03bc291ac">plotCoordinates</a></div><div class="ttdeci">void plotCoordinates(const std::string &amp;name, T ar, std::array&lt; std::vector&lt; T &gt;, 2 &gt; &amp;xi)</div><div class="ttdef"><b>Definition:</b> Printers.h:66</div></div>
-<div class="ttc" id="aPrinters_8h_html_afcf18b15cc8c6b6c22dce2b9de831516"><div class="ttname"><a href="Printers_8h.html#afcf18b15cc8c6b6c22dce2b9de831516">printDec</a></div><div class="ttdeci">void printDec(meshStorage::MeshCreator &amp;mmesh, std::ostream &amp;out, int N=std::numeric_limits&lt; double &gt;::digits10-1)</div><div class="ttdef"><b>Definition:</b> Printers.h:90</div></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160; </div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//DIPLOM_PRINTERS_H</span></div>
+<div class="ttc" id="aPrinters_8h_html_a1f81fd90bb410e99936b0829a712667f"><div class="ttname"><a href="Printers_8h.html#a1f81fd90bb410e99936b0829a712667f">printSolution</a></div><div class="ttdeci">void printSolution(std::ostream &amp;out, std::vector&lt; T &gt; &amp;solution_, Eigen::IOFormat format=Eigen::IOFormat())</div><div class="ttdef"><b>Definition:</b> Printers.h:52</div></div>
+<div class="ttc" id="aPrinters_8h_html_abf3138f4917f76649f1ed3890f314da6"><div class="ttname"><a href="Printers_8h.html#abf3138f4917f76649f1ed3890f314da6">printSolutionFormat1</a></div><div class="ttdeci">requires commonDeclarations::isOneDimensionalContinuous&lt; Container &gt; &amp;&amp;std::is_floating_point_v&lt; typename Container::value_type &gt; int printSolutionFormat1(std::ostream &amp;out, const Container &amp;solution)</div><div class="ttdef"><b>Definition:</b> Printers.h:22</div></div>
+<div class="ttc" id="aPrinters_8h_html_acaaa201e676e93dfa4e5f9fd83f7a46c"><div class="ttname"><a href="Printers_8h.html#acaaa201e676e93dfa4e5f9fd83f7a46c">printCoordinates2</a></div><div class="ttdeci">void printCoordinates2(std::ostream &amp;out, const Collection &amp;xi)</div><div class="ttdef"><b>Definition:</b> Printers.h:65</div></div>
+<div class="ttc" id="aPrinters_8h_html_ad099aa61947c7a5cc3db8680ae8f16cf"><div class="ttname"><a href="Printers_8h.html#ad099aa61947c7a5cc3db8680ae8f16cf">floatPrinter</a></div><div class="ttdeci">int floatPrinter(std::ostream &amp;out, const PrintType &amp;printee, int N=std::numeric_limits&lt; FloatType &gt;::digits10-1)</div></div>
 <div class="ttc" id="aTestRunner_8h_html_a7dcd7d767a268070b9284cffaf603b26"><div class="ttname"><a href="TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26">solution</a></div><div class="ttdeci">geNsolution&lt; FloatType &gt; solution</div><div class="ttdef"><b>Definition:</b> TestRunner.h:38</div></div>
-<div class="ttc" id="aclassmeshStorage_1_1MeshCreator_html"><div class="ttname"><a href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a></div><div class="ttdoc">Class that handles 3d mesh creation and parameters management.</div><div class="ttdef"><b>Definition:</b> MeshCreator.h:241</div></div>
-<div class="ttc" id="aclassmeshStorage_1_1MeshCreator_html_a4dea6a952d28386471c9307cb34d95ea"><div class="ttname"><a href="classmeshStorage_1_1MeshCreator.html#a4dea6a952d28386471c9307cb34d95ea">meshStorage::MeshCreator::spans</a></div><div class="ttdeci">std::array&lt; meshStorage::mdSpanType, 3 &gt; spans</div><div class="ttdef"><b>Definition:</b> MeshCreator.h:264</div></div>
-<div class="ttc" id="anamespaceinter_html_ae6a6d5edcfa5e32b8d6453ea9a7a4b18"><div class="ttname"><a href="namespaceinter.html#ae6a6d5edcfa5e32b8d6453ea9a7a4b18">inter::FloatType</a></div><div class="ttdeci">double FloatType</div><div class="ttdef"><b>Definition:</b> CalculationStep.h:12</div></div>
+<div class="ttc" id="aclassprintUtils_1_1IosStatePreserve_html"><div class="ttname"><a href="classprintUtils_1_1IosStatePreserve.html">printUtils::IosStatePreserve</a></div><div class="ttdef"><b>Definition:</b> printUtils.h:11</div></div>
+<div class="ttc" id="aclassprintUtils_1_1IosStateScientific_html"><div class="ttname"><a href="classprintUtils_1_1IosStateScientific.html">printUtils::IosStateScientific</a></div><div class="ttdef"><b>Definition:</b> printUtils.h:24</div></div>
+<div class="ttc" id="anamespacecommonDeclarations_html_aedfcf924c8f964a893fb845b89db2a2b"><div class="ttname"><a href="namespacecommonDeclarations.html#aedfcf924c8f964a893fb845b89db2a2b">commonDeclarations::requires</a></div><div class="ttdeci">requires(HasBracketOperator&lt; T &gt;) auto &amp;get_value(const T &amp;collection</div></div>
+<div class="ttc" id="anamespaceshared_html_af061895f5bfe2ffa0c4ba0215150d34b"><div class="ttname"><a href="namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b">shared::FloatType</a></div><div class="ttdeci">double FloatType</div><div class="ttdef"><b>Definition:</b> sharedDeclarations.h:9</div></div>
+<div class="ttc" id="aprintUtils_8h_html"><div class="ttname"><a href="printUtils_8h.html">printUtils.h</a></div></div>
+<div class="ttc" id="atypeCasts_8h_html"><div class="ttname"><a href="typeCasts_8h.html">typeCasts.h</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

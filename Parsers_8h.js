@@ -10,5 +10,5 @@ var Parsers_8h =
     [ "operator>>", "Parsers_8h.html#a38591b5c3c5015b1a4d376589e925afd", null ],
     [ "operator>>", "Parsers_8h.html#a702781083b124b357a986d5f3871d425", null ],
     [ "parseChar", "Parsers_8h.html#af75309789454d54a125d0c1037a02c0b", null ],
-    [ "parseDipoleCoordinates", "Parsers_8h.html#a77b70cc63ff184a90f2afee4c750069f", null ]
+    [ "parseDipoleCoordinates", "Parsers_8h.html#ae3692e3d0c2786c3c149fde5f6edc81b", null ]
 ];

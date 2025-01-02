@@ -1,8 +1,0 @@
-<map id="benchUtils::benchmarkHandler::~benchmarkHandler" name="benchUtils::benchmarkHandler::~benchmarkHandler">
-<area shape="rect" id="node1" title=" " alt="" coords="5,39,228,80"/>
-<area shape="rect" id="node2" href="$classfileUtils_1_1fileHandler.html#a47d73317b8d6ffe6758533b7e373adb9" title="Closes all files from this instance of fileHandler." alt="" coords="312,5,463,47"/>
-<area shape="rect" id="node3" href="$classbenchUtils_1_1benchmarkHandler.html#a458c92eeb524d971cfa673512739467c" title="Prints global clock results into designated file." alt="" coords="276,71,499,112"/>
-<area shape="rect" id="node4" href="$classfileUtils_1_1fileHandler.html#ad8e2d76664c8f28f8c72ca3c591e4bfe" title="Wrapper for fileHandler::print to print data to designated file." alt="" coords="547,41,697,83"/>
-<area shape="rect" id="node6" href="$classfileUtils_1_1fileHandler.html#a9909b9394dfd7fbf661561a131af7624" title="Adds and opens filename to write with given permissions." alt="" coords="745,100,896,141"/>
-<area shape="rect" id="node5" href="$classfileUtils_1_1fileHandler.html#aad533cc4621fd1fe6ad6b535f57d9308" title="Print pr to selected outPtr." alt="" coords="745,35,896,76"/>
-</map>

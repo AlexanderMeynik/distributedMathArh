@@ -87,20 +87,16 @@ $(document).ready(function(){initNavTree('MeshCreator_8h.html',''); initResizabl
 <a href="#namespaces">Namespaces</a> &#124;
 <a href="#define-members">Macros</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle">
 <div class="title">MeshCreator.h File Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;iosfwd&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;valarray&gt;</code><br />
-<code>#include &lt;optional&gt;</code><br />
 <code>#include &quot;mdspan/mdspan.hpp&quot;</code><br />
-<code>#include &lt;matplot/matplot.h&gt;</code><br />
 <code>#include &lt;boost/math/quadrature/gauss_kronrod.hpp&gt;</code><br />
-<code>#include &quot;<a class="el" href="dipolesCommon_8h_source.html">computationalLib/math_core/dipolesCommon.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="commonTypes_8h_source.html">common/commonTypes.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="printUtils_8h_source.html">common/printUtils.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for MeshCreator.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -108,20 +104,18 @@ $(document).ready(function(){initNavTree('MeshCreator_8h.html',''); initResizabl
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="MeshCreator_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalNode_2include_2computationalLib_2math__core_2MeshCreator_8h" alt=""/></div>
 <map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalNode_2include_2computationalLib_2math__core_2MeshCreator_8h" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalNode_2include_2computationalLib_2math__core_2MeshCreator_8h">
-<area shape="rect" title=" " alt="" coords="249,5,468,91"/>
-<area shape="rect" title=" " alt="" coords="5,146,69,173"/>
-<area shape="rect" title=" " alt="" coords="21,228,83,255"/>
-<area shape="rect" title=" " alt="" coords="107,228,183,255"/>
-<area shape="rect" title=" " alt="" coords="397,146,472,173"/>
-<area shape="rect" title=" " alt="" coords="497,146,655,173"/>
-<area shape="rect" title=" " alt="" coords="679,146,819,173"/>
-<area shape="rect" title=" " alt="" coords="844,139,1015,180"/>
-<area shape="rect" href="dipolesCommon_8h.html" title=" " alt="" coords="195,139,373,180"/>
-<area shape="rect" title=" " alt="" coords="501,228,557,255"/>
-<area shape="rect" title=" " alt="" coords="582,228,733,255"/>
-<area shape="rect" title=" " alt="" coords="208,228,384,255"/>
-<area shape="rect" href="const_8h.html" title=" " alt="" coords="408,228,477,255"/>
-<area shape="rect" title=" " alt="" coords="363,303,522,329"/>
+<area shape="rect" title=" " alt="" coords="541,5,760,91"/>
+<area shape="rect" title=" " alt="" coords="905,228,969,255"/>
+<area shape="rect" title=" " alt="" coords="382,146,541,173"/>
+<area shape="rect" title=" " alt="" coords="565,139,736,180"/>
+<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="168,146,357,173"/>
+<area shape="rect" href="printUtils_8h.html" title=" " alt="" coords="760,146,915,173"/>
+<area shape="rect" title=" " alt="" coords="190,228,253,255"/>
+<area shape="rect" title=" " alt="" coords="277,228,333,255"/>
+<area shape="rect" title=" " alt="" coords="358,228,434,255"/>
+<area shape="rect" title=" " alt="" coords="546,228,697,255"/>
+<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="5,228,165,255"/>
+<area shape="rect" title=" " alt="" coords="808,228,867,255"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -131,26 +125,10 @@ $(document).ready(function(){initNavTree('MeshCreator_8h.html',''); initResizabl
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="MeshCreator_8h__dep__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalNode_2include_2computationalLib_2math__core_2MeshCreator_8hdep" alt=""/></div>
 <map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalNode_2include_2computationalLib_2math__core_2MeshCreator_8hdep" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalNode_2include_2computationalLib_2math__core_2MeshCreator_8hdep">
-<area shape="rect" title=" " alt="" coords="1553,5,1771,91"/>
-<area shape="rect" href="InitCalc_8h.html" title=" " alt="" coords="157,139,375,224"/>
-<area shape="rect" href="TestRunner_8h.html" title=" " alt="" coords="534,139,753,224"/>
-<area shape="rect" href="Printers_8h.html" title=" " alt="" coords="1193,146,1411,217"/>
-<area shape="rect" href="darwingGrids_8cpp.html" title=" " alt="" coords="803,287,1097,343"/>
-<area shape="rect" href="coordGenerate_8cpp.html" title=" " alt="" coords="1122,287,1426,343"/>
-<area shape="rect" href="eigenTest_8cpp.html" title=" " alt="" coords="1451,287,1721,343"/>
-<area shape="rect" href="moveDipoles_8cpp.html" title=" " alt="" coords="1745,287,2040,343"/>
-<area shape="rect" href="Parsers_8h.html" title=" " alt="" coords="1725,146,1943,217"/>
-<area shape="rect" href="Parsers_8cpp.html" title=" " alt="" coords="2065,279,2283,350"/>
-<area shape="rect" href="SpeedTests_8cpp.html" title=" " alt="" coords="2307,279,2529,350"/>
-<area shape="rect" href="MeshCreator_8cpp.html" title=" " alt="" coords="2018,146,2290,217"/>
-<area shape="rect" href="benchmark_8cpp.html" title=" " alt="" coords="2315,153,2601,209"/>
-<area shape="rect" href="simplePerExample_8cpp.html" title=" " alt="" coords="2626,153,2962,209"/>
-<area shape="rect" href="meshProcessorTests_8cpp.html" title=" " alt="" coords="2986,146,3207,217"/>
-<area shape="rect" href="interlib_8h.html" title=" " alt="" coords="22,272,241,357"/>
-<area shape="rect" href="mocks_8h.html" title=" " alt="" coords="73,405,384,461"/>
-<area shape="rect" href="PubSubModelTests_8cpp.html" title=" " alt="" coords="5,509,257,580"/>
-<area shape="rect" href="TestRunner_8cpp.html" title=" " alt="" coords="507,279,779,350"/>
-<area shape="rect" href="math__core_8h.html" title=" " alt="" coords="265,272,483,357"/>
+<area shape="rect" title=" " alt="" coords="79,5,297,91"/>
+<area shape="rect" href="math__core_8h.html" title=" " alt="" coords="5,272,224,357"/>
+<area shape="rect" href="TestRunner_8h.html" title=" " alt="" coords="79,139,297,224"/>
+<area shape="rect" href="Parsers_8h.html" title=" " alt="" coords="321,146,540,217"/>
 </map>
 </div>
 </div>
@@ -174,63 +152,44 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ab6fa10bf2b8f766dd9a9cd58878826bb"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ab6fa10bf2b8f766dd9a9cd58878826bb">meshStorage::floatVector</a> = std::vector&lt; FloatType &gt;</td></tr>
-<tr class="separator:ab6fa10bf2b8f766dd9a9cd58878826bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aee742ed0cc2c364a349d92dca0a1ea3a"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aee742ed0cc2c364a349d92dca0a1ea3a">meshStorage::meshDrawClass</a> = std::vector&lt; <a class="el" href="namespacemeshStorage.html#ab6fa10bf2b8f766dd9a9cd58878826bb">floatVector</a> &gt;</td></tr>
-<tr class="separator:aee742ed0cc2c364a349d92dca0a1ea3a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82a2fd2e4ae77994e0090cb6ae5bfcdf"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a82a2fd2e4ae77994e0090cb6ae5bfcdf">meshStorage::meshStorageType</a> = std::valarray&lt; FloatType &gt;</td></tr>
-<tr class="separator:a82a2fd2e4ae77994e0090cb6ae5bfcdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab591803b247f263c48041a0244d11217"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ab591803b247f263c48041a0244d11217">meshStorage::etx</a> = Kokkos::extents&lt; size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent &gt;</td></tr>
+<tr class="memitem:ab591803b247f263c48041a0244d11217"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ab591803b247f263c48041a0244d11217">meshStorage::etx</a> = Kokkos::extents&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>, Kokkos::dynamic_extent, Kokkos::dynamic_extent &gt;</td></tr>
 <tr class="separator:ab591803b247f263c48041a0244d11217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb30d4fe26ef9a39b5a22cd7e884d157"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157">meshStorage::mdSpanType</a> = Kokkos::mdspan&lt; FloatType, <a class="el" href="namespacemeshStorage.html#ab591803b247f263c48041a0244d11217">etx</a> &gt;</td></tr>
+<tr class="memitem:abb30d4fe26ef9a39b5a22cd7e884d157"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157">meshStorage::mdSpanType</a> = Kokkos::mdspan&lt; FloatType, etx &gt;</td></tr>
 <tr class="separator:abb30d4fe26ef9a39b5a22cd7e884d157"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab71038ff2051d609f366a0354d9c1c05"><td class="memTemplParams" colspan="2">template&lt;size_t N&gt; </td></tr>
-<tr class="memitem:ab71038ff2051d609f366a0354d9c1c05"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ab71038ff2051d609f366a0354d9c1c05">meshStorage::meshArr</a> = std::array&lt; meshStorageType, N &gt;</td></tr>
-<tr class="separator:ab71038ff2051d609f366a0354d9c1c05"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42f2df14bfb0e6124754028986ead166"><td class="memTemplParams" colspan="2">template&lt;size_t N&gt; </td></tr>
+<tr class="memitem:a42f2df14bfb0e6124754028986ead166"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a42f2df14bfb0e6124754028986ead166">meshStorage::meshArr</a> = std::array&lt; <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>, N &gt;</td></tr>
+<tr class="separator:a42f2df14bfb0e6124754028986ead166"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ac841063819145418e63b00271e2b7231"><td class="memTemplParams" colspan="2">template&lt;unsigned Ndots = 61&gt; </td></tr>
 <tr class="memitem:ac841063819145418e63b00271e2b7231"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ac841063819145418e63b00271e2b7231">meshStorage::integrate</a> (const std::function&lt; FloatType(FloatType)&gt; &amp;function, FloatType left, FloatType right, unsigned int max_depth=5, FloatType tol=1e-20)</td></tr>
 <tr class="separator:ac841063819145418e63b00271e2b7231"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a12208417507152086a61fb14a0d0648f"><td class="memTemplParams" colspan="2">template&lt;unsigned Ndots = 61&gt; </td></tr>
-<tr class="memitem:a12208417507152086a61fb14a0d0648f"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a12208417507152086a61fb14a0d0648f">meshStorage::integrateLambdaForOneVariable</a> (const <a class="el" href="namespacedipoles.html#ab55b1f42f0572136427437fcb8c7b5b0">dipoles::integrableFunction</a> &amp;function, FloatType theta, FloatType phi, FloatType left, FloatType right, unsigned int max_depth=5, FloatType tol=1e-20)</td></tr>
-<tr class="separator:a12208417507152086a61fb14a0d0648f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1ae0ec93f0323749bbe96ef6d8dd6a4"><td class="memTemplParams" colspan="2">template&lt;typename T , typename... Args&gt; </td></tr>
-<tr class="memitem:ad1ae0ec93f0323749bbe96ef6d8dd6a4"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ad1ae0ec93f0323749bbe96ef6d8dd6a4">meshStorage::requires</a> (std::is_same_v&lt; T, Args &gt; &amp;&amp;...) T computeFunction_t(size_t size</td></tr>
-<tr class="memdesc:ad1ae0ec93f0323749bbe96ef6d8dd6a4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes functional mesh for N coordinates.  <a href="namespacemeshStorage.html#ad1ae0ec93f0323749bbe96ef6d8dd6a4">More...</a><br /></td></tr>
-<tr class="separator:ad1ae0ec93f0323749bbe96ef6d8dd6a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f305259f276a7eca87e2fe7c316c581"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a1f305259f276a7eca87e2fe7c316c581">meshStorage::for</a> (size_t i=0;i&lt; size;++i)</td></tr>
-<tr class="separator:a1f305259f276a7eca87e2fe7c316c581"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afff362294c6845915236d5c3340c7ed3"><td class="memItemLeft" align="right" valign="top">meshStorageType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#afff362294c6845915236d5c3340c7ed3">meshStorage::computeFunction</a> (const meshStorageType &amp;<a class="el" href="gausTets_8cpp.html#ab725778fe3179d0229a8da4c908bdf61">a</a>, const meshStorageType &amp;b, const <a class="el" href="namespacedipoles.html#a3d7d70f0a702782059e64756ce38be7e">dipoles::directionGraph</a> &amp;<a class="el" href="benchmark_8cpp.html#afbb83008ea50ad958180e7490618cb15">func</a>)</td></tr>
-<tr class="memdesc:afff362294c6845915236d5c3340c7ed3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes functional mesh for 2 coordinates.  <a href="namespacemeshStorage.html#afff362294c6845915236d5c3340c7ed3">More...</a><br /></td></tr>
-<tr class="separator:afff362294c6845915236d5c3340c7ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c160ba567c3c0288b73813d096d3d43"><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a4c160ba567c3c0288b73813d096d3d43">meshStorage::getMeshDiffNorm</a> (const meshStorageType &amp;mesh1, const meshStorageType &amp;mesh2)</td></tr>
-<tr class="memdesc:a4c160ba567c3c0288b73813d096d3d43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes square Diff norm for two meshes.  <a href="namespacemeshStorage.html#a4c160ba567c3c0288b73813d096d3d43">More...</a><br /></td></tr>
-<tr class="separator:a4c160ba567c3c0288b73813d096d3d43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0b76a3a6b771f43dd244b71b9927102f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a0b76a3a6b771f43dd244b71b9927102f">meshStorage::addMesh</a> (meshStorageType &amp;<a class="el" href="gausTets_8cpp.html#ab725778fe3179d0229a8da4c908bdf61">a</a>, const meshStorageType &amp;b)</td></tr>
-<tr class="separator:a0b76a3a6b771f43dd244b71b9927102f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a80423d61ef86d14fa2b58bcd6030e734"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; </td></tr>
-<tr class="memitem:a80423d61ef86d14fa2b58bcd6030e734"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; meshStorageType, 2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a80423d61ef86d14fa2b58bcd6030e734">meshStorage::myMeshGrid</a> (const container&lt; FloatType &gt; &amp;<a class="el" href="gausTets_8cpp.html#ab725778fe3179d0229a8da4c908bdf61">a</a>, const container&lt; FloatType &gt; &amp;b)</td></tr>
-<tr class="memdesc:a80423d61ef86d14fa2b58bcd6030e734"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes meshes using 2 double arrays.  <a href="namespacemeshStorage.html#a80423d61ef86d14fa2b58bcd6030e734">More...</a><br /></td></tr>
-<tr class="separator:a80423d61ef86d14fa2b58bcd6030e734"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aac254f5c60e904a1b92976ebdbef0d5d"><td class="memTemplParams" colspan="2">template&lt;unsigned Ndots = 61&gt; </td></tr>
+<tr class="memitem:aac254f5c60e904a1b92976ebdbef0d5d"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aac254f5c60e904a1b92976ebdbef0d5d">meshStorage::integrateLambdaForOneVariable</a> (const <a class="el" href="namespacecommonTypes.html#a8969d96a211494546588bc4bfd080314">co::integrableFunction</a> &amp;function, FloatType theta, FloatType phi, FloatType left, FloatType right, unsigned int max_depth=5, FloatType tol=1e-20)</td></tr>
+<tr class="separator:aac254f5c60e904a1b92976ebdbef0d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a1f71859afa37e6eb1bfb7093bd6109"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a0a1f71859afa37e6eb1bfb7093bd6109">meshStorage::computeFunction</a> (const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;a, const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;b, const <a class="el" href="namespacecommonTypes.html#a1b52a60c80481023bbe016263116c034">co::directionGraph</a> &amp;func)</td></tr>
+<tr class="memdesc:a0a1f71859afa37e6eb1bfb7093bd6109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes functional mesh for 2 coordinates.  <a href="namespacemeshStorage.html#a0a1f71859afa37e6eb1bfb7093bd6109">More...</a><br /></td></tr>
+<tr class="separator:a0a1f71859afa37e6eb1bfb7093bd6109"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5013e9a644ef6c654bfdfdf713b27c4d"><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a5013e9a644ef6c654bfdfdf713b27c4d">meshStorage::getMeshDiffNorm</a> (const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;mesh1, const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;mesh2)</td></tr>
+<tr class="memdesc:a5013e9a644ef6c654bfdfdf713b27c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes square Diff norm for two meshes.  <a href="namespacemeshStorage.html#a5013e9a644ef6c654bfdfdf713b27c4d">More...</a><br /></td></tr>
+<tr class="separator:a5013e9a644ef6c654bfdfdf713b27c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a448bff6d366615d385ff5671200f4efc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a448bff6d366615d385ff5671200f4efc">meshStorage::addMesh</a> (<a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;a, const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;b)</td></tr>
+<tr class="separator:a448bff6d366615d385ff5671200f4efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab3d675b29a1deee8850d1adae356e9e"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; </td></tr>
+<tr class="memitem:aab3d675b29a1deee8850d1adae356e9e"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>, 2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aab3d675b29a1deee8850d1adae356e9e">meshStorage::myMeshGrid</a> (const container&lt; co::FloatType &gt; &amp;a, const container&lt; co::FloatType &gt; &amp;b)</td></tr>
+<tr class="memdesc:aab3d675b29a1deee8850d1adae356e9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes meshes using 2 double arrays.  <a href="namespacemeshStorage.html#aab3d675b29a1deee8850d1adae356e9e">More...</a><br /></td></tr>
+<tr class="separator:aab3d675b29a1deee8850d1adae356e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a894b841d6824e1dc8079bcfbdbd52afb"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename container = std::vector, typename T  = FloatType, bool end = true&gt; </td></tr>
-<tr class="memitem:a894b841d6824e1dc8079bcfbdbd52afb"><td class="memTemplItemLeft" align="right" valign="top">container&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb">meshStorage::myLinspace</a> (T lower_bound, T upper_bound, size_t n)</td></tr>
+<tr class="memitem:a894b841d6824e1dc8079bcfbdbd52afb"><td class="memTemplItemLeft" align="right" valign="top">container&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb">meshStorage::myLinspace</a> (T lower_bound, T upper_bound, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> n)</td></tr>
 <tr class="memdesc:a894b841d6824e1dc8079bcfbdbd52afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates linearly spaced vectors.  <a href="namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb">More...</a><br /></td></tr>
 <tr class="separator:a894b841d6824e1dc8079bcfbdbd52afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a603fe29dfd4ccbd2b143624d7a8d89bd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aee742ed0cc2c364a349d92dca0a1ea3a">meshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a603fe29dfd4ccbd2b143624d7a8d89bd">meshStorage::unflatten</a> (const meshStorageType &amp;mm, const std::array&lt; size_t, 2 &gt; &amp;numss)</td></tr>
-<tr class="separator:a603fe29dfd4ccbd2b143624d7a8d89bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab01a545d239d7a3c83c6f6a8de83327b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aee742ed0cc2c364a349d92dca0a1ea3a">meshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ab01a545d239d7a3c83c6f6a8de83327b">meshStorage::unflatten</a> (const <a class="el" href="namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157">mdSpanType</a> &amp;resSpan)</td></tr>
-<tr class="separator:ab01a545d239d7a3c83c6f6a8de83327b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:ad49c45026cd5b947c00f4cac867d2038"><td class="memItemLeft" align="right" valign="top">const Args &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ad49c45026cd5b947c00f4cac867d2038">meshStorage::args</a></td></tr>
-<tr class="separator:ad49c45026cd5b947c00f4cac867d2038"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad1e20dfd5d2f6f329986c30cc34a3734"><td class="memItemLeft" align="right" valign="top">const Args const std::function&lt; FloatType(FloatType ...)&gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ad1e20dfd5d2f6f329986c30cc34a3734">meshStorage::function</a></td></tr>
-<tr class="separator:ad1e20dfd5d2f6f329986c30cc34a3734"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2282fc31f612a8fc3bae820e13130550"><td class="memItemLeft" align="right" valign="top">return&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a2282fc31f612a8fc3bae820e13130550">meshStorage::result</a></td></tr>
-<tr class="separator:a2282fc31f612a8fc3bae820e13130550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d9a714ce6fbf97b81c2adc8c1ab0b44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a10a8958a5b5041a3a3cd223fb9653eb4">co::meshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a2d9a714ce6fbf97b81c2adc8c1ab0b44">meshStorage::unflatten</a> (const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;mm, const std::array&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>, 2 &gt; &amp;numss)</td></tr>
+<tr class="separator:a2d9a714ce6fbf97b81c2adc8c1ab0b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8a4a430ea937375cf7dfdfc0c78d2b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a10a8958a5b5041a3a3cd223fb9653eb4">co::meshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ad8a4a430ea937375cf7dfdfc0c78d2b9">meshStorage::unflatten</a> (const mdSpanType &amp;resSpan)</td></tr>
+<tr class="separator:ad8a4a430ea937375cf7dfdfc0c78d2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2c0d57debe6a6b8b32ffece128f6f8f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aa2c0d57debe6a6b8b32ffece128f6f8f">meshStorage::printDec</a> (<a class="el" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a> &amp;mmesh, std::ostream &amp;out, int N=std::numeric_limits&lt; FloatType &gt;::digits10-1)</td></tr>
+<tr class="separator:aa2c0d57debe6a6b8b32ffece128f6f8f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
 <a id="a5a61b974383fe1b35f2b433f17a7ae44"></a>

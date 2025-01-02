@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dipoles_359',['dipoles',['../namespacedipoles.html',1,'']]]
+  ['generators_258',['generators',['../namespacegenerators.html',1,'']]]
 ];

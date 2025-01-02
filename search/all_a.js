@@ -1,12 +1,20 @@
 var searchData=
 [
-  ['n_5f_197',['N_',['../classdipoles_1_1Dipoles.html#a6e46174a0866ff6b7cedc117e863a37a',1,'dipoles::Dipoles']]],
-  ['name_198',['name',['../TestRunner_8h.html#a82c82ecefb401027590f155d4f753e83',1,'functable']]],
-  ['namegenerator1_199',['nameGenerator1',['../benchmark_8cpp.html#ae3b8dabe0bf789636041bbf90a788d82',1,'benchmark.cpp']]],
-  ['namegenerator2_200',['nameGenerator2',['../benchmark_8cpp.html#ae5e0aad257c6ee0f9f2c95c712d59d95',1,'benchmark.cpp']]],
-  ['namegenerator3_201',['nameGenerator3',['../benchmark_8cpp.html#a7d9e9c917b2cdafbad5dca3d51e6a426',1,'benchmark.cpp']]],
-  ['namegenerator4_202',['nameGenerator4',['../benchmark_8cpp.html#ac00ac9bb72f7f0e547da43893661adc3',1,'benchmark.cpp']]],
-  ['next_5f_203',['next_',['../classinter_1_1CalculationStep.html#a6961d7ca3ea8e788f6874f43d01c0b35',1,'inter::CalculationStep']]],
-  ['notify_204',['notify',['../classcore__intrefaces_1_1AbstractProduser.html#a895c87a9b2e905c98bf669e6f495cf94',1,'core_intrefaces::AbstractProduser']]],
-  ['notifyspec_205',['notifySpec',['../classcore__intrefaces_1_1AbstractProduser.html#a185314fce07318f1ac8b1dc1d7013fa0',1,'core_intrefaces::AbstractProduser']]]
+  ['m1_5f_115',['M1_',['../classdipoles_1_1Dipoles.html#a8b09adc30a34db0cd3624364f65d1c1b',1,'dipoles::Dipoles']]],
+  ['m2_5f_116',['M2_',['../classdipoles_1_1Dipoles.html#acdcbd21ff0b2343f223fbaab1af79ec7',1,'dipoles::Dipoles']]],
+  ['mainpage_2emd_117',['mainpage.md',['../mainpage_8md.html',1,'']]],
+  ['math_5fcore_2eh_118',['math_core.h',['../math__core_8h.html',1,'']]],
+  ['matrixformat_119',['MatrixFormat',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80aec3e34b5f8cb7fc97d0923e4ab171491',1,'printUtils']]],
+  ['matrixformat1_120',['MatrixFormat1',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80af7db28523b2f1ea38b89d235d999d86b',1,'printUtils']]],
+  ['matrixtype_121',['matrixType',['../namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08',1,'commonTypes']]],
+  ['mdspantype_122',['mdSpanType',['../namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157',1,'meshStorage']]],
+  ['mesharr_123',['meshArr',['../namespacemeshStorage.html#a42f2df14bfb0e6124754028986ead166',1,'meshStorage']]],
+  ['meshcreator_124',['MeshCreator',['../classmeshStorage_1_1MeshCreator.html#ad94309a6ee053174a4f7da6c51f92ef7',1,'meshStorage::MeshCreator::MeshCreator()'],['../classmeshStorage_1_1MeshCreator.html',1,'meshStorage::MeshCreator']]],
+  ['meshcreator_2eh_125',['MeshCreator.h',['../MeshCreator_8h.html',1,'']]],
+  ['meshdrawclass_126',['meshDrawClass',['../namespacecommonTypes.html#a10a8958a5b5041a3a3cd223fb9653eb4',1,'commonTypes']]],
+  ['meshstorage_127',['meshStorage',['../namespacemeshStorage.html',1,'']]],
+  ['meshstoragetype_128',['meshStorageType',['../namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77',1,'commonTypes']]],
+  ['myconcepts_2eh_129',['myConcepts.h',['../myConcepts_8h.html',1,'']]],
+  ['mylinspace_130',['myLinspace',['../namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb',1,'meshStorage']]],
+  ['mymeshgrid_131',['myMeshGrid',['../namespacemeshStorage.html#aab3d675b29a1deee8850d1adae356e9e',1,'meshStorage']]]
 ];

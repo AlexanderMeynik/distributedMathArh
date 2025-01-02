@@ -25,7 +25,6 @@
 var NAVTREE =
 [
   [ "Distributed math architecture", "index.html", [
-    [ "install", "md__home_runner_work_distributedMathArh_distributedMathArh_computationalNode_test_install.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -33,7 +32,8 @@ var NAVTREE =
         [ "Functions", "namespacemembers_func.html", null ],
         [ "Variables", "namespacemembers_vars.html", null ],
         [ "Typedefs", "namespacemembers_type.html", null ],
-        [ "Enumerations", "namespacemembers_enum.html", null ]
+        [ "Enumerations", "namespacemembers_enum.html", null ],
+        [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -53,8 +53,8 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -63,9 +63,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AbstractSubsriber_8cpp.html",
-"classcore__intrefaces_1_1DataAcessInteface.html#ad28fb1fab1e89c4af6b04b96045509bc",
-"namespacefileUtils.html#a94068dafb958e51269eb563640d6bae7"
+"DataAcessInteface_8h.html",
+"myConcepts_8h.html#ad9d705cb01d20a4851e26dff4668b355"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

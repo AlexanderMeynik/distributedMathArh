@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['core_5fintrefaces_358',['core_intrefaces',['../namespacecore__intrefaces.html',1,'']]]
+  ['dipoles_257',['dipoles',['../namespacedipoles.html',1,'']]]
 ];
