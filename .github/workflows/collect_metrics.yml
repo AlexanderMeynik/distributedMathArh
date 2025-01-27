@@ -10,7 +10,7 @@ on:
       - server/**
       - somestuff/**
 jobs:
-  build-and-test:
+  collect-metrics:
     runs-on: ubuntu-latest
     container:
       image: alexandermey/distirbutedmastservice:metrics
@@ -22,7 +22,7 @@ jobs:
           path: ./src
       - name: Collect metrics
         run: |
-          . /.venv/bin/activate
+          source /.venv/bin/activate
           cd ${GITHUB_WORKSPACE}/src
           
           mkdir metrixpp && cd metrixpp
