@@ -38,32 +38,6 @@ jobs:
           path: /__w/distributedMathArh/distributedMathArh/build
           if-no-files-found: warn
           include-hidden-files: true
-      - name: Collect metrics
-        run: |
-          cd ${GITHUB_WORKSPACE}/src
-          mkdir metrixpp && cd metrixpp
-          
-          /opt/venv/bin/metrix++ collect --db-file=source.db --exclude-files ".*test.*" \ 
-          --std.code.filelines.total --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once \ 
-          --std.code.filelines.comments --std.code.filelines.code --std.code.todo.comments --std.general.procerrors  \ 
-          -- ../computationalNode/ ../server/ ../utilLib/
-          
-          /opt/venv/bin/metrix++ collect --db-file=wtests.db \ 
-          --std.code.filelines.total --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once \ 
-          --std.code.filelines.comments --std.code.filelines.code --std.code.todo.comments --std.general.procerrors  \ 
-          -- ../computationalNode/ ../server/ ../utilLib/
-          
-          /opt/venv/bin/metrix++ view --db-file=source.db > source.txt  
-          /opt/venv/bin/metrix++ view --db-file=wtests.db > wtests.txt
-          /opt/venv/bin/metrix++ view --db-file=source.db --db-file-prev=wtests.db > sourceTestDiff.txt
-      - name: Save metrics
-        if: success() || failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: metrixpp
-          path: /__w/distributedMathArh/distributedMathArh/src/metrixpp
-          if-no-files-found: warn
-          include-hidden-files: true
       - name: Run core_tests
         run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test

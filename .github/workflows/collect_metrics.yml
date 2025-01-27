@@ -1,0 +1,50 @@
+name: Collect metrics
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/collect_metrics.yml
+      - computationalNode/**
+      - utilLib/**
+      - server/**
+      - somestuff/**
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    container:
+      image: alexandermey/distirbutedmastservice:metrics
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+          path: ./src
+      - name: Collect metrics
+        run: |
+          . /.venv/bin/activate
+          cd ${GITHUB_WORKSPACE}/src
+          
+          mkdir metrixpp && cd metrixpp
+          
+          metrix++ collect --db-file=source.db --exclude-files ".*test.*" \ 
+          --std.code.filelines.total --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once \ 
+          --std.code.filelines.comments --std.code.filelines.code --std.code.todo.comments --std.general.procerrors  \ 
+          -- ../computationalNode/ ../server/ ../utilLib/
+          
+          metrix++ collect --db-file=wtests.db \ 
+          --std.code.filelines.total --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once \ 
+          --std.code.filelines.comments --std.code.filelines.code --std.code.todo.comments --std.general.procerrors  \ 
+          -- ../computationalNode/ ../server/ ../utilLib/
+          
+          metrix++ view --db-file=source.db > source.txt  
+          metrix++ view --db-file=wtests.db > wtests.txt
+          metrix++ view --db-file=source.db --db-file-prev=wtests.db > sourceTestDiff.txt
+      - name: Save metrics
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: metrixpp
+          path: /__w/distributedMathArh/distributedMathArh/src/metrixpp
+          if-no-files-found: warn
+          include-hidden-files: true
