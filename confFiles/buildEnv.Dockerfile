@@ -54,14 +54,6 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
-RUN apt-get install -y python3 python3-pip python3-venv && \
-    python3 -m venv /opt/venv && \
-    /opt/venv/bin/pip install --no-cache-dir --upgrade pip && \
-    /opt/venv/bin/pip install --no-cache-dir metrixpp
-
-
-
-
 
 
 WORKDIR /usr/application/src
