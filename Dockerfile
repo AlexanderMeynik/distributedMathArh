@@ -54,8 +54,9 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
-RUN apt install -y python3 python3-pip && \
-    pip install metrixpp
+RUN apt-get install -y python3 python3-pip && \
+    python3 -m pip install --upgrade pip && \
+    python3 -m pip install metrixpp
 
 
 
