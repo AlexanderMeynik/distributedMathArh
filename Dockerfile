@@ -55,8 +55,9 @@ RUN cd /home/deps && \
     ninja install
 
 RUN apt-get install -y python3 python3-pip && \
-    python3 -m pip install --upgrade pip && \
-    python3 -m pip install metrixpp
+    pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir metrixpp
+
 
 
 
