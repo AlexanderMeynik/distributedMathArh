@@ -15,7 +15,8 @@ RUN apt-get update && \
     chmod -R 777 deps && \
     cd deps
 
-RUN apt-get install -y libeigen3-dev
+RUN apt-get install -y libeigen3-dev linux-tools-common \
+    linux-tools-generic linux-tools-$(uname -r)
 
 
 RUN git clone https://github.com/google/glog.git && \
@@ -52,6 +53,9 @@ RUN cd /home/deps && \
     cmake -G Ninja  .. && \
     cmake --build . && \
     ninja install
+
+RUN apt install -y python3 python3-pip && \
+    pip install metrixpp
 
 
 
