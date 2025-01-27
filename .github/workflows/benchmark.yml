@@ -22,26 +22,26 @@ jobs:
           cmake -G Ninja \
           ../src/
           ninja
-      - name : draw flamegraphs
-        if: success() || failure()
-        run: |
-          cd ${GITHUB_WORKSPACE}/build/computationalNode
-          git clone https://github.com/brendangregg/FlameGraph
-          perf record --call-graph dwarf samplePerExample
-          perf report -g fractal
-          mkdir ../FlameGraph/res
-          cp ./perf.data  ../FlameGraph/res
-          cd ../FlameGraph/res
-          
-          perf script | ../stackcollapse-perf.pl |../flamegraph.pl > perf.svg
-      - name: Save flame graphs
-        if: success() || failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: flameGraphs
-          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/FlameGraph/res
-          if-no-files-found: warn
-          include-hidden-files: true
+#      - name : draw flamegraphs
+#        if: success() || failure()
+#        run: |
+#          cd ${GITHUB_WORKSPACE}/build/computationalNode
+#          git clone https://github.com/brendangregg/FlameGraph
+#          perf record --call-graph dwarf samplePerExample
+#          perf report -g fractal
+#          mkdir ../FlameGraph/res
+#          cp ./perf.data  ../FlameGraph/res
+#          cd ../FlameGraph/res
+#
+#          perf script | ../stackcollapse-perf.pl |../flamegraph.pl > perf.svg
+#      - name: Save flame graphs
+#        if: success() || failure()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: flameGraphs
+#          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/FlameGraph/res
+#          if-no-files-found: warn
+#          include-hidden-files: true
       - name: Run benchmark
         if: success() || failure()
         run: |
