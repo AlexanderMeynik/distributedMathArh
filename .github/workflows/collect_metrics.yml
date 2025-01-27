@@ -21,6 +21,7 @@ jobs:
           submodules: true
           path: ./src
       - name: Collect metrics
+        shell: bash -e {0}
         run: |
           source /.venv/bin/activate
           cd ${GITHUB_WORKSPACE}/src
