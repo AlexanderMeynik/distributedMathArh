@@ -13,9 +13,9 @@ jobs:
       matrix:
         include:
           - tags: alexandermey/distirbutedmastservice:env1
-            dockerfile: confFiles/buildEnv.Dockerfile
+            dockerfile: ./confFiles/buildEnv.Dockerfile
           - tags: alexandermey/distirbutedmastservice:metrics
-            dockerfile: confFiles/collectMetrics.Dockerfile
+            dockerfile: ./confFiles/collectMetrics.Dockerfile
     steps:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
