@@ -16,7 +16,8 @@ RUN apt-get update && \
     cd deps
 
 RUN apt-get install -y libeigen3-dev linux-tools-common \
-    linux-tools-generic linux-tools-$(uname -r)
+    linux-tools-generic linux-tools-$(uname -r) && \
+	sysctl kernel.perf_event_paranoid=2
 
 
 RUN git clone https://github.com/google/glog.git && \
