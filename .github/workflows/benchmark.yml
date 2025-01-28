@@ -12,6 +12,7 @@ jobs:
         --cap-add=CAP_SYS_ADMIN
         --cap-add=CAP_SYS_PTRACE
         --security-opt seccomp=unconfined
+        --sysctl kernel.perf_event_paranoid=1
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -30,7 +31,6 @@ jobs:
       - name : draw flamegraphs
         if: success() || failure()
         run: |
-          echo 1 | tee /proc/sys/kernel/perf_event_paranoid
           cd ${GITHUB_WORKSPACE}/build/computationalNode
           git clone https://github.com/brendangregg/FlameGraph
           mkdir FlameGraph/res && cd FlameGraph/res
