@@ -8,11 +8,8 @@ jobs:
     container:
       image: alexandermey/distirbutedmastservice:env1
       options: 
-        --cap-add=CAP_PERFMON
-        --cap-add=CAP_SYS_ADMIN
-        --cap-add=CAP_SYS_PTRACE
+        --privileged
         --security-opt seccomp=unconfined
-        --sysctl kernel.perf_event_paranoid=1
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
