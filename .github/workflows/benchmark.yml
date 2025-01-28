@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: alexandermey/distirbutedmastservice:env1
-      options: 
-        --privileged
-        --security-opt seccomp=unconfined
+      # options: 
+      #   --privileged
+      #   --security-opt seccomp=unconfined
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,23 +25,23 @@ jobs:
           cmake -G Ninja \
           ../src/
           ninja
-      - name : draw flamegraphs
-        if: success() || failure()
-        run: |
-          cd ${GITHUB_WORKSPACE}/build/computationalNode
-          git clone https://github.com/brendangregg/FlameGraph
-          mkdir FlameGraph/res && cd FlameGraph/res
-          perf record --call-graph dwarf ../../test/samplePerExample
-          mkdir ../FlameGraph/res
-          perf script | ../stackcollapse-perf.pl |../flamegraph.pl > perf.svg
-      - name: Save flame graphs and perf files
-        if: success() || failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: flameGraphs
-          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/FlameGraph/res
-          if-no-files-found: warn
-          include-hidden-files: true
+      # - name : draw flamegraphs
+      #   if: success() || failure()
+      #   run: |
+      #     cd ${GITHUB_WORKSPACE}/build/computationalNode
+      #     git clone https://github.com/brendangregg/FlameGraph
+      #     mkdir FlameGraph/res && cd FlameGraph/res
+      #     perf record --call-graph dwarf ../../test/samplePerExample
+      #     mkdir ../FlameGraph/res
+      #     perf script | ../stackcollapse-perf.pl |../flamegraph.pl > perf.svg
+      # - name: Save flame graphs and perf files
+      #   if: success() || failure()
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: flameGraphs
+      #     path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/FlameGraph/res
+      #     if-no-files-found: warn
+      #     include-hidden-files: true
       - name: Run benchmark
         if: success() || failure()
         run: |
