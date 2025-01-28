@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: alexandermey/distirbutedmastservice:env1
+      options: --cap-add=CAP_PERFMON
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
