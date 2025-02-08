@@ -9,7 +9,6 @@ jobs:
       image: alexandermey/distirbutedmastservice:env1
       options:
         --cap-add=CAP_PERFMON --cap-add=CAP_SYS_ADMIN --cap-add=CAP_SYS_PTRACE
-        --security-opt seccomp=unconfined
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
