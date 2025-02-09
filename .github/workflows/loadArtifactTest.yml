@@ -18,13 +18,8 @@ jobs:
         name: build
         repo: AlexanderMeynik/distributedMathArh
         workflow: ci.yml
-        path: ${GITHUB_WORKSPACE}/build
+        path: /__w/distributedMathArh/distributedMathArh/build/
         search_artifacts: true
-    - name: createDir
-      run: |
-          chmod -R 777 ${GITHUB_WORKSPACE}/build
-          cd ${GITHUB_WORKSPACE}/build
-          ls -la
     - name: Run core_tests
       run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test
