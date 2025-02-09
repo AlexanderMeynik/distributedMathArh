@@ -37,7 +37,6 @@ jobs:
           cd build
           ../ninjatracing/ninjatracing ./.ninja_log > trace.json
       - name: Save build
-        if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
           name: build
