@@ -22,6 +22,8 @@ jobs:
       - name: install testFixture
         run: |
           cd ${GITHUB_WORKSPACE}
+          
+          chmod -R +x build/
           wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/fixture/res.zip
           unzip -q res.zip
           rm res.zip
@@ -45,8 +47,6 @@ jobs:
         if: success() || failure()
         run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test
-          
-          chmod -x benchmark
           ./benchmark
       - name: Save benchmake results
         if: success() || failure()
