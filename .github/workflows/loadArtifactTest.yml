@@ -1,5 +1,5 @@
 name: Build and test
-run-name: ${{ github.actor }} is testing out Download Artifact 🚀
+run-name: ${{ github.actor }} is testing out Download Artifact 
 on:
   workflow_dispatch:
   push:
