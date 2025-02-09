@@ -11,17 +11,15 @@ jobs:
     container:
       image: alexandermey/distirbutedmastservice:env1
     steps:
-    - name: "Download artifact"
-      run: |
-        mkdir build && cd build
-        OTHER_REPO="AlexanderMeynik/distributedMathArh"
-        WF_NAME="ci.yml"
-        ARTIFACT_NAME="build"
-        RUN_ID=`gh run --repo ${OTHER_REPO} list --workflow ${WF_NAME} --json databaseId --jq .[0].databaseId`
-        gh run --repo ${OTHER_REPO} download ${RUN_ID} -n ${ARTIFACT_NAME}
-        ls -lR
-      env:
-        GITHUB_TOKEN: ${{ secrets.ARTIFACT_DEPLOY_TOKEN }}
+    - name: Download artifact
+      id: download-artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        name: build
+        repo: AlexanderMeynik/distributedMathArh
+        workflow: ci.yml
+        path: ${GITHUB_WORKSPACE}/build
+        search_artifacts: true
     - name: Run core_tests
       run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test
