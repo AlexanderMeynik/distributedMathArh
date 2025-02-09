@@ -3,45 +3,46 @@ name: Run benchmark
 on:
   workflow_dispatch:
 jobs:
-  build-and-run:
+  run-bench:
     runs-on: ubuntu-latest
     container:
       image: alexandermey/distirbutedmastservice:env1
-      # options: 
-      #   --privileged
-      #   --security-opt seccomp=unconfined
+      options:
+        --cap-add=CAP_PERFMON
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
         with:
-          submodules: true
-          path: ./src
-      - name: Build
+          name: build
+          repo: AlexanderMeynik/distributedMathArh
+          workflow: ci.yml
+          path: /__w/distributedMathArh/distributedMathArh/build/
+          search_artifacts: true
+      - name: install testFixture
         run: |
-          cp -r src/res/ res/
+          cd ${GITHUB_WORKSPACE}
           
-          mkdir build && cd build
-          
-          cmake -G Ninja \
-          ../src/
-          ninja
-      # - name : draw flamegraphs
-      #   if: success() || failure()
-      #   run: |
-      #     cd ${GITHUB_WORKSPACE}/build/computationalNode
-      #     git clone https://github.com/brendangregg/FlameGraph
-      #     mkdir FlameGraph/res && cd FlameGraph/res
-      #     perf record --call-graph dwarf ../../test/samplePerExample
-      #     mkdir ../FlameGraph/res
-      #     perf script | ../stackcollapse-perf.pl |../flamegraph.pl > perf.svg
-      # - name: Save flame graphs and perf files
-      #   if: success() || failure()
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: flameGraphs
-      #     path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/FlameGraph/res
-      #     if-no-files-found: warn
-      #     include-hidden-files: true
+          chmod -R +x build/
+          wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/fixture/res.zip
+          unzip -q res.zip
+          rm res.zip
+#      - name : draw flamegraphs
+#        if: success() || failure()
+#        run: |
+#           cd ${GITHUB_WORKSPACE}/build/computationalNode
+#           git clone https://github.com/brendangregg/FlameGraph
+#           mkdir FlameGraph/res && cd FlameGraph/res
+#           perf record --call-graph dwarf ./../../test/samplePerExample
+#           perf script | ../stackcollapse-perf.pl |../flamegraph.pl > perf.svg
+#      - name: Save flame graphs and perf files
+#        if: success() || failure()
+#        uses: actions/upload-artifact@v4
+#        with:
+#          name: flameGraphs
+#          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/FlameGraph/res
+#          if-no-files-found: warn
+#          include-hidden-files: true
       - name: Run benchmark
         if: success() || failure()
         run: |
