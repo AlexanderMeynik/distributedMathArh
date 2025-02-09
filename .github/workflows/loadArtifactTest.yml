@@ -2,6 +2,9 @@ name: Build and test
 run-name: ${{ github.actor }} is testing out Download Artifact 🚀
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/loadArtifactTest.yml
 jobs:
   load_and_test:
     runs-on: ubuntu-latest
