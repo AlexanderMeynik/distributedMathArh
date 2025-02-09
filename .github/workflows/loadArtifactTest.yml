@@ -23,9 +23,11 @@ jobs:
     - name: Run core_tests
       run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test
+          chmod +x core_Tests
           ./core_Tests
     - name: Run clock_tests
       if: success() || failure()
       run: |
         cd ${GITHUB_WORKSPACE}/build/utilLib/test
+        chmod +x par_Tests
         ./par_Tests
