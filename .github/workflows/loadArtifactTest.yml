@@ -23,8 +23,6 @@ jobs:
     - name: install testFixture
       run: |
           cd ${GITHUB_WORKSPACE}
-          mkdir logs
-          cp -r src/conf/ conf/
           wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/fixture/res.zip
           unzip -q res.zip
           rm res.zip
