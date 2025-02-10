@@ -6,10 +6,7 @@ SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
 SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
 
-find_package(cpprestsdk)
-if(cpprestsdk_FOUND)
-    add_subdirectory(server)
-endif()
+
 
 
 
@@ -22,3 +19,20 @@ endif (BUILD_DOC)
 
 add_subdirectory(utilLib)
 add_subdirectory(computationalNode)
+
+
+find_package(cpprestsdk)
+if(cpprestsdk_FOUND)
+    add_subdirectory(server)
+endif()
+
+find_package(Qt6)
+if(Qt6_FOUND)
+    add_subdirectory(client)
+endif()
+
+#todo check that http server lib exists
+#check that redis lib exists
+if(cpprestsdk_FOUND)
+    add_subdirectory(mainNode)
+endif()
