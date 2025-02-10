@@ -2,13 +2,6 @@ name: Collect metrics
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - .github/workflows/collect_metrics.yml
-      - computationalNode/**
-      - utilLib/**
-      - server/**
-      - somestuff/**
 jobs:
   collect-metrics:
     runs-on: ubuntu-latest
@@ -26,7 +19,7 @@ jobs:
           source /.venv/bin/activate
           cd ${GITHUB_WORKSPACE}/src
           
-          mkdir metrixpp && cd metrixpp
+          mkdir metrics && cd metrics
           
           metrix++ collect --db-file=source.db --exclude-files ".*test.*" \
           --std.code.filelines.total --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once \
@@ -43,11 +36,26 @@ jobs:
           metrix++ view --db-file=source.db > source.txt
           metrix++ view --db-file=wtests.db > wtests.txt
           metrix++ view --db-file=source.db --db-file-prev=wtests.db > sourceTestDiff.txt
+      - name: Download build
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v2
+        with:
+          name: build
+          repo: AlexanderMeynik/distributedMathArh
+          workflow: ci.yml
+          path: /__w/distributedMathArh/distributedMathArh/build/
+          search_artifacts: true
+      - name: Aggregate ninja log
+        run: |
+          cd ${GITHUB_WORKSPACE}
+          git clone https://github.com/nico/ninjatracing
+          cd src/metrics
+          ../../ninjatracing/ninjatracing ../../build/ninja_log > trace.json
       - name: Save metrics
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
-          name: metrixpp
-          path: /__w/distributedMathArh/distributedMathArh/src/metrixpp
+          name: metrics
+          path: /__w/distributedMathArh/distributedMathArh/src/metrics
           if-no-files-found: warn
           include-hidden-files: true
