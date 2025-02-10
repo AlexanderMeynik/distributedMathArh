@@ -50,7 +50,7 @@ jobs:
           cd ${GITHUB_WORKSPACE}
           git clone https://github.com/nico/ninjatracing
           cd src/metrics
-          ../../ninjatracing/ninjatracing ../../build/ninja_log > trace.json
+          ../../ninjatracing/ninjatracing ../../build/.ninja_log > trace.json
       - name: Save metrics
         if: success() || failure()
         uses: actions/upload-artifact@v4
