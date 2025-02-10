@@ -1,7 +1,3 @@
-set(CMAKE_CXX_STANDARD 23)
-SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
-SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
 
 find_package(cpprestsdk REQUIRED)
 add_executable(main main.cpp)

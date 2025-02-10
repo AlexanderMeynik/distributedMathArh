@@ -1,9 +1,5 @@
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
-#[[set(CMAKE_CXX_STANDARD 23)
-SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
-SET(CMAKE_CXX_FLAGS " -std=gnu++2b")]]
 
 project(utilLib)
 if(BUILD_TESTS)
