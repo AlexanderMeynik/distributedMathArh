@@ -14,7 +14,7 @@ jobs:
       matrix:
         include:
           - tags: alexandermey/distirbutedmastservice:env1
-            dockerfile: ./confFiles/buildEnv.Dockerfile
+            dockerfile: ./confFiles/multiStage.Dockerfile
           - tags: alexandermey/distirbutedmastservice:metrics
             dockerfile: ./confFiles/collectMetrics.Dockerfile
     steps:

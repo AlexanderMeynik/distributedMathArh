@@ -1,20 +1,13 @@
-cmake_minimum_required(VERSION 3.26)
-project(data_deduplication_service)
-
-set(CMAKE_CXX_STANDARD 23)
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif ()
 
-SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
-SET(CMAKE_CXX_FLAGS_RELEASE "-g -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
-SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
 
-
-add_subdirectory(test)
+if(BUILD_TESTS)
+    add_subdirectory(test)
+endif ()
 
 
 find_package(libpqxx REQUIRED)
@@ -22,7 +15,7 @@ find_package(glog 0.7.1 REQUIRED)
 find_package(OpenSSL REQUIRED)
 find_package(OpenMP REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
-find_package(Matplot++ REQUIRED)
+find_package(Matplot++ REQUIRED)#todo remove
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
@@ -67,7 +60,7 @@ target_link_libraries(io_lib PUBLIC Matplot++::matplot)
 target_include_directories(io_lib PUBLIC ../mdspan/include)
 
 
-
+#todo move to client part
 #option(BUILD_GUI "Build GUI" OFF)
 #if(BUILD_GUI)
 #    find_package(Qt6 REQUIRED COMPONENTS Widgets Xml Core Charts Sql)
