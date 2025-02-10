@@ -58,4 +58,5 @@ RUN cd /home/deps && \
 
 FROM ubuntu:22.04 as env
 COPY --from=build /usr /usr
+COPY --from=build /etc /etc
 WORKDIR /usr/application/src

@@ -2,8 +2,7 @@ FROM ubuntu:latest
 LABEL authors="Meynik A.V."
 
 
-#todo replace cpp rest with other
-# add designated images for different parts
+#todo delete
 RUN apt-get update && \
     apt-get install -y build-essential ninja-build git \
     libssl-dev libpq-dev cmake doxygen \
@@ -17,8 +16,6 @@ RUN apt-get update && \
 
 RUN apt-get install -y libeigen3-dev linux-tools-common \
     wget unzip
-#    linux-tools-generic linux-tools-$(uname -r) && \
-#	sysctl kernel.perf_event_paranoid=2
 
 
 RUN git clone https://github.com/google/glog.git && \
