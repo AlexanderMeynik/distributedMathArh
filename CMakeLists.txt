@@ -24,15 +24,22 @@ add_subdirectory(computationalNode)
 find_package(cpprestsdk)
 if(cpprestsdk_FOUND)
     add_subdirectory(server)
+else ()
+    message("missing dependencies to build server")
 endif()
 
 find_package(Qt6)
-if(Qt6_FOUND)
+find_package(Matplot++)
+if(Qt6_FOUND&&Matplot++_FOUND)
     add_subdirectory(client)
+else ()
+    message("missing dependencies to build client")
 endif()
 
 #todo check that http server lib exists
 #check that redis lib exists
 if(cpprestsdk_FOUND)
     add_subdirectory(mainNode)
+else ()
+    message("No cpprestFrameworkFound. mainNode subdirectory wont be built")
 endif()

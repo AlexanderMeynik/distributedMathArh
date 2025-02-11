@@ -1,4 +1,4 @@
-#include "plotUtils/plotingUtils.h"
+#include "../include/plotingUtils.h"
 #include "plotUtils/MeshCreator.h"
 
 #include <matplot/matplot.h>

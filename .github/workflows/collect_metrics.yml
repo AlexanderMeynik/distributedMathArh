@@ -38,7 +38,7 @@ jobs:
           metrix++ view --db-file=source.db --db-file-prev=wtests.db > sourceTestDiff.txt
       - name: Download build
         id: download-artifact
-        uses: dawidd6/action-download-artifact@v2
+        uses: dawidd6/action-download-artifact@v6
         with:
           name: build
           repo: AlexanderMeynik/distributedMathArh

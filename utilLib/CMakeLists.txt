@@ -1,6 +1,6 @@
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(utilLib)
-find_package(Matplot++ REQUIRED)#todo remove
+
 
 if(BUILD_TESTS)
     add_subdirectory(test)
@@ -39,12 +39,10 @@ file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
 
 
 add_library(plotUtilsLib STATIC ${plotUtils})
-target_link_libraries(plotUtilsLib PUBLIC commonLib Matplot++::matplot)
+target_link_libraries(plotUtilsLib PUBLIC commonLib)
 
 
 add_library(allUtils STATIC ${parallelUtils})
-target_link_libraries(allUtils PUBLIC commonLib plotUtilsLib Matplot++::matplot)
+target_link_libraries(allUtils PUBLIC commonLib plotUtilsLib)
 
 
-add_executable(checker ../utilLib/src/eigenTest.cpp)
-target_link_libraries(checker PUBLIC   plotUtilsLib)

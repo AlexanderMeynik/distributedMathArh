@@ -31,7 +31,6 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 
 add_library(math_core_lib ${math_core_files})
 target_link_libraries(math_core_lib PUBLIC allUtils)
-
 target_include_directories(math_core_lib PUBLIC include)
 
 file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
@@ -39,7 +38,6 @@ file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
 )
 add_library(interfaces_lib ${interfaces_files})
 target_link_libraries(interfaces_lib PUBLIC math_core_lib)
-target_include_directories(interfaces_lib PUBLIC include)
 
 file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
         "lib/iolib/*cpp"
@@ -48,14 +46,7 @@ add_library(io_lib ${iolib_files})
 target_link_libraries(io_lib PUBLIC math_core_lib)
 
 
-add_executable(generator src/coordGenerate.cpp)
-target_link_libraries(generator PUBLIC io_lib OpenMP::OpenMP_CXX allUtils)
-
-
-
-add_executable(grids src/darwingGrids.cpp)
-target_link_libraries(grids PUBLIC io_lib allUtils)
 
 
 add_executable(printerssst src/printersTests.cpp)
-target_link_libraries(grids PUBLIC  Eigen3::Eigen)
+target_link_libraries(printerssst PUBLIC  Eigen3::Eigen)

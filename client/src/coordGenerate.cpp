@@ -14,7 +14,7 @@
 #include "common/Generator.h"
 #include "plotUtils/MeshCreator.h"
 #include "iolib/Printers.h"
-#include "plotUtils/plotingUtils.h"
+#include "../include/plotingUtils.h"
 #include "common/typeCasts.h"
 
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {

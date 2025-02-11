@@ -8,7 +8,7 @@
 #include "plotUtils/MeshCreator.h"
 #include "computationalLib/math_core/Dipoles.h"
 
-#include "plotUtils/plotingUtils.h"
+#include "../include/plotingUtils.h"
 #include "iolib/Printers.h"
 
 //template <class Tr>

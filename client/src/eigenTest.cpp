@@ -4,7 +4,7 @@
 
 
 #include "parallelUtils/commonDeclarations.h"
-#include "plotUtils/plotingUtils.h"
+#include "../include/plotingUtils.h"
 
 auto aRange=1.0e-6;
 
