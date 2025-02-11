@@ -3,9 +3,6 @@
 #define DIPLOM_PLOTINGUTILS_H
 
 #include <functional>
-/*
-
-;*/
 #include "common/commonTypes.h"
 using commonTypes::FloatType;
 namespace meshStorage

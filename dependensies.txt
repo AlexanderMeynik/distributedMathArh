@@ -1,3 +1,4 @@
-sudo apt-get install libcpprest-dev
+sudo apt-get install libcpprest-dev libeigen3-dev libboost-math-dev
+
 ZLiB
 OpenSSL

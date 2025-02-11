@@ -12,9 +12,9 @@
 
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/Generator.h"
-#include "computationalLib/math_core/MeshCreator.h"
+#include "plotUtils/MeshCreator.h"
 #include "iolib/Printers.h"
-#include "iolib/plotingUtils.h"
+#include "plotUtils/plotingUtils.h"
 #include "common/typeCasts.h"
 
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {

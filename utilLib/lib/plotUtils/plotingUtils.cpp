@@ -1,5 +1,5 @@
-#include "iolib/plotingUtils.h"
-#include "computationalLib/math_core/MeshCreator.h"
+#include "plotUtils/plotingUtils.h"
+#include "plotUtils/MeshCreator.h"
 
 #include <matplot/matplot.h>
 namespace ms=meshStorage;

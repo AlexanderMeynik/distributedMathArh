@@ -10,7 +10,7 @@
 #include <iomanip>
 
 
-#include "computationalLib/math_core/MeshCreator.h"
+#include "plotUtils/MeshCreator.h"
 #include "common/myConcepts.h"
 
 char parseChar(std::istream &in);

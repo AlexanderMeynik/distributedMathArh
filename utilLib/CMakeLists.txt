@@ -1,13 +1,10 @@
-cmake_minimum_required(VERSION 3.26)
-set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
-SET(CMAKE_CXX_FLAGS_DEBUG "-g")
-SET(CMAKE_CXX_FLAGS_RELEASE "-O3 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
-SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
-
 project(utilLib)
-add_subdirectory(test)
+find_package(Matplot++ REQUIRED)#todo remove
+
+if(BUILD_TESTS)
+    add_subdirectory(test)
+endif ()
 
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
@@ -22,10 +19,32 @@ file(GLOB common CONFIGURE_DEPENDS
 )
 add_library(commonLib ${common})
 target_link_libraries(commonLib PUBLIC Eigen3::Eigen)
+target_include_directories(commonLib PUBLIC ../mdspan/include)
+target_include_directories(commonLib PUBLIC include)
 
 file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
         "lib/parallelUtils/*.cpp"
 )
 
 add_library(parallelLib ${parallelUtils})
+target_include_directories(parallelLib PUBLIC include)
 
+
+
+
+file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
+        "lib/plotUtils/*.cpp"
+)
+
+
+
+add_library(plotUtilsLib STATIC ${plotUtils})
+target_link_libraries(plotUtilsLib PUBLIC commonLib Matplot++::matplot)
+
+
+add_library(allUtils STATIC ${parallelUtils})
+target_link_libraries(allUtils PUBLIC commonLib plotUtilsLib Matplot++::matplot)
+
+
+add_executable(checker ../utilLib/src/eigenTest.cpp)
+target_link_libraries(checker PUBLIC   plotUtilsLib)
