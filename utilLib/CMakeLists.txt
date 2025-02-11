@@ -9,6 +9,8 @@ endif ()
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 include_directories(include)
+
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/bin)
@@ -40,7 +42,7 @@ file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
 
 add_library(plotUtilsLib STATIC ${plotUtils})
 target_link_libraries(plotUtilsLib PUBLIC commonLib)
-
+target_include_directories(plotUtilsLib PUBLIC ../../NumericalIntegration)
 
 add_library(allUtils STATIC ${parallelUtils})
 target_link_libraries(allUtils PUBLIC commonLib plotUtilsLib)

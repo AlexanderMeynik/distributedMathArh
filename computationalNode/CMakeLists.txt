@@ -12,7 +12,6 @@ endif ()
 
 find_package(libpqxx REQUIRED)
 find_package(glog 0.7.1 REQUIRED)
-find_package(OpenSSL REQUIRED)
 find_package(OpenMP REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
@@ -30,7 +29,7 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 
 
 add_library(math_core_lib ${math_core_files})
-target_link_libraries(math_core_lib PUBLIC allUtils)
+target_link_libraries(math_core_lib PUBLIC allUtils OpenMP::OpenMP_CXX)
 target_include_directories(math_core_lib PUBLIC include)
 
 file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
