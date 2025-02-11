@@ -5,10 +5,10 @@
 
 #include <matplot/matplot.h>
 
-#include "computationalLib/math_core/MeshCreator.h"
+#include "plotUtils/MeshCreator.h"
 #include "computationalLib/math_core/Dipoles.h"
 
-#include "iolib/plotingUtils.h"
+#include "plotUtils/plotingUtils.h"
 #include "iolib/Printers.h"
 
 //template <class Tr>

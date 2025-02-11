@@ -1,7 +1,7 @@
 
 #include "common/Generator.h"
 #include "computationalLib/math_core/Dipoles.h"
-#include "computationalLib/math_core/MeshCreator.h"
+#include "plotUtils/MeshCreator.h"
 
 int main()
 {

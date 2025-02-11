@@ -35,8 +35,7 @@ target_link_libraries(controllerLib PRIVATE serviceLib math_core_lib)
 add_executable(server server.cpp)
 target_link_libraries(server cpprestsdk::cpprest)
 target_link_libraries(server -lssl -lcrypto)
-#target_link_libraries(server  math_core_lib parallelLib)
-target_link_libraries(server controllerLib)
+target_link_libraries(server controllerLib allUtils)
 
 
 add_executable(client client.cpp)

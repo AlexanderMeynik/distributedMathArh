@@ -1,9 +1,9 @@
 #include <tuple>
 #include <limits>
 
-#include "computationalLib/math_core/MeshCreator.h"
+#include "plotUtils/MeshCreator.h"
 #include "common/commonTypes.h"
-#include "../GoogleCommon.h"
+#include "../../../computationalNode/test/GoogleCommon.h"
 
 #include <gtest/gtest.h>
 
