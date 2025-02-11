@@ -17,7 +17,6 @@ RUN apt-get update && \
 RUN apt-get install -y libeigen3-dev linux-tools-common \
     wget unzip
 
-
 RUN git clone https://github.com/google/glog.git && \
     cd glog && \
     mkdir build && \
