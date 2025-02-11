@@ -30,12 +30,6 @@ jobs:
           cmake -G Ninja \
           ../src/
           ninja
-      - name: Aggregate ninja log
-        run: |
-          cd ${GITHUB_WORKSPACE}
-          git clone https://github.com/nico/ninjatracing
-          cd build
-          ../ninjatracing/ninjatracing ./.ninja_log > trace.json
       - name: Save build
         uses: actions/upload-artifact@v4
         with:
