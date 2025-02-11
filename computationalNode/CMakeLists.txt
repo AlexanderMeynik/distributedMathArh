@@ -38,28 +38,23 @@ file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
         "lib/computationalLib/interfaces/*.cpp"
 )
 add_library(interfaces_lib ${interfaces_files})
-target_link_libraries(interfaces_lib PUBLIC parallelLib)
 target_link_libraries(interfaces_lib PUBLIC math_core_lib)
-
-
 target_include_directories(interfaces_lib PUBLIC include)
 
 file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
         "lib/iolib/*cpp"
 )
 add_library(io_lib ${iolib_files})
-
-
 target_link_libraries(io_lib PUBLIC math_core_lib)
 
 
 add_executable(generator src/coordGenerate.cpp)
-target_link_libraries(generator PUBLIC io_lib OpenMP::OpenMP_CXX plotUtilsLib)
+target_link_libraries(generator PUBLIC io_lib OpenMP::OpenMP_CXX allUtils)
 
 
 
 add_executable(grids src/darwingGrids.cpp)
-target_link_libraries(grids PUBLIC io_lib plotUtilsLib)
+target_link_libraries(grids PUBLIC io_lib allUtils)
 
 
 add_executable(printerssst src/printersTests.cpp)

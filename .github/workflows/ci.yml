@@ -45,4 +45,4 @@ jobs:
         if: success() || failure()
         run: |
           cd ${GITHUB_WORKSPACE}/build/utilLib/test
-          ./par_Tests
+          ./utilsAll

@@ -19,12 +19,15 @@ file(GLOB common CONFIGURE_DEPENDS
 )
 add_library(commonLib ${common})
 target_link_libraries(commonLib PUBLIC Eigen3::Eigen)
+target_include_directories(commonLib PUBLIC ../mdspan/include)
+target_include_directories(commonLib PUBLIC include)
 
 file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
         "lib/parallelUtils/*.cpp"
 )
 
 add_library(parallelLib ${parallelUtils})
+target_include_directories(parallelLib PUBLIC include)
 
 
 
@@ -35,13 +38,12 @@ file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
 
 
 
-add_library(plotUtilsLib ${plotUtils})
+add_library(plotUtilsLib STATIC ${plotUtils})
 target_link_libraries(plotUtilsLib PUBLIC commonLib Matplot++::matplot)
-target_include_directories(plotUtilsLib PUBLIC ../mdspan/include)
 
-add_library(allUtils STATIC ${plotUtils})
-target_link_libraries(allUtils PUBLIC commonLib parallelLib Matplot++::matplot)
-target_include_directories(allUtils PUBLIC ../mdspan/include include)
+
+add_library(allUtils STATIC ${parallelUtils})
+target_link_libraries(allUtils PUBLIC commonLib plotUtilsLib Matplot++::matplot)
 
 
 add_executable(checker ../utilLib/src/eigenTest.cpp)
