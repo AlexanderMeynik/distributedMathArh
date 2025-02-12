@@ -16,7 +16,7 @@ RUN apt-get update && \
 
 RUN apt-get install -y libeigen3-dev
 
-RUN wget -q /AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip \
+RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip \
     unzip -q gausQuadratureMin.zip && \
     rm gausQuadratureMin.zip && \
     cp -r gausQuadratureMin/ /usr/include/
