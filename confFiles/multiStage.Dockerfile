@@ -16,10 +16,11 @@ RUN apt-get update && \
 
 RUN apt-get install -y libeigen3-dev
 
-RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip \
+RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip && \
     unzip -q gausQuadratureMin.zip && \
     rm gausQuadratureMin.zip && \
-    cp -r gausQuadratureMin/ /usr/include/
+    cp -r gausQuadratureMin/ /usr/include/ && \
+    rm -rf gausQuadratureMin
 
 RUN git clone https://github.com/google/glog.git && \
     cd glog && \
