@@ -14,9 +14,12 @@ RUN apt-get update && \
     chmod -R 777 deps && \
     cd deps
 
-RUN apt-get install -y libeigen3-dev libboost-math-dev
+RUN apt-get install -y libeigen3-dev
 
-
+RUN wget -q /AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip \
+    unzip -q gausQuadratureMin.zip && \
+    rm gausQuadratureMin.zip && \
+    cp -r gausQuadratureMin/ /usr/include/
 
 RUN git clone https://github.com/google/glog.git && \
     cd glog && \
