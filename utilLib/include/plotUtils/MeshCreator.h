@@ -5,12 +5,11 @@
 
 #include <iosfwd>
 #include "mdspan/mdspan.hpp"
+#include <gausQuadratureMin/boost/math/quadrature/gauss_kronrod.hpp>
 
-#include <boost/math/quadrature/gauss_kronrod.hpp>
 #include "common/commonTypes.h"
 #include "common/printUtils.h"
 
-#include <NumericalIntegration.h>
 
 
 
@@ -39,7 +38,7 @@ namespace meshStorage {
                         FloatType left,
                         FloatType right,
                         unsigned int max_depth = 5,
-                        FloatType tol = 1e-20) {
+                        FloatType tol =  Eigen::NumTraits<FloatType >::epsilon()) {
         FloatType error;
         double Q = boost::math::quadrature::gauss_kronrod<FloatType, Ndots>::integrate(
                 function,
@@ -49,22 +48,6 @@ namespace meshStorage {
                 tol,
                 &error);
         return Q;
-    }
-
-    template<unsigned Ndots = 61>
-    FloatType inline newintegrate(const std::function<FloatType(FloatType)> &function,
-                               FloatType left,
-                               FloatType right,
-                               FloatType tol = 1e-20) {
-        auto ss=Eigen::Integrator<FloatType>(2000);
-
-        Eigen::Integrator<FloatType >::QuadratureRule quadratureRule = Eigen::Integrator<FloatType >::GaussKronrod61;
-        FloatType desAbsErr = tol;
-        FloatType desRelErr = Eigen::NumTraits<FloatType >::epsilon() * FloatType (50.);
-
-
-        FloatType result = ss.quadratureAdaptive(function, left, right, desAbsErr, desRelErr, quadratureRule);
-        return result;
     }
 
 

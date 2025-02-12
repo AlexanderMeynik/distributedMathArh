@@ -42,7 +42,6 @@ file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
 
 add_library(plotUtilsLib STATIC ${plotUtils})
 target_link_libraries(plotUtilsLib PUBLIC commonLib)
-target_include_directories(plotUtilsLib PUBLIC ../../NumericalIntegration)
 
 add_library(allUtils STATIC ${parallelUtils})
 target_link_libraries(allUtils PUBLIC commonLib plotUtilsLib)
