@@ -5,7 +5,7 @@
 
 #include <iosfwd>
 #include "mdspan/mdspan.hpp"
-#include <gausQuadratureMin/boost/math/quadrature/gauss_kronrod.hpp>
+#include <boost/math/quadrature/gauss_kronrod.hpp>
 
 #include "common/commonTypes.h"
 #include "common/printUtils.h"
