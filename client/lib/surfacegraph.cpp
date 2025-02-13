@@ -36,16 +36,26 @@
 
 //using namespace QtDataVisualization;
 
-const int sampleCountX = 50;
-const int sampleCountZ = 50;
-const int heightMapGridStepX = 6;
-const int heightMapGridStepZ = 6;
-const float sampleMin = -8.0f;
-const float sampleMax = 8.0f;
+int sampleCountX = 50;
+int sampleCountZ = 50;
+int heightMapGridStepX = 6;
+int heightMapGridStepZ = 6;
+float sampleMin = -8.0f;
+float sampleMax = 8.0f;
 
 SurfaceGraph::SurfaceGraph(Q3DSurface *surface)
         : m_graph(surface)
 {
+    data= testFixtureGetter(filename);
+    auto& ss=get<4>(data[0]);
+    sampleMin=ss.vals_.limits[0];
+    sampleMax=ss.vals_.limits[1];
+    heightMapGridStepX=ss.vals_.dimensions[0];
+    heightMapGridStepZ=ss.vals_.dimensions[1];
+    sampleCountX=ss.vals_.dimensions[0];
+    sampleCountZ=ss.vals_.dimensions[1];
+
+
     m_graph->setAxisX(new QValue3DAxis);
     m_graph->setAxisY(new QValue3DAxis);
     m_graph->setAxisZ(new QValue3DAxis);
@@ -75,13 +85,33 @@ SurfaceGraph::~SurfaceGraph()
 //! [1]
 void SurfaceGraph::fillSqrtSinProxy()
 {
-    float stepX = (sampleMax - sampleMin) / float(sampleCountX - 1);
-    float stepZ = (sampleMax - sampleMin) / float(sampleCountZ - 1);
+    auto& mesh_data=get<4>(data[0]);
+
+
+    float stepX = (mesh_data.vals_.limits[1] - mesh_data.vals_.limits[0]) / float(mesh_data.vals_.dimensions[0] - 1);
+    float stepZ = (mesh_data.vals_.limits[3] - mesh_data.vals_.limits[2]) / float(mesh_data.vals_.dimensions[1] - 1);;
+
+
 
     QSurfaceDataArray *dataArray = new QSurfaceDataArray;
-    dataArray->reserve(sampleCountZ);
+    dataArray->reserve(mesh_data.vals_.dimensions[0]);//todo row by row
+    for (int i = 0 ; i < mesh_data.vals_.dimensions[0] ; i++) {
+        QSurfaceDataRow *newRow = new QSurfaceDataRow(mesh_data.vals_.dimensions[1]);//fill in list with values from mesh
+        for (int j = 0; j < mesh_data.vals_.dimensions[1]; j++)
+        {
+            (*newRow)[j].setPosition(QVector3D(mesh_data.vals_.data[0][mesh_data.vals_.dimensions[0]*i+j],
+                                               mesh_data.vals_.data[1][mesh_data.vals_.dimensions[0]*i+j],
+                                               mesh_data.vals_.data[2][mesh_data.vals_.dimensions[0]*i+j]));
+        }
+        *dataArray << newRow;
+    }
+
+    m_sqrtSinProxy->resetArray(dataArray);
+    /*QSurfaceDataArray *dataArray = new QSurfaceDataArray;
+    dataArray->reserve(sampleCountZ);//todo row by row
     for (int i = 0 ; i < sampleCountZ ; i++) {
-        QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
+        QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);//fill in list with values from mesh
+
         // Keep values within range bounds, since just adding step can cause minor drift due
         // to the rounding errors.
         float z = qMin(sampleMax, (i * stepZ + sampleMin));
@@ -95,7 +125,7 @@ void SurfaceGraph::fillSqrtSinProxy()
         *dataArray << newRow;
     }
 
-    m_sqrtSinProxy->resetArray(dataArray);
+    m_sqrtSinProxy->resetArray(dataArray);*/
 }
 //! [1]
 

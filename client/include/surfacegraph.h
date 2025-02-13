@@ -35,8 +35,58 @@
 #include <QtDataVisualization/QHeightMapSurfaceDataProxy>
 #include <QtDataVisualization/QSurface3DSeries>
 #include <QtWidgets/QSlider>
-
+#include "plotingUtils.h"
+#include "common/typeCasts.h"
+#include "common/commonTypes.h"
+#include "iolib/Parsers.h"
 //using namespace QtDataVisualization;
+using namespace commonTypes;
+static inline std::string res_dir_path = "../../../res/";
+static inline std::string filename = res_dir_path.append("config.txt");
+static inline std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
+using coordType=std::vector<std::vector<FloatType >>;
+using meshStorage::MeshCreator;
+using ttype = std::tuple<std::string, std::vector<FloatType>, Parser<matrixType>, Parser<EigenVec>, Parser<MeshCreator>>;
+
+
+std::vector<ttype> inline testFixtureGetter(const std::string & file) {
+
+    std::vector<ttype> values;
+    auto avec= parseDipoleCoordinates<coordType>(file);
+
+    std::ifstream sols(subdir + "/solutions.txt");
+    std::ifstream matrixes(subdir + "/matrixes.txt");
+    std::ifstream meshes(subdir + "/meshes.txt");
+    values.reserve(avec.size());
+
+
+    FloatType steps[2];
+    meshes >> steps[0] >> steps[1];
+    size_t NN;
+    for (size_t i = 0; i < avec.size(); ++i) {
+        matrixes >> NN;
+        sols >> NN;
+        meshes >> NN;
+
+        ttype value;
+
+        auto matr = Parser<matrixType >(NN);
+        matrixes >> matr;
+
+        auto solvv = Parser<EigenVec>(NN);
+        sols >> solvv;
+
+        Parser<MeshCreator> meshh;
+        meshes >> meshh;
+
+        values.emplace_back(std::to_string(i), avec[i], matr, solvv, meshh);
+    }
+
+    sols.close();
+    matrixes.close();
+    meshes.close();
+    return values;
+}
 
 class SurfaceGraph : public QObject
 {
@@ -90,6 +140,7 @@ private:
     float m_stepZ;
     int m_heightMapWidth;
     int m_heightMapHeight;
+    std::vector<ttype> data;
 
     void setAxisXRange(float min, float max);
     void setAxisZRange(float min, float max);
