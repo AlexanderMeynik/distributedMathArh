@@ -1,4 +1,10 @@
 sudo apt-get install libcpprest-dev libeigen3-dev libboost-math-dev
 
+qt deps
+qt6-base-dev
+qt6-base-dev libqt6charts6-dev
+libqt6datavisualization6-dev
+qt6-declarative-dev(50mb)
+todo (reduce some qt6-declarative-dev files)
 ZLiB
 OpenSSL

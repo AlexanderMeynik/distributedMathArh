@@ -44,6 +44,6 @@ add_library(plotUtilsLib STATIC ${plotUtils})
 target_link_libraries(plotUtilsLib PUBLIC commonLib)
 
 add_library(allUtils STATIC ${parallelUtils})
-target_link_libraries(allUtils PUBLIC commonLib plotUtilsLib)
+target_link_libraries(allUtils PUBLIC plotUtilsLib)
 
 

@@ -89,7 +89,6 @@ namespace meshStorage
         out << "Функция I(phi,th)\n";
         out << "phi\\th\t\t";
 
-        /*auto [exet0,ext1]=mmesh.spans[2].extents();*/
         auto ext0=mmesh.spans[2].extent(0);
         auto ext1=mmesh.spans[2].extent(1);
         for (size_t i = 0; i < ext0 - 1; ++i) {
