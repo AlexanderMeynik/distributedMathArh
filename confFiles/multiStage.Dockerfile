@@ -60,6 +60,12 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
+RUN apt-get update && \
+    apt-get qt6-base-dev libqt6charts6-dev \
+    libqt6datavisualization6-dev   \
+    qt6-declarative-dev
+
+
 FROM ubuntu:22.04 as env
 COPY --from=build /usr /usr
 COPY --from=build /etc /etc
