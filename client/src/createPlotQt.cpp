@@ -71,6 +71,10 @@ std::vector<ttype> inline testFixtureGetter(const std::string & file) {
 #include <QSlider>
 #include <common/printUtils.h>
 //todo resolve driver issue https://github.com/microsoft/wslg/issues/1295
+//todo rotate plot(comapre with mathplot plots)
+//todo resize axis, remake their labels
+//todo
+using shared::FloatType;
 int main(int argc, char **argv)
 {
     qputenv("QSG_RHI_BACKEND", "opengl");
@@ -108,25 +112,45 @@ int main(int argc, char **argv)
 
 
 
-    QSurfaceDataArray *data = new QSurfaceDataArray;
     QSurface3DSeries *series = new QSurface3DSeries;
+    QSurface3DSeries *series2 = new QSurface3DSeries;
     QMainWindow ww;
     auto geom=QGuiApplication::primaryScreen()->geometry();
     ww.resize(geom.width()/2,geom.height()/2);
 
 
     Q3DSurface *surface=new Q3DSurface;
-    auto qw=QWidget::createWindowContainer(surface);
 
+    Q3DSurface *surface2=new Q3DSurface;
+
+
+    surface->addSeries(series);
+    surface2->addSeries(series2);
+
+    auto qw=QWidget::createWindowContainer(surface);
+    auto qw2=QWidget::createWindowContainer(surface2);
 
     auto lineEdit=new QSlider;
     lineEdit->setMaximum(500);
     lineEdit->setMinimum(2);
 
+    auto lineEdit2=new QSlider;
+    lineEdit2->setMaximum(res.size()-1);
+    lineEdit2->setMinimum(0);
 
     surface->setFlags(surface->flags() ^ Qt::FramelessWindowHint);
+    surface2->setFlags(surface2->flags() ^ Qt::FramelessWindowHint);
     int sampleCountX = 500;
     int sampleCountZ = 500;
+
+    auto ll=new QHBoxLayout;
+    ll->addWidget(qw);
+    ll->addWidget(lineEdit);
+    ll->addWidget(qw2);
+    ll->addWidget(lineEdit2);
+    ww.setCentralWidget(new QWidget);
+    ww.centralWidget()->setLayout(ll);
+
     auto surf1=[&]()
     {
 
@@ -157,7 +181,41 @@ int main(int argc, char **argv)
 
         series->dataProxy()->resetArray(dataArray);
     };
+    auto surf2=[&]()
+    {
 
+        QSurfaceDataArray *data = new QSurfaceDataArray;
+        FloatType minX = INFINITY, maxX = -INFINITY;
+        FloatType minY = INFINITY, maxY = -INFINITY;
+        FloatType minZ = INFINITY, maxZ = -INFINITY;
+
+        for (int i = 0; i < dims[0]; ++i) {
+            QSurfaceDataRow *row = new QSurfaceDataRow(dims[1]);
+            for (int j = 0; j < dims[1]; ++j) {
+                int index = i * dims[1] + j;
+
+                FloatType x = /*r * sin(theta) * cos(phi)*/rr[0][index];
+                FloatType y = /*r * sin(theta) * sin(phi)*/rr[2][index];//opengl uses y as up
+                FloatType z = /*r * cos(theta)*/rr[1][index];
+
+                minX = std::min(minX, x); maxX = std::max(maxX, x);
+                minY = std::min(minY, y); maxY = std::max(maxY, y);
+                minZ = std::min(minZ, z); maxZ = std::max(maxZ, z);
+
+                (*row)[j].setPosition(QVector3D(x, y, z));
+            }
+            data->append(row);
+        }
+
+        surface2->axisX()->setRange(minX, maxX);
+        surface2->axisY()->setRange(minY, maxY);
+        surface2->axisZ()->setRange(minZ, maxZ);
+
+
+        series->setDrawMode(QSurface3DSeries::DrawSurface);
+
+        series2->dataProxy()->resetArray(data);
+    };
 
     QWidget::connect(lineEdit,&QSlider::valueChanged,[&](){
 
@@ -167,39 +225,26 @@ int main(int argc, char **argv)
         sampleCountZ=val;
         surf1();
     });
+    QWidget::connect(lineEdit2,&QSlider::valueChanged,[&](){
 
+        auto val=lineEdit2->value();
+        std::cout<<val<<'\n';
+
+        rr1=get<4>(res[val]).vals_;
+
+
+        rr=sphericalTransformation(rr1);
+
+        surf2();
+    });
     sampleCountX=5;
     sampleCountZ=5;
     surf1();
-    auto ll=new QHBoxLayout;
-    ll->addWidget(qw);
-    ll->addWidget(lineEdit);
-
-    ww.setCentralWidget(new QWidget);
-    ww.centralWidget()->setLayout(ll);
+    surf2();
 
 
-    /*surf1();*/
-    /*data->reserve(dims[0]); // Reserve space for rows
-     * for (int i = 0; i < dims[0]; ++i) {
-        QSurfaceDataRow *row = new QSurfaceDataRow(dims[1]); // Create a new row for each iteration
 
-        for (int j = 0; j < dims[1]; ++j) {
-            int index = i * dims[1] + j;
-            *//*(*row)[j].setPosition( QVector3D(i,j,i+j)
-                    *//**//*rr[0][index],
-                    rr[1][index],
-                    rr[2][index]*//**//*);*//*
 
-            (*row)[j].setPosition( QVector3D(
-                    rr[0][index],
-                    rr[1][index],
-                    rr[2][index]));
-        }
-        *data<<row;
-    }*/
-
-    surface->addSeries(series);
 
     ww.show();
 
