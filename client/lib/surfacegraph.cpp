@@ -1,308 +1,172 @@
-/****************************************************************************
-**
-** Copyright (C) 2016 The Qt Company Ltd.
-** Contact: https://www.qt.io/licensing/
-**
-** This file is part of the Qt Data Visualization module of the Qt Toolkit.
-**
-** $QT_BEGIN_LICENSE:GPL$
-** Commercial License Usage
-** Licensees holding valid commercial Qt licenses may use this file in
-** accordance with the commercial license agreement provided with the
-** Software or, alternatively, in accordance with the terms contained in
-** a written agreement between you and The Qt Company. For licensing terms
-** and conditions see https://www.qt.io/terms-conditions. For further
-** information use the contact form at https://www.qt.io/contact-us.
-**
-** GNU General Public License Usage
-** Alternatively, this file may be used under the terms of the GNU
-** General Public License version 3 or (at your option) any later version
-** approved by the KDE Free Qt Foundation. The licenses are as published by
-** the Free Software Foundation and appearing in the file LICENSE.GPL3
-** included in the packaging of this file. Please review the following
-** information to ensure the GNU General Public License requirements will
-** be met: https://www.gnu.org/licenses/gpl-3.0.html.
-**
-** $QT_END_LICENSE$
-**
-****************************************************************************/
+
 
 #include "surfacegraph.h"
 
-#include <QtDataVisualization/QValue3DAxis>
-#include <QtDataVisualization/Q3DTheme>
-#include <QtGui/QImage>
-#include <QtCore/qmath.h>
-
-//using namespace QtDataVisualization;
-
-int sampleCountX = 50;
-int sampleCountZ = 50;
-int heightMapGridStepX = 6;
-int heightMapGridStepZ = 6;
-float sampleMin = -8.0f;
-float sampleMax = 8.0f;
-
-SurfaceGraph::SurfaceGraph(Q3DSurface *surface)
-        : m_graph(surface)
+template<typename T> T next_power2(T value)
 {
-    data= testFixtureGetter(filename);
-    auto& ss=get<4>(data[0]);
-    sampleMin=ss.vals_.limits[0];
-    sampleMax=ss.vals_.limits[1];
-    heightMapGridStepX=ss.vals_.dimensions[0];
-    heightMapGridStepZ=ss.vals_.dimensions[1];
-    sampleCountX=ss.vals_.dimensions[0];
-    sampleCountZ=ss.vals_.dimensions[1];
-
-
-    m_graph->setAxisX(new QValue3DAxis);
-    m_graph->setAxisY(new QValue3DAxis);
-    m_graph->setAxisZ(new QValue3DAxis);
-
-    //! [0]
-    m_sqrtSinProxy = new QSurfaceDataProxy();
-    m_sqrtSinSeries = new QSurface3DSeries(m_sqrtSinProxy);
-    //! [0]
-    fillSqrtSinProxy();
-
-    //! [2]
-    QImage heightMapImage(":/maps/mountain");
-    m_heightMapProxy = new QHeightMapSurfaceDataProxy(heightMapImage);
-    m_heightMapSeries = new QSurface3DSeries(m_heightMapProxy);
-    m_heightMapSeries->setItemLabelFormat(QStringLiteral("(@xLabel, @zLabel): @yLabel"));
-    m_heightMapProxy->setValueRanges(34.0f, 40.0f, 18.0f, 24.0f);
-    //! [2]
-    m_heightMapWidth = heightMapImage.width();
-    m_heightMapHeight = heightMapImage.height();
+    --value;
+    for(size_t i = 1; i < sizeof(T) * CHAR_BIT; i*=2)
+        value |= value >> i;
+    return value+1;
 }
+void MeshPlot::plot(const meshArr<3> &rr, const std::array<size_t, 2> &dims) {
+    QSurfaceDataArray *data = new QSurfaceDataArray;
+    FloatType minX = FTMax, maxX =FTMin;
+    FloatType minY = FTMax, maxY = FTMin;
+    FloatType minZ = FTMax, maxZ = FTMin;
 
-SurfaceGraph::~SurfaceGraph()
-{
-    delete m_graph;
-}
+    for (int i = 0; i < dims[0]; ++i) {
+        QSurfaceDataRow *row = new QSurfaceDataRow(dims[1]);
+        for (int j = 0; j < dims[1]; ++j) {
+            int index = i * dims[1] + j;
 
-//! [1]
-void SurfaceGraph::fillSqrtSinProxy()
-{
-    auto& mesh_data=get<4>(data[0]);
+            FloatType x = rr[0][index];
+            FloatType y = rr[2][index];
+            FloatType z = rr[1][index];
 
+            minX = std::min(minX, x); maxX = std::max(maxX, x);
+            minY = std::min(minY, y); maxY = std::max(maxY, y);
+            minZ = std::min(minZ, z); maxZ = std::max(maxZ, z);
 
-    float stepX = (mesh_data.vals_.limits[1] - mesh_data.vals_.limits[0]) / float(mesh_data.vals_.dimensions[0] - 1);
-    float stepZ = (mesh_data.vals_.limits[3] - mesh_data.vals_.limits[2]) / float(mesh_data.vals_.dimensions[1] - 1);;
-
-
-
-    QSurfaceDataArray *dataArray = new QSurfaceDataArray;
-    dataArray->reserve(mesh_data.vals_.dimensions[0]);//todo row by row
-    for (int i = 0 ; i < mesh_data.vals_.dimensions[0] ; i++) {
-        QSurfaceDataRow *newRow = new QSurfaceDataRow(mesh_data.vals_.dimensions[1]);//fill in list with values from mesh
-        for (int j = 0; j < mesh_data.vals_.dimensions[1]; j++)
-        {
-            (*newRow)[j].setPosition(QVector3D(mesh_data.vals_.data[0][mesh_data.vals_.dimensions[0]*i+j],
-                                               mesh_data.vals_.data[1][mesh_data.vals_.dimensions[0]*i+j],
-                                               mesh_data.vals_.data[2][mesh_data.vals_.dimensions[0]*i+j]));
+            (*row)[j].setPosition(QVector3D(x, y, z));
         }
-        *dataArray << newRow;
+        data->append(row);
     }
 
-    m_sqrtSinProxy->resetArray(dataArray);
-    /*QSurfaceDataArray *dataArray = new QSurfaceDataArray;
-    dataArray->reserve(sampleCountZ);//todo row by row
-    for (int i = 0 ; i < sampleCountZ ; i++) {
-        QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);//fill in list with values from mesh
+    auto makeLims=[&](QValue3DAxis *axis,FloatType min,FloatType max)
+    {
 
-        // Keep values within range bounds, since just adding step can cause minor drift due
-        // to the rounding errors.
-        float z = qMin(sampleMax, (i * stepZ + sampleMin));
-        int index = 0;
-        for (int j = 0; j < sampleCountX; j++) {
-            float x = qMin(sampleMax, (j * stepX + sampleMin));
-            float R = qSqrt(z * z + x * x) + 0.01f;
-            float y = (qSin(R) / R + 0.24f) * 1.61f;
-            (*newRow)[index++].setPosition(QVector3D(x, y, z));
-        }
-        *dataArray << newRow;
+
+
+        auto p2=[](FloatType val) {
+            auto sign=(val>=0)*2-1;
+            auto pp=std::floor(std::log2(std::abs(val)));
+            if(std::abs(val)==pow(2,pp))
+            {
+                return val;
+            }
+            else
+            {
+                return sign*pow(2,pp+1);
+            }
+        };
+        auto ll=p2(max-min);
+        auto ll1=p2(min);
+        auto ll2=p2(max);
+       /* long long ll= next_power2(std::abs((long long)(max-min)));
+        long long ll1=next_power2(std::abs((long long)(min)));
+        long long ll2=next_power2(std::abs((long long)(max)));*/
+
+        constexpr auto makeLims=[](FloatType val,FloatType vv) {
+            long long signMask = (val < 0) ? -1 : 1;
+            return signMask*vv;
+        };
+
+        ll1=makeLims(min,ll1);
+        ll2=makeLims(max,ll2);
+
+        std::cout<<min<<'\t'<<max<<'\n';
+        std::cout<<ll1<<'\t'<<ll2<<'\t'<<ll<<'\n';
+
+
+        axis->setRange(min, max);
+        axis->setSegmentCount(8);
+    };
+
+    if(axisRanges)
+    {
+        surface->axisX()->setRange(-40,40);
+        surface->axisZ()->setRange(-40,40);
+        surface->axisY()->setRange(0,90);
+
+        surface->axisX()->setSegmentCount(8);
+        surface->axisZ()->setSegmentCount(8);
+        surface->axisY()->setSegmentCount(9);
+
+        FloatType azimuth_deg = 213.0f;
+        FloatType elevation_deg = 22.0f;
+        FloatType az = qDegreesToRadians(azimuth_deg);
+        FloatType el = qDegreesToRadians(elevation_deg);
+
+        // Choose a suitable distance (adjust 'r' as needed for zoom level)
+        FloatType r = 150.0f;
+
+        FloatType x = r * std::cos(az) * std::cos(el);
+        FloatType y = r * std::sin(el);
+        FloatType z = r * std::sin(az) * std::cos(el);
+
+
+        auto camera = surface->scene()->activeCamera();
+        camera->setPosition(QVector3D(x, y, z));
+        /*camera->setViewCenter(QVector3D(0, 0, 0));*/
+       /* camera->setUpVector(QVector3D(0, 1, 0));*/
+/*
+        surface->scene()->activeCamera()->setXRotation(213);
+        surface->scene()->activeCamera()->setYRotation(180-22);*/
+    }
+    else {
+
+
+        makeLims(surface->axisX(), minX, maxX);
+        makeLims(surface->axisY(), minY, maxY);
+        makeLims(surface->axisZ(), minZ, maxZ);
     }
 
-    m_sqrtSinProxy->resetArray(dataArray);*/
-}
-//! [1]
 
-void SurfaceGraph::enableSqrtSinModel(bool enable)
-{
-    if (enable) {
-        //! [3]
-        m_sqrtSinSeries->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
-        m_sqrtSinSeries->setFlatShadingEnabled(true);
 
-        m_graph->axisX()->setLabelFormat("%.2f");
-        m_graph->axisZ()->setLabelFormat("%.2f");
-        m_graph->axisX()->setRange(sampleMin, sampleMax);
-        m_graph->axisY()->setRange(0.0f, 2.0f);
-        m_graph->axisZ()->setRange(sampleMin, sampleMax);
-        m_graph->axisX()->setLabelAutoRotation(30);
-        m_graph->axisY()->setLabelAutoRotation(90);
-        m_graph->axisZ()->setLabelAutoRotation(30);
+//todo play with some
+   // surface->seriesList().at(0)->setDrawMode(QSurface3DSeries::DrawSurface);
 
-        m_graph->removeSeries(m_heightMapSeries);
-        m_graph->addSeries(m_sqrtSinSeries);
-        //! [3]
-
-        //! [8]
-        // Reset range sliders for Sqrt&Sin
-        m_rangeMinX = sampleMin;
-        m_rangeMinZ = sampleMin;
-        m_stepX = (sampleMax - sampleMin) / float(sampleCountX - 1);
-        m_stepZ = (sampleMax - sampleMin) / float(sampleCountZ - 1);
-        m_axisMinSliderX->setMaximum(sampleCountX - 2);
-        m_axisMinSliderX->setValue(0);
-        m_axisMaxSliderX->setMaximum(sampleCountX - 1);
-        m_axisMaxSliderX->setValue(sampleCountX - 1);
-        m_axisMinSliderZ->setMaximum(sampleCountZ - 2);
-        m_axisMinSliderZ->setValue(0);
-        m_axisMaxSliderZ->setMaximum(sampleCountZ - 1);
-        m_axisMaxSliderZ->setValue(sampleCountZ - 1);
-        //! [8]
-    }
+    surface->seriesList().at(0)->dataProxy()->resetArray(data);
 }
 
-void SurfaceGraph::enableHeightMapModel(bool enable)
-{
-    if (enable) {
-        //! [4]
-        m_heightMapSeries->setDrawMode(QSurface3DSeries::DrawSurface);
-        m_heightMapSeries->setFlatShadingEnabled(false);
+MeshPlot::MeshPlot(const MeshCreator &mesh):MeshPlot() {
 
-        m_graph->axisX()->setLabelFormat("%.1f N");
-        m_graph->axisZ()->setLabelFormat("%.1f E");
-        m_graph->axisX()->setRange(34.0f, 40.0f);
-        m_graph->axisY()->setAutoAdjustRange(true);
-        m_graph->axisZ()->setRange(18.0f, 24.0f);
+    emit dataChanged(mesh);
 
-        m_graph->axisX()->setTitle(QStringLiteral("Latitude"));
-        m_graph->axisY()->setTitle(QStringLiteral("Height"));
-        m_graph->axisZ()->setTitle(QStringLiteral("Longitude"));
-
-        m_graph->removeSeries(m_sqrtSinSeries);
-        m_graph->addSeries(m_heightMapSeries);
-        //! [4]
-
-        // Reset range sliders for height map
-        int mapGridCountX = m_heightMapWidth / heightMapGridStepX;
-        int mapGridCountZ = m_heightMapHeight / heightMapGridStepZ;
-        m_rangeMinX = 34.0f;
-        m_rangeMinZ = 18.0f;
-        m_stepX = 6.0f / float(mapGridCountX - 1);
-        m_stepZ = 6.0f / float(mapGridCountZ - 1);
-        m_axisMinSliderX->setMaximum(mapGridCountX - 2);
-        m_axisMinSliderX->setValue(0);
-        m_axisMaxSliderX->setMaximum(mapGridCountX - 1);
-        m_axisMaxSliderX->setValue(mapGridCountX - 1);
-        m_axisMinSliderZ->setMaximum(mapGridCountZ - 2);
-        m_axisMinSliderZ->setValue(0);
-        m_axisMaxSliderZ->setMaximum(mapGridCountZ - 1);
-        m_axisMaxSliderZ->setValue(mapGridCountZ - 1);
-    }
 }
 
-void SurfaceGraph::adjustXMin(int min)
-{
-    float minX = m_stepX * float(min) + m_rangeMinX;
+MeshPlot::MeshPlot():QWidget(),axisRanges(true) {
+    surface = new Q3DSurface;
+    surface->addSeries(new QSurface3DSeries);
+    surface->setFlags(surface->flags() ^ Qt::FramelessWindowHint);
+    surface->axisY()->setLabels({"Yaxis"});
+    surface->axisX()->setLabels({"Xaxis"});
+    surface->axisZ()->setLabels({"Zaxis"});
+    auto lay=new QHBoxLayout;
+    lay->addWidget(QWidget::createWindowContainer(surface));
 
-    int max = m_axisMaxSliderX->value();
-    if (min >= max) {
-        max = min + 1;
-        m_axisMaxSliderX->setValue(max);
-    }
-    float maxX = m_stepX * max + m_rangeMinX;
+    this->setLayout(lay);
 
-    setAxisXRange(minX, maxX);
-}
+    connect(this, &MeshPlot::dataChanged, [&](const auto &a) {
+        auto rr = sphericalTransformation(a);
+        plot(rr, a.dimensions);
+    });
 
-void SurfaceGraph::adjustXMax(int max)
-{
-    float maxX = m_stepX * float(max) + m_rangeMinX;
+//todo check
+    connect(surface->scene()->activeCamera(),&Q3DCamera::zoomLevelChanged,[&](auto deg)
+    {
+        /*std::cout<<<<deg<<'\n';*/
+        auto cam=surface->scene()->activeCamera();
+        auto x=cam->xRotation();
+        auto y=cam->yRotation();
+        std::cout<<x<<':'<<y<<'\t'<<cam->zoomLevel()<<'\n';
+    });
+    connect(surface->scene()->activeCamera(),&Q3DCamera::yRotationChanged,[&](auto deg)
+    {
+        /*std::cout<<<<deg<<'\n';*/
+        auto cam=surface->scene()->activeCamera();
+        auto x=cam->xRotation();
+        auto y=cam->yRotation();
+        std::cout<<x<<':'<<y<<'\t'<<cam->zoomLevel()<<'\n';
+    });
 
-    int min = m_axisMinSliderX->value();
-    if (max <= min) {
-        min = max - 1;
-        m_axisMinSliderX->setValue(min);
-    }
-    float minX = m_stepX * min + m_rangeMinX;
 
-    setAxisXRange(minX, maxX);
-}
-
-void SurfaceGraph::adjustZMin(int min)
-{
-    float minZ = m_stepZ * float(min) + m_rangeMinZ;
-
-    int max = m_axisMaxSliderZ->value();
-    if (min >= max) {
-        max = min + 1;
-        m_axisMaxSliderZ->setValue(max);
-    }
-    float maxZ = m_stepZ * max + m_rangeMinZ;
-
-    setAxisZRange(minZ, maxZ);
-}
-
-void SurfaceGraph::adjustZMax(int max)
-{
-    float maxX = m_stepZ * float(max) + m_rangeMinZ;
-
-    int min = m_axisMinSliderZ->value();
-    if (max <= min) {
-        min = max - 1;
-        m_axisMinSliderZ->setValue(min);
-    }
-    float minX = m_stepZ * min + m_rangeMinZ;
-
-    setAxisZRange(minX, maxX);
-}
-
-//! [5]
-void SurfaceGraph::setAxisXRange(float min, float max)
-{
-    m_graph->axisX()->setRange(min, max);
-}
-
-void SurfaceGraph::setAxisZRange(float min, float max)
-{
-    m_graph->axisZ()->setRange(min, max);
-}
-//! [5]
-
-//! [6]
-void SurfaceGraph::changeTheme(int theme)
-{
-    m_graph->activeTheme()->setType(Q3DTheme::Theme(theme));
-}
-//! [6]
-
-void SurfaceGraph::setBlackToYellowGradient()
-{
-    //! [7]
-    QLinearGradient gr;
-    gr.setColorAt(0.0, Qt::black);
-    gr.setColorAt(0.33, Qt::blue);
-    gr.setColorAt(0.67, Qt::red);
-    gr.setColorAt(1.0, Qt::yellow);
-
-    m_graph->seriesList().at(0)->setBaseGradient(gr);
-    m_graph->seriesList().at(0)->setColorStyle(Q3DTheme::ColorStyleRangeGradient);
-    //! [7]
-}
-
-void SurfaceGraph::setGreenToRedGradient()
-{
-    QLinearGradient gr;
-    gr.setColorAt(0.0, Qt::darkGreen);
-    gr.setColorAt(0.5, Qt::yellow);
-    gr.setColorAt(0.8, Qt::red);
-    gr.setColorAt(1.0, Qt::darkRed);
-
-    m_graph->seriesList().at(0)->setBaseGradient(gr);
-    m_graph->seriesList().at(0)->setColorStyle(Q3DTheme::ColorStyleRangeGradient);
+    connect(surface->scene()->activeCamera(),&Q3DCamera::xRotationChanged,[&](auto deg)
+    {
+        auto cam=surface->scene()->activeCamera();
+        auto x=cam->xRotation();
+        auto y=cam->yRotation();
+        std::cout<<x<<':'<<y<<'\t'<<cam->zoomLevel()<<'\n';
+    });
 }

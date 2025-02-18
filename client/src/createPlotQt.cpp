@@ -2,6 +2,7 @@
 #include "common/typeCasts.h"
 #include "common/commonTypes.h"
 #include "iolib/Parsers.h"
+#include "surfacegraph.h"
 using namespace commonTypes;
 static inline std::string res_dir_path = "../../../res/";
 static inline std::string filename = res_dir_path.append("config.txt");
@@ -70,9 +71,10 @@ std::vector<ttype> inline testFixtureGetter(const std::string & file) {
 #include <QLineEdit>
 #include <QSlider>
 #include <common/printUtils.h>
+#include <QPushButton>
+
+
 //todo resolve driver issue https://github.com/microsoft/wslg/issues/1295
-//todo rotate plot(comapre with mathplot plots)
-//todo resize axis, remake their labels
 //todo
 using shared::FloatType;
 int main(int argc, char **argv)
@@ -85,7 +87,7 @@ int main(int argc, char **argv)
 
     auto res=testFixtureGetter(filename);
 
-    auto &rr1=get<4>(res[0]).vals_;
+   /* auto &rr1=get<4>(res[0]).vals_;
 
     auto dims=rr1.dimensions;
 
@@ -107,13 +109,13 @@ int main(int argc, char **argv)
     printBidir(rr[1]);
     std::cout<<"\n\n\n\n\n";
     printBidir(rr[2]);
-    std::cout<<"\n\n\n\n\n";
+    std::cout<<"\n\n\n\n\n";*/
 
 
 
 
     QSurface3DSeries *series = new QSurface3DSeries;
-    QSurface3DSeries *series2 = new QSurface3DSeries;
+
     QMainWindow ww;
     auto geom=QGuiApplication::primaryScreen()->geometry();
     ww.resize(geom.width()/2,geom.height()/2);
@@ -121,14 +123,13 @@ int main(int argc, char **argv)
 
     Q3DSurface *surface=new Q3DSurface;
 
-    Q3DSurface *surface2=new Q3DSurface;
 
 
     surface->addSeries(series);
-    surface2->addSeries(series2);
+
 
     auto qw=QWidget::createWindowContainer(surface);
-    auto qw2=QWidget::createWindowContainer(surface2);
+    auto qw2=new MeshPlot;
 
     auto lineEdit=new QSlider;
     lineEdit->setMaximum(500);
@@ -139,15 +140,19 @@ int main(int argc, char **argv)
     lineEdit2->setMinimum(0);
 
     surface->setFlags(surface->flags() ^ Qt::FramelessWindowHint);
-    surface2->setFlags(surface2->flags() ^ Qt::FramelessWindowHint);
+
     int sampleCountX = 500;
     int sampleCountZ = 500;
+
+    auto pb=new QPushButton;
+
 
     auto ll=new QHBoxLayout;
     ll->addWidget(qw);
     ll->addWidget(lineEdit);
     ll->addWidget(qw2);
     ll->addWidget(lineEdit2);
+    ll->addWidget(pb);
     ww.setCentralWidget(new QWidget);
     ww.centralWidget()->setLayout(ll);
 
@@ -181,41 +186,6 @@ int main(int argc, char **argv)
 
         series->dataProxy()->resetArray(dataArray);
     };
-    auto surf2=[&]()
-    {
-
-        QSurfaceDataArray *data = new QSurfaceDataArray;
-        FloatType minX = INFINITY, maxX = -INFINITY;
-        FloatType minY = INFINITY, maxY = -INFINITY;
-        FloatType minZ = INFINITY, maxZ = -INFINITY;
-
-        for (int i = 0; i < dims[0]; ++i) {
-            QSurfaceDataRow *row = new QSurfaceDataRow(dims[1]);
-            for (int j = 0; j < dims[1]; ++j) {
-                int index = i * dims[1] + j;
-
-                FloatType x = /*r * sin(theta) * cos(phi)*/rr[0][index];
-                FloatType y = /*r * sin(theta) * sin(phi)*/rr[2][index];//opengl uses y as up
-                FloatType z = /*r * cos(theta)*/rr[1][index];
-
-                minX = std::min(minX, x); maxX = std::max(maxX, x);
-                minY = std::min(minY, y); maxY = std::max(maxY, y);
-                minZ = std::min(minZ, z); maxZ = std::max(maxZ, z);
-
-                (*row)[j].setPosition(QVector3D(x, y, z));
-            }
-            data->append(row);
-        }
-
-        surface2->axisX()->setRange(minX, maxX);
-        surface2->axisY()->setRange(minY, maxY);
-        surface2->axisZ()->setRange(minZ, maxZ);
-
-
-        series->setDrawMode(QSurface3DSeries::DrawSurface);
-
-        series2->dataProxy()->resetArray(data);
-    };
 
     QWidget::connect(lineEdit,&QSlider::valueChanged,[&](){
 
@@ -230,17 +200,23 @@ int main(int argc, char **argv)
         auto val=lineEdit2->value();
         std::cout<<val<<'\n';
 
-        rr1=get<4>(res[val]).vals_;
+        auto & rr1=get<4>(res[val]).vals_;
+
+        rr1.plotAndSave("plot.png",plotFunction);
+
+        qw2->replot(rr1);
+    });
 
 
-        rr=sphericalTransformation(rr1);
+    QWidget::connect(pb,&QPushButton::clicked,[&](){
 
-        surf2();
+        qw2->saveToFile("");
     });
     sampleCountX=5;
     sampleCountZ=5;
     surf1();
-    surf2();
+
+    qw2->replot(get<4>(res[0]).vals_);
 
 
 
