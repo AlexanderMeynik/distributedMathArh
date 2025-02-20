@@ -13,8 +13,15 @@ if(BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
-add_library(plotLib lib/plotingUtils.cpp)
-target_link_libraries(plotLib PUBLIC plotUtilsLib allUtils Matplot++::matplot Qt6::DataVisualization)
+
+
+set(CMAKE_AUTOMOC ON)
+set(CMAKE_AUTORCC ON)
+set(CMAKE_AUTOUIC ON)
+
+add_library(plotLib lib/plotingUtils.cpp lib/MeshPlot.cpp include/MeshPlot.h)
+target_link_libraries(plotLib PUBLIC plotUtilsLib allUtils Matplot++::matplot Qt6::Charts Qt6::DataVisualization Qt6::Widgets)
+target_include_directories(plotLib PUBLIC include)
 
 add_executable(checker src/eigenTest.cpp )
 target_link_libraries(checker PUBLIC plotLib )
@@ -26,12 +33,9 @@ target_link_libraries(generator PUBLIC io_lib math_core_lib plotLib OpenMP::Open
 
 
 add_executable(grids src/darwingGrids.cpp )
-target_link_libraries(grids PUBLIC io_lib math_core_lib allUtils)
+target_link_libraries(grids PUBLIC io_lib math_core_lib plotLib allUtils)
 
 
-set(CMAKE_AUTOMOC ON)
-set(CMAKE_AUTORCC ON)
-set(CMAKE_AUTOUIC ON)
-add_executable(qtPlotExample src/createPlotQt.cpp include/surfacegraph.h lib/surfacegraph.cpp)
-target_link_libraries(qtPlotExample PUBLIC allUtils io_lib  Qt6::Charts Qt6::DataVisualization Qt6::Network plotLib)
+add_executable(qtPlotExample src/createPlotQt.cpp)
+target_link_libraries(qtPlotExample PUBLIC allUtils io_lib plotLib)
 target_include_directories(qtPlotExample PUBLIC include)

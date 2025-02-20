@@ -2,7 +2,7 @@
 #include "common/typeCasts.h"
 #include "common/commonTypes.h"
 #include "iolib/Parsers.h"
-#include "surfacegraph.h"
+#include "MeshPlot.h"
 using namespace commonTypes;
 static inline std::string res_dir_path = "../../../res/";
 static inline std::string filename = res_dir_path.append("config.txt");
@@ -12,18 +12,6 @@ using meshStorage::MeshCreator;
 using ttype = std::tuple<std::string, std::vector<FloatType>, Parser<matrixType>, Parser<EigenVec>, Parser<MeshCreator>>;
 
 
-//todo printers
-template<typename Struct>
-void printBidir(const Struct &vec, std::ostream &out = std::cout, const char *delim = " ", const char *end = "\n") {
-    if (vec.size()==0) {
-        return;
-    }
-    auto beg = std::begin(vec);
-    for (; std::next(beg) != std::end(vec); beg++) {
-        out << *beg << delim;
-    }
-    out << *beg << end;
-}
 
 std::vector<ttype> inline testFixtureGetter(const std::string & file) {
 
@@ -84,33 +72,7 @@ int main(int argc, char **argv)
 
 
 
-
     auto res=testFixtureGetter(filename);
-
-   /* auto &rr1=get<4>(res[0]).vals_;
-
-    auto dims=rr1.dimensions;
-
-    auto rr=sphericalTransformation(rr1);
-
-    printUtils::IosStateScientific ios(std::cout);
-
-    std::cout<<" original data\n";
-    printBidir(rr1.data[0]);
-    std::cout<<"\n\n\n\n\n";
-    printBidir(rr1.data[1]);
-    std::cout<<"\n\n\n\n\n";
-    printBidir(rr1.data[2]);
-    std::cout<<"\n\n\n\n\n";
-
-    std::cout<<" after spherical transformation\n";
-    printBidir(rr[0]);
-    std::cout<<"\n\n\n\n\n";
-    printBidir(rr[1]);
-    std::cout<<"\n\n\n\n\n";
-    printBidir(rr[2]);
-    std::cout<<"\n\n\n\n\n";*/
-
 
 
 
@@ -210,7 +172,7 @@ int main(int argc, char **argv)
 
     QWidget::connect(pb,&QPushButton::clicked,[&](){
 
-        qw2->saveToFile("");
+        qw2->saveToFile();
     });
     sampleCountX=5;
     sampleCountZ=5;
