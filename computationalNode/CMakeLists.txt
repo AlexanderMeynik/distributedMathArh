@@ -42,7 +42,8 @@ file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
         "lib/iolib/*cpp"
 )
 add_library(io_lib ${iolib_files})
-target_link_libraries(io_lib PUBLIC math_core_lib)
+target_link_libraries(io_lib PUBLIC commonLib)
+target_include_directories(io_lib PUBLIC include)
 
 
 

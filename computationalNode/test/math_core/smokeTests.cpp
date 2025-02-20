@@ -111,7 +111,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     MeshCreator mm;
     mm.constructMeshes();
     mm.applyFunction(dd.getI2function());
-    auto r2 = meshStorage::unflatten(mm.spans[2]/*,mm.dimensions.data()*/);
+    auto r2 = meshStorage::unflatten(mm.spans[2]);
 
     auto ress = meshStorage::unflatten(mesh.vals_.data[2], mesh.vals_.dimensions);
 

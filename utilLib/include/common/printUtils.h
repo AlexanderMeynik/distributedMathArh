@@ -8,6 +8,10 @@
 
 /// printUtils namespace
 namespace printUtils {
+    /**
+     * @b A guard class to save current iostream state
+     * @d Object of this class stores current iostream state and restores it when it goes out of scope
+     */
     class IosStatePreserve {
     public:
         explicit IosStatePreserve(std::ostream &out);
@@ -21,6 +25,9 @@ namespace printUtils {
         std::ostream &out_;
     };
 
+    /**
+     * @b Sets iostream precision to a fixed value after saving it's state
+     */
     class IosStateScientific : public IosStatePreserve {
     public:
         using IosStatePreserve::IosStatePreserve;

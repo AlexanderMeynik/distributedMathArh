@@ -30,7 +30,7 @@ endif()
 
 find_package(Qt6)
 find_package(Matplot++)
-if(Qt6_FOUND&&Matplot++_FOUND)
+if(Qt6_FOUND AND Matplot++_FOUND)
     add_subdirectory(client)
 else ()
     message("missing dependencies to build client")
