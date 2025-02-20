@@ -4,6 +4,7 @@ LABEL authors="Meynik A.V."
 #todo delete mathplot++
 #todo delete boost(150mb)
 #todo github actions run stages 
+#todo create runner image
 RUN apt-get update && \
     apt-get install -y build-essential ninja-build git \
     wget unzip \
@@ -58,9 +59,7 @@ RUN cd /home/deps && \
     mkdir build&&cd build && \
     cmake -G Ninja  .. && \
     cmake --build . && \
-    ninja install \
-
-WORKDIR /usr/application/src
+    ninja install
 
 FROM ubuntu:22.04 as base_env
 COPY --from=build /usr /usr
