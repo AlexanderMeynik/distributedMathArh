@@ -60,8 +60,7 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
-RUN apt-get update && \
-    apt-get install qt6-base-dev libqt6charts6-dev \
+RUN apt-get install  -y qt6-base-dev libqt6charts6-dev \
     libqt6datavisualization6-dev   \
     qt6-declarative-dev
 
