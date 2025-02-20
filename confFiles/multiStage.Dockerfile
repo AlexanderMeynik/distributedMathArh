@@ -61,10 +61,9 @@ RUN cd /home/deps && \
     ninja install
 
 RUN apt-get update && \
-    apt-get qt6-base-dev libqt6charts6-dev \
+    apt-get install qt6-base-dev libqt6charts6-dev \
     libqt6datavisualization6-dev   \
     qt6-declarative-dev
-
 
 FROM ubuntu:22.04 as env
 COPY --from=build /usr /usr
