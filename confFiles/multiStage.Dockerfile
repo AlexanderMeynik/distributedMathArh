@@ -60,6 +60,8 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install \
 
+WORKDIR /usr/application/src
+
 FROM ubuntu:22.04 as base_env
 COPY --from=build /usr /usr
 COPY --from=build /etc /etc
@@ -67,8 +69,6 @@ WORKDIR /usr/application/src
 
 
 FROM base_env as env
-COPY --from=build /usr /usr
-COPY --from=build /etc /etc
 RUN apt-get install  -y qt6-base-dev libqt6charts6-dev \
     libqt6datavisualization6-dev   \
     qt6-declarative-dev libgl-dev libopengl-dev
