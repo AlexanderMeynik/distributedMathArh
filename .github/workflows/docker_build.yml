@@ -23,7 +23,7 @@ jobs:
           "./confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
           )
           
-          HANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          HANGED_FILES=$(git diff --name-only HEAD^ HEAD -- confFiles/)
           
           echo  ${HANGED_FILES}
           
