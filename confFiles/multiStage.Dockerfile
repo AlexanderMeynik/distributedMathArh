@@ -67,7 +67,6 @@ COPY --from=build /etc /etc
 WORKDIR /usr/application/src
 
 
-
 FROM base_env as env
 RUN apt-get update && \
     apt-get install  -y qt6-base-dev libqt6charts6-dev \
