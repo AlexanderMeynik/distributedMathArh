@@ -44,8 +44,7 @@ jobs:
     steps:
       - name: Build and push
         uses: ./.github/workflows/common/docker_build_push.yml
+        secrets: inherit
         with:
           dockerfile: ${{ matrix.dockerfile }}
           tags: ${{ matrix.tags }}
-        secrets: inherit
-
