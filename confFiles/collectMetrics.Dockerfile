@@ -10,5 +10,4 @@ RUN apt-get update && \
     pip install metrixpp
 
 
-
 WORKDIR /usr/application/src
