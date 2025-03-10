@@ -59,6 +59,8 @@ jobs:
       matrix:
         include: ${{ fromJSON(needs.define-matrix.outputs.matrix_include) }}
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
       - name: Build and push
         uses: ./.github/workflows/common/docker_build_push.yml
         with:
