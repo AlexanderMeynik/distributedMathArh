@@ -19,10 +19,9 @@ jobs:
       - name: Define matrix params
         id: dockerxparams
         run: |
-          # Predefined pairs (dockerfile:tag)
           PAIRS=(
-            "./confFiles/multiStage.Dockerfile:alexandermey/distirbutedmastservice:env1"
-            "./confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
+            "confFiles/multiStage.Dockerfile:alexandermey/distirbutedmastservice:env1",
+            "confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
           )
 
           CHANGED_FILES=$(git diff --name-only HEAD^ HEAD -- confFiles/)
@@ -40,6 +39,11 @@ jobs:
               FILTERED_PAIRS+=("{\"dockerfile\": \"$DF\", \"tags\": \"$TAG\"}")
             fi
           done
+          
+          for pair in "${FILTERED_PAIRS[@]}";
+          do
+            echo ${pair}
+          done
 
           echo "matrix_include=[$(IFS=,; echo "${FILTERED_PAIRS[*]}")]" >> "$GITHUB_OUTPUT"
           
@@ -49,6 +53,7 @@ jobs:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
     needs: define-matrix
+    if: ${{ needs.define-matrix.outputs.matrix_include != '[]' }}
     strategy:
       fail-fast: false
       matrix:
