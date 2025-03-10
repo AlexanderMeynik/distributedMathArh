@@ -14,29 +14,35 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
+          fetch-depth: 2
           submodules: true
       - name: Define matrix params
         id: dockerxparams
         run: |
+          # Predefined pairs (dockerfile:tag)
           PAIRS=(
-          "./confFiles/multiStage.Dockerfile:alexandermey/distirbutedmastservice:env1"
-          "./confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
+            "./confFiles/multiStage.Dockerfile:alexandermey/distirbutedmastservice:env1"
+            "./confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
           )
+
+          CHANGED_FILES=$(git diff --name-only HEAD^ HEAD -- confFiles/)
           
-          HANGED_FILES=$(git diff --name-only HEAD^ HEAD -- confFiles/)
+
+          echo "Changed files: $CHANGED_FILES"
           
-          echo  ${HANGED_FILES}
           
           FILTERED_PAIRS=()
-            for pair in "${PAIRS[@]}"; do
+          for pair in "${PAIRS[@]}"; do
             DF="${pair%%:*}"
             TAG="${pair#*:}"
-          
+
             if echo "$CHANGED_FILES" | grep -q "^$DF$"; then
               FILTERED_PAIRS+=("{\"dockerfile\": \"$DF\", \"tags\": \"$TAG\"}")
             fi
           done
+
           echo "matrix_include=[$(IFS=,; echo "${FILTERED_PAIRS[*]}")]" >> "$GITHUB_OUTPUT"
+          
           echo "matrix_include=[$(IFS=,; echo "${FILTERED_PAIRS[*]}")]"
 
   push_to_registry:
