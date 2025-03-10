@@ -1,5 +1,6 @@
 var commonDeclarations_8h =
 [
+    [ "commonDeclarations::printable", "conceptcommonDeclarations_1_1printable.html", null ],
     [ "DATA_DEDUPLICATION_SERVICE_MYCONCEPTS_H", "commonDeclarations_8h.html#af01a0fffd4575e38e1ebe3f548a75170", null ],
     [ "clockType", "commonDeclarations_8h.html#a07af4cef989514ca7d7883b7078ef4e8", null ],
     [ "symbolType", "commonDeclarations_8h.html#a4f8d9e17f85034ec6e70468ab120387b", null ],
@@ -13,6 +14,5 @@ var commonDeclarations_8h =
       [ "ReturnSucess", "commonDeclarations_8h.html#a5bce3ac354a8e318c4dc165396b68f44aa7e1510000916cabf740b12d47987886", null ]
     ] ],
     [ "vformat", "commonDeclarations_8h.html#a159ceff8ceab08e53a15bee138221152", null ],
-    [ "gClk", "commonDeclarations_8h.html#a2cd53c03c0ceda9f2a3e27ef0161d216", null ],
-    [ "printable", "commonDeclarations_8h.html#ac7f90743b026daf943256f121dc44351", null ]
+    [ "gClk", "commonDeclarations_8h.html#a2cd53c03c0ceda9f2a3e27ef0161d216", null ]
 ];

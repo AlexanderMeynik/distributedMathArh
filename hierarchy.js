@@ -16,6 +16,9 @@ var hierarchy =
     [ "Parser< Eigen::Vector< T, -1 > >", "classParser_3_01Eigen_1_1Vector_3_01T_00_01-1_01_4_01_4.html", null ],
     [ "Parser< MeshCreator >", "classParser_3_01MeshCreator_01_4.html", null ],
     [ "Parser< std::vector< T > >", "classParser_3_01std_1_1vector_3_01T_01_4_01_4.html", null ],
+    [ "QWidget", null, [
+      [ "MeshPlot", "classMeshPlot.html", null ]
+    ] ],
     [ "commonTypes::returnToDataTypeT< returnType >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT", null ],
     [ "commonTypes::returnToDataTypeT< returnType::ArrayEigenVectors >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1ArrayEigenVectors_01_4", null ],
     [ "commonTypes::returnToDataTypeT< returnType::EigenVector >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1EigenVector_01_4", null ],

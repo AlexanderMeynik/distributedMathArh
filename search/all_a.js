@@ -1,20 +1,7 @@
 var searchData=
 [
-  ['m1_5f_115',['M1_',['../classdipoles_1_1Dipoles.html#a8b09adc30a34db0cd3624364f65d1c1b',1,'dipoles::Dipoles']]],
-  ['m2_5f_116',['M2_',['../classdipoles_1_1Dipoles.html#acdcbd21ff0b2343f223fbaab1af79ec7',1,'dipoles::Dipoles']]],
-  ['mainpage_2emd_117',['mainpage.md',['../mainpage_8md.html',1,'']]],
-  ['math_5fcore_2eh_118',['math_core.h',['../math__core_8h.html',1,'']]],
-  ['matrixformat_119',['MatrixFormat',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80aec3e34b5f8cb7fc97d0923e4ab171491',1,'printUtils']]],
-  ['matrixformat1_120',['MatrixFormat1',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80af7db28523b2f1ea38b89d235d999d86b',1,'printUtils']]],
-  ['matrixtype_121',['matrixType',['../namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08',1,'commonTypes']]],
-  ['mdspantype_122',['mdSpanType',['../namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157',1,'meshStorage']]],
-  ['mesharr_123',['meshArr',['../namespacemeshStorage.html#a42f2df14bfb0e6124754028986ead166',1,'meshStorage']]],
-  ['meshcreator_124',['MeshCreator',['../classmeshStorage_1_1MeshCreator.html#ad94309a6ee053174a4f7da6c51f92ef7',1,'meshStorage::MeshCreator::MeshCreator()'],['../classmeshStorage_1_1MeshCreator.html',1,'meshStorage::MeshCreator']]],
-  ['meshcreator_2eh_125',['MeshCreator.h',['../MeshCreator_8h.html',1,'']]],
-  ['meshdrawclass_126',['meshDrawClass',['../namespacecommonTypes.html#a10a8958a5b5041a3a3cd223fb9653eb4',1,'commonTypes']]],
-  ['meshstorage_127',['meshStorage',['../namespacemeshStorage.html',1,'']]],
-  ['meshstoragetype_128',['meshStorageType',['../namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77',1,'commonTypes']]],
-  ['myconcepts_2eh_129',['myConcepts.h',['../myConcepts_8h.html',1,'']]],
-  ['mylinspace_130',['myLinspace',['../namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb',1,'meshStorage']]],
-  ['mymeshgrid_131',['myMeshGrid',['../namespacemeshStorage.html#aab3d675b29a1deee8850d1adae356e9e',1,'meshStorage']]]
+  ['n_5f_0',['N_',['../classdipoles_1_1Dipoles.html#a6e46174a0866ff6b7cedc117e863a37a',1,'dipoles::Dipoles']]],
+  ['name_1',['name',['../TestRunner_8h.html#a82c82ecefb401027590f155d4f753e83',1,'functable']]],
+  ['new_5f_2',['new_',['../typeCasts_8h.html#aa0aafed44fec19806d8f9ad834be1248a06435e9584009a1324c904ad359dcdba',1,'typeCasts.h']]],
+  ['normal_3',['normal',['../namespacegenerators.html#a5687cd9429c4f366ac56ecdf33a63b84',1,'generators']]]
 ];

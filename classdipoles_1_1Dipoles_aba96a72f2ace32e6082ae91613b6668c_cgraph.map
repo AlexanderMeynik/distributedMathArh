@@ -1,0 +1,13 @@
+<map id="dipoles::Dipoles::setNewCoordinates" name="dipoles::Dipoles::setNewCoordinates">
+<area shape="rect" id="Node000001" title="Function that allows to reset dipole coordinates." alt="" coords="5,23,188,63"/>
+<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#a2a2128b516dfd096db85f140b241471a" title="Intializes dimensions for system of equations matrices." alt="" coords="243,5,440,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,31,229,27,229,32,188,37"/>
+<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#ab68eecc35d35f3184ac22bc87d8edc0e" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="236,55,447,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,50,223,53,222,58,188,55"/>
+<area shape="rect" id="Node000004" href="$classdipoles_1_1Dipoles.html#ae1d715f31cdcd32db945a8ce4153c40a" title="Computes euclidean distacne for dipole coordinates." alt="" coords="495,5,707,31"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="408,52,519,31,520,36,409,57"/>
+<area shape="rect" id="Node000005" href="$classdipoles_1_1Dipoles.html#a1e2481db2189621f0cd3bfa43f0c243a" title=" " alt="" coords="495,55,706,80"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="447,65,482,65,482,70,447,70"/>
+<area shape="rect" id="Node000006" href="$classdipoles_1_1Dipoles.html#a3fb91d6420369059d58e06c573ed430c" title="Computes vector difference for dipole coordinates." alt="" coords="505,105,696,145"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="400,77,497,99,496,104,399,83"/>
+</map>

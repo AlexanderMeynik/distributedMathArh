@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dipoles_257',['dipoles',['../namespacedipoles.html',1,'']]]
+  ['dipoles_0',['dipoles',['../namespacedipoles.html',1,'']]]
 ];

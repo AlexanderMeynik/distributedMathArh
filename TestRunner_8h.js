@@ -1,6 +1,6 @@
 var TestRunner_8h =
 [
-    [ "functable", "TestRunner_8h.html#structfunctable", [
+    [ "functable< Args >", "TestRunner_8h.html#structfunctable", [
       [ "func", "TestRunner_8h.html#aa3e2ed69f5528e4c16353398c03fbd90", null ],
       [ "name", "TestRunner_8h.html#a82c82ecefb401027590f155d4f753e83", null ]
     ] ],

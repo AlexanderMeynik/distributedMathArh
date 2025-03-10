@@ -1,6 +1,10 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/dipolesCommon.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/dipolesCommon.h">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,224,91"/>
-<area shape="rect" id="node2" href="$Dipoles_8h.html" title=" " alt="" coords="5,139,224,224"/>
-<area shape="rect" id="node3" href="$math__core_8h.html" title=" " alt="" coords="5,405,224,491"/>
-<area shape="rect" id="node4" href="$TestRunner_8h.html" title=" " alt="" coords="79,272,297,357"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="79,5,297,89"/>
+<area shape="rect" id="Node000002" href="$Dipoles_8h.html" title=" " alt="" coords="79,137,297,221"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,103,191,137,185,137,185,103"/>
+<area shape="rect" id="Node000003" href="$TestRunner_8h.html" title=" " alt="" coords="5,269,224,353"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="161,235,140,270,136,268,156,232"/>
+<area shape="rect" id="Node000004" href="$math__core_8h.html" title=" " alt="" coords="79,401,297,485"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="225,233,239,269,246,311,239,354,218,402,213,400,233,353,240,311,233,270,220,235"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="147,364,167,400,162,402,142,367"/>
 </map>

@@ -1,7 +1,7 @@
 var namespacetiming =
 [
-    [ "cmpArr", "structtiming_1_1cmpArr.html", "structtiming_1_1cmpArr" ],
     [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ],
+    [ "cmpArr", "structtiming_1_1cmpArr.html", "structtiming_1_1cmpArr" ],
     [ "chronoClockTemplate", "namespacetiming.html#a71480eee475f7e22f296f2fd7b56170c", null ],
     [ "locationType", "namespacetiming.html#a90abe985843f7783a7a3f8958183f579", null ],
     [ "timepointType", "namespacetiming.html#ad47b8a9b1a4188a00a64497565b2a95a", null ],

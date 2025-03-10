@@ -7,6 +7,7 @@ var searchData=
   ['an_4',['an',['../classdipoles_1_1Dipoles.html#a16373157b11c16aed4ec94cdfdf99ca6',1,'dipoles::Dipoles']]],
   ['applyfunction_5',['applyFunction',['../classmeshStorage_1_1MeshCreator.html#a592d44a692065e7b7d233461f3ffc83f',1,'meshStorage::MeshCreator']]],
   ['applyintegrate_6',['applyIntegrate',['../classmeshStorage_1_1MeshCreator.html#adfcd0f9118b79a09ff7b276a7b7e3187',1,'meshStorage::MeshCreator']]],
-  ['arr2eigenvec_7',['Arr2EigenVec',['../namespacecommonTypes.html#a9d48ba72197c09a9131c4b7ea736c466',1,'commonTypes']]],
-  ['arrayeigenvectors_8',['ArrayEigenVectors',['../namespacecommonTypes.html#a38a1d3436cefdbb9b1235c2e453a7b9aa0893bbff3c3c8190d5343468115baa48',1,'commonTypes']]]
+  ['architecture_7',['Distributed math architecture',['../index.html',1,'']]],
+  ['arr2eigenvec_8',['Arr2EigenVec',['../namespacecommonTypes.html#a9d48ba72197c09a9131c4b7ea736c466',1,'commonTypes']]],
+  ['arrayeigenvectors_9',['ArrayEigenVectors',['../namespacecommonTypes.html#a38a1d3436cefdbb9b1235c2e453a7b9aa0893bbff3c3c8190d5343468115baa48',1,'commonTypes']]]
 ];

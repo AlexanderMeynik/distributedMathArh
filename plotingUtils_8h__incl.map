@@ -1,10 +1,17 @@
-<map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/iolib/plotingUtils.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/iolib/plotingUtils.h">
-<area shape="rect" id="node1" title=" " alt="" coords="21,5,239,76"/>
-<area shape="rect" id="node2" title=" " alt="" coords="5,124,92,151"/>
-<area shape="rect" id="node3" href="$commonTypes_8h.html" title=" " alt="" coords="117,124,306,151"/>
-<area shape="rect" id="node4" title=" " alt="" coords="5,199,68,225"/>
-<area shape="rect" id="node5" title=" " alt="" coords="93,199,149,225"/>
-<area shape="rect" id="node6" title=" " alt="" coords="173,199,249,225"/>
-<area shape="rect" id="node7" title=" " alt="" coords="273,199,424,225"/>
-<area shape="rect" id="node8" href="$sharedDeclarations_8h.html" title=" " alt="" coords="449,199,609,225"/>
+<map id="/home/runner/work/distributedMathArh/distributedMathArh/client/include/plotingUtils.h" name="/home/runner/work/distributedMathArh/distributedMathArh/client/include/plotingUtils.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="21,5,239,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,92,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,62,71,100,67,96,103,58"/>
+<area shape="rect" id="Node000003" href="$commonTypes_8h.html" title=" " alt="" coords="117,108,306,133"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="157,58,193,96,189,100,153,62"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,181,68,207"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="184,136,79,178,77,174,182,131"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="93,181,149,207"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="198,135,148,175,145,170,195,131"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="173,181,249,207"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="214,134,214,168,209,168,209,134"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="273,181,424,207"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="235,131,315,173,313,177,232,136"/>
+<area shape="rect" id="Node000008" href="$sharedDeclarations_8h.html" title=" " alt="" coords="449,181,609,207"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="263,131,465,176,464,181,262,136"/>
 </map>

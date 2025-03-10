@@ -1,0 +1,9 @@
+<map id="dipoles::Dipoles::getDistance" name="dipoles::Dipoles::getDistance">
+<area shape="rect" id="Node000001" title="Computes euclidean distacne for dipole coordinates." alt="" coords="495,35,707,60"/>
+<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#ab68eecc35d35f3184ac22bc87d8edc0e" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="236,35,447,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="481,50,447,50,447,45,481,45"/>
+<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="5,5,188,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="222,36,188,32,189,26,223,30"/>
+<area shape="rect" id="Node000004" href="$classdipoles_1_1Dipoles.html#aba96a72f2ace32e6082ae91613b6668c" title="Function that allows to reset dipole coordinates." alt="" coords="5,55,188,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="223,64,189,68,188,62,222,58"/>
+</map>
