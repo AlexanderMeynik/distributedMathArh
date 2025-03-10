@@ -6,31 +6,46 @@ on:
       - confFiles/**
       - .github/workflows/docker_build.yml
 jobs:
+  define-matrix:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix_include: ${{ steps.dockerxparams.outputs.matrix_include }}
+    steps:
+      - name: Define matrix params
+        id: dockerxparams
+        run: |
+          PAIRS=(
+          "./confFiles/multiStage.Dockerfile:alexandermey/distirbutedmastservice:env1"
+          "./confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
+          )
+                      
+          HANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+                  
+          FILTERED_PAIRS=()
+            for pair in "${PAIRS[@]}"; do
+            DF="${pair%%:*}"
+            TAG="${pair#*:}"
+                  
+            if echo "$CHANGED_FILES" | grep -q "^$DF$"; then
+              FILTERED_PAIRS+=("{\"dockerfile\": \"$DF\", \"tags\": \"$TAG\"}")
+            fi
+          done
+          echo "matrix_include=[$(IFS=,; echo "${FILTERED_PAIRS[*]}")]" >> "$GITHUB_OUTPUT"
+          echo "matrix_include=[$(IFS=,; echo "${FILTERED_PAIRS[*]}")]"
+
   push_to_registry:
     name: Push Docker image to Docker Hub
     runs-on: ubuntu-latest
+    needs: define-matrix
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - tags: alexandermey/distirbutedmastservice:env1
-            dockerfile: ./confFiles/multiStage.Dockerfile
-          - tags: alexandermey/distirbutedmastservice:metrics
-            dockerfile: ./confFiles/collectMetrics.Dockerfile
+        include: ${{ fromJSON(needs.define-matrix.outputs.matrix_include) }}
     steps:
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
+      - name: Build and push
+        uses: ./.github/workflows/common/docker_build_push.yml
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Build and push Docker image
-        id: push
-        uses: docker/build-push-action@v6
-        with:
-          file: ${{ matrix.dockerfile }}
-          push: true
+          dockerfile: ${{ matrix.dockerfile }}
           tags: ${{ matrix.tags }}
+        secrets: inherit
+
