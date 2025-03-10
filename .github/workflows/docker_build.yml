@@ -18,14 +18,14 @@ jobs:
           "./confFiles/multiStage.Dockerfile:alexandermey/distirbutedmastservice:env1"
           "./confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
           )
-                      
+          
           HANGED_FILES=$(git diff --name-only HEAD^ HEAD)
-                  
+          
           FILTERED_PAIRS=()
             for pair in "${PAIRS[@]}"; do
             DF="${pair%%:*}"
             TAG="${pair#*:}"
-                  
+          
             if echo "$CHANGED_FILES" | grep -q "^$DF$"; then
               FILTERED_PAIRS+=("{\"dockerfile\": \"$DF\", \"tags\": \"$TAG\"}")
             fi
@@ -46,4 +46,3 @@ jobs:
         with:
           dockerfile: ${{ matrix.dockerfile }}
           tags: ${{ matrix.tags }}
-        secrets: inherit
