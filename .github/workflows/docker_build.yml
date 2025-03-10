@@ -11,6 +11,10 @@ jobs:
     outputs:
       matrix_include: ${{ steps.dockerxparams.outputs.matrix_include }}
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          submodules: true
       - name: Define matrix params
         id: dockerxparams
         run: |
@@ -20,6 +24,8 @@ jobs:
           )
           
           HANGED_FILES=$(git diff --name-only HEAD^ HEAD)
+          
+          echo  ${HANGED_FILES}
           
           FILTERED_PAIRS=()
             for pair in "${PAIRS[@]}"; do
