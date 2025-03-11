@@ -53,7 +53,7 @@ void printSolution(std::ostream &out, std::vector<T> &solution_, Eigen::IOFormat
     Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> map(solution_.data(), solution_.size());//todo copy impl(as template
     out << "Вектор решения\n" << map.format(format) << "\n";
 }
-
+//todo make this one support all structs
 template<class T>
 void printSolution(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &solution_,
                    Eigen::IOFormat format = Eigen::IOFormat()) {

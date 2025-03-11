@@ -39,3 +39,8 @@ target_link_libraries(grids PUBLIC io_lib math_core_lib plotLib allUtils)
 add_executable(qtPlotExample src/createPlotQt.cpp)
 target_link_libraries(qtPlotExample PUBLIC allUtils io_lib plotLib)
 target_include_directories(qtPlotExample PUBLIC include)
+
+
+add_executable(httpClientTest src/requestInformation.cpp)
+target_link_libraries(httpClientTest PUBLIC allUtils io_lib plotLib)
+target_include_directories(httpClientTest PUBLIC include)

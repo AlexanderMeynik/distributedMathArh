@@ -10,8 +10,11 @@ endif ()
 target_link_libraries(main PRIVATE cpprestsdk::cpprest)
 target_link_libraries(main PRIVATE -lssl -lcrypto)
 
-include_directories(../computationalNode/include)
-include_directories(../utilLib/include)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/server/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/server/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/server/bin)
+
+
 include_directories(../mdspan/include)
 
 file(GLOB services CONFIGURE_DEPENDS
@@ -28,7 +31,7 @@ file(GLOB controllers CONFIGURE_DEPENDS
 add_library(serviceLib ${services})
 
 add_library(controllerLib ${controllers})
-target_link_libraries(controllerLib PRIVATE serviceLib math_core_lib)
+target_link_libraries(controllerLib PUBLIC serviceLib math_core_lib)
 
 
 

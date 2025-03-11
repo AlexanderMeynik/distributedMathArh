@@ -2,14 +2,22 @@
 
 #include <cpprest/http_listener.h>
 #include <cpprest/json.h>
+
 #include <iostream>
 #include <map>
 #include "computationalLib/math_core/TestRunner.h"
 #include "iolib/Printers.h"
+using namespace web::json;
 using namespace web;
 using namespace web::http;
 using namespace web::http::experimental::listener;
 
+//todo how to properly define http requests
+//todo add event loop creation(for atmq queue)
+//todo jwt tokens + security(how to filter out requests)
+//todo does listener support multithreading(async)
+//implement api
+//create rest service for main node.
 void handle_get(http_request request) {
     ucout << request.to_string() << std::endl;
 
@@ -32,7 +40,7 @@ void handle_get(http_request request) {
         } catch (const std::exception &e) {
             request.reply(status_codes::BadRequest, _XPLATSTR("Invalid parameters"));
         }
-
+//todo use arguments
     } else if (path[0] == _XPLATSTR("calculate") && path.size() == 4) {
         try {
             size_t N = std::stoi(path[1]);
@@ -49,13 +57,40 @@ void handle_get(http_request request) {
             ts.solve();
 
 
-            std::stringstream ss;
+            /*std::stringstream ss;
             for (int i = 0; i < Ns; ++i) {
                 printSolutionFormat1(ss, ts.getSolRef()[i]);
+            }*/
+
+            web::json::value json_array = web::json::value::array();
+
+    //todo data->json
+            for (int i = 0; i < Ns; ++i) {
+                web::json::value json_array2 = web::json::value::array();
+                size_t index = 0;
+                for (const auto &value: ts.getSolRef()[i]) {
+                    json_array2[index++] = web::json::value::number(value);
+                }
+                json_array[i]=json_array2;
             }
 
+
             json::value jsonResponse;
-            jsonResponse[_XPLATSTR("result")] = json::value::string(ss.str());
+            web::json::value structure = web::json::value::object(true);
+
+
+            structure[_XPLATSTR("Ns")]=web::json::value::number(Ns);
+            structure[_XPLATSTR("N")]=web::json::value::number(N);
+            structure[_XPLATSTR("data")] = json_array;
+            jsonResponse[_XPLATSTR("retStruct")]=structure;
+
+
+            time_t _tm =time(NULL );
+
+            struct tm * curtime = localtime ( &_tm );
+            //cout<<"The current date/time is:"<<asctime(curtime);
+
+            jsonResponse[_XPLATSTR("timestamp")]=web::json::value::string(asctime(curtime));
             request.reply(status_codes::OK, jsonResponse);
 
         } catch (const std::exception &e) {
