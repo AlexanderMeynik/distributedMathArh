@@ -43,7 +43,7 @@ void handle_get(http_request request) {
 //todo use arguments
     } else if (path[0] == _XPLATSTR("calculate") && path.size() == 4) {
         try {
-            size_t N = std::stoi(path[1]);
+            size_t N = std::stoi(path[1]);//check ranges(0 is invalid) //return code invalid data
             size_t Ns = std::stoi(path[2]);
             double arange = std::stod(path[3]);
             TestRunner ts(N, Ns, arange);

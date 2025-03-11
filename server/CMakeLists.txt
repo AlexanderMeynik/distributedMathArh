@@ -40,6 +40,10 @@ target_link_libraries(server cpprestsdk::cpprest)
 target_link_libraries(server -lssl -lcrypto)
 target_link_libraries(server controllerLib allUtils)
 
+add_executable(server2 server2.cpp)
+target_link_libraries(server2 cpprestsdk::cpprest)
+target_link_libraries(server2 -lssl -lcrypto)
+target_link_libraries(server2 controllerLib allUtils)
 
 add_executable(client client.cpp)
 target_link_libraries(client PRIVATE cpprestsdk::cpprest)
