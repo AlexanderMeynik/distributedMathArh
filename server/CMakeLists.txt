@@ -45,6 +45,14 @@ target_link_libraries(server2 cpprestsdk::cpprest)
 target_link_libraries(server2 -lssl -lcrypto)
 target_link_libraries(server2 controllerLib allUtils)
 
+
+find_package(Drogon REQUIRED)
+
+add_executable(server3 server3.cpp)
+target_link_libraries(server3 Drogon::Drogon)
+target_link_libraries(server3 -lssl -lcrypto)
+target_link_libraries(server3 controllerLib allUtils)
+
 add_executable(client client.cpp)
 target_link_libraries(client PRIVATE cpprestsdk::cpprest)
 target_link_libraries(client PRIVATE -lssl -lcrypto)
