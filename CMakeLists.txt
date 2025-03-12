@@ -21,8 +21,8 @@ add_subdirectory(utilLib)
 add_subdirectory(computationalNode)
 
 
-find_package(cpprestsdk)
-if(cpprestsdk_FOUND)
+find_package(Drogon)
+if(Drogon_FOUND)
     add_subdirectory(server)
 else ()
     message("missing dependencies to build server")
@@ -38,7 +38,7 @@ endif()
 
 #todo check that http server lib exists
 #check that redis lib exists
-if(cpprestsdk_FOUND)
+if(Drogon_FOUND)
     add_subdirectory(mainNode)
 else ()
     message("No cpprestFrameworkFound. mainNode subdirectory wont be built")

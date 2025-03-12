@@ -1,4 +1,4 @@
-sudo apt-get install libcpprest-dev libeigen3-dev libboost-math-dev
+sudo apt-get install  libeigen3-dev libboost-math-dev
 
 qt deps
 qt6-base-dev
@@ -8,3 +8,21 @@ qt6-declarative-dev(50mb)
 todo (reduce some qt6-declarative-dev files)
 ZLiB
 OpenSSL
+
+
+
+
+drogon
+
+deps:
+sudo apt install libjsoncpp-dev  uuid-dev zlib1g-dev
+
+
+git clone https://github.com/drogonframework/drogon
+cd drogon
+git submodule update --init
+mkdir build
+cd build
+cmake -DBUILD_CTL=OFF-BUILD_EXAMPLES=OFF -COZ_PROFILING=OFF .. -G Ninja
+ninja
+ninja install

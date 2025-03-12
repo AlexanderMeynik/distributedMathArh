@@ -1,27 +1,13 @@
 #include <drogon/drogon.h>
-
+#include <controller/CompNode.h>
+#include <controller/CompNode2.h>
 using namespace drogon;
-
+using rest::v1::CompNode;
 int main() {
     app().setLogPath("./")
             .setLogLevel(trantor::Logger::kWarn)
-            .addListener("0.0.0.0", 8080) // Change to 80 if you have the necessary permissions
-            .setThreadNum(16);
-
-    // Register the handler before running the app
-    app().registerHandler("/test?username={name}",
-                          [](const HttpRequestPtr& req,
-                             std::function<void (const HttpResponsePtr &)> &&callback,
-                             const std::string &name)
-                          {
-                              Json::Value json;
-                              json["result"] = "ok";
-                              json["message"] = std::string("hello, ") + name;
-                              auto resp = HttpResponse::newHttpJsonResponse(json);
-                              callback(resp);
-                          },
-                          {Get, "LoginFilter"});
-
-    // Now run the application
+            .addListener("0.0.0.0", 8080)
+            .setThreadNum(1);
     app().run();
+
 }
