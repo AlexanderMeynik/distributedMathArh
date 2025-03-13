@@ -21,7 +21,7 @@ RUN  git clone https://github.com/drogonframework/drogon && \
      cd drogon && \
      git submodule update --init && \
      mkdir build && cd build && \
-     cmake -DBUILD_CTL=OFF -BUILD_EXAMPLES=OFF -DCOZ_PROFILING=OFF .. -G Ninja && \
+     cmake -DBUILD_CTL=OFF -DBUILD_EXAMPLES=OFF -DCOZ_PROFILING=OFF .. -G Ninja && \
      ninja && \
      ninja install && \
      ln -s /usr/include/jsoncpp/json/ /usr/include/json
