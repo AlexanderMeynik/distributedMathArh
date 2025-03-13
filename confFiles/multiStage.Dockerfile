@@ -2,7 +2,6 @@ FROM ubuntu:22.04 as build
 LABEL authors="Meynik A.V."
 
 #todo delete mathplot++
-#todo delete boost(150mb)
 #todo github actions run stages 
 #todo create runner image
 RUN apt-get update && \
@@ -22,7 +21,7 @@ RUN  git clone https://github.com/drogonframework/drogon && \
      cd drogon && \
      git submodule update --init && \
      mkdir build && cd build && \
-     cmake -DBUILD_CTL=OFF-BUILD_EXAMPLES=OFF -COZ_PROFILING=OFF .. -G Ninja && \
+     cmake -DBUILD_CTL=OFF -BUILD_EXAMPLES=OFF -DCOZ_PROFILING=OFF .. -G Ninja && \
      ninja && \
      ninja install && \
      ln -s /usr/include/jsoncpp/json/ /usr/include/json
