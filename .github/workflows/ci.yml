@@ -5,10 +5,10 @@ on:
   push:
     paths:
       - .github/workflows/ci.yml
-      - computationalNode/**
+      - computationalLib/**
       - utilLib/**
-      - server/**
-      - somestuff/**
+      - computationalNode/**
+      - mainNode/**
       - CMakeLists.txt
 jobs:
   build-and-test:
@@ -39,7 +39,7 @@ jobs:
           include-hidden-files: true
       - name: Run core_tests
         run: |
-          cd ${GITHUB_WORKSPACE}/build/computationalNode/test
+          cd ${GITHUB_WORKSPACE}/build/computationalLib/test
           ./core_Tests
       - name: Run clock_tests
         if: success() || failure()

@@ -1,8 +1,8 @@
-#include "controller/CompNode2.h"
+#include "controller/ClusterConfigController.h"
 
 using namespace rest::v1;
 
-void CompNode2::getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) const {
+void ClusterConfigController::getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) const {
     /*auto r=HttpResponse::newHttpResponse();*/
     Json::Value ret;
     ret["status"]=handler->con?"running":"not running";
@@ -11,8 +11,8 @@ void CompNode2::getStatus(const HttpRequestPtr &req, std::function<void(const Ht
 
 }
 
-void CompNode2::connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                               std::string&& ip, std::string&& name) const {
+void ClusterConfigController::connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                              std::string&& ip, std::string&& name) const {
 
     Json::Value res;
 
@@ -31,7 +31,7 @@ void CompNode2::connectHandler(const HttpRequestPtr &req, std::function<void(con
 
 }
 
-void CompNode2::disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+void ClusterConfigController::disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
     Json::Value res;
     res["request"]="disconnect";
 

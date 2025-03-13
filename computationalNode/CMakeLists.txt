@@ -1,52 +1,40 @@
-
-
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
-endif ()
-
-
-if(BUILD_TESTS)
+if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
-
-find_package(libpqxx REQUIRED)
-find_package(glog 0.7.1 REQUIRED)
-find_package(OpenMP REQUIRED)
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/bin)
 
+file(COPY config
+        DESTINATION ${CMAKE_BINARY_DIR}/computationalNode/bin)
 
+include_directories(../mdspan/include)
 
-file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
-        "lib/computationalLib/math_core/*.cpp"
+file(GLOB_RECURSE httpSources CONFIGURE_DEPENDS
+        "src/controller/*.cpp"
+        "src/service/*.cpp"
 )
 
 
-
-add_library(math_core_lib ${math_core_files})
-target_link_libraries(math_core_lib PUBLIC allUtils OpenMP::OpenMP_CXX)
-target_include_directories(math_core_lib PUBLIC include)
-
-file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
-        "lib/computationalLib/interfaces/*.cpp"
-)
-add_library(interfaces_lib ${interfaces_files})
-target_link_libraries(interfaces_lib PUBLIC math_core_lib)
-
-file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
-        "lib/iolib/*cpp"
-)
-add_library(io_lib ${iolib_files})
-target_link_libraries(io_lib PUBLIC commonLib)
-target_include_directories(io_lib PUBLIC include)
+add_library(servLib ${httpSources})
+target_link_libraries(servLib PUBLIC math_core_lib Drogon::Drogon)
+target_include_directories(servLib PUBLIC include)
 
 
 
 
-add_executable(printerssst src/printersTests.cpp)
-target_link_libraries(printerssst PUBLIC  Eigen3::Eigen)
+
+
+
+
+
+add_executable(compNode main.cpp)
+target_link_libraries(compNode)
+target_link_libraries(compNode -lssl -lcrypto)
+target_link_libraries(compNode servLib allUtils)
+
+
+

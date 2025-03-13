@@ -2,7 +2,8 @@
 
 #include <drogon/HttpController.h>
 #include "computationalLib/math_core/TestRunner.h"
-//https://github.com/drogonframework/drogon/wiki/ENG-04-2-Controller-HttpController
+
+
 using namespace drogon;
 
 namespace rest {
@@ -29,7 +30,7 @@ namespace rest {
                 queues[0]=queue+"1";
                 queues[1]=queue+"2";
 
-                eventLoop=std::thread([this]() {
+                eventLoop=std::jthread([this](std::stop_token stoken) {
                     //todo listen to queues(from 1 to second)
                     while (con)
                     {
@@ -45,10 +46,10 @@ namespace rest {
             }
             void disconenct()
             {
+                
                 con= false;
                 eventLoop.join();
                 reset();
-
                 LOG_INFO<<"disconnect\n";
             }
             int getC()
@@ -60,22 +61,22 @@ namespace rest {
                 *cc=0;
             }
 
-            bool con;
+            std::atomic<bool> con;
             std::array<std::string ,2>queues;//todo chnage to queueq handlers
-            std::thread eventLoop;
+            std::jthread eventLoop;
             std::shared_ptr<int>cc;
             //maybe store dispatch here.
             //todo atmqclient
         };
-        class CompNode2 : public drogon::HttpController<CompNode2> {
+        class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
             std::unordered_map<std::string,std::thread> thrreads;
             std::shared_ptr<AtmqHandler> handler;
         public:
-            CompNode2()
+            ClusterConfigController()
             {
                 handler=std::make_shared<AtmqHandler>();
             }
-            using cont=CompNode2;
+            using cont=ClusterConfigController;
             METHOD_LIST_BEGIN
                 ADD_METHOD_TO(cont::getStatus, "v2/status", Get);
                 ADD_METHOD_TO(cont::connectHandler, "v2/connect?ip={ip}&name={queue}", Post);

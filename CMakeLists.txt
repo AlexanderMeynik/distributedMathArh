@@ -18,12 +18,12 @@ if (BUILD_DOC)
 endif (BUILD_DOC)
 
 add_subdirectory(utilLib)
-add_subdirectory(computationalNode)
+add_subdirectory(computationalLib)
 
 
 find_package(Drogon)
 if(Drogon_FOUND)
-    add_subdirectory(server)
+    add_subdirectory(computationalNode)
 else ()
     message("missing dependencies to build server")
 endif()

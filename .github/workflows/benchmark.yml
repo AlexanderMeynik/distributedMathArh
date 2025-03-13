@@ -30,7 +30,7 @@ jobs:
 #      - name : draw flamegraphs
 #        if: success() || failure()
 #        run: |
-#           cd ${GITHUB_WORKSPACE}/build/computationalNode
+#           cd ${GITHUB_WORKSPACE}/build/computationalLib
 #           git clone https://github.com/brendangregg/FlameGraph
 #           mkdir FlameGraph/res && cd FlameGraph/res
 #           perf record --call-graph dwarf ./../../test/samplePerExample
@@ -40,19 +40,19 @@ jobs:
 #        uses: actions/upload-artifact@v4
 #        with:
 #          name: flameGraphs
-#          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/FlameGraph/res
+#          path: /__w/distributedMathArh/distributedMathArh/build/computationalLib/FlameGraph/res
 #          if-no-files-found: warn
 #          include-hidden-files: true
       - name: Run benchmark
         if: success() || failure()
         run: |
-          cd ${GITHUB_WORKSPACE}/build/computationalNode/test
+          cd ${GITHUB_WORKSPACE}/build/computationalLib/test
           ./benchmark
       - name: Save benchmake results
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
           name: bench
-          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/test
+          path: /__w/distributedMathArh/distributedMathArh/build/computationalLib/test
           if-no-files-found: warn
           include-hidden-files: true
