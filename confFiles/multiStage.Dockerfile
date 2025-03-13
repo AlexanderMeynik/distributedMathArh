@@ -9,13 +9,24 @@ RUN apt-get update && \
     apt-get install -y build-essential ninja-build git \
     wget unzip \
     cmake libomp-dev libssl-dev libpq-dev \
-    libjpeg-dev libtiff5 libpng-dev zlib1g-dev  && \
+    libjpeg-dev libtiff5 libpng-dev zlib1g-dev \
+    libjsoncpp-dev  uuid-dev zlib1g-dev && \
     cd /home && \
     mkdir deps && \
     chmod -R 777 deps && \
     cd deps
 
 RUN apt-get install -y libeigen3-dev
+
+RUN  git clone https://github.com/drogonframework/drogon && \
+     cd drogon && \
+     git submodule update --init && \
+     mkdir build && cd build && \
+     cmake -DBUILD_CTL=OFF-BUILD_EXAMPLES=OFF -COZ_PROFILING=OFF .. -G Ninja && \
+     ninja && \
+     ninja install && \
+     ln -s /usr/include/jsoncpp/json/ /usr/include/json
+
 
 RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip && \
     unzip -q gausQuadratureMin.zip && \
