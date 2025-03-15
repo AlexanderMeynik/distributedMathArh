@@ -2,89 +2,79 @@
 
 #include <drogon/HttpController.h>
 #include "computationalLib/math_core/TestRunner.h"
-
+#include <drogon/HttpClient.h>
+#include <drogon/HttpRequest.h>
 
 using namespace drogon;
+//todo move away
+
 
 namespace rest {
     namespace v1 {
-        class AtmqHandler
+
+        enum  class NodeStatus
+        {
+            active,
+            inactive,
+            failed
+
+        };
+
+        const std::unordered_map<const NodeStatus,std::string> mapss
+
+
+                {
+                        {NodeStatus::active,"active"},
+                        {NodeStatus::inactive,"inactive"},
+                        {NodeStatus::failed,"failed"},
+                };
+        //todo template
+        //todo move to utils
+        std::valarray<double> inline parseCont(Json::Value&val)
+        {
+            int size=val["size"].asUInt();
+
+            std::valarray<double> res(size);
+
+            for (int i = 0; i < size; ++i) {
+                res[i]=val["data"][i].asDouble();
+            }
+            return res;
+        }
+        class computationalNode
         {
         public:
-            AtmqHandler()
+            HttpClientPtr httpClient;
+            std::string getPath()
             {
-                cc=std::make_shared<int>(0);
-                con=false;
+                return httpClient->getHost()+":"+std::to_string(httpClient->getPort());
             }
-            bool checkConnection(std::string &ip,std::string&queue)
-            {
-                //todo check where logs are written
-                con= true;
-                LOG_INFO<<"checkConnection\t"<<ip<<'\t'<<queue<<'\n';
-                return con;
-            }
-            bool connect(std::string &ip,std::string&queue)
-            {
-                con= true;
-                LOG_INFO<<"connect\t"<<ip<<'\t'<<queue<<'\n';
-                queues[0]=queue+"1";
-                queues[1]=queue+"2";
+            std::valarray<double> power;//todo spline function
+            NodeStatus st;
 
-                eventLoop=std::jthread([this](std::stop_token stoken) {
-                    //todo listen to queues(from 1 to second)
-                    while (con)
-                    {
-                        sleep(1);
-                        std::stringstream ss;
-                        ss<<std::this_thread::get_id();
-                        LOG_INFO<<ss.str()<<'\t'<<*cc<<'\n';
-                        *cc=*cc+1;
-                    }
-                });
 
-                return true;
-            }
-            void disconenct()
-            {
-                
-                con= false;
-                eventLoop.join();
-                reset();
-                LOG_INFO<<"disconnect\n";
-            }
-            int getC()
-            {
-                return *cc;
-            }
-            void reset()
-            {
-                *cc=0;
-            }
-
-            std::atomic<bool> con;
-            std::array<std::string ,2>queues;//todo chnage to queueq handlers
-            std::jthread eventLoop;
-            std::shared_ptr<int>cc;
-            //maybe store dispatch here.
-            //todo atmqclient
         };
+
         class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
-            std::unordered_map<std::string,std::thread> thrreads;
-            std::shared_ptr<AtmqHandler> handler;
+            std::unordered_map<std::string,computationalNode> clients;
         public:
             ClusterConfigController()
             {
-                handler=std::make_shared<AtmqHandler>();
-            }
+                //client=HttpClient::newHttpClient("http://localhost:8081");
+                //client->get
+
+            }//todo /rebalance
+            //todo ping(measures latencies)?
             using cont=ClusterConfigController;
             METHOD_LIST_BEGIN
-                ADD_METHOD_TO(cont::getStatus, "v2/status", Get);
-                ADD_METHOD_TO(cont::connectHandler, "v2/connect?ip={ip}&name={queue}", Post);
-                ADD_METHOD_TO(cont::disconnectHandler, "v2/disconnect", Post);
+
+                ADD_METHOD_TO(cont::getStatus, "v1/status", Get);
+                ADD_METHOD_TO(cont::connectHandler, "v1/connect?ip={ip}&qip={qip}&name={queue}", Post);
+                ADD_METHOD_TO(cont::disconnectHandler, "v1/disconnect?ip={ip}", Post);
             METHOD_LIST_END
-            void getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) const;
-            void connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, std::string &&ip, std::string&& name) const;
-            void disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+            void getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+            void connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, const std::string &hostPort, const std::string &qip, const std::string &name);
+            void disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, const std::string &hostPort);
         };
     }
 }

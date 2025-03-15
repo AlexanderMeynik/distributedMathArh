@@ -2,49 +2,122 @@
 
 using namespace rest::v1;
 
-void ClusterConfigController::getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) const {
+void ClusterConfigController::getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
     /*auto r=HttpResponse::newHttpResponse();*/
-    Json::Value ret;
-    ret["status"]=handler->con?"running":"not running";
-    ret["cc"]=*(handler->cc);
-    callback(HttpResponse::newHttpJsonResponse(ret));
+
+    Json::Value root;
+
+    int i=0;
+    root["size"]=clients.size();
+    for (auto&[str,node]:clients) {
+        //root["data"][i]=Json::Value();
+        root["data"][i]["host"]=str;
+        root["data"][i]["status"]=mapss.at(node.st);
+        i++;
+    }
+    //todo call all of nodes;
+
+    callback(HttpResponse::newHttpJsonResponse(root));
 
 }
 
 void ClusterConfigController::connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                              std::string&& ip, std::string&& name) const {
+                                             const std::string &hostPort, const std::string &qip, const std::string &name){
 
     Json::Value res;
 
-    res["input"]=ip;
-    res["name"]=name;
-    auto r=HttpResponse::newHttpJsonResponse(res);
-    if(handler->con)
+    if(!clients.count(hostPort))
     {
-        r->setStatusCode(HttpStatusCode::k208AlreadyReported);
+        computationalNode cn;
+        //todo ad https as option
+        cn.httpClient=HttpClient::newHttpClient("http://"+hostPort);
+        cn.st=NodeStatus::inactive;
+        clients[hostPort]=std::move(cn);
+    }
+
+    auto req1=HttpRequest::newHttpRequest();
+
+    req1->setPath("/v1/connect");
+    req1->setParameter("ip",qip);
+    req1->setParameter("name",name);
+    req1->setMethod(Post);
+
+
+    auto [code,resp]=clients[hostPort].httpClient->sendRequest(req1);
+    auto jsonPtr=resp->jsonObject();
+
+
+
+    if(!resp)
+    {
+        res["ip"]=hostPort;
+        res["qip"]=qip;
+        res["qname"]=name;
+        res["message"]="Unable to connect to node";
+        auto r=HttpResponse::newHttpJsonResponse(res);
+        callback(r);
+        return;//todo maybe some guard liek class to handle this
+    }
+    if(resp->getStatusCode()!=HttpStatusCode::k200OK)
+    {
+
+        res["ip"]=hostPort;
+        res["qip"]=qip;
+        res["qname"]=name;
+        res["code"]=resp->getStatusCode();
+        auto r=HttpResponse::newHttpJsonResponse(res);
         callback(r);
         return;
     }
-    handler->connect(ip,name);
+
+    clients[hostPort].power= parseCont((*jsonPtr)["bench"]);
+    res["ip"]=hostPort;
+    res["qip"]=qip;
+    res["qname"]=name;
+    clients[hostPort].st=NodeStatus::active;
+    //res["benchRes"]=pows;//todo ser
+
+    auto r=HttpResponse::newHttpJsonResponse(res);
+
 
     callback(r);
 
 }
 
-void ClusterConfigController::disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+void ClusterConfigController::disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, const std::string &hostPort) {
     Json::Value res;
-    res["request"]="disconnect";
 
-    if(!handler->con)
+    auto req1=HttpRequest::newHttpRequest();
+
+    req1->setPath("/v1/disconnect");
+    req1->setMethod(Post);
+
+    auto ct=HttpClient::newHttpClient(hostPort);
+    auto [code,resp]=clients[hostPort].httpClient->sendRequest(req1);
+
+    if(resp->getStatusCode()!=HttpStatusCode::k200OK)
     {
+        if(!resp->body().empty())//todo use this for conenct if body is empty
+        {
+            res=*resp->getJsonObject();
+        }
+
+        res["ip"]=hostPort;
+        res["code"]=resp->getStatusCode();
+
         auto r=HttpResponse::newHttpJsonResponse(res);
-        r->setStatusCode(HttpStatusCode::k409Conflict);
         callback(r);
         return;
     }
-    res["cc"]=*(handler->cc);
+
+    clients[hostPort].st=NodeStatus::inactive;
+    //todo what to do with http client;
+
+    res=*resp->getJsonObject();
+    res["ip"]=hostPort;
+    res["benchRes"]=pow;
+
     auto r=HttpResponse::newHttpJsonResponse(res);
-    handler->disconenct();
 
 
     callback(r);

@@ -4,9 +4,11 @@
 #include "computationalLib/math_core/TestRunner.h"
 //https://github.com/drogonframework/drogon/wiki/ENG-04-2-Controller-HttpController
 using namespace drogon;
-
+//todo forward results from nodes
 namespace rest {
+
     namespace v1 {
+
         class AtmqHandler
         {
         public:
@@ -22,7 +24,7 @@ namespace rest {
                 LOG_INFO<<"checkConnection\t"<<ip<<'\t'<<queue<<'\n';
                 return con;
             }
-            bool connect(std::string &ip,std::string&queue)
+            bool connect(const std::string &ip,const std::string&queue)
             {
                 con= true;
                 LOG_INFO<<"connect\t"<<ip<<'\t'<<queue<<'\n';
@@ -61,28 +63,52 @@ namespace rest {
             }
 
             std::atomic<bool> con;
-            std::array<std::string ,2>queues;//todo chnage to queueq handlers
+            std::array<std::string ,2>queues;//todo change to queueq handlers
             std::jthread eventLoop;
             std::shared_ptr<int>cc;
             //maybe store dispatch here.
             //todo atmqclient
         };
+        template<typename Iterator>
+        //todo minimal req is bidirectional iterator
+        //todo move near printers in utility(include only json)
+        Json::Value continuousToJson(Iterator s,Iterator e)
+        {
+            Json::Value res;
+            int i=0;
+            for(auto it=s;it!=e;it++)
+            {
+                res["data"][i]=*it;
+                i++;
+            }
+            res["size"]=i;
+            return res;
+        }
+
         class CompNode : public drogon::HttpController<CompNode> {
             std::unordered_map<std::string,std::thread> thrreads;
             std::shared_ptr<AtmqHandler> handler;
+            std::valarray<double> benchRes;//todo double type
+            std::valarray<double>runBench()
+            {
+                return {1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
+            }
         public:
+
             CompNode()
             {
                 handler=std::make_shared<AtmqHandler>();
+                benchRes=runBench();
             }
             using cont=CompNode;
             METHOD_LIST_BEGIN
-                ADD_METHOD_TO(cont::getStatus, "v2/status", Get);
-                ADD_METHOD_TO(cont::connectHandler, "v2/connect?ip={ip}&name={queue}", Post);
-                ADD_METHOD_TO(cont::disconnectHandler, "v2/disconnect", Post);
+            //todo ping(status)
+                ADD_METHOD_TO(cont::getStatus, "v1/status", Get);
+                ADD_METHOD_TO(cont::connectHandler, "v1/connect?ip={ip}&name={queue}", Post);
+                ADD_METHOD_TO(cont::disconnectHandler, "v1/disconnect", Post);
             METHOD_LIST_END
-            void getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) const;
-            void connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, std::string &&ip, std::string&& name) const;
+            void getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+            void connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback, const std::string &ip, const std::string &name);
             void disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
         };
     }
