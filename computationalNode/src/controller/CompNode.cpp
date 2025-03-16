@@ -1,4 +1,5 @@
 #include "controller/CompNode.h"
+#include "common/Printers.h"
 
 using namespace rest::v1;
 
@@ -8,7 +9,7 @@ void CompNode::getStatus(const HttpRequestPtr &req, std::function<void(const Htt
     Json::Value res;
     res["status"] = handler->con ? "running" : "not running";
     res["cc"] = *(handler->cc);
-    res["bench"]= continuousToJson(std::begin(benchRes), std::end(benchRes));
+    res["bench"]= printUtils::continuousToJson(std::begin(benchRes), std::end(benchRes));
     callback(HttpResponse::newHttpJsonResponse(res));
 
 }
@@ -29,7 +30,7 @@ void CompNode::connectHandler(const HttpRequestPtr &req, std::function<void(cons
     }
     handler->connect(ip, name);
 
-    res["bench"]= continuousToJson(std::begin(benchRes), std::end(benchRes));
+    res["bench"]= printUtils::continuousToJson(std::begin(benchRes), std::end(benchRes));
     auto r = HttpResponse::newHttpJsonResponse(res);
     callback(r);
 

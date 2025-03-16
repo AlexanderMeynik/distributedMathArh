@@ -28,19 +28,7 @@ namespace rest {
                         {NodeStatus::inactive,"inactive"},
                         {NodeStatus::failed,"failed"},
                 };
-        //todo template
-        //todo move to utils
-        std::valarray<double> inline parseCont(Json::Value&val)
-        {
-            int size=val["size"].asUInt();
 
-            std::valarray<double> res(size);
-
-            for (int i = 0; i < size; ++i) {
-                res[i]=val["data"][i].asDouble();
-            }
-            return res;
-        }
         class computationalNode
         {
         public:

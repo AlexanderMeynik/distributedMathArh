@@ -69,21 +69,7 @@ namespace rest {
             //maybe store dispatch here.
             //todo atmqclient
         };
-        template<typename Iterator>
-        //todo minimal req is bidirectional iterator
-        //todo move near printers in utility(include only json)
-        Json::Value continuousToJson(Iterator s,Iterator e)
-        {
-            Json::Value res;
-            int i=0;
-            for(auto it=s;it!=e;it++)
-            {
-                res["data"][i]=*it;
-                i++;
-            }
-            res["size"]=i;
-            return res;
-        }
+
 
         class CompNode : public drogon::HttpController<CompNode> {
             std::unordered_map<std::string,std::thread> thrreads;

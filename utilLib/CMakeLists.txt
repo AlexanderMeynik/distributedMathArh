@@ -6,7 +6,6 @@ if(BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 include_directories(include)
 
@@ -20,7 +19,7 @@ file(GLOB common CONFIGURE_DEPENDS
         "lib/common/*.cpp"
 )
 add_library(commonLib ${common})
-target_link_libraries(commonLib PUBLIC Eigen3::Eigen)
+target_link_libraries(commonLib PUBLIC Eigen3::Eigen jsoncpp_lib)
 target_include_directories(commonLib PUBLIC ../mdspan/include)
 target_include_directories(commonLib PUBLIC include)
 

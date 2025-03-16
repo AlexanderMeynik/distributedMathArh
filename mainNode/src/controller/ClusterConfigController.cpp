@@ -1,4 +1,5 @@
 #include "controller/ClusterConfigController.h"
+#include "common/Printers.h"
 
 using namespace rest::v1;
 
@@ -70,7 +71,7 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req, std::fun
         return;
     }
 
-    clients[hostPort].power= parseCont((*jsonPtr)["bench"]);
+    clients[hostPort].power= printUtils::parseCont<std::valarray<double>>((*jsonPtr)["bench"]);
     res["ip"]=hostPort;
     res["qip"]=qip;
     res["qname"]=name;
