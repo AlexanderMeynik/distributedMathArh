@@ -23,7 +23,7 @@ namespace core_intrefaces {
      */
     class DataAcessInteface {
     public:
-        DataAcessInteface() : data_{},properties_{} {
+        DataAcessInteface() : data_{}, properties_{} {
             //optinal_val a;
             //holds_alternative(a)
         }

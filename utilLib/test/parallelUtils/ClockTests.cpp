@@ -1,8 +1,7 @@
-#include "parallelUtils/clockArray.h"
-
+#include "parallelUtils/chronoClock.h"
 #include <gtest/gtest.h>
 
-using timing::chronoClockTemplate;
+using chronoClock::chronoClockTemplate;
 using namespace timing;
 using namespace std::chrono_literals;
 
@@ -25,79 +24,79 @@ protected:
 };
 
 TEST_F(ClockArrayTest, simple_linear_calculation) {
-durationType dd{14};
-auto key = clk.tikLoc();
-SLEEP(dd);
-clk.tak();
-ASSERT_NEAR_REL(dd.count(), clk[key].time, relErr);
+    durationType dd{14};
+    auto key = clk.tikLoc();
+    SLEEP(dd);
+    clk.tak();
+    ASSERT_NEAR_REL(dd.count(), clk[key].time, relErr);
 }
 
 TEST_F(ClockArrayTest, inlined_clocks) {
-durationType dd{20};
-durationType dd2{5};
-auto key1 = clk.tikLoc();
+    durationType dd{20};
+    durationType dd2{5};
+    auto key1 = clk.tikLoc();
 
-locationType key2;
-{
-SLEEP(dd);
-key2 = clk.tikLoc();
-SLEEP(dd2);
-clk.tak();
-}
-clk.tak();
-ASSERT_NEAR_REL(dd.count() + dd2.count(), clk[key1].time, relErr);
-ASSERT_NEAR_REL(dd2.count(), clk[key2].time, relErr);
+    locationType key2;
+    {
+        SLEEP(dd);
+        key2 = clk.tikLoc();
+        SLEEP(dd2);
+        clk.tak();
+    }
+    clk.tak();
+    ASSERT_NEAR_REL(dd.count() + dd2.count(), clk[key1].time, relErr);
+    ASSERT_NEAR_REL(dd2.count(), clk[key2].time, relErr);
 }
 
 
 TEST_F(ClockArrayTest, loop_clock) {
-durationType dd{20};
-constexpr size_t loop_count = 10;
-locationType key;
-for (int i = 0; i < loop_count; ++i) {
-key = clk.tikLoc();
-SLEEP(dd);
-clk.tak();
-}
-ASSERT_NEAR_REL(dd.count() * loop_count, clk[key].time, relErr);
+    durationType dd{20};
+    constexpr size_t loop_count = 10;
+    locationType key;
+    for (int i = 0; i < loop_count; ++i) {
+        key = clk.tikLoc();
+        SLEEP(dd);
+        clk.tak();
+    }
+    ASSERT_NEAR_REL(dd.count() * loop_count, clk[key].time, relErr);
 }
 
 TEST_F(ClockArrayTest, subsequent_section_clock) {
-durationType dd{20};
-durationType dd2{60};
-durationType dd3{12};
-auto pair = clk.tikPair();
-locationType key = pair.second;
-SLEEP(dd);
-clk.tak();
+    durationType dd{20};
+    durationType dd2{60};
+    durationType dd3{12};
+    auto pair = clk.tikPair();
+    locationType key = pair.second;
+    SLEEP(dd);
+    clk.tak();
 
-SLEEP(dd2);
+    SLEEP(dd2);
 
-clk.tik(pair.first);
-SLEEP(dd3);
-clk.tak();
+    clk.tik(pair.first);
+    SLEEP(dd3);
+    clk.tak();
 
-ASSERT_NEAR_REL(dd.count() + dd3.count(), clk[key].time, relErr);
+    ASSERT_NEAR_REL(dd.count() + dd3.count(), clk[key].time, relErr);
 }
 
 
 TEST_F(ClockArrayTest, lambda_function_call) {
-durationType dd{20};
+    durationType dd{20};
 
-locationType key = clk.tikLoc();
+    locationType key = clk.tikLoc();
 
-std::source_location ss;
+    std::source_location ss;
 
-[&]() {
-auto pp = clk.tikPair();
-ss = pp.first;
-key = pp.second;
-SLEEP(dd);
-clk.tak();
-}();
-ASSERT_TRUE(std::string(ss.function_name()).contains(key[0]));
+    [&]() {
+        auto pp = clk.tikPair();
+        ss = pp.first;
+        key = pp.second;
+        SLEEP(dd);
+        clk.tak();
+    }();
+    ASSERT_TRUE(std::string(ss.function_name()).contains(key[0]));
 }
 
 TEST_F(ClockArrayTest, mismatched_tik_tak) {
-ASSERT_THROW(clk.tak(), std::logic_error);
+    ASSERT_THROW(clk.tak(), std::logic_error);
 }

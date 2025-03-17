@@ -15,12 +15,12 @@
 #include "plotUtils/MeshCreator.h"
 #include "common/Printers.h"
 #include "../include/plotingUtils.h"
-#include "common/typeCasts.h"
+#include "common/sharedDeclarations.h"
 
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;
 }
-
+using namespace shared;
 using dipoles::Dipoles;
 using printUtils::printCoordinates2,printUtils::printSolutionFormat1;
 int main(int argc, char *argv[]) {

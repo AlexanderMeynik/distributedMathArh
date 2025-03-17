@@ -11,13 +11,8 @@
 #include <eigen3/Eigen/Core>
 
 
-
-
-
-
 #include "plotUtils/MeshCreator.h"
-#include "common/typeCasts.h"
-#include "parallelUtils/commonDeclarations.h"
+#include "parallelUtils/chronoClock.h"
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
 #include "common/commonTypes.h"
@@ -30,16 +25,13 @@ struct functable {
 };
 //todo clean up all redudndant types
 using namespace printUtils;
-using commonDeclarations::gClk;
+using chronoClock::gClk;
 using commonTypes::FloatType;
-template<typename T>
-using geNsolution = Eigen::Vector<T, Eigen::Dynamic>;
-template<typename T>
-using geNcoordinates = Eigen::Vector<T, Eigen::Dynamic>;
-using solution = geNsolution<FloatType>;
-using coordinates = geNcoordinates<FloatType>;
-template<typename T>
-using dynVec=Eigen::Vector<T,-1>;
+using namespace commonTypes;
+using namespace shared;
+
+using coordinates = EigenVec;
+using solution = EigenVec;
 
 /**
  * @brief testRunner class todo doc
@@ -52,28 +44,7 @@ public:
     TestRunner();
 
     TestRunner(size_t N, size_t Ns, double aRange, std::string dirname = "", std::string subdir = "",
-               state_t state = state_t::openmp_new) {
-        N_ = N;
-        Nsym_ = Ns;
-        aRange_ = aRange;
-        subdir_ = subdir;
-        std::stringstream ss;
-        ss << aRange << ".csv";
-        std::string aStr = ss.str();
-        aStr.erase(std::remove(aStr.begin(), aStr.end(), '+'), aStr.end());
-        std::replace(aStr.begin(), aStr.end(), '-', '_');
-        if (dirname.empty()) {
-            dir_ = "results/" + subdir_.value() + "experiment_N=" + std::to_string(N) +
-                   "_Nsym=" + std::to_string(Nsym_.value()) + "_a=" + aStr + "_mode=" +
-                   stateToString.find(inner_state)->second + "/";
-        } else {
-            dir_ = "results/" + subdir_.value() + dirname;
-        }
-        createSubDirectory(dir_.value(), subdir_.value());
-        solutions_.resize(Nsym_.value());
-        coords_.resize(Nsym_.value());
-        inner_state = state;
-    };
+               state_t state = state_t::openmp_new);
 
 
     template<typename... Args>

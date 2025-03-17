@@ -3,12 +3,10 @@
 
 #include <array>
 #include <ostream>
-#include <chrono>//todo maybe divide chrono impl from this interface
 #include <map>
 #include <stack>
 #include <source_location>
-#include <cassert>//todo only one assert
-#include <thread>//todo used for synchro
+#include <thread>
 #include <concepts>
 
 template<typename T, size_t sz>
@@ -22,27 +20,18 @@ bool operator==(const std::array<T, sz> &arr1, const std::array<T, sz> &arr2) {
 }
 /// timing namespace
 namespace timing {
-    using timepointType = std::chrono::system_clock::time_point;
     using locationType = std::array<std::string, 5>;
 
     /**
-     * @brief Comparator functor arrays
+     * Comparator for locationType
      */
-    struct cmpArr {
-        /* Comparator for arrays
-         * @tparam N
-         * @param a
-         * @param b
-         * @return
-         */
-        template<size_t N>
-        bool operator()(const std::array<std::string, N> &a, const std::array<std::string, N> &b) const {
-            for (int i = 0; i < N; i++) {
-                if (a[i] != b[i])
-                    return b[i] > a[i];
-            }
-            return false;
+    static inline auto cmp = [](const locationType &a, const locationType &b) -> bool {
+        constexpr size_t sz = 5;
+        for (int i = 0; i < sz; i++) {
+            if (a[i] != b[i])
+                return b[i] > a[i];
         }
+        return false;
     };
 
     template<typename OutType, typename inType, inType(*timeGetter)(), locationType (*sourceTypeConverter)(
@@ -50,41 +39,6 @@ namespace timing {
             OutType(*timeConverter)(inType curr, inType prev)> requires std::is_floating_point_v<OutType>
                                                                         or std::is_integral_v<OutType>
     class clockArray;
-
-
-    /**
-     * Formats source location fields for more readability
-     * @param location
-     */
-    locationType getFileState(std::source_location location
-    = std::source_location::current());
-
-
-    /**
-     * Cast timepointType difference to double
-     * @tparam to_dur
-     * @tparam doubleType
-     * @param curr
-     * @param prev
-     * @return
-     */
-    template<typename to_dur = std::milli, typename doubleType>
-    doubleType doubleCastChrono(timepointType curr, timepointType prev) {
-        std::chrono::duration<doubleType, to_dur> ret =
-                std::chrono::duration_cast<std::chrono::duration<doubleType, to_dur>>(curr - prev);
-        return ret.count();
-    }
-
-
-    /**
-     * @tparam chrono_duration_type
-     */
-    template<typename chrono_duration_type=std::milli>
-    using chronoClockTemplate = timing::clockArray<int64_t, timepointType,
-            &std::chrono::high_resolution_clock::now,
-            &getFileState,
-            &doubleCastChrono<chrono_duration_type>>;
-
 
     /**
       * @tparam OutType double type tha will be printed
@@ -202,25 +156,21 @@ namespace timing {
          * @brief adds up all timers from other timer current timer
          * @param other
          */
-        void advance(clockArray&other)
-        {
+        void advance(clockArray &other) {
 
-            for (auto& otherclk:other) {
-                if(this->contains(otherclk.first))
-                {
-                    this->timers[otherclk.first].time+=otherclk.second.time;
-                    this->timers[otherclk.first].count+=otherclk.second.count;
-                }
-                else
-                {
-                    this->timers[otherclk.first]=otherclk.second;
+            for (auto &otherclk: other) {
+                if (this->contains(otherclk.first)) {
+                    this->timers[otherclk.first].time += otherclk.second.time;
+                    this->timers[otherclk.first].count += otherclk.second.count;
+                } else {
+                    this->timers[otherclk.first] = otherclk.second;
                 }
             }
         }
 
     private:
-        std::map<locationType, timeStore, cmpArr> timers;
-        std::map<locationType, inType, cmpArr> startIngTimers;
+        std::map<locationType, timeStore, decltype(cmp)> timers;
+        std::map<locationType, inType, decltype(cmp)> startIngTimers;
         std::stack<locationType> toTak;
 
         static inline std::mutex s_mutex;
@@ -284,7 +234,10 @@ namespace timing {
             std::source_location), OutType (*timeConverter)(inType, inType)>
     requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
     clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::reset() {
-        assert(toTak.empty());
+        if (toTak.empty()) {
+            throw std::logic_error("Missing tak statements for tik ones");
+            //todo serialize
+        }
         this->timers.clear();
         this->startIngTimers.clear();
     }

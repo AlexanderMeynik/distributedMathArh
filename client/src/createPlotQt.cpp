@@ -1,5 +1,5 @@
 #include "plotingUtils.h"
-#include "common/typeCasts.h"
+#include "common/sharedDeclarations.h"
 #include "common/commonTypes.h"
 #include "common/Parsers.h"
 #include "common/Parsers.h"

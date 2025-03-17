@@ -9,7 +9,7 @@
 
 ///dipoles namespace
 namespace dipoles {
-    using namespace commonDeclarations;
+    //using namespace chronoClock;
     using namespace commonTypes;
 
 

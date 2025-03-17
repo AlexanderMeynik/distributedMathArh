@@ -1,5 +1,6 @@
 #include "computationalLib/math_core/TestRunner.h"
 #include "common/Printers.h"
+
 void TestRunner::createSubDirectory(const std::string &dirname, const std::string &subdirectory) {
     if (!std::filesystem::exists("results/")) {
         std::filesystem::create_directory("results/");
@@ -120,18 +121,42 @@ void TestRunner::generateFunction() {
                 result[i][j] /= Nsym_.value();
             }
         }*/
-        result/=Nsym_.value();
+        result /= Nsym_.value();
 
         std::ofstream out1(dir_.value() + "avg.txt");
         out1 << "Значение  целевой функции усреднённой по " << Nsym_.value() << " симуляциям "
              << "для конфигураций, состоящих из " << N_.value() << " диполей\n";
-        mesh.data[2]=result;
-       /* mesh.printDec(out1);
-        mesh.plotSpherical(dir_.value() + "avg.png");*///todo redo
+        mesh.data[2] = result;
+        /* mesh.printDec(out1);
+         mesh.plotSpherical(dir_.value() + "avg.png");*///todo redo
         out1.close();
 
     }
     //clocks_[2].tak();
+}
+
+TestRunner::TestRunner(size_t N, size_t Ns, double aRange, std::string dirname, std::string subdir, state_t state) {
+    N_ = N;
+    Nsym_ = Ns;
+    aRange_ = aRange;
+    subdir_ = subdir;
+    std::stringstream ss;
+    ss << aRange << ".csv";
+    std::string aStr = ss.str();
+    aStr.erase(std::remove(aStr.begin(), aStr.end(), '+'), aStr.end());
+    std::replace(aStr.begin(), aStr.end(), '-', '_');
+    if (dirname.empty()) {
+        dir_ = "results/" + subdir_.value() + "experiment_N=" + std::to_string(N) +
+               "_Nsym=" + std::to_string(Nsym_.value()) + "_a=" + aStr + "_mode=" +
+               stateToString.find(inner_state)->second + "/";
+    } else {
+        dir_ = "results/" + subdir_.value() + dirname;
+    }
+    createSubDirectory(dir_.value(), subdir_.value());
+    solutions_.resize(Nsym_.value());
+    coords_.resize(Nsym_.value());
+    inner_state = state;
+
 }
 
 

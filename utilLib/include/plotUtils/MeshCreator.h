@@ -11,18 +11,16 @@
 #include "common/printUtils.h"
 
 
-
-
 namespace meshStorage {
-    namespace co=commonTypes;
-    using shared::FloatType,shared::params;
+    namespace co = commonTypes;
+    using shared::FloatType, shared::params;
     using printUtils::IosStateScientific;
 
     using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;
     using mdSpanType = Kokkos::mdspan<FloatType, etx>;
 
     template<size_t N>
-    using meshArr=std::array<co::meshStorageType,N>;
+    using meshArr = std::array<co::meshStorageType, N>;
 
     /**
      *
@@ -35,10 +33,10 @@ namespace meshStorage {
      */
     template<unsigned Ndots = 61>
     FloatType inline integrate(const std::function<FloatType(FloatType)> &function,
-                        FloatType left,
-                        FloatType right,
-                        unsigned int max_depth = 5,
-                        FloatType tol =  Eigen::NumTraits<FloatType >::epsilon()) {
+                               FloatType left,
+                               FloatType right,
+                               unsigned int max_depth = 5,
+                               FloatType tol = Eigen::NumTraits<FloatType>::epsilon()) {
         FloatType error;
         double Q = boost::math::quadrature::gauss_kronrod<FloatType, Ndots>::integrate(
                 function,
@@ -66,8 +64,6 @@ namespace meshStorage {
     }
 
 
-
-
     /**
      * @brief Computes functional mesh for 2 coordinates
      * @param a
@@ -75,8 +71,8 @@ namespace meshStorage {
      * @param func
      */
     co::meshStorageType computeFunction(const co::meshStorageType &a,
-                                    const co::meshStorageType &b,
-                                    const co::directionGraph &func);
+                                        const co::meshStorageType &b,
+                                        const co::directionGraph &func);
 
 
     /**
@@ -112,7 +108,7 @@ namespace meshStorage {
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n);
 
 
-    co::meshDrawClass inline unflatten(const co::meshStorageType &mm, const std::array<size_t,2> &numss) {
+    co::meshDrawClass inline unflatten(const co::meshStorageType &mm, const std::array<size_t, 2> &numss) {
         auto res = co::meshDrawClass(numss[0], co::standartVec(numss[1], 0.0));
 
 
@@ -141,74 +137,72 @@ namespace meshStorage {
     }
 
 
-    static const  size_t dimCount=2;
+    static const size_t dimCount = 2;
     static constexpr inline const FloatType rr = 2 * M_PI / params::omega;
 
 
     /**
      * @brief Class that  handles 3d mesh creation and parameters management
      */
-    class MeshCreator
-    {
+    class MeshCreator {
     public:
         //todo designated separated printer for bulk print
-        MeshCreator(): dimensions({7, 25}), limits({0, M_PI_2, 0, M_PI * 2}),
-                       data({std::valarray<FloatType>(dimensions[0]*dimensions[1]),
-                              std::valarray<FloatType>(dimensions[0]*dimensions[1]),
-                              std::valarray<FloatType>(dimensions[0]*dimensions[1])}){
+        MeshCreator() : dimensions({7, 25}), limits({0, M_PI_2, 0, M_PI * 2}),
+                        data({std::valarray<FloatType>(dimensions[0] * dimensions[1]),
+                              std::valarray<FloatType>(dimensions[0] * dimensions[1]),
+                              std::valarray<FloatType>(dimensions[0] * dimensions[1])}) {
         }
 
         void constructMeshes();
-        void constructMeshes(const std::array<size_t,2>& dimenstion)
-        {
-            this->dimensions=dimenstion;
+
+        void constructMeshes(const std::array<size_t, 2> &dimenstion) {
+            this->dimensions = dimenstion;
         }
+
         void constructMeshes(
-                             const std::array<FloatType ,4>& limit)
-        {
-            this->limits=limit;
+                const std::array<FloatType, 4> &limit) {
+            this->limits = limit;
         }
-        void constructMeshes(const std::array<size_t,2>& dimenstion,
-                             const std::array<FloatType ,4>& limit)
-        {
-            this->dimensions=dimenstion;
-            this->limits=limit;
+
+        void constructMeshes(const std::array<size_t, 2> &dimenstion,
+                             const std::array<FloatType, 4> &limit) {
+            this->dimensions = dimenstion;
+            this->limits = limit;
         }
-        friend meshArr<dimCount+1> sphericalTransformation(const MeshCreator&oth);
 
-        void applyFunction(const co::directionGraph&plot);
+        friend meshArr<dimCount + 1> sphericalTransformation(const MeshCreator &oth);
 
-        void applyIntegrate(const co::integrableFunction&func,FloatType a=0,FloatType b=rr)
-        {
-            this->applyFunction([&func, &a,b](FloatType x, FloatType y) {
+        void applyFunction(const co::directionGraph &plot);
+
+        void applyIntegrate(const co::integrableFunction &func, FloatType a = 0, FloatType b = rr) {
+            this->applyFunction([&func, &a, b](FloatType x, FloatType y) {
                 return integrateLambdaForOneVariable<61>(func, y, x, a, b);
             });
 
         }
 
-        std::array<meshStorage::mdSpanType,3> spans;
-        void computeViews(int val=-1);
+        std::array<meshStorage::mdSpanType, 3> spans;
 
-        void plotAndSave(const std::string&filename,const std::function<void(const std::string&filename,const MeshCreator&)>&plotCallback)
-        {
+        void computeViews(int val = -1);
+
+        void plotAndSave(const std::string &filename,
+                         const std::function<void(const std::string &filename, const MeshCreator &)> &plotCallback) {
             plotCallback(filename, *this);
         }
 
-        std::array<size_t,dimCount> dimensions;
-        std::array<FloatType ,dimCount*2> limits;
-        meshArr<dimCount+1> data;
+        std::array<size_t, dimCount> dimensions;
+        std::array<FloatType, dimCount * 2> limits;
+        meshArr<dimCount + 1> data;
     };
 
-    void  printDec(meshStorage::MeshCreator&mmesh,std::ostream &out,int N=std::numeric_limits<FloatType>::digits10-1);
-
-
-
+    void
+    printDec(meshStorage::MeshCreator &mmesh, std::ostream &out, int N = std::numeric_limits<FloatType>::digits10 - 1);
 
 
     template<template<typename ...> typename container, typename T, bool end>
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n) {
 
-        if (n == 0 || lower_bound-upper_bound==0) {
+        if (n == 0 || lower_bound - upper_bound == 0) {
             throw std::invalid_argument("Zero linspace size");
         }
 
@@ -229,7 +223,8 @@ namespace meshStorage {
     }
 
     template<template<typename ...> typename container>
-    std::array<co::meshStorageType, 2> myMeshGrid(const container<co::FloatType> &a, const container<co::FloatType> &b) {
+    std::array<co::meshStorageType, 2>
+    myMeshGrid(const container<co::FloatType> &a, const container<co::FloatType> &b) {
         std::array<co::meshStorageType, 2> ret = {co::meshStorageType(b.size() * a.size()),
                                                   co::meshStorageType(b.size() * a.size())};
 
@@ -247,10 +242,7 @@ namespace meshStorage {
     }
 
 
-
 }
-
-
 
 
 #endif //DIPLOM_MESHCREATOR_H

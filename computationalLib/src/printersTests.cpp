@@ -9,9 +9,9 @@
 
 
 template<typename T>
-concept has_data=requires(T& t)
+concept has_data=requires(T &t)
 {
-    {t.data()}->std::common_with<typename T::value_type*>;
+    { t.data() }->std::common_with<typename T::value_type *>;
 };
 
 /*template< typename T>
@@ -59,47 +59,43 @@ concept HasSizeMethod = requires(T a) {
  * @tparam T
  */
 template<typename T>
-concept isOneDimensionalContinuous = HasBracketOperator<T> && HasSizeMethod < T>;
+concept isOneDimensionalContinuous = HasBracketOperator<T> && HasSizeMethod<T>;
 
 
-
-
-template<typename Container>//todo requires size and [].
+template<typename Container>
+//todo requires size and [].
 requires isOneDimensionalContinuous<Container>
-int printVectorEigen(std::ostream &out, Container &solution_, const Eigen::IOFormat& format = Eigen::IOFormat())
-{
+int printVectorEigen(std::ostream &out, Container &solution_, const Eigen::IOFormat &format = Eigen::IOFormat()) {
 
 
-    Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic>> map(&solution_[0], solution_.size());
+    Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>> map(
+            &solution_[0], solution_.size());
 
-    out<<map.format(format);
+    out << map.format(format);
     return 0;
 }
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-int printMatrixEigen(std::ostream &out, Container &solution_,const std::array<size_t,2>&dims, const Eigen::IOFormat& format = Eigen::IOFormat())
-{
-    Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic,Eigen::Dynamic>> map(&solution_[0], dims[0],dims[1]);
-    out<<map.format(format);
+int printMatrixEigen(std::ostream &out, Container &solution_, const std::array<size_t, 2> &dims,
+                     const Eigen::IOFormat &format = Eigen::IOFormat()) {
+    Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic, Eigen::Dynamic>> map(
+            &solution_[0], dims[0], dims[1]);
+    out << map.format(format);
     return 0;
 }
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic>>
-toEigenVector(Container&container)
-{
-    if(container.size() == 0) {
+Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>
+toEigenVector(Container &container) {
+    if (container.size() == 0) {
         throw std::length_error("Zero input container size!");
     }
 
 
-    Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic>> map(&container[0], container.size());
+    Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>> map(
+            &container[0], container.size());
 
 
     return map;
@@ -107,17 +103,15 @@ toEigenVector(Container&container)
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic>>
-toEigenRowVector(Container&container)
-{
-    if(container.size() == 0) {
+Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>
+toEigenRowVector(Container &container) {
+    if (container.size() == 0) {
         throw std::length_error("Zero input container size!");
     }
 
 
-    Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic>> map(&container[0], container.size());
+    Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>> map(
+            &container[0], container.size());
 
 
     return map;
@@ -125,36 +119,33 @@ toEigenRowVector(Container&container)
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic,Eigen::Dynamic>>
-toEigenMatrix(Container&container, int columns)
-{
-    if(container.size() == 0) {
+Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic, Eigen::Dynamic>>
+toEigenMatrix(Container &container, int columns) {
+    if (container.size() == 0) {
         throw std::length_error("Zero input container size!");
     }
 
-    if(container.size() % columns != 0) {
-        throw std::length_error("Invalid solutions size to columns ratio: container.size() % columns = "+std::to_string(container.size() % columns));
+    if (container.size() % columns != 0) {
+        throw std::length_error("Invalid solutions size to columns ratio: container.size() % columns = " +
+                                std::to_string(container.size() % columns));
     }
-    size_t rows= container.size() / columns;
+    size_t rows = container.size() / columns;
 
 
-    Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic,Eigen::Dynamic>> map(&container[0], rows, columns);
+    Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic, Eigen::Dynamic>> map(
+            &container[0], rows, columns);
 
 
     return map;
 }
-
-
 
 
 namespace printEnums {
     std::array<Eigen::IOFormat, 4> enumTo
-            = {Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "","[","]","","\n")=0,
-               Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "","","","","\n"),
-               Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "\n", "[", "]", "","\n"),
-               Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "\n", "", "", "","\n")
+            = {Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "", "[", "]", "", "\n") = 0,
+                    Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "", "", "", "", "\n"),
+                    Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "\n", "[", "]", "", "\n"),
+                    Eigen::IOFormat(Eigen::StreamPrecision, Eigen::DontAlignCols, "\t", "\n", "", "", "", "\n")
             };
     enum class EigenPrintFormats {//todo remake this format
         BasicOneDimensionalVector = 0,
@@ -173,13 +164,14 @@ namespace printEnums {
 
     };
 
-    Eigen::IOFormat &printEnumToFormat(EigenPrintFormats fmt)
-    {
+    Eigen::IOFormat &printEnumToFormat(EigenPrintFormats fmt) {
         return enumTo[static_cast<size_t>(fmt)];
     }
 }
+
 #include <type_traits>
 #include <limits>
+
 class IosStatePreserve {
 public:
     explicit IosStatePreserve(std::ostream &out) : out_(out) {
@@ -200,55 +192,54 @@ private:
     std::ostream &out_;
 };
 
-class IosStateScientific:public IosStatePreserve
-{
+class IosStateScientific : public IosStatePreserve {
 public:
     using IosStatePreserve::IosStatePreserve;
-    explicit IosStateScientific(std::ostream &out,int precision= std::numeric_limits<double>::max_digits10): IosStatePreserve(out)
-    {
-        std::cout<<std::setprecision(precision)<<std::fixed<<std::scientific;
+
+    explicit IosStateScientific(std::ostream &out, int precision = std::numeric_limits<double>::max_digits10)
+            : IosStatePreserve(out) {
+        std::cout << std::setprecision(precision) << std::fixed << std::scientific;
     }
 };
 
-int main()
-{
+int main() {
     using namespace printEnums;
-    int prec =0;
-    std::cin>>prec;
-    IosStateScientific ioc(std::cout,prec);
+    int prec = 0;
+    std::cin >> prec;
+    IosStateScientific ioc(std::cout, prec);
 
-    std::valarray<double> ss={6.232131313243e-23,6e-23,6e-23,6e-23};
-    std::vector<double> ass ={6.232131313243e-23,6e-23,6e-23,6e-23};
-    std::vector<double> ass2 ={6.232131313243e-23,6e-23,6e-23,1,1,1};
+    std::valarray<double> ss = {6.232131313243e-23, 6e-23, 6e-23, 6e-23};
+    std::vector<double> ass = {6.232131313243e-23, 6e-23, 6e-23, 6e-23};
+    std::vector<double> ass2 = {6.232131313243e-23, 6e-23, 6e-23, 1, 1, 1};
 
-    std::cout<<1.3e-29;
-    std::cout<<"\n\n\n";
-    printVectorEigen(std::cout,ss);
+    std::cout << 1.3e-29;
+    std::cout << "\n\n\n";
+    printVectorEigen(std::cout, ss);
 
-            std::cout<<"\n\n\n";
+    std::cout << "\n\n\n";
 
-    printMatrixEigen(std::cout,ass,{2,2}, printEnumToFormat(EigenPrintFormats::MatrixFormat1));
-    std::cout<<"\n\n\n";
+    printMatrixEigen(std::cout, ass, {2, 2}, printEnumToFormat(EigenPrintFormats::MatrixFormat1));
+    std::cout << "\n\n\n";
     std::cout << toEigenMatrix(ass2, 3).format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
 
-    std::cout<<"\n\n\n";
+    std::cout << "\n\n\n";
     std::cout << toEigenVector(ass2).format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
 
 
-    auto r0= toEigenMatrix(ass2,2);
-    std::cout<<r0.format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
-    std::cout<<r0.format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
+    auto r0 = toEigenMatrix(ass2, 2);
+    std::cout << r0.format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
+    std::cout << r0.format(printEnumToFormat(EigenPrintFormats::MatrixFormat1));
 
-    std::cout<<"\n\n\n";
-    auto rr=toEigenRowVector(ass2);
+    std::cout << "\n\n\n";
+    auto rr = toEigenRowVector(ass2);
     std::cout << rr.format(printEnumToFormat(EigenPrintFormats::VecctorFormat1));
 
 
-    Eigen::Vector<double,6> vec={6.232131313243e-23,6e-23,6e-23,1,1,1};
+    Eigen::Vector<double, 6> vec = {6.232131313243e-23, 6e-23, 6e-23, 1, 1, 1};
     auto rr2 = toEigenVector(vec);
     std::cout << rr.format(printEnumToFormat(EigenPrintFormats::VecctorFormat1));
 
-    int a=0;
+    int a = 0;
 }
 
 

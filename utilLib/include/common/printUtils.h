@@ -4,10 +4,18 @@
 #include <iosfwd>
 #include <limits>
 
-#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/Dense>//todo use froward declaration
 
 /// printUtils namespace
 namespace printUtils {
+
+    /**
+   * Print format function
+   * @param zcFormat
+   * @param ...
+   */
+    std::string vformat(const char *zcFormat, ...);
+
     /**
      * @b A guard class to save current iostream state
      * @d Object of this class stores current iostream state and restores it when it goes out of scope
@@ -52,9 +60,6 @@ namespace printUtils {
     Eigen::IOFormat &printEnumToFormat(EigenPrintFormats fmt);
 
 }
-
-
-
 
 
 #endif //DIPLOM_PRINTUTILS_H

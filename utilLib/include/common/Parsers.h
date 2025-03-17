@@ -42,7 +42,7 @@ namespace printUtils {
     int getConfSize(std::string &filename);
 
     template<typename Container>
-    requires commonDeclarations::HasBracketsNested<Container>
+    requires myConcepts::HasBracketsNested<Container>
     Container parseDipoleCoordinates(const std::string &filename) {
         using val = typename Container::value_type::value_type;
         std::ifstream in(filename);

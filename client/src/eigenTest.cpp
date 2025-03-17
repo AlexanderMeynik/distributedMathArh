@@ -3,12 +3,12 @@
 
 
 
-#include "parallelUtils/commonDeclarations.h"
+#include "parallelUtils/chronoClock.h"
 #include "../include/plotingUtils.h"
 
 auto aRange=1.0e-6;
 
-using commonDeclarations::gClk;
+using chronoClock::gClk;
 
 int main(int argc, char *argv[]) {
     /*int N = 10;

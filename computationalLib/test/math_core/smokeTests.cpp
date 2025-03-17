@@ -2,7 +2,7 @@
 #include <chrono>
 
 
-#include "common/typeCasts.h"
+#include "common/sharedDeclarations.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/commonTypes.h"
 #include "common/Parsers.h"
@@ -11,7 +11,7 @@
 
 
 using namespace commonTypes;
-using namespace commonDeclarations;
+using namespace myConcepts;
 using namespace testCommon;
 using namespace printUtils;
 
@@ -19,15 +19,15 @@ std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
 std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
-
-using coordType=std::vector<std::vector<FloatType >>;
+//todo delete some types
+using coordType = std::vector<std::vector<FloatType >>;
 using meshStorage::MeshCreator;
 using ttype = std::tuple<std::string, std::vector<FloatType>, Parser<matrixType>, Parser<EigenVec>, Parser<MeshCreator>>;
 
-std::vector<ttype> testFixtureGetter(const std::string & file) {
+std::vector<ttype> testFixtureGetter(const std::string &file) {
 
     std::vector<ttype> values;
-    auto avec= parseDipoleCoordinates<coordType>(file);
+    auto avec = parseDipoleCoordinates<coordType>(file);
 
     std::ifstream sols(subdir + "/solutions.txt");
     std::ifstream matrixes(subdir + "/matrixes.txt");
@@ -45,7 +45,7 @@ std::vector<ttype> testFixtureGetter(const std::string & file) {
 
         ttype value;
 
-        auto matr = Parser<matrixType >(NN);
+        auto matr = Parser<matrixType>(NN);
         matrixes >> matr;
 
         auto solvv = Parser<EigenVec>(NN);

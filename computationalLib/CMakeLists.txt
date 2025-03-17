@@ -5,7 +5,7 @@ if (NOT CMAKE_BUILD_TYPE)
 endif ()
 
 
-if(BUILD_TESTS)
+if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
@@ -21,11 +21,9 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/bin)
 
 
-
 file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
         "lib/computationalLib/math_core/*.cpp"
 )
-
 
 
 add_library(math_core_lib ${math_core_files})
@@ -39,6 +37,5 @@ add_library(interfaces_lib ${interfaces_files})
 target_link_libraries(interfaces_lib PUBLIC math_core_lib)
 
 
-
 add_executable(printerssst src/printersTests.cpp)
-target_link_libraries(printerssst PUBLIC  Eigen3::Eigen)
+target_link_libraries(printerssst PUBLIC Eigen3::Eigen)

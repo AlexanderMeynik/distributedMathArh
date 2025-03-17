@@ -2,6 +2,8 @@
 #ifndef DIPLOM_COMMONTYPES_H
 #define DIPLOM_COMMONTYPES_H
 
+/*#define type(t) returnToDataTypeT<t>*/
+
 #include <vector>
 #include <array>
 #include <valarray>
@@ -28,7 +30,7 @@ namespace commonTypes {
     using standartVec = std::vector<FloatType>;
     using standartValarr = std::valarray<FloatType>;
     using meshDrawClass = std::vector<standartVec>;
-    using meshStorageType =std::valarray<FloatType>;
+    using meshStorageType = std::valarray<FloatType>;
 
     /**
      * @brief Type for function thta will be integrated to get directional graph
@@ -61,7 +63,7 @@ namespace commonTypes {
 
     template<>
     struct returnToDataTypeT<returnType::StdValarray> {
-        using type = standartValarr ;
+        using type = standartValarr;
     };
 
     /**

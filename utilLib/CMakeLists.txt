@@ -2,7 +2,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(utilLib)
 
 
-if(BUILD_TESTS)
+if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
@@ -31,12 +31,9 @@ add_library(parallelLib ${parallelUtils})
 target_include_directories(parallelLib PUBLIC include)
 
 
-
-
 file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
         "lib/plotUtils/*.cpp"
 )
-
 
 
 add_library(plotUtilsLib STATIC ${plotUtils})

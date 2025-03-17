@@ -1,7 +1,6 @@
 #include "fileHandler.h"
 /// fileUtils namespace
-namespace fileUtils
-{
+namespace fileUtils {
 
     fs::path getNormalAbs(const fs::path &path) {
         return fs::absolute(path).lexically_normal();
@@ -54,7 +53,7 @@ namespace fileUtils
     }
 
     bool fileHandler::contains(const std::string &filename) {
-        return fileMap.contains(parentPath/filename);
+        return fileMap.contains(parentPath / filename);
     }
 
 

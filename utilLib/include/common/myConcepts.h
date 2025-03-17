@@ -8,7 +8,7 @@
 
 using size_t = decltype(sizeof 1);
 //myconcepts namespace
-namespace commonDeclarations {
+namespace myConcepts {
 
     /**
      * @brief concept to check whether T has value_type
@@ -41,7 +41,7 @@ namespace commonDeclarations {
      * @tparam T
      */
     template<typename T>
-    concept isOneDimensionalContinuous = HasBracketOperator<T> && HasSizeMethod < T>;
+    concept isOneDimensionalContinuous = HasBracketOperator<T> && HasSizeMethod<T>;
 
     /**
      * @brief Concept to check whether type T element have subscript operation
@@ -49,7 +49,6 @@ namespace commonDeclarations {
      */
     template<typename T>
     concept HasBracketsNested = HasBracketOperator<T> && HasBracketOperator<typename T::value_type>;
-
 
 
     /**
@@ -97,20 +96,17 @@ namespace commonDeclarations {
     }
 
     template<typename Container>
-    concept parenthesisOperator = requires(Container Cont,size_t i1,size_t i2)
+    concept parenthesisOperator = requires(Container Cont, size_t i1, size_t i2)
     {
-        {Cont(i1,i2)}->std::common_with<typename  Container::value_type>;
+        { Cont(i1, i2) }->std::common_with<typename Container::value_type>;
     };
 
     template<typename Collection>
-    requires HasBracketsNested<Collection>||parenthesisOperator<Collection>
+    requires HasBracketsNested<Collection> || parenthesisOperator<Collection>
     auto &getMatrElement(const Collection &collection, size_t i1, size_t i2) {
-        if constexpr(parenthesisOperator<Collection>)
-        {
-            return collection(i1,i2);
-        }
-        else
-        {
+        if constexpr (parenthesisOperator<Collection>) {
+            return collection(i1, i2);
+        } else {
             return collection[i1][i2];
         }
     }
@@ -157,8 +153,6 @@ namespace commonDeclarations {
 
         return collection[i1][i2];
     }
-
-
 
 
 }

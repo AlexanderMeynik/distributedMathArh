@@ -10,13 +10,15 @@
 #include <json/json.h>
 #include <valarray>
 #include <concepts>
-#include "common/typeCasts.h"
+#include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
+#include "common/myConcepts.h"
 /// printUtils namespace
 namespace printUtils {
 
-    using commonTypes::FloatType;
+    using shared::FloatType;
     using printUtils::IosStatePreserve, printUtils::IosStateScientific;
+
     template<typename Iterator>
     //todo minimal req is bidirectional iterator
     //todo move near printers in utility(include only json)
@@ -38,14 +40,13 @@ namespace printUtils {
 //todo find and get solutions form
 
     template<typename PrintType>
-    int floatPrinter(std::ostream&out,const PrintType& printee,int N=std::numeric_limits<FloatType>::digits10-1);
-
+    int floatPrinter(std::ostream &out, const PrintType &printee, int N = std::numeric_limits<FloatType>::digits10 - 1);
 
 
     template<typename Container>
-    requires commonDeclarations::isOneDimensionalContinuous<Container> && std::is_floating_point_v<typename Container::value_type>
-    int printSolutionFormat1(std::ostream &out, const Container &solution)
-    {
+    requires myConcepts::isOneDimensionalContinuous<Container> &&
+             std::is_floating_point_v<typename Container::value_type>
+    int printSolutionFormat1(std::ostream &out, const Container &solution) {
         out << "Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
         int N_ = solution.size() / 4.0;
 
@@ -69,15 +70,13 @@ namespace printUtils {
     }
 
 
-
-
-
-
     template<class T>
     void printSolution(std::ostream &out, std::vector<T> &solution_, Eigen::IOFormat format = Eigen::IOFormat()) {
-        Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> map(solution_.data(), solution_.size());//todo copy impl(as template
+        Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> map(solution_.data(),
+                                                         solution_.size());//todo copy impl(as template
         out << "Вектор решения\n" << map.format(format) << "\n";
     }
+
 //todo make this one support all structs
     template<class T>
     void printSolution(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &solution_,
@@ -90,7 +89,7 @@ namespace printUtils {
     void printCoordinates2(std::ostream &out, const Collection &xi) {
         out << "Координаты диполей\n";
 
-        if constexpr (not commonDeclarations::HasBracketsNested<Collection>) {
+        if constexpr (not myConcepts::HasBracketsNested<Collection>) {
             auto N = xi.size() / 2;
             for (int i = 0; i < N; ++i) {
                 out << xi[i] << '\t' << xi[i + N] << "\n";
@@ -102,11 +101,6 @@ namespace printUtils {
             }
         }
     }
-
-
-
-
-
 
 
 }

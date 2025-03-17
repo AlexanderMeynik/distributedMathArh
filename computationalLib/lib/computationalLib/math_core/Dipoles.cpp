@@ -49,15 +49,6 @@ namespace dipoles {
         return matrixx;
     }
 
-    void Dipoles::printMatrix(std::ostream &out, IOFormat &format) {
-        out << "Матрица\n" << getMatrixx().format(format) << "\n\n";
-    }
-
-    void Dipoles::printRightPart(std::ostream &out, IOFormat &format) {
-        out << "Правая часть\n" << this->f.format(format)
-            << "\n\n";
-    }
-
 
     template<>
     Arr2EigenVec Dipoles::solve() {

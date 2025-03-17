@@ -3,7 +3,6 @@ if (BUILD_TESTS)
 endif ()
 
 
-
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/bin)
@@ -22,13 +21,6 @@ file(GLOB_RECURSE httpSources CONFIGURE_DEPENDS
 add_library(servLib ${httpSources})
 target_link_libraries(servLib PUBLIC math_core_lib Drogon::Drogon)
 target_include_directories(servLib PUBLIC include)
-
-
-
-
-
-
-
 
 
 add_executable(compNode main.cpp)
