@@ -1,6 +1,19 @@
 var searchData=
 [
-  ['vals_5f_0',['vals_',['../classParser.html#a5ec203e9d50100e17c72be7e70dfbcdc',1,'Parser::vals_'],['../classParser_3_01Eigen_1_1Vector_3_01T_00_01-1_01_4_01_4.html#ac0b4d8668492d79b9547e7225d0df848',1,'Parser&lt; Eigen::Vector&lt; T, -1 &gt; &gt;::vals_'],['../classParser_3_01std_1_1vector_3_01T_01_4_01_4.html#aa79cb795b22183af8e6b172a57acc93a',1,'Parser&lt; std::vector&lt; T &gt; &gt;::vals_'],['../classParser_3_01Eigen_1_1Matrix_3_01T_00_01Eigen_1_1Dynamic_00_01Eigen_1_1Dynamic_01_4_01_4.html#a97526d5641908edde01442f421e4454d',1,'Parser&lt; Eigen::Matrix&lt; T, Eigen::Dynamic, Eigen::Dynamic &gt; &gt;::vals_'],['../classParser_3_01MeshCreator_01_4.html#a98b4d6469b5e29c6ece37f0aaf1ff95c',1,'Parser&lt; MeshCreator &gt;::vals_']]],
-  ['vectorformat1_1',['VectorFormat1',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393',1,'printUtils']]],
-  ['vformat_2',['vformat',['../namespacecommonDeclarations.html#a159ceff8ceab08e53a15bee138221152',1,'commonDeclarations']]]
+  ['tak_0',['tak',['../classtiming_1_1clockArray.html#a5d7d2d619693531fa3da888470a1a533',1,'timing::clockArray']]],
+  ['testrunner_1',['testrunner',['../classTestRunner.html',1,'TestRunner'],['../classTestRunner.html#adf6d073e739128299841d29a6701d34b',1,'TestRunner::TestRunner()'],['../classTestRunner.html#a2302df5db754f3bb57196e6a579e30e6',1,'TestRunner::TestRunner(size_t N, size_t Ns, double aRange, std::string dirname=&quot;&quot;, std::string subdir=&quot;&quot;, state_t state=state_t::openmp_new)']]],
+  ['testrunner_2eh_2',['TestRunner.h',['../TestRunner_8h.html',1,'']]],
+  ['tik_3',['tik',['../classtiming_1_1clockArray.html#a7c550e7a59b3cfde50c5419d8678137e',1,'timing::clockArray']]],
+  ['tikloc_4',['tikLoc',['../classtiming_1_1clockArray.html#a8140ea1a0960a920081d0302aae9bcf0',1,'timing::clockArray']]],
+  ['tikpair_5',['tikPair',['../classtiming_1_1clockArray.html#a347e3db6fe43ae37042eb457ab13ed21',1,'timing::clockArray']]],
+  ['time_6',['time',['../structtiming_1_1clockArray_1_1timeStore.html#acfbae33ac52237bf11a051eb10125397',1,'timing::clockArray::timeStore']]],
+  ['timepointtype_7',['timepointType',['../namespacetiming.html#ad47b8a9b1a4188a00a64497565b2a95a',1,'timing']]],
+  ['timestore_8',['timeStore',['../structtiming_1_1clockArray_1_1timeStore.html',1,'timing::clockArray']]],
+  ['timing_9',['timing',['../namespacetiming.html',1,'']]],
+  ['toeigenmatrix_10',['toEigenMatrix',['../typeCasts_8h.html#a5d846d6de9b0c3cc95a3ed02588db43b',1,'typeCasts.h']]],
+  ['toeigenrowvector_11',['toEigenRowVector',['../typeCasts_8h.html#a366ad5ae0a53bd4c424b0920d616452f',1,'typeCasts.h']]],
+  ['toeigenvector_12',['toEigenVector',['../typeCasts_8h.html#a83da565cb67038cc8dc12a1a5de460d6',1,'typeCasts.h']]],
+  ['twodvecdifference_13',['twoDVecDifference',['../classdipoles_1_1Dipoles.html#a3fb91d6420369059d58e06c573ed430c',1,'dipoles::Dipoles']]],
+  ['type_14',['type',['../namespacecommonTypes.html#a739d934654d72366024c21d1438d8752',1,'commonTypes::returnToDataTypeT&lt; returnType::ArrayEigenVectors &gt;::type'],['../namespacecommonTypes.html#a1b97b1fc54e9fb1a04ce03ba405c079e',1,'commonTypes::returnToDataTypeT&lt; returnType::EigenVector &gt;::type'],['../namespacecommonTypes.html#a4cb34057a2e2023530f24b60105296fa',1,'commonTypes::returnToDataTypeT&lt; returnType::StdVector &gt;::type'],['../namespacecommonTypes.html#a642f028d2ca7178c59b25d0dd29af586',1,'commonTypes::returnToDataTypeT&lt; returnType::StdValarray &gt;::type']]],
+  ['typecasts_2eh_15',['typeCasts.h',['../typeCasts_8h.html',1,'']]]
 ];

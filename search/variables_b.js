@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['properties_5f_0',['properties_',['../classcore__intrefaces_1_1DataAcessInteface.html#a606ed3725a203c81a9a590ac0fad7a88',1,'core_intrefaces::DataAcessInteface']]]
+  ['omega_0',['omega',['../structshared_1_1params.html#a00d01412ad84793663797eb6b3a2d48f',1,'shared::params']]],
+  ['omega0_1',['omega0',['../structshared_1_1params.html#a05ebc1a3edd1c9afd6f9430a71e8c641',1,'shared::params']]]
 ];

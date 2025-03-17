@@ -7,6 +7,7 @@ var namespaces_dup =
     [ "generators", "namespacegenerators.html", "namespacegenerators" ],
     [ "meshStorage", "namespacemeshStorage.html", "namespacemeshStorage" ],
     [ "printUtils", "namespaceprintUtils.html", "namespaceprintUtils" ],
+    [ "rest", "namespacerest.html", "namespacerest" ],
     [ "shared", "namespaceshared.html", "namespaceshared" ],
     [ "timing", "namespacetiming.html", "namespacetiming" ]
 ];

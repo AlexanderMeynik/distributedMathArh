@@ -24,6 +24,14 @@ var annotated_dup =
       [ "IosStatePreserve", "classprintUtils_1_1IosStatePreserve.html", "classprintUtils_1_1IosStatePreserve" ],
       [ "IosStateScientific", "classprintUtils_1_1IosStateScientific.html", "classprintUtils_1_1IosStateScientific" ]
     ] ],
+    [ "rest", "namespacerest.html", [
+      [ "v1", "namespacerest_1_1v1.html", [
+        [ "AtmqHandler", "classrest_1_1v1_1_1AtmqHandler.html", "classrest_1_1v1_1_1AtmqHandler" ],
+        [ "ClusterConfigController", "classrest_1_1v1_1_1ClusterConfigController.html", "classrest_1_1v1_1_1ClusterConfigController" ],
+        [ "CompNode", "classrest_1_1v1_1_1CompNode.html", "classrest_1_1v1_1_1CompNode" ],
+        [ "computationalNode", "classrest_1_1v1_1_1computationalNode.html", "classrest_1_1v1_1_1computationalNode" ]
+      ] ]
+    ] ],
     [ "shared", "namespaceshared.html", [
       [ "params", "structshared_1_1params.html", null ]
     ] ],
@@ -31,6 +39,7 @@ var annotated_dup =
       [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ],
       [ "cmpArr", "structtiming_1_1cmpArr.html", "structtiming_1_1cmpArr" ]
     ] ],
+    [ "CompNodeService", "classCompNodeService.html", "classCompNodeService" ],
     [ "functable", "TestRunner_8h.html#structfunctable", "TestRunner_8h_structfunctable" ],
     [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ],
     [ "Parser", "classParser.html", "classParser" ],

@@ -1,10 +1,14 @@
-<map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/dipolesCommon.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalNode/include/computationalLib/math_core/dipolesCommon.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="79,5,297,89"/>
-<area shape="rect" id="Node000002" href="$Dipoles_8h.html" title=" " alt="" coords="79,137,297,221"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,103,191,137,185,137,185,103"/>
-<area shape="rect" id="Node000003" href="$TestRunner_8h.html" title=" " alt="" coords="5,269,224,353"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="161,235,140,270,136,268,156,232"/>
-<area shape="rect" id="Node000004" href="$math__core_8h.html" title=" " alt="" coords="79,401,297,485"/>
-<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="225,233,239,269,246,311,239,354,218,402,213,400,233,353,240,311,233,270,220,235"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="147,364,167,400,162,402,142,367"/>
+<map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/math_core/dipolesCommon.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/math_core/dipolesCommon.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="144,5,432,75"/>
+<area shape="rect" id="Node000002" href="$Dipoles_8h.html" title=" " alt="" coords="144,123,432,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="291,89,291,122,285,122,285,89"/>
+<area shape="rect" id="Node000003" href="$TestRunner_8h.html" title=" " alt="" coords="259,240,547,309"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="333,200,371,238,367,242,330,204"/>
+<area shape="rect" id="Node000004" href="$math__core_8h.html" title=" " alt="" coords="5,357,293,427"/>
+<area shape="poly" id="edge6_Node000002_Node000004" title=" " alt="" coords="263,205,172,359,167,356,259,203"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="318,317,224,360,222,355,315,313"/>
+<area shape="rect" id="Node000005" href="$CompNode_8h.html" title=" " alt="" coords="317,357,536,427"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="415,322,422,357,417,358,410,323"/>
+<area shape="rect" id="Node000006" href="$ClusterConfigController_8h.html" title=" " alt="" coords="560,357,779,427"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="494,312,592,355,590,360,492,317"/>
 </map>

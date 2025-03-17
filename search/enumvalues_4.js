@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['new_5f_0',['new_',['../typeCasts_8h.html#aa0aafed44fec19806d8f9ad834be1248a06435e9584009a1324c904ad359dcdba',1,'typeCasts.h']]]
+  ['inactive_0',['inactive',['../namespacerest_1_1v1.html#ac74ebdc70e658f1751df360ffa548efea19d3894f53ce79c3f836f26cf8a3be3b',1,'rest::v1']]]
 ];

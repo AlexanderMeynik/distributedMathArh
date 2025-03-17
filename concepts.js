@@ -10,5 +10,8 @@ var concepts =
       [ "RowCol", "conceptcommonDeclarations_1_1RowCol.html", null ],
       [ "parenthesisOperator", "conceptcommonDeclarations_1_1parenthesisOperator.html", null ],
       [ "printable", "conceptcommonDeclarations_1_1printable.html", null ]
+    ] ],
+    [ "printUtils", "namespaceprintUtils.html", [
+      [ "continuousStruct", "conceptprintUtils_1_1continuousStruct.html", null ]
     ] ]
 ];

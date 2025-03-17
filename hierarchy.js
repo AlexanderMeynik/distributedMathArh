@@ -1,11 +1,21 @@
 var hierarchy =
 [
+    [ "rest::v1::AtmqHandler", "classrest_1_1v1_1_1AtmqHandler.html", null ],
     [ "timing::clockArray< OutType, inType, timeGetter, sourceTypeConverter, timeConverter >", "classtiming_1_1clockArray.html", null ],
     [ "timing::cmpArr", "structtiming_1_1cmpArr.html", null ],
+    [ "rest::v1::computationalNode", "classrest_1_1v1_1_1computationalNode.html", null ],
     [ "core_intrefaces::DataAcessInteface", "classcore__intrefaces_1_1DataAcessInteface.html", null ],
     [ "dipoles::Dipoles", "classdipoles_1_1Dipoles.html", null ],
     [ "functable< Args >", "TestRunner_8h.html#structfunctable", null ],
     [ "generators::generator< randomDevice >", "structgenerators_1_1generator.html", null ],
+    [ "drogon::HttpController", null, [
+      [ "rest::v1::ClusterConfigController", "classrest_1_1v1_1_1ClusterConfigController.html", null ],
+      [ "rest::v1::CompNode", "classrest_1_1v1_1_1CompNode.html", null ]
+    ] ],
+    [ "drogon::HttpSimpleController", null, [
+      [ "CompNodeService", "classCompNodeService.html", null ],
+      [ "CompNodeService", "classCompNodeService.html", null ]
+    ] ],
     [ "printUtils::IosStatePreserve", "classprintUtils_1_1IosStatePreserve.html", [
       [ "printUtils::IosStateScientific", "classprintUtils_1_1IosStateScientific.html", null ]
     ] ],
