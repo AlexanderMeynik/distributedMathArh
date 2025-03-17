@@ -1,9 +1,11 @@
 #include "plotingUtils.h"
 #include "common/typeCasts.h"
 #include "common/commonTypes.h"
-#include "iolib/Parsers.h"
+#include "common/Parsers.h"
+#include "common/Parsers.h"
 #include "MeshPlot.h"
 using namespace commonTypes;
+using namespace printUtils;//todo do betetr
 static inline std::string res_dir_path = "../../../res/";
 static inline std::string filename = res_dir_path.append("config.txt");
 static inline std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";

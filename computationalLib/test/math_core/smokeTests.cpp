@@ -5,7 +5,7 @@
 #include "common/typeCasts.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/commonTypes.h"
-#include "iolib/Parsers.h"
+#include "common/Parsers.h"
 
 #include "../GoogleCommon.h"
 
@@ -13,7 +13,7 @@
 using namespace commonTypes;
 using namespace commonDeclarations;
 using namespace testCommon;
-
+using namespace printUtils;
 
 std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");

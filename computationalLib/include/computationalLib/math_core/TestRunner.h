@@ -29,6 +29,7 @@ struct functable {
     const char *name;
 };
 //todo clean up all redudndant types
+using namespace printUtils;
 using commonDeclarations::gClk;
 using commonTypes::FloatType;
 template<typename T>

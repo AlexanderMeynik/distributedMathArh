@@ -13,7 +13,7 @@
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/Generator.h"
 #include "plotUtils/MeshCreator.h"
-#include "iolib/Printers.h"
+#include "common/Printers.h"
 #include "../include/plotingUtils.h"
 #include "common/typeCasts.h"
 
@@ -22,7 +22,7 @@ std::string getString(const std::string &dirname, std::string &&name, int i, std
 }
 
 using dipoles::Dipoles;
-
+using printUtils::printCoordinates2,printUtils::printSolutionFormat1;
 int main(int argc, char *argv[]) {
     int N = 5;
     int Nsym = 1000;

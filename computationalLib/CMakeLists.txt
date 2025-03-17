@@ -38,14 +38,6 @@ file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
 add_library(interfaces_lib ${interfaces_files})
 target_link_libraries(interfaces_lib PUBLIC math_core_lib)
 
-file(GLOB_RECURSE iolib_files CONFIGURE_DEPENDS
-        "lib/iolib/*cpp"
-)
-add_library(io_lib ${iolib_files})
-target_link_libraries(io_lib PUBLIC commonLib)
-target_include_directories(io_lib PUBLIC include)
-
-
 
 
 add_executable(printerssst src/printersTests.cpp)

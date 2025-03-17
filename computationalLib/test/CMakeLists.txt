@@ -10,14 +10,14 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 
 add_executable(core_Tests math_core/smokeTests.cpp math_core/dipoleCommonTests.cpp ../../utilLib/test/plotUtils/meshProcessorTests.cpp)
 target_link_libraries(core_Tests gtest gtest_main)
-target_link_libraries(core_Tests math_core_lib io_lib plotUtilsLib)
+target_link_libraries(core_Tests math_core_lib plotUtilsLib)
 target_compile_options(core_Tests PUBLIC -coverage)
 target_link_options(core_Tests PUBLIC -coverage -fprofile-arcs -ftest-coverage)
 
 
 
 add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)#this one can be stored separately from all packages
-target_link_libraries(benchmark math_core_lib io_lib plotUtilsLib)
+target_link_libraries(benchmark math_core_lib plotUtilsLib)
 
 if(OpenMP_CXX_FOUND)
     target_link_libraries(benchmark OpenMP::OpenMP_CXX )
