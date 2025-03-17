@@ -46,7 +46,7 @@ HIDE_IN_BODY_DOCS = YES
 
 SHOW_HEADERFILE = NO
 
-INPUT = ../../computationalNode/include ../../utilLib/include ../../client/include md
+INPUT = ../../computationalNode/include ../../computationalLib/include ../../mainNode/include ../../utilLib/include ../../client/include md
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
