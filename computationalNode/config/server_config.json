@@ -1,0 +1,30 @@
+{
+  "app": {
+    "number_of_threads": 1,
+    "document_root": "./",
+    "upload_path": "./",
+    "file_types": [],
+    "locations": [],
+    "max_connections": 100000,
+    "load_dynamic_views": false,
+    "log": {
+      "use_spdlog": false,
+      "log_path": "./",
+
+      "logfile_base_name": "muLogs",
+      "log_size_limit": 100000000,
+      "max_files": 10,
+      "display_local_time": true,
+      "log_level": "INFO"
+    },
+    "use_sendfile": false,
+    "use_gzip": false,
+    "use_brotli": false,
+    "static_files_cache_time": -1,
+    "idle_connection_timeout": 60,
+    "client_max_body_size": "10M",
+    "client_max_memory_body_size": "1M",
+    "enable_server_header": false,
+    "enable_date_header": true
+  }
+}

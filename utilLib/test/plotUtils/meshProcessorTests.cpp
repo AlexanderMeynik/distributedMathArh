@@ -3,7 +3,7 @@
 
 #include "plotUtils/MeshCreator.h"
 #include "common/commonTypes.h"
-#include "../../../computationalNode/test/GoogleCommon.h"
+#include "../../computationalLib/test/GoogleCommon.h"
 
 #include <gtest/gtest.h>
 

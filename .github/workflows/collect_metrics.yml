@@ -24,13 +24,13 @@ jobs:
           metrix++ collect --db-file=source.db --exclude-files ".*test.*" \
           --std.code.filelines.total --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once \
           --std.code.filelines.comments --std.code.filelines.code --std.code.todo.comments --std.general.procerrors  \
-          -- ../computationalNode/ ../server/ ../utilLib/
+          -- ../computationalLib/ ../computationalNode/ ../mainNode/ ../utilLib/
           
           metrix++ collect --db-file=wtests.db \
           --std.code.filelines.total --std.code.complexity.cyclomatic \
           --std.code.complexity.cyclomatic_switch_case_once --std.code.filelines.comments \
           --std.code.filelines.code --std.code.todo.comments --std.general.procerrors \
-          -- ../computationalNode/ ../server/ ../utilLib/
+          -- ../computationalLib/ ../computationalNode/ ../mainNode/ ../utilLib/
 
           
           metrix++ view --db-file=source.db > source.txt
