@@ -24,9 +24,6 @@ endif (BUILD_DOC)
 add_subdirectory(utilLib)
 add_subdirectory(computationalLib)
 
-
-
-
 if(Drogon_FOUND)
     add_subdirectory(computationalNode)
 else ()

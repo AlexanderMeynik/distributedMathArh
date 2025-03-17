@@ -28,7 +28,7 @@ namespace rest {
                         {NodeStatus::inactive,"inactive"},
                         {NodeStatus::failed,"failed"},
                 };
-
+      
         class computationalNode
         {
         public:
