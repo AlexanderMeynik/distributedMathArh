@@ -8,33 +8,18 @@
 #include <tuple>
 
 #include "common/sharedDeclarations.h"
+#include "common/printUtils.h"
 #include "fileHandler.h"
 #include "parallelUtils/chronoClock.h"
 
 /// benchUtils namespace
 namespace benchUtils {
     namespace fu = fileUtils;
+    using printUtils::tupleToString;
 
     template<typename ratio=std::milli>
     using clockType = chronoClock::chronoClockTemplate<ratio>;
 
-
-
-
-    //todo duplicated function Google common 81
-    /**
-     * @brief Prints tuple to string
-     * @tparam TupleT
-     * @tparam TupSize
-     * @param tp
-     * @param delim - is printed after each tuple element
-     * @param left - is printed before all tuple elements
-     * @param right  - is printed after all tuple elements
-     */
-    template<typename TupleT, std::size_t TupSize = std::tuple_size_v<TupleT>>
-    std::string tupleToString(const TupleT &tp,
-                              const char *delim = ",", const char *left = "(",
-                              const char *right = ")");
 
     /**
      * @brief Compile time function to compute cartessian product for arbitrary number of arrays
@@ -130,22 +115,6 @@ namespace benchUtils {
         clk1 clkArr;
         size_t mul;
     };
-
-    template<typename TupleT, std::size_t TupSize>
-    std::string tupleToString(const TupleT &tp,
-                              const char *delim, const char *left,
-                              const char *right) {
-        return []<typename TupleTy, std::size_t... Is>(const TupleTy &tp, const char *delim, const char *left,
-                                                       const char *right, std::index_sequence<Is...>) -> std::string {
-            std::stringstream res;
-            res << left;
-
-            (..., (res << (Is == 0 ? "" : delim) << get<Is>(tp)));
-
-            res << right;
-            return res.str();
-        }.operator()(tp, delim, left, right, std::make_index_sequence<TupSize>{});
-    }
 
 
     template<typename range>

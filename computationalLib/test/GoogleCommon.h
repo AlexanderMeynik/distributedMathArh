@@ -7,6 +7,7 @@
 #include <gtest/gtest.h>
 #include "common/myConcepts.h"
 #include "common/sharedDeclarations.h"
+#include "common/printUtils.h"
 
 using namespace myConcepts;
 using shared::FloatType;
@@ -42,49 +43,13 @@ namespace testCommon {
 
 
     /**
-     * @brief
-     * @tparam TupType
-     * @tparam I
-     * @param out
-     * @param _tup
-     * @param delim
-     * @param start
-     * @param end
-     */
-    template<class TupType, size_t... I>
-    void printImpl(std::ostream &out, const TupType &_tup, std::index_sequence<I...>, const char *delim = ", ",
-                   const char *start = "(", const char *end = ")") {
-        out << start;
-        (..., (out << (I == 0 ? "" : delim) << std::get<I>(_tup)));
-        out << end;
-    }
-
-    /**
-     * @brief Pritns tuple contents to out with given delimeter and start and end symbols
-     * @tparam T
-     * @param out
-     * @param _tup
-     * @param delim
-     * @param start
-     * @param end
-     */
-    template<class... T>
-    void print(std::ostream &out, const std::tuple<T...> &_tup, const char *delim = ", ", const char *start = "(",
-               const char *end = ")") {
-        printImpl(out, _tup, std::make_index_sequence<sizeof...(T)>(), delim, start, end);
-    }
-
-    /**
      * @brief converts tuple to string with _ as a delimiter
      * @tparam TestSuite
      * @param info
      */
     template<typename TestSuite>
     auto tupleToString(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
-        std::stringstream result;
-        print(result, info.param, "_", "", "");
-
-        return result.str();
+        return printUtils::tupleToString(info.param,"_","","");
     }
 
     /**

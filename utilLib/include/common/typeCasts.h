@@ -11,8 +11,7 @@
 using myConcepts::isOneDimensionalContinuous;
 
 
-//todo array<coll,2>->vector or matrix(2 columns)
-
+//todo test implementations
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
 Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>
@@ -29,6 +28,7 @@ Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>
 toEigenMatrix(Container &container, int columns);
 
 
+//todo remove(testing type casts)
 template<class T>
 std::array<std::vector<T>, 2> reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> &xi) {
     auto N = xi.size() / 2;

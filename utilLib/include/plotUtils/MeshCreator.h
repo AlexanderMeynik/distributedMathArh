@@ -10,7 +10,7 @@
 #include "common/commonTypes.h"
 #include "common/printUtils.h"
 
-
+//todo move to utils?
 namespace meshStorage {
     namespace co = commonTypes;
     using shared::FloatType, shared::params;
@@ -146,7 +146,6 @@ namespace meshStorage {
      */
     class MeshCreator {
     public:
-        //todo designated separated printer for bulk print
         MeshCreator() : dimensions({7, 25}), limits({0, M_PI_2, 0, M_PI * 2}),
                         data({std::valarray<FloatType>(dimensions[0] * dimensions[1]),
                               std::valarray<FloatType>(dimensions[0] * dimensions[1]),

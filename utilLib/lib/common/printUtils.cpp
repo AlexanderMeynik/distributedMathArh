@@ -46,6 +46,27 @@ namespace printUtils {
         return enumTo[static_cast<size_t>(fmt)];
     }
 
+    std::ostream &operator<<(std::ostream &out, const ioFormat &form) {
+        auto it=std::find_if(stringToIoFormat.begin(), stringToIoFormat.end(), [&form](const auto &item) {
+            return item.second==form;
+        });
+
+        out<<it->first<<'\n';
+        return out;
+    }
+
+
+    std::istream &operator>>(std::istream &in, ioFormat &form) {
+        std::string a;
+        in>>a;
+        if(!stringToIoFormat.count(a))
+        {
+            throw invalidOption<std::string>(std::move(a));
+        }
+        form=stringToIoFormat.at(a);
+        return in;
+    }
+
     IosStateScientific::IosStateScientific(std::ostream &out, int precision) : IosStatePreserve(out) {
         out << std::setprecision(precision) << std::fixed << std::scientific;
     }

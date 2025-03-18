@@ -2,7 +2,7 @@
 
 #ifndef DATA_DEDUPLICATION_SERVICE_PRINTERS_H
 #define DATA_DEDUPLICATION_SERVICE_PRINTERS_H
-
+//https://chat.deepseek.com/a/chat/s/f8c98b84-4982-46cd-900a-8e24ed042dee
 
 #include <limits>
 
@@ -16,20 +16,30 @@
 /// printUtils namespace
 namespace printUtils {
 
+
+
+
     using shared::FloatType;
     using printUtils::IosStatePreserve, printUtils::IosStateScientific;
 
-    template<typename Iterator>
-    //todo minimal req is bidirectional iterator
-    //todo move near printers in utility(include only json)
-    Json::Value continuousToJson(Iterator s, Iterator e) {
+    /*class MeshCreator {//in comp node?
+    public:
+        //todo designated separated printer for bulk print*/
+
+    /**
+     * @b Cast any one dimensional array to Json::value
+     * @tparam Struct
+     * @param a
+     * @returns Json::Value with serialized array
+     */
+    template<myConcepts::isOneDimensionalContinuous Struct>
+    Json::Value continuousToJson(const Struct&a) {
         Json::Value res;
-        int i = 0;
-        for (auto it = s; it != e; it++) {
-            res["data"][i] = *it;
-            i++;
+        res["size"] = a.size();
+        for (size_t i = 0; i <= a.size(); i++) {
+            res["data"][(Json::ArrayIndex)i] = a[i];
         }
-        res["size"] = i;
+
         return res;
     }
 
@@ -70,7 +80,7 @@ namespace printUtils {
     }
 
 
-    template<class T>
+    /*template<class T>
     void printSolution(std::ostream &out, std::vector<T> &solution_, Eigen::IOFormat format = Eigen::IOFormat()) {
         Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> map(solution_.data(),
                                                          solution_.size());//todo copy impl(as template
@@ -82,7 +92,7 @@ namespace printUtils {
     void printSolution(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &solution_,
                        Eigen::IOFormat format = Eigen::IOFormat()) {
         out << "Вектор решения\n" << solution_.format(format) << "\n";
-    }
+    }*/
 
 
     template<typename Collection>

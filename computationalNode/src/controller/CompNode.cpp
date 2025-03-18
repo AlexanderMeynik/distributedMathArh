@@ -10,7 +10,7 @@ void CompNode::getStatus(const HttpRequestPtr &req, std::function<void(const Htt
     res["status"] = handler->con ? "running" : "not running";
     res["cc"] = *(handler->cc);
 
-    res["bench"] = printUtils::continuousToJson(std::begin(benchRes), std::end(benchRes));
+    res["bench"] = printUtils::continuousToJson(benchRes);
 
     callback(HttpResponse::newHttpJsonResponse(res));
 
@@ -31,7 +31,7 @@ void CompNode::connectHandler(const HttpRequestPtr &req, std::function<void(cons
         return;
     }
     handler->connect(ip, name);
-    res["bench"] = printUtils::continuousToJson(std::begin(benchRes), std::end(benchRes));
+    res["bench"] = printUtils::continuousToJson(benchRes);
     auto r = HttpResponse::newHttpJsonResponse(res);
     callback(r);
 

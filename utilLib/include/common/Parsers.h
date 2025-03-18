@@ -18,14 +18,9 @@
 /// printUtils namespace
 namespace printUtils {
 
-//todo move to  concepts(if needed)
-    template<typename Struct>
-    concept continuousStruct=requires(Struct s)
-    {
-        requires std::random_access_iterator<decltype(std::begin(s))>;
-    };
+    using myConcepts::isOneDimensionalContinuous;
 
-    template<continuousStruct Struct>
+    template<isOneDimensionalContinuous Struct>
     Struct parseCont(Json::Value &val) {
         int size = val["size"].asUInt();
 
@@ -44,6 +39,7 @@ namespace printUtils {
     template<typename Container>
     requires myConcepts::HasBracketsNested<Container>
     Container parseDipoleCoordinates(const std::string &filename) {
+        //todo think about more viable configurations transfer
         using val = typename Container::value_type::value_type;
         std::ifstream in(filename);
         char c = parseChar(in);
