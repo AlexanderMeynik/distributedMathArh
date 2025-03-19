@@ -20,6 +20,12 @@ namespace printUtils {
 
     using myConcepts::isOneDimensionalContinuous;
 
+    /**
+     * @brief Parse one dimensional array from json
+     * @tparam Struct
+     * @param val
+     * @return
+     */
     template<isOneDimensionalContinuous Struct>
     Struct parseCont(Json::Value &val) {
         int size = val["size"].asUInt();
@@ -32,9 +38,43 @@ namespace printUtils {
         return res;
     }
 
+
+    /**
+     * @brief Parse one dimensional array from provided istream
+     * @tparam Struct
+     * @param val
+     * @return
+     */
+    template<isOneDimensionalContinuous Struct>
+    Struct parseOneDim(std::istream &in,long vecSize=-1,const EFormat& ef=EFormat()) {
+        if(vecSize==-1)
+        {
+            in>>vecSize;
+        }
+        //todo check range
+        //todo read EFormat(can reproduce parsing?)
+
+        Struct res(vecSize);
+
+
+        for (size_t i = 0; i < vecSize; ++i) {
+            in>>res[i];
+        }
+        return res;
+    }
+
+    /**
+     * @brief Parses mesh creator from provided istream
+     * @param in
+     * @param ef
+     * @return
+     */
+    meshStorage::MeshCreator parseFrom(std::istream &in,const EFormat& ef=EFormat());
+
     char parseChar(std::istream &in);
 
     int getConfSize(std::string &filename);
+
 
     template<typename Container>
     requires myConcepts::HasBracketsNested<Container>

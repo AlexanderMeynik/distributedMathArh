@@ -147,9 +147,9 @@ namespace meshStorage {
     class MeshCreator {
     public:
         MeshCreator() : dimensions({7, 25}), limits({0, M_PI_2, 0, M_PI * 2}),
-                        data({std::valarray<FloatType>(dimensions[0] * dimensions[1]),
-                              std::valarray<FloatType>(dimensions[0] * dimensions[1]),
-                              std::valarray<FloatType>(dimensions[0] * dimensions[1])}) {
+                        data({co::meshStorageType(dimensions[0] * dimensions[1]),
+                              co::meshStorageType(dimensions[0] * dimensions[1]),
+                              co::meshStorageType(dimensions[0] * dimensions[1])}) {
         }
 
         void constructMeshes();

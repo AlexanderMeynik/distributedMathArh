@@ -94,7 +94,7 @@ namespace meshStorage {
 
         for (size_t i = 0; i < ext1; ++i) {
             auto phi = mmesh.spans[0][std::array{0UL, i}];
-            out << (phi, 5) << "\t";
+            out << phi << "\t";
             for (size_t j = 0; j < ext0 - 1; ++j) {
                 out << mmesh.spans[2][std::array{j, i}] << "\t";
             }

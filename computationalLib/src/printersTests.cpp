@@ -7,6 +7,7 @@
 
 #include <concepts>
 #include "common/Printers.h"
+#include "common/Parsers.h"
 
 using namespace printUtils;
 
@@ -64,7 +65,16 @@ int main() {
                          return a*b-a;
                      });
 
+    std::stringstream sstr;
     printMesh(mm,std::cout);
+    printMesh(mm,sstr);
+    //todo print serializtion type(into vec with io format(if it exist than dont read))
 
-    printMesh(mm,std::cout,ioFormat::HumanReadable);
+    auto new_mesh= parseFrom(sstr);
+
+    std::cout<<'\n';
+    printMesh(new_mesh,std::cout);
+    //todo move array equal checks
+
+    //printMesh(mm,std::cout,ioFormat::HumanReadable);
 }
