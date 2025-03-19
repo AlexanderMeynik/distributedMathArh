@@ -23,7 +23,7 @@ int printMatrixEigen(std::ostream &out, const Container &solution_, const std::a
 
 
 
-
+DEFINE_EXCEPTION(lessException,"{}<{}",int,int)
 
 int main() {
     int prec = 0;
@@ -35,11 +35,25 @@ int main() {
     const std::vector<double> asap = {6.232131313243e-23, 6e-23, 6e-23, 6e-23};
     std::vector<double> ass2 = {6.232131313243e-23, 6e-23, 6e-23, 1, 1, 1};
 
-
+    //todo does this suppord array of 2 vecs
+    //if yes can we somehow cast array<vecs> to one eigen vec
     printCoordinates(std::cout,ss);
     printCoordinates(std::cout,ss2);
 
 
     printCoordinates(std::cout,ss,ioFormat::HumanReadable);
     printSolution(std::cout,ss,ioFormat::HumanReadable);
+    std::cout<<continuousToJson(ss).toStyledString();
+
+
+    std::cout<<toEigenMatrix(ss,1).format(EIGENF(EigenPrintFormats::MatrixFormat1));
+
+    try {
+        //throw InvalidOption(std::string{"ss"});
+        throw  lessException(1,2);
+    }
+    catch (std::logic_error&ll)
+    {
+        std::cout<<ll.what()<<'\n';
+    }
 }

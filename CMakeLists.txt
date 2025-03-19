@@ -11,7 +11,7 @@ find_package(Qt6)
 find_package(Matplot++)
 find_package(jsoncpp)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
-
+find_package(fmt REQUIRED)
 
 option(BUILD_TESTS "Build tests" ON)
 

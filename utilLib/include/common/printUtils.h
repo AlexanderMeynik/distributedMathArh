@@ -7,21 +7,18 @@
 #include <iosfwd>
 #include <limits>
 
-#include <eigen3/Eigen/Dense>//todo use froward declaration
+#include <eigen3/Eigen/Dense>
 #include <unordered_map>
 #include <vector>
+#include "common/errorHandling.h"
+//#include <fmt/format.h>
 
 /// printUtils namespace
 namespace printUtils {
+
+    DEFINE_EXCEPTION(InvalidOption,"Option {} does not exist!",const std::string&);
+
     using EFormat = Eigen::IOFormat;
-
-    /**
-   * Print format function
-   * @param zcFormat
-   * @param ...
-   */
-    std::string vformat(const char *zcFormat, ...);
-
 
     /**
      * @brief Prints tuple to string
@@ -50,39 +47,11 @@ namespace printUtils {
     std::pair<bool, std::vector<std::string>> verboseTupCompare(const TupleT &tp, const TupleT2 *tp2);
 
 
-    template<typename ...Args>
-    class parametrizedException : std::exception {
-    public:
-        parametrizedException(Args &&... args) {
-            params = {std::forward<Args>(args)...};
-
-            message = "Exception params " + tupleToString(params);
-        }
-
-        virtual const char *what() const noexcept {
-            return message.data();
-        };
-
-        auto getParams() {
-            return params;
-        }
-
-        bool operator==(const parametrizedException<Args...> &second) {
-            return verboseTupCompare(this->params, second.params).first;
-        }
-
-    private:
-        std::tuple<Args...> params;
-        std::string message;
-    };
-
-    template<class T>
-    using invalidOption = parametrizedException<T>;
 
 
     /**
-     * @b A guard class to save current iostream state
-     * @d Object of this class stores current iostream state and restores it when it goes out of scope
+     * @brief A guard class to save current iostream state
+     * @details Object of this class stores current iostream state and restores it when it goes out of scope
      */
     class IosStatePreserve {
     public:
@@ -98,7 +67,7 @@ namespace printUtils {
     };
 
     /**
-     * @b Sets iostream precision to a fixed value after saving it's state
+     * @brief Sets iostream precision to a fixed value after saving it's state
      */
     class IosStateScientific : public IosStatePreserve {
     public:
@@ -168,10 +137,12 @@ namespace printUtils {
         Serializable,
         HumanReadable
     };
+    #define FORMAT_OPT(NAME)  { #NAME,  ioFormat::NAME}
 
     static const std::unordered_map<std::string, ioFormat> stringToIoFormat =
-            {{"Serializable",  ioFormat::Serializable},
-             {"HumanReadable", ioFormat::HumanReadable}};
+            {FORMAT_OPT(Serializable),
+             FORMAT_OPT(HumanReadable)
+             /*{"HumanReadable", ioFormat::HumanReadable}*/};
 
     std::ostream &operator<<(std::ostream &out, const ioFormat &form);
 

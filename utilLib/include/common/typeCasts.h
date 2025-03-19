@@ -14,20 +14,17 @@ using myConcepts::isOneDimensionalContinuous;
 //todo test implementations
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-        auto
-/*Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>*/
-toEigenVector(Container &container);
+auto toEigenVector(Container &container);
 
 
+
+template<typename Container>
+requires isOneDimensionalContinuous<Container>
+auto toEigenRowVector(Container &container);
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
 auto
-toEigenRowVector(Container &container);
-
-template<typename Container>
-requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic, Eigen::Dynamic>>
 toEigenMatrix(Container &container, int columns);
 
 
@@ -99,24 +96,32 @@ toEigenRowVector(Container &container) {
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic, Eigen::Dynamic>>
+auto
 toEigenMatrix(Container &container, int columns) {
+
+    using Scalar = std::remove_reference_t<typename Container::value_type>;
+    using DataPtr = decltype(&container[0]);
+
+    constexpr bool is_const = std::is_const_v<std::remove_pointer_t<DataPtr>>;
+
+    using EigenMatrix = Eigen::Matrix<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic, Eigen::Dynamic>;
+    using MapType = std::conditional_t<is_const,
+            Eigen::Map<const EigenMatrix>,
+            Eigen::Map<EigenMatrix>
+    >;
+
     if (container.size() == 0) {
         throw std::length_error("Zero input container size!");
     }
 
     if (container.size() % columns != 0) {
-        throw std::length_error("Invalid solutions size to columns ratio: container.size() % columns = " +
+        throw std::length_error("Invalid container to columns mod: container.size() % columns = " +
                                 std::to_string(container.size() % columns));
     }
     size_t rows = container.size() / columns;
 
 
-    Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic, Eigen::Dynamic>> map(
-            &container[0], rows, columns);
-
-
-    return map;
+    return MapType (&container[0], rows, columns);
 }
 
 #endif //MAGISTER1_LIB_H

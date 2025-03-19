@@ -10,7 +10,6 @@
 #include "common/commonTypes.h"
 #include "common/printUtils.h"
 
-//todo move to utils?
 namespace meshStorage {
     namespace co = commonTypes;
     using shared::FloatType, shared::params;

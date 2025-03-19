@@ -11,10 +11,9 @@
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
 #include "common/typeCasts.h"
+
 /// printUtils namespace
 namespace printUtils {
-
-
 
 
     using shared::FloatType;
@@ -31,19 +30,55 @@ namespace printUtils {
      * @returns Json::Value with serialized array
      */
     template<myConcepts::isOneDimensionalContinuous Struct>
-    Json::Value continuousToJson(const Struct&a) {
+    Json::Value continuousToJson(const Struct &a);
+
+
+    template<typename Container>
+    requires myConcepts::isOneDimensionalContinuous<Container> &&
+             std::is_floating_point_v<typename Container::value_type>
+    int printSolutionFormat1(std::ostream &out, const Container &solution);
+
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void inline oneDimSerialize(std::ostream &out, const Collection &xi, const EFormat &eigenForm = EFormat()) {
+        auto map = toEigenRowVector(xi);
+        out << xi.size() << '\n';
+        out << map.format(eigenForm);
+    }
+
+    template<typename Collection>
+    void printCoordinates2(std::ostream &out, const Collection &xi);
+
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void printCoordinates(std::ostream &out, const Collection &xi, ioFormat format = ioFormat::Serializable,
+                          const EFormat &eigenForm = EIGENF(EigenPrintFormats::BasicOneDimensionalVector));
+
+
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void printSolution(std::ostream &out, const Collection &sol, ioFormat format = ioFormat::Serializable,
+                       const EFormat &eigenForm = EIGENF(EigenPrintFormats::BasicOneDimensionalVector));
+
+
+}
+
+namespace printUtils {
+
+
+    template<myConcepts::isOneDimensionalContinuous Struct>
+    Json::Value continuousToJson(const Struct &a) {
         Json::Value res;
-        //todo precision test
         res["size"] = a.size();
-        for (size_t i = 0; i <= a.size(); i++) {
-            res["data"][(Json::ArrayIndex)i] = a[i];
+        for (size_t i = 0; i < a.size(); i++) {
+            res["data"][(Json::ArrayIndex) i] = a[i];
         }
 
         return res;
     }
-
-
-
 
 
     template<typename Container>
@@ -70,14 +105,6 @@ namespace printUtils {
         return 0;
     }
 
-    template<typename Collection>
-    requires myConcepts::isOneDimensionalContinuous<Collection> &&
-             std::is_floating_point_v<typename Collection::value_type>
-    void inline oneDimSerialize(std::ostream &out, const Collection &xi,const EFormat &eigenForm=EFormat()) {
-        auto map= toEigenRowVector(xi);
-        out<<xi.size()<<'\n';
-        out<<map.format(eigenForm);
-    }
 
     template<typename Collection>
     void printCoordinates2(std::ostream &out, const Collection &xi) {
@@ -96,11 +123,30 @@ namespace printUtils {
         }
     }
 
+
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    void printCoordinates(std::ostream &out, const Collection &xi,ioFormat format=ioFormat::Serializable,
-                          const EFormat &eigenForm=EIGENF(EigenPrintFormats::BasicOneDimensionalVector)) {
+    void printSolution(std::ostream &out, const Collection &sol, ioFormat format,
+                       const EFormat &eigenForm) {
+        switch (format) {
+            case ioFormat::Serializable:
+                oneDimSerialize(out, sol, eigenForm);
+                break;
+            case ioFormat::HumanReadable: {
+                IosStateScientific iosStateScientific(out, out.precision());
+                printSolutionFormat1(out, sol);
+            }
+                break;
+        }
+    }
+
+
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void printCoordinates(std::ostream &out, const Collection &xi, ioFormat format,
+                          const EFormat &eigenForm) {
         switch (format) {
             case ioFormat::Serializable:
                 oneDimSerialize(out, xi, eigenForm);
@@ -112,27 +158,6 @@ namespace printUtils {
                 break;
         }
     }
-
-
-    template<typename Collection>
-    requires myConcepts::isOneDimensionalContinuous<Collection> &&
-             std::is_floating_point_v<typename Collection::value_type>
-    void printSolution(std::ostream &out, const Collection &sol,ioFormat format=ioFormat::Serializable,
-                       const EFormat &eigenForm=EIGENF(EigenPrintFormats::BasicOneDimensionalVector)) {
-        switch (format) {
-            case ioFormat::Serializable:
-                oneDimSerialize(out, sol,  eigenForm);
-                break;
-            case ioFormat::HumanReadable: {
-                IosStateScientific iosStateScientific(out, out.precision());
-                printSolutionFormat1(out, sol);
-            }
-            break;
-        }
-    }
-
-
-
 
 }
 
