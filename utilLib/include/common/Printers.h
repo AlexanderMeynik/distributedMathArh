@@ -8,11 +8,9 @@
 
 
 #include <json/json.h>
-#include <valarray>
-#include <concepts>
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
-#include "common/myConcepts.h"
+#include "common/typeCasts.h"
 /// printUtils namespace
 namespace printUtils {
 
@@ -35,6 +33,7 @@ namespace printUtils {
     template<myConcepts::isOneDimensionalContinuous Struct>
     Json::Value continuousToJson(const Struct&a) {
         Json::Value res;
+        //todo precision test
         res["size"] = a.size();
         for (size_t i = 0; i <= a.size(); i++) {
             res["data"][(Json::ArrayIndex)i] = a[i];
@@ -45,12 +44,6 @@ namespace printUtils {
 
 
 
-//todo printer for vectors,
-//todo printer for matrix
-//todo find and get solutions form
-
-    template<typename PrintType>
-    int floatPrinter(std::ostream &out, const PrintType &printee, int N = std::numeric_limits<FloatType>::digits10 - 1);
 
 
     template<typename Container>
@@ -65,8 +58,6 @@ namespace printUtils {
                            solution[2 * i + 2 * N_] * solution[2 * i + 2 * N_]);
             auto cy = sqrt(solution[2 * i + 1] * solution[2 * i + 1] +
                            solution[2 * i + 1 + 2 * N_] * solution[2 * i + 1 + 2 * N_]);
-            IosStatePreserve state(out);
-            out << std::scientific;
 
             out << solution[2 * i] << "\t"
                 << solution[2 * i + 2 * N_] << "\t"
@@ -79,21 +70,14 @@ namespace printUtils {
         return 0;
     }
 
-
-    /*template<class T>
-    void printSolution(std::ostream &out, std::vector<T> &solution_, Eigen::IOFormat format = Eigen::IOFormat()) {
-        Eigen::Map<Eigen::Vector<T, Eigen::Dynamic>> map(solution_.data(),
-                                                         solution_.size());//todo copy impl(as template
-        out << "Вектор решения\n" << map.format(format) << "\n";
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void inline oneDimSerialize(std::ostream &out, const Collection &xi,const EFormat &eigenForm=EFormat()) {
+        auto map= toEigenRowVector(xi);
+        out<<xi.size()<<'\n';
+        out<<map.format(eigenForm);
     }
-
-//todo make this one support all structs
-    template<class T>
-    void printSolution(std::ostream &out, Eigen::Vector<T, Eigen::Dynamic> &solution_,
-                       Eigen::IOFormat format = Eigen::IOFormat()) {
-        out << "Вектор решения\n" << solution_.format(format) << "\n";
-    }*/
-
 
     template<typename Collection>
     void printCoordinates2(std::ostream &out, const Collection &xi) {
@@ -111,6 +95,43 @@ namespace printUtils {
             }
         }
     }
+
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void printCoordinates(std::ostream &out, const Collection &xi,ioFormat format=ioFormat::Serializable,
+                          const EFormat &eigenForm=EIGENF(EigenPrintFormats::BasicOneDimensionalVector)) {
+        switch (format) {
+            case ioFormat::Serializable:
+                oneDimSerialize(out, xi, eigenForm);
+                break;
+            case ioFormat::HumanReadable: {
+                IosStateScientific iosStateScientific(out, out.precision());
+                printCoordinates2(out, xi);
+            }
+                break;
+        }
+    }
+
+
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void printSolution(std::ostream &out, const Collection &sol,ioFormat format=ioFormat::Serializable,
+                       const EFormat &eigenForm=EIGENF(EigenPrintFormats::BasicOneDimensionalVector)) {
+        switch (format) {
+            case ioFormat::Serializable:
+                oneDimSerialize(out, sol,  eigenForm);
+                break;
+            case ioFormat::HumanReadable: {
+                IosStateScientific iosStateScientific(out, out.precision());
+                printSolutionFormat1(out, sol);
+            }
+            break;
+        }
+    }
+
+
 
 
 }

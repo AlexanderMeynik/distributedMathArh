@@ -14,12 +14,15 @@ using myConcepts::isOneDimensionalContinuous;
 //todo test implementations
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>
+        auto
+/*Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>*/
 toEigenVector(Container &container);
+
+
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>
+auto
 toEigenRowVector(Container &container);
 
 template<typename Container>
@@ -48,34 +51,50 @@ std::array<std::vector<T>, 2> reinterpretVector(Eigen::Vector<T, Eigen::Dynamic>
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>
+auto
 toEigenVector(Container &container) {
+    using Scalar = std::remove_reference_t<typename Container::value_type>;
+    using DataPtr = decltype(&container[0]);
+
+    constexpr bool is_const = std::is_const_v<std::remove_pointer_t<DataPtr>>;
+
+    using EigenVector = Eigen::Vector<Scalar, Eigen::Dynamic>;
+    using MapType = std::conditional_t<is_const,
+            Eigen::Map<const EigenVector>,
+            Eigen::Map<EigenVector>
+    >;
+
     if (container.size() == 0) {
         throw std::length_error("Zero input container size!");
     }
 
-
-    Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>> map(
-            &container[0], container.size());
-
-
-    return map;
+    return MapType(&container[0], container.size());
 }
+
+
+
 
 template<typename Container>
 requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>>
+auto
 toEigenRowVector(Container &container) {
+
+    using Scalar = std::remove_reference_t<typename Container::value_type>;
+    using DataPtr = decltype(&container[0]);
+
+    constexpr bool is_const = std::is_const_v<std::remove_pointer_t<DataPtr>>;
+
+    using EigenVector = Eigen::RowVector<Scalar, Eigen::Dynamic>;
+    using MapType = std::conditional_t<is_const,
+            Eigen::Map<const EigenVector>,
+            Eigen::Map<EigenVector>
+    >;
+
     if (container.size() == 0) {
         throw std::length_error("Zero input container size!");
     }
 
-
-    Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>, Eigen::Dynamic>> map(
-            &container[0], container.size());
-
-
-    return map;
+    return MapType(&container[0], container.size());
 }
 
 template<typename Container>
