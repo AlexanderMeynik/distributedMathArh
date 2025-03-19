@@ -3,6 +3,7 @@
 #define DATA_DEDUPLICATION_SERVICE_PRINTUTILS_H
 
 #define EIGENF(form) enumTo.at(static_cast<size_t>(form))
+#define FORMAT_OPT(NAME)  { #NAME,  ioFormat::NAME}
 
 #include <iosfwd>
 #include <limits>
@@ -35,21 +36,6 @@ namespace printUtils {
                               const char *right = ")");
 
     /**
-     * @brief Compares 2 tuples and return the verbose output result
-     * @tparam TupleT
-     * @tparam TupleT2
-     * @param tp First tuple
-     * @param tp2 Second tuple
-     */
-    //todo use expected
-    template<typename TupleT, typename TupleT2>
-    requires (std::tuple_size_v<TupleT> == std::tuple_size_v<TupleT2>)
-    std::pair<bool, std::vector<std::string>> verboseTupCompare(const TupleT &tp, const TupleT2 *tp2);
-
-
-
-
-    /**
      * @brief A guard class to save current iostream state
      * @details Object of this class stores current iostream state and restores it when it goes out of scope
      */
@@ -76,52 +62,10 @@ namespace printUtils {
         explicit IosStateScientific(std::ostream &out, long precision = std::numeric_limits<double>::max_digits10);
     };
 
-    static const std::array<EFormat, 4> enumTo = {{
-                                                                  // Format 0: Matrix with row enclosures "[...]"
-                                                                  EFormat(
-                                                                          Eigen::StreamPrecision,  // Precision
-                                                                          Eigen::DontAlignCols,    // Flags (no column alignment)
-                                                                          ",",                    // Coefficient separator (between elements in a row)
-                                                                          "",                      // Row separator (between rows)
-                                                                          "[",                     // Row prefix
-                                                                          "]",                     // Row suffix
-                                                                          "",                      // Matrix prefix
-                                                                          "\n"                     // Matrix suffix
-                                                                  ),
-                                                                  // Format 1: Simple space-separated values
-                                                                  EFormat(
-                                                                          Eigen::StreamPrecision,
-                                                                          Eigen::DontAlignCols,
-                                                                          "\t",
-                                                                          "",
-                                                                          "",
-                                                                          "",
-                                                                          "",
-                                                                          "\n"
-                                                                  ),
-                                                                  // Format 2: Row-enclosed with newline separators
-                                                                  EFormat(
-                                                                          Eigen::StreamPrecision,
-                                                                          Eigen::DontAlignCols,
-                                                                          "\t",
-                                                                          "\n",
-                                                                          "[",
-                                                                          "]",
-                                                                          "",
-                                                                          "\n"
-                                                                  ),
-                                                                  // Format 3: Newline-separated rows
-                                                                  EFormat(
-                                                                          Eigen::StreamPrecision,
-                                                                          Eigen::DontAlignCols,
-                                                                          "\t",
-                                                                          "\n",
-                                                                          "",
-                                                                          "",
-                                                                          "",
-                                                                          "\n"
-                                                                  )
-                                                          }};
+    /**
+     * @brief Eformat lookup Table
+     */
+    extern const std::array<EFormat, 4> enumTo;
     enum class EigenPrintFormats {
         BasicOneDimensionalVector = 0,
         VectorFormat1,
@@ -130,19 +74,27 @@ namespace printUtils {
     };
 
 
+    /**
+     * @brief Casts EigenFormat to Eformat
+     * @param fmt
+     */
     const EFormat &printEnumToFormat(EigenPrintFormats fmt);
 
+
+    /**
+     * @brief General IOformat
+     */
 
     enum class ioFormat {
         Serializable,
         HumanReadable
     };
-    #define FORMAT_OPT(NAME)  { #NAME,  ioFormat::NAME}
 
     static const std::unordered_map<std::string, ioFormat> stringToIoFormat =
-            {FORMAT_OPT(Serializable),
-             FORMAT_OPT(HumanReadable)
-             /*{"HumanReadable", ioFormat::HumanReadable}*/};
+            {
+            FORMAT_OPT(Serializable),
+            FORMAT_OPT(HumanReadable)
+            };
 
     std::ostream &operator<<(std::ostream &out, const ioFormat &form);
 
@@ -165,22 +117,7 @@ namespace printUtils {
         }.operator()(tp, delim, left, right, std::make_index_sequence<TupSize>{});
     }
 
-    template<typename TupleT, typename TupleT2>
-    requires (std::tuple_size_v<TupleT> == std::tuple_size_v<TupleT2>)
-    std::pair<bool, std::vector<std::string>> verboseTupCompare(const TupleT &tp, const TupleT2 *tp2) {
-        std::pair<bool, std::vector<std::string>> pp = {true, {}};
-        constexpr auto tS = std::tuple_size_v<TupleT>;
-        for (size_t i = 0; i < tS; ++i) {
-            if (get<i>(tp) != get<i>(tp2))//todo will this work?
-            {
-                pp.second.push_back(std::to_string(get<i>(tp)) + "!=" + get<i>(tp2));
-                pp.first = false;
-            }
-        }
 
-
-        return pp;
-    }
 
 
 }

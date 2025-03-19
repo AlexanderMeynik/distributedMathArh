@@ -5,6 +5,53 @@
 
 namespace printUtils {
 
+    const std::array<EFormat, 4> enumTo=
+            {{
+                     // Format 0: Matrix with row enclosures "[...]"
+                     EFormat(
+                             Eigen::StreamPrecision,  // Precision
+                             Eigen::DontAlignCols,    // Flags (no column alignment)
+                             ",",                    // Coefficient separator (between elements in a row)
+                             "",                      // Row separator (between rows)
+                             "[",                     // Row prefix
+                             "]",                     // Row suffix
+                             "",                      // Matrix prefix
+                             "\n"                     // Matrix suffix
+                     ),
+                     // Format 1: Simple space-separated values
+                     EFormat(
+                             Eigen::StreamPrecision,
+                             Eigen::DontAlignCols,
+                             "\t",
+                             "",
+                             "",
+                             "",
+                             "",
+                             "\n"
+                     ),
+                     // Format 2: Row-enclosed with newline separators
+                     EFormat(
+                             Eigen::StreamPrecision,
+                             Eigen::DontAlignCols,
+                             "\t",
+                             "\n",
+                             "[",
+                             "]",
+                             "",
+                             "\n"
+                     ),
+                     // Format 3: Newline-separated rows
+                     EFormat(
+                             Eigen::StreamPrecision,
+                             Eigen::DontAlignCols,
+                             "\t",
+                             "\n",
+                             "",
+                             "",
+                             "",
+                             "\n"
+                     )
+             }};
     IosStatePreserve::IosStatePreserve(std::ostream &out) : out_(out) {
         flags_ = out.flags();
     }

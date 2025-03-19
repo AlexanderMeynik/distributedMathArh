@@ -6,12 +6,11 @@
 
 #include <limits>
 
-
 #include <json/json.h>
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
 #include "common/typeCasts.h"
-
+#include "plotUtils/MeshCreator.h"
 /// printUtils namespace
 namespace printUtils {
 
@@ -19,12 +18,12 @@ namespace printUtils {
     using shared::FloatType;
     using printUtils::IosStatePreserve, printUtils::IosStateScientific;
 
-    /*class MeshCreator {//in comp node?
-    public:
-        //todo designated separated printer for bulk print*/
+    using meshStorage::MeshCreator;
+    void printMesh(const MeshCreator&mesh,std::ostream &out,const ioFormat&form=ioFormat::Serializable,
+               const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
     /**
-     * @b Cast any one dimensional array to Json::value
+     * @brief Cast any one dimensional array to Json::value
      * @tparam Struct
      * @param a
      * @returns Json::Value with serialized array
@@ -32,12 +31,13 @@ namespace printUtils {
     template<myConcepts::isOneDimensionalContinuous Struct>
     Json::Value continuousToJson(const Struct &a);
 
-
-    template<typename Container>
-    requires myConcepts::isOneDimensionalContinuous<Container> &&
-             std::is_floating_point_v<typename Container::value_type>
-    int printSolutionFormat1(std::ostream &out, const Container &solution);
-
+    /**
+     * @brief Prints one dimensional Collection using Eigen format
+     * @tparam Collection
+     * @param out
+     * @param xi
+     * @param eigenForm
+     */
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
@@ -47,22 +47,55 @@ namespace printUtils {
         out << map.format(eigenForm);
     }
 
-    template<typename Collection>
-    void printCoordinates2(std::ostream &out, const Collection &xi);
-
+    /**
+     * @brief Human readable way to print solution vector
+     * @tparam Collection
+     * @param out
+     * @param solution
+     * @return
+     */
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    void printCoordinates(std::ostream &out, const Collection &xi, ioFormat format = ioFormat::Serializable,
+    int printSolutionFormat1(std::ostream &out, const Collection &solution);
+
+    /**
+     * @brief Human readable way to print coordinates vector
+     * @tparam Collection
+     * @param out
+     * @param xi
+     */
+    template<typename Collection>
+    void printCoordinates2(std::ostream &out, const Collection &xi);
+
+    /**
+     * @brief Basic interface for printing coordinates
+     * @tparam Collection
+     * @param out
+     * @param coord
+     * @param format
+     * @param eigenForm
+     */
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    void printCoordinates(std::ostream &out, const Collection &coord, ioFormat format = ioFormat::Serializable,
                           const EFormat &eigenForm = EIGENF(EigenPrintFormats::BasicOneDimensionalVector));
 
 
+    /**
+     * @brief Basic interface for printing solution
+     * @tparam Collection
+     * @param out
+     * @param coord
+     * @param format
+     * @param eigenForm
+     */
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
     void printSolution(std::ostream &out, const Collection &sol, ioFormat format = ioFormat::Serializable,
                        const EFormat &eigenForm = EIGENF(EigenPrintFormats::BasicOneDimensionalVector));
-
 
 }
 
@@ -81,10 +114,10 @@ namespace printUtils {
     }
 
 
-    template<typename Container>
-    requires myConcepts::isOneDimensionalContinuous<Container> &&
-             std::is_floating_point_v<typename Container::value_type>
-    int printSolutionFormat1(std::ostream &out, const Container &solution) {
+    template<typename Collection>
+    requires myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>
+    int printSolutionFormat1(std::ostream &out, const Collection &solution) {
         out << "Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
         int N_ = solution.size() / 4.0;
 
@@ -136,29 +169,28 @@ namespace printUtils {
             case ioFormat::HumanReadable: {
                 IosStateScientific iosStateScientific(out, out.precision());
                 printSolutionFormat1(out, sol);
-            }
                 break;
+            }
         }
     }
 
 
     template<typename Collection>
-    requires myConcepts::isOneDimensionalContinuous<Collection> &&
-             std::is_floating_point_v<typename Collection::value_type>
-    void printCoordinates(std::ostream &out, const Collection &xi, ioFormat format,
+    requires (myConcepts::isOneDimensionalContinuous<Collection> &&
+             std::is_floating_point_v<typename Collection::value_type>)
+    void printCoordinates(std::ostream &out, const Collection &coord, ioFormat format,
                           const EFormat &eigenForm) {
         switch (format) {
             case ioFormat::Serializable:
-                oneDimSerialize(out, xi, eigenForm);
+                oneDimSerialize(out, coord, eigenForm);
                 break;
             case ioFormat::HumanReadable: {
                 IosStateScientific iosStateScientific(out, out.precision());
-                printCoordinates2(out, xi);
-            }
+                printCoordinates2(out, coord);
                 break;
+            }
         }
     }
-
 }
 
 

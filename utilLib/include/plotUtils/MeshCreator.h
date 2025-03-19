@@ -10,6 +10,7 @@
 #include "common/commonTypes.h"
 #include "common/printUtils.h"
 
+/// meshStorage namespace
 namespace meshStorage {
     namespace co = commonTypes;
     using shared::FloatType, shared::params;
@@ -166,6 +167,7 @@ namespace meshStorage {
                              const std::array<FloatType, 4> &limit) {
             this->dimensions = dimenstion;
             this->limits = limit;
+            constructMeshes();
         }
 
         friend meshArr<dimCount + 1> sphericalTransformation(const MeshCreator &oth);
@@ -193,8 +195,7 @@ namespace meshStorage {
         meshArr<dimCount + 1> data;
     };
 
-    void
-    printDec(meshStorage::MeshCreator &mmesh, std::ostream &out, int N = std::numeric_limits<FloatType>::digits10 - 1);
+    void printDec(const meshStorage::MeshCreator &mmesh, std::ostream &out);
 
 
     template<template<typename ...> typename container, typename T, bool end>

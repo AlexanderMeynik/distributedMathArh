@@ -38,4 +38,4 @@ target_link_libraries(interfaces_lib PUBLIC math_core_lib)
 
 
 add_executable(printerssst src/printersTests.cpp)
-target_link_libraries(printerssst PUBLIC commonLib)
+target_link_libraries(printerssst PUBLIC allUtils)

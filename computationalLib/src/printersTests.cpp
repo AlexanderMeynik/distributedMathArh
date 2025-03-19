@@ -29,7 +29,7 @@ int main() {
     int prec = 0;
     std::cin >> prec;
     IosStateScientific ioc(std::cout, prec);
-
+    const std::array<std::valarray<double>,2> as1{{{6.232131313243e-23, 6e-23}, {6e-23, 6e-23}}};
     const std::valarray<double> ss = {6.232131313243e-23, 6e-23, 6e-23, 6e-23};
     std::valarray<double> ss2 = {6.232131313243e-23, 6e-23, 6e-23, 6e-23};
     const std::vector<double> asap = {6.232131313243e-23, 6e-23, 6e-23, 6e-23};
@@ -56,4 +56,15 @@ int main() {
     {
         std::cout<<ll.what()<<'\n';
     }
+    meshStorage::MeshCreator mm{};
+    mm.constructMeshes({2,5},{0.0,2.0,1.0,10.});
+
+    mm.applyFunction([](double a,double b)
+                     {
+                         return a*b-a;
+                     });
+
+    printMesh(mm,std::cout);
+
+    printMesh(mm,std::cout,ioFormat::HumanReadable);
 }
