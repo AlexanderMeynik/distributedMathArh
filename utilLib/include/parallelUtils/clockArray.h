@@ -235,9 +235,8 @@ namespace timing {
             std::source_location), OutType (*timeConverter)(inType, inType)>
     requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
     clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::reset() {
-        if (toTak.empty()) {
+        if (!toTak.empty()) {
             throw std::logic_error("Missing tak statements for tik ones");
-            //todo serialize
         }
         this->timers.clear();
         this->startIngTimers.clear();

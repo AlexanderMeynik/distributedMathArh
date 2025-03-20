@@ -100,3 +100,22 @@ TEST_F(ClockArrayTest, lambda_function_call) {
 TEST_F(ClockArrayTest, mismatched_tik_tak) {
     ASSERT_THROW(clk.tak(), std::logic_error);
 }
+
+
+TEST_F(ClockArrayTest, reset_empty_tok) {
+    durationType dd{20};
+    durationType dd2{60};
+    durationType dd3{12};
+    auto pair = clk.tikPair();
+    locationType key = pair.second;
+    SLEEP(dd);
+    clk.tak();
+
+    SLEEP(dd2);
+
+    clk.tik(pair.first);
+    SLEEP(dd3);
+    clk.tak();
+
+    ASSERT_NO_THROW(clk.reset());
+}
