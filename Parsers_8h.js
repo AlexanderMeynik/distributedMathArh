@@ -1,14 +1,10 @@
 var Parsers_8h =
 [
-    [ "Parser< Container >", "classParser.html", "classParser" ],
-    [ "Parser< Eigen::Vector< T, -1 > >", "classParser_3_01Eigen_1_1Vector_3_01T_00_01-1_01_4_01_4.html", "classParser_3_01Eigen_1_1Vector_3_01T_00_01-1_01_4_01_4" ],
-    [ "Parser< std::vector< T > >", "classParser_3_01std_1_1vector_3_01T_01_4_01_4.html", "classParser_3_01std_1_1vector_3_01T_01_4_01_4" ],
-    [ "Parser< Eigen::Matrix< T, Eigen::Dynamic, Eigen::Dynamic > >", "classParser_3_01Eigen_1_1Matrix_3_01T_00_01Eigen_1_1Dynamic_00_01Eigen_1_1Dynamic_01_4_01_4.html", "classParser_3_01Eigen_1_1Matrix_3_01T_00_01Eigen_1_1Dynamic_00_01Eigen_1_1Dynamic_01_4_01_4" ],
-    [ "Parser< MeshCreator >", "classParser_3_01MeshCreator_01_4.html", "classParser_3_01MeshCreator_01_4" ],
-    [ "DIPLOM_PARSERS_H", "Parsers_8h.html#ad527b9ceea675bb07f2097870839b432", null ],
-    [ "getConfSize", "Parsers_8h.html#af3cca3d6cca359df79984c33f3053889", null ],
-    [ "operator>>", "Parsers_8h.html#a7d1bab0368f21f817d43dd7a490b6964", null ],
-    [ "operator>>", "Parsers_8h.html#a0b59bf54cb9132bb786d28b320cc8d19", null ],
-    [ "parseChar", "Parsers_8h.html#af75309789454d54a125d0c1037a02c0b", null ],
-    [ "parseDipoleCoordinates", "Parsers_8h.html#afc6e844f09a19fbc2feb1fcbc4870d0c", null ]
+    [ "DATA_DEDUPLICATION_SERVICE_PARSERS_H", "Parsers_8h.html#af8b613c20a2ac0515b81f7c933209d94", null ],
+    [ "operator==", "Parsers_8h.html#ab84fc49efd2efcf2b92d4dd2c761bb12", null ],
+    [ "operator>>", "Parsers_8h.html#a98ba290cc38869e46e3fb5a0e7d59133", null ],
+    [ "parseCont", "Parsers_8h.html#a7df66af2e14da6b3a29110f23b20466b", null ],
+    [ "parseMatrix", "Parsers_8h.html#a21b010fff648e15b8d5ae86150b97a21", null ],
+    [ "parseMeshFrom", "Parsers_8h.html#a03c40815e09efe469440d7871b8abf39", null ],
+    [ "parseOneDim", "Parsers_8h.html#a81a146d425358d70b3f4f57bbf1c541e", null ]
 ];

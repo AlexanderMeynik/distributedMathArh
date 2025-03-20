@@ -1,13 +1,20 @@
 var searchData=
 [
-  ['eigenprintformats_0',['EigenPrintFormats',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80',1,'printUtils']]],
-  ['eigenvec_1',['EigenVec',['../namespacecommonTypes.html#aa89ed70c66e21953cbddc64d9f30e78c',1,'commonTypes']]],
-  ['eigenvector_2',['EigenVector',['../namespacecommonTypes.html#a38a1d3436cefdbb9b1235c2e453a7b9aa9c36111003ef5b60401eb30a44611bf6',1,'commonTypes']]],
-  ['emptyparametervalue_3',['EmptyParameterValue',['../namespacecommonDeclarations.html#a020b94231b08df4f246208283dfbbb96aeb65c99954917e6e15433adeb24b710f',1,'commonDeclarations']]],
-  ['end_4',['end',['../classtiming_1_1clockArray.html#ad1cf14dc37fffea8075c6e4569f73c9c',1,'timing::clockArray']]],
-  ['eps_5',['eps',['../structshared_1_1params.html#ac12d7fe0a32e85960e54cd27d40a4124',1,'shared::params']]],
-  ['erroroccured_6',['ErrorOccured',['../namespacecommonDeclarations.html#a5bce3ac354a8e318c4dc165396b68f44a3b6a577e153c4f1dc4db18d1407e2417',1,'commonDeclarations']]],
-  ['etx_7',['etx',['../namespacemeshStorage.html#ab591803b247f263c48041a0244d11217',1,'meshStorage']]],
-  ['eventloop_8',['eventLoop',['../classrest_1_1v1_1_1AtmqHandler.html#a1e136ef9c917e63a7c73c3cd6d102928',1,'rest::v1::AtmqHandler']]],
-  ['exponential_9',['exponential',['../namespacegenerators.html#a9c5891dc893feb94df83c8d9c87074fe',1,'generators']]]
+  ['eformat_0',['EFormat',['../namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89',1,'printUtils']]],
+  ['eigenf_1',['EIGENF',['../printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0',1,'printUtils.h']]],
+  ['eigenprintformats_2',['EigenPrintFormats',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80',1,'printUtils']]],
+  ['eigenvec_3',['EigenVec',['../namespacecommonTypes.html#aa89ed70c66e21953cbddc64d9f30e78c',1,'commonTypes']]],
+  ['eigenvector_4',['EigenVector',['../namespacecommonTypes.html#a38a1d3436cefdbb9b1235c2e453a7b9aa9c36111003ef5b60401eb30a44611bf6',1,'commonTypes']]],
+  ['emptyparametervalue_5',['EmptyParameterValue',['../namespaceshared.html#a8bb45eb07b72d7016acbc32e91ba288ba387ba32f98420960c8ceb822965fbdec',1,'shared']]],
+  ['end_6',['end',['../classtiming_1_1clockArray.html#ad1cf14dc37fffea8075c6e4569f73c9c',1,'timing::clockArray']]],
+  ['enum_5fto_5fstr_7',['ENUM_TO_STR',['../errorHandling_8h.html#a505eab0b9eea62d22690aef3712ab031',1,'errorHandling.h']]],
+  ['enumto_8',['enumTo',['../namespaceprintUtils.html#a57331cbc18c80708976f4de6c2153928',1,'printUtils']]],
+  ['eps_9',['eps',['../structshared_1_1params.html#ac12d7fe0a32e85960e54cd27d40a4124',1,'shared::params']]],
+  ['error_10',['error',['../namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282',1,'shared']]],
+  ['errorhandling_2eh_11',['errorHandling.h',['../errorHandling_8h.html',1,'']]],
+  ['erroroccured_12',['ErrorOccured',['../namespaceshared.html#a244bad136c7cccce809686bddcf1db7da13ffe20f41d684a723bc780493bec341',1,'shared']]],
+  ['etx_13',['etx',['../namespacemeshStorage.html#ab591803b247f263c48041a0244d11217',1,'meshStorage']]],
+  ['eventloop_14',['eventLoop',['../classrest_1_1v1_1_1AtmqHandler.html#a1e136ef9c917e63a7c73c3cd6d102928',1,'rest::v1::AtmqHandler']]],
+  ['exc_5fto_5fstr_15',['EXC_TO_STR',['../errorHandling_8h.html#a87e5f89e8bcc6cc80be4cc1deae5c0cb',1,'errorHandling.h']]],
+  ['exponential_16',['exponential',['../namespacegenerators.html#aa59c6c2bc4273270db9e68aed5559f66',1,'generators']]]
 ];

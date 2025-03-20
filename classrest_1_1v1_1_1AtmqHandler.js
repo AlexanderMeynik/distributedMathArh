@@ -9,5 +9,5 @@ var classrest_1_1v1_1_1AtmqHandler =
     [ "cc", "classrest_1_1v1_1_1AtmqHandler.html#ab8106fda949fe89639823f88196e7b20", null ],
     [ "con", "classrest_1_1v1_1_1AtmqHandler.html#a2b69c28f84d43a852fa7115713fdca25", null ],
     [ "eventLoop", "classrest_1_1v1_1_1AtmqHandler.html#a1e136ef9c917e63a7c73c3cd6d102928", null ],
-    [ "queues", "classrest_1_1v1_1_1AtmqHandler.html#a99c2f0344e095ceb7e27945ca00c6b40", null ]
+    [ "queues", "classrest_1_1v1_1_1AtmqHandler.html#a245d1ff53a1b4f208674a5f23c2b6425", null ]
 ];

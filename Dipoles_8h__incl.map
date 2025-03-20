@@ -1,28 +1,30 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/math_core/Dipoles.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/math_core/Dipoles.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="9,5,297,75"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="27,130,91,155"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="123,77,82,121,78,118,119,73"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="115,130,190,155"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="155,75,155,116,150,116,150,75"/>
-<area shape="rect" id="Node000004" href="$dipolesCommon_8h.html" title=" " alt="" coords="214,123,393,163"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="205,73,265,113,262,117,202,77"/>
-<area shape="rect" id="Node000005" href="$myConcepts_8h.html" title=" " alt="" coords="105,211,281,236"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="278,165,222,205,219,200,275,161"/>
-<area shape="rect" id="Node000009" href="$commonTypes_8h.html" title=" " alt="" coords="321,211,510,236"/>
-<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="332,161,389,200,386,205,329,165"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="5,284,97,309"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="171,238,88,280,85,275,169,234"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="122,284,202,309"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="190,237,175,273,170,271,185,235"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="226,284,282,309"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="205,235,237,272,233,275,201,238"/>
-<area shape="poly" id="edge10_Node000009_Node000008" title=" " alt="" coords="390,238,294,281,292,276,388,234"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="307,284,369,309"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="405,238,363,276,359,273,401,234"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="393,284,469,309"/>
-<area shape="poly" id="edge11_Node000009_Node000011" title=" " alt="" coords="421,236,428,270,423,271,415,237"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="493,284,644,309"/>
-<area shape="poly" id="edge12_Node000009_Node000012" title=" " alt="" coords="441,234,532,276,530,281,439,238"/>
-<area shape="rect" id="Node000013" href="$sharedDeclarations_8h.html" title=" " alt="" coords="669,284,829,309"/>
-<area shape="poly" id="edge13_Node000009_Node000013" title=" " alt="" coords="469,233,682,278,681,284,468,239"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="151,5,439,75"/>
+<area shape="rect" id="Node000002" href="$dipolesCommon_8h.html" title=" " alt="" coords="206,123,385,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="298,75,298,108,293,108,293,75"/>
+<area shape="rect" id="Node000003" href="$myConcepts_8h.html" title=" " alt="" coords="105,211,281,236"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="272,165,220,204,217,200,269,161"/>
+<area shape="rect" id="Node000007" href="$commonTypes_8h.html" title=" " alt="" coords="321,211,510,236"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="326,161,388,201,385,205,323,165"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,284,97,309"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="171,238,88,280,85,275,169,234"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="122,284,202,309"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="190,237,175,273,170,271,185,235"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="226,284,282,309"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="205,235,237,272,233,275,201,238"/>
+<area shape="poly" id="edge8_Node000007_Node000006" title=" " alt="" coords="390,238,294,281,292,276,388,234"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="307,284,369,309"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="405,238,363,276,359,273,401,234"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="393,284,469,309"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="421,236,428,270,423,271,415,237"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="493,284,644,309"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="441,234,532,276,530,281,439,238"/>
+<area shape="rect" id="Node000011" href="$sharedDeclarations_8h.html" title=" " alt="" coords="669,284,829,309"/>
+<area shape="poly" id="edge11_Node000007_Node000011" title=" " alt="" coords="469,233,682,278,681,284,468,239"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="631,357,695,383"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="737,311,689,351,686,346,733,307"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="719,357,778,383"/>
+<area shape="poly" id="edge13_Node000011_Node000013" title=" " alt="" coords="751,310,751,344,746,344,746,310"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="803,357,927,383"/>
+<area shape="poly" id="edge14_Node000011_Node000014" title=" " alt="" coords="769,307,835,348,833,352,766,312"/>
 </map>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['new_5f_0',['new_',['../typeCasts_8h.html#aa0aafed44fec19806d8f9ad834be1248a06435e9584009a1324c904ad359dcdba',1,'typeCasts.h']]]
+  ['matrixformat_0',['MatrixFormat',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80aec3e34b5f8cb7fc97d0923e4ab171491',1,'printUtils']]],
+  ['matrixformat1_1',['MatrixFormat1',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80af7db28523b2f1ea38b89d235d999d86b',1,'printUtils']]]
 ];

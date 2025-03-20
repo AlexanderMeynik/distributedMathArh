@@ -5,9 +5,6 @@ var TestRunner_8h =
       [ "name", "TestRunner_8h.html#a82c82ecefb401027590f155d4f753e83", null ]
     ] ],
     [ "TestRunner", "classTestRunner.html", "classTestRunner" ],
-    [ "coordinates", "TestRunner_8h.html#aafe9c40dc1b8732e65a0b563750d795b", null ],
-    [ "dynVec", "TestRunner_8h.html#a9910eb986d41f837f3069c263bae32d0", null ],
-    [ "geNcoordinates", "TestRunner_8h.html#a0814804dc38d378845df2b1552e8c426", null ],
-    [ "geNsolution", "TestRunner_8h.html#a52c8ea5fe7455000693450bb9fb68067", null ],
-    [ "solution", "TestRunner_8h.html#a7dcd7d767a268070b9284cffaf603b26", null ]
+    [ "coordinates", "TestRunner_8h.html#a2655976547860b047b7cd24a5fa4213f", null ],
+    [ "solution", "TestRunner_8h.html#a61785c8440136ef3a9ffacad60ecf70a", null ]
 ];

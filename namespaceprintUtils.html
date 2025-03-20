@@ -92,9 +92,10 @@ $(document).ready(function(){initNavTree('namespaceprintUtils.html',''); initRes
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#concepts">Concepts</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">printUtils Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -105,14 +106,16 @@ $(document).ready(function(){initNavTree('namespaceprintUtils.html',''); initRes
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStatePreserve.html">IosStatePreserve</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A guard class to save current iostream state.  <a href="classprintUtils_1_1IosStatePreserve.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStateScientific.html">IosStateScientific</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets iostream precision to a fixed value after saving it's state.  <a href="classprintUtils_1_1IosStateScientific.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
-Concepts</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="conceptprintUtils_1_1continuousStruct.html">continuousStruct</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a2ff537a4eeedb4f6636c31b6303acb89" id="r_a2ff537a4eeedb4f6636c31b6303acb89"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> = Eigen::IOFormat</td></tr>
+<tr class="separator:a2ff537a4eeedb4f6636c31b6303acb89"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -122,21 +125,117 @@ Enumerations</h2></td></tr>
 , <a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80af7db28523b2f1ea38b89d235d999d86b">MatrixFormat1</a>
  }</td></tr>
 <tr class="separator:a2995045d7f78807dec07760e9c69ce80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37dd20c81d688bf0517d73d4c646cc1d" id="r_a37dd20c81d688bf0517d73d4c646cc1d"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> { <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">Serializable</a>
+, <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1dae04f919664e727f5d94594a506d9e8b3">HumanReadable</a>
+ }</td></tr>
+<tr class="memdesc:a37dd20c81d688bf0517d73d4c646cc1d"><td class="mdescLeft">&#160;</td><td class="mdescRight">General IOformat.  <a href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">More...</a><br /></td></tr>
+<tr class="separator:a37dd20c81d688bf0517d73d4c646cc1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ac0e3cb983262bead5863fa0b5b691444" id="r_ac0e3cb983262bead5863fa0b5b691444"><td class="memTemplParams" colspan="2">template&lt;typename Iterator &gt; </td></tr>
-<tr class="memitem:ac0e3cb983262bead5863fa0b5b691444"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#ac0e3cb983262bead5863fa0b5b691444">continuousToJson</a> (Iterator s, Iterator e)</td></tr>
-<tr class="separator:ac0e3cb983262bead5863fa0b5b691444"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7df66af2e14da6b3a29110f23b20466b" id="r_a7df66af2e14da6b3a29110f23b20466b"><td class="memTemplParams" colspan="2">template&lt;continuousStruct Struct&gt; </td></tr>
+<tr class="memitem:a7df66af2e14da6b3a29110f23b20466b" id="r_a7df66af2e14da6b3a29110f23b20466b"><td class="memTemplParams" colspan="2">template&lt;isOneDimensionalContinuous Struct&gt; </td></tr>
 <tr class="memitem:a7df66af2e14da6b3a29110f23b20466b"><td class="memTemplItemLeft" align="right" valign="top">Struct&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a7df66af2e14da6b3a29110f23b20466b">parseCont</a> (Json::Value &amp;val)</td></tr>
+<tr class="memdesc:a7df66af2e14da6b3a29110f23b20466b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse one dimensional array from json.  <br /></td></tr>
 <tr class="separator:a7df66af2e14da6b3a29110f23b20466b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a167107357a33e11e27b77b5f0702615b" id="r_a167107357a33e11e27b77b5f0702615b"><td class="memItemLeft" align="right" valign="top">Eigen::IOFormat &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a167107357a33e11e27b77b5f0702615b">printEnumToFormat</a> (<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80">EigenPrintFormats</a> fmt)</td></tr>
-<tr class="separator:a167107357a33e11e27b77b5f0702615b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98ba290cc38869e46e3fb5a0e7d59133" id="r_a98ba290cc38869e46e3fb5a0e7d59133"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a98ba290cc38869e46e3fb5a0e7d59133">operator&gt;&gt;</a> (std::istream &amp;is, <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;fmt)</td></tr>
+<tr class="memdesc:a98ba290cc38869e46e3fb5a0e7d59133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parser for EFormat.  <br /></td></tr>
+<tr class="separator:a98ba290cc38869e46e3fb5a0e7d59133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab84fc49efd2efcf2b92d4dd2c761bb12" id="r_ab84fc49efd2efcf2b92d4dd2c761bb12"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#ab84fc49efd2efcf2b92d4dd2c761bb12">operator==</a> (const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;lhs, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;rhs)</td></tr>
+<tr class="memdesc:ab84fc49efd2efcf2b92d4dd2c761bb12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Elmentwise comparison between EFormat.  <br /></td></tr>
+<tr class="separator:ab84fc49efd2efcf2b92d4dd2c761bb12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a81a146d425358d70b3f4f57bbf1c541e" id="r_a81a146d425358d70b3f4f57bbf1c541e"><td class="memTemplParams" colspan="2">template&lt;isOneDimensionalContinuous Struct&gt; </td></tr>
+<tr class="memitem:a81a146d425358d70b3f4f57bbf1c541e"><td class="memTemplItemLeft" align="right" valign="top">Struct&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a81a146d425358d70b3f4f57bbf1c541e">parseOneDim</a> (std::istream &amp;in, long vecSize=-1, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;ef=<a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>())</td></tr>
+<tr class="memdesc:a81a146d425358d70b3f4f57bbf1c541e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse one dimensional array from provided istream.  <br /></td></tr>
+<tr class="separator:a81a146d425358d70b3f4f57bbf1c541e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21b010fff648e15b8d5ae86150b97a21" id="r_a21b010fff648e15b8d5ae86150b97a21"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08">commonTypes::matrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a21b010fff648e15b8d5ae86150b97a21">parseMatrix</a> (std::istream &amp;in, long rows=-1, long cols=-1, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;ef=<a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>())</td></tr>
+<tr class="memdesc:a21b010fff648e15b8d5ae86150b97a21"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse matrix.  <br /></td></tr>
+<tr class="separator:a21b010fff648e15b8d5ae86150b97a21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a03c40815e09efe469440d7871b8abf39" id="r_a03c40815e09efe469440d7871b8abf39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a03c40815e09efe469440d7871b8abf39">parseMeshFrom</a> (std::istream &amp;in, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;ef=<a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>())</td></tr>
+<tr class="memdesc:a03c40815e09efe469440d7871b8abf39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses mesh creator from provided istream.  <br /></td></tr>
+<tr class="separator:a03c40815e09efe469440d7871b8abf39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ada2128ad0e9c3c51993bcb60dd8a5b56" id="r_ada2128ad0e9c3c51993bcb60dd8a5b56"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#ada2128ad0e9c3c51993bcb60dd8a5b56">printMesh</a> (std::ostream &amp;out, const <a class="el" href="classmeshStorage_1_1MeshCreator.html">MeshCreator</a> &amp;mesh, const <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> &amp;form=<a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">ioFormat::Serializable</a>, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;eigenForm=<a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393">EigenPrintFormats::VectorFormat1</a>))</td></tr>
+<tr class="memdesc:ada2128ad0e9c3c51993bcb60dd8a5b56"><td class="mdescLeft">&#160;</td><td class="mdescRight">Print mesh to supplied std::ostream.  <br /></td></tr>
+<tr class="separator:ada2128ad0e9c3c51993bcb60dd8a5b56"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95bf9de5d9ef0acb3db98551140d9ee8" id="r_a95bf9de5d9ef0acb3db98551140d9ee8"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a95bf9de5d9ef0acb3db98551140d9ee8">operator&lt;&lt;</a> (std::ostream &amp;os, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;fmt)</td></tr>
+<tr class="memdesc:a95bf9de5d9ef0acb3db98551140d9ee8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printer for EFormat.  <br /></td></tr>
+<tr class="separator:a95bf9de5d9ef0acb3db98551140d9ee8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab6f82a3029fcd047b89ea01a51b9f736" id="r_ab6f82a3029fcd047b89ea01a51b9f736"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a> Struct&gt; </td></tr>
+<tr class="memitem:ab6f82a3029fcd047b89ea01a51b9f736"><td class="memTemplItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#ab6f82a3029fcd047b89ea01a51b9f736">continuousToJson</a> (const Struct &amp;a)</td></tr>
+<tr class="memdesc:ab6f82a3029fcd047b89ea01a51b9f736"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast any one dimensional array to Json::value.  <br /></td></tr>
+<tr class="separator:ab6f82a3029fcd047b89ea01a51b9f736"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acbeee5f987080a7f52d62bd3fbea6d6d" id="r_acbeee5f987080a7f52d62bd3fbea6d6d"><td class="memTemplParams" colspan="2">template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</td></tr>
+<tr class="memitem:acbeee5f987080a7f52d62bd3fbea6d6d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#acbeee5f987080a7f52d62bd3fbea6d6d">oneDimSerialize</a> (std::ostream &amp;out, const Collection &amp;xi, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;eigenForm=<a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>())</td></tr>
+<tr class="memdesc:acbeee5f987080a7f52d62bd3fbea6d6d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints one dimensional Collection using Eigen format.  <br /></td></tr>
+<tr class="separator:acbeee5f987080a7f52d62bd3fbea6d6d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d005f3c94481261d538de98e2e4c08e" id="r_a3d005f3c94481261d538de98e2e4c08e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a3d005f3c94481261d538de98e2e4c08e">matrixPrint1D</a> (std::ostream &amp;out, const <a class="el" href="namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08">commonTypes::matrixType</a> &amp;matr, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;eigenForm=<a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>())</td></tr>
+<tr class="memdesc:a3d005f3c94481261d538de98e2e4c08e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Flattens and prints matrix as row Vector.  <br /></td></tr>
+<tr class="separator:a3d005f3c94481261d538de98e2e4c08e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ee516cb9da9e1acce9539d5796ecaaf" id="r_a4ee516cb9da9e1acce9539d5796ecaaf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a4ee516cb9da9e1acce9539d5796ecaaf">matrixPrint2D</a> (std::ostream &amp;out, const <a class="el" href="namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08">commonTypes::matrixType</a> &amp;matr, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;eigenForm=<a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80af7db28523b2f1ea38b89d235d999d86b">EigenPrintFormats::MatrixFormat1</a>))</td></tr>
+<tr class="memdesc:a4ee516cb9da9e1acce9539d5796ecaaf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes matrix with coordinates.  <br /></td></tr>
+<tr class="separator:a4ee516cb9da9e1acce9539d5796ecaaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7baef26626aa522443963cfefb92d615" id="r_a7baef26626aa522443963cfefb92d615"><td class="memTemplParams" colspan="2">template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</td></tr>
+<tr class="memitem:a7baef26626aa522443963cfefb92d615"><td class="memTemplItemLeft" align="right" valign="top">int&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a7baef26626aa522443963cfefb92d615">printSolutionFormat1</a> (std::ostream &amp;out, const Collection &amp;<a class="el" href="TestRunner_8h.html#a61785c8440136ef3a9ffacad60ecf70a">solution</a>)</td></tr>
+<tr class="memdesc:a7baef26626aa522443963cfefb92d615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human readable way to print solution vector.  <br /></td></tr>
+<tr class="separator:a7baef26626aa522443963cfefb92d615"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a21c97456287b0211016900104c2972" id="r_a6a21c97456287b0211016900104c2972"><td class="memTemplParams" colspan="2">template&lt;typename Collection &gt; </td></tr>
+<tr class="memitem:a6a21c97456287b0211016900104c2972"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a6a21c97456287b0211016900104c2972">printCoordinates2</a> (std::ostream &amp;out, const Collection &amp;xi)</td></tr>
+<tr class="memdesc:a6a21c97456287b0211016900104c2972"><td class="mdescLeft">&#160;</td><td class="mdescRight">Human readable way to print coordinates vector.  <br /></td></tr>
+<tr class="separator:a6a21c97456287b0211016900104c2972"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a838aeecb94cb0f39e9fd53651e1785f0" id="r_a838aeecb94cb0f39e9fd53651e1785f0"><td class="memTemplParams" colspan="2">template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</td></tr>
+<tr class="memitem:a838aeecb94cb0f39e9fd53651e1785f0"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a838aeecb94cb0f39e9fd53651e1785f0">printCoordinates</a> (std::ostream &amp;out, const Collection &amp;coord, <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> format=<a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">ioFormat::Serializable</a>, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;eigenForm=<a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393">EigenPrintFormats::VectorFormat1</a>))</td></tr>
+<tr class="memdesc:a838aeecb94cb0f39e9fd53651e1785f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic interface for printing coordinates.  <br /></td></tr>
+<tr class="separator:a838aeecb94cb0f39e9fd53651e1785f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a87510e6639a229d804963f78848f366a" id="r_a87510e6639a229d804963f78848f366a"><td class="memTemplParams" colspan="2">template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</td></tr>
+<tr class="memitem:a87510e6639a229d804963f78848f366a"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a87510e6639a229d804963f78848f366a">printSolution</a> (std::ostream &amp;out, const Collection &amp;sol, <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> format=<a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">ioFormat::Serializable</a>, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;eigenForm=<a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393">EigenPrintFormats::VectorFormat1</a>))</td></tr>
+<tr class="memdesc:a87510e6639a229d804963f78848f366a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic interface for printing solution.  <br /></td></tr>
+<tr class="separator:a87510e6639a229d804963f78848f366a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa53d43500a218aafb45b1c01b2959133" id="r_aa53d43500a218aafb45b1c01b2959133"><td class="memTemplParams" colspan="2">template&lt;typename Collection &gt; <br />
+requires (<a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;)</td></tr>
+<tr class="memitem:aa53d43500a218aafb45b1c01b2959133"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#aa53d43500a218aafb45b1c01b2959133">printCoordinates</a> (std::ostream &amp;out, const Collection &amp;coord, <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> format, const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;eigenForm)</td></tr>
+<tr class="memdesc:aa53d43500a218aafb45b1c01b2959133"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic interface for printing coordinates.  <br /></td></tr>
+<tr class="separator:aa53d43500a218aafb45b1c01b2959133"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e7c6e1f8fb50cb6913dfe670aaddd6e" id="r_a9e7c6e1f8fb50cb6913dfe670aaddd6e"><td class="memTemplParams" colspan="2">template&lt;typename TupleT , std::size_t TupSize = std::tuple_size_v&lt;TupleT&gt;&gt; </td></tr>
+<tr class="memitem:a9e7c6e1f8fb50cb6913dfe670aaddd6e"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a9e7c6e1f8fb50cb6913dfe670aaddd6e">tupleToString</a> (const TupleT &amp;tp, const char *delim=&quot;,&quot;, const char *left=&quot;(&quot;, const char *right=&quot;)&quot;)</td></tr>
+<tr class="memdesc:a9e7c6e1f8fb50cb6913dfe670aaddd6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints tuple to string.  <br /></td></tr>
+<tr class="separator:a9e7c6e1f8fb50cb6913dfe670aaddd6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1bd87e7f3ab50b1c30fdc6d65f59e75b" id="r_a1bd87e7f3ab50b1c30fdc6d65f59e75b"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a1bd87e7f3ab50b1c30fdc6d65f59e75b">printEnumToFormat</a> (<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80">EigenPrintFormats</a> fmt)</td></tr>
+<tr class="memdesc:a1bd87e7f3ab50b1c30fdc6d65f59e75b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts EigenFormat to Eformat.  <br /></td></tr>
+<tr class="separator:a1bd87e7f3ab50b1c30fdc6d65f59e75b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b" id="r_ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> &amp;form)</td></tr>
+<tr class="memdesc:ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printer for ioFormat.  <br /></td></tr>
+<tr class="separator:ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a334503daa6899a25452487d040a86fa4" id="r_a334503daa6899a25452487d040a86fa4"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a334503daa6899a25452487d040a86fa4">operator&gt;&gt;</a> (std::istream &amp;in, <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> &amp;form)</td></tr>
+<tr class="memdesc:a334503daa6899a25452487d040a86fa4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parser for ioFormat.  <br /></td></tr>
+<tr class="separator:a334503daa6899a25452487d040a86fa4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a57331cbc18c80708976f4de6c2153928" id="r_a57331cbc18c80708976f4de6c2153928"><td class="memItemLeft" align="right" valign="top">const std::array&lt; <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>, 4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprintUtils.html#a57331cbc18c80708976f4de6c2153928">enumTo</a></td></tr>
+<tr class="memdesc:a57331cbc18c80708976f4de6c2153928"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eformat lookup Table.  <br /></td></tr>
+<tr class="separator:a57331cbc18c80708976f4de6c2153928"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="namespaceprintUtils.html" title="printUtils namespace">printUtils</a> namespace </p>
-</div><h2 class="groupheader">Enumeration Type Documentation</h2>
+</div><h2 class="groupheader">Typedef Documentation</h2>
+<a id="a2ff537a4eeedb4f6636c31b6303acb89" name="a2ff537a4eeedb4f6636c31b6303acb89"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ff537a4eeedb4f6636c31b6303acb89">&#9670;&#160;</a></span>EFormat</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">printUtils::EFormat</a> = typedef Eigen::IOFormat</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
 <a id="a2995045d7f78807dec07760e9c69ce80" name="a2995045d7f78807dec07760e9c69ce80"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2995045d7f78807dec07760e9c69ce80">&#9670;&#160;</a></span>EigenPrintFormats</h2>
 
@@ -165,26 +264,291 @@ Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="a37dd20c81d688bf0517d73d4c646cc1d" name="a37dd20c81d688bf0517d73d4c646cc1d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37dd20c81d688bf0517d73d4c646cc1d">&#9670;&#160;</a></span>ioFormat</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum class <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">printUtils::ioFormat</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>General IOformat. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b" name="a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b"></a>Serializable&#160;</td><td class="fielddoc"><p>Basic print format(look a lot alike json) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="a37dd20c81d688bf0517d73d4c646cc1dae04f919664e727f5d94594a506d9e8b3" name="a37dd20c81d688bf0517d73d4c646cc1dae04f919664e727f5d94594a506d9e8b3"></a>HumanReadable&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ac0e3cb983262bead5863fa0b5b691444" name="ac0e3cb983262bead5863fa0b5b691444"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac0e3cb983262bead5863fa0b5b691444">&#9670;&#160;</a></span>continuousToJson()</h2>
+<a id="ab6f82a3029fcd047b89ea01a51b9f736" name="ab6f82a3029fcd047b89ea01a51b9f736"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab6f82a3029fcd047b89ea01a51b9f736">&#9670;&#160;</a></span>continuousToJson()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Iterator &gt; </div>
+template&lt;<a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a> Struct&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">Json::Value printUtils::continuousToJson </td>
           <td>(</td>
-          <td class="paramtype">Iterator&#160;</td>
-          <td class="paramname"><em>s</em>, </td>
+          <td class="paramtype">const Struct &amp;&#160;</td>
+          <td class="paramname"><em>a</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Cast any one dimensional array to Json::value. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Struct</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">a</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Json::Value with serialized array </dd></dl>
+
+</div>
+</div>
+<a id="a3d005f3c94481261d538de98e2e4c08e" name="a3d005f3c94481261d538de98e2e4c08e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d005f3c94481261d538de98e2e4c08e">&#9670;&#160;</a></span>matrixPrint1D()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::matrixPrint1D </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">Iterator&#160;</td>
-          <td class="paramname"><em>e</em>&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08">commonTypes::matrixType</a> &amp;&#160;</td>
+          <td class="paramname"><em>matr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigenForm</em> = <code><a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Flattens and prints matrix as row Vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">xi</td><td></td></tr>
+    <tr><td class="paramname">eigenForm</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4ee516cb9da9e1acce9539d5796ecaaf" name="a4ee516cb9da9e1acce9539d5796ecaaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ee516cb9da9e1acce9539d5796ecaaf">&#9670;&#160;</a></span>matrixPrint2D()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::matrixPrint2D </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08">commonTypes::matrixType</a> &amp;&#160;</td>
+          <td class="paramname"><em>matr</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigenForm</em> = <code><a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80af7db28523b2f1ea38b89d235d999d86b">EigenPrintFormats::MatrixFormat1</a>)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Serializes matrix with coordinates. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">xi</td><td></td></tr>
+    <tr><td class="paramname">eigenForm</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="acbeee5f987080a7f52d62bd3fbea6d6d" name="acbeee5f987080a7f52d62bd3fbea6d6d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acbeee5f987080a7f52d62bd3fbea6d6d">&#9670;&#160;</a></span>oneDimSerialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::oneDimSerialize </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Collection &amp;&#160;</td>
+          <td class="paramname"><em>xi</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigenForm</em> = <code><a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints one dimensional Collection using Eigen format. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">xi</td><td></td></tr>
+    <tr><td class="paramname">eigenForm</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_cgraph.png" border="0" usemap="#anamespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_cgraph" alt=""/></div>
+<map name="anamespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_cgraph" id="anamespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_cgraph">
+<area shape="rect" title="Prints one dimensional Collection using Eigen format." alt="" coords="5,5,203,31"/>
+<area shape="rect" href="typeCasts_8h.html#a8e791496b9fdc6b72414503c04e2462f" title=" " alt="" coords="251,5,391,31"/>
+<area shape="poly" title=" " alt="" coords="203,15,237,15,237,21,203,21"/>
+</map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_icgraph.png" border="0" usemap="#anamespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_icgraph" alt=""/></div>
+<map name="anamespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_icgraph" id="anamespaceprintUtils_acbeee5f987080a7f52d62bd3fbea6d6d_icgraph">
+<area shape="rect" title="Prints one dimensional Collection using Eigen format." alt="" coords="252,31,449,56"/>
+<area shape="rect" href="namespaceprintUtils.html#aa53d43500a218aafb45b1c01b2959133" title="Basic interface for printing coordinates." alt="" coords="5,5,204,31"/>
+<area shape="poly" title=" " alt="" coords="238,34,204,31,205,26,239,29"/>
+<area shape="rect" href="namespaceprintUtils.html#a87510e6639a229d804963f78848f366a" title="Basic interface for printing solution." alt="" coords="18,55,191,80"/>
+<area shape="poly" title=" " alt="" coords="238,57,192,62,191,56,238,52"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a95bf9de5d9ef0acb3db98551140d9ee8" name="a95bf9de5d9ef0acb3db98551140d9ee8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a95bf9de5d9ef0acb3db98551140d9ee8">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; printUtils::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>os</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>fmt</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -194,6 +558,172 @@ template&lt;typename Iterator &gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Printer for EFormat. </p>
+<p>This implementation uses " " to separate escape characters inside separators </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">os</td><td></td></tr>
+    <tr><td class="paramname">fmt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b" name="ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; printUtils::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>form</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Printer for ioFormat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">form</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ab84fc49efd2efcf2b92d4dd2c761bb12" name="ab84fc49efd2efcf2b92d4dd2c761bb12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab84fc49efd2efcf2b92d4dd2c761bb12">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool printUtils::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>lhs</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>rhs</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Elmentwise comparison between EFormat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">lhs</td><td></td></tr>
+    <tr><td class="paramname">rhs</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a334503daa6899a25452487d040a86fa4" name="a334503daa6899a25452487d040a86fa4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a334503daa6899a25452487d040a86fa4">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream &amp; printUtils::operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>form</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parser for ioFormat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td></td></tr>
+    <tr><td class="paramname">form</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">InvalidOption</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a98ba290cc38869e46e3fb5a0e7d59133" name="a98ba290cc38869e46e3fb5a0e7d59133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98ba290cc38869e46e3fb5a0e7d59133">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream &amp; printUtils::operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>is</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>fmt</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parser for EFormat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">is</td><td></td></tr>
+    <tr><td class="paramname">fmt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
 </div>
 </div>
 <a id="a7df66af2e14da6b3a29110f23b20466b" name="a7df66af2e14da6b3a29110f23b20466b"></a>
@@ -202,7 +732,7 @@ template&lt;typename Iterator &gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;continuousStruct Struct&gt; </div>
+template&lt;isOneDimensionalContinuous Struct&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">Struct printUtils::parseCont </td>
@@ -214,16 +744,395 @@ template&lt;continuousStruct Struct&gt; </div>
       </table>
 </div><div class="memdoc">
 
+<p>Parse one dimensional array from json. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Struct</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
-<a id="a167107357a33e11e27b77b5f0702615b" name="a167107357a33e11e27b77b5f0702615b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a167107357a33e11e27b77b5f0702615b">&#9670;&#160;</a></span>printEnumToFormat()</h2>
+<a id="a21b010fff648e15b8d5ae86150b97a21" name="a21b010fff648e15b8d5ae86150b97a21"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21b010fff648e15b8d5ae86150b97a21">&#9670;&#160;</a></span>parseMatrix()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacecommonTypes.html#a5e0bde05e60c67f6bc9a344cafbafa08">commonTypes::matrixType</a> printUtils::parseMatrix </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>rows</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>cols</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>ef</em> = <code><a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parse matrix. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Struct</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td></td></tr>
+    <tr><td class="paramname">vecSize</td><td></td></tr>
+    <tr><td class="paramname">ef</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Struct to store the values </dd></dl>
+
+</div>
+</div>
+<a id="a03c40815e09efe469440d7871b8abf39" name="a03c40815e09efe469440d7871b8abf39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a03c40815e09efe469440d7871b8abf39">&#9670;&#160;</a></span>parseMeshFrom()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">Eigen::IOFormat &amp; printUtils::printEnumToFormat </td>
+          <td class="memname"><a class="el" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a> printUtils::parseMeshFrom </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>ef</em> = <code><a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses mesh creator from provided istream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td></td></tr>
+    <tr><td class="paramname">ef</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a81a146d425358d70b3f4f57bbf1c541e" name="a81a146d425358d70b3f4f57bbf1c541e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81a146d425358d70b3f4f57bbf1c541e">&#9670;&#160;</a></span>parseOneDim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;isOneDimensionalContinuous Struct&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">Struct printUtils::parseOneDim </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>vecSize</em> = <code>-1</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>ef</em> = <code><a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parse one dimensional array from provided istream. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Struct</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td></td></tr>
+    <tr><td class="paramname">vecSize</td><td></td></tr>
+    <tr><td class="paramname">ef</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Struct to store the values </dd></dl>
+
+</div>
+</div>
+<a id="aa53d43500a218aafb45b1c01b2959133" name="aa53d43500a218aafb45b1c01b2959133"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa53d43500a218aafb45b1c01b2959133">&#9670;&#160;</a></span>printCoordinates() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection &gt; <br />
+requires (<a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;)</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::printCoordinates </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Collection &amp;&#160;</td>
+          <td class="paramname"><em>coord</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a>&#160;</td>
+          <td class="paramname"><em>format</em> = <code><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">ioFormat::Serializable</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigenForm</em> = <code><a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393">EigenPrintFormats::VectorFormat1</a>)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Basic interface for printing coordinates. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">coord</td><td></td></tr>
+    <tr><td class="paramname">format</td><td></td></tr>
+    <tr><td class="paramname">eigenForm</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprintUtils_aa53d43500a218aafb45b1c01b2959133_cgraph.png" border="0" usemap="#anamespaceprintUtils_aa53d43500a218aafb45b1c01b2959133_cgraph" alt=""/></div>
+<map name="anamespaceprintUtils_aa53d43500a218aafb45b1c01b2959133_cgraph" id="anamespaceprintUtils_aa53d43500a218aafb45b1c01b2959133_cgraph">
+<area shape="rect" title="Basic interface for printing coordinates." alt="" coords="5,31,204,56"/>
+<area shape="rect" href="namespaceprintUtils.html#acbeee5f987080a7f52d62bd3fbea6d6d" title="Prints one dimensional Collection using Eigen format." alt="" coords="257,5,454,31"/>
+<area shape="poly" title=" " alt="" coords="204,31,243,27,243,32,204,36"/>
+<area shape="rect" href="namespaceprintUtils.html#a6a21c97456287b0211016900104c2972" title="Human readable way to print coordinates vector." alt="" coords="252,55,459,80"/>
+<area shape="poly" title=" " alt="" coords="204,50,239,53,238,59,204,55"/>
+<area shape="rect" href="typeCasts_8h.html#a8e791496b9fdc6b72414503c04e2462f" title=" " alt="" coords="507,5,647,31"/>
+<area shape="poly" title=" " alt="" coords="454,15,493,15,493,21,454,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a838aeecb94cb0f39e9fd53651e1785f0" name="a838aeecb94cb0f39e9fd53651e1785f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a838aeecb94cb0f39e9fd53651e1785f0">&#9670;&#160;</a></span>printCoordinates() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::printCoordinates </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Collection &amp;&#160;</td>
+          <td class="paramname"><em>coord</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a>&#160;</td>
+          <td class="paramname"><em>format</em> = <code><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">ioFormat::Serializable</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigenForm</em> = <code><a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393">EigenPrintFormats::VectorFormat1</a>)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Basic interface for printing coordinates. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">coord</td><td></td></tr>
+    <tr><td class="paramname">format</td><td></td></tr>
+    <tr><td class="paramname">eigenForm</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprintUtils_a838aeecb94cb0f39e9fd53651e1785f0_cgraph.png" border="0" usemap="#anamespaceprintUtils_a838aeecb94cb0f39e9fd53651e1785f0_cgraph" alt=""/></div>
+<map name="anamespaceprintUtils_a838aeecb94cb0f39e9fd53651e1785f0_cgraph" id="anamespaceprintUtils_a838aeecb94cb0f39e9fd53651e1785f0_cgraph">
+<area shape="rect" title="Basic interface for printing coordinates." alt="" coords="5,31,204,56"/>
+<area shape="rect" href="namespaceprintUtils.html#acbeee5f987080a7f52d62bd3fbea6d6d" title="Prints one dimensional Collection using Eigen format." alt="" coords="257,5,454,31"/>
+<area shape="poly" title=" " alt="" coords="204,31,243,27,243,32,204,36"/>
+<area shape="rect" href="namespaceprintUtils.html#a6a21c97456287b0211016900104c2972" title="Human readable way to print coordinates vector." alt="" coords="252,55,459,80"/>
+<area shape="poly" title=" " alt="" coords="204,50,239,53,238,59,204,55"/>
+<area shape="rect" href="typeCasts_8h.html#a8e791496b9fdc6b72414503c04e2462f" title=" " alt="" coords="507,5,647,31"/>
+<area shape="poly" title=" " alt="" coords="454,15,493,15,493,21,454,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a6a21c97456287b0211016900104c2972" name="a6a21c97456287b0211016900104c2972"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a21c97456287b0211016900104c2972">&#9670;&#160;</a></span>printCoordinates2()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::printCoordinates2 </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Collection &amp;&#160;</td>
+          <td class="paramname"><em>xi</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Human readable way to print coordinates vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">xi</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprintUtils_a6a21c97456287b0211016900104c2972_icgraph.png" border="0" usemap="#anamespaceprintUtils_a6a21c97456287b0211016900104c2972_icgraph" alt=""/></div>
+<map name="anamespaceprintUtils_a6a21c97456287b0211016900104c2972_icgraph" id="anamespaceprintUtils_a6a21c97456287b0211016900104c2972_icgraph">
+<area shape="rect" title="Human readable way to print coordinates vector." alt="" coords="252,5,459,31"/>
+<area shape="rect" href="namespaceprintUtils.html#aa53d43500a218aafb45b1c01b2959133" title="Basic interface for printing coordinates." alt="" coords="5,5,204,31"/>
+<area shape="poly" title=" " alt="" coords="238,21,204,21,204,15,238,15"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a1bd87e7f3ab50b1c30fdc6d65f59e75b" name="a1bd87e7f3ab50b1c30fdc6d65f59e75b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1bd87e7f3ab50b1c30fdc6d65f59e75b">&#9670;&#160;</a></span>printEnumToFormat()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp; printUtils::printEnumToFormat </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80">EigenPrintFormats</a>&#160;</td>
           <td class="paramname"><em>fmt</em></td><td>)</td>
@@ -231,6 +1140,285 @@ template&lt;continuousStruct Struct&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Casts EigenFormat to Eformat. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">fmt</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ada2128ad0e9c3c51993bcb60dd8a5b56" name="ada2128ad0e9c3c51993bcb60dd8a5b56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ada2128ad0e9c3c51993bcb60dd8a5b56">&#9670;&#160;</a></span>printMesh()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::printMesh </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classmeshStorage_1_1MeshCreator.html">MeshCreator</a> &amp;&#160;</td>
+          <td class="paramname"><em>mesh</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>form</em> = <code><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">ioFormat::Serializable</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigenForm</em> = <code><a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393">EigenPrintFormats::VectorFormat1</a>)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Print mesh to supplied std::ostream. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mesh</td><td></td></tr>
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">form</td><td></td></tr>
+    <tr><td class="paramname">eigenForm</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a87510e6639a229d804963f78848f366a" name="a87510e6639a229d804963f78848f366a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a87510e6639a229d804963f78848f366a">&#9670;&#160;</a></span>printSolution()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">void printUtils::printSolution </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Collection &amp;&#160;</td>
+          <td class="paramname"><em>sol</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d">ioFormat</a>&#160;</td>
+          <td class="paramname"><em>format</em> = <code><a class="el" href="namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b">ioFormat::Serializable</a></code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigenForm</em> = <code><a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393">EigenPrintFormats::VectorFormat1</a>)</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Basic interface for printing solution. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">sol</td><td></td></tr>
+    <tr><td class="paramname">format</td><td></td></tr>
+    <tr><td class="paramname">eigenForm</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprintUtils_a87510e6639a229d804963f78848f366a_cgraph.png" border="0" usemap="#anamespaceprintUtils_a87510e6639a229d804963f78848f366a_cgraph" alt=""/></div>
+<map name="anamespaceprintUtils_a87510e6639a229d804963f78848f366a_cgraph" id="anamespaceprintUtils_a87510e6639a229d804963f78848f366a_cgraph">
+<area shape="rect" title="Basic interface for printing solution." alt="" coords="5,35,179,60"/>
+<area shape="rect" href="namespaceprintUtils.html#acbeee5f987080a7f52d62bd3fbea6d6d" title="Prints one dimensional Collection using Eigen format." alt="" coords="227,5,424,31"/>
+<area shape="poly" title=" " alt="" coords="179,34,213,29,213,35,180,39"/>
+<area shape="rect" href="namespaceprintUtils.html#a7baef26626aa522443963cfefb92d615" title="Human readable way to print solution vector." alt="" coords="239,55,412,95"/>
+<area shape="poly" title=" " alt="" coords="180,55,225,61,225,66,179,60"/>
+<area shape="rect" href="typeCasts_8h.html#a8e791496b9fdc6b72414503c04e2462f" title=" " alt="" coords="472,5,612,31"/>
+<area shape="poly" title=" " alt="" coords="424,15,459,15,459,21,424,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7baef26626aa522443963cfefb92d615" name="a7baef26626aa522443963cfefb92d615"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7baef26626aa522443963cfefb92d615">&#9670;&#160;</a></span>printSolutionFormat1()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmyConcepts_1_1isOneDimensionalContinuous.html">myConcepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">int printUtils::printSolutionFormat1 </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const Collection &amp;&#160;</td>
+          <td class="paramname"><em>solution</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Human readable way to print solution vector. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">solution</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprintUtils_a7baef26626aa522443963cfefb92d615_icgraph.png" border="0" usemap="#anamespaceprintUtils_a7baef26626aa522443963cfefb92d615_icgraph" alt=""/></div>
+<map name="anamespaceprintUtils_a7baef26626aa522443963cfefb92d615_icgraph" id="anamespaceprintUtils_a7baef26626aa522443963cfefb92d615_icgraph">
+<area shape="rect" title="Human readable way to print solution vector." alt="" coords="227,5,400,45"/>
+<area shape="rect" href="namespaceprintUtils.html#a87510e6639a229d804963f78848f366a" title="Basic interface for printing solution." alt="" coords="5,13,179,38"/>
+<area shape="poly" title=" " alt="" coords="213,28,179,28,179,23,213,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a9e7c6e1f8fb50cb6913dfe670aaddd6e" name="a9e7c6e1f8fb50cb6913dfe670aaddd6e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e7c6e1f8fb50cb6913dfe670aaddd6e">&#9670;&#160;</a></span>tupleToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename TupleT , std::size_t TupSize = std::tuple_size_v&lt;TupleT&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string printUtils::tupleToString </td>
+          <td>(</td>
+          <td class="paramtype">const TupleT &amp;&#160;</td>
+          <td class="paramname"><em>tp</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>delim</em> = <code>&quot;,&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>left</em> = <code>&quot;(&quot;</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>right</em> = <code>&quot;)&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Prints tuple to string. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TupleT</td><td></td></tr>
+    <tr><td class="paramname">TupSize</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">tp</td><td></td></tr>
+    <tr><td class="paramname">delim</td><td>- is printed after each tuple element </td></tr>
+    <tr><td class="paramname">left</td><td>- is printed before all tuple elements </td></tr>
+    <tr><td class="paramname">right</td><td>- is printed after all tuple elements </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a57331cbc18c80708976f4de6c2153928" name="a57331cbc18c80708976f4de6c2153928"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57331cbc18c80708976f4de6c2153928">&#9670;&#160;</a></span>enumTo</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::array&lt;<a class="el" href="namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89">EFormat</a>, 4&gt; printUtils::enumTo</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">extern</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Eformat lookup Table. </p>
 
 </div>
 </div>

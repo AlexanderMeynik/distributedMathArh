@@ -1,9 +1,18 @@
 var searchData=
 [
-  ['operator_28_29_0',['operator()',['../structtiming_1_1cmpArr.html#a80fce30aea8e3f64519f7c51ebbad12c',1,'timing::cmpArr']]],
-  ['operator_3c_3c_1',['operator&lt;&lt;',['../typeCasts_8h.html#a664ba91acffacdc1f6a8e625ba7dc944',1,'operator&lt;&lt;(std::ostream &amp;out, const state_t &amp;st):&#160;typeCasts.h'],['../clockArray_8h.html#acbc913e3db71d5be85918bf8de1d6407',1,'operator&lt;&lt;(std::ostream &amp;out, std::array&lt; T, sz &gt; &amp;arr):&#160;clockArray.h'],['../clockArray_8h.html#a4ec314f337979ee9821f6cde22bacad5',1,'operator&lt;&lt;(std::ostream &amp;out, std::array&lt; T, sz &gt; &amp;arr):&#160;clockArray.h']]],
-  ['operator_3d_3d_2',['operator==',['../clockArray_8h.html#a1540dfb0b75d4b768d3e01bd80bd431a',1,'clockArray.h']]],
-  ['operator_3e_3e_3',['operator&gt;&gt;',['../Parsers_8h.html#a0b59bf54cb9132bb786d28b320cc8d19',1,'operator&gt;&gt;(std::istream &amp;in, std::array&lt; std::vector&lt; T &gt;, 2 &gt; &amp;xi):&#160;Parsers.h'],['../Parsers_8h.html#a7d1bab0368f21f817d43dd7a490b6964',1,'operator&gt;&gt;(std::istream &amp;in, std::array&lt; Eigen::Vector&lt; T, Eigen::Dynamic &gt;, 2 &gt; &amp;sol):&#160;Parsers.h']]],
-  ['operator_5b_5d_4',['operator[]',['../classtiming_1_1clockArray.html#ad18b07a530d05d0e35d66834b023647a',1,'timing::clockArray']]],
-  ['overload_5',['overload',['../namespacecore__intrefaces.html#aebbfbf761d99cb3a183b2168f5e72cc0',1,'core_intrefaces']]]
+  ['parsecont_0',['parseCont',['../namespaceprintUtils.html#a7df66af2e14da6b3a29110f23b20466b',1,'printUtils']]],
+  ['parsematrix_1',['parseMatrix',['../namespaceprintUtils.html#a21b010fff648e15b8d5ae86150b97a21',1,'printUtils']]],
+  ['parsemeshfrom_2',['parseMeshFrom',['../namespaceprintUtils.html#a03c40815e09efe469440d7871b8abf39',1,'printUtils']]],
+  ['parseonedim_3',['parseOneDim',['../namespaceprintUtils.html#a81a146d425358d70b3f4f57bbf1c541e',1,'printUtils']]],
+  ['plot_4',['plot',['../classMeshPlot.html#a00a3718a719d6b7d6939a8ef5c64905b',1,'MeshPlot']]],
+  ['plotandsave_5',['plotAndSave',['../classmeshStorage_1_1MeshCreator.html#a7057ace310fad4c234514b0ee455ac96',1,'meshStorage::MeshCreator']]],
+  ['plotcoordinates_6',['plotcoordinates',['../plotingUtils_8h.html#a9828df3bc8878edc119e342ee1a13568',1,'plotCoordinates(const std::string &amp;name, FloatType ar, std::array&lt; std::vector&lt; FloatType &gt;, 2 &gt; &amp;xi):&#160;plotingUtils.h'],['../plotingUtils_8h.html#ada457f9280cdc12d6e55b82e443c19c7',1,'plotCoordinates(const std::string &amp;name, FloatType ar, const std::vector&lt; FloatType &gt; &amp;xi):&#160;plotingUtils.h']]],
+  ['plotfunction_7',['plotFunction',['../plotingUtils_8h.html#aab74c8599f5febe5f40ffc210e2fd6ad',1,'plotingUtils.h']]],
+  ['printcoordinates_8',['printcoordinates',['../namespaceprintUtils.html#a838aeecb94cb0f39e9fd53651e1785f0',1,'printUtils::printCoordinates(std::ostream &amp;out, const Collection &amp;coord, ioFormat format=ioFormat::Serializable, const EFormat &amp;eigenForm=EIGENF(EigenPrintFormats::VectorFormat1))'],['../namespaceprintUtils.html#aa53d43500a218aafb45b1c01b2959133',1,'printUtils::printCoordinates(std::ostream &amp;out, const Collection &amp;coord, ioFormat format, const EFormat &amp;eigenForm)']]],
+  ['printcoordinates2_9',['printCoordinates2',['../namespaceprintUtils.html#a6a21c97456287b0211016900104c2972',1,'printUtils']]],
+  ['printdec_10',['printDec',['../namespacemeshStorage.html#a53c19e87f28e15be4e0410c7bffd4da2',1,'meshStorage']]],
+  ['printenumtoformat_11',['printEnumToFormat',['../namespaceprintUtils.html#a1bd87e7f3ab50b1c30fdc6d65f59e75b',1,'printUtils']]],
+  ['printmesh_12',['printMesh',['../namespaceprintUtils.html#ada2128ad0e9c3c51993bcb60dd8a5b56',1,'printUtils']]],
+  ['printsolution_13',['printSolution',['../namespaceprintUtils.html#a87510e6639a229d804963f78848f366a',1,'printUtils']]],
+  ['printsolutionformat1_14',['printSolutionFormat1',['../namespaceprintUtils.html#a7baef26626aa522443963cfefb92d615',1,'printUtils']]]
 ];

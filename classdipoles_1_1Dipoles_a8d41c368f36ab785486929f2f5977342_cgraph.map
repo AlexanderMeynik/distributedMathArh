@@ -1,7 +1,7 @@
 <map id="dipoles::Dipoles::getFullFunction_" name="dipoles::Dipoles::getFullFunction_">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,184,77"/>
-<area shape="rect" id="Node000002" href="$namespacecommonDeclarations.html#aa4f3f27585090c17fba13b7302a32411" title=" " alt="" coords="232,5,393,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,42,218,36,219,42,185,47"/>
-<area shape="rect" id="Node000003" href="$namespacecommonDeclarations.html#a03b00397889d251dd26c1159443e02de" title="Specializes return method depending on dimensions of Collection." alt="" coords="232,69,393,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="185,68,219,73,218,78,184,73"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,184,63"/>
+<area shape="rect" id="Node000002" href="$namespacemyConcepts.html#aa908f78c444549d3421422516ac361ef" title=" " alt="" coords="238,5,413,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,31,224,26,225,32,184,36"/>
+<area shape="rect" id="Node000003" href="$namespacemyConcepts.html#aa880e8ed5431ae9c017c8951bd3dbfb7" title="Specializes return method depending on dimensions of Collection." alt="" coords="232,55,419,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="184,50,219,54,218,59,184,55"/>
 </map>

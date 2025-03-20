@@ -55,7 +55,6 @@ var NAVTREE =
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Typedefs", "globals_type.html", null ],
-        [ "Enumerations", "globals_enum.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
@@ -65,8 +64,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "ClusterConfigController_8h.html",
-"classrest_1_1v1_1_1ClusterConfigController.html#a2209e2ec7c4a0bad92b5635ba36cce1d",
-"namespacemembers_type.html"
+"classrest_1_1v1_1_1ClusterConfigController.html#ae2d73e50d6459ad8579e4b4e6eb43571",
+"namespacemeshStorage.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

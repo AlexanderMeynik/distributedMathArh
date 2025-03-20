@@ -11,8 +11,6 @@ var classdipoles_1_1Dipoles =
     [ "getRightPart", "classdipoles_1_1Dipoles.html#a58a95d7823ff09254b84875864858bdd", null ],
     [ "initArrays", "classdipoles_1_1Dipoles.html#a2a2128b516dfd096db85f140b241471a", null ],
     [ "loadFromMatrix", "classdipoles_1_1Dipoles.html#af753b29c6eb24bb089ec666dcf1b2d0d", null ],
-    [ "printMatrix", "classdipoles_1_1Dipoles.html#a6f464c763dce1063a6e071840831026b", null ],
-    [ "printRightPart", "classdipoles_1_1Dipoles.html#a3e98b9dcfd92e16fe3c11149dc0db3d1", null ],
     [ "setMatrixes", "classdipoles_1_1Dipoles.html#ab68eecc35d35f3184ac22bc87d8edc0e", null ],
     [ "setNewCoordinates", "classdipoles_1_1Dipoles.html#aba96a72f2ace32e6082ae91613b6668c", null ],
     [ "solve", "classdipoles_1_1Dipoles.html#a4f48fbd130f8c36aaf164f030f79f890", null ],

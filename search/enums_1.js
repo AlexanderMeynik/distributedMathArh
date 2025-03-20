@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nodestatus_0',['NodeStatus',['../namespacerest_1_1v1.html#ac74ebdc70e658f1751df360ffa548efe',1,'rest::v1']]]
+  ['ioformat_0',['ioFormat',['../namespaceprintUtils.html#a37dd20c81d688bf0517d73d4c646cc1d',1,'printUtils']]]
 ];

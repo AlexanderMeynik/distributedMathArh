@@ -2,7 +2,6 @@ var hierarchy =
 [
     [ "rest::v1::AtmqHandler", "classrest_1_1v1_1_1AtmqHandler.html", null ],
     [ "timing::clockArray< OutType, inType, timeGetter, sourceTypeConverter, timeConverter >", "classtiming_1_1clockArray.html", null ],
-    [ "timing::cmpArr", "structtiming_1_1cmpArr.html", null ],
     [ "rest::v1::computationalNode", "classrest_1_1v1_1_1computationalNode.html", null ],
     [ "core_intrefaces::DataAcessInteface", "classcore__intrefaces_1_1DataAcessInteface.html", null ],
     [ "dipoles::Dipoles", "classdipoles_1_1Dipoles.html", null ],
@@ -19,13 +18,15 @@ var hierarchy =
     [ "printUtils::IosStatePreserve", "classprintUtils_1_1IosStatePreserve.html", [
       [ "printUtils::IosStateScientific", "classprintUtils_1_1IosStateScientific.html", null ]
     ] ],
+    [ "std::logic_error", null, [
+      [ "shared::MyException", "classshared_1_1MyException.html", [
+        [ "shared::InvalidOption", "classshared_1_1InvalidOption.html", null ],
+        [ "shared::ioError", "classshared_1_1ioError.html", null ],
+        [ "shared::outOfRange", "classshared_1_1outOfRange.html", null ]
+      ] ]
+    ] ],
     [ "meshStorage::MeshCreator", "classmeshStorage_1_1MeshCreator.html", null ],
     [ "shared::params", "structshared_1_1params.html", null ],
-    [ "Parser< Container >", "classParser.html", null ],
-    [ "Parser< Eigen::Matrix< T, Eigen::Dynamic, Eigen::Dynamic > >", "classParser_3_01Eigen_1_1Matrix_3_01T_00_01Eigen_1_1Dynamic_00_01Eigen_1_1Dynamic_01_4_01_4.html", null ],
-    [ "Parser< Eigen::Vector< T, -1 > >", "classParser_3_01Eigen_1_1Vector_3_01T_00_01-1_01_4_01_4.html", null ],
-    [ "Parser< MeshCreator >", "classParser_3_01MeshCreator_01_4.html", null ],
-    [ "Parser< std::vector< T > >", "classParser_3_01std_1_1vector_3_01T_01_4_01_4.html", null ],
     [ "QWidget", null, [
       [ "MeshPlot", "classMeshPlot.html", null ]
     ] ],

@@ -33,19 +33,17 @@ var annotated_dup =
       ] ]
     ] ],
     [ "shared", "namespaceshared.html", [
+      [ "InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
+      [ "ioError", "classshared_1_1ioError.html", "classshared_1_1ioError" ],
+      [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
+      [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
       [ "params", "structshared_1_1params.html", null ]
     ] ],
     [ "timing", "namespacetiming.html", [
-      [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ],
-      [ "cmpArr", "structtiming_1_1cmpArr.html", "structtiming_1_1cmpArr" ]
+      [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ]
     ] ],
     [ "CompNodeService", "classCompNodeService.html", "classCompNodeService" ],
     [ "functable", "TestRunner_8h.html#structfunctable", "TestRunner_8h_structfunctable" ],
     [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ],
-    [ "Parser", "classParser.html", "classParser" ],
-    [ "Parser< Eigen::Matrix< T, Eigen::Dynamic, Eigen::Dynamic > >", "classParser_3_01Eigen_1_1Matrix_3_01T_00_01Eigen_1_1Dynamic_00_01Eigen_1_1Dynamic_01_4_01_4.html", "classParser_3_01Eigen_1_1Matrix_3_01T_00_01Eigen_1_1Dynamic_00_01Eigen_1_1Dynamic_01_4_01_4" ],
-    [ "Parser< Eigen::Vector< T, -1 > >", "classParser_3_01Eigen_1_1Vector_3_01T_00_01-1_01_4_01_4.html", "classParser_3_01Eigen_1_1Vector_3_01T_00_01-1_01_4_01_4" ],
-    [ "Parser< MeshCreator >", "classParser_3_01MeshCreator_01_4.html", "classParser_3_01MeshCreator_01_4" ],
-    [ "Parser< std::vector< T > >", "classParser_3_01std_1_1vector_3_01T_01_4_01_4.html", "classParser_3_01std_1_1vector_3_01T_01_4_01_4" ],
     [ "TestRunner", "classTestRunner.html", "classTestRunner" ]
 ];

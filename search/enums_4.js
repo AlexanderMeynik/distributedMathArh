@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['state_5ft_0',['state_t',['../typeCasts_8h.html#aa0aafed44fec19806d8f9ad834be1248',1,'typeCasts.h']]]
+  ['returncodes_0',['returnCodes',['../namespaceshared.html#a244bad136c7cccce809686bddcf1db7d',1,'shared']]],
+  ['returntype_1',['returnType',['../namespacecommonTypes.html#a38a1d3436cefdbb9b1235c2e453a7b9a',1,'commonTypes']]]
 ];
