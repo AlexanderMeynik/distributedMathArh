@@ -29,7 +29,7 @@ private: \
 #define ENUM_TO_STR(en,arr) arr[static_cast<size_t>(en)]
 
 #define EXC_TO_STR(ex,arr) ENUM_TO_STR(en.getSev(),arr)
-
+#define STR(cc) std::string{cc}
 #include <stdexcept>
 #include <array>
 /*#include <source_location>*/
@@ -38,15 +38,21 @@ private: \
 
 #include <fmt/format.h>
 
-/// shared namespace
+/**
+ * @brief shared namespace
+ * @details This namespace contains multiple forward declarations for types to be use everywhere
+ */
 namespace shared {
 
+    /// severity enum
     enum class Severity {
         info = 0,
         warning,
         error,
         fatal
     };
+
+    /// Severity text enum to str lookup
     constexpr static std::array<const char*,4>sevToStr
             {
                 "info",
@@ -92,7 +98,7 @@ namespace shared {
     /**
      * @brief ioError class
      */
-    DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", std::string);
+    DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", const std::string&);
 
 }
 

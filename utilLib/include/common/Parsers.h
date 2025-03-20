@@ -40,8 +40,20 @@ namespace printUtils {
 
 
 
+    /**
+     * @brief Parser for EFormat
+     * @param is
+     * @param fmt
+     * @return
+     */
     std::istream& operator>>(std::istream& is, EFormat & fmt);
 
+    /**
+     * @brief Elmentwise comparison between EFormat
+     * @param lhs
+     * @param rhs
+     * @return
+     */
     bool operator==(const EFormat & lhs, const EFormat& rhs);
 
     /**

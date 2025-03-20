@@ -70,11 +70,7 @@ namespace printUtils {
     }
 
     std::ostream &operator<<(std::ostream &out, const ioFormat &form) {
-        auto it = std::find_if(stringToIoFormat.begin(), stringToIoFormat.end(), [&form](const auto &item) {
-            return item.second == form;
-        });
-
-        out << it->first << '\n';
+        out << ENUM_TO_STR(form,ioToStr) << '\n';
         return out;
     }
 

@@ -83,23 +83,56 @@ namespace printUtils {
     /**
      * @brief General IOformat
      */
-
     enum class ioFormat {
+        ///Basic print format(look a lot alike json)
         Serializable,
+        //Human-readable representation for printed struct
         HumanReadable
     };
 
+
+    /// String lookup map for ioformat
     static const std::unordered_map<std::string, ioFormat> stringToIoFormat =
             {
             FORMAT_OPT(Serializable),
             FORMAT_OPT(HumanReadable)
             };
 
+
+    /// String lookup table for strings
+    static constexpr std::array<const char*,2> ioToStr =
+            {
+                    "Serializable",
+                    "HumanReadable"
+            };
+
+    /**
+     * @brief Printer for ioFormat
+     * @param out
+     * @param form
+     * @return
+     */
     std::ostream &operator<<(std::ostream &out, const ioFormat &form);
 
+    /**
+     * @brief Parser for ioFormat
+     * @param in
+     * @param form
+     * @throws InvalidOption
+     */
     std::istream &operator>>(std::istream &in, ioFormat &form);
 
 
+    /**
+     * @brief Converts tuple object to string with specified delimeters
+     * @tparam TupleT
+     * @tparam TupSize
+     * @param tp
+     * @param delim
+     * @param left
+     * @param right
+     * @return
+     */
     template<typename TupleT, std::size_t TupSize>
     std::string tupleToString(const TupleT &tp,
                               const char *delim, const char *left,
@@ -115,9 +148,6 @@ namespace printUtils {
             return res.str();
         }.operator()(tp, delim, left, right, std::make_index_sequence<TupSize>{});
     }
-
-
-
 
 }
 

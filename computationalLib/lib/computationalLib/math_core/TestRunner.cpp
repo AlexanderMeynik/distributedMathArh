@@ -148,7 +148,7 @@ TestRunner::TestRunner(size_t N, size_t Ns, double aRange, std::string dirname, 
     if (dirname.empty()) {
         dir_ = "results/" + subdir_.value() + "experiment_N=" + std::to_string(N) +
                "_Nsym=" + std::to_string(Nsym_.value()) + "_a=" + aStr + "_mode=" +
-               stateToString.find(inner_state)->second + "/";
+                ENUM_TO_STR(inner_state,stateToStr) + "/";
     } else {
         dir_ = "results/" + subdir_.value() + dirname;
     }

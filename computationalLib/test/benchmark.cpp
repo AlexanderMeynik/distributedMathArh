@@ -76,7 +76,7 @@ auto firstBench = []
 
 auto nameGenerator1 =
         [](state_t st, size_t N) {
-            return stateToString.at(st) + "_" + std::to_string(N);
+            return STR(ENUM_TO_STR(st,stateToStr)) + "_" + std::to_string(N);
         };
 
 
@@ -179,7 +179,7 @@ auto thirdBench = []
 
 auto nameGenerator3 =
         [](state_t st, size_t N) {
-            return stateToString.at(st) + "_" + std::to_string(N);
+            return STR(ENUM_TO_STR(st,stateToStr))  + "_" + std::to_string(N);
         };
 
 

@@ -20,10 +20,25 @@ namespace printUtils {
     using namespace shared;
 
     using meshStorage::MeshCreator;
+
+    /**
+     * @brief Print mesh to supplied std::ostream
+     * @param mesh
+     * @param out
+     * @param form
+     * @param eigenForm
+     */
     void printMesh(const MeshCreator&mesh,std::ostream &out,const ioFormat&form=ioFormat::Serializable,
                const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
 
+    /**
+     * @brief Printer for EFormat
+     * @details This implementation uses \" \" to separate escape characters inside separators
+     * @param os
+     * @param fmt
+     * @return
+     */
     std::ostream& operator<<(std::ostream& os, const EFormat & fmt);
 
 
