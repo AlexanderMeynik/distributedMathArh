@@ -4,7 +4,7 @@
 #include <iomanip>
 
 namespace printUtils {
-
+    using namespace shared;
     const std::array<EFormat, 4> enumTo=
             {{
                      // Format 0: Matrix with row enclosures "[...]"
@@ -83,7 +83,6 @@ namespace printUtils {
         std::string a;
         in >> a;
         if (!stringToIoFormat.count(a)) {
-            //todo why rvalue?
             throw InvalidOption(a);
         }
         form = stringToIoFormat.at(a);

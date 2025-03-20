@@ -1,7 +1,6 @@
 #pragma once
-//todo rename
-#ifndef DIPLOM_PARSERS_H
-#define DIPLOM_PARSERS_H
+#ifndef DATA_DEDUPLICATION_SERVICE_PARSERS_H
+#define DATA_DEDUPLICATION_SERVICE_PARSERS_H
 
 #include <iostream>
 
@@ -17,7 +16,7 @@
 
 /// printUtils namespace
 namespace printUtils {
-
+    using namespace shared;
     using myConcepts::isOneDimensionalContinuous;
 
     /**
@@ -39,11 +38,17 @@ namespace printUtils {
     }
 
 
+
+
+    std::istream& operator>>(std::istream& is, EFormat & fmt);
+
+    bool operator==(const EFormat & lhs, const EFormat& rhs);
+
     /**
      * @brief Parse one dimensional array from provided istream
      * @tparam Struct
      * @param val
-     * @return
+     * @return Struct to store the values
      */
     template<isOneDimensionalContinuous Struct>
     Struct parseOneDim(std::istream &in,long vecSize=-1,const EFormat& ef=EFormat()) {
@@ -51,10 +56,19 @@ namespace printUtils {
         {
             in>>vecSize;
         }
-        //todo check range
-        //todo read EFormat(can reproduce parsing?)
+
+        if(!in)
+        {
+            throw ioError(to_string(in.rdstate()));
+        }
+
+        if(vecSize<0)
+        {
+            throw outOfRange(vecSize,0,LONG_MAX);
+        }
 
         Struct res(vecSize);
+       /* std::cout<<ef;*/
 
 
         for (size_t i = 0; i < vecSize; ++i) {
@@ -69,7 +83,7 @@ namespace printUtils {
      * @param ef
      * @return
      */
-    meshStorage::MeshCreator parseFrom(std::istream &in,const EFormat& ef=EFormat());
+    meshStorage::MeshCreator parseMeshFrom(std::istream &in, const EFormat& ef= EFormat());
 
     char parseChar(std::istream &in);
 
@@ -325,4 +339,4 @@ namespace printUtils {
 
 }
 
-#endif //DIPLOM_PARSERS_H
+#endif //DATA_DEDUPLICATION_SERVICE_PARSERS_H

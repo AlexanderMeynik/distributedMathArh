@@ -17,7 +17,6 @@
 /// printUtils namespace
 namespace printUtils {
 
-    DEFINE_EXCEPTION(InvalidOption,"Option {} does not exist!",const std::string&);
 
     using EFormat = Eigen::IOFormat;
 

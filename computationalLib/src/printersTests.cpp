@@ -24,9 +24,10 @@ int printMatrixEigen(std::ostream &out, const Container &solution_, const std::a
 
 
 
-DEFINE_EXCEPTION(lessException,"{}<{}",int,int)
+DEFINE_EXCEPTION(lessException,"{}<{}",info,int,int)
 
 int main() {
+
     int prec = 0;
     std::cin >> prec;
     IosStateScientific ioc(std::cout, prec);
@@ -49,14 +50,17 @@ int main() {
 
     std::cout<<toEigenMatrix(ss,1).format(EIGENF(EigenPrintFormats::MatrixFormat1));
 
+    //todo test my expections
     try {
         //throw InvalidOption(std::string{"ss"});
         throw  lessException(1,2);
     }
-    catch (std::logic_error&ll)
+    catch (MyException&ll)
     {
         std::cout<<ll.what()<<'\n';
+        std::cout<<ENUM_TO_STR(ll.getSev(),sevToStr)<<'\n';
     }
+    //todo test mesh print/parse
     meshStorage::MeshCreator mm{};
     mm.constructMeshes({2,5},{0.0,2.0,1.0,10.});
 
@@ -70,10 +74,24 @@ int main() {
     printMesh(mm,sstr);
     //todo print serializtion type(into vec with io format(if it exist than dont read))
 
-    auto new_mesh= parseFrom(sstr);
+    auto new_mesh= parseMeshFrom(sstr);
 
     std::cout<<'\n';
     printMesh(new_mesh,std::cout);
+
+
+    //todo test eformat functions
+    std::stringstream sstr2;
+    auto s1=EIGENF(EigenPrintFormats::BasicOneDimensionalVector);
+    sstr2<<s1;
+    std::cout<<sstr2.str()<<'\n';
+
+    EFormat sssss;
+    sstr2>>sssss;
+
+    std::cout<<((sssss==s1)?"equal":"not equul");
+
+
     //todo move array equal checks
 
     //printMesh(mm,std::cout,ioFormat::HumanReadable);

@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
     //std::cout<<aStr; // 1e16.csv
     std::string dirname = "results/" + subdirectory + "experiment_N=" + std::to_string(N) +
                           "_Nsym=" + std::to_string(Nsym) + "_a=" + aStr + "_mode=" +
-                          stateToString.find(state)->second + "/";
+                          stateToStr[static_cast<size_t>(state)] + "/";
     if (!std::filesystem::exists("results/")) {
         std::filesystem::create_directory("results/");
     }

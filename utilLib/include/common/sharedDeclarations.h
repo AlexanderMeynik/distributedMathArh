@@ -33,13 +33,15 @@ namespace shared {
         print_
     };
 
-    const static std::unordered_map<state_t, std::string> stateToString = {
-            {state_t::openmp_new, "openmp_new"},
-            {state_t::new_,       "new"},
-            {state_t::openmp_old, "openmp_old"},
-            {state_t::old,        "old"},
-            {state_t::print_,     "printImpl"},
-    };
+    constexpr std::array<const char*,5> stateToStr=
+            {
+                    "openmp_new",
+                    "new",
+                    "openmp_old",
+                    "old",
+                    "printImpl"
+            };
+
     const static std::unordered_map<std::string, state_t> stringToState = {
             {"openmp_new", state_t::openmp_new},
             {"new",        state_t::new_},

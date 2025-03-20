@@ -17,10 +17,15 @@ namespace printUtils {
 
     using shared::FloatType;
     using printUtils::IosStatePreserve, printUtils::IosStateScientific;
+    using namespace shared;
 
     using meshStorage::MeshCreator;
     void printMesh(const MeshCreator&mesh,std::ostream &out,const ioFormat&form=ioFormat::Serializable,
                const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
+
+
+    std::ostream& operator<<(std::ostream& os, const EFormat & fmt);
+
 
     /**
      * @brief Cast any one dimensional array to Json::value
