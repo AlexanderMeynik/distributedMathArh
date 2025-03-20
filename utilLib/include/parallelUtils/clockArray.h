@@ -72,9 +72,10 @@ namespace timing {
 
         /**
          * This function starts new calculation section
-         * @param location source location of calle
+         * @param location source location of call
+         * //todo fix
          * @attention You must mirror every tik like call with
-         * @ref timing::ClockArray< T, T2, timeGetter, src_to_loc_type, double_cast >::tak "tak()"
+         * @ref timing::ClockArray::tak() "tak()"
          */
         void tik(const std::source_location &location
         = std::source_location::current());

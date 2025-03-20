@@ -107,7 +107,7 @@ namespace printUtils {
      * @brief Basic interface for printing solution
      * @tparam Collection
      * @param out
-     * @param coord
+     * @param sol
      * @param format
      * @param eigenForm
      */

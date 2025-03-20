@@ -59,7 +59,9 @@ namespace printUtils {
     /**
      * @brief Parse one dimensional array from provided istream
      * @tparam Struct
-     * @param val
+     * @param in
+     * @param vecSize
+     * @param ef
      * @return Struct to store the values
      */
     template<isOneDimensionalContinuous Struct>
@@ -214,7 +216,7 @@ namespace printUtils {
 
 
 /**
- * @begin Eigen vector specialization for Parser
+ * @brief Eigen vector specialization for Parser
  * @tparam T
  */
     template<typename T>
@@ -243,7 +245,7 @@ namespace printUtils {
     };
 
 /**
- * @begin Standart vector specialization for Parser
+ * @brief Standart vector specialization for Parser
  * @tparam T
  */
     template<typename T>
@@ -272,7 +274,7 @@ namespace printUtils {
     };
 
 /**
- * @begin Eigen vector specialization for Parser
+ * @brief Eigen vector specialization for Parser
  * @tparam T
  */
     template<typename T>
@@ -303,7 +305,7 @@ namespace printUtils {
     using meshStorage::MeshCreator;
 
 /**
- * @begin Mesh creator specialization for Parser
+ * @brief Mesh creator specialization for Parser
  * @tparam T
  */
     template<>

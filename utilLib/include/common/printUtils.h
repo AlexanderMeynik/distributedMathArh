@@ -34,32 +34,7 @@ namespace printUtils {
                               const char *delim = ",", const char *left = "(",
                               const char *right = ")");
 
-    /**
-     * @brief A guard class to save current iostream state
-     * @details Object of this class stores current iostream state and restores it when it goes out of scope
-     */
-    class IosStatePreserve {
-    public:
-        explicit IosStatePreserve(std::ostream &out);
 
-        ~IosStatePreserve();
-
-        [[nodiscard]] std::ios_base::fmtflags getFlags() const;
-
-    private:
-        std::ios_base::fmtflags flags_;
-        std::ostream &out_;
-    };
-
-    /**
-     * @brief Sets iostream precision to a fixed value after saving it's state
-     */
-    class IosStateScientific : public IosStatePreserve {
-    public:
-        using IosStatePreserve::IosStatePreserve;
-
-        explicit IosStateScientific(std::ostream &out, long precision = std::numeric_limits<double>::max_digits10);
-    };
 
     /**
      * @brief Eformat lookup Table
@@ -94,8 +69,8 @@ namespace printUtils {
     /// String lookup map for ioformat
     static const std::unordered_map<std::string, ioFormat> stringToIoFormat =
             {
-            FORMAT_OPT(Serializable),
-            FORMAT_OPT(HumanReadable)
+                    FORMAT_OPT(Serializable),
+                    FORMAT_OPT(HumanReadable)
             };
 
 
@@ -110,7 +85,6 @@ namespace printUtils {
      * @brief Printer for ioFormat
      * @param out
      * @param form
-     * @return
      */
     std::ostream &operator<<(std::ostream &out, const ioFormat &form);
 
@@ -124,15 +98,35 @@ namespace printUtils {
 
 
     /**
-     * @brief Converts tuple object to string with specified delimeters
-     * @tparam TupleT
-     * @tparam TupSize
-     * @param tp
-     * @param delim
-     * @param left
-     * @param right
-     * @return
+     * @brief A guard class to save current iostream state
+     * @details Object of this class stores current iostream state and restores it when it goes out of scope
      */
+    class IosStatePreserve {
+    public:
+        explicit IosStatePreserve(std::ostream &out);
+
+        ~IosStatePreserve();
+
+        [[nodiscard]] std::ios_base::fmtflags getFlags() const;
+
+    private:
+        std::ios_base::fmtflags flags_;
+        std::ostream &out_;
+    };
+
+    /**
+     * @brief Sets iostream precision to a fixed value after saving it's state
+     */
+    class IosStateScientific : public IosStatePreserve {
+    public:
+        using IosStatePreserve::IosStatePreserve;
+
+        explicit IosStateScientific(std::ostream &out, long precision = std::numeric_limits<double>::max_digits10);
+    };
+
+
+
+
     template<typename TupleT, std::size_t TupSize>
     std::string tupleToString(const TupleT &tp,
                               const char *delim, const char *left,

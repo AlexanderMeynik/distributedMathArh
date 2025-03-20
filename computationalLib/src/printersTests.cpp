@@ -52,7 +52,6 @@ int main() {
 
     //todo test my expections
     try {
-        //throw InvalidOption(std::string{"ss"});
         throw  lessException(1,2);
     }
     catch (MyException&ll)
