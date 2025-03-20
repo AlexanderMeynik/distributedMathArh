@@ -37,7 +37,7 @@ int main() {
     const std::vector<double> asap = {6.232131313243e-23, 6e-23, 6e-23, 6e-23};
     std::vector<double> ass2 = {6.232131313243e-23, 6e-23, 6e-23, 1, 1, 1};
 
-    //todo does this suppord array of 2 vecs
+
     //if yes can we somehow cast array<vecs> to one eigen vec
     printCoordinates(std::cout,ss);
     printCoordinates(std::cout,ss2);
@@ -69,14 +69,14 @@ int main() {
                      });
 
     std::stringstream sstr;
-    printMesh(mm,std::cout);
-    printMesh(mm,sstr);
+    printMesh(std::cout,mm);
+    printMesh(sstr,mm);
     //todo print serializtion type(into vec with io format(if it exist than dont read))
 
     auto new_mesh= parseMeshFrom(sstr);
 
     std::cout<<'\n';
-    printMesh(new_mesh,std::cout);
+    printMesh(std::cout,new_mesh);
 
 
     //todo test eformat functions

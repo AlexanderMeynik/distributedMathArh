@@ -137,7 +137,6 @@ namespace testCommon {
     }
 
 
-//todo move to cpp?
     static inline auto arrayDoubleComparator = []<typename FType=FloatType>
             (FType a, FType b, size_t i, FType tol) {
         return isNear(a, b, tol);

@@ -109,7 +109,7 @@ namespace meshStorage {
 
 
     co::meshDrawClass inline unflatten(const co::meshStorageType &mm, const std::array<size_t, 2> &numss) {
-        auto res = co::meshDrawClass(numss[0], co::standartVec(numss[1], 0.0));
+        auto res = co::meshDrawClass(numss[0], co::stdVec(numss[1], 0.0));
 
 
         mdSpanType resSpan = Kokkos::mdspan((FloatType *) &(mm[0]), numss[0], numss[1]);
@@ -124,7 +124,7 @@ namespace meshStorage {
     }
 
     co::meshDrawClass inline unflatten(const mdSpanType &resSpan) {
-        auto res = co::meshDrawClass(resSpan.extent(0), co::standartVec(resSpan.extent(1), 0.0));
+        auto res = co::meshDrawClass(resSpan.extent(0), co::stdVec(resSpan.extent(1), 0.0));
 
 
         for (size_t i = 0; i < resSpan.extent(0); ++i) {

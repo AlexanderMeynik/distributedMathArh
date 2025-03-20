@@ -93,12 +93,15 @@ namespace shared {
     /**
      * @brief outOfRange class
      */
-    DEFINE_EXCEPTION_IN(outOfRange, "Value {} is out of range[{}{}]!", long, long, long)
+    DEFINE_EXCEPTION_IN(outOfRange, "Value {} is out of range[{},{}]!", long, long, long)
 
     /**
      * @brief ioError class
      */
     DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", const std::string&);
+
+    //todo stck tracing
+    //https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes
 
 }
 

@@ -28,7 +28,7 @@ namespace printUtils {
      * @param form
      * @param eigenForm
      */
-    void printMesh(const MeshCreator&mesh,std::ostream &out,const ioFormat&form=ioFormat::Serializable,
+    void printMesh(std::ostream &out,const MeshCreator&mesh,const ioFormat&form=ioFormat::Serializable,
                const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
 
@@ -67,6 +67,35 @@ namespace printUtils {
         out << map.format(eigenForm);
     }
 
+
+    /**
+     * @brief Flattens and prints matrix as row Vector
+     * @tparam Collection
+     * @param out
+     * @param xi
+     * @param eigenForm
+     */
+    void inline matrixPrint1D(std::ostream &out, const commonTypes::matrixType  &matr, const EFormat &eigenForm = EFormat()) {
+        auto map = Eigen::Map<const Eigen::RowVector<FloatType,-1>>(matr.data(),matr.size());
+        out << matr.size() << '\n';
+        out << map.format(eigenForm);
+    }
+
+
+    /**
+     * @brief Serializes matrix with coordinates
+     * @tparam Collection
+     * @param out
+     * @param xi
+     * @param eigenForm
+     */
+    void inline matrixPrint2D(std::ostream &out, const commonTypes::matrixType  &matr, const EFormat &eigenForm = EIGENF(EigenPrintFormats::MatrixFormat1)) {
+        out << matr.rows() << '\t' << matr.cols() << '\n';
+        out << matr.format(eigenForm);
+    }
+
+
+
     /**
      * @brief Human readable way to print solution vector
      * @tparam Collection
@@ -100,7 +129,7 @@ namespace printUtils {
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
     void printCoordinates(std::ostream &out, const Collection &coord, ioFormat format = ioFormat::Serializable,
-                          const EFormat &eigenForm = EIGENF(EigenPrintFormats::BasicOneDimensionalVector));
+                          const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
 
     /**
@@ -115,7 +144,7 @@ namespace printUtils {
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
     void printSolution(std::ostream &out, const Collection &sol, ioFormat format = ioFormat::Serializable,
-                       const EFormat &eigenForm = EIGENF(EigenPrintFormats::BasicOneDimensionalVector));
+                       const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
 }
 

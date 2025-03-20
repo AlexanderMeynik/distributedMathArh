@@ -23,23 +23,6 @@ requires isOneDimensionalContinuous<Collection>
 auto
 toEigenMatrix(Collection &collection, int columns);
 
-//todo remove(testing type casts)
-template<class T>
-std::array<std::vector<T>, 2> reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> &xi) {
-    auto N = xi.size() / 2;
-    if (!N) {
-        return std::array<std::vector<T>, 2>();
-    }
-    std::array<std::vector<T>, 2> res;
-    res[0] = std::vector<T>(N, 0);
-    res[1] = std::vector<T>(N, 0);
-
-    for (int i = 0; i < N; ++i) {
-        res[0][i] = xi[i];
-        res[1][i] = xi[i + N];
-    }
-    return res;
-}
 
 template<typename Collection>
 requires isOneDimensionalContinuous<Collection>
@@ -104,6 +87,7 @@ toEigenMatrix(Collection &collection, int columns) {
 
     if (collection.size() == 0) {
         throw std::length_error("Zero input collection size!");
+        //todo redo
     }
 
     if (collection.size() % columns != 0) {
