@@ -237,6 +237,7 @@ namespace timing {
     clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::reset() {
         if (!toTak.empty()) {
             throw std::logic_error("Missing tak statements for tik ones");
+            //todo serialize
         }
         this->timers.clear();
         this->startIngTimers.clear();

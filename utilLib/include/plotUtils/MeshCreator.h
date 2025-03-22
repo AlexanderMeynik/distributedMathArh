@@ -16,6 +16,11 @@ namespace meshStorage {
     using shared::FloatType, shared::params;
     using printUtils::IosStateScientific;
 
+    ///stores inforamtion about mesh coordinate dimensions
+    using dimType=std::array<size_t, 2>;
+    ///stores upper and lower limit pairs for meshes
+    using limType=std::array<FloatType, 4>;
+
     using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;
     using mdSpanType = Kokkos::mdspan<FloatType, etx>;
 
@@ -108,7 +113,7 @@ namespace meshStorage {
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n);
 
 
-    co::meshDrawClass inline unflatten(const co::meshStorageType &mm, const std::array<size_t, 2> &numss) {
+    co::meshDrawClass inline unflatten(const co::meshStorageType &mm, const dimType &numss) {
         auto res = co::meshDrawClass(numss[0], co::stdVec(numss[1], 0.0));
 
 
@@ -137,7 +142,6 @@ namespace meshStorage {
     }
 
 
-    static const size_t dimCount = 2;
     static constexpr inline const FloatType rr = 2 * M_PI / params::omega;
 
 
@@ -154,23 +158,23 @@ namespace meshStorage {
 
         void constructMeshes();
 
-        void constructMeshes(const std::array<size_t, 2> &dimenstion) {
+        void constructMeshes(const dimType &dimenstion) {
             this->dimensions = dimenstion;
         }
 
         void constructMeshes(
-                const std::array<FloatType, 4> &limit) {
+                const limType &limit) {
             this->limits = limit;
         }
 
-        void constructMeshes(const std::array<size_t, 2> &dimenstion,
-                             const std::array<FloatType, 4> &limit) {
+        void constructMeshes(const dimType &dimenstion,
+                             const limType &limit) {
             this->dimensions = dimenstion;
             this->limits = limit;
             constructMeshes();
         }
 
-        friend meshArr<dimCount + 1> sphericalTransformation(const MeshCreator &oth);
+        friend meshArr<3> sphericalTransformation(const MeshCreator &oth);
 
         void applyFunction(const co::directionGraph &plot);
 
@@ -190,9 +194,9 @@ namespace meshStorage {
             plotCallback(filename, *this);
         }
 
-        std::array<size_t, dimCount> dimensions;
-        std::array<FloatType, dimCount * 2> limits;
-        meshArr<dimCount + 1> data;
+        dimType dimensions;
+        limType limits;
+        meshArr<3> data;
     };
 
     void printDec(const meshStorage::MeshCreator &mmesh, std::ostream &out);

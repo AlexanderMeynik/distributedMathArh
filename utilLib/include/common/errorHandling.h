@@ -100,6 +100,8 @@ namespace shared {
      */
     DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", const std::string&);
 
+    DEFINE_EXCEPTION_IN(mismatchedSizes,"Mismatched container sizes for input : a.size = {}, b.size() = {} !",long,long);
+
     //todo stck tracing
     //https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes
 

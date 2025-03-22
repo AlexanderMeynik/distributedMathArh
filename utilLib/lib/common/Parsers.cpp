@@ -3,12 +3,51 @@
 namespace printUtils {
 
 
+    //todo check + linking issues(undefined refreces to all functions for mesh)
+    //todo move mesh here
+    ms::MeshCreator fromJson(Json::Value&val,std::optional<ms::dimType> dimOpt,
+                             std::optional<ms::limType> limOpt)
+    {
+        meshStorage::MeshCreator mm;
+
+        ms::dimType dims;
+
+        if(dimOpt.has_value())
+        {
+            dims=dimOpt.value();
+        }
+        else
+        {
+            dims[0]=val["dimensions"][0].asUInt();
+            dims[1]=val["dimensions"][1].asUInt();
+        }
+        ms::limType lims{};
+
+        if(limOpt.has_value())
+        {
+            lims=limOpt.value();
+        }
+        else
+        {
+            for (int i = 0; i < lims.size(); ++i) {
+                lims[i]=val["limits"][i].asDouble();
+            }
+        }
+
+
+        mm.constructMeshes(dims,lims);
+        mm.data[2]= parseCont<commonTypes::meshStorageType>(val["data"],dims[0]*dims[1]);
+
+        mm.computeViews();
+        return mm;
+    }
+
     meshStorage::MeshCreator parseMeshFrom(std::istream &in, const EFormat &ef) {
         meshStorage::MeshCreator mm;
 
-        std::array<size_t,2> dims{};
+        ms::dimType dims{};
         in>>dims[0]>>dims[1];
-        std::array<shared::FloatType,4> lims{};
+        ms::limType lims{};
 
         in>>lims[0]>>lims[1]>>lims[2]>>lims[3];
 

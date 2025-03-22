@@ -17,9 +17,9 @@ namespace printUtils {
 
     using shared::FloatType;
     using printUtils::IosStatePreserve, printUtils::IosStateScientific;
-    using namespace shared;
+    namespace sh=shared;
 
-    using meshStorage::MeshCreator;
+    namespace ms=meshStorage;
 
     /**
      * @brief Print mesh to supplied std::ostream
@@ -28,7 +28,7 @@ namespace printUtils {
      * @param form
      * @param eigenForm
      */
-    void printMesh(std::ostream &out,const MeshCreator&mesh,const ioFormat&form=ioFormat::Serializable,
+    void printMesh(std::ostream &out,const ms::MeshCreator&mesh,const ioFormat&form=ioFormat::Serializable,
                const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
 
@@ -46,10 +46,21 @@ namespace printUtils {
      * @brief Cast any one dimensional array to Json::value
      * @tparam Struct
      * @param a
+     * @param printSize
      * @returns Json::Value with serialized array
      */
     template<myConcepts::isOneDimensionalContinuous Struct>
-    Json::Value continuousToJson(const Struct &a);
+    Json::Value continuousToJson(const Struct &a,bool printSize = true);
+
+
+    /**
+     * @brief Transforms MeshCreator to json
+     * @param mesh
+     * @param printDims
+     * @param printLims
+     * @return Json::Value with serialized meshCreator
+     */
+    Json::Value toJson(const ms::MeshCreator&mesh,bool printDims=true,bool printLims=true);
 
     /**
      * @brief Prints one dimensional Collection using Eigen format
@@ -152,9 +163,11 @@ namespace printUtils {
 
 
     template<myConcepts::isOneDimensionalContinuous Struct>
-    Json::Value continuousToJson(const Struct &a) {
+    Json::Value continuousToJson(const Struct &a,bool printSize) {
         Json::Value res;
-        res["size"] = a.size();
+        if(printSize) {
+            res["size"] = a.size();
+        }
         for (size_t i = 0; i < a.size(); i++) {
             res["data"][(Json::ArrayIndex) i] = a[i];
         }

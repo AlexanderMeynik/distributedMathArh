@@ -15,7 +15,27 @@ namespace printUtils {
         return os;
     }
 
-    void printMesh(std::ostream &out,const MeshCreator&mesh, const printUtils::ioFormat &form,
+    Json::Value toJson(const ms::MeshCreator&mesh,bool printDims,bool printLims)
+    {
+        Json::Value res=continuousToJson(mesh.data[2],false);;
+
+        if(printDims)
+        {
+            //todo store schema
+            res["dimensions"][0]=mesh.dimensions[0];
+            res["dimensions"][1]=mesh.dimensions[1];
+        }
+        if(printLims)
+        {
+            for(int i=0;i<mesh.dimensions.size();i++)
+            {
+                res["limits"][i]=mesh.limits[i];
+            }
+        }
+        return res;
+    }
+
+    void printMesh(std::ostream &out,const ms::MeshCreator&mesh, const printUtils::ioFormat &form,
                                const EFormat &eigenForm) {
 
         switch (form) {

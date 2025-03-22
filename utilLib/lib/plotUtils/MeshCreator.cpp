@@ -4,15 +4,13 @@ namespace meshStorage {
 
     co::meshStorageType
     computeFunction(const co::meshStorageType &a, const co::meshStorageType &b, const co::directionGraph &func) {
-        if (!a.size())//todo create my exception type with error type and message
+        if (!a.size()||!b.size())
         {
-            throw std::length_error("Invalid container sizes for input : a.size = "
-                                    + std::to_string(a.size()) + ", b.size() = " + std::to_string(b.size()));
+            throw shared::MyException(fmt::format("Zero container sizes: a.size() = {},b.size() = {}", a.size(),b.size()));
         }
 
         if (a.size() != b.size()) {
-            throw std::length_error("Mismatched container sizes for input : a.size = "
-                                    + std::to_string(a.size()) + ", b.size() = " + std::to_string(b.size()));
+            throw shared::mismatchedSizes(a.size(),b.size());
         }
 
         auto sz = a.size();
@@ -42,8 +40,8 @@ namespace meshStorage {
 
         auto phi = meshStorage::myLinspace<std::valarray>(limits[2], limits[3], dimensions[1]);
         auto theta = meshStorage::myLinspace<std::valarray>(limits[0], limits[1], dimensions[0]);
-        std::array<std::valarray<FloatType>, dimCount> coords;
-        for (size_t i = 0; i < dimCount; ++i) {
+        std::array<std::valarray<FloatType>, 2> coords;
+        for (size_t i = 0; i < 2; ++i) {
             coords[i] = meshStorage::myLinspace<std::valarray>(limits[2 * i], limits[2 * i + 1], dimensions[i]);
         }
 
@@ -65,9 +63,9 @@ namespace meshStorage {
         }
     }
 
-    meshArr<dimCount + 1> sphericalTransformation(const MeshCreator &oth) {
-        meshArr<dimCount + 1> res;
-        for (size_t i = 0; i < dimCount + 1; ++i) {
+    meshArr<3> sphericalTransformation(const MeshCreator &oth) {
+        meshArr<3> res;
+        for (size_t i = 0; i < 3; ++i) {
             res[i] = oth.data[i];
         }
 
@@ -78,13 +76,12 @@ namespace meshStorage {
         return res;
     }
 
-    //todo what dos this even do
     void printDec(const meshStorage::MeshCreator &mmesh, std::ostream &out) {
-        out << "Функция I(phi,th)\n";
-        out << "phi\\th\t\t";
-
         auto ext0 = mmesh.spans[2].extent(0);
         auto ext1 = mmesh.spans[2].extent(1);
+        out<<ext0<<'\t'<<ext1<<'\n';
+        out << "Функция I(phi,th)\n";
+        out << "phi\\th\t\t";
         for (size_t i = 0; i < ext0 - 1; ++i) {
             out << mmesh.spans[1][std::array{i, 0UL}] << '\t';
         }

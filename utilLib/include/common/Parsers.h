@@ -4,30 +4,31 @@
 
 #include <iostream>
 
-#include <algorithm>
+#include <algorithm>//do weneed it?
 #include <numeric>
 #include <fstream>
 #include <iomanip>
+#include <optional>
 
 #include <json/json.h>
 
 #include "plotUtils/MeshCreator.h"
 #include "common/myConcepts.h"
-
 /// printUtils namespace
 namespace printUtils {
     using namespace shared;
     using myConcepts::isOneDimensionalContinuous;
-
+    namespace ms=meshStorage;
     /**
      * @brief Parse one dimensional array from json
      * @tparam Struct
      * @param val
+     * @param sz
      */
     template<isOneDimensionalContinuous Struct>
-    Struct parseCont(Json::Value &val) {
-        int size = val["size"].asUInt();
+    Struct parseCont(Json::Value &val, std::optional<size_t > sz= std::nullopt) {
 
+        size_t size = sz.value_or(val["size"].asUInt());
         std::valarray<double> res(size);
 
         for (int i = 0; i < size; ++i) {
@@ -35,6 +36,16 @@ namespace printUtils {
         }
         return res;
     }
+
+    /**
+     * @brief Parse MeshCreator from json
+     * @param val
+     * @param dimOpt
+     * @param limOpt
+     * @return
+     */
+    ms::MeshCreator fromJson(Json::Value&val,std::optional<ms::dimType> dimOpt=std::nullopt,
+                                    std::optional<ms::limType> limOpt=std::nullopt);
 
 
     /**
