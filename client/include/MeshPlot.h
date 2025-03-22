@@ -4,7 +4,7 @@
 #include <QSurface3DSeries>
 #include <QWidget>
 #include <QHBoxLayout>
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 
 using meshStorage::MeshCreator,meshStorage::meshArr;
 using shared::FloatType;

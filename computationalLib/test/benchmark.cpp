@@ -10,7 +10,7 @@
 #include "benchmarkHandler.h"
 #include "common/Generator.h"
 #include "computationalLib/math_core/Dipoles.h"
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 #include "common/sharedDeclarations.h"
 
 

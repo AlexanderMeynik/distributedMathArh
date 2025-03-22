@@ -12,7 +12,7 @@
 
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/Generator.h"
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 #include "common/Printers.h"
 #include "../include/plotingUtils.h"
 #include "common/sharedDeclarations.h"

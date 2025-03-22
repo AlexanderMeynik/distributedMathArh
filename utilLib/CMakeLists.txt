@@ -31,15 +31,9 @@ add_library(parallelLib ${parallelUtils})
 target_include_directories(parallelLib PUBLIC include)
 
 
-file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
-        "lib/plotUtils/*.cpp"
-)
 
-
-add_library(plotUtilsLib STATIC ${plotUtils})
-target_link_libraries(plotUtilsLib PUBLIC commonLib)
 
 add_library(allUtils STATIC ${parallelUtils})
-target_link_libraries(allUtils PUBLIC plotUtilsLib)
+target_link_libraries(allUtils PUBLIC commonLib)
 
 

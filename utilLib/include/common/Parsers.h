@@ -12,7 +12,7 @@
 
 #include <json/json.h>
 
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 #include "common/myConcepts.h"
 /// printUtils namespace
 namespace printUtils {
@@ -26,16 +26,7 @@ namespace printUtils {
      * @param sz
      */
     template<isOneDimensionalContinuous Struct>
-    Struct parseCont(Json::Value &val, std::optional<size_t > sz= std::nullopt) {
-
-        size_t size = sz.value_or(val["size"].asUInt());
-        std::valarray<double> res(size);
-
-        for (int i = 0; i < size; ++i) {
-            res[i] = val["data"][i].asDouble();
-        }
-        return res;
-    }
+    Struct parseCont(Json::Value &val, std::optional<size_t > sz= std::nullopt);
 
     /**
      * @brief Parse MeshCreator from json
@@ -57,7 +48,7 @@ namespace printUtils {
     std::istream& operator>>(std::istream& is, EFormat & fmt);
 
     /**
-     * @brief Elmentwise comparison between EFormat
+     * @brief elementwise comparison between EFormat
      * @param lhs
      * @param rhs
      * @return
@@ -68,35 +59,12 @@ namespace printUtils {
      * @brief Parse one dimensional array from provided istream
      * @tparam Struct
      * @param in
-     * @param vecSize
+     * @param size
      * @param ef
      * @return Struct to store the values
      */
     template<isOneDimensionalContinuous Struct>
-    Struct parseOneDim(std::istream &in,long vecSize=-1,const EFormat& ef=EFormat()) {
-        if(vecSize==-1)
-        {
-            in>>vecSize;
-        }
-
-        if(!in)
-        {
-            throw ioError(to_string(in.rdstate()));
-        }
-
-        if(vecSize<0)
-        {
-            throw outOfRange(vecSize,0,LONG_MAX);
-        }
-
-        Struct res(vecSize);
-
-
-        for (size_t i = 0; i < vecSize; ++i) {
-            in>>res[i];
-        }
-        return res;
-    }
+    Struct parseOneDim(std::istream &in,long size=-1,const EFormat& ef=EFormat());
 
     /**
      * @brief Parse matrix
@@ -106,10 +74,42 @@ namespace printUtils {
      * @param ef
      * @return Struct to store the values
      */
-    commonTypes::matrixType inline parseMatrix(std::istream &in, long rows= -1, long cols= -1, const EFormat& ef= EFormat()) {
-        if(rows==-1||cols==-1)
+    commonTypes::matrixType parseMatrix(std::istream &in, long rows= -1, long cols= -1, const EFormat& ef= EFormat());
+
+    /**
+     * @brief Parses mesh creator from provided istream
+     * @param in
+     * @param ef
+     * @param dimOpt
+     * @param limOpt
+     * @return MeshCreator instance
+     */
+    meshStorage::MeshCreator parseMeshFrom(std::istream &in,std::optional<ms::dimType> dimOpt=std::nullopt,
+                                           std::optional<ms::limType> limOpt=std::nullopt,
+                                           const EFormat& ef= EFormat());
+
+}
+
+
+namespace printUtils
+{
+    template<isOneDimensionalContinuous Struct>
+    Struct parseCont(Json::Value &val, std::optional<size_t > sz) {
+
+        size_t size = sz.value_or(val["size"].asUInt());
+        std::valarray<double> res(size);
+
+        for (int i = 0; i < size; ++i) {
+            res[i] = val["data"][i].asDouble();
+        }
+        return res;
+    }
+
+    template<isOneDimensionalContinuous Struct>
+    Struct parseOneDim(std::istream &in,long size,const EFormat& ef) {
+        if(size==-1)
         {
-            in>>rows>>cols;
+            in>>size;
         }
 
         if(!in)
@@ -117,59 +117,19 @@ namespace printUtils {
             throw ioError(to_string(in.rdstate()));
         }
 
-        if(rows<0||cols<0)
+        if(size<0)
         {
-            //todo better
-            throw outOfRange(rows,0,LONG_MAX);
+            throw outOfRange(size,0,LONG_MAX);
         }
 
-        commonTypes::matrixType res(rows,cols);
+        Struct res(size);
 
-        for (int i = 0; i < rows; ++i) {
-            for (int j = 0; j < cols; ++j) {
-                in>>res(i,j);
-            }
+
+        for (size_t i = 0; i < size; ++i) {
+            in>>res[i];
         }
         return res;
     }
 
-
-    /**
-     * @brief Parses mesh creator from provided istream
-     * @param in
-     * @param ef
-     * @return
-     */
-    meshStorage::MeshCreator parseMeshFrom(std::istream &in, const EFormat& ef= EFormat());
-
-    /*
-    template<typename T>
-    std::istream &operator>>(std::istream &in, std::array<std::vector<T>, 2> &xi) {
-        size_t size;
-        in >> size;
-        for (int i = 0; i < 2; ++i) {
-            xi[i].resize(size);
-            for (int j = 0; j < size; ++j) {
-                in >> xi[i][j];
-            }
-        }
-        return in;
-    }
-
-    template<typename T>
-    std::istream &operator>>(std::istream &in, std::array<Eigen::Vector<T, Eigen::Dynamic>, 2> &sol) {
-        size_t size;
-        in >> size;
-        for (int i = 0; i < 2; ++i) {
-            sol[i].resize(size);
-            for (int j = 0; j < size; ++j) {
-                in >> sol[i][j];
-            }
-        }
-        return in;
-    }*/
-
-
 }
-
 #endif //DATA_DEDUPLICATION_SERVICE_PARSERS_H

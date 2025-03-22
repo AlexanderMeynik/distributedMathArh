@@ -10,7 +10,7 @@
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
 #include "common/typeCasts.h"
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 /// printUtils namespace
 namespace printUtils {
 

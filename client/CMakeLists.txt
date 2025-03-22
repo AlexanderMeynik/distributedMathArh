@@ -20,7 +20,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 add_library(plotLib lib/plotingUtils.cpp lib/MeshPlot.cpp include/MeshPlot.h)
-target_link_libraries(plotLib PUBLIC plotUtilsLib allUtils Matplot++::matplot Qt6::Charts Qt6::DataVisualization Qt6::Widgets)
+target_link_libraries(plotLib PUBLIC allUtils Matplot++::matplot Qt6::Charts Qt6::DataVisualization Qt6::Widgets)
 target_include_directories(plotLib PUBLIC include)
 
 add_executable(checker src/eigenTest.cpp )

@@ -98,10 +98,16 @@ namespace shared {
     /**
      * @brief ioError class
      */
-    DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", const std::string&);
+    DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", const std::string&)
 
     DEFINE_EXCEPTION_IN(mismatchedSizes,"Mismatched container sizes for input : a.size = {}, b.size() = {} !",long,long);
 
+    /**
+     * @brief Error template that captures several size
+     * @details Captured size values may contain one(or more) that are
+     * @details out of range for standart continuous types.
+     */
+    DEFINE_EXCEPTION_IN(invalidSizes2,"Invalid sizes sz1 = {}, sz2 = {} received!",long, long)
     //todo stck tracing
     //https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes
 

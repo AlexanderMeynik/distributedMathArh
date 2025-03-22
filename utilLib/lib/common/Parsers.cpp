@@ -3,8 +3,6 @@
 namespace printUtils {
 
 
-    //todo check + linking issues(undefined refreces to all functions for mesh)
-    //todo move mesh here
     ms::MeshCreator fromJson(Json::Value&val,std::optional<ms::dimType> dimOpt,
                              std::optional<ms::limType> limOpt)
     {
@@ -42,14 +40,41 @@ namespace printUtils {
         return mm;
     }
 
-    meshStorage::MeshCreator parseMeshFrom(std::istream &in, const EFormat &ef) {
+    meshStorage::MeshCreator parseMeshFrom(std::istream &in,std::optional<ms::dimType> dimOpt,
+                                           std::optional<ms::limType> limOpt, const EFormat &ef) {
         meshStorage::MeshCreator mm;
 
         ms::dimType dims{};
-        in>>dims[0]>>dims[1];
         ms::limType lims{};
 
-        in>>lims[0]>>lims[1]>>lims[2]>>lims[3];
+
+        if(dimOpt.has_value())
+        {
+            dims=dimOpt.value();
+        }
+        else
+        {
+            in>>dims[0]>>dims[1];
+
+            if(!in)
+            {
+                throw ioError(to_string(in.rdstate()));
+            }
+        }
+
+        if(limOpt.has_value())
+        {
+            lims=limOpt.value();
+        }
+        else
+        {
+            in>>lims[0]>>lims[1]>>lims[2]>>lims[3];
+            if(!in)
+            {
+                throw ioError(to_string(in.rdstate())+":"+STR(__LINE__));//todo fileleines
+            }
+        }
+
 
         mm.constructMeshes(dims,lims);
         mm.data[2]= parseOneDim<commonTypes::meshStorageType>(in,dims[0]*dims[1]);
@@ -57,6 +82,33 @@ namespace printUtils {
         mm.computeViews();
         return mm;
 
+    }
+
+
+    commonTypes::matrixType parseMatrix(std::istream &in, long rows, long cols, const EFormat& ef) {
+        if(rows==-1||cols==-1)
+        {
+            in>>rows>>cols;
+        }
+
+        if(!in)
+        {
+            throw ioError(to_string(in.rdstate()));
+        }
+
+        if(rows<0||cols<0)
+        {
+            throw invalidSizes2(rows,cols);
+        }
+
+        commonTypes::matrixType res(rows,cols);
+
+        for (int i = 0; i < rows; ++i) {
+            for (int j = 0; j < cols; ++j) {
+                in>>res(i,j);
+            }
+        }
+        return res;
     }
 
 

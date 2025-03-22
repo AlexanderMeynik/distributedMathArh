@@ -11,7 +11,7 @@
 #include <eigen3/Eigen/Core>
 
 
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 #include "parallelUtils/chronoClock.h"
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"

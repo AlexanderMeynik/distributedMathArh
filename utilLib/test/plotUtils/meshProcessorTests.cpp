@@ -1,7 +1,7 @@
 #include <tuple>
 #include <limits>
 
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 #include "common/commonTypes.h"
 #include "../../computationalLib/test/GoogleCommon.h"
 

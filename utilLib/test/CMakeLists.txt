@@ -25,7 +25,7 @@ file(GLOB plotUtils CONFIGURE_DEPENDS
 
 add_executable(plot_tests ${plotUtils})
 target_link_libraries(plot_tests gtest gmock gtest_main)
-target_link_libraries(plot_tests plotUtilsLib)
+target_link_libraries(plot_tests commonLib)
 
 add_executable(utilsAll ${common_Tests} ${parallelUtils} ${plotUtils})
 target_link_libraries(utilsAll gtest gmock gtest_main)
