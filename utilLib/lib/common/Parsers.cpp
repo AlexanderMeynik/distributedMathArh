@@ -34,7 +34,7 @@ namespace printUtils {
 
 
         mm.constructMeshes(dims,lims);
-        mm.data[2]= parseCont<commonTypes::meshStorageType>(val["data"],dims[0]*dims[1]);
+        mm.data[2]= parseCont<commonTypes::meshStorageType>(val,dims[0]*dims[1]);
 
         mm.computeViews();
         return mm;

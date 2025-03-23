@@ -20,7 +20,6 @@ std::string filename = res_dir_path.append("config.txt");
 std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
 //todo delete some types
-using coordType = std::vector<std::vector<FloatType >>;
 using meshStorage::MeshCreator;
 using ttype = std::tuple<std::string, std::vector<FloatType>, matrixType, EigenVec, MeshCreator>;
 
@@ -88,7 +87,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
 
     EXPECT_EQ(matr.rows()/4, conf.size() / 2);
     dipoles::Dipoles dd(conf);
-    compare2dArrays(dd.getMatrixx(), matr, twoDArrayDoubleComparator, 1e20 / 10000);
+    compare2dArrays(dd.getMatrixx(), matr, twoDArrayDoubleComparator<FloatType>::call, 1e20 / 10000);
 
 }
 
@@ -101,7 +100,7 @@ TEST_P(DipolesVerificationTS,
     dd.loadFromMatrix(matr);
 
     auto solut = dd.solve<EigenVec>();
-    compareArrays(sol, solut, arrayDoubleComparator);
+    compareArrays(sol, solut, arrayDoubleComparator<FloatType>::call);
 }
 
 
@@ -121,6 +120,6 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
 
     auto ress = meshStorage::unflatten(mesh.data[2], mesh.dimensions);
 
-    compare2dArrays<true>(ress, r2, twoDArrayDoubleComparator, 1e-3);
+    compare2dArrays<true>(ress, r2, twoDArrayDoubleComparator<FloatType>::call, 1e-3);
 }
 

@@ -135,17 +135,43 @@ namespace testCommon {
         }
 
     }
+    template<typename Type>
+    struct arrayEqualComparator {
+        static inline auto call = [](Type a, Type b, size_t i, Type tol) {
+            return a == b;
+        };
+    };
 
 
-    static inline auto arrayDoubleComparator = []<typename FType=FloatType>
+    template<typename FType=FloatType>
+    struct arrayDoubleComparator {
+        static inline auto call = [](FType a, FType b, size_t i, FType tol) {
+            return isNear(a, b, tol);
+        };
+    };
+
+    template<typename FType=FloatType>
+    struct twoDArrayDoubleComparator {
+        static inline auto call = [](FType a, FType b, size_t i, size_t j, FType tol) {
+            return isNear(a, b, tol);
+        };
+    };
+
+
+  /*  static inline auto arrayDoubleComparator = []<typename FType=FloatType>
             (FType a, FType b, size_t i, FType tol) {
         return isNear(a, b, tol);
-    };
+    };*/
 
-    static inline auto twoDArrayDoubleComparator = []<typename FType=FloatType>
+    /*static inline auto arrayEqualComparator = []<typename Type>
+            (Type a, Type b, size_t i) {
+        return a==b;
+    };*/
+
+    /*static inline auto twoDArrayDoubleComparator = []<typename FType=FloatType>
             (FType a, FType b, size_t i, size_t j, FType tol) {
         return isNear(a, b, tol);
-    };
+    };*/
 
 }
 

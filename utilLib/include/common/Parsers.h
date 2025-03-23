@@ -54,11 +54,10 @@ namespace printUtils {
 
     /**
      * @brief Parse matrix
-     * @tparam Struct
      * @param in
-     * @param vecSize
+     * @param rows
+     * @param cols
      * @param ef
-     * @return Struct to store the values
      */
     commonTypes::matrixType parseMatrix(std::istream &in, long rows= -1, long cols= -1, const EFormat& ef= EFormat());
 

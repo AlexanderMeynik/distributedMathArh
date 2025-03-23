@@ -14,7 +14,7 @@ namespace printUtils {
         }
         if(printLims)
         {
-            for(int i=0;i<mesh.dimensions.size();i++)
+            for(int i=0;i<mesh.limits.size();i++)
             {
                 res["limits"][i]=mesh.limits[i];
             }
@@ -22,8 +22,10 @@ namespace printUtils {
         return res;
     }
 
-    void printMesh(std::ostream &out,const ms::MeshCreator&mesh, const printUtils::ioFormat &form,
-                               const EFormat &eigenForm) {
+    void printMesh(std::ostream &out,const ms::MeshCreator&mesh,
+                   const ioFormat&form,
+                   bool printDims,bool printLims,
+                   const EFormat &eigenForm) {
 
         switch (form) {
             case ioFormat::Serializable:
@@ -37,9 +39,13 @@ namespace printUtils {
         {
 
             IosStateScientific iosStateScientific(out, out.precision());
-            out << mesh.dimensions[0] << '\t' << mesh.dimensions[1] << '\n';
-            out<<mesh.limits[0]<<'\t'<<mesh.limits[1]<<'\n';
-            out<<mesh.limits[2]<<'\t'<<mesh.limits[3]<<'\n';
+            if(printDims) {
+                out << mesh.dimensions[0] << '\t' << mesh.dimensions[1] << '\n';
+            }
+            if(printDims) {
+                out << mesh.limits[0] << '\t' << mesh.limits[1] << '\n';
+                out << mesh.limits[2] << '\t' << mesh.limits[3] << '\n';
+            }
             auto mm = toEigenRowVector(mesh.data.back());
 
             out << mm.format(eigenForm);

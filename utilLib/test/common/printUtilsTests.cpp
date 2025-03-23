@@ -6,7 +6,7 @@
 #include <sstream>
 #include <gtest/gtest.h>
 
-//#include "common/typeCasts.h"
+
 #include "common/printUtils.h"
 
 using namespace printUtils;
@@ -28,7 +28,6 @@ TEST_F(IoManipulators, test_ios_state_preserve) {
     }
     ASSERT_EQ(out.flags(), originalFlags);
 }
-
 
 
 
@@ -111,7 +110,6 @@ class formatsIo : public ::testing::Test,
     }
 };
 
-/*using std::stringstream::basic_stringstream; */
 TEST_P(formatsIo, test_ioFormat_ostream_operator) {
 
     auto [io,str]=GetParam();

@@ -98,7 +98,7 @@ TEST_P(TestsIntegrateOneVar, testIntegrateLambdaForOneVariable) {
     });
     auto g2 = meshStorage::computeFunction(grid[0], grid[1], resultFunction);
 
-    compareArrays(g1, g2, arrayDoubleComparator, anotherErr);
+    compareArrays(g1, g2, arrayDoubleComparator<FloatType>::call, anotherErr);
 
 }
 
@@ -120,7 +120,7 @@ TEST_P(TestLinspace, linspaceValueTest) {
     auto [_, start, end, n, result] = GetParam();
 
     auto r = ::myLinspace(start, end, n);
-    compareArrays(r, result, arrayDoubleComparator, anotherErr);
+    compareArrays(r, result, arrayDoubleComparator<FloatType>::call, anotherErr);
 
 }
 
@@ -140,8 +140,8 @@ TEST_P(TestMeshGenerate, TestMeshGenerate) {
 
     auto grid = myMeshGrid(a, b);
 
-    compareArrays(grid[0], res[0], arrayDoubleComparator, anotherErr);
-    compareArrays(grid[1], res[1], arrayDoubleComparator, anotherErr);
+    compareArrays(grid[0], res[0], arrayDoubleComparator<FloatType>::call, anotherErr);
+    compareArrays(grid[1], res[1], arrayDoubleComparator<FloatType>::call, anotherErr);
 
 }
 
@@ -176,7 +176,7 @@ TEST_P(TestFunctionApply, TestFunctionApply) {
 
     auto r = computeFunction(mesh[0], mesh[1], func);
 
-    compareArrays(r, res, arrayDoubleComparator, anotherErr);
+    compareArrays(r, res, arrayDoubleComparator<FloatType>::call, anotherErr);
 
 }
 

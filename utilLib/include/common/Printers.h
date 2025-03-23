@@ -2,7 +2,7 @@
 
 #ifndef DATA_DEDUPLICATION_SERVICE_PRINTERS_H
 #define DATA_DEDUPLICATION_SERVICE_PRINTERS_H
-//https://chat.deepseek.com/a/chat/s/f8c98b84-4982-46cd-900a-8e24ed042dee
+
 
 #include <limits>
 
@@ -11,6 +11,7 @@
 #include "common/printUtils.h"
 #include "common/typeCasts.h"
 #include "common/MeshCreator.h"
+
 /// printUtils namespace
 namespace printUtils {
 
@@ -26,10 +27,14 @@ namespace printUtils {
      * @param mesh
      * @param out
      * @param form
+     * @param printDims
+     * @param printLims
      * @param eigenForm
      */
-    void printMesh(std::ostream &out,const ms::MeshCreator&mesh,const ioFormat&form=ioFormat::Serializable,
-               const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
+    void printMesh(std::ostream &out,const ms::MeshCreator&mesh,
+                   const ioFormat&form=ioFormat::Serializable,
+                   bool printDims=true,bool printLims=true,
+                   const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
     /**
      * @brief Cast any one dimensional array to Json::value
@@ -67,10 +72,9 @@ namespace printUtils {
     }
 
     /**
-     * @brief Flattens and prints matrix as row Vector
-     * @tparam Collection
+     * Flattens and prints matrix as row Vector
      * @param out
-     * @param xi
+     * @param matr
      * @param eigenForm
      */
     void inline matrixPrint1D(std::ostream &out, const commonTypes::matrixType  &matr, const EFormat &eigenForm = EFormat()) {
@@ -81,9 +85,8 @@ namespace printUtils {
 
     /**
      * @brief Serializes matrix with coordinates
-     * @tparam Collection
      * @param out
-     * @param xi
+     * @param matr
      * @param eigenForm
      */
     void inline matrixPrint2D(std::ostream &out, const commonTypes::matrixType  &matr, const EFormat &eigenForm = EIGENF(EigenPrintFormats::MatrixFormat1)) {
