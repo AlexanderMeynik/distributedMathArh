@@ -31,17 +31,6 @@ namespace printUtils {
     void printMesh(std::ostream &out,const ms::MeshCreator&mesh,const ioFormat&form=ioFormat::Serializable,
                const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
-
-    /**
-     * @brief Printer for EFormat
-     * @details This implementation uses \" \" to separate escape characters inside separators
-     * @param os
-     * @param fmt
-     * @return
-     */
-    std::ostream& operator<<(std::ostream& os, const EFormat & fmt);
-
-
     /**
      * @brief Cast any one dimensional array to Json::value
      * @tparam Struct
@@ -51,7 +40,6 @@ namespace printUtils {
      */
     template<myConcepts::isOneDimensionalContinuous Struct>
     Json::Value continuousToJson(const Struct &a,bool printSize = true);
-
 
     /**
      * @brief Transforms MeshCreator to json
@@ -78,7 +66,6 @@ namespace printUtils {
         out << map.format(eigenForm);
     }
 
-
     /**
      * @brief Flattens and prints matrix as row Vector
      * @tparam Collection
@@ -92,7 +79,6 @@ namespace printUtils {
         out << map.format(eigenForm);
     }
 
-
     /**
      * @brief Serializes matrix with coordinates
      * @tparam Collection
@@ -104,8 +90,6 @@ namespace printUtils {
         out << matr.rows() << '\t' << matr.cols() << '\n';
         out << matr.format(eigenForm);
     }
-
-
 
     /**
      * @brief Human readable way to print solution vector
@@ -141,7 +125,6 @@ namespace printUtils {
              std::is_floating_point_v<typename Collection::value_type>
     void printCoordinates(std::ostream &out, const Collection &coord, ioFormat format = ioFormat::Serializable,
                           const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
-
 
     /**
      * @brief Basic interface for printing solution

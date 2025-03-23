@@ -30,3 +30,6 @@ target_link_libraries(plot_tests commonLib)
 add_executable(utilsAll ${common_Tests} ${parallelUtils} ${plotUtils})
 target_link_libraries(utilsAll gtest gmock gtest_main)
 target_link_libraries(utilsAll allUtils)
+
+target_compile_options(utilsAll PUBLIC -coverage)
+target_link_options(utilsAll PUBLIC -coverage -fprofile-arcs -ftest-coverage)

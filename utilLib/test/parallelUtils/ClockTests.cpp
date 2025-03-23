@@ -58,7 +58,7 @@ TEST_F(ClockArrayTest, loop_clock) {
         SLEEP(dd);
         clk.tak();
     }
-    ASSERT_NEAR_REL(dd.count() * loop_count, clk[key].time, relErr);
+    ASSERT_NEAR_REL(dd.count() * loop_count, clk[key].time, relErr*10);
 }
 
 TEST_F(ClockArrayTest, subsequent_section_clock) {

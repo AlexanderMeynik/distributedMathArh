@@ -9,7 +9,6 @@
  * @brief shared namespace
  * @details This namespace contains multiple forward declarations for types to be use everywhere
  */
-//todo forward declare some things
 namespace shared {
     using FloatType = double;
     /**

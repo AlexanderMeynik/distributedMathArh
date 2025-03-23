@@ -52,17 +52,6 @@ namespace printUtils {
                              "\n"
                      )
              }};
-    IosStatePreserve::IosStatePreserve(std::ostream &out) : out_(out) {
-        flags_ = out.flags();
-    }
-
-    std::ios_base::fmtflags IosStatePreserve::getFlags() const {
-        return flags_;
-    }
-
-    IosStatePreserve::~IosStatePreserve() {
-        out_.flags(flags_);
-    }
 
 
     const EFormat &printEnumToFormat(EigenPrintFormats fmt) {
@@ -85,7 +74,90 @@ namespace printUtils {
         return in;
     }
 
-    IosStateScientific::IosStateScientific(std::ostream &out, long precision) : IosStatePreserve(out) {
-        out << std::setprecision(precision) << std::fixed << std::scientific;
+
+
+    std::istream &operator>>(std::istream &is, EFormat &fmt) {
+        int precision, flags;
+        std::string coeffSeparator, rowSeparator, rowPrefix, rowSuffix, matPrefix, matSuffix, fillStr;
+
+        is >> precision >> flags
+           >> std::quoted(coeffSeparator)
+           >> std::quoted(rowSeparator)
+           >> std::quoted(rowPrefix)
+           >> std::quoted(rowSuffix)
+           >> std::quoted(matPrefix)
+           >> std::quoted(matSuffix)
+           >> std::quoted(fillStr);
+
+        if (fillStr.size() != 1) {
+            is.setstate(std::ios::failbit);
+            return is;
+        }
+
+        char fill = fillStr[0];
+
+        fmt = EFormat(precision, flags, coeffSeparator, rowSeparator, rowPrefix, rowSuffix, matPrefix, matSuffix, fill);
+
+        return is;
     }
+
+
+    bool operator==(const EFormat & lhs, const EFormat& rhs) {
+        return lhs.precision == rhs.precision &&
+               lhs.flags == rhs.flags &&
+               lhs.coeffSeparator == rhs.coeffSeparator &&
+               lhs.rowSeparator == rhs.rowSeparator &&
+               lhs.rowPrefix == rhs.rowPrefix &&
+               lhs.rowSuffix == rhs.rowSuffix &&
+               lhs.matPrefix == rhs.matPrefix &&
+               lhs.matSuffix == rhs.matSuffix &&
+               lhs.fill == rhs.fill;
+    }
+
+    std::ostream &operator<<(std::ostream &os, const EFormat &fmt) {
+        os << fmt.precision << ' '
+           << fmt.flags << ' '
+           << std::quoted(fmt.coeffSeparator) << ' '
+           << std::quoted(fmt.rowSeparator) << ' '
+           << std::quoted(fmt.rowPrefix) << ' '
+           << std::quoted(fmt.rowSuffix) << ' '
+           << std::quoted(fmt.matPrefix) << ' '
+           << std::quoted(fmt.matSuffix) << ' '
+           << std::quoted(std::string(1, fmt.fill));
+        return os;
+    }
+
+    IosStatePreserve::IosStatePreserve(std::ostream &out) : out_(out) {
+        flags_ = out.flags();
+    }
+
+    std::ios_base::fmtflags IosStatePreserve::getFlags() const {
+        return flags_;
+    }
+
+    IosStatePreserve::~IosStatePreserve() {
+        out_.flags(flags_);
+    }
+
+    IosStateScientific::IosStateScientific(std::ostream &out, size_t precision) :
+    IosStatePreserve(out),
+    oldPrecision(out.precision()) {
+
+        if(precision>10*defaultPrec)
+        {
+            throw outOfRange(precision,0,10*defaultPrec);
+        }
+
+        out.precision(precision);
+
+        out << std::fixed << std::scientific;
+    }
+
+    IosStateScientific::~IosStateScientific() {
+
+        out_.flags(flags_);
+        out_.precision(oldPrecision);
+    }
+
+
 }

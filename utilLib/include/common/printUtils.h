@@ -8,17 +8,18 @@
 #include <iosfwd>
 #include <limits>
 
+
 #include <eigen3/Eigen/Dense>
-#include <unordered_map>
-#include <vector>
+#include "common/sharedDeclarations.h"
 #include "common/errorHandling.h"
-//#include <fmt/format.h>
 
 /// printUtils namespace
 namespace printUtils {
 
 
     using EFormat = Eigen::IOFormat;
+
+    static constexpr size_t defaultPrec=std::numeric_limits<shared::FloatType>::digits10;
 
     /**
      * @brief Prints tuple to string
@@ -95,6 +96,29 @@ namespace printUtils {
      * @throws InvalidOption
      */
     std::istream &operator>>(std::istream &in, ioFormat &form);
+    /**
+     * @brief Parser for EFormat
+     * @param is
+     * @param fmt
+     */
+    std::istream& operator>>(std::istream& is, EFormat & fmt);
+
+    /**
+     * @brief Printer for EFormat
+     * @details This implementation uses \" \" to separate escape characters inside separators
+     * @param os
+     * @param fmt
+     */
+    std::ostream& operator<<(std::ostream& os, const EFormat & fmt);
+
+    /**
+     * @brief elementwise comparison between EFormat
+     * @param lhs
+     * @param rhs
+     * @return
+     */
+    bool operator==(const EFormat & lhs, const EFormat& rhs);
+
 
 
     /**
@@ -105,11 +129,13 @@ namespace printUtils {
     public:
         explicit IosStatePreserve(std::ostream &out);
 
+        IosStatePreserve(IosStatePreserve&oother)=delete;
+
         ~IosStatePreserve();
 
         [[nodiscard]] std::ios_base::fmtflags getFlags() const;
 
-    private:
+    protected:
         std::ios_base::fmtflags flags_;
         std::ostream &out_;
     };
@@ -121,7 +147,11 @@ namespace printUtils {
     public:
         using IosStatePreserve::IosStatePreserve;
 
-        explicit IosStateScientific(std::ostream &out, long precision = std::numeric_limits<double>::max_digits10);
+        explicit IosStateScientific(std::ostream &out, size_t precision = defaultPrec);
+
+        ~IosStateScientific();
+    protected:
+        size_t oldPrecision;
     };
 
 

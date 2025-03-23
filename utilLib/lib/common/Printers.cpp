@@ -2,19 +2,6 @@
 
 namespace printUtils {
 
-    std::ostream &operator<<(std::ostream &os, const EFormat &fmt) {
-        os << fmt.precision << ' '
-           << fmt.flags << ' '
-           << std::quoted(fmt.coeffSeparator) << ' '
-           << std::quoted(fmt.rowSeparator) << ' '
-           << std::quoted(fmt.rowPrefix) << ' '
-           << std::quoted(fmt.rowSuffix) << ' '
-           << std::quoted(fmt.matPrefix) << ' '
-           << std::quoted(fmt.matSuffix) << ' '
-           << std::quoted(std::string(1, fmt.fill));
-        return os;
-    }
-
     Json::Value toJson(const ms::MeshCreator&mesh,bool printDims,bool printLims)
     {
         Json::Value res=continuousToJson(mesh.data[2],false);;

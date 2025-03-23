@@ -39,21 +39,7 @@ namespace printUtils {
                                     std::optional<ms::limType> limOpt=std::nullopt);
 
 
-    /**
-     * @brief Parser for EFormat
-     * @param is
-     * @param fmt
-     * @return
-     */
-    std::istream& operator>>(std::istream& is, EFormat & fmt);
 
-    /**
-     * @brief elementwise comparison between EFormat
-     * @param lhs
-     * @param rhs
-     * @return
-     */
-    bool operator==(const EFormat & lhs, const EFormat& rhs);
 
     /**
      * @brief Parse one dimensional array from provided istream
