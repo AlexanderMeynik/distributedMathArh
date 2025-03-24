@@ -45,12 +45,12 @@ namespace printUtils {
      * @brief Parse one dimensional array from provided istream
      * @tparam Struct
      * @param in
-     * @param size
+     * @param sizeOpt
      * @param ef
      * @return Struct to store the values
      */
     template<isOneDimensionalContinuous Struct>
-    Struct parseOneDim(std::istream &in,long size=-1,const EFormat& ef=EFormat());
+    Struct parseOneDim(std::istream &in,std::optional<size_t> sizeOpt=std::nullopt,const EFormat& ef=EFormat());
 
     /**
      * @brief Parse matrix
@@ -82,7 +82,7 @@ namespace printUtils
     Struct parseCont(Json::Value &val, std::optional<size_t > sz) {
 
         size_t size = sz.value_or(val["size"].asUInt());
-        std::valarray<double> res(size);
+        Struct res(size);
 
         for (int i = 0; i < size; ++i) {
             res[i] = val["data"][i].asDouble();
@@ -91,8 +91,14 @@ namespace printUtils
     }
 
     template<isOneDimensionalContinuous Struct>
-    Struct parseOneDim(std::istream &in,long size,const EFormat& ef) {
-        if(size==-1)
+    Struct parseOneDim(std::istream &in,std::optional<size_t> sizeOpt,const EFormat& ef) {
+
+        size_t size;
+        if(sizeOpt.has_value())
+        {
+            size=sizeOpt.value();
+        }
+        else
         {
             in>>size;
         }
@@ -101,11 +107,11 @@ namespace printUtils
         {
             throw ioError(to_string(in.rdstate()));
         }
-
-        if(size<0)
+        //todo redo
+        /*if(size>0)
         {
             throw outOfRange(size,0,LONG_MAX);
-        }
+        }*/
 
         Struct res(size);
 

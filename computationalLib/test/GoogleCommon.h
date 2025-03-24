@@ -8,9 +8,15 @@
 #include "common/myConcepts.h"
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
+#include "common/MeshCreator.h"
+#include "common/commonTypes.h"
 
 using namespace myConcepts;
 using shared::FloatType;
+namespace sh=shared;
+namespace pu=printUtils;
+namespace ct=commonTypes;
+namespace ms=meshStorage;
 /// Testing utilities namespace
 namespace testCommon {
     constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
@@ -87,6 +93,17 @@ namespace testCommon {
             }
         }
     }
+
+    template<typename...> struct get_template;
+    /**
+     * @brief retrives template template and saves it inside type
+     * @tparam C
+     * @tparam Args
+     */
+    template<template<typename...> typename C, typename... Args>
+    struct get_template<C<Args...>> {
+        template<typename... Ts> using type = C<Ts...>;
+    };
 
 
     /**

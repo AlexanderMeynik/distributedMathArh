@@ -27,7 +27,7 @@ target_link_libraries(plot_tests gtest gmock gtest_main)
 target_link_libraries(plot_tests commonLib)
 enable_coverage_for_target(plot_tests)
 
-add_executable(utilsAll ${common_Tests} ${parallelUtils} ${plotUtils})
+add_executable(utilsAll ${common} ${parallelUtils} ${plotUtils})
 target_link_libraries(utilsAll gtest gmock gtest_main)
 target_link_libraries(utilsAll allUtils)
 enable_coverage_for_target(utilsAll)

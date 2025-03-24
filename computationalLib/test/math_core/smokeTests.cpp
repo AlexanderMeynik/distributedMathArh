@@ -10,17 +10,15 @@
 #include "../GoogleCommon.h"
 
 
-using namespace commonTypes;
-using namespace myConcepts;
-using namespace testCommon;
-using namespace printUtils;
 
+using namespace pu;
+using namespace testCommon;
 std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
 std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
 using meshStorage::MeshCreator;
-using ttype = std::tuple<std::string, std::vector<FloatType>, matrixType, EigenVec, MeshCreator>;
+using ttype = std::tuple<std::string, std::vector<FloatType>, ct::matrixType, ct::EigenVec, MeshCreator>;
 
 
 
@@ -51,8 +49,8 @@ std::vector<ttype> testFixtureGetter() {
     matrixes1>>ef;
     meshes1>>ef;
     for (int i = 0; i < NN; ++i) {
-        auto sol=printUtils::parseOneDim<EigenVec>(sols1);
-        auto coords=printUtils::parseOneDim<stdVec>(coords1);
+        auto sol=printUtils::parseOneDim<ct::EigenVec>(sols1);
+        auto coords=printUtils::parseOneDim<ct::stdVec>(coords1);
 
         auto matr=printUtils::parseMatrix(matrixes1);
         auto m=printUtils::parseMeshFrom(meshes1);
@@ -98,7 +96,7 @@ TEST_P(DipolesVerificationTS,
     dipoles::Dipoles dd;
     dd.loadFromMatrix(matr);
 
-    auto solut = dd.solve<EigenVec>();
+    auto solut = dd.solve<ct::EigenVec>();
     compareArrays(sol, solut, arrayDoubleComparator<FloatType>::call);
 }
 
