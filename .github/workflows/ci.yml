@@ -27,7 +27,7 @@ jobs:
         
           mkdir build && cd build
           
-          cmake -G Ninja \
+          cmake -G Ninja  \
           ../src/
           ninja
       - name: Save build
