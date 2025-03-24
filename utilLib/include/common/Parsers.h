@@ -65,7 +65,7 @@ namespace printUtils {
      * @param cols
      * @param ef
      */
-    commonTypes::matrixType parseMatrix(std::istream &in,
+    ct::matrixType parseMatrix(std::istream &in,
                                         std::optional<ct::dimType> dimOpt=std::nullopt,
                                         const EFormat& ef= EFormat());
 
@@ -104,11 +104,13 @@ namespace printUtils {
      * @brief Parses mesh creator from provided istream
      * @param in
      * @param ef
+     * @param format
      * @param dimOpt
      * @param limOpt
      * @return MeshCreator instance
      */
     meshStorage::MeshCreator parseMeshFrom(std::istream &in,
+                                           ioFormat format = ioFormat::Serializable,
                                            std::optional<ms::dimType> dimOpt=std::nullopt,
                                            std::optional<ms::limType> limOpt=std::nullopt,
                                            const EFormat& ef= EFormat());

@@ -7,7 +7,6 @@ function(enable_coverage_for_target TARGET_NAME)
         set(ARG_SCOPE PUBLIC)
     endif()
 
-    message("${CMAKE_BUILD_TYPE}")
     string(REGEX MATCH "-Coverage$" IS_COVERAGE_BUILD "${CMAKE_BUILD_TYPE}")
     if(IS_COVERAGE_BUILD AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
         message(STATUS "Enabling coverage for target: ${TARGET_NAME}")

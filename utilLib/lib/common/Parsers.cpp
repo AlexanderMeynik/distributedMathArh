@@ -42,53 +42,121 @@ namespace printUtils {
     }
 
     meshStorage::MeshCreator parseMeshFrom(std::istream &in,
+                                           ioFormat format,
                                            std::optional<ms::dimType> dimOpt,
                                            std::optional<ms::limType> limOpt,
                                            const EFormat &ef) {
-        meshStorage::MeshCreator mm;
 
+        meshStorage::MeshCreator mm;
         ms::dimType dims{};
         ms::limType lims{};
 
+        switch (format) {
+            case ioFormat::Serializable:
 
-        if(dimOpt.has_value())
-        {
-            dims=dimOpt.value();
+
+
+                if(dimOpt.has_value())
+                {
+                    dims=dimOpt.value();
+                }
+                else
+                {
+                    in>>dims[0]>>dims[1];
+
+                    if(!in)
+                    {
+                        throw ioError(to_string(in.rdstate()));
+                    }
+                }
+
+                if(limOpt.has_value())
+                {
+                    lims=limOpt.value();
+                }
+                else
+                {
+                    in>>lims[0]>>lims[1]>>lims[2]>>lims[3];
+                    if(!in)
+                    {
+                        throw ioError(to_string(in.rdstate()));
+                    }
+                }
+
+                mm.data[2]= parseOneDim<commonTypes::meshStorageType>(in,dims[0]*dims[1]);
+
+                break;
+
+            case ioFormat::HumanReadable:
+
+                in>>dims[0]>>dims[1];
+
+                if(!in)
+                {
+                    throw ioError(to_string(in.rdstate()));
+                }
+                mm.constructMeshes(dims,lims);
+
+                std::string dummy;
+                std::getline(in, dummy);
+                std::getline(in, dummy);
+                in>>dummy;
+
+                in>>lims[0];
+                FloatType a;
+                for (int i = 0; i <dims[0]-2; ++i) {
+                    in>>a;
+                }
+                in>>lims[1];
+
+
+                ct::meshStorageType m(dims[0]*dims[1]);
+
+
+
+
+
+
+                for (int i = 0; i < dims[1]; ++i) {
+                    if(i==0)
+                    {
+                        in>>lims[2];
+                    }
+                    if(i==dims[1]-1)
+                    {
+                        in>>lims[3];
+                    }
+                    FloatType temp = 0;
+                    in >> temp;
+                    for (int j = 0; j < dims[0]; ++j) {
+                        FloatType val;
+                        in >> val;
+                        m[j * dims[1] + i] = val;
+
+                    }
+                }
+
+
+
+
+                mm.data[2] = m;
+
+                //todo implement
+
+                break;
+
         }
-        else
-        {
-            in>>dims[0]>>dims[1];
-
-            if(!in)
-            {
-                throw ioError(to_string(in.rdstate()));
-            }
-        }
-
-        if(limOpt.has_value())
-        {
-            lims=limOpt.value();
-        }
-        else
-        {
-            in>>lims[0]>>lims[1]>>lims[2]>>lims[3];
-            if(!in)
-            {
-                throw ioError(to_string(in.rdstate()));
-            }
-        }
-
-
         mm.constructMeshes(dims,lims);
-        mm.data[2]= parseOneDim<commonTypes::meshStorageType>(in,dims[0]*dims[1]);
-
         mm.computeViews();
+
+
         return mm;
+
 
     }
 
 
-    commonTypes::matrixType parseMatrix(std::istream &in,
+    ct::matrixType parseMatrix(std::istream &in,
                                         std::optional<ct::dimType> dimOpt,
                                         const EFormat& ef) {
         size_t rows,cols;

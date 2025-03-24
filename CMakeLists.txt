@@ -6,8 +6,16 @@ include(Coverage)
 
 set(CMAKE_CXX_STANDARD 23)
 SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
+
 SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
-SET(CMAKE_CXX_FLAGS " -std=gnu++2b")
+SET(CMAKE_CXX_FLAGS " -std=gnu++2b ")
+
+string(REGEX MATCH "^Debug" IS_DEBUG_BUILD "${CMAKE_BUILD_TYPE}")
+if(IS_DEBUG_BUILD)
+    message("${CMAKE_BUILD_TYPE}")
+    #add_compile_options("-g -O0")
+    string(APPEND CMAKE_CXX_FLAGS " -g -O0 ")
+endif ()
 
 find_package(Drogon)
 find_package(Qt6)

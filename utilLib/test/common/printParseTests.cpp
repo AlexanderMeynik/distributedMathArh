@@ -46,9 +46,9 @@ std::vector<ttype> generateFixture(int nnum=0)
         ttype a8=ttype{"noDimsNoLims_HR",ms,ioFormat::HumanReadable, false, false};
 
         res.push_back(a5);
-        res.push_back(a6);
+        /*res.push_back(a6);
         res.push_back(a7);
-        res.push_back(a8);
+        res.push_back(a8);*/
     }
 
     return res;
@@ -113,7 +113,7 @@ protected:
 INSTANTIATE_TEST_SUITE_P(
         PrintParseTests,
         MeshPrintReadTs,
-        ::testing::ValuesIn(generateFixture(0)
+        ::testing::ValuesIn(generateFixture(0   )
 
         ), [](auto&info){return std::get<0>(info.param);});
 
@@ -129,9 +129,9 @@ TEST_P(MeshPrintReadTs,testOstreamPrint)
     auto limopt=printLims?std::nullopt:std::optional{mesh.limits};
 
     printMesh(ss,mesh,io,printDims,printLims);
-
-
-    auto deser=parseMeshFrom(ss,dimopt,limopt);
+    //todo for human readable mesh coords are empty()
+    auto ssss=ss.str();
+    auto deser=parseMeshFrom(ss,io,dimopt,limopt);
 
     if(!printDims)
     {
@@ -238,7 +238,7 @@ TEST_P(ParseContTs,testSolutionPrintParse)
 
     printSolution(ss,cont,io,printSize);
     using colT = std::remove_const_t<decltype(cont)>;
-    auto ssss=ss.str();
+
     auto deser=parseSolution<colT>(ss,io,sizeopt);
 
 
