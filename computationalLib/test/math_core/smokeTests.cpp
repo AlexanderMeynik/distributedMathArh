@@ -52,9 +52,19 @@ std::vector<ttype> testFixtureGetter() {
         auto sol=printUtils::parseOneDim<ct::EigenVec>(sols1);
         auto coords=printUtils::parseOneDim<ct::stdVec>(coords1);
 
-        auto matr=printUtils::parseMatrix(matrixes1);
+        long rows,cols;
+        matrixes1>>rows>>cols;
+        commonTypes::matrixType res(rows,cols);
+
+        for (int r = 0; r < rows; ++r) {
+            for (int c = 0; c < cols; ++c) {
+                matrixes1>>res(r,c);
+            }
+        }
+        //ct::matrixType matr=printUtils::parseMatrix(matrixes1);//todo why this cause segfault
+
         auto m=printUtils::parseMeshFrom(meshes1);
-        values.emplace_back(std::to_string(i), coords, matr, sol, m);
+        values.emplace_back(std::to_string(i), coords, res, sol, m);
     }
 
 
