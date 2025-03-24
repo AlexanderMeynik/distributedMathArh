@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.22)
 project(data_deduplication_service)
 
+list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
+include(Coverage)
+
 set(CMAKE_CXX_STANDARD 23)
 SET(CMAKE_CXX_FLAGS_DEBUG "-g -O0")
 SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")

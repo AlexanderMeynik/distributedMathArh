@@ -42,7 +42,7 @@ namespace printUtils {
             if(printDims) {
                 out << mesh.dimensions[0] << '\t' << mesh.dimensions[1] << '\n';
             }
-            if(printDims) {
+            if(printLims) {
                 out << mesh.limits[0] << '\t' << mesh.limits[1] << '\n';
                 out << mesh.limits[2] << '\t' << mesh.limits[3] << '\n';
             }

@@ -16,7 +16,7 @@ protected:
     static inline FloatType anotherErr = 1e-14;
 };
 
-std::vector<ttype> generateFixture()
+std::vector<ttype> generateFixture(int nnum=0)
 {
     std::vector<ttype> res;
 
@@ -36,6 +36,19 @@ std::vector<ttype> generateFixture()
     res.push_back(a2);
     res.push_back(a3);
     res.push_back(a4);
+
+    if(nnum==1)
+    {
+        ttype a5=ttype{"default_HR",ms,ioFormat::HumanReadable, true, true};
+        ttype a6=ttype{"noDims_HR",ms,ioFormat::HumanReadable, true, false};
+        ttype a7=ttype{"noLims_HR",ms,ioFormat::HumanReadable, false, true};
+        ttype a8=ttype{"noDimsNoLims_HR",ms,ioFormat::HumanReadable, false, false};
+
+        res.push_back(a5);
+        res.push_back(a6);
+        res.push_back(a7);
+        res.push_back(a8);
+    }
 
     return res;
 }
@@ -69,9 +82,67 @@ TEST_P(MeshSerializeDeserializeTs,testJsonSerialization)
 
 }
 INSTANTIATE_TEST_SUITE_P(
-        lookupTests,
+        SerDeserJson,
         MeshSerializeDeserializeTs,
         ::testing::ValuesIn(generateFixture()
 
         ), [](auto&info){return std::get<0>(info.param);});
 
+
+
+class MeshPrintReadTs : public ::testing::TestWithParam<ttype> {
+public:
+
+    MeshPrintReadTs()
+    {
+        ss.precision(defaultPrec);
+    }
+
+protected:
+    static inline FloatType anotherErr = 1e-14;
+    static inline std::stringstream ss=std::stringstream();
+
+    void TearDown() override {
+        ss.str("");
+        ss.clear();
+    }
+};
+
+
+INSTANTIATE_TEST_SUITE_P(
+        PrintParseTests,
+        MeshPrintReadTs,
+        ::testing::ValuesIn(generateFixture(0)
+
+        ), [](auto&info){return std::get<0>(info.param);});
+
+
+
+TEST_P(MeshPrintReadTs,testOstreamPrint)
+{
+    using namespace testCommon;
+    auto &[_,mesh,io,printDims,printLims]=GetParam();
+
+
+    auto dimopt=printDims?std::nullopt:std::optional{mesh.dimensions};
+    auto limopt=printLims?std::nullopt:std::optional{mesh.limits};
+
+    printMesh(ss,mesh,io,printDims,printLims);
+
+
+    auto deser=parseMeshFrom(ss,dimopt,limopt);
+
+    if(!printDims)
+    {
+
+        compareArrays(mesh.dimensions,deser.dimensions,arrayEqualComparator<size_t>::call, anotherErr);
+    }
+
+    if(!printLims)
+    {
+        compareArrays(mesh.limits, deser.limits, arrayDoubleComparator<FloatType>::call, anotherErr);
+    }
+    compareArrays(mesh.data[2], deser.data[2], arrayDoubleComparator<FloatType>::call, anotherErr);
+
+
+}

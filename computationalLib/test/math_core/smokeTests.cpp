@@ -19,7 +19,6 @@ std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
 std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
-//todo delete some types
 using meshStorage::MeshCreator;
 using ttype = std::tuple<std::string, std::vector<FloatType>, matrixType, EigenVec, MeshCreator>;
 
