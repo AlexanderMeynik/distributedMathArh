@@ -19,14 +19,17 @@ namespace printUtils {
     using namespace shared;
     using myConcepts::isOneDimensionalContinuous;
     namespace ms=meshStorage;
+    namespace ct=commonTypes;
+
     /**
      * @brief Parse one dimensional array from json
-     * @tparam Struct
+     * @tparam Collection
      * @param val
      * @param sz
      */
-    template<isOneDimensionalContinuous Struct>
-    Struct parseCont(Json::Value &val, std::optional<size_t > sz= std::nullopt);
+    template<isOneDimensionalContinuous Collection>
+    Collection jsonToContinuous(Json::Value &val,
+                                std::optional<size_t > sz= std::nullopt);
 
     /**
      * @brief Parse MeshCreator from json
@@ -35,8 +38,9 @@ namespace printUtils {
      * @param limOpt
      * @return
      */
-    ms::MeshCreator fromJson(Json::Value&val,std::optional<ms::dimType> dimOpt=std::nullopt,
-                                    std::optional<ms::limType> limOpt=std::nullopt);
+    ms::MeshCreator fromJson(Json::Value&val,
+                             std::optional<ms::dimType> dimOpt=std::nullopt,
+                             std::optional<ms::limType> limOpt=std::nullopt);
 
 
 
@@ -50,7 +54,9 @@ namespace printUtils {
      * @return Struct to store the values
      */
     template<isOneDimensionalContinuous Struct>
-    Struct parseOneDim(std::istream &in,std::optional<size_t> sizeOpt=std::nullopt,const EFormat& ef=EFormat());
+    Struct parseOneDim(std::istream &in,
+                       std::optional<size_t> sizeOpt=std::nullopt,
+                       const EFormat& ef=EFormat());
 
     /**
      * @brief Parse matrix
@@ -59,7 +65,40 @@ namespace printUtils {
      * @param cols
      * @param ef
      */
-    commonTypes::matrixType parseMatrix(std::istream &in, long rows= -1, long cols= -1, const EFormat& ef= EFormat());
+    commonTypes::matrixType parseMatrix(std::istream &in,
+                                        std::optional<ct::dimType> dimOpt=std::nullopt,
+                                        const EFormat& ef= EFormat());
+
+
+    /**
+     * @brief Parse solution function interface
+     * @tparam Struct
+     * @param in
+     * @param format
+     * @param sizeOpt
+     * @param ef
+     * @return solution vector
+     */
+    template<isOneDimensionalContinuous Struct>
+    Struct parseSolution(std::istream &in,
+                         ioFormat format = ioFormat::Serializable,
+                         std::optional<size_t> sizeOpt=std::nullopt,
+                         const EFormat& ef=EFormat());
+
+    /**
+     * @brief Parse coordinates function interface
+     * @tparam Struct
+     * @param in
+     * @param format
+     * @param sizeOpt
+     * @param ef
+     * @return coordinates vector
+     */
+    template<isOneDimensionalContinuous Struct>
+    Struct parseCoordinates(std::istream &in,
+                         ioFormat format = ioFormat::Serializable,
+                         std::optional<size_t> sizeOpt=std::nullopt,
+                         const EFormat& ef=EFormat());
 
     /**
      * @brief Parses mesh creator from provided istream
@@ -69,7 +108,8 @@ namespace printUtils {
      * @param limOpt
      * @return MeshCreator instance
      */
-    meshStorage::MeshCreator parseMeshFrom(std::istream &in,std::optional<ms::dimType> dimOpt=std::nullopt,
+    meshStorage::MeshCreator parseMeshFrom(std::istream &in,
+                                           std::optional<ms::dimType> dimOpt=std::nullopt,
                                            std::optional<ms::limType> limOpt=std::nullopt,
                                            const EFormat& ef= EFormat());
 
@@ -79,7 +119,8 @@ namespace printUtils {
 namespace printUtils
 {
     template<isOneDimensionalContinuous Struct>
-    Struct parseCont(Json::Value &val, std::optional<size_t > sz) {
+    Struct jsonToContinuous(Json::Value &val,
+                            std::optional<size_t > sz) {
 
         size_t size = sz.value_or(val["size"].asUInt());
         Struct res(size);
@@ -91,7 +132,9 @@ namespace printUtils
     }
 
     template<isOneDimensionalContinuous Struct>
-    Struct parseOneDim(std::istream &in,std::optional<size_t> sizeOpt,const EFormat& ef) {
+    Struct parseOneDim(std::istream &in,
+                       std::optional<size_t> sizeOpt,
+                       const EFormat& ef) {
 
         size_t size;
         if(sizeOpt.has_value())
@@ -107,11 +150,6 @@ namespace printUtils
         {
             throw ioError(to_string(in.rdstate()));
         }
-        //todo redo
-        /*if(size>0)
-        {
-            throw outOfRange(size,0,LONG_MAX);
-        }*/
 
         Struct res(size);
 
@@ -121,6 +159,85 @@ namespace printUtils
         }
         return res;
     }
+
+
+    template<isOneDimensionalContinuous Struct>
+    Struct parseSolution(std::istream &in,
+                         ioFormat format,
+                         std::optional<size_t> sizeOpt,
+                         const EFormat &ef) {
+
+        Struct res;
+        switch (format) {
+            case ioFormat::Serializable:
+                return parseOneDim<Struct>(in,sizeOpt,ef);
+            case ioFormat::HumanReadable: {
+                size_t N;
+                in>>N;
+                std::string dummy;
+                std::getline(in,dummy);
+                std::getline(in,dummy);
+                std::getline(in,dummy);
+
+                if(!in)
+                {
+                    throw ioError(to_string(in.rdstate()));
+                }
+
+
+                Struct sol(N*4);
+
+                for (int i = 0; i < N; i++) {
+                    FloatType ax,bx,cx;
+                    FloatType ay,by,cy;
+                    in>>ax>>bx>>cx>>ay>>by>>cy;
+
+                    sol[2*i]=ax;
+                    sol[2 * i + 2 * N]=bx;
+                    sol[2*i+1]=ay;
+                    sol[2 * i + 1 + 2 * N]=by;
+
+                }
+                return sol;
+
+            }
+        }
+        return res;
+    }
+
+    template<isOneDimensionalContinuous Struct>
+    Struct parseCoordinates(std::istream &in,
+                            ioFormat format,
+                            std::optional<size_t> sizeOpt,
+                            const EFormat &ef) {
+        Struct res;
+        switch (format) {
+            case ioFormat::Serializable:
+                return parseOneDim<Struct>(in,sizeOpt,ef);
+            case ioFormat::HumanReadable: {
+                std::string dummy;
+                std::getline(in,dummy);
+                size_t N;
+                in>>N;
+                if(!in)
+                {
+                    throw ioError(to_string(in.rdstate()));
+                }
+
+                Struct coord(N*2);
+
+                for (int i = 0; i < N; i++) {
+                    FloatType x,y;
+                    in>>coord[i]>>coord[i+N];
+                }
+                return coord;
+
+            }
+        }
+        return res;
+    }
+
+
 
 }
 #endif //DATA_DEDUPLICATION_SERVICE_PARSERS_H

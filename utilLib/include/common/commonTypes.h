@@ -32,6 +32,9 @@ namespace commonTypes {
     using meshDrawClass = std::vector<stdVec>;
     using meshStorageType = std::valarray<FloatType>;
 
+    ///stores information about dimensions
+    using dimType=std::array<size_t, 2>;
+
     /**
      * @brief Type for function thta will be integrated to get directional graph
      */

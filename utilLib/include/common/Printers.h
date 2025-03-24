@@ -31,20 +31,23 @@ namespace printUtils {
      * @param printLims
      * @param eigenForm
      */
-    void printMesh(std::ostream &out,const ms::MeshCreator&mesh,
+    void printMesh(std::ostream &out,
+                   const ms::MeshCreator&mesh,
                    const ioFormat&form=ioFormat::Serializable,
-                   bool printDims=true,bool printLims=true,
+                   bool printDims=true,
+                   bool printLims=true,
                    const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
     /**
      * @brief Cast any one dimensional array to Json::value
-     * @tparam Struct
-     * @param a
+     * @tparam Collection
+     * @param col
      * @param printSize
      * @returns Json::Value with serialized array
      */
-    template<myConcepts::isOneDimensionalContinuous Struct>
-    Json::Value continuousToJson(const Struct &a,bool printSize = true);
+    template<myConcepts::isOneDimensionalContinuous Collection>
+    Json::Value continuousToJson(const Collection &col,
+                                 bool printSize = true);
 
     /**
      * @brief Transforms MeshCreator to json
@@ -53,23 +56,28 @@ namespace printUtils {
      * @param printLims
      * @return Json::Value with serialized meshCreator
      */
-    Json::Value toJson(const ms::MeshCreator&mesh,bool printDims=true,bool printLims=true);
+    Json::Value toJson(const ms::MeshCreator&mesh,
+                       bool printDims=true,
+                       bool printLims=true);
 
     /**
      * @brief Prints one dimensional Collection using Eigen format
      * @tparam Collection
      * @param out
-     * @param xi
+     * @param col
      * @param printSize
      * @param eigenForm
      */
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    void inline oneDimSerialize(std::ostream &out, const Collection &xi,bool printSize= true, const EFormat &eigenForm = EFormat()) {
-        auto map = toEigenRowVector(xi);
+    void inline oneDimSerialize(std::ostream &out,
+                                const Collection &col,
+                                bool printSize= true,
+                                const EFormat &eigenForm = EFormat()) {
+        auto map = toEigenRowVector(col);
         if(printSize) {
-            out << xi.size() << '\n';
+            out << col.size() << '\n';
         }
         out << map.format(eigenForm);
     }
@@ -78,24 +86,25 @@ namespace printUtils {
      * Flattens and prints matrix as row Vector
      * @param out
      * @param matr
+     * @param printSize
      * @param eigenForm
      */
-    void inline matrixPrint1D(std::ostream &out, const commonTypes::matrixType  &matr, const EFormat &eigenForm = EFormat()) {
-        auto map = Eigen::Map<const Eigen::RowVector<FloatType,-1>>(matr.data(),matr.size());
-        out << matr.size() << '\n';
-        out << map.format(eigenForm);
-    }
+    void matrixPrint1D(std::ostream &out,
+                       const commonTypes::matrixType  &matr,
+                       bool printSize= true,
+                       const EFormat &eigenForm = EFormat());
 
     /**
      * @brief Serializes matrix with coordinates
      * @param out
      * @param matr
+     * @param printDims
      * @param eigenForm
      */
-    void inline matrixPrint2D(std::ostream &out, const commonTypes::matrixType  &matr, const EFormat &eigenForm = EIGENF(EigenPrintFormats::MatrixFormat1)) {
-        out << matr.rows() << '\t' << matr.cols() << '\n';
-        out << matr.format(eigenForm);
-    }
+    void matrixPrint2D(std::ostream &out,
+                              const commonTypes::matrixType  &matr,
+                              bool printDims= true,
+                              const EFormat &eigenForm = EIGENF(EigenPrintFormats::MatrixFormat1));
 
     /**
      * @brief Human readable way to print solution vector
@@ -107,16 +116,18 @@ namespace printUtils {
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    int printSolutionFormat1(std::ostream &out, const Collection &solution);
+    int printSolutionFormat1(std::ostream &out,
+                             const Collection &solution);
 
     /**
      * @brief Human readable way to print coordinates vector
      * @tparam Collection
      * @param out
-     * @param xi
+     * @param col
      */
     template<typename Collection>
-    void printCoordinates2(std::ostream &out, const Collection &xi);
+    void printCoordinates2(std::ostream &out,
+                           const Collection &col);
 
     /**
      * @brief Basic interface for printing coordinates
@@ -130,7 +141,9 @@ namespace printUtils {
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    void printCoordinates(std::ostream &out, const Collection &coord, ioFormat format = ioFormat::Serializable,
+    void printCoordinates(std::ostream &out,
+                          const Collection &coord,
+                          ioFormat format = ioFormat::Serializable,
                           bool printSize= true,
                           const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
@@ -146,7 +159,9 @@ namespace printUtils {
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    void printSolution(std::ostream &out, const Collection &sol, ioFormat format = ioFormat::Serializable,
+    void printSolution(std::ostream &out,
+                       const Collection &sol,
+                       ioFormat format = ioFormat::Serializable,
                        bool printSize= true,
                        const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
@@ -156,13 +171,14 @@ namespace printUtils {
 
 
     template<myConcepts::isOneDimensionalContinuous Struct>
-    Json::Value continuousToJson(const Struct &a,bool printSize) {
+    Json::Value continuousToJson(const Struct &col,
+                                 bool printSize) {
         Json::Value res;
         if(printSize) {
-            res["size"] = a.size();
+            res["size"] = col.size();
         }
-        for (size_t i = 0; i < a.size(); i++) {
-            res["data"][(Json::ArrayIndex) i] = a[i];
+        for (size_t i = 0; i < col.size(); i++) {
+            res["data"][(Json::ArrayIndex) i] = col[i];
         }
 
         return res;
@@ -172,9 +188,13 @@ namespace printUtils {
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    int printSolutionFormat1(std::ostream &out, const Collection &solution) {
-        out << "Решение системы диполей\n Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
+    int printSolutionFormat1(std::ostream &out,
+                             const Collection &solution) {
         int N_ = solution.size() / 4.0;
+        out<<N_<<'\n';
+        out << "Решение системы диполей\n";
+        out<<" Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
+
 
         for (int i = 0; i < N_; i++) {
             auto cx = sqrt(solution[2 * i] * solution[2 * i] +
@@ -195,18 +215,21 @@ namespace printUtils {
 
 
     template<typename Collection>
-    void printCoordinates2(std::ostream &out, const Collection &xi) {
+    void printCoordinates2(std::ostream &out,
+                           const Collection &col) {
         out << "Координаты диполей\n";
 
         if constexpr (not myConcepts::HasBracketsNested<Collection>) {
-            auto N = xi.size() / 2;
+            auto N = col.size() / 2;
+            out<<N<<'\n';
             for (int i = 0; i < N; ++i) {
-                out << xi[i] << '\t' << xi[i + N] << "\n";
+                out << col[i] << '\t' << col[i + N] << "\n";
             }
         } else {
-            auto N = xi[0].size();
+            auto N = col[0].size();
+            out<<N<<'\n';
             for (int i = 0; i < N; ++i) {
-                out << xi[0][i] << '\t' << xi[1][i] << "\n";
+                out << col[0][i] << '\t' << col[1][i] << "\n";
             }
         }
     }
@@ -215,7 +238,10 @@ namespace printUtils {
     template<typename Collection>
     requires myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>
-    void printSolution(std::ostream &out, const Collection &sol, ioFormat format, bool printSize,
+    void printSolution(std::ostream &out,
+                       const Collection &sol,
+                       ioFormat format,
+                       bool printSize,
                        const EFormat &eigenForm) {
         switch (format) {
             case ioFormat::Serializable:
@@ -233,7 +259,9 @@ namespace printUtils {
     template<typename Collection>
     requires (myConcepts::isOneDimensionalContinuous<Collection> &&
              std::is_floating_point_v<typename Collection::value_type>)
-    void printCoordinates(std::ostream &out, const Collection &coord, ioFormat format,bool printSize,
+    void printCoordinates(std::ostream &out,
+                          const Collection &coord,
+                          ioFormat format,bool printSize,
                           const EFormat &eigenForm) {
         switch (format) {
             case ioFormat::Serializable:

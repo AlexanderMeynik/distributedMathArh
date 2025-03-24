@@ -2,13 +2,14 @@
 
 namespace printUtils {
 
-    Json::Value toJson(const ms::MeshCreator&mesh,bool printDims,bool printLims)
+    Json::Value toJson(const ms::MeshCreator&mesh,
+                       bool printDims,
+                       bool printLims)
     {
         Json::Value res=continuousToJson(mesh.data[2],false);;
 
         if(printDims)
         {
-            //todo store schema
             res["dimensions"][0]=mesh.dimensions[0];
             res["dimensions"][1]=mesh.dimensions[1];
         }
@@ -22,9 +23,11 @@ namespace printUtils {
         return res;
     }
 
-    void printMesh(std::ostream &out,const ms::MeshCreator&mesh,
+    void printMesh(std::ostream &out,
+                   const ms::MeshCreator&mesh,
                    const ioFormat&form,
-                   bool printDims,bool printLims,
+                   bool printDims,
+                   bool printLims,
                    const EFormat &eigenForm) {
 
         switch (form) {
@@ -57,5 +60,28 @@ namespace printUtils {
             meshStorage::printDec(mesh, out);
         };
 
+    }
+
+    void
+    matrixPrint1D(std::ostream &out,
+                  const commonTypes::matrixType &matr,
+                  bool printSize,
+                  const EFormat &eigenForm) {
+        auto map = Eigen::Map<const Eigen::RowVector<FloatType,-1>>(matr.data(),matr.size());
+        if(printSize) {
+            out << matr.size() << '\n';
+        }
+        out << map.format(eigenForm);
+    }
+
+    void inline
+    matrixPrint2D(std::ostream &out,
+                  const commonTypes::matrixType &matr,
+                  bool printDims,
+                  const EFormat &eigenForm) {
+        if(printDims) {
+            out << matr.rows() << '\t' << matr.cols() << '\n';
+        }
+        out << matr.format(eigenForm);
     }
 }

@@ -70,7 +70,7 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
         return;
     }
 
-    clients[hostPort].power = printUtils::parseCont<std::valarray<double>>((*jsonPtr)["bench"]);
+    clients[hostPort].power = printUtils::jsonToContinuous<std::valarray<double>>((*jsonPtr)["bench"]);
     res["ip"] = hostPort;
     res["qip"] = qip;
     res["qname"] = name;

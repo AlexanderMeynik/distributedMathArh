@@ -15,9 +15,8 @@ namespace meshStorage {
     namespace co = commonTypes;
     using shared::FloatType, shared::params;
     using printUtils::IosStateScientific;
+    using commonTypes::dimType;
 
-    ///stores inforamtion about mesh coordinate dimensions
-    using dimType=std::array<size_t, 2>;
     ///stores upper and lower limit pairs for meshes
     using limType=std::array<FloatType, 4>;
 

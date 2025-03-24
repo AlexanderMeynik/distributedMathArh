@@ -156,7 +156,10 @@ using ContTypes = ::testing::Types<ct::stdVec,ct::EigenVec,ct::meshStorageType>;
 using conT=contFixture<ct::stdVec>;
 class ParseContTs : public ::testing::TestWithParam<conT> {
 public:
-
+    ParseContTs()
+    {
+        ss.precision(defaultPrec+1);
+    }
 
 protected:
     static inline FloatType anotherErr = 1e-14;
@@ -189,7 +192,8 @@ std::vector<contFixture<Con>> generateConFix(int nnum=0)
     res.push_back(a2);
     if(nnum==1)
     {
-
+        contFixture<Con> a3={"humanReadable",a,ioFormat::HumanReadable, true};
+        res.push_back(a3);
     }
     return res;
 }
@@ -197,7 +201,7 @@ std::vector<contFixture<Con>> generateConFix(int nnum=0)
 INSTANTIATE_TEST_SUITE_P(
         PrintParseTests,
         ParseContTs,
-        ::testing::ValuesIn(generateConFix<ct::stdVec>(0)
+        ::testing::ValuesIn(generateConFix<ct::stdVec>(1)
 
         ), [](auto&info){return std::get<0>(info.param);});
 
@@ -213,21 +217,18 @@ TEST_P(ParseContTs,testSerialization)
     auto json=continuousToJson(cont,printSize);
 
     using colT = std::remove_const_t<decltype(cont)>;
-    auto deser=parseCont<colT>(json,sizeopt);
+    auto deser= jsonToContinuous<colT>(json, sizeopt);
 
     if(!printSize)
     {
         ASSERT_EQ(cont.size(),deser.size());
     }
 
-
     compareArrays(cont, cont, arrayDoubleComparator<FloatType>::call, anotherErr);
-
-
 }
 
 
-TEST_P(ParseContTs,testPrintWrite)
+TEST_P(ParseContTs,testSolutionPrintParse)
 {
     using namespace testCommon;
     auto &[_,cont,io,printSize]=GetParam();
@@ -237,7 +238,10 @@ TEST_P(ParseContTs,testPrintWrite)
 
     printSolution(ss,cont,io,printSize);
     using colT = std::remove_const_t<decltype(cont)>;
-    auto deser=parseOneDim<colT>(ss,sizeopt);
+    auto ssss=ss.str();
+    auto deser=parseSolution<colT>(ss,io,sizeopt);
+
+
 
     if(!printSize)
     {
@@ -245,7 +249,31 @@ TEST_P(ParseContTs,testPrintWrite)
     }
 
 
-    compareArrays(cont, cont, arrayDoubleComparator<FloatType>::call, anotherErr);
+    compareArrays(cont, deser, arrayDoubleComparator<FloatType>::call, anotherErr);
+
+
+}
+
+
+TEST_P(ParseContTs,testCoordsPrintParse)
+{
+    using namespace testCommon;
+    auto &[_,cont,io,printSize]=GetParam();
+
+
+    auto sizeopt=printSize?std::nullopt:std::optional{cont.size()};
+
+    printCoordinates(ss,cont,io,printSize);
+    using colT = std::remove_const_t<decltype(cont)>;
+    auto deser=parseCoordinates<colT>(ss,io,sizeopt);
+
+    if(!printSize)
+    {
+        ASSERT_EQ(cont.size(),deser.size());
+    }
+
+
+    compareArrays(cont, deser, arrayDoubleComparator<FloatType>::call, anotherErr);
 
 
 }

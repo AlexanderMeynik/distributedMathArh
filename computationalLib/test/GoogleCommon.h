@@ -17,6 +17,7 @@ namespace sh=shared;
 namespace pu=printUtils;
 namespace ct=commonTypes;
 namespace ms=meshStorage;
+
 /// Testing utilities namespace
 namespace testCommon {
     constexpr double tool = std::numeric_limits<decltype(tool)>::epsilon();
