@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Distributed math architecture: /home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/plotUtils/MeshCreator.h File Reference</title>
+<title>Distributed math architecture: /home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/MeshCreator.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -100,7 +100,7 @@ $(document).ready(function(){initNavTree('MeshCreator_8h.html',''); initResizabl
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;iosfwd&gt;</code><br />
-<code>#include &quot;mdspan/mdspan.hpp&quot;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &lt;boost/math/quadrature/gauss_kronrod.hpp&gt;</code><br />
 <code>#include &quot;<a class="el" href="commonTypes_8h_source.html">common/commonTypes.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="printUtils_8h_source.html">common/printUtils.h</a>&quot;</code><br />
@@ -109,49 +109,48 @@ $(document).ready(function(){initNavTree('MeshCreator_8h.html',''); initResizabl
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="MeshCreator_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2plotUtils_2MeshCreator_8h" alt=""/></div>
-<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2plotUtils_2MeshCreator_8h" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2plotUtils_2MeshCreator_8h">
-<area shape="rect" title=" " alt="" coords="447,5,665,75"/>
-<area shape="rect" title=" " alt="" coords="117,284,181,309"/>
-<area shape="poly" title=" " alt="" coords="447,62,325,87,195,121,134,141,82,163,41,187,14,212,9,225,10,236,18,247,30,256,65,272,104,284,103,289,63,277,27,261,14,250,5,238,3,224,10,209,37,183,79,158,132,136,193,115,324,81,446,57"/>
-<area shape="rect" title=" " alt="" coords="658,130,817,155"/>
-<area shape="poly" title=" " alt="" coords="618,73,706,121,703,126,615,77"/>
-<area shape="rect" title=" " alt="" coords="841,123,1012,163"/>
-<area shape="poly" title=" " alt="" coords="666,68,845,116,843,122,665,74"/>
-<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="264,130,453,155"/>
-<area shape="poly" title=" " alt="" coords="491,77,394,126,392,121,488,73"/>
-<area shape="rect" href="printUtils_8h.html" title=" " alt="" coords="479,130,633,155"/>
-<area shape="poly" title=" " alt="" coords="559,75,559,116,553,116,553,75"/>
-<area shape="rect" title=" " alt="" coords="361,211,423,236"/>
-<area shape="poly" title=" " alt="" coords="366,154,384,197,379,199,361,157"/>
-<area shape="rect" title=" " alt="" coords="587,284,643,309"/>
-<area shape="poly" title=" " alt="" coords="355,156,342,195,342,216,350,234,364,246,386,256,446,272,513,283,573,290,572,295,512,288,445,277,384,261,361,250,346,238,337,217,337,194,350,155"/>
-<area shape="rect" title=" " alt="" coords="25,211,101,236"/>
-<area shape="poly" title=" " alt="" coords="316,158,115,211,113,206,315,153"/>
-<area shape="rect" title=" " alt="" coords="447,211,598,236"/>
-<area shape="poly" title=" " alt="" coords="384,153,488,202,485,207,381,158"/>
-<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="125,211,285,236"/>
-<area shape="poly" title=" " alt="" coords="337,158,241,207,239,202,335,153"/>
-<area shape="poly" title=" " alt="" coords="198,238,169,275,165,272,194,235"/>
-<area shape="rect" title=" " alt="" coords="205,284,264,309"/>
-<area shape="poly" title=" " alt="" coords="213,235,227,270,222,272,208,237"/>
-<area shape="rect" title=" " alt="" coords="319,284,443,309"/>
-<area shape="poly" title=" " alt="" coords="234,234,341,276,339,281,232,238"/>
-<area shape="poly" title=" " alt="" coords="573,153,592,170,610,192,619,215,618,227,611,238,597,250,580,259,536,272,482,279,421,282,298,283,195,287,195,282,298,277,421,277,481,274,534,267,578,254,594,245,607,234,612,225,613,216,605,194,588,174,569,157"/>
-<area shape="poly" title=" " alt="" coords="533,158,429,207,427,202,531,153"/>
-<area shape="poly" title=" " alt="" coords="553,157,535,199,530,197,548,154"/>
-<area shape="poly" title=" " alt="" coords="609,153,690,177,724,192,746,209,752,224,746,238,731,246,706,254,632,269,457,291,457,285,631,264,705,249,729,242,742,234,746,224,742,212,722,196,688,182,607,158"/>
-<area shape="rect" title=" " alt="" coords="673,211,732,236"/>
-<area shape="poly" title=" " alt="" coords="579,153,670,202,668,206,576,158"/>
-<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="807,211,991,236"/>
-<area shape="poly" title=" " alt="" coords="606,153,836,205,835,210,605,158"/>
-<area shape="poly" title=" " alt="" coords="854,239,657,288,655,282,852,233"/>
-<area shape="rect" title=" " alt="" coords="855,284,942,309"/>
-<area shape="poly" title=" " alt="" coords="901,236,901,270,896,270,896,236"/>
-<area shape="rect" title=" " alt="" coords="966,284,1021,309"/>
-<area shape="poly" title=" " alt="" coords="915,234,968,273,965,278,912,238"/>
-<area shape="rect" title=" " alt="" coords="726,284,831,309"/>
-<area shape="poly" title=" " alt="" coords="881,238,812,279,809,274,878,234"/>
+<div class="center"><img src="MeshCreator_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2common_2MeshCreator_8h" alt=""/></div>
+<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2common_2MeshCreator_8h" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2common_2MeshCreator_8h">
+<area shape="rect" title=" " alt="" coords="71,5,347,60"/>
+<area shape="rect" title=" " alt="" coords="264,269,328,295"/>
+<area shape="poly" title=" " alt="" coords="76,62,42,82,15,109,10,130,8,164,11,198,18,220,43,244,68,257,93,263,120,264,179,261,213,261,251,267,251,267,250,272,250,272,213,266,180,266,120,270,92,269,66,262,40,248,13,223,5,199,3,164,5,129,11,107,39,78,73,58"/>
+<area shape="rect" title=" " alt="" coords="25,115,100,141"/>
+<area shape="poly" title=" " alt="" coords="169,62,93,110,91,106,166,58"/>
+<area shape="rect" title=" " alt="" coords="124,108,294,148"/>
+<area shape="poly" title=" " alt="" coords="212,60,212,94,206,94,206,60"/>
+<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="318,115,508,141"/>
+<area shape="poly" title=" " alt="" coords="267,58,377,107,375,112,265,62"/>
+<area shape="rect" href="printUtils_8h.html" title=" " alt="" coords="546,115,701,141"/>
+<area shape="poly" title=" " alt="" coords="326,57,560,110,559,115,325,63"/>
+<area shape="rect" title=" " alt="" coords="28,196,91,221"/>
+<area shape="poly" title=" " alt="" coords="357,143,105,198,104,193,355,138"/>
+<area shape="rect" title=" " alt="" coords="534,269,590,295"/>
+<area shape="poly" title=" " alt="" coords="416,141,421,179,429,200,440,220,458,236,478,250,522,268,520,273,476,254,455,241,436,223,424,203,416,180,410,141"/>
+<area shape="rect" title=" " alt="" coords="115,196,191,221"/>
+<area shape="poly" title=" " alt="" coords="376,143,204,195,203,190,374,138"/>
+<area shape="rect" title=" " alt="" coords="451,196,602,221"/>
+<area shape="poly" title=" " alt="" coords="431,139,500,186,497,190,428,143"/>
+<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="216,196,376,221"/>
+<area shape="poly" title=" " alt="" coords="397,143,326,190,323,186,394,139"/>
+<area shape="poly" title=" " alt="" coords="298,222,298,256,293,256,293,222"/>
+<area shape="rect" title=" " alt="" coords="352,269,410,295"/>
+<area shape="poly" title=" " alt="" coords="311,219,358,258,355,263,308,223"/>
+<area shape="rect" title=" " alt="" coords="115,269,239,295"/>
+<area shape="poly" title=" " alt="" coords="278,224,210,264,207,260,275,219"/>
+<area shape="poly" title=" " alt="" coords="629,141,631,180,627,203,615,223,594,237,565,248,491,259,411,265,341,272,341,267,410,260,491,254,564,242,592,233,611,220,622,201,626,180,623,141"/>
+<area shape="poly" title=" " alt="" coords="611,143,553,189,550,185,608,139"/>
+<area shape="poly" title=" " alt="" coords="576,143,357,195,356,190,575,138"/>
+<area shape="rect" title=" " alt="" coords="677,196,736,221"/>
+<area shape="poly" title=" " alt="" coords="638,139,686,185,682,188,634,143"/>
+<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="760,196,944,221"/>
+<area shape="poly" title=" " alt="" coords="658,138,806,189,805,194,656,143"/>
+<area shape="poly" title=" " alt="" coords="806,224,604,273,603,268,804,219"/>
+<area shape="rect" title=" " alt="" coords="714,269,800,295"/>
+<area shape="poly" title=" " alt="" coords="838,223,785,263,782,259,835,219"/>
+<area shape="rect" title=" " alt="" coords="824,269,879,295"/>
+<area shape="poly" title=" " alt="" coords="854,222,854,256,849,256,849,222"/>
+<area shape="rect" title=" " alt="" coords="903,269,1008,295"/>
+<area shape="poly" title=" " alt="" coords="870,219,929,259,926,263,867,224"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -159,23 +158,23 @@ $(document).ready(function(){initNavTree('MeshCreator_8h.html',''); initResizabl
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="MeshCreator_8h__dep__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2plotUtils_2MeshCreator_8hdep" alt=""/></div>
-<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2plotUtils_2MeshCreator_8hdep" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2plotUtils_2MeshCreator_8hdep">
-<area shape="rect" title=" " alt="" coords="461,5,680,75"/>
-<area shape="rect" href="MeshPlot_8h.html" title=" " alt="" coords="40,130,259,185"/>
-<area shape="poly" title=" " alt="" coords="449,77,271,125,245,133,243,127,270,120,448,72"/>
-<area shape="rect" href="TestRunner_8h.html" title=" " alt="" coords="283,123,571,192"/>
-<area shape="poly" title=" " alt="" coords="519,86,471,124,467,120,516,81"/>
-<area shape="rect" href="Parsers_8h.html" title=" " alt="" coords="595,130,837,185"/>
-<area shape="poly" title=" " alt="" coords="625,81,685,128,681,132,622,85"/>
-<area shape="rect" href="Printers_8h.html" title=" " alt="" coords="861,130,1105,185"/>
-<area shape="poly" title=" " alt="" coords="694,73,890,127,888,133,693,78"/>
-<area shape="rect" href="math__core_8h.html" title=" " alt="" coords="5,240,293,309"/>
-<area shape="poly" title=" " alt="" coords="334,200,231,242,229,237,332,195"/>
-<area shape="rect" href="CompNode_8h.html" title=" " alt="" coords="317,240,536,309"/>
-<area shape="poly" title=" " alt="" coords="429,206,429,240,424,240,424,206"/>
-<area shape="rect" href="ClusterConfigController_8h.html" title=" " alt="" coords="560,240,779,309"/>
-<area shape="poly" title=" " alt="" coords="511,195,600,237,597,242,509,200"/>
+<div class="center"><img src="MeshCreator_8h__dep__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2common_2MeshCreator_8hdep" alt=""/></div>
+<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2common_2MeshCreator_8hdep" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2utilLib_2include_2common_2MeshCreator_8hdep">
+<area shape="rect" title=" " alt="" coords="433,5,709,60"/>
+<area shape="rect" href="MeshPlot_8h.html" title=" " alt="" coords="40,115,259,170"/>
+<area shape="poly" title=" " alt="" coords="450,66,271,111,244,118,243,113,270,105,448,61"/>
+<area shape="rect" href="TestRunner_8h.html" title=" " alt="" coords="283,108,571,177"/>
+<area shape="poly" title=" " alt="" coords="526,70,473,110,470,105,523,66"/>
+<area shape="rect" href="Parsers_8h.html" title=" " alt="" coords="595,115,837,170"/>
+<area shape="poly" title=" " alt="" coords="619,66,682,113,679,117,616,71"/>
+<area shape="rect" href="Printers_8h.html" title=" " alt="" coords="861,115,1105,170"/>
+<area shape="poly" title=" " alt="" coords="685,61,883,113,882,118,683,66"/>
+<area shape="rect" href="math__core_8h.html" title=" " alt="" coords="5,225,293,295"/>
+<area shape="poly" title=" " alt="" coords="334,185,231,228,229,223,332,180"/>
+<area shape="rect" href="CompNode_8h.html" title=" " alt="" coords="317,225,536,295"/>
+<area shape="poly" title=" " alt="" coords="429,191,429,225,424,225,424,191"/>
+<area shape="rect" href="ClusterConfigController_8h.html" title=" " alt="" coords="560,225,779,295"/>
+<area shape="poly" title=" " alt="" coords="511,181,600,223,597,228,509,186"/>
 </map>
 </div>
 </div>
@@ -200,43 +199,41 @@ Macros</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:ab591803b247f263c48041a0244d11217" id="r_ab591803b247f263c48041a0244d11217"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ab591803b247f263c48041a0244d11217">meshStorage::etx</a> = Kokkos::extents&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>, Kokkos::dynamic_extent, Kokkos::dynamic_extent &gt;</td></tr>
-<tr class="separator:ab591803b247f263c48041a0244d11217"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb30d4fe26ef9a39b5a22cd7e884d157" id="r_abb30d4fe26ef9a39b5a22cd7e884d157"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157">meshStorage::mdSpanType</a> = Kokkos::mdspan&lt; FloatType, <a class="el" href="namespacemeshStorage.html#ab591803b247f263c48041a0244d11217">etx</a> &gt;</td></tr>
-<tr class="separator:abb30d4fe26ef9a39b5a22cd7e884d157"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a19491a1b9dd8b8024344c1539993102c" id="r_a19491a1b9dd8b8024344c1539993102c"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a19491a1b9dd8b8024344c1539993102c">meshStorage::limType</a> = std::array&lt; FloatType, 4 &gt;</td></tr>
+<tr class="memdesc:a19491a1b9dd8b8024344c1539993102c"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores upper and lower limit pairs for meshes  <br /></td></tr>
+<tr class="separator:a19491a1b9dd8b8024344c1539993102c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4ea33e3e0e37422cacc41e64a653196" id="r_aa4ea33e3e0e37422cacc41e64a653196"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> N&gt; </td></tr>
-<tr class="memitem:aa4ea33e3e0e37422cacc41e64a653196"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">using</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">meshStorage::meshArr</a> = std::array&lt; <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">N</a> &gt;</td></tr>
+<tr class="memitem:aa4ea33e3e0e37422cacc41e64a653196"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">meshStorage::meshArr</a> = std::array&lt; <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>, N &gt;</td></tr>
 <tr class="separator:aa4ea33e3e0e37422cacc41e64a653196"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:ad2d24bef8806efb4d15df10b72787bfa" id="r_ad2d24bef8806efb4d15df10b72787bfa"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">unsigned</a> Ndots = 61&gt; </td></tr>
-<tr class="memitem:ad2d24bef8806efb4d15df10b72787bfa"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ad2d24bef8806efb4d15df10b72787bfa">meshStorage::integrate</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> std::function&lt; FloatType(FloatType)&gt; &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">function</a>, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">left</a>, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">right</a>, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">unsigned</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">int</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">max_depth</a>=5, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">tol</a>=Eigen::NumTraits&lt; FloatType &gt;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">::epsilon</a>())</td></tr>
+<tr class="memitem:ad2d24bef8806efb4d15df10b72787bfa" id="r_ad2d24bef8806efb4d15df10b72787bfa"><td class="memTemplParams" colspan="2">template&lt;unsigned Ndots = 61&gt; </td></tr>
+<tr class="memitem:ad2d24bef8806efb4d15df10b72787bfa"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ad2d24bef8806efb4d15df10b72787bfa">meshStorage::integrate</a> (const std::function&lt; FloatType(FloatType)&gt; &amp;function, FloatType left, FloatType right, unsigned int max_depth=5, FloatType tol=Eigen::NumTraits&lt; FloatType &gt;::epsilon())</td></tr>
 <tr class="separator:ad2d24bef8806efb4d15df10b72787bfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac254f5c60e904a1b92976ebdbef0d5d" id="r_aac254f5c60e904a1b92976ebdbef0d5d"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">unsigned</a> Ndots = 61&gt; </td></tr>
-<tr class="memitem:aac254f5c60e904a1b92976ebdbef0d5d"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aac254f5c60e904a1b92976ebdbef0d5d">meshStorage::integrateLambdaForOneVariable</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a8969d96a211494546588bc4bfd080314">co::integrableFunction</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">function</a>, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">theta</a>, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">phi</a>, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">left</a>, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">right</a>, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">unsigned</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">int</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">max_depth</a>=5, FloatType <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">tol</a>=1<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">e</a>-20)</td></tr>
+<tr class="memitem:aac254f5c60e904a1b92976ebdbef0d5d" id="r_aac254f5c60e904a1b92976ebdbef0d5d"><td class="memTemplParams" colspan="2">template&lt;unsigned Ndots = 61&gt; </td></tr>
+<tr class="memitem:aac254f5c60e904a1b92976ebdbef0d5d"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aac254f5c60e904a1b92976ebdbef0d5d">meshStorage::integrateLambdaForOneVariable</a> (const <a class="el" href="namespacecommonTypes.html#a8969d96a211494546588bc4bfd080314">co::integrableFunction</a> &amp;function, FloatType theta, FloatType phi, FloatType left, FloatType right, unsigned int max_depth=5, FloatType tol=1e-20)</td></tr>
 <tr class="separator:aac254f5c60e904a1b92976ebdbef0d5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0a1f71859afa37e6eb1bfb7093bd6109" id="r_a0a1f71859afa37e6eb1bfb7093bd6109"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a0a1f71859afa37e6eb1bfb7093bd6109">meshStorage::computeFunction</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;a, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">b</a>, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a1b52a60c80481023bbe016263116c034">co::directionGraph</a> &amp;func)</td></tr>
+<tr class="memitem:a0a1f71859afa37e6eb1bfb7093bd6109" id="r_a0a1f71859afa37e6eb1bfb7093bd6109"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a0a1f71859afa37e6eb1bfb7093bd6109">meshStorage::computeFunction</a> (const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;a, const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;b, const <a class="el" href="namespacecommonTypes.html#a1b52a60c80481023bbe016263116c034">co::directionGraph</a> &amp;func)</td></tr>
 <tr class="memdesc:a0a1f71859afa37e6eb1bfb7093bd6109"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes functional mesh for 2 coordinates.  <br /></td></tr>
 <tr class="separator:a0a1f71859afa37e6eb1bfb7093bd6109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5013e9a644ef6c654bfdfdf713b27c4d" id="r_a5013e9a644ef6c654bfdfdf713b27c4d"><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a5013e9a644ef6c654bfdfdf713b27c4d">meshStorage::getMeshDiffNorm</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">mesh1</a>, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">mesh2</a>)</td></tr>
+<tr class="memitem:a5013e9a644ef6c654bfdfdf713b27c4d" id="r_a5013e9a644ef6c654bfdfdf713b27c4d"><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a5013e9a644ef6c654bfdfdf713b27c4d">meshStorage::getMeshDiffNorm</a> (const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;mesh1, const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;mesh2)</td></tr>
 <tr class="memdesc:a5013e9a644ef6c654bfdfdf713b27c4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes square Diff norm for two meshes.  <br /></td></tr>
 <tr class="separator:a5013e9a644ef6c654bfdfdf713b27c4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a448bff6d366615d385ff5671200f4efc" id="r_a448bff6d366615d385ff5671200f4efc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a448bff6d366615d385ff5671200f4efc">meshStorage::addMesh</a> (<a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;a, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">b</a>)</td></tr>
+<tr class="memitem:a448bff6d366615d385ff5671200f4efc" id="r_a448bff6d366615d385ff5671200f4efc"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a448bff6d366615d385ff5671200f4efc">meshStorage::addMesh</a> (<a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;a, const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;b)</td></tr>
 <tr class="separator:a448bff6d366615d385ff5671200f4efc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab3d675b29a1deee8850d1adae356e9e" id="r_aab3d675b29a1deee8850d1adae356e9e"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">template</a>&lt; <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">typename</a> ... &gt; <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">typename</a> container = std::vector&gt; </td></tr>
-<tr class="memitem:aab3d675b29a1deee8850d1adae356e9e"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>, 2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aab3d675b29a1deee8850d1adae356e9e">meshStorage::myMeshGrid</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">container</a>&lt; co::FloatType &gt; &amp;a, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">container</a>&lt; co::FloatType &gt; &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">b</a>)</td></tr>
+<tr class="memitem:aab3d675b29a1deee8850d1adae356e9e" id="r_aab3d675b29a1deee8850d1adae356e9e"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; </td></tr>
+<tr class="memitem:aab3d675b29a1deee8850d1adae356e9e"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a>, 2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#aab3d675b29a1deee8850d1adae356e9e">meshStorage::myMeshGrid</a> (const container&lt; co::FloatType &gt; &amp;a, const container&lt; co::FloatType &gt; &amp;b)</td></tr>
 <tr class="memdesc:aab3d675b29a1deee8850d1adae356e9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes meshes using 2 double arrays.  <br /></td></tr>
 <tr class="separator:aab3d675b29a1deee8850d1adae356e9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a894b841d6824e1dc8079bcfbdbd52afb" id="r_a894b841d6824e1dc8079bcfbdbd52afb"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">template</a>&lt; <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">typename</a> ... &gt; <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">typename</a> container = std::vector, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">typename</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">T</a>  = FloatType, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">bool</a> end = true&gt; </td></tr>
-<tr class="memitem:a894b841d6824e1dc8079bcfbdbd52afb"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">container</a>&lt; <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">T</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb">meshStorage::myLinspace</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">T</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">lower_bound</a>, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">T</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">upper_bound</a>, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">n</a>)</td></tr>
+<tr class="memitem:a894b841d6824e1dc8079bcfbdbd52afb" id="r_a894b841d6824e1dc8079bcfbdbd52afb"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename container = std::vector, typename T  = FloatType, bool end = true&gt; </td></tr>
+<tr class="memitem:a894b841d6824e1dc8079bcfbdbd52afb"><td class="memTemplItemLeft" align="right" valign="top">container&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb">meshStorage::myLinspace</a> (T lower_bound, T upper_bound, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> n)</td></tr>
 <tr class="memdesc:a894b841d6824e1dc8079bcfbdbd52afb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates linearly spaced vectors.  <br /></td></tr>
 <tr class="separator:a894b841d6824e1dc8079bcfbdbd52afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2d9a714ce6fbf97b81c2adc8c1ab0b44" id="r_a2d9a714ce6fbf97b81c2adc8c1ab0b44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a6ce4e0acaed4d2cf7b47db0f927b741f">co::meshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a2d9a714ce6fbf97b81c2adc8c1ab0b44">meshStorage::unflatten</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">mm</a>, <a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> std::array&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>, 2 &gt; &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">numss</a>)</td></tr>
-<tr class="separator:a2d9a714ce6fbf97b81c2adc8c1ab0b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad8a4a430ea937375cf7dfdfc0c78d2b9" id="r_ad8a4a430ea937375cf7dfdfc0c78d2b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a6ce4e0acaed4d2cf7b47db0f927b741f">co::meshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#ad8a4a430ea937375cf7dfdfc0c78d2b9">meshStorage::unflatten</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157">mdSpanType</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">resSpan</a>)</td></tr>
-<tr class="separator:ad8a4a430ea937375cf7dfdfc0c78d2b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a53c19e87f28e15be4e0410c7bffd4da2" id="r_a53c19e87f28e15be4e0410c7bffd4da2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a53c19e87f28e15be4e0410c7bffd4da2">meshStorage::printDec</a> (<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">const</a> <a class="el" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a> &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">mmesh</a>, std::ostream &amp;<a class="el" href="namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196">out</a>)</td></tr>
+<tr class="memitem:afc1245c878e3222ceabcbd682c457db4" id="r_afc1245c878e3222ceabcbd682c457db4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommonTypes.html#a6ce4e0acaed4d2cf7b47db0f927b741f">co::meshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#afc1245c878e3222ceabcbd682c457db4">meshStorage::unflatten</a> (const <a class="el" href="namespacecommonTypes.html#a6cf34399981fafb917476072bc030c77">co::meshStorageType</a> &amp;mm, const dimType &amp;dims)</td></tr>
+<tr class="separator:afc1245c878e3222ceabcbd682c457db4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53c19e87f28e15be4e0410c7bffd4da2" id="r_a53c19e87f28e15be4e0410c7bffd4da2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html#a53c19e87f28e15be4e0410c7bffd4da2">meshStorage::printDec</a> (const <a class="el" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a> &amp;mmesh, std::ostream &amp;out)</td></tr>
+<tr class="memdesc:a53c19e87f28e15be4e0410c7bffd4da2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints mesh in human readable way.  <br /></td></tr>
 <tr class="separator:a53c19e87f28e15be4e0410c7bffd4da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Macro Definition Documentation</h2>
@@ -259,7 +256,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_c1e9ad1dd36132d3988884018ffa8754.html">utilLib</a></li><li class="navelem"><a class="el" href="dir_fdc4d6f2355515b9d56ff2188814f7a4.html">include</a></li><li class="navelem"><a class="el" href="dir_d38f27ff77b35b211098cd2215fd46e4.html">plotUtils</a></li><li class="navelem"><a class="el" href="MeshCreator_8h.html">MeshCreator.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c1e9ad1dd36132d3988884018ffa8754.html">utilLib</a></li><li class="navelem"><a class="el" href="dir_fdc4d6f2355515b9d56ff2188814f7a4.html">include</a></li><li class="navelem"><a class="el" href="dir_17da158eed6750a5702313895371a8cb.html">common</a></li><li class="navelem"><a class="el" href="MeshCreator_8h.html">MeshCreator.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

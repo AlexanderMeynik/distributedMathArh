@@ -1,8 +1,7 @@
 var namespacemeshStorage =
 [
     [ "MeshCreator", "classmeshStorage_1_1MeshCreator.html", "classmeshStorage_1_1MeshCreator" ],
-    [ "etx", "namespacemeshStorage.html#ab591803b247f263c48041a0244d11217", null ],
-    [ "mdSpanType", "namespacemeshStorage.html#abb30d4fe26ef9a39b5a22cd7e884d157", null ],
+    [ "limType", "namespacemeshStorage.html#a19491a1b9dd8b8024344c1539993102c", null ],
     [ "meshArr", "namespacemeshStorage.html#aa4ea33e3e0e37422cacc41e64a653196", null ],
     [ "addMesh", "namespacemeshStorage.html#a448bff6d366615d385ff5671200f4efc", null ],
     [ "computeFunction", "namespacemeshStorage.html#a0a1f71859afa37e6eb1bfb7093bd6109", null ],
@@ -12,6 +11,5 @@ var namespacemeshStorage =
     [ "myLinspace", "namespacemeshStorage.html#a894b841d6824e1dc8079bcfbdbd52afb", null ],
     [ "myMeshGrid", "namespacemeshStorage.html#aab3d675b29a1deee8850d1adae356e9e", null ],
     [ "printDec", "namespacemeshStorage.html#a53c19e87f28e15be4e0410c7bffd4da2", null ],
-    [ "unflatten", "namespacemeshStorage.html#a2d9a714ce6fbf97b81c2adc8c1ab0b44", null ],
-    [ "unflatten", "namespacemeshStorage.html#ad8a4a430ea937375cf7dfdfc0c78d2b9", null ]
+    [ "unflatten", "namespacemeshStorage.html#afc1245c878e3222ceabcbd682c457db4", null ]
 ];

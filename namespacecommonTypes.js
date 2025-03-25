@@ -6,6 +6,7 @@ var namespacecommonTypes =
     [ "returnToDataTypeT< returnType::StdValarray >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1StdValarray_01_4", "namespacecommonTypes_structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1StdValarray_01_4_dup" ],
     [ "returnToDataTypeT< returnType::StdVector >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1StdVector_01_4", "namespacecommonTypes_structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1StdVector_01_4_dup" ],
     [ "Arr2EigenVec", "namespacecommonTypes.html#a9d48ba72197c09a9131c4b7ea736c466", null ],
+    [ "dimType", "namespacecommonTypes.html#a9bc58298494ebd332e207f54d282ba61", null ],
     [ "directionGraph", "namespacecommonTypes.html#a1b52a60c80481023bbe016263116c034", null ],
     [ "EigenVec", "namespacecommonTypes.html#aa89ed70c66e21953cbddc64d9f30e78c", null ],
     [ "integrableFunction", "namespacecommonTypes.html#a8969d96a211494546588bc4bfd080314", null ],

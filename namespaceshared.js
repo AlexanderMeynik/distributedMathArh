@@ -1,7 +1,9 @@
 var namespaceshared =
 [
     [ "InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
+    [ "invalidSizes2", "classshared_1_1invalidSizes2.html", "classshared_1_1invalidSizes2" ],
     [ "ioError", "classshared_1_1ioError.html", "classshared_1_1ioError" ],
+    [ "mismatchedSizes", "classshared_1_1mismatchedSizes.html", "classshared_1_1mismatchedSizes" ],
     [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
     [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
     [ "params", "structshared_1_1params.html", null ],

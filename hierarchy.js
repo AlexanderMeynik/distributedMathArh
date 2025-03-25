@@ -21,7 +21,9 @@ var hierarchy =
     [ "std::logic_error", null, [
       [ "shared::MyException", "classshared_1_1MyException.html", [
         [ "shared::InvalidOption", "classshared_1_1InvalidOption.html", null ],
+        [ "shared::invalidSizes2", "classshared_1_1invalidSizes2.html", null ],
         [ "shared::ioError", "classshared_1_1ioError.html", null ],
+        [ "shared::mismatchedSizes", "classshared_1_1mismatchedSizes.html", null ],
         [ "shared::outOfRange", "classshared_1_1outOfRange.html", null ]
       ] ]
     ] ],

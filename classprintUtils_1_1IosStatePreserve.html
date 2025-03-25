@@ -92,6 +92,7 @@ $(document).ready(function(){initNavTree('classprintUtils_1_1IosStatePreserve.ht
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pro-attribs">Protected Attributes</a> &#124;
 <a href="classprintUtils_1_1IosStatePreserve-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">printUtils::IosStatePreserve Class Reference</div></div>
 </div><!--header-->
@@ -116,17 +117,26 @@ $(document).ready(function(){initNavTree('classprintUtils_1_1IosStatePreserve.ht
 Public Member Functions</h2></td></tr>
 <tr class="memitem:af34344904add153d539ba22dd147dd2a" id="r_af34344904add153d539ba22dd147dd2a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStatePreserve.html#af34344904add153d539ba22dd147dd2a">IosStatePreserve</a> (std::ostream &amp;out)</td></tr>
 <tr class="separator:af34344904add153d539ba22dd147dd2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb138fb65b5bb41402646d7f0b7a7cdb" id="r_adb138fb65b5bb41402646d7f0b7a7cdb"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStatePreserve.html#adb138fb65b5bb41402646d7f0b7a7cdb">IosStatePreserve</a> (<a class="el" href="classprintUtils_1_1IosStatePreserve.html">IosStatePreserve</a> &amp;oother)=delete</td></tr>
+<tr class="separator:adb138fb65b5bb41402646d7f0b7a7cdb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a91ef88aa024ebaefdc11136e84cfbbd7" id="r_a91ef88aa024ebaefdc11136e84cfbbd7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStatePreserve.html#a91ef88aa024ebaefdc11136e84cfbbd7">~IosStatePreserve</a> ()</td></tr>
 <tr class="separator:a91ef88aa024ebaefdc11136e84cfbbd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18b1e1f4c219d2497f67c0f46f7fb44d" id="r_a18b1e1f4c219d2497f67c0f46f7fb44d"><td class="memItemLeft" align="right" valign="top">std::ios_base::fmtflags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStatePreserve.html#a18b1e1f4c219d2497f67c0f46f7fb44d">getFlags</a> () const</td></tr>
 <tr class="separator:a18b1e1f4c219d2497f67c0f46f7fb44d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a60f1e17218c67dcb66771da304680def" id="r_a60f1e17218c67dcb66771da304680def"><td class="memItemLeft" align="right" valign="top">std::ios_base::fmtflags&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStatePreserve.html#a60f1e17218c67dcb66771da304680def">flags_</a></td></tr>
+<tr class="separator:a60f1e17218c67dcb66771da304680def"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7d21d1962a906b3af56120e973034044" id="r_a7d21d1962a906b3af56120e973034044"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprintUtils_1_1IosStatePreserve.html#a7d21d1962a906b3af56120e973034044">out_</a></td></tr>
+<tr class="separator:a7d21d1962a906b3af56120e973034044"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A guard class to save current iostream state. </p>
 <p>Object of this class stores current iostream state and restores it when it goes out of scope </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="af34344904add153d539ba22dd147dd2a" name="af34344904add153d539ba22dd147dd2a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af34344904add153d539ba22dd147dd2a">&#9670;&#160;</a></span>IosStatePreserve()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#af34344904add153d539ba22dd147dd2a">&#9670;&#160;</a></span>IosStatePreserve() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -145,6 +155,32 @@ Public Member Functions</h2></td></tr>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="adb138fb65b5bb41402646d7f0b7a7cdb" name="adb138fb65b5bb41402646d7f0b7a7cdb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#adb138fb65b5bb41402646d7f0b7a7cdb">&#9670;&#160;</a></span>IosStatePreserve() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">printUtils::IosStatePreserve::IosStatePreserve </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classprintUtils_1_1IosStatePreserve.html">IosStatePreserve</a> &amp;&#160;</td>
+          <td class="paramname"><em>oother</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -182,6 +218,51 @@ Public Member Functions</h2></td></tr>
           <td> const</td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a60f1e17218c67dcb66771da304680def" name="a60f1e17218c67dcb66771da304680def"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60f1e17218c67dcb66771da304680def">&#9670;&#160;</a></span>flags_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ios_base::fmtflags printUtils::IosStatePreserve::flags_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7d21d1962a906b3af56120e973034044" name="a7d21d1962a906b3af56120e973034044"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d21d1962a906b3af56120e973034044">&#9670;&#160;</a></span>out_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream&amp; printUtils::IosStatePreserve::out_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

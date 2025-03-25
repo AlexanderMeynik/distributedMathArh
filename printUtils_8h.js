@@ -16,8 +16,11 @@ var printUtils_8h =
       [ "Serializable", "printUtils_8h.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b", null ],
       [ "HumanReadable", "printUtils_8h.html#a37dd20c81d688bf0517d73d4c646cc1dae04f919664e727f5d94594a506d9e8b3", null ]
     ] ],
+    [ "operator<<", "printUtils_8h.html#a95bf9de5d9ef0acb3db98551140d9ee8", null ],
     [ "operator<<", "printUtils_8h.html#ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b", null ],
+    [ "operator==", "printUtils_8h.html#ab84fc49efd2efcf2b92d4dd2c761bb12", null ],
     [ "operator>>", "printUtils_8h.html#a334503daa6899a25452487d040a86fa4", null ],
+    [ "operator>>", "printUtils_8h.html#a98ba290cc38869e46e3fb5a0e7d59133", null ],
     [ "printEnumToFormat", "printUtils_8h.html#a1bd87e7f3ab50b1c30fdc6d65f59e75b", null ],
     [ "tupleToString", "printUtils_8h.html#a9e7c6e1f8fb50cb6913dfe670aaddd6e", null ],
     [ "enumTo", "printUtils_8h.html#a57331cbc18c80708976f4de6c2153928", null ]

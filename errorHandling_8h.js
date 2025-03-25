@@ -4,6 +4,8 @@ var errorHandling_8h =
     [ "shared::InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
     [ "shared::outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
     [ "shared::ioError", "classshared_1_1ioError.html", "classshared_1_1ioError" ],
+    [ "shared::mismatchedSizes", "classshared_1_1mismatchedSizes.html", "classshared_1_1mismatchedSizes" ],
+    [ "shared::invalidSizes2", "classshared_1_1invalidSizes2.html", "classshared_1_1invalidSizes2" ],
     [ "DEFINE_EXCEPTION", "errorHandling_8h.html#a1e63d9ae8e1012eb38b8139965ca4655", null ],
     [ "DEFINE_EXCEPTION_ER", "errorHandling_8h.html#a9ce440309d36897b05f81199731d53f3", null ],
     [ "DEFINE_EXCEPTION_Fa", "errorHandling_8h.html#adde73f5429a144966ba92f85ac0a3dea", null ],

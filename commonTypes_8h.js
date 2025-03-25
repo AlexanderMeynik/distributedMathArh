@@ -14,6 +14,7 @@ var commonTypes_8h =
     ] ],
     [ "DIPLOM_COMMONTYPES_H", "commonTypes_8h.html#a18269e8fc530c48dd29fe1dbb53bd63a", null ],
     [ "Arr2EigenVec", "commonTypes_8h.html#a9d48ba72197c09a9131c4b7ea736c466", null ],
+    [ "dimType", "commonTypes_8h.html#a9bc58298494ebd332e207f54d282ba61", null ],
     [ "directionGraph", "commonTypes_8h.html#a1b52a60c80481023bbe016263116c034", null ],
     [ "EigenVec", "commonTypes_8h.html#aa89ed70c66e21953cbddc64d9f30e78c", null ],
     [ "integrableFunction", "commonTypes_8h.html#a8969d96a211494546588bc4bfd080314", null ],
