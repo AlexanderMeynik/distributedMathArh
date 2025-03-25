@@ -5,12 +5,13 @@
 
 #include <matplot/matplot.h>
 
-#include "plotUtils/MeshCreator.h"
+#include "common/MeshCreator.h"
 #include "computationalLib/math_core/Dipoles.h"
 
 #include "../include/plotingUtils.h"
-#include "iolib/Printers.h"
+#include "common/Printers.h"
 
+using namespace printUtils;
 //template <class Tr>
 std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, double b = 0, bool center = false) {
     //long double lim= ceil(r+r/l);

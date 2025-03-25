@@ -9,7 +9,7 @@ RUN apt-get update && \
     wget unzip \
     cmake libomp-dev libssl-dev libpq-dev \
     libjpeg-dev libtiff5 libpng-dev zlib1g-dev \
-    libjsoncpp-dev  uuid-dev zlib1g-dev && \
+    libjsoncpp-dev libfmt-dev uuid-dev zlib1g-dev && \
     cd /home && \
     mkdir deps && \
     chmod -R 777 deps && \

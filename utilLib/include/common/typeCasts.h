@@ -3,139 +3,101 @@
 #ifndef MAGISTER1_LIB_H
 #define MAGISTER1_LIB_H
 
-#include <string>
 #include <map>
 
 #include "commonTypes.h"
 #include "myConcepts.h"
 
+using myConcepts::isOneDimensionalContinuous;
 
-using commonDeclarations::isOneDimensionalContinuous;
+template<typename Collection>
+requires isOneDimensionalContinuous<Collection>
+auto toEigenVector(Collection &collection);
 
+template<typename Collection>
+requires isOneDimensionalContinuous<Collection>
+auto toEigenRowVector(Collection &collection);
 
-//todo array<coll,2>->vector or matrix(2 columns)
-
-template<typename Container>
-requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic>>
-toEigenVector(Container&container);
-
-template<typename Container>
-requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic>>
-toEigenRowVector(Container&container);
-
-template<typename Container>
-requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic,Eigen::Dynamic>>
-toEigenMatrix(Container&container, int columns);
+template<typename Collection>
+requires isOneDimensionalContinuous<Collection>
+auto
+toEigenMatrix(Collection &collection, int columns);
 
 
-template<class T>
-std::array<std::vector<T>, 2> reinterpretVector(Eigen::Vector<T, Eigen::Dynamic> &xi) {
-    auto N = xi.size() / 2;
-    if (!N) {
-        return std::array<std::vector<T>, 2>();
+template<typename Collection>
+requires isOneDimensionalContinuous<Collection>
+auto
+toEigenVector(Collection &collection) {
+    using Scalar = std::remove_reference_t<typename Collection::value_type>;
+    using DataPtr = decltype(&collection[0]);
+
+    constexpr bool is_const = std::is_const_v<std::remove_pointer_t<DataPtr>>;
+
+    using EigenVector = Eigen::Vector<Scalar, Eigen::Dynamic>;
+    using MapType = std::conditional_t<is_const,
+            Eigen::Map<const EigenVector>,
+            Eigen::Map<EigenVector>
+    >;
+
+    if (collection.size() == 0) {
+        throw std::length_error("Zero input collection size!");
     }
-    std::array<std::vector<T>, 2> res;
-    res[0] = std::vector<T>(N, 0);
-    res[1] = std::vector<T>(N, 0);
 
-    for (int i = 0; i < N; ++i) {
-        res[0][i] = xi[i];
-        res[1][i] = xi[i + N];
-    }
-    return res;
+    return MapType(&collection[0], collection.size());
 }
 
-enum class state_t {
-    new_,
-    old,
-    openmp_new,
-    openmp_old,
-    print_
-};
+template<typename Collection>
+requires isOneDimensionalContinuous<Collection>
+auto
+toEigenRowVector(Collection &collection) {
 
-const static std::map<state_t, std::string> stateToString = {
-        {state_t::openmp_new, "openmp_new"},
-        {state_t::new_,       "new"},
-        {state_t::openmp_old, "openmp_old"},
-        {state_t::old,        "old"},
-        {state_t::print_,     "printImpl"},
-};
-const static std::map<std::string, state_t> stringToState = {
-        {"openmp_new", state_t::openmp_new},
-        {"new",        state_t::new_},
-        {"openmp_old", state_t::openmp_old},
-        {"old",        state_t::old},
-        {"printImpl",      state_t::print_},
-};
-std::ostream& operator<<  (std::ostream &out,const state_t&st);
+    using Scalar = std::remove_reference_t<typename Collection::value_type>;
+    using DataPtr = decltype(&collection[0]);
 
+    constexpr bool is_const = std::is_const_v<std::remove_pointer_t<DataPtr>>;
 
+    using EigenVector = Eigen::RowVector<Scalar, Eigen::Dynamic>;
+    using MapType = std::conditional_t<is_const,
+            Eigen::Map<const EigenVector>,
+            Eigen::Map<EigenVector>
+    >;
 
-
-
-template<typename Container>
-requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic>>
-toEigenVector(Container&container)
-{
-    if(container.size() == 0) {
-        throw std::length_error("Zero input container size!");
+    if (collection.size() == 0) {
+        throw std::length_error("Zero input collection size!");
     }
 
-
-    Eigen::Map<Eigen::Vector<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic>> map(&container[0], container.size());
-
-
-    return map;
+    return MapType(&collection[0], collection.size());
 }
 
-template<typename Container>
-requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic>>
-toEigenRowVector(Container&container)
-{
-    if(container.size() == 0) {
-        throw std::length_error("Zero input container size!");
+template<typename Collection>
+requires isOneDimensionalContinuous<Collection>
+auto
+toEigenMatrix(Collection &collection, int columns) {
+
+    using Scalar = std::remove_reference_t<typename Collection::value_type>;
+    using DataPtr = decltype(&collection[0]);
+
+    constexpr bool is_const = std::is_const_v<std::remove_pointer_t<DataPtr>>;
+
+    using EigenMatrix = Eigen::Matrix<std::remove_reference_t<typename Collection::value_type>, Eigen::Dynamic, Eigen::Dynamic>;
+    using MapType = std::conditional_t<is_const,
+            Eigen::Map<const EigenMatrix>,
+            Eigen::Map<EigenMatrix>
+    >;
+
+    if (collection.size() == 0) {
+        throw std::length_error("Zero input collection size!");
+        //todo redo
     }
 
-
-    Eigen::Map<Eigen::RowVector<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic>> map(&container[0], container.size());
-
-
-    return map;
-}
-
-template<typename Container>
-requires isOneDimensionalContinuous<Container>
-Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>
-        , Eigen::Dynamic,Eigen::Dynamic>>
-toEigenMatrix(Container&container, int columns)
-{
-    if(container.size() == 0) {
-        throw std::length_error("Zero input container size!");
+    if (collection.size() % columns != 0) {
+        throw std::length_error("Invalid collection to columns mod: collection.size() % columns = " +
+                                std::to_string(collection.size() % columns));
     }
-
-    if(container.size() % columns != 0) {
-        throw std::length_error("Invalid solutions size to columns ratio: container.size() % columns = "+std::to_string(container.size() % columns));
-    }
-    size_t rows= container.size() / columns;
+    size_t rows = collection.size() / columns;
 
 
-    Eigen::Map<Eigen::Matrix<std::remove_reference_t<typename Container::value_type>
-            , Eigen::Dynamic,Eigen::Dynamic>> map(&container[0], rows, columns);
-
-
-    return map;
+    return MapType (&collection[0], rows, columns);
 }
 
 #endif //MAGISTER1_LIB_H

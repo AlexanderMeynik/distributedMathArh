@@ -11,9 +11,9 @@
 #include <iostream>
 
 #include "common/commonTypes.h"
-#include "iolib/Printers.h"
+#include "common/Printers.h"
 using commonTypes::EigenVec;
-
+using printUtils::printSolutionFormat1;
 
 void fetchData(int N, int Ns, double a) {//todo values are not printed instantly
     QNetworkAccessManager *manager = new QNetworkAccessManager();

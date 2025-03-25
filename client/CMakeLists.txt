@@ -20,7 +20,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
 add_library(plotLib lib/plotingUtils.cpp lib/MeshPlot.cpp include/MeshPlot.h)
-target_link_libraries(plotLib PUBLIC plotUtilsLib allUtils Matplot++::matplot Qt6::Charts Qt6::DataVisualization Qt6::Widgets)
+target_link_libraries(plotLib PUBLIC allUtils Matplot++::matplot Qt6::Charts Qt6::DataVisualization Qt6::Widgets)
 target_include_directories(plotLib PUBLIC include)
 
 add_executable(checker src/eigenTest.cpp )
@@ -28,19 +28,19 @@ target_link_libraries(checker PUBLIC plotLib )
 
 
 add_executable(generator src/coordGenerate.cpp)
-target_link_libraries(generator PUBLIC io_lib math_core_lib plotLib OpenMP::OpenMP_CXX allUtils)
+target_link_libraries(generator PUBLIC math_core_lib plotLib OpenMP::OpenMP_CXX allUtils)
 
 
 
 add_executable(grids src/darwingGrids.cpp )
-target_link_libraries(grids PUBLIC io_lib math_core_lib plotLib allUtils)
+target_link_libraries(grids PUBLIC math_core_lib plotLib allUtils)
 
 
 add_executable(qtPlotExample src/createPlotQt.cpp)
-target_link_libraries(qtPlotExample PUBLIC allUtils io_lib plotLib)
+target_link_libraries(qtPlotExample PUBLIC allUtils plotLib)
 target_include_directories(qtPlotExample PUBLIC include)
 
 
 add_executable(httpClientTest src/requestInformation.cpp)
-target_link_libraries(httpClientTest PUBLIC allUtils io_lib plotLib)
+target_link_libraries(httpClientTest PUBLIC allUtils plotLib)
 target_include_directories(httpClientTest PUBLIC include)

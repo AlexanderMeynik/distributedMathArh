@@ -2,16 +2,15 @@
 #ifndef DIPLOM_DIPOLES_H
 #define DIPLOM_DIPOLES_H
 
-#include <iosfwd>
-#include <iomanip>
 
 #include "computationalLib/math_core/dipolesCommon.h"
 
 ///dipoles namespace
 namespace dipoles {
     using namespace Eigen;
-    using namespace commonDeclarations;
-    using shared::FloatType,shared::params;
+    using namespace myConcepts;
+    using shared::FloatType, shared::params;
+
     /**
      * @brief Provides interface to solve system of dipoles
      * @details Allows to construct and solve system of equations for the selected mathematical model.
@@ -85,19 +84,6 @@ namespace dipoles {
          */
         matrixType getMatrixx();
 
-        /**
-         *  @brief Print matrix to out
-         * @param out
-         * @param format
-         */
-        void printMatrix(std::ostream &out, Eigen::IOFormat &format);
-
-        /**
-         * @brief Print right part for system of equations
-         * @param out
-         * @param format
-         */
-        void printRightPart(std::ostream &out, Eigen::IOFormat &format);
 
     protected:
 
@@ -223,7 +209,7 @@ namespace dipoles {
     template<typename Container>
     requires HasSizeMethod<Container>
     void Dipoles::setNewCoordinates(const Container &xi) {
-        if(this->f.size()!=xi.size()*2) {
+        if (this->f.size() != xi.size() * 2) {
             this->N_ = xi.size() / 2;
             initArrays();
         }
@@ -386,7 +372,7 @@ namespace dipoles {
     FloatType Dipoles::getDistance(size_t i1, size_t i2, Container &xi) {
         FloatType d1;
         FloatType d2;
-        if constexpr (commonDeclarations::HasBracketsNested<Container>) {
+        if constexpr (myConcepts::HasBracketsNested<Container>) {
             d1 = xi[0][i1] - xi[0][i2];
             d2 = xi[1][i1] - xi[1][i2];
         } else {
@@ -402,7 +388,7 @@ namespace dipoles {
     Eigen::Vector<FloatType, 2> Dipoles::twoDVecDifference(size_t i1, size_t i2, Container &xi) {
         FloatType d1;
         FloatType d2;
-        if constexpr (commonDeclarations::HasBracketsNested<Container>) {
+        if constexpr (myConcepts::HasBracketsNested<Container>) {
             d1 = xi[0][i1] - xi[0][i2];
             d2 = xi[1][i1] - xi[1][i2];
         } else {

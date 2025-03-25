@@ -27,7 +27,7 @@ jobs:
         
           mkdir build && cd build
           
-          cmake -G Ninja \
+          cmake -G Ninja  \
           ../src/
           ninja
       - name: Save build
@@ -41,7 +41,7 @@ jobs:
         run: |
           cd ${GITHUB_WORKSPACE}/build/computationalLib/test
           ./core_Tests
-      - name: Run clock_tests
+      - name: Run utils_tests
         if: success() || failure()
         run: |
           cd ${GITHUB_WORKSPACE}/build/utilLib/test

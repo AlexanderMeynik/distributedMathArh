@@ -12,17 +12,17 @@
 
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/Generator.h"
-#include "plotUtils/MeshCreator.h"
-#include "iolib/Printers.h"
+#include "common/MeshCreator.h"
+#include "common/Printers.h"
 #include "../include/plotingUtils.h"
-#include "common/typeCasts.h"
+#include "common/sharedDeclarations.h"
 
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;
 }
-
+using namespace shared;
 using dipoles::Dipoles;
-
+using printUtils::printCoordinates2,printUtils::printSolutionFormat1;
 int main(int argc, char *argv[]) {
     int N = 5;
     int Nsym = 1000;
@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
     //std::cout<<aStr; // 1e16.csv
     std::string dirname = "results/" + subdirectory + "experiment_N=" + std::to_string(N) +
                           "_Nsym=" + std::to_string(Nsym) + "_a=" + aStr + "_mode=" +
-                          stateToString.find(state)->second + "/";
+                          stateToStr[static_cast<size_t>(state)] + "/";
     if (!std::filesystem::exists("results/")) {
         std::filesystem::create_directory("results/");
     }

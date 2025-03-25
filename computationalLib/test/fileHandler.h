@@ -11,9 +11,10 @@
 /// fileUtils namespace
 namespace fileUtils {
     namespace fs = std::filesystem;
+
     fs::path getNormalAbs(const fs::path &path);
 
-    bool createDirIfNotPresent(const std::string&path);
+    bool createDirIfNotPresent(const std::string &path);
 
     using osPtr = std::shared_ptr<std::ofstream>;
 
@@ -86,15 +87,16 @@ namespace fileUtils {
          */
         template<bool checks = true, typename T>
         void output(const std::string &filename, const T &printee);
+
         /**
          *
          */
         const fs::path &getParentPath() const;
+
     private:
         fs::path parentPath;
         std::unordered_map<std::string, osPtr> fileMap;
     };
-
 
 
     template<typename T>

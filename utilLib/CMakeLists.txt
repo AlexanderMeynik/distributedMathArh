@@ -2,7 +2,7 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(utilLib)
 
 
-if(BUILD_TESTS)
+if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
@@ -19,9 +19,10 @@ file(GLOB common CONFIGURE_DEPENDS
         "lib/common/*.cpp"
 )
 add_library(commonLib ${common})
-target_link_libraries(commonLib PUBLIC Eigen3::Eigen jsoncpp_lib)
+target_link_libraries(commonLib PUBLIC Eigen3::Eigen jsoncpp_lib fmt::fmt)
 target_include_directories(commonLib PUBLIC ../mdspan/include)
 target_include_directories(commonLib PUBLIC include)
+enable_coverage_for_target(commonLib)
 
 file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
         "lib/parallelUtils/*.cpp"
@@ -29,20 +30,11 @@ file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
 
 add_library(parallelLib ${parallelUtils})
 target_include_directories(parallelLib PUBLIC include)
+enable_coverage_for_target(parallelLib)
 
 
-
-
-file(GLOB_RECURSE plotUtils CONFIGURE_DEPENDS
-        "lib/plotUtils/*.cpp"
-)
-
-
-
-add_library(plotUtilsLib STATIC ${plotUtils})
-target_link_libraries(plotUtilsLib PUBLIC commonLib)
 
 add_library(allUtils STATIC ${parallelUtils})
-target_link_libraries(allUtils PUBLIC plotUtilsLib)
-
+target_link_libraries(allUtils PUBLIC commonLib)
+enable_coverage_for_target(allUtils)
 

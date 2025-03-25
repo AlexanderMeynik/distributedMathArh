@@ -7,25 +7,9 @@
 using namespace testCommon;
 using commonTypes::EigenVec;
 template<typename T>
-using dynEigenVec=Eigen::Vector<T,-1>;
-static inline FloatType aRange=1e-6;
+using dynEigenVec = Eigen::Vector<T, -1>;
+static inline FloatType aRange = 1e-6;
 
-
-//todo this test must be for caster
-TEST(transformations, reinterpret_vector_test) {
-    auto N = 20;
-
-//todo generators remake for types
-    auto EigenVec = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
-    auto arr2vec = reinterpretVector(EigenVec);
-    EXPECT_TRUE(EigenVec.size() == 2 * arr2vec[0].size() && EigenVec.size() == 2 * N);
-    for (int i = 0; i < N; ++i) {
-        SCOPED_TRACE("Checked index " + std::to_string(i) + '\n');
-        EXPECT_NEAR(EigenVec[i], arr2vec[0][i], tool);
-        EXPECT_NEAR(EigenVec[i + N], arr2vec[1][i], tool);
-    }
-
-}
 
 class IsSymmetricTestSuite : public testing::TestWithParam<int> {
 };
@@ -44,20 +28,17 @@ INSTANTIATE_TEST_SUITE_P(Matrixes, IsSymmetricTestSuite, testing::Values(2, 4, 1
                          testing::PrintToStringParamName());
 
 
-
-
-
 TEST(Dipoles, test_solve_result_in_zero_nev) {
     const int N = 2;
 
-    auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
+    auto coord = generators::normal<dynEigenVec>(N, 0.0, aRange * sqrt(2));
     dipoles::Dipoles dipolearr(coord);
     auto solution = dipolearr.solve<EigenVec>();
 
     EXPECT_TRUE(solution.size() == 4 * N);
 
-    Eigen::Vector<FloatType,Eigen::Dynamic> nev = dipolearr.getMatrixx() * solution - dipolearr.getRightPart();
-    auto nev_norm=nev.norm();
+    Eigen::Vector<FloatType, Eigen::Dynamic> nev = dipolearr.getMatrixx() * solution - dipolearr.getRightPart();
+    auto nev_norm = nev.norm();
     {
         EXPECT_NEAR(nev_norm, 0, 10e-4);
     }
@@ -81,11 +62,11 @@ TEST_P(DipoleSolveMethodNevTests, test_right_part_nev_solve_impl) {
     SCOPED_TRACE("Perform comparison test for N = " + std::to_string(N) + " attempt №" + std::to_string(i));
 
 
-    auto coord = generators::normal<dynEigenVec>(N,0.0,aRange* sqrt(2));
+    auto coord = generators::normal<dynEigenVec>(N, 0.0, aRange * sqrt(2));
     dipoles::Dipoles dipolearr(coord);
     auto rsol = dipolearr.solve<EigenVec>();
-    Eigen::Vector<FloatType,Eigen::Dynamic> nev = dipolearr.getMatrixx() * rsol - dipolearr.getRightPart();
-    FloatType nev_norm=nev.norm();
+    Eigen::Vector<FloatType, Eigen::Dynamic> nev = dipolearr.getMatrixx() * rsol - dipolearr.getRightPart();
+    FloatType nev_norm = nev.norm();
     {
         EXPECT_NEAR(nev_norm, 0, 10e-4);
     }
