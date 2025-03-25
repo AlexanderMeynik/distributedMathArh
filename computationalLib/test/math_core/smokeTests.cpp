@@ -48,6 +48,7 @@ std::vector<ttype> testFixtureGetter() {
     sols1>>ef;
     matrixes1>>ef;
     meshes1>>ef;
+
     for (int i = 0; i < NN; ++i) {
         auto sol=printUtils::parseOneDim<ct::EigenVec>(sols1);
         auto coords=printUtils::parseOneDim<ct::stdVec>(coords1);
@@ -64,6 +65,7 @@ std::vector<ttype> testFixtureGetter() {
         //ct::matrixType matr=printUtils::parseMatrix(matrixes1);//todo why this cause segfault
 
         auto m=printUtils::parseMeshFrom(meshes1);
+
         values.emplace_back(std::to_string(i), coords, res, sol, m);
     }
 
@@ -123,7 +125,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     MeshCreator mm;
     mm.constructMeshes();
     mm.applyFunction(dd.getI2function());
-    auto r2 = meshStorage::unflatten(mm.spans[2]);
+    auto r2 = meshStorage::unflatten(mm.data[2],mm.dimensions);
 
     auto ress = meshStorage::unflatten(mesh.data[2], mesh.dimensions);
 

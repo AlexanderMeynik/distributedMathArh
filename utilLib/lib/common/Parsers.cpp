@@ -37,7 +37,6 @@ namespace printUtils {
         mm.constructMeshes(dims,lims);
         mm.data[2]= jsonToContinuous<commonTypes::meshStorageType>(val, dims[0] * dims[1]);
 
-        mm.computeViews();
         return mm;
     }
 
@@ -95,7 +94,7 @@ namespace printUtils {
                 {
                     throw ioError(to_string(in.rdstate()));
                 }
-                mm.constructMeshes(dims,lims);
+
 
                 std::string dummy;
                 std::getline(in, dummy);
@@ -113,21 +112,19 @@ namespace printUtils {
                 ct::meshStorageType m(dims[0]*dims[1]);
 
 
-
-
-
-
                 for (int i = 0; i < dims[1]; ++i) {
+
+                    FloatType temp = 0;
+                    in >> temp;
+
                     if(i==0)
                     {
-                        in>>lims[2];
+                        lims[2]=temp;
                     }
                     if(i==dims[1]-1)
                     {
-                        in>>lims[3];
+                        lims[3]=temp;
                     }
-                    FloatType temp = 0;
-                    in >> temp;
                     for (int j = 0; j < dims[0]; ++j) {
                         FloatType val;
                         in >> val;
@@ -136,18 +133,17 @@ namespace printUtils {
                     }
                 }
 
+                mm.constructMeshes(dims,lims);
+
 
 
 
                 mm.data[2] = m;
 
-                //todo implement
-
                 break;
 
         }
         mm.constructMeshes(dims,lims);
-        mm.computeViews();
 
 
         return mm;

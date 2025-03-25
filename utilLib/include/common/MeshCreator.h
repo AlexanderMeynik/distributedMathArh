@@ -4,7 +4,8 @@
 
 
 #include <iosfwd>
-#include "mdspan/mdspan.hpp"
+#include <optional>
+
 #include <boost/math/quadrature/gauss_kronrod.hpp>
 
 #include "common/commonTypes.h"
@@ -18,10 +19,8 @@ namespace meshStorage {
     using commonTypes::dimType;
 
     ///stores upper and lower limit pairs for meshes
-    using limType=std::array<FloatType, 4>;
+    using limType = std::array<FloatType, 4>;
 
-    using etx = Kokkos::extents<size_t, Kokkos::dynamic_extent, Kokkos::dynamic_extent>;
-    using mdSpanType = Kokkos::mdspan<FloatType, etx>;
 
     template<size_t N>
     using meshArr = std::array<co::meshStorageType, N>;
@@ -36,21 +35,11 @@ namespace meshStorage {
      * @param tol
      */
     template<unsigned Ndots = 61>
-    FloatType inline integrate(const std::function<FloatType(FloatType)> &function,
+    FloatType integrate(const std::function<FloatType(FloatType)> &function,
                                FloatType left,
                                FloatType right,
                                unsigned int max_depth = 5,
-                               FloatType tol = Eigen::NumTraits<FloatType>::epsilon()) {
-        FloatType error;
-        double Q = boost::math::quadrature::gauss_kronrod<FloatType, Ndots>::integrate(
-                function,
-                left,
-                right,
-                max_depth,
-                tol,
-                &error);
-        return Q;
-    }
+                               FloatType tol = Eigen::NumTraits<FloatType>::epsilon());
 
 
     template<unsigned Ndots = 61>
@@ -60,12 +49,7 @@ namespace meshStorage {
                                             FloatType left,
                                             FloatType right,
                                             unsigned int max_depth = 5,
-                                            FloatType tol = 1e-20) {
-        std::function<FloatType(FloatType)> tt = [&theta, &phi, &function](FloatType t) {
-            return function(theta, phi, t);
-        };
-        return integrate<Ndots>(tt, left, right, max_depth, tol);
-    }
+                                            FloatType tol = 1e-20);
 
 
     /**
@@ -84,9 +68,11 @@ namespace meshStorage {
      * @param mesh1
      * @param mesh2
      */
-    FloatType getMeshDiffNorm(const co::meshStorageType &mesh1, const co::meshStorageType &mesh2);
+    FloatType getMeshDiffNorm(const co::meshStorageType &mesh1,
+                              const co::meshStorageType &mesh2);
 
-    void addMesh(co::meshStorageType &a, const co::meshStorageType &b);
+    void addMesh(co::meshStorageType &a,
+                 const co::meshStorageType &b);
 
     /**
      * @brief Computes meshes using 2 double arrays
@@ -95,7 +81,8 @@ namespace meshStorage {
      * @return
      */
     template<template<typename ...> typename container =std::vector>
-    std::array<co::meshStorageType, 2> myMeshGrid(const container<co::FloatType> &a, const container<co::FloatType> &b);
+    std::array<co::meshStorageType, 2> myMeshGrid(const container<co::FloatType> &a,
+                                                  const container<co::FloatType> &b);
 
 
     /**
@@ -109,87 +96,78 @@ namespace meshStorage {
      * @return
      */
     template<template<typename ...> typename container =std::vector, typename T=FloatType, bool end = true>
-    container<T> myLinspace(T lower_bound, T upper_bound, size_t n);
+    container<T> myLinspace(T lower_bound,
+                            T upper_bound,
+                            size_t n);
 
 
-    co::meshDrawClass inline unflatten(const co::meshStorageType &mm, const dimType &numss) {
-        auto res = co::meshDrawClass(numss[0], co::stdVec(numss[1], 0.0));
-
-
-        mdSpanType resSpan = Kokkos::mdspan((FloatType *) &(mm[0]), numss[0], numss[1]);
-
-        for (size_t i = 0; i < resSpan.extent(0); ++i) {
-            for (size_t j = 0; j < resSpan.extent(1); ++j) {
-                res[i][j] = resSpan[std::array{i, j}];
-            }
-        }
-
-        return res;
-    }
-
-    co::meshDrawClass inline unflatten(const mdSpanType &resSpan) {
-        auto res = co::meshDrawClass(resSpan.extent(0), co::stdVec(resSpan.extent(1), 0.0));
-
-
-        for (size_t i = 0; i < resSpan.extent(0); ++i) {
-            for (size_t j = 0; j < resSpan.extent(1); ++j) {
-                res[i][j] = resSpan[std::array{i, j}];
-            }
-        }
-
-        return res;
-    }
+    co::meshDrawClass unflatten(const co::meshStorageType &mm,
+                                const dimType &dims);
 
 
     static constexpr inline const FloatType rr = 2 * M_PI / params::omega;
 
+    static constexpr inline dimType defaultDims = {7, 25};
+    static constexpr inline limType defaultLims = {0, M_PI_2, 0, M_PI * 2};
 
     /**
      * @brief Class that  handles 3d mesh creation and parameters management
      */
     class MeshCreator {
     public:
-        MeshCreator() : dimensions({7, 25}), limits({0, M_PI_2, 0, M_PI * 2}),
-                        data({co::meshStorageType(dimensions[0] * dimensions[1]),
-                              co::meshStorageType(dimensions[0] * dimensions[1]),
-                              co::meshStorageType(dimensions[0] * dimensions[1])}) {
-        }
+        /**
+         * @brief Default MeshCreator constructor
+         * @param construct - will allocate memory for data arrays if is true
+         */
+        MeshCreator(bool construct=true);
 
-        void constructMeshes();
+        /**
+         * @brief Computes 2d meshgrid using dims,lims
+         * @param dims
+         * @param lims
+         */
+        void constructMeshes(const dimType &dims,
+                             const limType &lims);
 
-        void constructMeshes(const dimType &dimenstion) {
-            this->dimensions = dimenstion;
-        }
+        /**
+         * @brief Will substitute any null-opt with default values
+         * @param dimOpt
+         * @param limOpt
+         */
+        void constructMeshes(std::optional<dimType> dimOpt = std::nullopt,
+                             std::optional<limType> limOpt = std::nullopt);
 
-        void constructMeshes(
-                const limType &limit) {
-            this->limits = limit;
-        }
-
-        void constructMeshes(const dimType &dimenstion,
-                             const limType &limit) {
-            this->dimensions = dimenstion;
-            this->limits = limit;
-            constructMeshes();
-        }
-
+        /**
+         * @brief Cartesian to spherical coordinate transformation
+         * @param oth
+         * @return
+         */
         friend meshArr<3> sphericalTransformation(const MeshCreator &oth);
 
-        void applyFunction(const co::directionGraph &plot);
+        /**
+         * @brief Computes data[2] using provided func function
+         * @param func
+         */
+        void applyFunction(const co::directionGraph &func);
 
-        void applyIntegrate(const co::integrableFunction &func, FloatType a = 0, FloatType b = rr) {
-            this->applyFunction([&func, &a, b](FloatType x, FloatType y) {
-                return integrateLambdaForOneVariable<61>(func, y, x, a, b);
-            });
+        /**
+         * @brief Uses numerical integration with range [a,b] compute data[2]
+         * @param func
+         * @param a
+         * @param b
+         */
+        void applyIntegrate(const co::integrableFunction &func,
+                            FloatType a = 0,
+                            FloatType b = rr);
 
-        }
-
-        std::array<meshStorage::mdSpanType, 3> spans;
-
-        void computeViews(int val = -1);
-
-        void plotAndSave(const std::string &filename,
-                         const std::function<void(const std::string &filename, const MeshCreator &)> &plotCallback) {
+        /**
+         * @brief Calls provided callback to plot this mesh
+         * @param filename
+         * @param plotCallback
+         */
+        void plotAndSave[[deprecated("remove mathplot support")]](const std::string &filename,
+                         const std::function<void(const std::string &filename,
+                                                  const MeshCreator &)> &plotCallback) {
             plotCallback(filename, *this);
         }
 
@@ -198,8 +176,50 @@ namespace meshStorage {
         meshArr<3> data;
     };
 
-    void printDec(const meshStorage::MeshCreator &mmesh, std::ostream &out);
+    /**
+     * @brief Prints mesh in human readable way
+     * @param mmesh
+     * @param out
+     */
+    void printDec(const meshStorage::MeshCreator &mmesh,
+                  std::ostream &out);
 
+
+}
+
+namespace meshStorage
+{
+
+    template<unsigned int Ndots>
+    FloatType integrate(const std::function<FloatType(FloatType)> &function,
+                        FloatType left, FloatType right,
+                        unsigned int max_depth,
+                        FloatType tol) {
+        FloatType error;
+        double Q = boost::math::quadrature::gauss_kronrod<FloatType, Ndots>::integrate(
+                function,
+                left,
+                right,
+                max_depth,
+                tol,
+                &error);
+        return Q;
+    }
+
+    template<unsigned int Ndots>
+    FloatType
+    integrateLambdaForOneVariable(const commonTypes::integrableFunction &function,
+                                  FloatType theta,
+                                  FloatType phi,
+                                  FloatType left,
+                                  FloatType right,
+                                  unsigned int max_depth,
+                                  FloatType tol) {
+        std::function<FloatType(FloatType)> tt = [&theta, &phi, &function](FloatType t) {
+            return function(theta, phi, t);
+        };
+        return integrate<Ndots>(tt, left, right, max_depth, tol);
+    }
 
     template<template<typename ...> typename container, typename T, bool end>
     container<T> myLinspace(T lower_bound, T upper_bound, size_t n) {
@@ -226,18 +246,15 @@ namespace meshStorage {
 
     template<template<typename ...> typename container>
     std::array<co::meshStorageType, 2>
-    myMeshGrid(const container<co::FloatType> &a, const container<co::FloatType> &b) {
+    myMeshGrid(const container<co::FloatType> &a,
+               const container<co::FloatType> &b) {
         std::array<co::meshStorageType, 2> ret = {co::meshStorageType(b.size() * a.size()),
                                                   co::meshStorageType(b.size() * a.size())};
 
-
-        auto x_mesh = Kokkos::mdspan(&(ret[0][0]), b.size(), a.size());
-        auto y_mesh = Kokkos::mdspan(&(ret[1][0]), b.size(), a.size());
-
         for (size_t i = 0; i < b.size(); ++i) {
             for (size_t j = 0; j < a.size(); ++j) {
-                x_mesh[std::array{i, j}] = a[j];
-                y_mesh[std::array{i, j}] = b[i];
+                ret[0][i*a.size()+j] = a[j];
+                ret[1][i*a.size()+j] = b[i];
             }
         }
         return ret;

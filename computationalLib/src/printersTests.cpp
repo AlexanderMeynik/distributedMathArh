@@ -59,7 +59,7 @@ int main() {
         std::cout<<ll.what()<<'\n';
         std::cout<<ENUM_TO_STR(ll.getSev(),sevToStr)<<'\n';
     }
-    //todo test mesh print/parse
+
     meshStorage::MeshCreator mm{};
     mm.constructMeshes({2,5},{0.0,2.0,1.0,10.});
 

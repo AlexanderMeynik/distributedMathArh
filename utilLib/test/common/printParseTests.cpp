@@ -22,12 +22,12 @@ std::vector<ttype> generateFixture(int nnum=0)
     std::vector<ttype> res;
 
     meshStorage::MeshCreator ms;
-    ms.constructMeshes({20ul,20ul},{0.0,10.0,0.0,20.0});
+    ms.constructMeshes({8ul,15ul},{2,10.0,5,20.0});
 
     ms.applyFunction([](auto x,auto y){
-       return (x>y)?x:y;
+       return x+y*100;
     });
-    ms.computeViews();
+
     ttype a1=ttype{"default",ms,ioFormat::Serializable, true, true};
     ttype a2=ttype{"noDims",ms,ioFormat::Serializable, true, false};
     ttype a3=ttype{"noLims",ms,ioFormat::Serializable, false, true};
@@ -96,7 +96,7 @@ public:
 
     MeshPrintReadTs()
     {
-        ss.precision(defaultPrec);
+        ss.precision(defaultPrec+1);
     }
 
 protected:
@@ -113,7 +113,7 @@ protected:
 INSTANTIATE_TEST_SUITE_P(
         PrintParseTests,
         MeshPrintReadTs,
-        ::testing::ValuesIn(generateFixture(0   )
+        ::testing::ValuesIn(generateFixture(1)
 
         ), [](auto&info){return std::get<0>(info.param);});
 
@@ -129,13 +129,10 @@ TEST_P(MeshPrintReadTs,testOstreamPrint)
     auto limopt=printLims?std::nullopt:std::optional{mesh.limits};
 
     printMesh(ss,mesh,io,printDims,printLims);
-    //todo for human readable mesh coords are empty()
-    auto ssss=ss.str();
     auto deser=parseMeshFrom(ss,io,dimopt,limopt);
 
     if(!printDims)
     {
-
         compareArrays(mesh.dimensions,deser.dimensions,arrayEqualComparator<size_t>::call, anotherErr);
     }
 
