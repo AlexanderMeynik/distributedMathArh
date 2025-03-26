@@ -194,11 +194,3 @@ INSTANTIATE_TEST_SUITE_P(
                                 [](FloatType x, FloatType y) { return x * x + y * y * y; },
                                 std::valarray<FloatType>{2, 2, 9, 9})
         ), firstValueTuplePrinter<TestFunctionApply>);
-
-
-
-
-
-//todo test mesh processor
-//use fake function framework to test function invocations
-//compare calculated plot views

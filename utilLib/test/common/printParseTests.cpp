@@ -4,7 +4,8 @@
 #include "common/Parsers.h"
 #include "common/Printers.h"
 
-#include "../../computationalLib/test/GoogleCommon.h"//todo make common
+#include "../../computationalLib/test/GoogleCommon.h"
+
 using namespace testCommon;
 using namespace printUtils;
 
