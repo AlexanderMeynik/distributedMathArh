@@ -18,9 +18,13 @@ endif ()
 find_package(Drogon)
 find_package(Qt6)
 find_package(Matplot++)
-find_package(jsoncpp)
+find_package(amqpcpp)
+find_package(libpqxx)
+
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(fmt REQUIRED)
+find_package(jsoncpp REQUIRED)
+find_package(OpenMP REQUIRED)
 
 option(BUILD_TESTS "Build tests" ON)
 
@@ -33,22 +37,22 @@ endif (BUILD_DOC)
 add_subdirectory(utilLib)
 add_subdirectory(computationalLib)
 
-if(Drogon_FOUND)
+if(Drogon_FOUND AND amqpcpp_FOUND AND libpqxx_FOUND)
     add_subdirectory(computationalNode)
 else ()
-    message("missing dependencies to build server")
+    message("Missing dependencies to build computationalNode.")
 endif()
 
 
 if(Qt6_FOUND AND Matplot++_FOUND)
     add_subdirectory(client)
 else ()
-    message("missing dependencies to build client")
+    message("Missing dependencies to build client.")
 endif()
 
 
-if(Drogon_FOUND)
+if(Drogon_FOUND AND amqpcpp_FOUND AND libpqxx_FOUND)
     add_subdirectory(mainNode)
 else ()
-    message("No cpprestFrameworkFound. mainNode subdirectory wont be built")
+    message("Missing dependencies to build mainNode.")
 endif()

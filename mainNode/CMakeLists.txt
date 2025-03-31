@@ -36,3 +36,9 @@ target_link_libraries(mainNode -lssl -lcrypto)
 target_link_libraries(mainNode servLib2 allUtils)
 enable_coverage_for_target(mainNode)
 
+add_executable(consumer aqmpCons.cpp)
+target_link_libraries(consumer amqpcpp fmt::fmt jsoncpp_lib boost_system pthread dl ssl)
+
+
+add_executable(producer aqmpProd.cpp)
+target_link_libraries(producer amqpcpp fmt::fmt jsoncpp_lib boost_system pthread dl ssl)

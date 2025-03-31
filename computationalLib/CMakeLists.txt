@@ -1,5 +1,3 @@
-
-
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif ()
@@ -9,11 +7,6 @@ if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
-
-find_package(libpqxx REQUIRED)
-find_package(glog 0.7.1 REQUIRED)
-find_package(OpenMP REQUIRED)
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/lib)

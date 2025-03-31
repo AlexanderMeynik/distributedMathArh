@@ -24,10 +24,10 @@ target_include_directories(commonLib PUBLIC ../mdspan/include)
 target_include_directories(commonLib PUBLIC include)
 enable_coverage_for_target(commonLib)
 
+
 file(GLOB_RECURSE parallelUtils CONFIGURE_DEPENDS
         "lib/parallelUtils/*.cpp"
 )
-
 add_library(parallelLib ${parallelUtils})
 target_include_directories(parallelLib PUBLIC include)
 enable_coverage_for_target(parallelLib)
