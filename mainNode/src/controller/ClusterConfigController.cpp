@@ -1,5 +1,6 @@
 #include "controller/ClusterConfigController.h"
 #include "common/Parsers.h"
+#include "common/Printers.h"
 
 using namespace rest::v1;
 
@@ -15,6 +16,7 @@ ClusterConfigController::getStatus(const HttpRequestPtr &req, std::function<void
         //root["data"][i]=Json::Value();
         root["data"][i]["host"] = str;
         root["data"][i]["status"] = mapss.at(node.st);
+        root["data"][i]["benchRes"]= printUtils::continuousToJson(node.power);
         i++;
     }
     //todo call all of nodes;
@@ -75,7 +77,7 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
     res["qip"] = qip;
     res["qname"] = name;
     clients[hostPort].st = NodeStatus::active;
-    //res["benchRes"]=pows;//todo ser
+    res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
 
     auto r = HttpResponse::newHttpJsonResponse(res);
 
@@ -116,7 +118,8 @@ void ClusterConfigController::disconnectHandler(const HttpRequestPtr &req,
 
     res = *resp->getJsonObject();
     res["ip"] = hostPort;
-    res["benchRes"] = pow;
+    res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
+
 
     auto r = HttpResponse::newHttpJsonResponse(res);
 
