@@ -11,14 +11,14 @@
 //retrieving queues and their names
 //conenction create/remove
 using namespace amqpCommon;
-int main()
+int main(int argc,char * argv[])
 {
+    int a=std::stol(argv[1]);
 
-    // access to the boost asio handler
-    // note: we suggest use of 2 threads - normally one is fin (we are simply demonstrating thread safety).
+
     boost::asio::io_service service(1);
 
-    // handler for libev
+
     AMQP::LibBoostAsioHandler handler(service);
 
     // make a connection
@@ -31,22 +31,24 @@ int main()
     declareExchange(channel,exchange);
 
     declareQueue(channel,queue,exchange);
-    for (int i = 0; i < 100; ++i) {
-        std::string a=std::to_string(i);
+
+    for (int i = 0; i < a; ++i) {
         Json::Value message;
         message["number"]=i;
 
         auto t = std::time(nullptr);
         auto tm = *std::localtime(&t);
-        //std::cout <<  << std::endl;
+
         std::stringstream ss;
         ss<<std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
         message["timestamp"]= ss.str();
         channel.publish(exchange,queue,message.toStyledString());
+
+        std::cout<<i<<'\n';
+
     }
 
+    service.run();
 
-
-
-    return service.run();
+    return 0;
 }

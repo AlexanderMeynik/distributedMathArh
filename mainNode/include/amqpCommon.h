@@ -19,8 +19,8 @@
 #include <json/json.h>
 namespace amqpCommon
 {
-    constexpr static inline const char * exchange="testexch";
-    constexpr static inline const char * queue="testqueue";
+    static inline std::string exchange="testexch";
+    static inline std::string queue="testqueue";
 
 
     auto inline startCb = [](const std::string &consumertag) {
@@ -42,22 +42,22 @@ namespace amqpCommon
 
 
 
-    constexpr static inline  const char * adress = "amqp://sysadmin:syspassword@localhost/";
+     static inline  std::string adress = "amqp://sysadmin:syspassword@localhost/";
 
-    void declareExchange(AMQP::Channel& channel, std::string_view exchange1);
+    void declareExchange(AMQP::Channel& channel, const std::string & exchange1);
 
-    void  declareQueue(AMQP::Channel& channel, std::string_view queue1,std::string_view exchange1);
+    void  declareQueue(AMQP::Channel& channel, const std::string & queue1,const std::string & exchange1);
 
 
-    void sendMessage(AMQP::Channel& channel, std::string_view exchange1, std::string_view  routing_key,
+    void sendMessage(AMQP::Channel& channel, std::string_view exchange1, std::string_view  routingKey,
                       std::string_view  body, bool persistent = true);
 
     void consumeMessages(AMQP::Channel& channel, std::string_view  queue1);
 
 
 
-    void deleteQueue(AMQP::Channel& channel, const std::string& queue_name, bool ifUnused = false, bool ifEmpty = false);
+    void deleteQueue(AMQP::Channel& channel, const std::string& queueName, bool ifUnused = false, bool ifEmpty = false);
 
-    void deleteExchange(AMQP::Channel& channel, const std::string& exchange_name, bool ifUnused = false);
+    void deleteExchange(AMQP::Channel& channel, const std::string& exchangeName, bool ifUnused = false);
 
 }
