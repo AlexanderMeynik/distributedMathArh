@@ -51,8 +51,7 @@ RUN cd /home/deps && \
     mkdir build&&cd build && \
     cmake -DSKIP_BUILD_TEST=OFF -DBUILD_SHARED_LIBS=off -G Ninja .. && \
     cmake --build . && \
-    ninja install \
-
+    ninja install
 
 RUN cd /home/deps && \
     git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git && \
