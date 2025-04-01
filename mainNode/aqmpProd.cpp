@@ -27,6 +27,7 @@ int main()
     // we need a channel too
     AMQP::TcpChannel channel(&connection);
 
+
     declareExchange(channel,exchange);
 
     declareQueue(channel,queue,exchange);
