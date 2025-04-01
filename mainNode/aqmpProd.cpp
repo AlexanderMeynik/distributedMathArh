@@ -42,6 +42,7 @@ int main(int argc,char * argv[])
         std::stringstream ss;
         ss<<std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
         message["timestamp"]= ss.str();
+        //todo try https://github.com/CopernicaMarketingSoftware/AMQP-CPP?tab=readme-ov-file#publisher-confirms
         channel.publish(exchange,queue,message.toStyledString());
 
         std::cout<<i<<'\n';

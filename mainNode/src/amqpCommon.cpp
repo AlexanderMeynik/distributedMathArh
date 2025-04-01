@@ -31,14 +31,15 @@ namespace amqpCommon
     void consumeMessages(AMQP::Channel &channel, std::string_view queue1) {
         channel.consume(queue1)
                 .onReceived([&](const AMQP::Message& msg, uint64_t tag, bool redelivered) {
-                    // Сохранить tag и обработать сообщение позже
+
+
                     std::string body(msg.body(), msg.bodySize());
                     std::cout << "Received: " << body << "\n";
                     for (int i = 0; i < 10; ++i) {
                         std::cout<<i<<((i<9)?'\t':'\n');
                     }
 
-                    // После обработки:
+
                     channel.ack(tag);
                 });
     }

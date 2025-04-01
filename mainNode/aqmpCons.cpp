@@ -3,7 +3,7 @@
 
 #include <fmt/format.h>
 #include <thread>
-
+//todo inherit from boost asio
 using namespace amqpCommon;
 int main()
 {
@@ -21,7 +21,12 @@ int main()
 
     // make a connection
     AMQP::TcpConnection connection(&handler, AMQP::Address(adress));
+
     AMQP::TcpChannel channel(&connection);
+    channel.onError([](const char* message)
+                    {
+                        std::cout<<"Channel error "<<message<<'\n';
+                    });
     std::thread tr{[&tm,&connection,&channel,&service](){tm.wait();
         /*deleteQueue(channel,queue);
         deleteExchange(channel,exchange);*/
