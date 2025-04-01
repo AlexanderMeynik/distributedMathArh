@@ -26,11 +26,11 @@ RUN  git clone https://github.com/drogonframework/drogon && \
      ninja install && \
      ln -s /usr/include/jsoncpp/json/ /usr/include/json
 
-RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip && \
-    unzip -q gausQuadratureMin.zip && \
-    rm gausQuadratureMin.zip && \
-    cp -r gausQuadratureMin/boost/ /usr/include/ && \
-    rm -rf gausQuadratureMin
+RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/boostSubset.zip && \
+    unzip -q boostSubset.zip && \
+    rm boostSubset.zip && \
+    cp -r boostSubset/boost/ /usr/include/ && \
+    rm -rf boostSubset
 
 RUN cd /home/deps/&& git clone https://github.com/alandefreitas/matplotplusplus.git && \
     cd matplotplusplus && \
@@ -51,7 +51,8 @@ RUN cd /home/deps && \
     mkdir build&&cd build && \
     cmake -DSKIP_BUILD_TEST=OFF -DBUILD_SHARED_LIBS=off -G Ninja .. && \
     cmake --build . && \
-    ninja install
+    ninja install \
+
 
 RUN cd /home/deps && \
     git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git && \
