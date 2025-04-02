@@ -42,7 +42,7 @@ namespace amqpCommon
 
 
 
-     static inline  std::string adress = "amqp://sysadmin:syspassword@localhost/";
+     static inline  std::string cString = "amqp://sysadmin:syspassword@localhost/";
 
     void declareExchange(AMQP::Channel& channel, const std::string & exchange1);
 

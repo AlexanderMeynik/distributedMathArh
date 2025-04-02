@@ -1,68 +1,149 @@
 
 #include "amqpCommon.h"
-
-#include <fmt/format.h>
 #include <thread>
-//todo inherit from boost asio
-using namespace amqpCommon;
-int main()
-{
-    // create an instance of your own tcp handler
-    // access to the boost asio handler
-    // note: we suggest use of 2 threads - normally one is fin (we are simply demonstrating thread safety).
-    boost::asio::io_service service(1);
-    boost::asio::deadline_timer tm(service, boost::posix_time::seconds(1));
+
+
+//todo queue http service(0curl,qt?)
+//todo erro handling(can i throw exception from callbacks)_ how can i notify the main programm
+
+
+class amqpConsumerService {
+public:
+    amqpConsumerService(const std::string& connectionString, const std::string& queueName)
+            : m_service(1),
+              m_work(std::make_unique<boost::asio::io_service::work>(m_service)),
+              m_handler(m_service, m_work),
+              m_connection(&m_handler, AMQP::Address(connectionString)),
+              m_channel(&m_connection),
+              m_queue(queueName) {
+
+
+        m_channel.onError([](const char* message) {
+            std::cout << "Channel error: " << message << std::endl;
+        });
+    }
+
+    void connect() {
+
+        auto messageCb = [this](const AMQP::Message& message, uint64_t deliveryTag, bool redelivered) {
+            /*Json::Value val;
+            Json::Reader reader;
+            if (reader.parse(message.body(), message.body() + message.bodySize(), val)) {
+                std::cout << "Message received: size = " << message.bodySize()
+                          << ", content = " << val.toStyledString() << std::endl;
+            } else {
+                std::cout << "Failed to parse message as JSON." << std::endl;
+            }*/
+
+            std::cout << "Body: " << std::string(message.body(), message.bodySize()) << '\n';
+            std::cout << "Priority: " << (int)message.priority() << '\n';
+            std::cout<< "Persistent: "<<message.persistent()<<'\n';
+            std::cout << "Content-Type: " << message.contentType() << '\n';
+            std::cout << "Timestamp: " << message.timestamp() << '\n';
+            for (const auto& key : message.headers().keys()) {
+                std::cout << "Header [" << key << "] = " << message.headers().operator[](key) << '\n';//typeId
+            }
 
 
 
+            m_channel.ack(deliveryTag);
+        };
 
-    // handler for libev
-    AMQP::LibBoostAsioHandler handler(service);
 
-    // make a connection
-    AMQP::TcpConnection connection(&handler, AMQP::Address(adress));
+        auto startCb = [](const std::string& consumertag) {
+            std::cout << "Consumption started successfully with consumer tag: " << consumertag << std::endl;
+        };
 
-    AMQP::TcpChannel channel(&connection);
-    channel.onError([](const char* message)
-                    {
-                        std::cout<<"Channel error "<<message<<'\n';
-                    });
-    std::thread tr{[&tm,&connection,&channel,&service](){tm.wait();
-        /*deleteQueue(channel,queue);
-        deleteExchange(channel,exchange);*/
-        channel.close();
-        connection.close();//todo results in terminate(all tasks are handled)
-        //service.stop();//abdruptly stops service
+
+        auto errorCb = [](const char* message) {
+            std::cout << "Consumption error: " << message << std::endl;
+        };
+
+
+        m_channel.consume(m_queue)
+                .onReceived(messageCb)
+                .onSuccess(startCb)
+                .onError(errorCb);
+
+
+        m_serviceThread = std::thread([this]() { m_service.run(); });
+    }
+
+    void disconnect() {
+
+
+        m_service.post([this]() {
+            m_connection.close();
+        });
+
+
+        if (m_serviceThread.joinable()) {
+            m_serviceThread.join();
         }
-    };//simple timer that will close everything
-// and create a channel
+    }
 
+    ~amqpConsumerService()
+    {
+        disconnect();
+    }
 
+private:
+    boost::asio::io_service m_service;
+    std::unique_ptr<boost::asio::io_service::work> m_work;
+    class MyHandler : public AMQP::LibBoostAsioHandler {
+    public:
+        MyHandler(boost::asio::io_service& service, std::unique_ptr<boost::asio::io_service::work>& workRef)
+                : AMQP::LibBoostAsioHandler(service), m_work(workRef) {}
 
-    auto messageCb = [&channel,&tm](const AMQP::Message &message, uint64_t deliveryTag, bool redelivered) {
+        void onClosed(AMQP::TcpConnection* connection) override {
+            m_work.reset();
 
+            std::cout << "Connection closed.\n";
+        }
 
-        Json::Value val;
-        Json::Reader read;
-        read.parse(message.body(),val);
-        std::cout << fmt::format("message received:\"size = {}, content = {}\"\n",message.bodySize(),val.toStyledString());
+        void onError(AMQP::TcpConnection* connection, const char* message) override {
+            std::cout << "Connection error: " << message << '\n';
+        }
 
-        // acknowledge the message
-        channel.ack(deliveryTag);
-        tm.expires_from_now(boost::posix_time::seconds(1));
+        void onConnected(AMQP::TcpConnection* connection) override {
+            std::cout << "Connection established successfully." << '\n';
+        }
+
+    private:
+
+        std::unique_ptr<boost::asio::io_service::work>& m_work;
     };
+    MyHandler m_handler;
+    AMQP::TcpConnection m_connection;
+    AMQP::TcpChannel m_channel;
+    std::string m_queue;
+    std::thread m_serviceThread;
+};
 
 
-    channel.consume(queue)
-            .onReceived(messageCb)
-            .onSuccess(startCb)
-            .onCancelled(cancelledCb)
-            .onError(errorCb);
+
+// Signal handling
+static volatile std::sig_atomic_t signalReceived = 0;
+
+void signal_handler(int signal) {
+    if (signal == SIGINT) {
+        signalReceived = 1;
+    }
+}
+
+int main() {
+
+    std::signal(SIGINT, signal_handler);
+    using namespace amqpCommon;
+
+    amqpConsumerService listener(cString, queue);
+    listener.connect();
 
 
+    while (!signalReceived) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
 
-    service.run();
-
+    listener.disconnect();
     return 0;
-
 }

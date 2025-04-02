@@ -1,38 +1,47 @@
 
 
-
+//retrieving queues and their names
+//conenction create/remove
 
 #include "amqpCommon.h"
 
 #include <json/json.h>
 #include <iomanip>
-//todo run without boost as event loop
-//create and remove exchanges an queues
-//retrieving queues and their names
-//conenction create/remove
+
 using namespace amqpCommon;
 int main(int argc,char * argv[])
 {
-    int a=std::stol(argv[1]);
+    if (argc != 2) {
+        std::cerr << "Usage: " << argv[0] << " <number_of_messages>\n";
+        return 1;
+    }
+    int numMessages;
+    try {
+        numMessages = std::stoi(argv[1]);
+        if (numMessages <= 0) {
+            throw std::invalid_argument("Number of messages must be positive.");
+        }
+    } catch (const std::exception& e) {
+        std::cerr << "Error: Invalid number of messages - " << e.what() << '\n';
+        return 1;
+    }
 
 
     boost::asio::io_service service(1);
-
-
     AMQP::LibBoostAsioHandler handler(service);
 
-    // make a connection
-    AMQP::TcpConnection connection(&handler, AMQP::Address(adress));
+    AMQP::TcpConnection connection(&handler, AMQP::Address(cString));
+    AMQP::TcpChannel channel(&connection);\
 
-    // we need a channel too
-    AMQP::TcpChannel channel(&connection);
-
+    channel.onError([](const char* message) {
+        std::cerr << "Channel error: " << message << '\n';
+    });
 
     declareExchange(channel,exchange);
 
     declareQueue(channel,queue,exchange);
 
-    for (int i = 0; i < a; ++i) {
+    for (int i = 0; i < numMessages; ++i) {
         Json::Value message;
         message["number"]=i;
 
@@ -42,14 +51,23 @@ int main(int argc,char * argv[])
         std::stringstream ss;
         ss<<std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
         message["timestamp"]= ss.str();
-        //todo try https://github.com/CopernicaMarketingSoftware/AMQP-CPP?tab=readme-ov-file#publisher-confirms
-        channel.publish(exchange,queue,message.toStyledString());
+
+
+        channel.publish(exchange,queue,message.toStyledString());//todo message persistency, priority ...
 
         std::cout<<i<<'\n';
+
+
 
     }
 
     service.run();
 
+    std::cout << "All messages published successfully."<<'\n';
+
+
+
     return 0;
 }
+
+//todo try https://github.com/CopernicaMarketingSoftware/AMQP-CPP?tab=readme-ov-file#publisher-confirms
