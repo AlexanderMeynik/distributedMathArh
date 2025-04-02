@@ -92,7 +92,11 @@ namespace amqpCommon
         void addQueue(const std::string &queue1,
                       bool create);
 
-        void publish(AMQP::Message&&message,size_t i);
+        void publish(AMQP::Envelope &&message, size_t i);
+
+        void endLoop();
+
+        void restartLoop();
 
         ~amqpPublisherService();
 
@@ -102,14 +106,12 @@ namespace amqpCommon
         boost::asio::io_service m_service;
         std::unique_ptr<boost::asio::io_service::work> m_work;
 
-        std::vector<std::string> m_queues;
-        AMQP::TcpChannel m_channel;
-
-
         MyHandler m_handler;
         AMQP::TcpConnection m_connection;
-
+        AMQP::TcpChannel m_channel;
+        std::vector<std::string> m_queues;
         std::thread m_serviceThread;
+
     };
 
     class amqpConsumerService {

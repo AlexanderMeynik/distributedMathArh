@@ -21,7 +21,7 @@ void signalHandler(int signal) {
 int main(int argc,char * argv[]) {
 
     if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <number_of_messages>\n";
+        std::cerr << "Usage: " << argv[0] << " <queue_name>\n";
         return 1;
     }
 

@@ -27,31 +27,8 @@ namespace amqpCommon {
                 });
     }
 
-    void consumeMessages(AMQP::Channel &channel, std::string_view queue1) {
-        channel.consume(queue1)
-                .onReceived([&](const AMQP::Message &msg, uint64_t tag, bool redelivered) {
 
 
-                    std::string body(msg.body(), msg.bodySize());
-                    std::cout << "Received: " << body << "\n";
-                    for (int i = 0; i < 10; ++i) {
-                        std::cout << i << ((i < 9) ? '\t' : '\n');
-                    }
-
-
-                    channel.ack(tag);
-                });
-    }
-
-    void
-    sendMessage(AMQP::Channel &channel,
-                std::string_view exchange1,
-                std::string_view routingKey,
-                std::string_view body,
-                bool persistent) {
-
-        channel.publish(exchange1, routingKey, body);
-    }
 
     void declareQueue(AMQP::Channel &channel,
                       const std::string &queue1,
@@ -178,9 +155,6 @@ namespace amqpCommon {
         for (size_t i = 0; i < queues.size(); ++i) {
             declareQueue(m_channel,queue,exchange);
         }
-
-        m_serviceThread = std::thread([this]() { m_service.run(); });
-        
         
     }
 
@@ -194,26 +168,43 @@ namespace amqpCommon {
     }
 
     void amqpPublisherService::addQueue(const std::string &queue1, bool create) {
-        declareQueue(m_channel,queue1,exchange);
+        if(create) {
+            declareQueue(m_channel, queue1, exchange);//queue erro connection lost
+
+        }
         m_queues.push_back(queue1);
     }
 
     amqpPublisherService::~amqpPublisherService() {
+        endLoop();
         m_queues.clear();
-        m_work.reset();
-
-        if(m_serviceThread.joinable())
-        {
-            m_serviceThread.join();
-        }
     }
 
-    void amqpPublisherService::publish(AMQP::Message &&message, size_t i) {
+    void amqpPublisherService::publish(AMQP::Envelope &&message, size_t i) {
         if(i>=m_queues.size())
         {
             throw std::out_of_range(fmt::format("Index {} is larger than struct size {}",i,m_queues.size()));
         }
         m_channel.publish(exchange,m_queues[i],message);
 
+    }
+
+    void amqpPublisherService::endLoop() {
+        m_service.post([this]() {
+            m_connection.close();
+        });
+
+
+        if (m_serviceThread.joinable()) {
+            m_serviceThread.join();
+        }
+
+    }
+
+    void amqpPublisherService::restartLoop() {
+        m_service.post([]{ sleep(1);});
+        m_serviceThread = std::thread([this]() {
+            m_service.run();///casuse bad alock(maybe duet to no tasks)
+        });
     }
 }
