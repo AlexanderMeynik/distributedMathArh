@@ -114,6 +114,8 @@ namespace amqpCommon
         std::vector<std::string> m_queues;
         std::thread m_serviceThread;
 
+        static inline const std::string defaultExhc="testexch";
+
     };
 
     class amqpConsumerService {

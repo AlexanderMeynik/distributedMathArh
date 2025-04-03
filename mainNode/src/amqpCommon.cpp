@@ -32,7 +32,7 @@ namespace amqpCommon {
                       const std::string &queue1,
                       const std::string &exchange1) {
         channel.declareQueue(queue1)
-                .onSuccess([&queue1]() {
+                .onSuccess([queue1]() {
                     std::cout << fmt::format("Queue \"{}\" declared\n", queue1);
                 })
                 .onError([](const char *msg) {
@@ -47,14 +47,6 @@ namespace amqpCommon {
                 [this](const AMQP::Message &message,
                        uint64_t deliveryTag,
                        bool redelivered) {
-                    /*Json::Value val;
-                    Json::Reader reader;
-                    if (reader.parse(message.body(), message.body() + message.bodySize(), val)) {
-                        std::cout << "Message received: size = " << message.bodySize()
-                                  << ", content = " << val.toStyledString() << '\n';
-                    } else {
-                        std::cout << "Failed to parse message as JSON." << '\n';
-                    }*/
 
                     std::cout << "Body: " << std::string(message.body(), message.bodySize()) << '\n';
                     std::cout << "Priority: " << (int) message.priority() << '\n';
@@ -62,10 +54,9 @@ namespace amqpCommon {
                     std::cout << "Content-Type: " << message.contentType() << '\n';
                     std::cout << "Timestamp: " << message.timestamp() << '\n';
                     for (const auto &key: message.headers().keys()) {
-                        std::cout << "Header [" << key << "] = " << message.headers().operator[](key) << '\n';//typeId
+                        std::cout << "Header [" << key << "] = " << message.headers().operator[](key)<<'\t'<< message.headers().operator[](key).typeID() << '\n';//typeId
                     }
-
-
+                    std::cout<<'\n';
                     m_channel.ack(deliveryTag);
                 };
 
@@ -127,7 +118,8 @@ namespace amqpCommon {
             m_work(workRef) {}
 
     amqpPublisherService::amqpPublisherService(const std::string &connectionString,
-                                               const std::vector<std::string> &queues) :
+                                               const std::vector<std::string> &queues)
+                                               :
             m_service(1),
             m_work(std::make_unique<boost::asio::io_service::work>(m_service)),
             m_handler(m_service, m_work),
@@ -139,15 +131,17 @@ namespace amqpCommon {
             std::cout << fmt::format("Channel error: {}\n", message);
         });
 
-        m_channel.declareExchange(exchange,AMQP::direct).onSuccess(
-                [this] {
-                    std::cout << fmt::format("Exchange \"{}\" declared\n", exchange);
-                    for (const auto &q: m_queues) {
-                        declareQueue(m_channel, q, exchange);
-                    }
+        m_channel.declareExchange(defaultExhc,AMQP::direct).onSuccess(
+                [] {
+                    std::cout << fmt::format("Exchange \"{}\" declared\n", defaultExhc);
                 }).onError([](const char *msg) {
             std::cerr << "Exchange error: " << msg << "\n";
         });
+
+        for (const auto &q: m_queues) {
+            std::cout<<m_queues.size()<<'\n';
+            declareQueue(m_channel,q,q);
+        }
 
     }
 
@@ -161,10 +155,7 @@ namespace amqpCommon {
 
     void amqpPublisherService::addQueue(const std::string &queue1, bool create) {
         if (create) {
-            m_service.post([this, queue1]() {
-                declareQueue(m_channel, queue1, exchange);
-            });
-
+           declareQueue(m_channel,queue1,defaultExhc);
         }
         m_queues.push_back(queue1);
     }
@@ -178,17 +169,9 @@ namespace amqpCommon {
         if (i >= m_queues.size()) {
             throw std::out_of_range(fmt::format("Index {} is larger than struct size {}", i, m_queues.size()));
         }
-
-        m_service.post([this, i, message]() {
-            try {
-                m_channel.publish(exchange, m_queues[i], *message);
-            } catch (const std::exception &e) {
-                std::cerr << "Publish error: " << e.what() << "\n";
-            }
-            //m_channel.publish(exchange, m_queues[i], *message);
-        });
-
-
+        message->setTimestamp(std::chrono::high_resolution_clock().now().time_since_epoch().count());
+        m_channel.publish(defaultExhc, m_queues[i], *message);
+        //todo try https://github.com/CopernicaMarketingSoftware/AMQP-CPP?tab=readme-ov-file#publisher-confirms
     }
 
     void amqpPublisherService::endLoop() {
