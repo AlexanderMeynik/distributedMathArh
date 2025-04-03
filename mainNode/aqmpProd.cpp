@@ -11,7 +11,7 @@
 using namespace amqpCommon;
 
 
-static volatile std::sig_atomic_t signalReceived = 0;
+/*static volatile std::sig_atomic_t signalReceived = 0;
 
 void signalHandler(int signal) {
     if (signal == SIGINT) {
@@ -19,6 +19,7 @@ void signalHandler(int signal) {
     }
 }
 
+using namespace  amqpCommon;
 int main(int argc,char * argv[])
 {
     if (argc != 2) {
@@ -62,15 +63,16 @@ int main(int argc,char * argv[])
             std::stringstream ss;
             ss<<std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
             message["timestamp"]= ss.str();
-            AMQP::Envelope ms{message.toStyledString()};
-            ms.setPersistent(true);
-            ms.setPriority(numMessages-j);
-            AMQP::Table headders;
-            headders["messageNum"]=j;
-            headders["tt"]=ss.str();
-            ms.setHeaders(headders);
 
-            service.publish(std::move(ms),i);
+            auto envelope = std::make_shared<AMQP::Envelope>(message.toStyledString());
+            envelope->setPersistent(true);
+            envelope->setPriority(numMessages - j);
+            AMQP::Table headers;
+            headers["messageNum"] = j;
+            headers["tt"] = ss.str();
+            envelope->setHeaders(headers);
+
+            service.publish(envelope, i);
         }
     }
 
@@ -85,8 +87,8 @@ int main(int argc,char * argv[])
 
 
     return 0;
-}
-/*int main(int argc,char * argv[])
+}*/
+int main(int argc,char * argv[])
 {
 
 
@@ -116,8 +118,8 @@ int main(int argc,char * argv[])
     channel.onError([](const char* message) {
         std::cerr << "Channel error: " << message << '\n';
     });
-
-    declareExchange(channel,exchange);
+    channel.declareExchange(exchange,AMQP::direct);
+    //declareExchange(channel,exchange);
 
     declareQueue(channel,queue,exchange);
 
@@ -148,6 +150,6 @@ int main(int argc,char * argv[])
 
 
     return 0;
-}*/
+}
 
 //todo try https://github.com/CopernicaMarketingSoftware/AMQP-CPP?tab=readme-ov-file#publisher-confirms

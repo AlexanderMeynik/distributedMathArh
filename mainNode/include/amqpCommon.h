@@ -4,8 +4,9 @@
 
 #include <string>
 #include <vector>
-#include <unordered_map>
 #include <thread>
+#include <memory>
+
 
 #include <fmt/format.h>
 
@@ -28,8 +29,9 @@ namespace amqpCommon
 
     static inline  std::string cString = "amqp://sysadmin:syspassword@localhost/";
 
-    void declareExchange(AMQP::Channel& channel,
-                         const std::string & exchange1);
+    using AMQP::Envelope;
+    using  EnvelopePtr=std::shared_ptr<Envelope>;
+
 
     void  declareQueue(AMQP::Channel& channel,
                        const std::string & queue1,
@@ -92,7 +94,7 @@ namespace amqpCommon
         void addQueue(const std::string &queue1,
                       bool create);
 
-        void publish(AMQP::Envelope &&message, size_t i);
+        void publish( EnvelopePtr message, size_t i);
 
         void endLoop();
 
