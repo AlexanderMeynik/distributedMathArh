@@ -88,10 +88,10 @@ int main(int argc,char * argv[])
 
     return 0;
 }*/
+
+
 int main(int argc,char * argv[])
 {
-
-
 
     if (argc != 2) {
         std::cerr << "Usage: " << argv[0] << " <number_of_messages>\n";
@@ -121,26 +121,33 @@ int main(int argc,char * argv[])
     channel.declareExchange(exchange,AMQP::direct);
     //declareExchange(channel,exchange);
 
-    declareQueue(channel,queue,exchange);
-
-    for (int i = 0; i < numMessages; ++i) {
-        Json::Value message;
-        message["number"]=i;
-
-        auto t = std::time(nullptr);
-        auto tm = *std::localtime(&t);
-
-        std::stringstream ss;
-        ss<<std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
-        message["timestamp"]= ss.str();
+    std::vector<std::string> qq={"q1","q2","q3"};
 
 
-        channel.publish(exchange,queue,message.toStyledString());//todo message persistency, priority ...
+    for(size_t i=0;i<qq.size();i++)
+    {
+        declareQueue(channel,qq[i],exchange);
+    }
 
-        std::cout<<i<<'\n';
+    for(size_t j=0;j<qq.size();j++)
+    {
+        for (int i = 0; i < numMessages; ++i) {
+            Json::Value message;
+            message["number"]=i;
+
+            auto t = std::time(nullptr);
+            auto tm = *std::localtime(&t);
+
+            std::stringstream ss;
+            ss<<std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+            message["timestamp"]= ss.str();
 
 
+            channel.publish(exchange,qq[j],message.toStyledString());
 
+            std::cout<<j<<'\t'<<i<<'\n';
+
+        }
     }
 
     service.run();
