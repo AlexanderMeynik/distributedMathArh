@@ -17,7 +17,7 @@ RUN apt-get update && \
     cd deps
 
 
-RUN apt-get install -y libeigen3-dev libjsoncpp-dev
+RUN apt-get install -y libeigen3-dev libjsoncpp-dev libcurl4-openssl-dev
 
 RUN  git clone https://github.com/drogonframework/drogon && \
      cd drogon && \
