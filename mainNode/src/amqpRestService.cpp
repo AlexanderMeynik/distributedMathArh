@@ -2,95 +2,75 @@
 #include <stdexcept>
 #include <sstream>
 
-#include <drogon/HttpRequest.h>
-
 namespace amqpCommon {
-
-    static std::string base64_encode(const std::string& input) {
-        const std::string base64_chars =
-                "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-                "abcdefghijklmnopqrstuvwxyz"
-                "0123456789+/";
-        std::string encoded;
-        int i = 0;
-        int j = 0;
-        uint8_t char_array_3[3];
-        uint8_t char_array_4[4];
-
-        for (char c : input) {
-            char_array_3[i++] = c;
-            if (i == 3) {
-                char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-                char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
-                char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
-                char_array_4[3] = char_array_3[2] & 0x3f;
-                for (i = 0; i < 4; i++) {
-                    encoded += base64_chars[char_array_4[i]];
-                }
-                i = 0;
-            }
-        }
-
-        if (i) {
-            for (j = i; j < 3; j++) {
-                char_array_3[j] = '\0';
-            }
-            char_array_4[0] = (char_array_3[0] & 0xfc) >> 2;
-            char_array_4[1] = ((char_array_3[0] & 0x03) << 4) + ((char_array_3[1] & 0xf0) >> 4);
-            char_array_4[2] = ((char_array_3[1] & 0x0f) << 2) + ((char_array_3[2] & 0xc0) >> 6);
-            char_array_4[3] = char_array_3[2] & 0x3f;
-            for (j = 0; j < i + 1; j++) {
-                encoded += base64_chars[char_array_4[j]];
-            }
-            while (i++ < 3) {
-                encoded += '=';
-            }
-        }
-        return encoded;
-    }
 
     RabbitMQRestService::RabbitMQRestService(const std::string& baseUrl,
                                              const std::string& username,
                                              const std::string& password)
-            : baseUrl(baseUrl) {
-        authHeader = "Basic " + base64_encode(username + ":" + password);
-        httpClient = drogon::HttpClient::newHttpClient(baseUrl);
+            : baseUrl(baseUrl), username(username), password(password) {
+        curl_global_init(CURL_GLOBAL_DEFAULT);
     }
 
     RabbitMQRestService::~RabbitMQRestService() {
+        curl_global_cleanup();
+    }
+
+    size_t RabbitMQRestService::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
+        size_t realsize = size * nmemb;
+        std::string *buffer = static_cast<std::string*>(userp);
+        buffer->append(static_cast<char*>(contents), realsize);
+        return realsize;
     }
 
     std::string RabbitMQRestService::performRequest(const std::string& path,
                                                     const std::string& method,
                                                     const std::string& data) {
-        auto req = drogon::HttpRequest::newHttpRequest();
-
-        req->setPath(path);
-
-        if(!methodList.count(method))
-        {
-            throw std::invalid_argument("Unsupported HTTP method: " + method);
+        CURL *curl = curl_easy_init();
+        if (!curl) {
+            throw std::runtime_error("Failed to initialize CURL");
         }
 
-        req->setMethod(methodList.at(method));
-
-        std::cout<<req->methodString()<<'\t';
         std::string fullUrl = baseUrl + path;
-        std::cout << "Requesting: " << fullUrl << '\n';
+        curl_easy_setopt(curl, CURLOPT_URL, fullUrl.c_str());
 
+        curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        curl_easy_setopt(curl, CURLOPT_USERNAME, username.c_str());
+        curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
 
-        req->addHeader("Authorization", authHeader);
+        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method.c_str());
+
+        struct curl_slist *headers = nullptr;
         if (!data.empty()) {
-            req->setBody(data);
+            headers = curl_slist_append(headers, "Content-Type: application/json");
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
+            curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, data.size());
         }
-        auto [result, resp] = httpClient->sendRequest(req);
-        if (result != drogon::ReqResult::Ok) {
-            throw std::runtime_error("Request failed");
+
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        std::string responseBody;
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
+        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responseBody);
+
+        CURLcode res = curl_easy_perform(curl);
+
+        long httpCode = 0;
+        if (res == CURLE_OK) {
+            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
         }
-        if (resp->getStatusCode() >= 400) {
-            throw std::runtime_error("HTTP error: " + std::to_string(resp->getStatusCode()));
+
+        curl_slist_free_all(headers);
+        curl_easy_cleanup(curl);
+
+        if (res != CURLE_OK) {
+            throw std::runtime_error("Request failed: " + std::string(curl_easy_strerror(res)));
         }
-        return std::string(resp->getBody());
+
+        if (httpCode >= 400) {
+            throw std::runtime_error("HTTP error: " + std::to_string(httpCode));
+        }
+
+        return responseBody;
     }
 
     Json::Value RabbitMQRestService::parseJson(const std::string& jsonStr) {

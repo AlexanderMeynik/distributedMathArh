@@ -1,12 +1,12 @@
 
 #pragma once
-#ifndef DATA_DEDUPLICATION_SERVICE_AMQPRESTSERVICE_H
-#define DATA_DEDUPLICATION_SERVICE_AMQPRESTSERVICE_H
+#ifndef DISTRIBUTED_MATH_ARH_AMQPRESTSERVICE_H
+#define DISTRIBUTED_MATH_ARH_AMQPRESTSERVICE_H
 
 #include <vector>
 #include <string>
 
-#include <drogon/HttpClient.h>
+#include <curl/curl.h>
 #include <json/json.h>
 
 ///amqpCommon namespace
@@ -19,7 +19,6 @@ namespace amqpCommon {
                             const std::string& password);
         ~RabbitMQRestService();
 
-
         bool createQueue(const std::string& vhost,
                          const std::string& queueName,
                          const Json::Value& arguments);
@@ -28,11 +27,9 @@ namespace amqpCommon {
         bool sendStartEventLoopRequest(const std::string& workerId,
                                        const std::string& queueName);
 
-
         Json::Value getQueueStats(const std::string& vhost,
                                   const std::string& queueName);
         std::vector<std::string> listQueues(const std::string& vhost);
-
 
         bool bindQueueToExchange(const std::string& vhost,
                                  const std::string& queueName,
@@ -48,20 +45,14 @@ namespace amqpCommon {
 
     private:
         std::string baseUrl;
-        std::string authHeader;
-        drogon::HttpClientPtr httpClient;
+        std::string username;
+        std::string password;
 
-        std::string performRequest(const std::string& url,
+        std::string performRequest(const std::string& path,
                                    const std::string& method,
                                    const std::string& data = "");
         Json::Value parseJson(const std::string& jsonStr);
-        static inline std::unordered_map<std::string,drogon::HttpMethod> methodList=
-                {
-                        {"GET",drogon::Get},
-                        {"PUT",drogon::Put},
-                        {"POST",drogon::Post},
-                        {"DELETE",drogon::Delete}
-                };
+        static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
     };
 }
-#endif //DATA_DEDUPLICATION_SERVICE_AMQPRESTSERVICE_H
+#endif //DISTRIBUTED_MATH_ARH_AMQPRESTSERVICE_H

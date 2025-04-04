@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(data_deduplication_service)
+project(distributed_math_arh)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(Coverage)
@@ -25,6 +25,7 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(fmt REQUIRED)
 find_package(jsoncpp REQUIRED)
 find_package(OpenMP REQUIRED)
+find_package(CURL REQUIRED)
 
 option(BUILD_TESTS "Build tests" ON)
 
