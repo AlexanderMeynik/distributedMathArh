@@ -36,7 +36,7 @@ target_link_libraries(mainNode servLib2 allUtils)
 enable_coverage_for_target(mainNode)
 
 add_library(amqpUtils src/amqpCommon.cpp src/amqpRestService.cpp)
-target_link_libraries( amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
+target_link_libraries( amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib Drogon::Drogon)
 enable_coverage_for_target(amqpUtils)
 target_include_directories(amqpUtils PUBLIC include)
 

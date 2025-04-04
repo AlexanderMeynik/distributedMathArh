@@ -6,7 +6,7 @@
 #include <vector>
 #include <string>
 
-#include <curl/curl.h>
+#include <drogon/HttpClient.h>
 #include <json/json.h>
 
 ///amqpCommon namespace
@@ -49,15 +49,19 @@ namespace amqpCommon {
     private:
         std::string baseUrl;
         std::string authHeader;
-        CURL* curl;
+        drogon::HttpClientPtr httpClient;
 
-        static size_t writeCallback(void* contents,
-                                    size_t size, size_t nmemb,
-                                    std::string* userp);
         std::string performRequest(const std::string& url,
                                    const std::string& method,
                                    const std::string& data = "");
         Json::Value parseJson(const std::string& jsonStr);
+        static inline std::unordered_map<std::string,drogon::HttpMethod> methodList=
+                {
+                        {"GET",drogon::Get},
+                        {"PUT",drogon::Put},
+                        {"POST",drogon::Post},
+                        {"DELETE",drogon::Delete}
+                };
     };
 }
 #endif //DATA_DEDUPLICATION_SERVICE_AMQPRESTSERVICE_H

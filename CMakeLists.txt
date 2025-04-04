@@ -25,7 +25,6 @@ find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(fmt REQUIRED)
 find_package(jsoncpp REQUIRED)
 find_package(OpenMP REQUIRED)
-find_package(CURL REQUIRED)
 
 option(BUILD_TESTS "Build tests" ON)
 

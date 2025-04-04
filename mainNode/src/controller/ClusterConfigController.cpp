@@ -41,7 +41,6 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
     }
 
     auto req1 = HttpRequest::newHttpRequest();
-
     req1->setPath("/v1/connect");
     req1->setParameter("ip", qip);
     req1->setParameter("name", name);
@@ -51,21 +50,17 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
     auto [code, resp] = clients[hostPort].httpClient->sendRequest(req1);
     auto jsonPtr = resp->jsonObject();
 
-
+    res["ip"] = hostPort;
+    res["qip"] = qip;
+    res["qname"] = name;
     if (!resp) {
-        res["ip"] = hostPort;
-        res["qip"] = qip;
-        res["qname"] = name;
+
         res["message"] = "Unable to connect to node";
         auto r = HttpResponse::newHttpJsonResponse(res);
         callback(r);
-        return;//todo maybe some guard liek class to handle this
+        return;//todo maybe some guard like class to handle this
     }
     if (resp->getStatusCode() != HttpStatusCode::k200OK) {
-
-        res["ip"] = hostPort;
-        res["qip"] = qip;
-        res["qname"] = name;
         res["code"] = resp->getStatusCode();
         auto r = HttpResponse::newHttpJsonResponse(res);
         callback(r);
@@ -73,9 +68,7 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
     }
 
     clients[hostPort].power = printUtils::jsonToContinuous<std::valarray<double>>((*jsonPtr)["bench"]);
-    res["ip"] = hostPort;
-    res["qip"] = qip;
-    res["qname"] = name;
+
     clients[hostPort].st = NodeStatus::active;
     res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
 
