@@ -4,6 +4,7 @@ LABEL authors="Meynik A.V."
 #todo delete mathplot++
 #todo github actions run stages 
 #todo create runner image
+
 RUN apt-get update && \
     apt-get install -y build-essential ninja-build git \
     wget unzip \
@@ -16,7 +17,7 @@ RUN apt-get update && \
     cd deps
 
 
-RUN apt-get install -y libeigen3-dev
+RUN apt-get install -y libeigen3-dev libjsoncpp-dev
 
 RUN  git clone https://github.com/drogonframework/drogon && \
      cd drogon && \
