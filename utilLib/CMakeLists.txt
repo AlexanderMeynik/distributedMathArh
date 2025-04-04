@@ -20,7 +20,6 @@ file(GLOB common CONFIGURE_DEPENDS
 )
 add_library(commonLib ${common})
 target_link_libraries(commonLib PUBLIC Eigen3::Eigen jsoncpp_lib fmt::fmt)
-target_include_directories(commonLib PUBLIC ../mdspan/include)
 target_include_directories(commonLib PUBLIC include)
 enable_coverage_for_target(commonLib)
 

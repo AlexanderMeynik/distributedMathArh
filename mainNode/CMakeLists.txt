@@ -1,7 +1,9 @@
-
-
 if (NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
+endif ()
+
+if (BUILD_TESTS)
+    add_subdirectory(test)
 endif ()
 
 include_directories(include)
@@ -9,15 +11,12 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/mainNode/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/mainNode/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/mainNode/bin)
 
-if (BUILD_TESTS)
-    add_subdirectory(test)
-endif ()
+
 
 
 file(COPY config
         DESTINATION ${CMAKE_BINARY_DIR}/mainNode/bin)
 
-include_directories(../mdspan/include)
 
 file(GLOB_RECURSE httpSources CONFIGURE_DEPENDS
         "src/controller/*.cpp"
@@ -36,8 +35,9 @@ target_link_libraries(mainNode -lssl -lcrypto)
 target_link_libraries(mainNode servLib2 allUtils)
 enable_coverage_for_target(mainNode)
 
-add_library(amqpUtils src/amqpCommon.cpp)
-target_link_libraries( amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib)
+add_library(amqpUtils src/amqpCommon.cpp src/amqpRestService.cpp)
+target_link_libraries( amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
+enable_coverage_for_target(amqpUtils)
 target_include_directories(amqpUtils PUBLIC include)
 
 add_executable(consumer aqmpCons.cpp)

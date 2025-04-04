@@ -10,7 +10,6 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/bin)
 file(COPY config
         DESTINATION ${CMAKE_BINARY_DIR}/computationalNode/bin)
 
-include_directories(../mdspan/include)
 
 file(GLOB_RECURSE httpSources CONFIGURE_DEPENDS
         "src/controller/*.cpp"

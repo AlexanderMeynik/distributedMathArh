@@ -1,13 +1,12 @@
 
 
-//retrieving queues and their names
-//conenction create/remove
-
 #include <iomanip>
 #include "amqpCommon.h"
 
+#include <fmt/format.h>
+#include <json/json.h>
 
-
+///amqpCommon namespace
 using namespace amqpCommon;
 
 
@@ -22,15 +21,20 @@ void signalHandler(int signal) {
 using namespace  amqpCommon;
 int main(int argc,char * argv[])
 {
-    if (argc != 2) {
-        std::cerr << "Usage: " << argv[0] << " <number_of_messages>\n";
+    if (argc != 3) {
+        std::cerr << "Usage: " << argv[0] << " <number_of_messages>  <number_of_queues>\n";
         return 1;
     }
     int numMessages;
+    int numbQueues;
     try {
         numMessages = std::stoi(argv[1]);
+        numbQueues = std::stoi(argv[2]);
         if (numMessages <= 0) {
             throw std::invalid_argument("Number of messages must be positive.");
+        }
+        if (numbQueues <= 0) {
+            throw std::invalid_argument("Number of queues must be positive.");
         }
     } catch (const std::exception& e) {
         std::cerr << "Error: Invalid number of messages - " << e.what() << '\n';
@@ -45,11 +49,11 @@ int main(int argc,char * argv[])
     service.restartLoop();
 
 
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < numbQueues; ++i) {
         service.addQueue(fmt::format("queue{}",i),true);
     }
 
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < numbQueues; ++i) {
         std::string q=fmt::format("queue{}",i);
         for (int j = 0; j < numMessages; ++j) {
 
@@ -71,7 +75,6 @@ int main(int argc,char * argv[])
             envelope->setPriority(numMessages - j);
             AMQP::Table headers;
             headers["messageNum"] = j;
-            std::cout<<"msgs\t"<<i<<'\t'<<j<<'\n';
             headers["tt"] = ss.str();
 
 

@@ -1,25 +1,21 @@
 #pragma once
 
-
+#ifndef DATA_DEDUPLICATION_SERVICE_AMQPRESTCOMMON_H
+#define DATA_DEDUPLICATION_SERVICE_AMQPRESTCOMMON_H
 
 #include <string>
 #include <vector>
 #include <thread>
 #include <memory>
 
-
-#include <fmt/format.h>
-
-
 #include <amqpcpp.h>
 #include <amqpcpp/linux_tcp.h>
 
 #include <boost/asio/io_service.hpp>
-#include <boost/asio/strand.hpp>
-#include <boost/asio/deadline_timer.hpp>
-
 #include <amqpcpp/libboostasio.h>
-#include <json/json.h>
+
+
+
 namespace amqpCommon
 {
     static inline std::string exchange="testexch";
@@ -144,3 +140,5 @@ namespace amqpCommon
     };
 
 }
+
+#endif //DATA_DEDUPLICATION_SERVICE_AMQPRESTCOMMON_H

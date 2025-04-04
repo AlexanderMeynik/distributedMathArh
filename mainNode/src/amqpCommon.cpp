@@ -1,5 +1,7 @@
 #include "amqpCommon.h"
 
+#include <fmt/format.h>
+
 namespace amqpCommon {
 
     void deleteQueue(AMQP::Channel &channel, const std::string &queueName, bool ifUnused, bool ifEmpty) {

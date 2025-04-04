@@ -1,6 +1,7 @@
 find_package(Qt6 REQUIRED COMPONENTS Widgets Xml Core Charts Sql DataVisualization Network)
 find_package(Matplot++ REQUIRED)
-find_package(OpenMP REQUIRED)
+
+
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/client/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/client/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/client/bin)
