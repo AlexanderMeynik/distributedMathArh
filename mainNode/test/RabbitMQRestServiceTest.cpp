@@ -17,6 +17,7 @@ protected:
     }
 };
 
+
 TEST_F(RabbitMQRestServiceTest, CreateQueue) {
     Json::Value args;
     args["worker_id"] = "worker_123";
