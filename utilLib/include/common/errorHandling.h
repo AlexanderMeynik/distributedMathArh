@@ -32,7 +32,7 @@ private: \
 #define STR(cc) std::string{cc}
 #include <stdexcept>
 #include <array>
-/*#include <source_location>*/
+
 #include <tuple>
 
 
@@ -111,6 +111,16 @@ namespace shared {
     //todo stck tracing
     //https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes
 
+
+    /**
+     * @brief HttpError class
+     */
+    DEFINE_EXCEPTION_IN(httpError, "HTTP error: {} ", long)
+
+    /**
+     * @brief HttpError class
+     */
+    DEFINE_EXCEPTION_IN(curlError, "Curl error: {} ", std::string )
 }
 
 

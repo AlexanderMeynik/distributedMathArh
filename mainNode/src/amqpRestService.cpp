@@ -2,12 +2,17 @@
 #include <stdexcept>
 #include <sstream>
 
+#include "common/errorHandling.h"
+
 namespace amqpCommon {
 
     RabbitMQRestService::RabbitMQRestService(const std::string& baseUrl,
                                              const std::string& username,
                                              const std::string& password)
-            : baseUrl(baseUrl), username(username), password(password) {
+            : baseUrl(baseUrl),
+            username(username),
+            password(password),
+            m_auth(true){
         curl_global_init(CURL_GLOBAL_DEFAULT);
     }
 
@@ -24,7 +29,8 @@ namespace amqpCommon {
 
     std::string RabbitMQRestService::performRequest(const std::string& path,
                                                     const std::string& method,
-                                                    const std::string& data) {
+                                                    const std::string& data,
+                                                    bool Auth) {
         CURL *curl = curl_easy_init();
         if (!curl) {
             throw std::runtime_error("Failed to initialize CURL");
@@ -33,9 +39,11 @@ namespace amqpCommon {
         std::string fullUrl = baseUrl + path;
         curl_easy_setopt(curl, CURLOPT_URL, fullUrl.c_str());
 
-        curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_easy_setopt(curl, CURLOPT_USERNAME, username.c_str());
-        curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
+        if(Auth) {
+            curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+            curl_easy_setopt(curl, CURLOPT_USERNAME, username.c_str());
+            curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
+        }
 
         curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method.c_str());
 
@@ -63,11 +71,11 @@ namespace amqpCommon {
         curl_easy_cleanup(curl);
 
         if (res != CURLE_OK) {
-            throw std::runtime_error("Request failed: " + std::string(curl_easy_strerror(res)));
+            throw shared::curlError(std::string(curl_easy_strerror(res)));
         }
 
         if (httpCode >= 400) {
-            throw std::runtime_error("HTTP error: " + std::to_string(httpCode));
+            throw shared::httpError(httpCode);
         }
 
         return responseBody;
@@ -93,14 +101,14 @@ namespace amqpCommon {
         body["durable"] = true;
         body["arguments"] = arguments;
         std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "PUT", data);
+        performRequest(path, "PUT", data, m_auth);
         return true;
     }
 
     bool RabbitMQRestService::deleteQueue(const std::string& vhost,
                                           const std::string& queueName) {
         std::string path = "/api/queues/" + vhost + "/" + queueName;
-        performRequest(path, "DELETE");
+        performRequest(path, "DELETE","", m_auth);
         return true;
     }
 
@@ -113,20 +121,20 @@ namespace amqpCommon {
         body["payload"] = "Start event loop for " + queueName + " by " + workerId;
         body["payload_encoding"] = "string";
         std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "POST", data);
+        performRequest(path, "POST", data, m_auth);
         return true;
     }
 
     Json::Value RabbitMQRestService::getQueueStats(const std::string& vhost,
                                                    const std::string& queueName) {
         std::string path = "/api/queues/" + vhost + "/" + queueName;
-        std::string response = performRequest(path, "GET");
+        std::string response = performRequest(path, "GET", "", m_auth);
         return parseJson(response);
     }
 
     std::vector<std::string> RabbitMQRestService::listQueues(const std::string& vhost) {
         std::string path = "/api/queues/" + vhost;
-        std::string response = performRequest(path, "GET");
+        std::string response = performRequest(path, "GET","", m_auth);
         Json::Value j = parseJson(response);
         std::vector<std::string> queues;
         for (const auto& item : j) {
@@ -143,7 +151,7 @@ namespace amqpCommon {
         Json::Value body;
         body["routing_key"] = routingKey;
         std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "POST", data);
+        performRequest(path, "POST", data, m_auth);
         return true;
     }
 
@@ -163,13 +171,27 @@ namespace amqpCommon {
         body["password"] = password;
         body["tags"] = "worker";
         std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "PUT", data);
+        performRequest(path, "PUT", data, m_auth);
         return true;
     }
 
     bool RabbitMQRestService::deleteUser(const std::string& username) {
         std::string path = "/api/users/" + username;
-        performRequest(path, "DELETE");
+        performRequest(path, "DELETE","", m_auth);
         return true;
+    }
+
+    Json::Value RabbitMQRestService::whoami() {
+
+        std::string path = "/api/whoami";
+
+        std::string response = performRequest(path, "GET","", m_auth);
+
+        return parseJson(response);
+
+    }
+
+    void RabbitMQRestService::setAuth(bool auth) {
+        m_auth=auth;
     }
 }

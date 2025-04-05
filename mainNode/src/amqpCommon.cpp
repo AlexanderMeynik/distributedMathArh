@@ -4,30 +4,6 @@
 
 namespace amqpCommon {
 
-    void deleteQueue(AMQP::Channel &channel, const std::string &queueName, bool ifUnused, bool ifEmpty) {
-        channel.removeQueue(queueName,
-                            (ifUnused ? AMQP::ifunused : AMQP::direct) |
-                            (ifEmpty ? AMQP::ifempty : AMQP::direct)
-                )
-                .onSuccess([&queueName]() {
-                    std::cout << fmt::format("Queue \"{}\" deleted\n", queueName);
-                })
-                .onError([](const char *error) {
-                    std::cerr << "Queue deletion error: " << error << "\n";
-                });
-    }
-
-    void deleteExchange(AMQP::Channel &channel, const std::string &exchangeName, bool ifUnused) {
-        channel.removeExchange(exchangeName,
-                               ifUnused ? AMQP::ifunused : AMQP::direct
-                )
-                .onSuccess([&exchangeName]() {
-                    std::cout << fmt::format("Exchange \"{}\" deleted\n", exchangeName);
-                })
-                .onError([](const char *error) {
-                    std::cerr << "Exchange deletion error: " << error << "\n";
-                });
-    }
 
 
     void declareQueue(AMQP::Channel &channel,

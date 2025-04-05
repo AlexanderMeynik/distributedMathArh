@@ -19,6 +19,8 @@ namespace amqpCommon {
                             const std::string& password);
         ~RabbitMQRestService();
 
+        Json::Value whoami();
+
         bool createQueue(const std::string& vhost,
                          const std::string& queueName,
                          const Json::Value& arguments);
@@ -43,15 +45,18 @@ namespace amqpCommon {
                         const std::string& password);
         bool deleteUser(const std::string& username);
 
+        void setAuth(bool auth);
+
     private:
         std::string baseUrl;
         std::string username;
         std::string password;
+        bool m_auth;
 
         std::string performRequest(const std::string& path,
                                    const std::string& method,
-                                   const std::string& data = "");
-        Json::Value parseJson(const std::string& jsonStr);
+                                   const std::string& data = "", bool Auth= true);
+        static Json::Value parseJson(const std::string& jsonStr);
         static size_t WriteCallback(void *contents, size_t size, size_t nmemb, void *userp);
     };
 }

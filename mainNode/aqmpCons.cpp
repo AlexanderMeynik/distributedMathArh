@@ -3,7 +3,7 @@
 #include <thread>
 
 
-//todo queue http service(0curl,qt?)
+
 //todo erro handling(can i throw exception from callbacks)_ how can i notify the main programm
 
 

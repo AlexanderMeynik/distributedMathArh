@@ -43,18 +43,6 @@ namespace amqpCommon
     void consumeMessages(AMQP::Channel& channel,
                          std::string_view  queue1);
 
-
-
-    void deleteQueue(AMQP::Channel& channel,
-                     const std::string& queueName,
-                     bool ifUnused = false,
-                     bool ifEmpty = false);
-
-    void deleteExchange(AMQP::Channel& channel,
-                        const std::string& exchangeName,
-                        bool ifUnused = false);
-
-
     class MyHandler : public AMQP::LibBoostAsioHandler {
     public:
         MyHandler(boost::asio::io_service& service,
@@ -110,7 +98,7 @@ namespace amqpCommon
         std::vector<std::string> m_queues;
         std::thread m_serviceThread;
 
-        static inline const std::string defaultExhc="testexch";
+        static inline const std::string defaultExhc="testexch";//todo delete
 
     };
 
@@ -128,8 +116,6 @@ namespace amqpCommon
     private:
         boost::asio::io_service m_service;
         std::unique_ptr<boost::asio::io_service::work> m_work;
-
-
 
         MyHandler m_handler;
         AMQP::TcpConnection m_connection;
