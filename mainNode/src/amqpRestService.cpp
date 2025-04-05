@@ -11,8 +11,7 @@ namespace amqpCommon {
                                              const std::string& password)
             : baseUrl(baseUrl),
             username(username),
-            password(password),
-            m_auth(true){
+            password(password){
         curl_global_init(CURL_GLOBAL_DEFAULT);
     }
 
@@ -20,7 +19,10 @@ namespace amqpCommon {
         curl_global_cleanup();
     }
 
-    size_t RabbitMQRestService::WriteCallback(void *contents, size_t size, size_t nmemb, void *userp) {
+    size_t WriteCallback(void *contents,
+                         size_t size,
+                         size_t nmemb,
+                         void *userp) {
         size_t realsize = size * nmemb;
         std::string *buffer = static_cast<std::string*>(userp);
         buffer->append(static_cast<char*>(contents), realsize);
@@ -30,18 +32,128 @@ namespace amqpCommon {
     std::string RabbitMQRestService::performRequest(const std::string& path,
                                                     const std::string& method,
                                                     const std::string& data,
-                                                    bool Auth) {
+                                                    bool auth) {
+        return performCurlRequest(path,method,baseUrl,username,password,data,auth);
+    }
+
+    Json::Value RabbitMQRestService::parseJson(const std::string& jsonStr) {
+        Json::Value root;
+        Json::CharReaderBuilder builder;
+        std::string errs;
+        std::istringstream iss(jsonStr);
+        if (!Json::parseFromStream(builder, iss, &root, &errs)) {
+            throw std::runtime_error("JSON parse error: " + errs);
+        }
+        return root;
+    }
+
+    bool RabbitMQRestService::createQueue(const std::string& vhost,
+                                          const std::string& queueName,
+                                          const Json::Value& arguments) {
+        std::string path = "/api/queues/" + vhost + "/" + queueName;
+        Json::Value body;
+        body["auto_delete"] = false;
+        body["durable"] = true;
+        body["arguments"] = arguments;
+        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+        performRequest(path, "PUT", data);
+        return true;
+    }
+
+    bool RabbitMQRestService::deleteQueue(const std::string& vhost,
+                                          const std::string& queueName) {
+        std::string path = "/api/queues/" + vhost + "/" + queueName;
+        performRequest(path, "DELETE");
+        return true;
+    }
+
+
+
+    Json::Value RabbitMQRestService::getQueueStats(const std::string& vhost,
+                                                   const std::string& queueName) {
+        std::string path = "/api/queues/" + vhost + "/" + queueName;
+        std::string response = performRequest(path, "GET");
+        return parseJson(response);
+    }
+
+    std::vector<std::string> RabbitMQRestService::listQueues(const std::string& vhost) {
+        std::string path = "/api/queues/" + vhost;
+        std::string response = performRequest(path, "GET");
+        Json::Value j = parseJson(response);
+        std::vector<std::string> queues;
+        for (const auto& item : j) {
+            queues.push_back(item["name"].asString());
+        }
+        return queues;
+    }
+
+    bool RabbitMQRestService::bindQueueToExchange(const std::string& vhost,
+                                                  const std::string& queueName,
+                                                  const std::string& exchangeName,
+                                                  const std::string& routingKey) {
+        std::string path = "/api/bindings/" + vhost + "/e/" + exchangeName + "/q/" + queueName;
+        Json::Value body;
+        body["routing_key"] = routingKey;
+        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+        performRequest(path, "POST", data);
+        return true;
+    }
+
+    bool RabbitMQRestService::unbindQueueFromExchange(const std::string& vhost,
+                                                      const std::string& queueName,
+                                                      const std::string& exchangeName,
+                                                      const std::string& routingKey) {
+        std::string path = "/api/bindings/" + vhost + "/e/" + exchangeName + "/q/" + queueName + "/" + routingKey;
+        performRequest(path, "DELETE");
+        return true;
+    }
+
+    bool RabbitMQRestService::createUser(const std::string& user,
+                                         const std::string& pass) {
+        std::string path = "/api/users/" + user;
+        Json::Value body;
+        body["password"] = pass;
+        body["tags"] = "worker";
+        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+        performRequest(path, "PUT", data);
+        return true;
+    }
+
+    bool RabbitMQRestService::deleteUser(const std::string& user) {
+        std::string path = "/api/users/" + user;
+        performRequest(path, "DELETE");
+        return true;
+    }
+
+    Json::Value RabbitMQRestService::whoami() {
+
+        std::string path = "/api/whoami";
+
+        std::string response = performRequest(path, "GET");
+
+        return parseJson(response);
+    }
+
+
+    std::string
+    performCurlRequest(const std::string &path,
+                                            const std::string &method,
+                                            const std::string &host,
+                                            const std::string &user,
+                                            const std::string &password,
+                                            const std::string &data,
+                                            bool auth) {
         CURL *curl = curl_easy_init();
         if (!curl) {
-            throw std::runtime_error("Failed to initialize CURL");
+            throw shared::MyException("Failed to initialize CURL");//todo
         }
 
-        std::string fullUrl = baseUrl + path;
+        std::string fullUrl = host + path;
         curl_easy_setopt(curl, CURLOPT_URL, fullUrl.c_str());
 
-        if(Auth) {
+        if(auth) {
             curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_easy_setopt(curl, CURLOPT_USERNAME, username.c_str());
+            curl_easy_setopt(curl, CURLOPT_USERNAME, user.c_str());
             curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
         }
 
@@ -79,119 +191,5 @@ namespace amqpCommon {
         }
 
         return responseBody;
-    }
-
-    Json::Value RabbitMQRestService::parseJson(const std::string& jsonStr) {
-        Json::Value root;
-        Json::CharReaderBuilder builder;
-        std::string errs;
-        std::istringstream iss(jsonStr);
-        if (!Json::parseFromStream(builder, iss, &root, &errs)) {
-            throw std::runtime_error("JSON parse error: " + errs);
-        }
-        return root;
-    }
-
-    bool RabbitMQRestService::createQueue(const std::string& vhost,
-                                          const std::string& queueName,
-                                          const Json::Value& arguments) {
-        std::string path = "/api/queues/" + vhost + "/" + queueName;
-        Json::Value body;
-        body["auto_delete"] = false;
-        body["durable"] = true;
-        body["arguments"] = arguments;
-        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "PUT", data, m_auth);
-        return true;
-    }
-
-    bool RabbitMQRestService::deleteQueue(const std::string& vhost,
-                                          const std::string& queueName) {
-        std::string path = "/api/queues/" + vhost + "/" + queueName;
-        performRequest(path, "DELETE","", m_auth);
-        return true;
-    }
-
-    bool RabbitMQRestService::sendStartEventLoopRequest(const std::string& workerId,
-                                                        const std::string& queueName) {
-        std::string path = "/api/exchanges/%2F/control/publish";
-        Json::Value body;
-        body["properties"] = Json::Value::null;
-        body["routing_key"] = "start_event_loop";
-        body["payload"] = "Start event loop for " + queueName + " by " + workerId;
-        body["payload_encoding"] = "string";
-        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "POST", data, m_auth);
-        return true;
-    }
-
-    Json::Value RabbitMQRestService::getQueueStats(const std::string& vhost,
-                                                   const std::string& queueName) {
-        std::string path = "/api/queues/" + vhost + "/" + queueName;
-        std::string response = performRequest(path, "GET", "", m_auth);
-        return parseJson(response);
-    }
-
-    std::vector<std::string> RabbitMQRestService::listQueues(const std::string& vhost) {
-        std::string path = "/api/queues/" + vhost;
-        std::string response = performRequest(path, "GET","", m_auth);
-        Json::Value j = parseJson(response);
-        std::vector<std::string> queues;
-        for (const auto& item : j) {
-            queues.push_back(item["name"].asString());
-        }
-        return queues;
-    }
-
-    bool RabbitMQRestService::bindQueueToExchange(const std::string& vhost,
-                                                  const std::string& queueName,
-                                                  const std::string& exchangeName,
-                                                  const std::string& routingKey) {
-        std::string path = "/api/bindings/" + vhost + "/e/" + exchangeName + "/q/" + queueName;
-        Json::Value body;
-        body["routing_key"] = routingKey;
-        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "POST", data, m_auth);
-        return true;
-    }
-
-    bool RabbitMQRestService::unbindQueueFromExchange(const std::string& vhost,
-                                                      const std::string& queueName,
-                                                      const std::string& exchangeName,
-                                                      const std::string& routingKey) {
-        std::string path = "/api/bindings/" + vhost + "/e/" + exchangeName + "/q/" + queueName + "/" + routingKey;
-        performRequest(path, "DELETE");
-        return true;
-    }
-
-    bool RabbitMQRestService::createUser(const std::string& username,
-                                         const std::string& password) {
-        std::string path = "/api/users/" + username;
-        Json::Value body;
-        body["password"] = password;
-        body["tags"] = "worker";
-        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-        performRequest(path, "PUT", data, m_auth);
-        return true;
-    }
-
-    bool RabbitMQRestService::deleteUser(const std::string& username) {
-        std::string path = "/api/users/" + username;
-        performRequest(path, "DELETE","", m_auth);
-        return true;
-    }
-
-    Json::Value RabbitMQRestService::whoami() {
-
-        std::string path = "/api/whoami";
-
-        std::string response = performRequest(path, "GET","", m_auth);
-
-        return parseJson(response);
-
-    }
-
-    void RabbitMQRestService::setAuth(bool auth) {
-        m_auth=auth;
     }
 }

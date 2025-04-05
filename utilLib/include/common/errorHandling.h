@@ -11,7 +11,7 @@ public: \
     \
     template<std::size_t N> \
     const auto& get() const { return std::get<N>(args_); } \
-    const auto & getParams()                \
+    const auto & getParams() const               \
     {                                       \
         return args_;                        \
     } \

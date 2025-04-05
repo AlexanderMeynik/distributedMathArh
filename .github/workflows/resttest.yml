@@ -1,0 +1,42 @@
+name: Run Tests with WireMock
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Download build
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: build
+          repo: AlexanderMeynik/distributedMathArh
+          workflow: ci.yml
+          path: build
+          search_artifacts: true
+
+      - name: Run WireMock
+        run: |
+          docker run -it --rm -p 8080:8080 -v $PWD/build/mainNode/test/mappings:/home/wiremock/mappings wiremock/wiremock
+      - name: Wait for WireMock to start
+        run: |
+          echo "Waiting for WireMock to start..."
+          for i in {1..10}; do
+            if curl -s http://localhost:8080/__admin/mappings; then
+              echo "WireMock is ready!"
+              break
+            fi
+            sleep 2
+          done
+      - name: Run tests
+        run: |
+          cd build/mainNode/test
+          ./serviceTest

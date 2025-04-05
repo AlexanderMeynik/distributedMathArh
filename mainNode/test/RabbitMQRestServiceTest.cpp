@@ -4,6 +4,7 @@
 
 #include "common/errorHandling.h"
 #include "amqpRestService.h"
+#include "../../utilLib/test/GoogleCommon.h"
 
 using namespace amqpCommon;
 
@@ -36,17 +37,17 @@ TEST_F(RabbitMQRestServiceTest, whoAmI) {
 }
 
 TEST_F(RabbitMQRestServiceTest, whoAmI_Unauthorized) {
-    m_service_ptr->setAuth(false);
-    try {
-        m_service_ptr->whoami();
-        FAIL()<<"Expected shared::httpError but nothing was thrown";
-    } catch (const shared::httpError& e) {
-        EXPECT_EQ(401, e.get<0>());
-    } catch (...) {
-        FAIL() << "Expected MyException but caught a different exception";
-    }//todo exception matcher macros
 
-    m_service_ptr->setAuth(true);
+    EXPECT_EXCEPTION_WITH_ARGS(
+            performCurlRequest(
+                    "/api/whoami",
+                    "GET",
+                    g_serviceParams.host,
+                    g_serviceParams.username,
+                    g_serviceParams.password
+                    , "", false),
+            shared::httpError,
+            std::make_tuple(401));
 }
 
 TEST_F(RabbitMQRestServiceTest, CreateQueue) {
@@ -83,6 +84,7 @@ TEST_F(RabbitMQRestServiceTest, DeleteQueue) {
 
 TEST_F(RabbitMQRestServiceTest, CreateUser) {
     EXPECT_TRUE(m_service_ptr->createUser("new_user", "password"));
+
 }
 
 TEST_F(RabbitMQRestServiceTest, DeleteUser) {

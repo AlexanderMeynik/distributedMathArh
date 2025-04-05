@@ -1,18 +1,24 @@
-
 #ifndef DIPLOM_GOOGLECOMMON_H
 #define DIPLOM_GOOGLECOMMON_H
 
-#include <chrono>
-
-
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
-#include <eigen3/Eigen/Dense>
-#include <type_traits>
-#include <concepts>
 #include "common/myConcepts.h"
 
-using namespace commonDeclarations;
+using namespace myConcepts;
+
+#define EXPECT_EXCEPTION_WITH_ARGS(statement, exception_type, expected_tuple) \
+do { \
+    try { \
+        statement; \
+        FAIL() << "Expected " #exception_type " but nothing was thrown"; \
+    } catch (const exception_type& e) { \
+        EXPECT_EQ(expected_tuple, e.getParams()); \
+    } catch (...) { \
+        FAIL() << "Expected " #exception_type " but caught a different exception"; \
+    } \
+} while (0)
+
 
 template<HasSizeMethod T1, HasSizeMethod T2>
 void compare_collections(const T1 &solution, const T2 &solution2, int ii, double tool) {
@@ -51,7 +57,6 @@ void compare_matrices(const T1 &mat1, const T2 &mat2, int ii, double tool) {
             SCOPED_TRACE("Checked index " + std::to_string(j) + '\n');
             auto a1 = get_value(mat1, i, j);
             auto a2 = get_value(mat2, i, j);
-            //std::stringstream ss;
 
             SCOPED_TRACE("Values to check:" + std::to_string(a1) + "," + std::to_string(a2));
             if (std::abs(a2) >= tool) {
