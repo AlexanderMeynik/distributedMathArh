@@ -58,6 +58,7 @@ jobs:
           chmod +x ./serviceTest
           ldd ./serviceTest
 
+
       - name: Run tests
         working-directory: build/mainNode/test
         run: |
