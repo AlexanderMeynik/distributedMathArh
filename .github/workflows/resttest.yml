@@ -22,6 +22,11 @@ jobs:
           - 5672:5672
           - 15672:15672
     steps:
+      - name Load dependencies
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y libfmt-dev
+
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -47,8 +52,13 @@ jobs:
             sleep 1
           done
 
-      - name: Run tests
+      - name: Check serviceTest dependencies
+        working-directory: build/mainNode/test
         run: |
-          cd build/mainNode/test
           chmod +x ./serviceTest
+          ldd ./serviceTest
+
+      - name: Run tests
+        working-directory: build/mainNode/test
+        run: |
           ./serviceTest $host $username $password
