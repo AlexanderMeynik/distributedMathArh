@@ -50,4 +50,5 @@ jobs:
       - name: Run tests
         run: |
           cd build/mainNode/test
+          chmod +x ./serviceTest
           ./serviceTest $host $username $password
