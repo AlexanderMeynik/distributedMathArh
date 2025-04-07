@@ -72,7 +72,8 @@ TEST_F(RabbitMQRestServiceTest, GetQueueStats) {
 TEST_F(RabbitMQRestServiceTest, ListQueues) {
     std::vector<std::string> queues = m_service_ptr->listQueues("%2F");
     EXPECT_GT(queues.size(), 0);
-    EXPECT_EQ(queues[0], "TestQ");
+
+    EXPECT_EQ(queues.back(), "test_queue");
 }
 
 TEST_F(RabbitMQRestServiceTest, BindQueueToExchange) {
