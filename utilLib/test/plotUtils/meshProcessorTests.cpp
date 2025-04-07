@@ -162,13 +162,13 @@ INSTANTIATE_TEST_SUITE_P(
 
 TEST_F(TestFunctionApply, testZeroContainerSize) {
     auto a = std::valarray<FloatType>{};
-    ASSERT_THROW(computeFunction(a, a, dummy), shared::MyException);
+    ASSERT_THROW(computeFunction(a, a, dummy), shared::myException);
 }
 
 TEST_F(TestFunctionApply, testMismathcedContainerSizez) {
     auto a = std::valarray<FloatType>{};
     auto b = std::valarray<FloatType>{1, 2, 3};
-    ASSERT_THROW(computeFunction(a, a, dummy), shared::MyException);
+    ASSERT_THROW(computeFunction(a, a, dummy), shared::myException);
 }
 
 TEST_P(TestFunctionApply, TestFunctionApply) {

@@ -1,10 +1,3 @@
-
-
-
-#ifndef DISTRIBUTED_MATH_ARH_RESTUTILS_H
-#define DISTRIBUTED_MATH_ARH_RESTUTILS_H
-
-
 #include <string>
 #include <memory>
 
@@ -15,7 +8,7 @@
 
 class authHandler;
 /**
- * @b Default curl write callback
+ * @brief Default curl write callback
  * @param contents
  * @param size
  * @param nmemb
@@ -41,7 +34,7 @@ std::string performCurlRequest(const std::string &path,
                                const std::string &data = "");
 
 /**
- * @b Lock like class to handler curl initializtion and free
+ * @brief Lock like class to handler curl initializtion and free
  */
 class curlWrapper {
 public:
@@ -57,8 +50,8 @@ private:
 };
 
 /**
- * @b Common interface for handling authentication
- * @d Classes that inherit must provide implementation
+ * @brief Common interface for handling authentication
+ * @details Classes that inherit must provide implementation
  * for addAuth.
  *
  */
@@ -80,7 +73,7 @@ protected:
 
 
 /**
- * @b Used for Basic auth
+ * @brief Used for Basic auth
  */
 class basicAuthHandler : public authHandler {
 
@@ -98,6 +91,3 @@ protected:
     virtual void addAuth(CURL *curl) override;
 };
 
-
-
-#endif //DISTRIBUTED_MATH_ARH_RESTUTILS_H

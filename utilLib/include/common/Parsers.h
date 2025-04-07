@@ -61,8 +61,7 @@ namespace printUtils {
     /**
      * @brief Parse matrix
      * @param in
-     * @param rows
-     * @param cols
+     * @param dimOpt
      * @param ef
      */
     ct::matrixType parseMatrix(std::istream &in,

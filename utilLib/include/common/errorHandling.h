@@ -1,12 +1,11 @@
-#ifndef DISTRIBUTED_MATH_ARH_ERRORHANDLING_H
-#define DISTRIBUTED_MATH_ARH_ERRORHANDLING_H
+#pragma once
 
 #define DEFINE_EXCEPTION(Name, fmt_str, severity, ...) \
-class Name : public MyException { \
+class Name : public myException { \
 public: \
     template<typename... Args> \
     Name(Args&&... args) \
-        : MyException(fmt::format(fmt_string, std::forward<Args>(args)...),Severity::severity), \
+        : myException(fmt::format(fmt_string, std::forward<Args>(args)...),Severity::severity), \
           args_(std::forward<Args>(args)...) {} \
     \
     template<std::size_t N> \
@@ -64,11 +63,11 @@ namespace shared {
     /**
      * @brief Default parent for user defined exception
      */
-    class MyException : public std::logic_error {
+    class myException : public std::logic_error {
     public:
         using std::logic_error::logic_error;
 
-        MyException(const std::string& arg,const Severity&sev):
+        myException(const std::string& arg, const Severity&sev):
         std::logic_error(arg),m_sev(sev){}
 
         void setSeverity(const Severity&sev)
@@ -108,20 +107,19 @@ namespace shared {
      * @details out of range for standart continuous types.
      */
     DEFINE_EXCEPTION_IN(invalidSizes2,"Invalid sizes sz1 = {}, sz2 = {} received!",long, long)
-    //todo stck tracing
+    //todo stack tracing
     //https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes
 
 
     /**
      * @brief HttpError class
      */
-    DEFINE_EXCEPTION_IN(httpError, "HTTP error: {} ", long)
+    DEFINE_EXCEPTION_IN(httpError, "HTTP error: {} !", long)
 
     /**
      * @brief HttpError class
      */
-    DEFINE_EXCEPTION_IN(curlError, "Curl error: {} ", std::string )
+    DEFINE_EXCEPTION_IN(curlError, "Curl error: {} !", std::string)
+
 }
 
-
-#endif //DISTRIBUTED_MATH_ARH_ERRORHANDLING_H

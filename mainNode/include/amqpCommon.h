@@ -22,7 +22,6 @@ namespace amqpCommon {
     using AMQP::Envelope;
     using EnvelopePtr = std::shared_ptr<Envelope>;
 
-
     /**
      * @brief
      * @param channel

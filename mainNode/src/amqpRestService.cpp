@@ -1,7 +1,5 @@
 #include "amqpRestService.h"
-#include <stdexcept>
 #include <sstream>
-
 #include "common/errorHandling.h"
 
 namespace amqpCommon {
@@ -38,7 +36,7 @@ namespace amqpCommon {
     bool RabbitMQRestService::createQueue(const std::string& vhost,
                                           const std::string& queueName,
                                           const Json::Value& arguments) {
-        std::string path = "/api/queues/" + vhost + "/" + queueName;
+        std::string path = fmt::format("/api/queues/{}/{}",vhost,queueName);
         Json::Value body;
         body["auto_delete"] = false;
         body["durable"] = true;
@@ -50,16 +48,32 @@ namespace amqpCommon {
 
     bool RabbitMQRestService::deleteQueue(const std::string& vhost,
                                           const std::string& queueName) {
-        std::string path = "/api/queues/" + vhost + "/" + queueName;
+        std::string path =fmt::format("/api/queues/{}/{}",vhost,queueName);
+        performRequest(path, "DELETE");
+        return true;
+    }
+
+    bool RabbitMQRestService::createExchange(const std::string &vhost, const exchange&exchange,
+                                             const Json::Value &arguments) {
+        std::string path =fmt::format("/api/exchanges/{}/{}",vhost,exchange.name);
+        Json::Value body=exchange.dat.toJson();
+        std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+        performRequest(path, "PUT", data);
+        return true;
+    }
+
+    bool RabbitMQRestService::deleteExchange(const std::string &vhost, const std::string &exchangeName) {
+        std::string path = fmt::format("/api/exchanges/{}/{}",vhost,exchangeName);
         performRequest(path, "DELETE");
         return true;
     }
 
 
-
     Json::Value RabbitMQRestService::getQueueStats(const std::string& vhost,
                                                    const std::string& queueName) {
-        std::string path = "/api/queues/" + vhost + "/" + queueName;
+
+
+        std::string path = fmt::format("/api/queues/{}/{}",vhost,queueName);
         std::string response = performRequest(path, "GET");
         return parseJson(response);
     }
@@ -121,5 +135,37 @@ namespace amqpCommon {
 
         return parseJson(response);
     }
+
+    std::vector<queueBinding> RabbitMQRestService::getQueueBindings(const std::string &vhost,const std::string &queue) {
+        std::string path=fmt::format("/api/queues/{}/{}/bindings",vhost,queue);
+
+        auto res= parseJson(performRequest(path,"GET"));
+        std::vector<queueBinding> out;
+        if(res.isArray())
+        {
+            for (int i = 0; i < res.size(); ++i) {
+                out.emplace_back(res[i]);
+            }
+        }
+
+        return out;
+    }
+
+    std::vector<exchange> RabbitMQRestService::getExchanges(const std::string &vhost) {
+        std::string path=fmt::format("/api/exchanges/{}",vhost);
+
+        auto res= parseJson(performRequest(path,"GET"));
+        std::vector<exchange> out;
+        if(res.isArray())
+        {
+            for (int i = 0; i < res.size(); ++i) {
+                out.emplace_back(res[i]);
+            }
+        }
+
+        return out;
+    }
+
+
 
 }

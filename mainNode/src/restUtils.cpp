@@ -6,7 +6,7 @@ size_t writeCallback(void *contents,
                      size_t nmemb,
                      void *userp) {
     size_t realsize = size * nmemb;
-    std::string *buffer = static_cast<std::string *>(userp);
+    auto *buffer = static_cast<std::string *>(userp);
     buffer->append(static_cast<char *>(contents), realsize);
     return realsize;
 }
@@ -20,7 +20,7 @@ performCurlRequest(const std::string &path,
 
     curlWrapper curlWrapper;
     if (!curlWrapper.get()) {
-        throw shared::MyException("Failed to initialize CURL");
+        throw shared::curlError("Failed to initialize CURL");
     }
 
     std::string fullUrl = host + path;
@@ -97,6 +97,10 @@ basicAuthHandler::basicAuthHandler(const std::string &user, const std::string &p
 {}
 
 void basicAuthHandler::addAuth(CURL *curl) {
+    if(!curl)
+    {
+        throw shared::curlError("Curl object in null");
+    }
     if (m_active) {
         curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
         curl_easy_setopt(curl, CURLOPT_USERNAME, m_user.c_str());
