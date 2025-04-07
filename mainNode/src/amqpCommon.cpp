@@ -125,17 +125,17 @@ namespace amqpCommon {
 
     void amqpPublisherService::removeQueue(size_t i) {
         if (i >= m_queues.size()) {
-            throw std::out_of_range(fmt::format("Index {} is larger than struct size {}", i, m_queues.size()));
+            throw shared::outOfRange(i,0,m_queues.size()-1);
         }
         m_queues.erase(m_queues.begin() + i);
 
     }
 
-    void amqpPublisherService::addQueue(const std::string &queue1, bool create) {
+    void amqpPublisherService::addQueue(const std::string &queue, bool create) {
         if (create) {
-           declareQueue(m_channel,queue1,defaultExhc);
+           declareQueue(m_channel, queue, defaultExhc);
         }
-        m_queues.push_back(queue1);
+        m_queues.push_back(queue);
     }
 
     amqpPublisherService::~amqpPublisherService() {
@@ -145,7 +145,7 @@ namespace amqpCommon {
 
     void amqpPublisherService::publish(EnvelopePtr message, size_t i) {
         if (i >= m_queues.size()) {
-            throw std::out_of_range(fmt::format("Index {} is larger than struct size {}", i, m_queues.size()));
+            throw shared::outOfRange(i,0,m_queues.size()-1);
         }
         message->setTimestamp(std::chrono::high_resolution_clock().now().time_since_epoch().count());
         m_channel.publish(defaultExhc, m_queues[i], *message);

@@ -7,11 +7,9 @@
 namespace amqpCommon {
 
     RabbitMQRestService::RabbitMQRestService(const std::string& baseUrl,
-                                             const std::string& username,
-                                             const std::string& password)
-            : baseUrl(baseUrl),
-            username(username),
-            password(password){
+                                             authHandler*authHandler)
+            :baseUrl(baseUrl),
+            m_authPtr(authHandler){
         curl_global_init(CURL_GLOBAL_DEFAULT);
     }
 
@@ -19,21 +17,11 @@ namespace amqpCommon {
         curl_global_cleanup();
     }
 
-    size_t WriteCallback(void *contents,
-                         size_t size,
-                         size_t nmemb,
-                         void *userp) {
-        size_t realsize = size * nmemb;
-        std::string *buffer = static_cast<std::string*>(userp);
-        buffer->append(static_cast<char*>(contents), realsize);
-        return realsize;
-    }
 
     std::string RabbitMQRestService::performRequest(const std::string& path,
                                                     const std::string& method,
-                                                    const std::string& data,
-                                                    bool auth) {
-        return performCurlRequest(path,method,baseUrl,username,password,data,auth);
+                                                    const std::string& data) {
+        return performCurlRequest(path,method,baseUrl,m_authPtr,data);
     }
 
     Json::Value RabbitMQRestService::parseJson(const std::string& jsonStr) {
@@ -134,62 +122,4 @@ namespace amqpCommon {
         return parseJson(response);
     }
 
-
-    std::string
-    performCurlRequest(const std::string &path,
-                                            const std::string &method,
-                                            const std::string &host,
-                                            const std::string &user,
-                                            const std::string &password,
-                                            const std::string &data,
-                                            bool auth) {
-        CURL *curl = curl_easy_init();
-        if (!curl) {
-            throw shared::MyException("Failed to initialize CURL");//todo
-        }
-
-        std::string fullUrl = host + path;
-        curl_easy_setopt(curl, CURLOPT_URL, fullUrl.c_str());
-
-        if(auth) {
-            curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-            curl_easy_setopt(curl, CURLOPT_USERNAME, user.c_str());
-            curl_easy_setopt(curl, CURLOPT_PASSWORD, password.c_str());
-        }
-
-        curl_easy_setopt(curl, CURLOPT_CUSTOMREQUEST, method.c_str());
-
-        struct curl_slist *headers = nullptr;
-        if (!data.empty()) {
-            headers = curl_slist_append(headers, "Content-Type: application/json");
-            curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.c_str());
-            curl_easy_setopt(curl, CURLOPT_POSTFIELDSIZE, data.size());
-        }
-
-        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
-
-        std::string responseBody;
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, WriteCallback);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, &responseBody);
-
-        CURLcode res = curl_easy_perform(curl);
-
-        long httpCode = 0;
-        if (res == CURLE_OK) {
-            curl_easy_getinfo(curl, CURLINFO_RESPONSE_CODE, &httpCode);
-        }
-
-        curl_slist_free_all(headers);
-        curl_easy_cleanup(curl);
-
-        if (res != CURLE_OK) {
-            throw shared::curlError(std::string(curl_easy_strerror(res)));
-        }
-
-        if (httpCode >= 400) {
-            throw shared::httpError(httpCode);
-        }
-
-        return responseBody;
-    }
 }

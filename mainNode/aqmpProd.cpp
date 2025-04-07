@@ -21,15 +21,18 @@ void signalHandler(int signal) {
 using namespace  amqpCommon;
 int main(int argc,char * argv[])
 {
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <number_of_messages>  <number_of_queues>\n";
+    if (argc != 4) {
+        std::cerr << "Usage: " << argv[0] << " <cString> <number_of_messages>  <number_of_queues>\n";
         return 1;
     }
+
+    auto cString=argv[1];
+
     int numMessages;
     int numbQueues;
     try {
-        numMessages = std::stoi(argv[1]);
-        numbQueues = std::stoi(argv[2]);
+        numMessages = std::stoi(argv[2]);
+        numbQueues = std::stoi(argv[3]);
         if (numMessages <= 0) {
             throw std::invalid_argument("Number of messages must be positive.");
         }

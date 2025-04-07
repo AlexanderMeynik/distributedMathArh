@@ -33,7 +33,7 @@ target_link_libraries(mainNode -lssl -lcrypto)
 target_link_libraries(mainNode servLib2 allUtils)
 enable_coverage_for_target(mainNode)
 
-add_library(amqpUtils src/amqpCommon.cpp src/amqpRestService.cpp)
+add_library(amqpUtils src/amqpCommon.cpp src/amqpRestService.cpp src/restUtils.cpp)
 target_link_libraries( amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
 target_include_directories(amqpUtils PUBLIC ../utilLib/include)
 enable_coverage_for_target(amqpUtils)

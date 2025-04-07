@@ -20,8 +20,12 @@ class RabbitMQRestServiceTest : public ::testing::Test {
 protected:
     std::shared_ptr<RabbitMQRestService> m_service_ptr;
 
+    std::shared_ptr<basicAuthHandler> hander;
+
     void SetUp() override {
-        m_service_ptr = std::make_shared<RabbitMQRestService>(g_serviceParams.host, g_serviceParams.username, g_serviceParams.password);
+
+        hander=std::make_shared<basicAuthHandler>(g_serviceParams.username, g_serviceParams.password);
+        m_service_ptr = std::make_shared<RabbitMQRestService>(g_serviceParams.host, hander.get());
     }
 
 
@@ -38,14 +42,15 @@ TEST_F(RabbitMQRestServiceTest, whoAmI) {
 
 TEST_F(RabbitMQRestServiceTest, whoAmI_Unauthorized) {
 
+    auto handler_s=std::make_shared<basicAuthHandler>(*hander);
+    handler_s->setActive(false);
     EXPECT_EXCEPTION_WITH_ARGS(
             performCurlRequest(
                     "/api/whoami",
                     "GET",
                     g_serviceParams.host,
-                    g_serviceParams.username,
-                    g_serviceParams.password
-                    , "", false),
+                    handler_s.get()
+                    ),
             shared::httpError,
             std::make_tuple(401));
 }
