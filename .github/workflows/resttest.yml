@@ -2,7 +2,9 @@ name: Run Tests with RabbitMQ
 
 on:
   workflow_dispatch:
-
+  push:
+    paths:
+      - .github/workflows/resttest.yml
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,13 +14,13 @@ jobs:
       password: syspassword
     services:
       rabbitmq:
-        image: rabbitmq:4.0
+        image: rabbitmq:4-management
         env:
-          RABBITMQ_DEFAULT_USER: ${username}
-          RABBITMQ_DEFAULT_PASS: ${password}
+          RABBITMQ_DEFAULT_USER: ${{ env.username }}
+          RABBITMQ_DEFAULT_PASS: ${{ env.password }}
         ports:
-          - 5672
-          - 15672
+          - 5672:5672
+          - 15672:15672
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -35,7 +37,17 @@ jobs:
           path: build
           search_artifacts: true
 
+      - name: Wait for RabbitMQ to start
+        run: |
+          for i in {1..30}; do
+            if curl -u $username:$password $host/api/overview; then
+              echo "RabbitMQ is up"
+              break
+            fi
+            sleep 1
+          done
+
       - name: Run tests
         run: |
           cd build/mainNode/test
-          ./serviceTest ${host} ${username} ${password}
+          ./serviceTest $host $username $password
