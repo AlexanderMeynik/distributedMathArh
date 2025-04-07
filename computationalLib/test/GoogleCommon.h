@@ -11,6 +11,18 @@
 #include "common/MeshCreator.h"
 #include "common/commonTypes.h"
 
+#define EXPECT_EXCEPTION_WITH_ARGS(statement, exception_type, expected_tuple) \
+do { \
+    try { \
+        statement; \
+        FAIL() << "Expected " #exception_type " but nothing was thrown"; \
+    } catch (const exception_type& e) { \
+        EXPECT_EQ(expected_tuple, e.getParams()); \
+    } catch (...) { \
+        FAIL() << "Expected " #exception_type " but caught a different exception"; \
+    } \
+} while (0)
+
 using namespace myConcepts;
 using shared::FloatType;
 namespace sh=shared;

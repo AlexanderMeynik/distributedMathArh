@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DATA_DEDUPLICATION_SERVICE_PARSERS_H
-#define DATA_DEDUPLICATION_SERVICE_PARSERS_H
+#ifndef DISTRIBUTED_MATH_ARH_PARSERS_H
+#define DISTRIBUTED_MATH_ARH_PARSERS_H
 
 #include <iostream>
 
@@ -61,8 +61,7 @@ namespace printUtils {
     /**
      * @brief Parse matrix
      * @param in
-     * @param rows
-     * @param cols
+     * @param dimOpt
      * @param ef
      */
     ct::matrixType parseMatrix(std::istream &in,
@@ -242,4 +241,4 @@ namespace printUtils
 
 
 }
-#endif //DATA_DEDUPLICATION_SERVICE_PARSERS_H
+#endif //DISTRIBUTED_MATH_ARH_PARSERS_H

@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/queues/%2F"
+  },
+  "response": {
+    "status": 200,
+    "body": "[{\"name\": \"test_queue\", \"messages\": 0}]",
+    "headers": {
+      "Content-Type": "application/json"
+    }
+  }
+}

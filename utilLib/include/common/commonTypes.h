@@ -1,8 +1,5 @@
 #pragma once
-#ifndef DIPLOM_COMMONTYPES_H
-#define DIPLOM_COMMONTYPES_H
 
-/*#define type(t) returnToDataTypeT<t>*/
 
 #include <vector>
 #include <array>
@@ -75,4 +72,3 @@ namespace commonTypes {
     template<returnType T>
     using returnToDataType = typename returnToDataTypeT<T>::type;
 }
-#endif //DIPLOM_COMMONTYPES_H

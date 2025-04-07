@@ -54,7 +54,7 @@ int main() {
     try {
         throw  lessException(1,2);
     }
-    catch (MyException&ll)
+    catch (myException&ll)
     {
         std::cout<<ll.what()<<'\n';
         std::cout<<ENUM_TO_STR(ll.getSev(),sevToStr)<<'\n';

@@ -7,6 +7,7 @@
 #include <array>
 
 using size_t = decltype(sizeof 1);
+
 //myconcepts namespace
 namespace myConcepts {
 

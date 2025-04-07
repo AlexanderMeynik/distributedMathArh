@@ -1,6 +1,6 @@
 #pragma once
-#ifndef DATA_DEDUPLICATION_SERVICE_PRINTUTILS_H
-#define DATA_DEDUPLICATION_SERVICE_PRINTUTILS_H
+#ifndef DISTRIBUTED_MATH_ARH_PRINTUTILS_H
+#define DISTRIBUTED_MATH_ARH_PRINTUTILS_H
 
 #define EIGENF(form) enumTo.at(static_cast<size_t>(form))
 #define FORMAT_OPT(NAME)  { #NAME,  ioFormat::NAME}
@@ -176,4 +176,4 @@ namespace printUtils {
 }
 
 
-#endif //DATA_DEDUPLICATION_SERVICE_PRINTUTILS_H
+#endif //DISTRIBUTED_MATH_ARH_PRINTUTILS_H

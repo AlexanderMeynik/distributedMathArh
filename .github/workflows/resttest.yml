@@ -1,0 +1,65 @@
+name: Run Tests with RabbitMQ
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/resttest.yml
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    env:
+      host: http://localhost:15672
+      username: sysadmin
+      password: syspassword
+    services:
+      rabbitmq:
+        image: rabbitmq:4-management
+        env:
+          RABBITMQ_DEFAULT_USER: ${{ env.username }}
+          RABBITMQ_DEFAULT_PASS: ${{ env.password }}
+        ports:
+          - 5672:5672
+          - 15672:15672
+    steps:
+      - name: Load dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libfmt-dev libjsoncpp-dev
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: ./src
+
+      - name: Download build
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: build
+          repo: AlexanderMeynik/distributedMathArh
+          workflow: ci.yml
+          path: build
+          search_artifacts: true
+
+      - name: Wait for RabbitMQ to start
+        run: |
+          for i in {1..30}; do
+            if curl -u $username:$password $host/api/overview; then
+              echo "RabbitMQ is up"
+              break
+            fi
+            sleep 1
+          done
+
+      - name: Check serviceTest dependencies
+        working-directory: build/mainNode/test
+        run: |
+          chmod +x ./serviceTest
+          ldd ./serviceTest
+
+
+      - name: Run tests
+        working-directory: build/mainNode/test
+        run: |
+          ./serviceTest $host $username $password

@@ -4,6 +4,7 @@ LABEL authors="Meynik A.V."
 #todo delete mathplot++
 #todo github actions run stages 
 #todo create runner image
+
 RUN apt-get update && \
     apt-get install -y build-essential ninja-build git \
     wget unzip \
@@ -15,7 +16,8 @@ RUN apt-get update && \
     chmod -R 777 deps && \
     cd deps
 
-RUN apt-get install -y libeigen3-dev
+
+RUN apt-get install -y libeigen3-dev libjsoncpp-dev libcurl4-openssl-dev
 
 RUN  git clone https://github.com/drogonframework/drogon && \
      cd drogon && \
@@ -26,20 +28,11 @@ RUN  git clone https://github.com/drogonframework/drogon && \
      ninja install && \
      ln -s /usr/include/jsoncpp/json/ /usr/include/json
 
-
-RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/gausQuadratureMin.zip && \
-    unzip -q gausQuadratureMin.zip && \
-    rm gausQuadratureMin.zip && \
-    cp -r gausQuadratureMin/boost/ /usr/include/ && \
-    rm -rf gausQuadratureMin
-
-RUN git clone https://github.com/google/glog.git && \
-    cd glog && \
-    mkdir build && \
-    cd build && \
-    cmake -G Ninja ..  && \
-    cmake --build . && \
-    ninja install
+RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/boostSubset.zip && \
+    unzip -q boostSubset.zip && \
+    rm boostSubset.zip && \
+    cp -r boostSubset/boost/ /usr/include/ && \
+    rm -rf boostSubset
 
 RUN cd /home/deps/&& git clone https://github.com/alandefreitas/matplotplusplus.git && \
     cd matplotplusplus && \
@@ -62,6 +55,13 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
+RUN cd /home/deps && \
+    git clone https://github.com/CopernicaMarketingSoftware/AMQP-CPP.git && \
+	cd AMQP-CPP/ && \
+    mkdir build && cd build && \
+    cmake .. -DAMQP-CPP_LINUX_TCP=ON -G Ninja && \
+    cmake --build . && \
+    ninja install
 
 RUN cd /home/deps && \
     git clone https://github.com/google/googletest && \

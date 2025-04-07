@@ -1,5 +1,6 @@
 #include "controller/ClusterConfigController.h"
 #include "common/Parsers.h"
+#include "common/Printers.h"
 
 using namespace rest::v1;
 
@@ -15,6 +16,7 @@ ClusterConfigController::getStatus(const HttpRequestPtr &req, std::function<void
         //root["data"][i]=Json::Value();
         root["data"][i]["host"] = str;
         root["data"][i]["status"] = mapss.at(node.st);
+        root["data"][i]["benchRes"]= printUtils::continuousToJson(node.power);
         i++;
     }
     //todo call all of nodes;
@@ -39,7 +41,6 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
     }
 
     auto req1 = HttpRequest::newHttpRequest();
-
     req1->setPath("/v1/connect");
     req1->setParameter("ip", qip);
     req1->setParameter("name", name);
@@ -49,21 +50,17 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
     auto [code, resp] = clients[hostPort].httpClient->sendRequest(req1);
     auto jsonPtr = resp->jsonObject();
 
-
+    res["ip"] = hostPort;
+    res["qip"] = qip;
+    res["qname"] = name;
     if (!resp) {
-        res["ip"] = hostPort;
-        res["qip"] = qip;
-        res["qname"] = name;
+
         res["message"] = "Unable to connect to node";
         auto r = HttpResponse::newHttpJsonResponse(res);
         callback(r);
-        return;//todo maybe some guard liek class to handle this
+        return;//todo maybe some guard like class to handle this
     }
     if (resp->getStatusCode() != HttpStatusCode::k200OK) {
-
-        res["ip"] = hostPort;
-        res["qip"] = qip;
-        res["qname"] = name;
         res["code"] = resp->getStatusCode();
         auto r = HttpResponse::newHttpJsonResponse(res);
         callback(r);
@@ -71,11 +68,9 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
     }
 
     clients[hostPort].power = printUtils::jsonToContinuous<std::valarray<double>>((*jsonPtr)["bench"]);
-    res["ip"] = hostPort;
-    res["qip"] = qip;
-    res["qname"] = name;
+
     clients[hostPort].st = NodeStatus::active;
-    //res["benchRes"]=pows;//todo ser
+    res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
 
     auto r = HttpResponse::newHttpJsonResponse(res);
 
@@ -116,7 +111,8 @@ void ClusterConfigController::disconnectHandler(const HttpRequestPtr &req,
 
     res = *resp->getJsonObject();
     res["ip"] = hostPort;
-    res["benchRes"] = pow;
+    res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
+
 
     auto r = HttpResponse::newHttpJsonResponse(res);
 
