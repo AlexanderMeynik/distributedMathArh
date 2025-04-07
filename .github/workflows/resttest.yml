@@ -5,7 +5,6 @@ on:
   push:
     paths:
       - .github/workflows/resttest.yml
-      - mainNode/test/rabbitMQRestServiceTest.cpp
 jobs:
   test:
     runs-on: ubuntu-22.04

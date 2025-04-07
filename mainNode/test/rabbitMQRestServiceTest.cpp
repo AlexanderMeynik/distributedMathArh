@@ -22,14 +22,17 @@ protected:
 
     std::shared_ptr<basicAuthHandler> hander;
 
-    static inline std::string qq="test_queue";
-    static inline std::string exch="amq.direct";
-    static inline std::string rKey="test_routing";
-    static inline std::string vhost="%2F";
+    static inline std::string qq = "test_queue";
+    static inline std::string exch = "amq.direct";
+    static inline std::string rKey = "test_routing";
+    static inline std::string vhost = "%2F";
+
+    static inline std::string uname = "new_user";
+    static inline std::string pass = "password";
 
     void SetUp() override {
 
-        hander=std::make_shared<basicAuthHandler>(g_serviceParams.username, g_serviceParams.password);
+        hander = std::make_shared<basicAuthHandler>(g_serviceParams.username, g_serviceParams.password);
         m_service_ptr = std::make_shared<RabbitMQRestService>(g_serviceParams.host, hander.get());
     }
 
@@ -41,13 +44,13 @@ protected:
 
 
 TEST_F(RabbitMQRestServiceTest, whoAmI) {
-    auto json =m_service_ptr->whoami();
-    EXPECT_EQ(json["name"].asString(),g_serviceParams.username);
+    auto json = m_service_ptr->whoami();
+    EXPECT_EQ(json["name"].asString(), g_serviceParams.username);
 }
 
 TEST_F(RabbitMQRestServiceTest, whoAmI_Unauthorized) {
 
-    auto handlerS=std::make_shared<basicAuthHandler>(*hander);
+    auto handlerS = std::make_shared<basicAuthHandler>(*hander);
     handlerS->setActive(false);
     EXPECT_EXCEPTION_WITH_ARGS(
             performCurlRequest(
@@ -55,7 +58,7 @@ TEST_F(RabbitMQRestServiceTest, whoAmI_Unauthorized) {
                     "GET",
                     g_serviceParams.host,
                     handlerS.get()
-                    ),
+            ),
             shared::httpError,
             std::make_tuple(401));
 }
@@ -64,11 +67,11 @@ TEST_F(RabbitMQRestServiceTest, CreateQueue) {
     Json::Value args;
     args["worker_id"] = "worker_123";
 
-    EXPECT_TRUE(m_service_ptr->createQueue(vhost,qq , args));
+    EXPECT_TRUE(m_service_ptr->createQueue(vhost, qq, args));
 
-    auto queues=m_service_ptr->listQueues(vhost);
+    auto queues = m_service_ptr->listQueues(vhost);
 
-    EXPECT_TRUE(std::find(queues.begin(), queues.end(),qq)!=queues.end());
+    EXPECT_TRUE(std::find(queues.begin(), queues.end(), qq) != queues.end());
 
 }
 
@@ -78,7 +81,7 @@ TEST_F(RabbitMQRestServiceTest, GetQueueStats) {
 
     EXPECT_NO_THROW(stats = m_service_ptr->getQueueStats(vhost, "test_queue"));
 
-    auto ss=stats["messages"];
+    auto ss = stats["messages"];
     EXPECT_EQ(stats["messages"].asInt(), 0);
 }
 
@@ -89,102 +92,142 @@ TEST_F(RabbitMQRestServiceTest, ListQueues) {
     std::vector<std::string> queues2 = m_service_ptr->listQueues(vhost);
 
 
-    testCommon::compareArrays(queues,queues2,[](const std::string&a,const std::string&a2,size_t i,double tol){return a==a2;});
+    testCommon::compareArrays(queues, queues2, [](const std::string &a, const std::string &a2, size_t i, double tol) {
+        return a == a2;
+    });
     //todo more verbose operator
 }
 
 TEST_F(RabbitMQRestServiceTest, BindQueueToExchange) {
 
-    EXPECT_TRUE(m_service_ptr->bindQueueToExchange(vhost, qq, exch,rKey ));
+    EXPECT_TRUE(m_service_ptr->bindQueueToExchange(vhost, qq, exch, rKey));
 
-    auto bindings=m_service_ptr->getQueueBindings(vhost,qq);
+    auto bindings = m_service_ptr->getQueueBindings(vhost, qq);
 
-    auto qb=queueBinding(exch,rKey);
+    auto qb = queueBinding(exch, rKey);
 
-    EXPECT_TRUE(std::find(bindings.begin(), bindings.end(),qb)!=bindings.end());
+    EXPECT_TRUE(std::find(bindings.begin(), bindings.end(), qb) != bindings.end());
 }
+
+TEST_F(RabbitMQRestServiceTest, BindQueueToExchange_NoExchangeFound) {
+
+
+    EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr->bindQueueToExchange(vhost, qq, "nonExistentExhc", rKey),
+                               shared::httpError, std::make_tuple(404));//todo can return body with reason
+
+}
+
+TEST_F(RabbitMQRestServiceTest, BindQueueToExchange_NoQueueFound) {
+
+
+    EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr->bindQueueToExchange(vhost, "qdwwcwedc", exch, rKey),
+                               shared::httpError, std::make_tuple(404));
+
+}
+
 
 TEST_F(RabbitMQRestServiceTest, UnbindQueueFromExchange) {
 
 
-
     EXPECT_TRUE(m_service_ptr->unbindQueueFromExchange(vhost, qq, exch, rKey));
 
-    auto bindings=m_service_ptr->getQueueBindings(vhost,qq);
-    auto qb=queueBinding(exch,rKey);
+    auto bindings = m_service_ptr->getQueueBindings(vhost, qq);
+    auto qb = queueBinding(exch, rKey);
 
-    EXPECT_TRUE(std::find(bindings.begin(), bindings.end(),qb)==bindings.end());
+    EXPECT_TRUE(std::find(bindings.begin(), bindings.end(), qb) == bindings.end());
 }
 
 TEST_F(RabbitMQRestServiceTest, DeleteQueue) {
 
     EXPECT_TRUE(m_service_ptr->deleteQueue(vhost, qq));
 
-    auto queues=m_service_ptr->listQueues(vhost);
+    auto queues = m_service_ptr->listQueues(vhost);
 
-    EXPECT_TRUE(std::find(queues.begin(), queues.end(),qq)==queues.end());
+    EXPECT_TRUE(std::find(queues.begin(), queues.end(), qq) == queues.end());
+}
 
+TEST_F(RabbitMQRestServiceTest, DeleteQueue_DoesNotExists) {
 
+    std::string nn = "exch2edw";
+    EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr->deleteQueue(vhost, nn), shared::httpError, std::make_tuple(404));
 }
 
 
 TEST_F(RabbitMQRestServiceTest, CreateUser) {
-    EXPECT_TRUE(m_service_ptr->createUser("new_user", "password"));
+
+    EXPECT_TRUE(m_service_ptr->createUser(uname, pass));
+
+    auto users = m_service_ptr->listUsers(vhost);
+
+    EXPECT_TRUE(std::find_if(users.begin(), users.end(),
+                             [](const rabbitMQUser &a1) {
+                                 return a1.name == uname;
+                             })
+                != users.end());
 
 }
 
 TEST_F(RabbitMQRestServiceTest, DeleteUser) {
-    EXPECT_TRUE(m_service_ptr->deleteUser("new_user"));
+    EXPECT_TRUE(m_service_ptr->deleteUser(uname));
+
+    auto users = m_service_ptr->listUsers(vhost);
+    EXPECT_TRUE(std::find_if(users.begin(), users.end(),
+                             [](const rabbitMQUser &a1) {
+                                 return a1.name == uname;
+                             })
+                == users.end());
 }
 
 TEST_F(RabbitMQRestServiceTest, CreateExchange) {
-    exchange exchange{"exch",amqpCommon::exchange::exchangeData{"user",AMQP::direct}};
+    exchange exchange{"exch", amqpCommon::exchange::exchangeData{"user", AMQP::direct}};
 
-    EXPECT_TRUE(m_service_ptr->createExchange(vhost,exchange,Json::Value{}));
+    EXPECT_TRUE(m_service_ptr->createExchange(vhost, exchange, Json::Value{}));
 
 
-    auto exhc=m_service_ptr->getExchanges(vhost);
+    auto exhc = m_service_ptr->getExchanges(vhost);
 
     EXPECT_TRUE(std::find_if(exhc.begin(), exhc.end(),
-                             [&exchange](const amqpCommon::exchange&a1)
-                             {
-                                 return a1.name==exchange.name;
+                             [&exchange](const amqpCommon::exchange &a1) {
+                                 return a1.name == exchange.name;
                              })
-                             !=exhc.end());
+                != exhc.end());
 
 
 }
 
 TEST_F(RabbitMQRestServiceTest, DeleteExchange) {
 
-    std::string nn="exch";
+    std::string nn = "exch";
     EXPECT_TRUE(m_service_ptr->deleteExchange(vhost, nn));
 
-    auto exhc=m_service_ptr->getExchanges(vhost);
+    auto exhc = m_service_ptr->getExchanges(vhost);
 
     EXPECT_TRUE(std::find_if(exhc.begin(), exhc.end(),
-                             [&nn](const amqpCommon::exchange&a1)
-                             {
-                                 return a1.name==nn;
+                             [&nn](const amqpCommon::exchange &a1) {
+                                 return a1.name == nn;
                              })
-                ==exhc.end());
-
+                == exhc.end());
 
 }
 
+TEST_F(RabbitMQRestServiceTest, DeleteExchange_DoesNotExists) {
+
+    std::string nn = "exch2edw";
+    EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr->deleteExchange(vhost, nn), shared::httpError, std::make_tuple(404));
+}
 
 
 int main(int argc, char **argv) {
 
 
     if (argc < 4) {
-            std::cerr << "Usage: " << argv[0] << " <host> <login> <password>\n";
-            return 1;
+        std::cerr << "Usage: " << argv[0] << " <host> <login> <password>\n";
+        return 1;
     }
 
-    g_serviceParams.host=argv[1];
-    g_serviceParams.username=argv[2];
-    g_serviceParams.password=argv[3];
+    g_serviceParams.host = argv[1];
+    g_serviceParams.username = argv[2];
+    g_serviceParams.password = argv[3];
 
     ::testing::InitGoogleTest(&argc, argv);
 

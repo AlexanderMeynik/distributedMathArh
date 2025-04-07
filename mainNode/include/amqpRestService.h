@@ -53,6 +53,28 @@ namespace amqpCommon {
     };
 
     /**
+     * @brief rabbitMQUser class
+     */
+    struct rabbitMQUser
+    {
+        std::string name;
+        std::string passwordHash;
+        std::vector<std::string> tags;
+
+        rabbitMQUser(Json::Value &val) :
+        name(val["name"].asString()),
+        passwordHash(val["password_hash"].asString()),
+        tags()
+        {
+            tags.resize(val["tags"].size());
+            for (int i = 0; i < tags.size(); ++i) {
+                tags[i]=val["tags"][i].asString();
+            }
+        }
+
+    };
+
+    /**
      * @brief Exchange struct
      */
     struct exchange {
@@ -153,6 +175,8 @@ namespace amqpCommon {
                         const std::string &password);
 
         bool deleteUser(const std::string &username);
+
+        std::vector<rabbitMQUser> listUsers(const std::string &vhost);
 
         std::vector<queueBinding> getQueueBindings(const std::string &vhost, const std::string &queue);
 

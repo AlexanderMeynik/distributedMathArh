@@ -127,6 +127,22 @@ namespace amqpCommon {
         return true;
     }
 
+    std::vector<rabbitMQUser> RabbitMQRestService::listUsers(const std::string &vhost) {
+        std::string path = "/api/users/";
+
+        std::vector<rabbitMQUser> out;
+
+        auto res=parseJson(performRequest(path, "GET"));
+        if(res.isArray())
+        {
+            out.reserve(res.size());
+            for (auto & re : res) {
+                out.emplace_back(re);
+            }
+        }
+        return out;
+    }
+
     Json::Value RabbitMQRestService::whoami() {
 
         std::string path = "/api/whoami";
@@ -143,8 +159,8 @@ namespace amqpCommon {
         std::vector<queueBinding> out;
         if(res.isArray())
         {
-            for (int i = 0; i < res.size(); ++i) {
-                out.emplace_back(res[i]);
+            for (auto & re : res) {
+                out.emplace_back(re);
             }
         }
 
@@ -158,13 +174,14 @@ namespace amqpCommon {
         std::vector<exchange> out;
         if(res.isArray())
         {
-            for (int i = 0; i < res.size(); ++i) {
-                out.emplace_back(res[i]);
+            for (auto & re : res) {
+                out.emplace_back(re);
             }
         }
 
         return out;
     }
+
 
 
 
