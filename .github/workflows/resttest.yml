@@ -23,7 +23,7 @@ jobs:
           - 15672:15672
     steps:
       - name: Load dependencies
-      - run: |
+        run: |
           sudo apt-get update
           sudo apt-get install -y libfmt-dev
 
