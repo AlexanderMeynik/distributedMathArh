@@ -1,17 +1,29 @@
-name: Run Tests with WireMock
+name: Run Tests with RabbitMQ
 
 on:
-  push:
-    branches:
-      - main
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      host: http://localhost:15672
+      username: sysadmin
+      password: syspassword
+    services:
+      rabbitmq:
+        image: rabbitmq:4.0
+        env:
+          RABBITMQ_DEFAULT_USER: ${username}
+          RABBITMQ_DEFAULT_PASS: ${password}
+        ports:
+          - 5672
+          - 15672
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          path: ./src
 
       - name: Download build
         id: download-artifact
@@ -23,20 +35,7 @@ jobs:
           path: build
           search_artifacts: true
 
-      - name: Run WireMock
-        run: |
-          docker run -it --rm -p 8080:8080 -v $PWD/build/mainNode/test/mappings:/home/wiremock/mappings wiremock/wiremock
-      - name: Wait for WireMock to start
-        run: |
-          echo "Waiting for WireMock to start..."
-          for i in {1..10}; do
-            if curl -s http://localhost:8080/__admin/mappings; then
-              echo "WireMock is ready!"
-              break
-            fi
-            sleep 2
-          done
       - name: Run tests
         run: |
           cd build/mainNode/test
-          ./serviceTest
+          ./serviceTest ${host} ${username} ${password}
