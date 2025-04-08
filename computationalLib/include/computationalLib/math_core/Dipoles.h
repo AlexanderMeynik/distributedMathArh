@@ -1,9 +1,6 @@
 #pragma once
-#ifndef DIPLOM_DIPOLES_H
-#define DIPLOM_DIPOLES_H
 
-
-#include "computationalLib/math_core/dipolesCommon.h"
+#include "dipolesCommon.h"
 
 ///dipoles namespace
 namespace dipoles {
@@ -57,14 +54,12 @@ namespace dipoles {
         requires HasSizeMethod<Container> && HasSizeMethod<Container2>
         void getFullFunction_(const Container &xi, const Container2 &sol);
 
-
         /**
          * @brief Computes solution vector for dipole parameters and returns it in available format
          * @tparam Container
          */
         template<typename Container=returnToDataType<returnType::EigenVector>>
         Container solve();
-
 
         const integrableFunction &getIfunction() const {
             return Ifunction_;
@@ -83,7 +78,6 @@ namespace dipoles {
          * @brief Retrieves matrix computed for system of equations
          */
         matrixType getMatrixx();
-
 
     protected:
 
@@ -140,7 +134,6 @@ namespace dipoles {
         int N_;
     };
 
-
     template<typename Container>
     requires HasSizeMethod<Container>
     Dipoles::Dipoles(const Container &xi) {
@@ -152,7 +145,6 @@ namespace dipoles {
         initArrays();
         setMatrixes(xi);
     }
-
 
     template<typename Container>
     void Dipoles::setMatrixes(const Container &xi) {
@@ -216,7 +208,6 @@ namespace dipoles {
         setMatrixes(xi);
     }
 
-
     template<typename Container, typename Container2>
     requires HasSizeMethod<Container> && HasSizeMethod<Container2>
     void Dipoles::getFullFunction_(const Container &xi, const Container2 &sol) {
@@ -262,7 +253,6 @@ namespace dipoles {
             return res;
         };
 
-
         this->I2function_ = [&xi, &sol](FloatType phi, FloatType theta) {
             int N = xi.size() / 2;
             FloatType omega0 = params::omega;
@@ -270,7 +260,7 @@ namespace dipoles {
             FloatType res;
             Eigen::Vector<FloatType, 2> resxy = {0.0, 0.0};
             FloatType resz = 0.0;
-            FloatType o3dc = pow(omega0, 3) / params::c;
+            FloatType o3dco3dc = pow(omega0, 3) / params::c;//todo why is this here?
             FloatType o2 = pow(omega0, 2);
             FloatType sinth2 = pow(sin(theta), 2);
             Eigen::Vector<FloatType, 2> s = {cos(phi),
@@ -397,8 +387,4 @@ namespace dipoles {
         }
         return {d1, d2};
     };
-
-
 }
-
-#endif //DIPLOM_DIPOLES_H

@@ -1,7 +1,4 @@
 #pragma once
-#ifndef DIPLOM_GOOGLECOMMON_H
-#define DIPLOM_GOOGLECOMMON_H
-
 
 #include <tuple>
 #include <gtest/gtest.h>
@@ -25,10 +22,10 @@ do { \
 
 using namespace myConcepts;
 using shared::FloatType;
-namespace sh=shared;
-namespace pu=printUtils;
-namespace ct=commonTypes;
-namespace ms=meshStorage;
+namespace sh = shared;
+namespace pu = printUtils;
+namespace ct = commonTypes;
+namespace ms = meshStorage;
 
 /// Testing utilities namespace
 namespace testCommon {
@@ -68,7 +65,7 @@ namespace testCommon {
      */
     template<typename TestSuite>
     auto tupleToString(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
-        return printUtils::tupleToString(info.param,"_","","");
+        return printUtils::tupleToString(info.param, "_", "", "");
     }
 
     /**
@@ -107,7 +104,8 @@ namespace testCommon {
         }
     }
 
-    template<typename...> struct get_template;
+    template<typename...>
+    struct get_template;
     /**
      * @brief retrives template template and saves it inside type
      * @tparam C
@@ -165,6 +163,7 @@ namespace testCommon {
         }
 
     }
+
     template<typename Type>
     struct arrayEqualComparator {
         static inline auto call = [](Type a, Type b, size_t i, Type tol) {
@@ -188,22 +187,7 @@ namespace testCommon {
     };
 
 
-  /*  static inline auto arrayDoubleComparator = []<typename FType=FloatType>
-            (FType a, FType b, size_t i, FType tol) {
-        return isNear(a, b, tol);
-    };*/
-
-    /*static inline auto arrayEqualComparator = []<typename Type>
-            (Type a, Type b, size_t i) {
-        return a==b;
-    };*/
-
-    /*static inline auto twoDArrayDoubleComparator = []<typename FType=FloatType>
-            (FType a, FType b, size_t i, size_t j, FType tol) {
-        return isNear(a, b, tol);
-    };*/
-
 }
 
 
-#endif //DIPLOM_GOOGLECOMMON_H
+

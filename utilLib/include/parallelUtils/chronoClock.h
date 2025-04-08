@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DIPLOM_CHRONO_CLOCK
-#define DIPLOM_CHRONO_CLOCK
 
 #include "clockArray.h"
 #include <chrono>
@@ -54,4 +52,3 @@ namespace chronoClock {
 
 } // namespace chronoClock
 
-#endif  //DIPLOM_CHRONO_CLOCK

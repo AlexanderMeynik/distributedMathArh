@@ -5,7 +5,7 @@
 
 namespace printUtils {
     using namespace shared;
-    const std::array<EFormat, 4> enumTo=
+    const std::array<EFormat, 4> enumTo =
             {{
                      // Format 0: Matrix with row enclosures "[...]"
                      EFormat(
@@ -59,7 +59,7 @@ namespace printUtils {
     }
 
     std::ostream &operator<<(std::ostream &out, const ioFormat &form) {
-        out << ENUM_TO_STR(form,ioToStr) << '\n';
+        out << ENUM_TO_STR(form, ioToStr) << '\n';
         return out;
     }
 
@@ -73,7 +73,6 @@ namespace printUtils {
         form = stringToIoFormat.at(a);
         return in;
     }
-
 
 
     std::istream &operator>>(std::istream &is, EFormat &fmt) {
@@ -102,7 +101,7 @@ namespace printUtils {
     }
 
 
-    bool operator==(const EFormat & lhs, const EFormat& rhs) {
+    bool operator==(const EFormat &lhs, const EFormat &rhs) {
         return lhs.precision == rhs.precision &&
                lhs.flags == rhs.flags &&
                lhs.coeffSeparator == rhs.coeffSeparator &&
@@ -140,12 +139,11 @@ namespace printUtils {
     }
 
     IosStateScientific::IosStateScientific(std::ostream &out, size_t precision) :
-    IosStatePreserve(out),
-    oldPrecision(out.precision()) {
+            IosStatePreserve(out),
+            oldPrecision(out.precision()) {
 
-        if(precision>10*defaultPrec)
-        {
-            throw outOfRange(precision,0,10*defaultPrec);
+        if (precision > 10 * defaultPrec) {
+            throw outOfRange(precision, 0, 10 * defaultPrec);
         }
 
         out.precision(precision);

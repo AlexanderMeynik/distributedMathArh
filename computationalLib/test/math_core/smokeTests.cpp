@@ -10,7 +10,6 @@
 #include "../GoogleCommon.h"
 
 
-
 using namespace pu;
 using namespace testCommon;
 std::string res_dir_path = "../../../res/";
@@ -19,7 +18,6 @@ std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
 using meshStorage::MeshCreator;
 using ttype = std::tuple<std::string, std::vector<FloatType>, ct::matrixType, ct::EigenVec, MeshCreator>;
-
 
 
 std::vector<ttype> testFixtureGetter() {
@@ -31,44 +29,43 @@ std::vector<ttype> testFixtureGetter() {
     std::ifstream sols1(subdir + "/solutions.txt");
     std::ifstream matrixes1(subdir + "/matrixes.txt");
     std::ifstream meshes1(subdir + "/meshes.txt");
-    coords1>>NN;
-    sols1>>NN;
-    matrixes1>>NN;
-    meshes1>>NN;
+    coords1 >> NN;
+    sols1 >> NN;
+    matrixes1 >> NN;
+    meshes1 >> NN;
     values.reserve(NN);
 
     ioFormat a;
-    coords1>>a;
-    sols1>>a;
-    matrixes1>>a;
-    meshes1>>a;
+    coords1 >> a;
+    sols1 >> a;
+    matrixes1 >> a;
+    meshes1 >> a;
 
     EFormat ef;
-    coords1>>ef;
-    sols1>>ef;
-    matrixes1>>ef;
-    meshes1>>ef;
+    coords1 >> ef;
+    sols1 >> ef;
+    matrixes1 >> ef;
+    meshes1 >> ef;
 
     for (int i = 0; i < NN; ++i) {
-        auto sol=printUtils::parseOneDim<ct::EigenVec>(sols1);
-        auto coords=printUtils::parseOneDim<ct::stdVec>(coords1);
+        auto sol = printUtils::parseOneDim<ct::EigenVec>(sols1);
+        auto coords = printUtils::parseOneDim<ct::stdVec>(coords1);
 
-        long rows,cols;
-        matrixes1>>rows>>cols;
-        commonTypes::matrixType res(rows,cols);
+        long rows, cols;
+        matrixes1 >> rows >> cols;
+        commonTypes::matrixType res(rows, cols);
 
         for (int r = 0; r < rows; ++r) {
             for (int c = 0; c < cols; ++c) {
-                matrixes1>>res(r,c);
+                matrixes1 >> res(r, c);
             }
         }
         //ct::matrixType matr=printUtils::parseMatrix(matrixes1);//todo why this cause segfault
 
-        auto m=printUtils::parseMeshFrom(meshes1);
+        auto m = printUtils::parseMeshFrom(meshes1);
 
         values.emplace_back(std::to_string(i), coords, res, sol, m);
     }
-
 
 
     coords1.close();
@@ -94,7 +91,7 @@ INSTANTIATE_TEST_SUITE_P(
 TEST_P(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
     auto [nn, conf, matr, _, pp] = GetParam();
 
-    EXPECT_EQ(matr.rows()/4, conf.size() / 2);
+    EXPECT_EQ(matr.rows() / 4, conf.size() / 2);
     dipoles::Dipoles dd(conf);
     compare2dArrays(dd.getMatrixx(), matr, twoDArrayDoubleComparator<FloatType>::call, 1e20 / 10000);
 
@@ -125,7 +122,7 @@ TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
     MeshCreator mm;
     mm.constructMeshes();
     mm.applyFunction(dd.getI2function());
-    auto r2 = meshStorage::unflatten(mm.data[2],mm.dimensions);
+    auto r2 = meshStorage::unflatten(mm.data[2], mm.dimensions);
 
     auto ress = meshStorage::unflatten(mesh.data[2], mesh.dimensions);
 

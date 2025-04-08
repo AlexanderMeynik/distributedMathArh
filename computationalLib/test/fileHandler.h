@@ -1,7 +1,5 @@
 
 #pragma once
-#ifndef DIPLOM_FILEHANDLER_H
-#define DIPLOM_FILEHANDLER_H
 
 #include <fstream>
 #include <unordered_map>
@@ -118,4 +116,3 @@ namespace fileUtils {
         print(fileMap[filePath], printee);
     }
 }
-#endif //DIPLOM_FILEHANDLER_H

@@ -18,14 +18,14 @@ void signalHandler(int signal) {
     }
 }
 
-int main(int argc,char * argv[]) {
+int main(int argc, char *argv[]) {
 
     if (argc != 3) {
         std::cerr << "Usage: " << argv[0] << " <cString> <queue_name>\n";
         return 1;
     }
-    auto cString=argv[1];
-    auto qname=argv[2];
+    auto cString = argv[1];
+    auto qname = argv[2];
 
     std::signal(SIGINT, signalHandler);
     using namespace amqpCommon;

@@ -2,30 +2,26 @@
 
 namespace printUtils {
 
-    Json::Value toJson(const ms::MeshCreator&mesh,
+    Json::Value toJson(const ms::MeshCreator &mesh,
                        bool printDims,
-                       bool printLims)
-    {
-        Json::Value res=continuousToJson(mesh.data[2],false);;
+                       bool printLims) {
+        Json::Value res = continuousToJson(mesh.data[2], false);;
 
-        if(printDims)
-        {
-            res["dimensions"][0]=mesh.dimensions[0];
-            res["dimensions"][1]=mesh.dimensions[1];
+        if (printDims) {
+            res["dimensions"][0] = mesh.dimensions[0];
+            res["dimensions"][1] = mesh.dimensions[1];
         }
-        if(printLims)
-        {
-            for(int i=0;i<mesh.limits.size();i++)
-            {
-                res["limits"][i]=mesh.limits[i];
+        if (printLims) {
+            for (int i = 0; i < mesh.limits.size(); i++) {
+                res["limits"][i] = mesh.limits[i];
             }
         }
         return res;
     }
 
     void printMesh(std::ostream &out,
-                   const ms::MeshCreator&mesh,
-                   const ioFormat&form,
+                   const ms::MeshCreator &mesh,
+                   const ioFormat &form,
                    bool printDims,
                    bool printLims,
                    const EFormat &eigenForm) {
@@ -42,10 +38,10 @@ namespace printUtils {
         {
 
             IosStateScientific iosStateScientific(out, out.precision());
-            if(printDims) {
+            if (printDims) {
                 out << mesh.dimensions[0] << '\t' << mesh.dimensions[1] << '\n';
             }
-            if(printLims) {
+            if (printLims) {
                 out << mesh.limits[0] << '\t' << mesh.limits[1] << '\n';
                 out << mesh.limits[2] << '\t' << mesh.limits[3] << '\n';
             }
@@ -67,8 +63,8 @@ namespace printUtils {
                   const commonTypes::matrixType &matr,
                   bool printSize,
                   const EFormat &eigenForm) {
-        auto map = Eigen::Map<const Eigen::RowVector<FloatType,-1>>(matr.data(),matr.size());
-        if(printSize) {
+        auto map = Eigen::Map<const Eigen::RowVector<FloatType, -1>>(matr.data(), matr.size());
+        if (printSize) {
             out << matr.size() << '\n';
         }
         out << map.format(eigenForm);
@@ -79,7 +75,7 @@ namespace printUtils {
                   const commonTypes::matrixType &matr,
                   bool printDims,
                   const EFormat &eigenForm) {
-        if(printDims) {
+        if (printDims) {
             out << matr.rows() << '\t' << matr.cols() << '\n';
         }
         out << matr.format(eigenForm);

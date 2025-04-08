@@ -2,32 +2,38 @@
 
 #include <drogon/HttpController.h>
 #include "computationalLib/math_core/TestRunner.h"
+#include "common/sharedDeclarations.h"
 #include <drogon/HttpClient.h>
 #include <drogon/HttpRequest.h>
 
 using namespace drogon;
-//todo move away
-
+using shared::FloatType;
 
 namespace rest {
     namespace v1 {
 
-        enum class NodeStatus {
-            active,
-            inactive,
-            failed
-
+        /// nodeStatus Enum
+        enum class nodeStatus {
+            /// Node is connected to cluster and is ready to receive it's tasks
+            Active,
+            /// Node is present in cluster but is not ready to recieve tasks
+            Inactive,
+            /// An error occurred moving node to a failed state
+            Failed
         };
 
-        const std::unordered_map<const NodeStatus, std::string> mapss
-
-
+        //todo std::array
+        /// Look-up table to cast nodeStatus to string
+        const std::unordered_map<const nodeStatus, std::string> nodeStatusToStr
                 {
-                        {NodeStatus::active,   "active"},
-                        {NodeStatus::inactive, "inactive"},
-                        {NodeStatus::failed,   "failed"},
+                        {nodeStatus::Active,   "Active"},
+                        {nodeStatus::Inactive, "Inactive"},
+                        {nodeStatus::Failed,   "Failed"},
                 };
 
+        /**
+         * @brief Computational node class
+         */
         class computationalNode {
         public:
             HttpClientPtr httpClient;
@@ -36,12 +42,13 @@ namespace rest {
                 return httpClient->getHost() + ":" + std::to_string(httpClient->getPort());
             }
 
-            std::valarray<double> power;//todo spline function
-            NodeStatus st;
-
-
+            std::valarray<FloatType> power;//todo spline function
+            nodeStatus st;
         };
 
+        /**
+         * @brief Drogon service for main node
+         */
         class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
             std::unordered_map<std::string, computationalNode> clients;
         public:

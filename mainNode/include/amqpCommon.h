@@ -1,8 +1,5 @@
 #pragma once
 
-#ifndef DISTRIBUTED_MATH_ARH_AMQPRESTCOMMON_H
-#define DISTRIBUTED_MATH_ARH_AMQPRESTCOMMON_H
-
 #include <string>
 #include <vector>
 #include <thread>
@@ -178,5 +175,3 @@ namespace amqpCommon {
     };
 
 }
-
-#endif //DISTRIBUTED_MATH_ARH_AMQPRESTCOMMON_H

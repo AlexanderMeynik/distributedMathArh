@@ -8,6 +8,7 @@
 #include <eigen3/Eigen/Dense>
 
 #include "sharedDeclarations.h"
+
 /// namespace for some common types used elsewhere
 namespace commonTypes {
     using shared::FloatType;
@@ -30,7 +31,7 @@ namespace commonTypes {
     using meshStorageType = std::valarray<FloatType>;
 
     ///stores information about dimensions
-    using dimType=std::array<size_t, 2>;
+    using dimType = std::array<size_t, 2>;
 
     /**
      * @brief Type for function thta will be integrated to get directional graph
@@ -52,10 +53,12 @@ namespace commonTypes {
     struct returnToDataTypeT<returnType::ArrayEigenVectors> {
         using type = Arr2EigenVec;
     };
+
     template<>
     struct returnToDataTypeT<returnType::EigenVector> {
         using type = EigenVec;
     };
+
     template<>
     struct returnToDataTypeT<returnType::StdVector> {
         using type = stdVec;

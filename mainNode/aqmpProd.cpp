@@ -18,15 +18,15 @@ void signalHandler(int signal) {
     }
 }
 
-using namespace  amqpCommon;
-int main(int argc,char * argv[])
-{
+using namespace amqpCommon;
+
+int main(int argc, char *argv[]) {
     if (argc != 4) {
         std::cerr << "Usage: " << argv[0] << " <cString> <number_of_messages>  <number_of_queues>\n";
         return 1;
     }
 
-    auto cString=argv[1];
+    auto cString = argv[1];
 
     int numMessages;
     int numbQueues;
@@ -39,7 +39,7 @@ int main(int argc,char * argv[])
         if (numbQueues <= 0) {
             throw std::invalid_argument("Number of queues must be positive.");
         }
-    } catch (const std::exception& e) {
+    } catch (const std::exception &e) {
         std::cerr << "Error: Invalid number of messages - " << e.what() << '\n';
         return 1;
     }
@@ -53,25 +53,25 @@ int main(int argc,char * argv[])
 
 
     for (int i = 0; i < numbQueues; ++i) {
-        service.addQueue(fmt::format("queue{}",i),true);
+        service.addQueue(fmt::format("queue{}", i), true);
     }
 
     for (int i = 0; i < numbQueues; ++i) {
-        std::string q=fmt::format("queue{}",i);
+        std::string q = fmt::format("queue{}", i);
         for (int j = 0; j < numMessages; ++j) {
 
 
             Json::Value message;
-            message["number"]=i;
+            message["number"] = i;
 
             auto t = std::time(nullptr);
             auto tm = *std::localtime(&t);
 
             std::stringstream ss;
-            ss<<std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
-            message["timestamp"]= ss.str();
+            ss << std::put_time(&tm, "%d-%m-%Y %H-%M-%S");
+            message["timestamp"] = ss.str();
 
-            auto str=message.toStyledString();
+            auto str = message.toStyledString();
             auto envelope = std::make_shared<AMQP::Envelope>(str);
 
             envelope->setPersistent(true);
@@ -93,8 +93,6 @@ int main(int argc,char * argv[])
 
 
     service.endLoop();
-
-
 
 
     return 0;

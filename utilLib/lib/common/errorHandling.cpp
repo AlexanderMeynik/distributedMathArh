@@ -1,6 +1,5 @@
 #include "common/errorHandling.h"
 
-namespace shared
-{
+namespace shared {
 
 }

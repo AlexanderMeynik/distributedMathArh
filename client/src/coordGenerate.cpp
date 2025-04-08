@@ -6,8 +6,6 @@
 #include <omp.h>
 
 
-
-
 #include <filesystem>
 
 #include "computationalLib/math_core/Dipoles.h"
@@ -20,9 +18,11 @@
 std::string getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
     return dirname + name + "_i" + std::to_string(i) + "." + end;
 }
+
 using namespace shared;
 using dipoles::Dipoles;
-using printUtils::printCoordinates2,printUtils::printSolutionFormat1;
+using printUtils::printCoordinates2, printUtils::printSolutionFormat1;
+
 int main(int argc, char *argv[]) {
     int N = 5;
     int Nsym = 1000;
@@ -80,7 +80,7 @@ int main(int argc, char *argv[]) {
     /*CoordGenerator<double> genr(0, aRange);*/
     std::vector<std::vector<double>> coordinates(Nsym);
     for (int i = 0; i < Nsym; ++i) {
-        coordinates[i] = generators::normal<std::vector>(N,0.0,aRange* sqrt(2))/*genr.generateCoordinates(N)*/;
+        coordinates[i] = generators::normal<std::vector>(N, 0.0, aRange * sqrt(2))/*genr.generateCoordinates(N)*/;
     }
     Dipoles dipoles1(coordinates[0]);
     using meshStorage::MeshCreator;
@@ -265,10 +265,10 @@ int main(int argc, char *argv[]) {
 
         out1 << "\n";
 
-        printDec(mesh,out1);
+        printDec(mesh, out1);
 
         out1.close();
-        mesh.plotAndSave(getString(dirname, "sim", i, "png"),plotFunction);
+        mesh.plotAndSave(getString(dirname, "sim", i, "png"), plotFunction);
         plotCoordinates(getString(dirname, "coord", i, "png"), aRange, coordinates[i]);
 
     }
@@ -292,14 +292,14 @@ int main(int argc, char *argv[]) {
             result[i][j] /= Nsym;
         }
     }*/
-    result/=Nsym;
+    result /= Nsym;
     std::ofstream out1(dirname + "avg.txt");
     out1 << "Значение  целевой функции усреднённой по " << Nsym << " симуляциям "
          << "для конфигураций, состоящих из " << N << " диполей\n";
 
-    mesh.data[2]=result;
-    printDec(mesh,out1);
-    mesh.plotAndSave(dirname + "avg.png",plotFunction);
+    mesh.data[2] = result;
+    printDec(mesh, out1);
+    mesh.plotAndSave(dirname + "avg.png", plotFunction);
     out1.close();
 
     return 0;

@@ -1,17 +1,12 @@
 #pragma once
-#ifndef DIPLOM_DIPOLESCOMMON_H
-#define DIPLOM_DIPOLESCOMMON_H
-
 
 #include "common/myConcepts.h"
 #include "common/commonTypes.h"
-
 
 ///dipoles namespace
 namespace dipoles {
     //using namespace chronoClock;
     using namespace commonTypes;
-
 
     /**
      * Check that matrix is symmetric
@@ -19,5 +14,3 @@ namespace dipoles {
      */
     bool isSymmetric(const matrixType &matr);
 }
-
-#endif //DIPLOM_DIPOLESCOMMON_H

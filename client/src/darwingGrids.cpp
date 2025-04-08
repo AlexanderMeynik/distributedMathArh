@@ -12,6 +12,7 @@
 #include "common/Printers.h"
 
 using namespace printUtils;
+
 //template <class Tr>
 std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, double b = 0, bool center = false) {
     //long double lim= ceil(r+r/l);
@@ -181,7 +182,7 @@ int main(int argc, char *argv[]) {
 
     meshProcessor.applyFunction(d.getI2function());
 
-   // meshProcessor.plotSpherical("function" + ss.str() + ".png");
+    // meshProcessor.plotSpherical("function" + ss.str() + ".png");
 
 
     printCoordinates2(out, coords);

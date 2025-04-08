@@ -2,16 +2,17 @@
 
 #include "MeshPlot.h"
 
-template<typename T> T next_power2(T value)
-{
+template<typename T>
+T next_power2(T value) {
     --value;
-    for(size_t i = 1; i < sizeof(T) * CHAR_BIT; i*=2)
+    for (size_t i = 1; i < sizeof(T) * CHAR_BIT; i *= 2)
         value |= value >> i;
-    return value+1;
+    return value + 1;
 }
+
 void MeshPlot::plot(const meshArr<3> &rr, const std::array<size_t, 2> &dims) {
     QSurfaceDataArray *data = new QSurfaceDataArray;
-    FloatType minX = FTMax, maxX =FTMin;
+    FloatType minX = FTMax, maxX = FTMin;
     FloatType minY = FTMax, maxY = FTMin;
     FloatType minZ = FTMax, maxZ = FTMin;
 
@@ -24,9 +25,12 @@ void MeshPlot::plot(const meshArr<3> &rr, const std::array<size_t, 2> &dims) {
             FloatType y = rr[2][index];
             FloatType z = rr[0][index];
 
-            minX = std::min(minX, x); maxX = std::max(maxX, x);
-            minY = std::min(minY, y); maxY = std::max(maxY, y);
-            minZ = std::min(minZ, z); maxZ = std::max(maxZ, z);
+            minX = std::min(minX, x);
+            maxX = std::max(maxX, x);
+            minY = std::min(minY, y);
+            maxY = std::max(maxY, y);
+            minZ = std::min(minZ, z);
+            maxZ = std::max(maxZ, z);
 
             (*row)[j].setPosition(QVector3D(x, y, z));
         }
@@ -34,37 +38,35 @@ void MeshPlot::plot(const meshArr<3> &rr, const std::array<size_t, 2> &dims) {
     }
 
 
+    surface->axisX()->setRange(-40, 40);
+    surface->axisZ()->setRange(-40, 40);
+    surface->axisY()->setRange(0, 90);
+
+    surface->axisX()->setSegmentCount(8);
+    surface->axisZ()->setSegmentCount(8);
+    surface->axisY()->setSegmentCount(9);
 
 
-        surface->axisX()->setRange(-40,40);
-        surface->axisZ()->setRange(-40,40);
-        surface->axisY()->setRange(0,90);
-
-        surface->axisX()->setSegmentCount(8);
-        surface->axisZ()->setSegmentCount(8);
-        surface->axisY()->setSegmentCount(9);
-
-
-        surface->scene()->activeCamera()->setXRotation(245);
-        surface->scene()->activeCamera()->setYRotation(22);
+    surface->scene()->activeCamera()->setXRotation(245);
+    surface->scene()->activeCamera()->setYRotation(22);
 
 
     surface->seriesList().at(0)->dataProxy()->resetArray(data);
 }
 
-MeshPlot::MeshPlot(const MeshCreator &mesh):MeshPlot() {
+MeshPlot::MeshPlot(const MeshCreator &mesh) : MeshPlot() {
 
     emit dataChanged(mesh);
 
 }
 
-MeshPlot::MeshPlot():QWidget() {
+MeshPlot::MeshPlot() : QWidget() {
 
     surface = new Q3DSurface();
 
     surface->addSeries(new QSurface3DSeries);
 
-    auto lay=new QHBoxLayout;
+    auto lay = new QHBoxLayout;
     lay->addWidget(QWidget::createWindowContainer(surface));
 
     this->setLayout(lay);
@@ -74,28 +76,25 @@ MeshPlot::MeshPlot():QWidget() {
         plot(rr, a.dimensions);
     });
 
-    connect(surface->scene()->activeCamera(),&Q3DCamera::zoomLevelChanged,[&](auto deg)
-    {
-        auto cam=surface->scene()->activeCamera();
-        auto x=cam->xRotation();
-        auto y=cam->yRotation();
-        std::cout<<x<<':'<<y<<'\t'<<cam->zoomLevel()<<'\n';
+    connect(surface->scene()->activeCamera(), &Q3DCamera::zoomLevelChanged, [&](auto deg) {
+        auto cam = surface->scene()->activeCamera();
+        auto x = cam->xRotation();
+        auto y = cam->yRotation();
+        std::cout << x << ':' << y << '\t' << cam->zoomLevel() << '\n';
     });
-    connect(surface->scene()->activeCamera(),&Q3DCamera::yRotationChanged,[&](auto deg)
-    {
-        auto cam=surface->scene()->activeCamera();
-        auto x=cam->xRotation();
-        auto y=cam->yRotation();
-        std::cout<<x<<':'<<y<<'\t'<<cam->zoomLevel()<<'\n';
+    connect(surface->scene()->activeCamera(), &Q3DCamera::yRotationChanged, [&](auto deg) {
+        auto cam = surface->scene()->activeCamera();
+        auto x = cam->xRotation();
+        auto y = cam->yRotation();
+        std::cout << x << ':' << y << '\t' << cam->zoomLevel() << '\n';
     });
 
 
-    connect(surface->scene()->activeCamera(),&Q3DCamera::xRotationChanged,[&](auto deg)
-    {
-        auto cam=surface->scene()->activeCamera();
-        auto x=cam->xRotation();
-        auto y=cam->yRotation();
-        std::cout<<x<<':'<<y<<'\t'<<cam->zoomLevel()<<'\n';
+    connect(surface->scene()->activeCamera(), &Q3DCamera::xRotationChanged, [&](auto deg) {
+        auto cam = surface->scene()->activeCamera();
+        auto x = cam->xRotation();
+        auto y = cam->yRotation();
+        std::cout << x << ':' << y << '\t' << cam->zoomLevel() << '\n';
     });
 
     setStyle();
@@ -103,12 +102,12 @@ MeshPlot::MeshPlot():QWidget() {
 }
 
 void MeshPlot::saveToFile(const QString &fname) {
-    auto image=surface->renderToImage(4);
+    auto image = surface->renderToImage(4);
 
     QImage highResImage = image.scaled(image.width() * 2, image.height() * 2,
                                        Qt::IgnoreAspectRatio, Qt::SmoothTransformation);
 
-    highResImage.save(fname, nullptr,100);
+    highResImage.save(fname, nullptr, 100);
 
 }
 
@@ -140,9 +139,7 @@ void MeshPlot::setStyle() {
     surface->axisZ()->setLabelFormat("%.2f");
 
 
-
     series->setDrawMode(QSurface3DSeries::DrawSurfaceAndWireframe);
-
 
 
     theme->setLabelTextColor(Qt::black);
@@ -151,7 +148,7 @@ void MeshPlot::setStyle() {
     theme->setBackgroundColor(Qt::white);
     theme->setWindowColor(Qt::white);
     theme->setBackgroundEnabled(false);
-    theme->setGridLineColor(QColor(64,64,64));
+    theme->setGridLineColor(QColor(64, 64, 64));
 
 
     QLinearGradient gradient;

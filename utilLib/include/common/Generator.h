@@ -1,7 +1,4 @@
 #pragma once
-#ifndef DIPLOM_GENERATOR_H
-#define DIPLOM_GENERATOR_H
-
 
 #include <random>
 #include <functional>
@@ -65,4 +62,4 @@ namespace generators {
 
 
 };
-#endif //DIPLOM_GENERATOR_H
+

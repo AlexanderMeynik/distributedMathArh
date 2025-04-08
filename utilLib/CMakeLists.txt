@@ -32,7 +32,6 @@ target_include_directories(parallelLib PUBLIC include)
 enable_coverage_for_target(parallelLib)
 
 
-
 add_library(allUtils STATIC ${parallelUtils})
 target_link_libraries(allUtils PUBLIC commonLib)
 enable_coverage_for_target(allUtils)

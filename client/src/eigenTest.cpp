@@ -2,11 +2,10 @@
 #include <random>
 
 
-
 #include "parallelUtils/chronoClock.h"
 #include "../include/plotingUtils.h"
 
-auto aRange=1.0e-6;
+auto aRange = 1.0e-6;
 
 using chronoClock::gClk;
 
@@ -28,7 +27,7 @@ int main(int argc, char *argv[]) {
     auto res=d.solve<dipoles::standartVec>();
    clk.tak();
     std::cout << clk[stime].time << "\t" << N << "\n";*/
-    std::vector<double> a={0,1,6,1,0,-6};
-    plotCoordinates("result.png",1,a);
+    std::vector<double> a = {0, 1, 6, 1, 0, -6};
+    plotCoordinates("result.png", 1, a);
 
 }

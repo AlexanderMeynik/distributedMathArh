@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 #include <memory>
 
@@ -5,8 +7,8 @@
 
 #include "common/errorHandling.h"
 
-
 class authHandler;
+
 /**
  * @brief Default curl write callback
  * @param contents
@@ -57,7 +59,7 @@ private:
  */
 class authHandler {
 public:
-    authHandler(bool active= true);
+    authHandler(bool active = true);
 
     void setActive(bool act);
 

@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DIPLOM_BENCHMARKHANDLER_H
-#define DIPLOM_BENCHMARKHANDLER_H
 
 #include <functional>
 #include <optional>
@@ -175,4 +173,3 @@ namespace benchUtils {
     }
 }
 
-#endif //DIPLOM_BENCHMARKHANDLER_H

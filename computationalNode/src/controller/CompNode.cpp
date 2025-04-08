@@ -49,7 +49,7 @@ void CompNode::disconnectHandler(const HttpRequestPtr &req, std::function<void(c
     }
     res["cc"] = *(handler->cc);
     auto r = HttpResponse::newHttpJsonResponse(res);
-    handler->disconenct();
+    handler->disconnect();
 
 
     callback(r);

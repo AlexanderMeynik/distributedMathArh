@@ -34,14 +34,14 @@ target_link_libraries(mainNode servLib2 allUtils)
 enable_coverage_for_target(mainNode)
 
 add_library(amqpUtils src/amqpCommon.cpp src/amqpRestService.cpp src/restUtils.cpp)
-target_link_libraries( amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
+target_link_libraries(amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
 target_include_directories(amqpUtils PUBLIC ../utilLib/include)
 enable_coverage_for_target(amqpUtils)
 target_include_directories(amqpUtils PUBLIC include)
 
 add_executable(consumer aqmpCons.cpp)
-target_link_libraries(consumer PUBLIC amqpUtils )
+target_link_libraries(consumer PUBLIC amqpUtils)
 
 
-add_executable(producer aqmpProd.cpp )
+add_executable(producer aqmpProd.cpp)
 target_link_libraries(producer PUBLIC amqpUtils)

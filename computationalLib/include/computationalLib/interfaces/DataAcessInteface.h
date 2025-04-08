@@ -1,5 +1,4 @@
-#ifndef DIPLOM_DATAACESSINTEFACE_H
-#define DIPLOM_DATAACESSINTEFACE_H
+#pragma once
 
 #include <unordered_map>
 #include <string>
@@ -53,7 +52,6 @@ namespace core_intrefaces {
             return properties_.contains(key);
         }
 
-
     protected:
         std::unordered_map<std::string, std::vector<std::vector<double>>> data_;
 
@@ -61,4 +59,3 @@ namespace core_intrefaces {
     };
 }
 
-#endif //DIPLOM_DATAACESSINTEFACE_H

@@ -4,13 +4,13 @@ namespace meshStorage {
 
     co::meshStorageType
     computeFunction(const co::meshStorageType &a, const co::meshStorageType &b, const co::directionGraph &func) {
-        if (!a.size()||!b.size())
-        {
-            throw shared::myException(fmt::format("Zero container sizes: a.size() = {},b.size() = {}", a.size(), b.size()));
+        if (!a.size() || !b.size()) {
+            throw shared::myException(
+                    fmt::format("Zero container sizes: a.size() = {},b.size() = {}", a.size(), b.size()));
         }
 
         if (a.size() != b.size()) {
-            throw shared::mismatchedSizes(a.size(),b.size());
+            throw shared::mismatchedSizes(a.size(), b.size());
         }
 
         auto sz = a.size();
@@ -35,8 +35,6 @@ namespace meshStorage {
     }
 
 
-
-
     meshArr<3> sphericalTransformation(const MeshCreator &oth) {
         meshArr<3> res;
         for (size_t i = 0; i < 3; ++i) {
@@ -50,15 +48,13 @@ namespace meshStorage {
         return res;
     }
 
-    MeshCreator::MeshCreator(bool construct):dimensions(defaultDims),limits(defaultLims)
-    {
+    MeshCreator::MeshCreator(bool construct) : dimensions(defaultDims), limits(defaultLims) {
 
 
-        if(construct)
-        {
-            data={{co::meshStorageType(dimensions[0] * dimensions[1]),
-                  co::meshStorageType(dimensions[0] * dimensions[1]),
-                  co::meshStorageType(dimensions[0] * dimensions[1])}};
+        if (construct) {
+            data = {{co::meshStorageType(dimensions[0] * dimensions[1]),
+                     co::meshStorageType(dimensions[0] * dimensions[1]),
+                     co::meshStorageType(dimensions[0] * dimensions[1])}};
         }
     }
 
@@ -92,27 +88,27 @@ namespace meshStorage {
         auto ext0 = mmesh.dimensions[0];
         auto ext1 = mmesh.dimensions[1];
 
-        out<<ext0<<'\t'<<ext1<<'\n';
+        out << ext0 << '\t' << ext1 << '\n';
         out << "Функция I(phi,th)\n";
         out << "phi\\th\t\t";
         std::vector<FloatType> row(ext0);
         for (size_t i = 0; i < ext0 - 1; ++i) {
-            row[i]=mmesh.data[1][i*ext1];
-            out << mmesh.data[1][i*ext1] << '\t';
+            row[i] = mmesh.data[1][i * ext1];
+            out << mmesh.data[1][i * ext1] << '\t';
         }
-        row[ext0 - 1]= mmesh.data[1][(ext0-1)*ext1];
-        out << mmesh.data[1][(ext0-1)*ext1]
+        row[ext0 - 1] = mmesh.data[1][(ext0 - 1) * ext1];
+        out << mmesh.data[1][(ext0 - 1) * ext1]
             << '\n';
 
         std::vector<FloatType> col(ext1);
         for (size_t i = 0; i < ext1; ++i) {
             auto phi = mmesh.data[0][i];
-            col[i]=phi;
+            col[i] = phi;
             out << phi << "\t";
             for (size_t j = 0; j < ext0 - 1; ++j) {
-                out << mmesh.data[2][j*ext1+i] << "\t";
+                out << mmesh.data[2][j * ext1 + i] << "\t";
             }
-            out << mmesh.data[2][(ext0 - 1)*ext1+i] << "\n";
+            out << mmesh.data[2][(ext0 - 1) * ext1 + i] << "\n";
         }
     }
 

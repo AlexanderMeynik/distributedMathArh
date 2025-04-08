@@ -12,6 +12,7 @@
 
 #include "common/commonTypes.h"
 #include "common/Printers.h"
+
 using commonTypes::EigenVec;
 using printUtils::printSolutionFormat1;
 
@@ -64,8 +65,8 @@ void fetchData(int N, int Ns, double a) {//todo values are not printed instantly
                     qDebug() << val;
                 }*/
                 std::stringstream ss;
-                printSolutionFormat1(ss,vec);
-                qDebug()<<QString::fromStdString(ss.str());
+                printSolutionFormat1(ss, vec);
+                qDebug() << QString::fromStdString(ss.str());
                 //qDebug() << "-----";
             }
         } else {
@@ -78,7 +79,7 @@ void fetchData(int N, int Ns, double a) {//todo values are not printed instantly
 }
 
 int main(int argc, char *argv[]) {
-    QCoreApplication app(argc,argv);
+    QCoreApplication app(argc, argv);
     int T = 10;
     std::cin >> T;
     for (int i = 0; i < T; ++i) {

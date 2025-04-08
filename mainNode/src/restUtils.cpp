@@ -81,24 +81,21 @@ void authHandler::setActive(bool act) {
     m_active = act;
 }
 
-authHandler::authHandler(bool active):m_active(active) {}
+authHandler::authHandler(bool active) : m_active(active) {}
 
 void authHandler::addAuthorization(CURL *curl) {
-    if(m_active)
-    {
+    if (m_active) {
         addAuth(curl);
     }
 }
 
-basicAuthHandler::basicAuthHandler(const std::string &user, const std::string &password, bool active):
+basicAuthHandler::basicAuthHandler(const std::string &user, const std::string &password, bool active) :
         authHandler(active),
-        m_user (user),
-        m_password(password)
-{}
+        m_user(user),
+        m_password(password) {}
 
 void basicAuthHandler::addAuth(CURL *curl) {
-    if(!curl)
-    {
+    if (!curl) {
         throw shared::curlError("Curl object in null");
     }
     if (m_active) {

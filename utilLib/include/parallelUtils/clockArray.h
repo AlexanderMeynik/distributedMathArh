@@ -1,5 +1,4 @@
-#ifndef DISTRIBUTED_MATH_ARH_CLOCKARRAY_H
-#define DISTRIBUTED_MATH_ARH_CLOCKARRAY_H
+#pragma once
 
 #include <array>
 #include <ostream>
@@ -243,6 +242,3 @@ namespace timing {
         this->startIngTimers.clear();
     }
 }
-
-
-#endif // DISTRIBUTED_MATH_ARH_CLOCKARRAY_H

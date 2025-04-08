@@ -4,11 +4,12 @@
 #include "common/Parsers.h"
 #include "common/Printers.h"
 #include "MeshPlot.h"
+
 using namespace commonTypes;
 using namespace printUtils;//todo do betetr
 static inline std::string res_dir_path = "../../../res/";
 static inline std::string subdir = res_dir_path.append("configdata7_25");
-using coordType=std::vector<std::vector<FloatType >>;
+using coordType = std::vector<std::vector<FloatType >>;
 using meshStorage::MeshCreator;
 using ttype = MeshCreator;
 
@@ -19,18 +20,18 @@ std::vector<ttype> inline getMeshes() {
 
     int NN;
     std::ifstream meshes(subdir + "/meshes.txt");
-    meshes>>NN;
+    meshes >> NN;
     values.reserve(NN);
 
     ioFormat a;
-    meshes>>a;
+    meshes >> a;
 
     EFormat ef;
-    meshes>>ef;
+    meshes >> ef;
 
     for (int i = 0; i < NN; ++i) {
 
-        auto m=printUtils::parseMeshFrom(meshes);
+        auto m = printUtils::parseMeshFrom(meshes);
         values.push_back(std::move(m));
     }
 
@@ -52,40 +53,37 @@ std::vector<ttype> inline getMeshes() {
 //todo resolve driver issue https://github.com/microsoft/wslg/issues/1295
 
 using shared::FloatType;
-int main(int argc, char **argv)
-{
+
+int main(int argc, char **argv) {
     qputenv("QSG_RHI_BACKEND", "opengl");
     QApplication app(argc, argv);
 
 
-
-    auto res=getMeshes();
-
+    auto res = getMeshes();
 
 
     QSurface3DSeries *series = new QSurface3DSeries;
 
     QMainWindow ww;
-    auto geom=QGuiApplication::primaryScreen()->geometry();
-    ww.resize(geom.width()/2,geom.height()/2);
+    auto geom = QGuiApplication::primaryScreen()->geometry();
+    ww.resize(geom.width() / 2, geom.height() / 2);
 
 
-    Q3DSurface *surface=new Q3DSurface;
-
+    Q3DSurface *surface = new Q3DSurface;
 
 
     surface->addSeries(series);
 
 
-    auto qw=QWidget::createWindowContainer(surface);
-    auto qw2=new MeshPlot;
+    auto qw = QWidget::createWindowContainer(surface);
+    auto qw2 = new MeshPlot;
 
-    auto lineEdit=new QSlider;
+    auto lineEdit = new QSlider;
     lineEdit->setMaximum(500);
     lineEdit->setMinimum(2);
 
-    auto lineEdit2=new QSlider;
-    lineEdit2->setMaximum(res.size()-1);
+    auto lineEdit2 = new QSlider;
+    lineEdit2->setMaximum(res.size() - 1);
     lineEdit2->setMinimum(0);
 
     surface->setFlags(surface->flags() ^ Qt::FramelessWindowHint);
@@ -93,10 +91,10 @@ int main(int argc, char **argv)
     int sampleCountX = 500;
     int sampleCountZ = 500;
 
-    auto pb=new QPushButton;
+    auto pb = new QPushButton;
 
 
-    auto ll=new QHBoxLayout;
+    auto ll = new QHBoxLayout;
     ll->addWidget(qw);
     ll->addWidget(lineEdit);
     ll->addWidget(qw2);
@@ -105,8 +103,7 @@ int main(int argc, char **argv)
     ww.setCentralWidget(new QWidget);
     ww.centralWidget()->setLayout(ll);
 
-    auto surf1=[&]()
-    {
+    auto surf1 = [&]() {
 
         int heightMapGridStepX = 6;
         int heightMapGridStepZ = 6;
@@ -118,7 +115,7 @@ int main(int argc, char **argv)
 
         QSurfaceDataArray *dataArray = new QSurfaceDataArray;
         dataArray->reserve(sampleCountZ);
-        for (int i = 0 ; i < sampleCountZ ; i++) {
+        for (int i = 0; i < sampleCountZ; i++) {
             QSurfaceDataRow *newRow = new QSurfaceDataRow(sampleCountX);
 
             float z = qMin(sampleMax, (i * stepZ + sampleMin));
@@ -135,39 +132,36 @@ int main(int argc, char **argv)
         series->dataProxy()->resetArray(dataArray);
     };
 
-    QWidget::connect(lineEdit,&QSlider::valueChanged,[&](){
+    QWidget::connect(lineEdit, &QSlider::valueChanged, [&]() {
 
-        auto val=lineEdit->value();
-        std::cout<<val<<'\n';
-        sampleCountX=val;
-        sampleCountZ=val;
+        auto val = lineEdit->value();
+        std::cout << val << '\n';
+        sampleCountX = val;
+        sampleCountZ = val;
         surf1();
     });
-    QWidget::connect(lineEdit2,&QSlider::valueChanged,[&](){
+    QWidget::connect(lineEdit2, &QSlider::valueChanged, [&]() {
 
-        auto val=lineEdit2->value();
-        std::cout<<val<<'\n';
+        auto val = lineEdit2->value();
+        std::cout << val << '\n';
 
-        auto & rr1=res[val];
+        auto &rr1 = res[val];
 
-        rr1.plotAndSave("plot.png",plotFunction);
+        rr1.plotAndSave("plot.png", plotFunction);
 
         qw2->replot(rr1);
     });
 
 
-    QWidget::connect(pb,&QPushButton::clicked,[&](){
+    QWidget::connect(pb, &QPushButton::clicked, [&]() {
 
         qw2->saveToFile();
     });
-    sampleCountX=5;
-    sampleCountZ=5;
+    sampleCountX = 5;
+    sampleCountZ = 5;
     surf1();
 
     qw2->replot(res[0]);
-
-
-
 
 
     ww.show();

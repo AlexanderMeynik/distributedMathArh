@@ -1,6 +1,4 @@
-
-#ifndef DIPLOM_TESTRUNNER_H
-#define DIPLOM_TESTRUNNER_H
+#pragma once
 
 #include <optional>
 #include <filesystem>
@@ -39,18 +37,14 @@ using solution = EigenVec;
 class TestRunner {
 
 public:
-
-
     TestRunner();
 
     TestRunner(size_t N, size_t Ns, double aRange, std::string dirname = "", std::string subdir = "",
                state_t state = state_t::openmp_new);
 
-
     template<typename... Args>
     //todo переделать часть в сервере для генерации конфигураций
     void generateGeneralized(const std::function<coordinates(Args...)> &functor, Args ... args) {
-        //clocks_[0].tik();
         coords_.resize(Nsym_.value());
         for (int i = 0; i < Nsym_; ++i) {
             coords_[i] = functor(args...);
@@ -64,9 +58,6 @@ public:
     void solve();
 
     void generateFunction();
-    //при первом тесте можно создавать бд с названием математического ядра под нужды пользаков
-    //логика use if exists create if not(саму эту логику надо добавить в менеджер бд)
-
 
     std::vector<Eigen::Vector<FloatType, Eigen::Dynamic>> &getCoordRef() {
         return coords_;
@@ -106,5 +97,3 @@ static constexpr functable<Args...> func_array[3] = {
         {&TestRunner::generateFunction,    "function_generation"}
 };
 
-
-#endif //DIPLOM;_TESTRUNNER_H

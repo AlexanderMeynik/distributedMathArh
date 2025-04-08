@@ -15,8 +15,8 @@ ClusterConfigController::getStatus(const HttpRequestPtr &req, std::function<void
     for (auto &[str, node]: clients) {
         //root["data"][i]=Json::Value();
         root["data"][i]["host"] = str;
-        root["data"][i]["status"] = mapss.at(node.st);
-        root["data"][i]["benchRes"]= printUtils::continuousToJson(node.power);
+        root["data"][i]["status"] = nodeStatusToStr.at(node.st);
+        root["data"][i]["benchRes"] = printUtils::continuousToJson(node.power);
         i++;
     }
     //todo call all of nodes;
@@ -36,7 +36,7 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
         computationalNode cn;
         //todo ad https as option
         cn.httpClient = HttpClient::newHttpClient("http://" + hostPort);
-        cn.st = NodeStatus::inactive;
+        cn.st = nodeStatus::Inactive;
         clients[hostPort] = std::move(cn);
     }
 
@@ -69,7 +69,7 @@ void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
 
     clients[hostPort].power = printUtils::jsonToContinuous<std::valarray<double>>((*jsonPtr)["bench"]);
 
-    clients[hostPort].st = NodeStatus::active;
+    clients[hostPort].st = nodeStatus::Active;
     res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
 
     auto r = HttpResponse::newHttpJsonResponse(res);
@@ -106,7 +106,7 @@ void ClusterConfigController::disconnectHandler(const HttpRequestPtr &req,
         return;
     }
 
-    clients[hostPort].st = NodeStatus::inactive;
+    clients[hostPort].st = nodeStatus::Inactive;
     //todo what to do with http client;
 
     res = *resp->getJsonObject();

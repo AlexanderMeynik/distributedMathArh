@@ -2,27 +2,29 @@
 #include "common/MeshCreator.h"
 
 #include <matplot/matplot.h>
-namespace ms=meshStorage;
-namespace mp=matplot;
-void plotCoordinates(const std::string &name, FloatType ar, const std::vector<FloatType> &xi) {
-    auto vit=xi.begin();
-    auto middle=vit+xi.size()/2;
 
-    std::array<std::vector<FloatType>, 2> dumm=
+namespace ms = meshStorage;
+namespace mp = matplot;
+
+void plotCoordinates(const std::string &name, FloatType ar, const std::vector<FloatType> &xi) {
+    auto vit = xi.begin();
+    auto middle = vit + xi.size() / 2;
+
+    std::array<std::vector<FloatType>, 2> dumm =
             {
-                    std::vector<FloatType>(vit,middle),
-                    std::vector<FloatType>(middle,xi.end())
+                    std::vector<FloatType>(vit, middle),
+                    std::vector<FloatType>(middle, xi.end())
             };
-    plotCoordinates(name,ar,dumm);
+    plotCoordinates(name, ar, dumm);
 
 }
 
 void plotFunction(const std::string &filename, const ms::MeshCreator &mesh) {
     auto ax = matplot::gca();
-    auto data_arr=sphericalTransformation(mesh);
-    ax->surf(ms::unflatten(data_arr[0],mesh.dimensions),
-             ms::unflatten(data_arr[1],mesh.dimensions),
-             ms::unflatten(data_arr[2],mesh.dimensions))
+    auto data_arr = sphericalTransformation(mesh);
+    ax->surf(ms::unflatten(data_arr[0], mesh.dimensions),
+             ms::unflatten(data_arr[1], mesh.dimensions),
+             ms::unflatten(data_arr[2], mesh.dimensions))
             ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
     ax->view(213, 22);
     ax->xlim({-40, 40});

@@ -1,9 +1,5 @@
 #pragma once
 
-#ifndef DISTRIBUTED_MATH_ARH_PRINTERS_H
-#define DISTRIBUTED_MATH_ARH_PRINTERS_H
-
-
 #include <limits>
 
 #include <json/json.h>
@@ -18,9 +14,9 @@ namespace printUtils {
 
     using shared::FloatType;
     using printUtils::IosStatePreserve, printUtils::IosStateScientific;
-    namespace sh=shared;
+    namespace sh = shared;
 
-    namespace ms=meshStorage;
+    namespace ms = meshStorage;
 
     /**
      * @brief Print mesh to supplied std::ostream
@@ -32,10 +28,10 @@ namespace printUtils {
      * @param eigenForm
      */
     void printMesh(std::ostream &out,
-                   const ms::MeshCreator&mesh,
-                   const ioFormat&form=ioFormat::Serializable,
-                   bool printDims=true,
-                   bool printLims=true,
+                   const ms::MeshCreator &mesh,
+                   const ioFormat &form = ioFormat::Serializable,
+                   bool printDims = true,
+                   bool printLims = true,
                    const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
     /**
@@ -56,9 +52,9 @@ namespace printUtils {
      * @param printLims
      * @return Json::Value with serialized meshCreator
      */
-    Json::Value toJson(const ms::MeshCreator&mesh,
-                       bool printDims=true,
-                       bool printLims=true);
+    Json::Value toJson(const ms::MeshCreator &mesh,
+                       bool printDims = true,
+                       bool printLims = true);
 
     /**
      * @brief Prints one dimensional Collection using Eigen format
@@ -73,10 +69,10 @@ namespace printUtils {
              std::is_floating_point_v<typename Collection::value_type>
     void inline oneDimSerialize(std::ostream &out,
                                 const Collection &col,
-                                bool printSize= true,
+                                bool printSize = true,
                                 const EFormat &eigenForm = EFormat()) {
         auto map = toEigenRowVector(col);
-        if(printSize) {
+        if (printSize) {
             out << col.size() << '\n';
         }
         out << map.format(eigenForm);
@@ -90,8 +86,8 @@ namespace printUtils {
      * @param eigenForm
      */
     void matrixPrint1D(std::ostream &out,
-                       const commonTypes::matrixType  &matr,
-                       bool printSize= true,
+                       const commonTypes::matrixType &matr,
+                       bool printSize = true,
                        const EFormat &eigenForm = EFormat());
 
     /**
@@ -102,9 +98,9 @@ namespace printUtils {
      * @param eigenForm
      */
     void matrixPrint2D(std::ostream &out,
-                              const commonTypes::matrixType  &matr,
-                              bool printDims= true,
-                              const EFormat &eigenForm = EIGENF(EigenPrintFormats::MatrixFormat1));
+                       const commonTypes::matrixType &matr,
+                       bool printDims = true,
+                       const EFormat &eigenForm = EIGENF(EigenPrintFormats::MatrixFormat1));
 
     /**
      * @brief Human readable way to print solution vector
@@ -144,7 +140,7 @@ namespace printUtils {
     void printCoordinates(std::ostream &out,
                           const Collection &coord,
                           ioFormat format = ioFormat::Serializable,
-                          bool printSize= true,
+                          bool printSize = true,
                           const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
     /**
@@ -162,7 +158,7 @@ namespace printUtils {
     void printSolution(std::ostream &out,
                        const Collection &sol,
                        ioFormat format = ioFormat::Serializable,
-                       bool printSize= true,
+                       bool printSize = true,
                        const EFormat &eigenForm = EIGENF(EigenPrintFormats::VectorFormat1));
 
 }
@@ -174,7 +170,7 @@ namespace printUtils {
     Json::Value continuousToJson(const Struct &col,
                                  bool printSize) {
         Json::Value res;
-        if(printSize) {
+        if (printSize) {
             res["size"] = col.size();
         }
         for (size_t i = 0; i < col.size(); i++) {
@@ -191,9 +187,9 @@ namespace printUtils {
     int printSolutionFormat1(std::ostream &out,
                              const Collection &solution) {
         int N_ = solution.size() / 4.0;
-        out<<N_<<'\n';
+        out << N_ << '\n';
         out << "Решение системы диполей\n";
-        out<<" Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
+        out << " Ai(x\\ny)\tBi(x\\ny)\tCi(x\\ny)\n";
 
 
         for (int i = 0; i < N_; i++) {
@@ -221,13 +217,13 @@ namespace printUtils {
 
         if constexpr (not myConcepts::HasBracketsNested<Collection>) {
             auto N = col.size() / 2;
-            out<<N<<'\n';
+            out << N << '\n';
             for (int i = 0; i < N; ++i) {
                 out << col[i] << '\t' << col[i + N] << "\n";
             }
         } else {
             auto N = col[0].size();
-            out<<N<<'\n';
+            out << N << '\n';
             for (int i = 0; i < N; ++i) {
                 out << col[0][i] << '\t' << col[1][i] << "\n";
             }
@@ -245,7 +241,7 @@ namespace printUtils {
                        const EFormat &eigenForm) {
         switch (format) {
             case ioFormat::Serializable:
-                oneDimSerialize(out, sol,printSize, eigenForm);
+                oneDimSerialize(out, sol, printSize, eigenForm);
                 break;
             case ioFormat::HumanReadable: {
                 IosStateScientific iosStateScientific(out, out.precision());
@@ -258,14 +254,14 @@ namespace printUtils {
 
     template<typename Collection>
     requires (myConcepts::isOneDimensionalContinuous<Collection> &&
-             std::is_floating_point_v<typename Collection::value_type>)
+              std::is_floating_point_v<typename Collection::value_type>)
     void printCoordinates(std::ostream &out,
                           const Collection &coord,
-                          ioFormat format,bool printSize,
+                          ioFormat format, bool printSize,
                           const EFormat &eigenForm) {
         switch (format) {
             case ioFormat::Serializable:
-                oneDimSerialize(out, coord,printSize, eigenForm);
+                oneDimSerialize(out, coord, printSize, eigenForm);
                 break;
             case ioFormat::HumanReadable: {
                 IosStateScientific iosStateScientific(out, out.precision());
@@ -275,6 +271,3 @@ namespace printUtils {
         }
     }
 }
-
-
-#endif //DISTRIBUTED_MATH_ARH_PRINTERS_H

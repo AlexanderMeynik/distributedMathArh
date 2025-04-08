@@ -11,7 +11,6 @@
 ///amqpCommon namespace
 namespace amqpCommon {
 
-
     /// std::string to AMQP::ExchangeType
     static inline std::unordered_map<std::string, AMQP::ExchangeType> stringToExchangeType
             {
@@ -23,7 +22,7 @@ namespace amqpCommon {
                     {"message_deduplication", AMQP::message_deduplication}
             };
     /// AMQP::ExchangeType to c-string look-up
-    static inline std::array<const char*,6>  exchTypeToStr
+    static inline std::array<const char *, 6> eTypeToStr
             {
                     "fanout",
                     "direct",
@@ -43,9 +42,10 @@ namespace amqpCommon {
         friend bool operator==(const queueBinding &a1, const queueBinding &a2) {
             return std::tie(a1.exchange, a1.routingKey) == std::tie(a2.exchange, a2.routingKey);
         }
-        queueBinding(const std::string&exch,const std::string&key):
-        exchange(exch),
-        routingKey(key){}
+
+        queueBinding(const std::string &exch, const std::string &key) :
+                exchange(exch),
+                routingKey(key) {}
 
         queueBinding(const Json::Value &val) :
                 exchange(val["source"].asString()),
@@ -55,20 +55,18 @@ namespace amqpCommon {
     /**
      * @brief rabbitMQUser class
      */
-    struct rabbitMQUser
-    {
+    struct rabbitMQUser {
         std::string name;
         std::string passwordHash;
         std::vector<std::string> tags;
 
         rabbitMQUser(Json::Value &val) :
-        name(val["name"].asString()),
-        passwordHash(val["password_hash"].asString()),
-        tags()
-        {
+                name(val["name"].asString()),
+                passwordHash(val["password_hash"].asString()),
+                tags() {
             tags.resize(val["tags"].size());
             for (int i = 0; i < tags.size(); ++i) {
-                tags[i]=val["tags"][i].asString();
+                tags[i] = val["tags"][i].asString();
             }
         }
 
@@ -86,19 +84,16 @@ namespace amqpCommon {
             bool durable;
             bool internal;
 
-            exchangeData(const std::string& creator_a,
+            exchangeData(const std::string &creator_a,
                          const AMQP::ExchangeType &type_a,
-                         bool autoDelete_a= false,
-                         bool durable_a= true,
-                         bool internal_a= false):
-                         creator(creator_a),
-                         type(type_a),
-                         autoDelete(autoDelete_a),
-                         durable(durable_a),
-                         internal(internal_a)
-                         {}
-
-
+                         bool autoDelete_a = false,
+                         bool durable_a = true,
+                         bool internal_a = false) :
+                    creator(creator_a),
+                    type(type_a),
+                    autoDelete(autoDelete_a),
+                    durable(durable_a),
+                    internal(internal_a) {}
 
             exchangeData(Json::Value &val) :
                     creator(val["user_who_performed_action"].asString()),
@@ -110,18 +105,18 @@ namespace amqpCommon {
 
             Json::Value toJson() const {
                 Json::Value val;
-                val["user_who_performed_action"]=creator;
-                val["type"]=exchTypeToStr[static_cast<size_t>(type)];
-                val["auto_delete"]=autoDelete;
-                val["durable"]=durable;
-                val["internal"]=internal;
+                val["user_who_performed_action"] = creator;
+                val["type"] = eTypeToStr[static_cast<size_t>(type)];
+                val["auto_delete"] = autoDelete;
+                val["durable"] = durable;
+                val["internal"] = internal;
                 return val;
             }
 
         };
 
-        exchange(const std::string& name_a,exchangeData&&data):name(name_a),
-        dat(std::move(data)){}
+        exchange(const std::string &name_a, exchangeData &&data) : name(name_a),
+                                                                   dat(std::move(data)) {}
 
         exchange(Json::Value &val) :
                 name(val["name"].asString()),
@@ -181,7 +176,6 @@ namespace amqpCommon {
         std::vector<queueBinding> getQueueBindings(const std::string &vhost, const std::string &queue);
 
         std::vector<exchange> getExchanges(const std::string &vhost);
-
 
     private:
         std::string baseUrl;

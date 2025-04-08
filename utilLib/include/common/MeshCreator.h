@@ -1,7 +1,4 @@
 #pragma once
-#ifndef DIPLOM_MESHCREATOR_H
-#define DIPLOM_MESHCREATOR_H
-
 
 #include <iosfwd>
 #include <optional>
@@ -36,10 +33,10 @@ namespace meshStorage {
      */
     template<unsigned Ndots = 61>
     FloatType integrate(const std::function<FloatType(FloatType)> &function,
-                               FloatType left,
-                               FloatType right,
-                               unsigned int max_depth = 5,
-                               FloatType tol = Eigen::NumTraits<FloatType>::epsilon());
+                        FloatType left,
+                        FloatType right,
+                        unsigned int max_depth = 5,
+                        FloatType tol = Eigen::NumTraits<FloatType>::epsilon());
 
 
     template<unsigned Ndots = 61>
@@ -119,7 +116,7 @@ namespace meshStorage {
          * @brief Default MeshCreator constructor
          * @param construct - will allocate memory for data arrays if is true
          */
-        MeshCreator(bool construct=true);
+        MeshCreator(bool construct = true);
 
         /**
          * @brief Computes 2d meshgrid using dims,lims
@@ -166,8 +163,8 @@ namespace meshStorage {
          * @param plotCallback
          */
         void plotAndSave[[deprecated("remove mathplot support")]](const std::string &filename,
-                         const std::function<void(const std::string &filename,
-                                                  const MeshCreator &)> &plotCallback) {
+                                                                  const std::function<void(const std::string &filename,
+                                                                                           const MeshCreator &)> &plotCallback) {
             plotCallback(filename, *this);
         }
 
@@ -187,8 +184,7 @@ namespace meshStorage {
 
 }
 
-namespace meshStorage
-{
+namespace meshStorage {
 
     template<unsigned int Ndots>
     FloatType integrate(const std::function<FloatType(FloatType)> &function,
@@ -253,8 +249,8 @@ namespace meshStorage
 
         for (size_t i = 0; i < b.size(); ++i) {
             for (size_t j = 0; j < a.size(); ++j) {
-                ret[0][i*a.size()+j] = a[j];
-                ret[1][i*a.size()+j] = b[i];
+                ret[0][i * a.size() + j] = a[j];
+                ret[1][i * a.size() + j] = b[i];
             }
         }
         return ret;
@@ -263,5 +259,3 @@ namespace meshStorage
 
 }
 
-
-#endif //DIPLOM_MESHCREATOR_H

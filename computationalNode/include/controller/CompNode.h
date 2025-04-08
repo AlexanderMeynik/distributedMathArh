@@ -1,14 +1,15 @@
 #pragma once
 
 #include <drogon/HttpController.h>
+#include "common/sharedDeclarations.h"
 #include "computationalLib/math_core/TestRunner.h"
-//https://github.com/drogonframework/drogon/wiki/ENG-04-2-Controller-HttpController
+
 using namespace drogon;
+using shared::FloatType;
+
 //todo forward results from nodes
 namespace rest {
-
     namespace v1 {
-
         class AtmqHandler {
         public:
             AtmqHandler() {
@@ -39,12 +40,10 @@ namespace rest {
                         *cc = *cc + 1;
                     }
                 });
-
                 return true;
             }
 
-            void disconenct() {
-
+            void disconnect() {
                 con = false;
                 eventLoop.join();
                 reset();
@@ -60,19 +59,17 @@ namespace rest {
             }
 
             std::atomic<bool> con;
-            std::array<std::string, 2> queues;//todo change to queueq handlers
+            std::array<std::string, 2> queues;//todo combine with producerService
             std::jthread eventLoop;
             std::shared_ptr<int> cc;
-            //maybe store dispatch here.
-            //todo atmqclient
         };
-
 
         class CompNode : public drogon::HttpController<CompNode> {
             std::unordered_map<std::string, std::thread> thrreads;
             std::shared_ptr<AtmqHandler> handler;
-            std::valarray<double> benchRes;//todo double type
-            std::valarray<double> runBench() {
+            std::valarray<FloatType> benchRes;
+
+            std::valarray<FloatType> runBench() {
                 return {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
             }
 

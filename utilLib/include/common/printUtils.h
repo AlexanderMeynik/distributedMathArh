@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DISTRIBUTED_MATH_ARH_PRINTUTILS_H
-#define DISTRIBUTED_MATH_ARH_PRINTUTILS_H
 
 #define EIGENF(form) enumTo.at(static_cast<size_t>(form))
 #define FORMAT_OPT(NAME)  { #NAME,  ioFormat::NAME}
@@ -16,10 +14,9 @@
 /// printUtils namespace
 namespace printUtils {
 
-
     using EFormat = Eigen::IOFormat;
 
-    static constexpr size_t defaultPrec=std::numeric_limits<shared::FloatType>::digits10;
+    static constexpr size_t defaultPrec = std::numeric_limits<shared::FloatType>::digits10;
 
     /**
      * @brief Prints tuple to string
@@ -36,7 +33,6 @@ namespace printUtils {
                               const char *right = ")");
 
 
-
     /**
      * @brief Eformat lookup Table
      */
@@ -48,13 +44,11 @@ namespace printUtils {
         MatrixFormat1
     };
 
-
     /**
      * @brief Casts EigenFormat to Eformat
      * @param fmt
      */
     const EFormat &printEnumToFormat(EigenPrintFormats fmt);
-
 
     /**
      * @brief General IOformat
@@ -66,7 +60,6 @@ namespace printUtils {
         HumanReadable
     };
 
-
     /// String lookup map for ioformat
     static const std::unordered_map<std::string, ioFormat> stringToIoFormat =
             {
@@ -74,9 +67,8 @@ namespace printUtils {
                     FORMAT_OPT(HumanReadable)
             };
 
-
     /// String lookup table for strings
-    static constexpr std::array<const char*,2> ioToStr =
+    static constexpr std::array<const char *, 2> ioToStr =
             {
                     "Serializable",
                     "HumanReadable"
@@ -96,12 +88,13 @@ namespace printUtils {
      * @throws InvalidOption
      */
     std::istream &operator>>(std::istream &in, ioFormat &form);
+
     /**
      * @brief Parser for EFormat
      * @param is
      * @param fmt
      */
-    std::istream& operator>>(std::istream& is, EFormat & fmt);
+    std::istream &operator>>(std::istream &is, EFormat &fmt);
 
     /**
      * @brief Printer for EFormat
@@ -109,7 +102,7 @@ namespace printUtils {
      * @param os
      * @param fmt
      */
-    std::ostream& operator<<(std::ostream& os, const EFormat & fmt);
+    std::ostream &operator<<(std::ostream &os, const EFormat &fmt);
 
     /**
      * @brief elementwise comparison between EFormat
@@ -117,9 +110,7 @@ namespace printUtils {
      * @param rhs
      * @return
      */
-    bool operator==(const EFormat & lhs, const EFormat& rhs);
-
-
+    bool operator==(const EFormat &lhs, const EFormat &rhs);
 
     /**
      * @brief A guard class to save current iostream state
@@ -129,7 +120,7 @@ namespace printUtils {
     public:
         explicit IosStatePreserve(std::ostream &out);
 
-        IosStatePreserve(IosStatePreserve&oother)=delete;
+        IosStatePreserve(IosStatePreserve &oother) = delete;
 
         ~IosStatePreserve();
 
@@ -150,12 +141,10 @@ namespace printUtils {
         explicit IosStateScientific(std::ostream &out, size_t precision = defaultPrec);
 
         ~IosStateScientific();
+
     protected:
         size_t oldPrecision;
     };
-
-
-
 
     template<typename TupleT, std::size_t TupSize>
     std::string tupleToString(const TupleT &tp,
@@ -172,8 +161,4 @@ namespace printUtils {
             return res.str();
         }.operator()(tp, delim, left, right, std::make_index_sequence<TupSize>{});
     }
-
 }
-
-
-#endif //DISTRIBUTED_MATH_ARH_PRINTUTILS_H

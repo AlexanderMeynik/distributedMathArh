@@ -1,16 +1,16 @@
 #pragma once
-#ifndef DIPLOM_SHARED_DECLARATIONS
-#define DIPLOM_SHARED_DECLARATIONS
 
 #include <iosfwd>
 #include <string>
 #include <unordered_map>
+
 /**
  * @brief shared namespace
  * @details This namespace contains multiple forward declarations for types to be use everywhere
  */
 namespace shared {
     using FloatType = double;
+
     /**
      * @brief Common numeric parameters values
      */
@@ -23,7 +23,7 @@ namespace shared {
         static constexpr FloatType eps = 1;
     };
 
-
+    //
     enum class state_t {
         new_,
         old,
@@ -32,7 +32,7 @@ namespace shared {
         print_
     };
 
-    constexpr std::array<const char*,5> stateToStr=
+    constexpr std::array<const char *, 5> stateToStr =
             {
                     "openmp_new",
                     "new",
@@ -70,4 +70,3 @@ namespace shared {
     };
 
 }
-#endif //DIPLOM_SHARED_DECLARATIONS

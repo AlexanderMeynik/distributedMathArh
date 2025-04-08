@@ -1,20 +1,19 @@
 #pragma once
-#ifndef DIPLOM_PLOTINGUTILS_H
-#define DIPLOM_PLOTINGUTILS_H
 
 #include <functional>
 #include "common/commonTypes.h"
+
 using commonTypes::FloatType;
-namespace meshStorage
-{
+namespace meshStorage {
     class MeshCreator;
 }
+
 /**
  * @b Plots 3d mesh as surface using matplot++ callbacks
  * @param filename
  * @param mesh
  */
-void  plotFunction(const std::string& filename,const meshStorage::MeshCreator&mesh);
+void plotFunction(const std::string &filename, const meshStorage::MeshCreator &mesh);
 
 /**
  * @b Plots 2d scatter plot using matplot++ callbacks
@@ -22,7 +21,7 @@ void  plotFunction(const std::string& filename,const meshStorage::MeshCreator&me
  * @param ar
  * @param xi
  */
-void plotCoordinates(const std::string& name, FloatType ar, std::array<std::vector<FloatType >, 2> &xi);
+void plotCoordinates(const std::string &name, FloatType ar, std::array<std::vector<FloatType>, 2> &xi);
 
 /**
  * @b plotCoordinates variant that uses 1d array for xy coordinates
@@ -30,5 +29,4 @@ void plotCoordinates(const std::string& name, FloatType ar, std::array<std::vect
  * @param ar
  * @param xi
  */
-void  plotCoordinates(const std::string& name, FloatType ar, const std::vector<FloatType> &xi);
-#endif //DIPLOM_PLOTINGUTILS_H
+void plotCoordinates(const std::string &name, FloatType ar, const std::vector<FloatType> &xi);

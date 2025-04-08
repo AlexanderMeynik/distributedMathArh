@@ -5,7 +5,6 @@
 namespace amqpCommon {
 
 
-
     void declareQueue(AMQP::Channel &channel,
                       const std::string &queue1,
                       const std::string &exchange1) {
@@ -32,9 +31,10 @@ namespace amqpCommon {
                     std::cout << "Content-Type: " << message.contentType() << '\n';
                     std::cout << "Timestamp: " << message.timestamp() << '\n';
                     for (const auto &key: message.headers().keys()) {
-                        std::cout << "Header [" << key << "] = " << message.headers().operator[](key)<<'\t'<< message.headers().operator[](key).typeID() << '\n';//typeId
+                        std::cout << "Header [" << key << "] = " << message.headers().operator[](key) << '\t'
+                                  << message.headers().operator[](key).typeID() << '\n';//typeId
                     }
-                    std::cout<<'\n';
+                    std::cout << '\n';
                     m_channel.ack(deliveryTag);
                 };
 
@@ -97,7 +97,7 @@ namespace amqpCommon {
 
     amqpPublisherService::amqpPublisherService(const std::string &connectionString,
                                                const std::vector<std::string> &queues)
-                                               :
+            :
             m_service(1),
             m_work(std::make_unique<boost::asio::io_service::work>(m_service)),
             m_handler(m_service, m_work),
@@ -109,7 +109,7 @@ namespace amqpCommon {
             std::cout << fmt::format("Channel error: {}\n", message);
         });
 
-        m_channel.declareExchange(defaultExhc,AMQP::direct).onSuccess(
+        m_channel.declareExchange(defaultExhc, AMQP::direct).onSuccess(
                 [] {
                     std::cout << fmt::format("Exchange \"{}\" declared\n", defaultExhc);
                 }).onError([](const char *msg) {
@@ -117,15 +117,15 @@ namespace amqpCommon {
         });
 
         for (const auto &q: m_queues) {
-            std::cout<<m_queues.size()<<'\n';
-            declareQueue(m_channel,q,q);
+            std::cout << m_queues.size() << '\n';
+            declareQueue(m_channel, q, q);
         }
 
     }
 
     void amqpPublisherService::removeQueue(size_t i) {
         if (i >= m_queues.size()) {
-            throw shared::outOfRange(i,0,m_queues.size()-1);
+            throw shared::outOfRange(i, 0, m_queues.size() - 1);
         }
         m_queues.erase(m_queues.begin() + i);
 
@@ -133,7 +133,7 @@ namespace amqpCommon {
 
     void amqpPublisherService::addQueue(const std::string &queue, bool create) {
         if (create) {
-           declareQueue(m_channel, queue, defaultExhc);
+            declareQueue(m_channel, queue, defaultExhc);
         }
         m_queues.push_back(queue);
     }
@@ -145,7 +145,7 @@ namespace amqpCommon {
 
     void amqpPublisherService::publish(EnvelopePtr message, size_t i) {
         if (i >= m_queues.size()) {
-            throw shared::outOfRange(i,0,m_queues.size()-1);
+            throw shared::outOfRange(i, 0, m_queues.size() - 1);
         }
         message->setTimestamp(std::chrono::high_resolution_clock().now().time_since_epoch().count());
         m_channel.publish(defaultExhc, m_queues[i], *message);

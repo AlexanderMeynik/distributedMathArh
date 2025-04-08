@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DISTRIBUTED_MATH_ARH_PARSERS_H
-#define DISTRIBUTED_MATH_ARH_PARSERS_H
 
 #include <iostream>
 
@@ -14,13 +12,15 @@
 
 #include "common/MeshCreator.h"
 #include "common/myConcepts.h"
+
 /// printUtils namespace
 namespace printUtils {
     using namespace shared;
     using myConcepts::isOneDimensionalContinuous;
-    namespace ms=meshStorage;
-    namespace ct=commonTypes;
+    namespace ms = meshStorage;
+    namespace ct = commonTypes;
 
+    //todo we can get array size for json
     /**
      * @brief Parse one dimensional array from json
      * @tparam Collection
@@ -29,7 +29,7 @@ namespace printUtils {
      */
     template<isOneDimensionalContinuous Collection>
     Collection jsonToContinuous(Json::Value &val,
-                                std::optional<size_t > sz= std::nullopt);
+                                std::optional<size_t> sz = std::nullopt);
 
     /**
      * @brief Parse MeshCreator from json
@@ -38,11 +38,9 @@ namespace printUtils {
      * @param limOpt
      * @return
      */
-    ms::MeshCreator fromJson(Json::Value&val,
-                             std::optional<ms::dimType> dimOpt=std::nullopt,
-                             std::optional<ms::limType> limOpt=std::nullopt);
-
-
+    ms::MeshCreator fromJson(Json::Value &val,
+                             std::optional<ms::dimType> dimOpt = std::nullopt,
+                             std::optional<ms::limType> limOpt = std::nullopt);
 
 
     /**
@@ -55,8 +53,8 @@ namespace printUtils {
      */
     template<isOneDimensionalContinuous Struct>
     Struct parseOneDim(std::istream &in,
-                       std::optional<size_t> sizeOpt=std::nullopt,
-                       const EFormat& ef=EFormat());
+                       std::optional<size_t> sizeOpt = std::nullopt,
+                       const EFormat &ef = EFormat());
 
     /**
      * @brief Parse matrix
@@ -65,8 +63,8 @@ namespace printUtils {
      * @param ef
      */
     ct::matrixType parseMatrix(std::istream &in,
-                                        std::optional<ct::dimType> dimOpt=std::nullopt,
-                                        const EFormat& ef= EFormat());
+                               std::optional<ct::dimType> dimOpt = std::nullopt,
+                               const EFormat &ef = EFormat());
 
 
     /**
@@ -81,8 +79,8 @@ namespace printUtils {
     template<isOneDimensionalContinuous Struct>
     Struct parseSolution(std::istream &in,
                          ioFormat format = ioFormat::Serializable,
-                         std::optional<size_t> sizeOpt=std::nullopt,
-                         const EFormat& ef=EFormat());
+                         std::optional<size_t> sizeOpt = std::nullopt,
+                         const EFormat &ef = EFormat());
 
     /**
      * @brief Parse coordinates function interface
@@ -95,9 +93,9 @@ namespace printUtils {
      */
     template<isOneDimensionalContinuous Struct>
     Struct parseCoordinates(std::istream &in,
-                         ioFormat format = ioFormat::Serializable,
-                         std::optional<size_t> sizeOpt=std::nullopt,
-                         const EFormat& ef=EFormat());
+                            ioFormat format = ioFormat::Serializable,
+                            std::optional<size_t> sizeOpt = std::nullopt,
+                            const EFormat &ef = EFormat());
 
     /**
      * @brief Parses mesh creator from provided istream
@@ -110,18 +108,17 @@ namespace printUtils {
      */
     meshStorage::MeshCreator parseMeshFrom(std::istream &in,
                                            ioFormat format = ioFormat::Serializable,
-                                           std::optional<ms::dimType> dimOpt=std::nullopt,
-                                           std::optional<ms::limType> limOpt=std::nullopt,
-                                           const EFormat& ef= EFormat());
+                                           std::optional<ms::dimType> dimOpt = std::nullopt,
+                                           std::optional<ms::limType> limOpt = std::nullopt,
+                                           const EFormat &ef = EFormat());
 
 }
 
 
-namespace printUtils
-{
+namespace printUtils {
     template<isOneDimensionalContinuous Struct>
     Struct jsonToContinuous(Json::Value &val,
-                            std::optional<size_t > sz) {
+                            std::optional<size_t> sz) {
 
         size_t size = sz.value_or(val["size"].asUInt());
         Struct res(size);
@@ -135,20 +132,16 @@ namespace printUtils
     template<isOneDimensionalContinuous Struct>
     Struct parseOneDim(std::istream &in,
                        std::optional<size_t> sizeOpt,
-                       const EFormat& ef) {
+                       const EFormat &ef) {
 
         size_t size;
-        if(sizeOpt.has_value())
-        {
-            size=sizeOpt.value();
-        }
-        else
-        {
-            in>>size;
+        if (sizeOpt.has_value()) {
+            size = sizeOpt.value();
+        } else {
+            in >> size;
         }
 
-        if(!in)
-        {
+        if (!in) {
             throw ioError(to_string(in.rdstate()));
         }
 
@@ -156,7 +149,7 @@ namespace printUtils
 
 
         for (size_t i = 0; i < size; ++i) {
-            in>>res[i];
+            in >> res[i];
         }
         return res;
     }
@@ -171,32 +164,31 @@ namespace printUtils
         Struct res;
         switch (format) {
             case ioFormat::Serializable:
-                return parseOneDim<Struct>(in,sizeOpt,ef);
+                return parseOneDim<Struct>(in, sizeOpt, ef);
             case ioFormat::HumanReadable: {
                 size_t N;
-                in>>N;
+                in >> N;
                 std::string dummy;
-                std::getline(in,dummy);
-                std::getline(in,dummy);
-                std::getline(in,dummy);
+                std::getline(in, dummy);
+                std::getline(in, dummy);
+                std::getline(in, dummy);
 
-                if(!in)
-                {
+                if (!in) {
                     throw ioError(to_string(in.rdstate()));
                 }
 
 
-                Struct sol(N*4);
+                Struct sol(N * 4);
 
                 for (int i = 0; i < N; i++) {
-                    FloatType ax,bx,cx;
-                    FloatType ay,by,cy;
-                    in>>ax>>bx>>cx>>ay>>by>>cy;
+                    FloatType ax, bx, cx;
+                    FloatType ay, by, cy;
+                    in >> ax >> bx >> cx >> ay >> by >> cy;
 
-                    sol[2*i]=ax;
-                    sol[2 * i + 2 * N]=bx;
-                    sol[2*i+1]=ay;
-                    sol[2 * i + 1 + 2 * N]=by;
+                    sol[2 * i] = ax;
+                    sol[2 * i + 2 * N] = bx;
+                    sol[2 * i + 1] = ay;
+                    sol[2 * i + 1 + 2 * N] = by;
 
                 }
                 return sol;
@@ -214,22 +206,21 @@ namespace printUtils
         Struct res;
         switch (format) {
             case ioFormat::Serializable:
-                return parseOneDim<Struct>(in,sizeOpt,ef);
+                return parseOneDim<Struct>(in, sizeOpt, ef);
             case ioFormat::HumanReadable: {
                 std::string dummy;
-                std::getline(in,dummy);
+                std::getline(in, dummy);
                 size_t N;
-                in>>N;
-                if(!in)
-                {
+                in >> N;
+                if (!in) {
                     throw ioError(to_string(in.rdstate()));
                 }
 
-                Struct coord(N*2);
+                Struct coord(N * 2);
 
                 for (int i = 0; i < N; i++) {
-                    FloatType x,y;
-                    in>>coord[i]>>coord[i+N];
+                    FloatType x, y;
+                    in >> coord[i] >> coord[i + N];
                 }
                 return coord;
 
@@ -237,8 +228,4 @@ namespace printUtils
         }
         return res;
     }
-
-
-
 }
-#endif //DISTRIBUTED_MATH_ARH_PARSERS_H

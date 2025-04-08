@@ -1,6 +1,4 @@
 #pragma once
-#ifndef DIPLOM_MYCONCEPTS_H
-#define DIPLOM_MYCONCEPTS_H
 
 #include <type_traits>
 #include <concepts>
@@ -154,7 +152,4 @@ namespace myConcepts {
 
         return collection[i1][i2];
     }
-
-
 }
-#endif //DIPLOM_MYCONCEPTS_H
