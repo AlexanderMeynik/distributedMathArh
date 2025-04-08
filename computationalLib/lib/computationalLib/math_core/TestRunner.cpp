@@ -82,7 +82,7 @@ void TestRunner::generateFunction() {
     meshStorage::MeshCreator mesh;
     mesh.constructMeshes();
     auto result = mesh.data[2];
-    //clocks_[2].tik();
+
     if (inner_state == state_t::openmp_new) {
 #pragma omp parallel for default(none) shared(Nsym_, solutions_, result) firstprivate(d1, mesh)
         for (int i = 0; i < Nsym_.value(); ++i) {
@@ -109,9 +109,8 @@ void TestRunner::generateFunction() {
 
             auto filename = getString(this->dir_.value(), "sim", i, "txt");
             auto fout = openOrCreateFile(filename);
-            /*mesh.printDec(fout);//todo reuse
-            mesh.plotSpherical(getString(this->dir_.value(), "sim", i, "png"));//todo вставить реализацию
-            *///plotCoordinates(getString(this->dir_.value(), "coord", i, "png"), aRange_.value(),coords_[i]);
+            //mesh.printDec(fout);//use print mesh
+
 
             fout.close();
         }
@@ -127,8 +126,8 @@ void TestRunner::generateFunction() {
         out1 << "Значение  целевой функции усреднённой по " << Nsym_.value() << " симуляциям "
              << "для конфигураций, состоящих из " << N_.value() << " диполей\n";
         mesh.data[2] = result;
-        /* mesh.printDec(out1);
-         mesh.plotSpherical(dir_.value() + "avg.png");*///todo redo
+        // mesh.printDec(out1);
+
         out1.close();
 
     }

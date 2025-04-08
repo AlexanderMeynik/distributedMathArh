@@ -11,7 +11,6 @@ namespace generators {
 
     template<typename randomDevice>
     struct generator {
-        //todo this one work only for 1 dimensional arrays
         generator() {
             std::random_device rd;
             device = randomDevice(rd());

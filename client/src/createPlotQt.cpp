@@ -6,7 +6,7 @@
 #include "MeshPlot.h"
 
 using namespace commonTypes;
-using namespace printUtils;//todo do betetr
+using namespace printUtils;
 static inline std::string res_dir_path = "../../../res/";
 static inline std::string subdir = res_dir_path.append("configdata7_25");
 using coordType = std::vector<std::vector<FloatType >>;
@@ -49,8 +49,6 @@ std::vector<ttype> inline getMeshes() {
 #include <common/printUtils.h>
 #include <QPushButton>
 
-
-//todo resolve driver issue https://github.com/microsoft/wslg/issues/1295
 
 using shared::FloatType;
 

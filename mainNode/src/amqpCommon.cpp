@@ -39,8 +39,8 @@ namespace amqpCommon {
                 };
 
 
-        auto startCb = [](const std::string &consumertag) {
-            std::cout << "Consumption started successfully with consumer tag: " << consumertag << '\n';
+        auto startCb = [](const std::string &consumerTag) {
+            std::cout << "Consumption started successfully with consumer tag: " << consumerTag << '\n';
         };
 
 

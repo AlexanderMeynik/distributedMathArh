@@ -72,7 +72,6 @@ namespace timing {
         /**
          * This function starts new calculation section
          * @param location source location of call
-         * //todo fix
          * @attention You must mirror every tik like call with
          * @ref timing::ClockArray::tak() "tak()"
          */
@@ -236,7 +235,6 @@ namespace timing {
     clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::reset() {
         if (!toTak.empty()) {
             throw std::logic_error("Missing tak statements for tik ones");
-            //todo serialize
         }
         this->timers.clear();
         this->startIngTimers.clear();

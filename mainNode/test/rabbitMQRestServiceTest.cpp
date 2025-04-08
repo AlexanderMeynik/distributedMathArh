@@ -113,7 +113,7 @@ TEST_F(RabbitMQRestServiceTest, BindQueueToExchange_NoExchangeFound) {
 
 
     EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr->bindQueueToExchange(vhost, qq, "nonExistentExhc", rKey),
-                               shared::httpError, std::make_tuple(404));//todo can return body with reason
+                               shared::httpError, std::make_tuple(404));
 
 }
 

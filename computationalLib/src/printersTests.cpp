@@ -48,7 +48,6 @@ int main() {
 
     std::cout << toEigenMatrix(ss, 1).format(EIGENF(EigenPrintFormats::MatrixFormat1));
 
-    //todo test my expections
     try {
         throw lessException(1, 2);
     }
@@ -67,7 +66,6 @@ int main() {
     std::stringstream sstr;
     printMesh(std::cout, mm);
     printMesh(sstr, mm);
-    //todo print serializtion type(into vec with io format(if it exist than dont read))
 
     auto new_mesh = parseMeshFrom(sstr);
 
@@ -75,7 +73,6 @@ int main() {
     printMesh(std::cout, new_mesh);
 
 
-    //todo test eformat functions
     std::stringstream sstr2;
     auto s1 = EIGENF(EigenPrintFormats::BasicOneDimensionalVector);
     sstr2 << s1;
@@ -87,7 +84,4 @@ int main() {
     std::cout << ((sssss == s1) ? "equal" : "not equul");
 
 
-    //todo move array equal checks
-
-    //printMesh(mm,std::cout,ioFormat::HumanReadable);
 }

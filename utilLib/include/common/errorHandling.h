@@ -131,6 +131,7 @@ namespace shared {
     /**
      * @brief HttpError class
      */
+    //todo can return body with reason
     DEFINE_EXCEPTION_IN(httpError, "HTTP error: {} !", long)
 
     /**

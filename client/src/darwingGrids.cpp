@@ -18,40 +18,40 @@ std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, 
     //long double lim= ceil(r+r/l);
     long double lims[2] = {ceil(-r / l), floor(r / l)};
 
-    long funccount = floor(r / l) - ceil(-r / l) + 1;
+    long funcCount = floor(r / l) - ceil(-r / l) + 1;
 
     if (center) {
         lims[0]--;
-        funccount++;
+        funcCount++;
     }
 
 
-    std::vector<long double> x_1 = meshStorage::myLinspace(lims[0] * l, lims[1] * l, funccount);
+    std::vector<long double> x_1 = meshStorage::myLinspace(lims[0] * l, lims[1] * l, funcCount);
     //std::vector<double>y= myLinspace(-lim[0]*l,-lim[1]*l,functiont);
 
 
 
-    std::vector<double> x(funccount * funccount, 0);
-    std::vector<double> y(funccount * funccount, 0);
+    std::vector<double> x(funcCount * funcCount, 0);
+    std::vector<double> y(funcCount * funcCount, 0);
 
-    for (int i = 0; i < funccount; ++i) {
-        for (int j = 0; j < funccount; ++j) {
+    for (int i = 0; i < funcCount; ++i) {
+        for (int j = 0; j < funcCount; ++j) {
 
-            x[j + i * funccount] = x_1[j];
-            y[j + i * funccount] = x_1[i];
+            x[j + i * funcCount] = x_1[j];
+            y[j + i * funcCount] = x_1[i];
 
-            x[j + i * funccount] += a;
-            y[j + i * funccount] += b;
+            x[j + i * funcCount] += a;
+            y[j + i * funcCount] += b;
 
         }
     }
 
     if (center) {
-        for (int i = 0; i < funccount; ++i) {
-            for (int j = 0; j < funccount; ++j) {
+        for (int i = 0; i < funcCount; ++i) {
+            for (int j = 0; j < funcCount; ++j) {
 
-                x[j + i * funccount] += l / 2.0;
-                y[j + i * funccount] += l / 2.0;
+                x[j + i * funcCount] += l / 2.0;
+                y[j + i * funcCount] += l / 2.0;
 
             }
         }
@@ -60,7 +60,7 @@ std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, 
 
     std::vector<double> x_filtered, y_filtered;
 
-    for (int i = 0; i < funccount * funccount; ++i) {
+    for (int i = 0; i < funcCount * funcCount; ++i) {
         if (std::sqrt(pow(x[i] - a, 2) + pow(y[i] - b, 2)) < r) {
             x_filtered.push_back(x[i]);
             y_filtered.push_back(y[i]);
@@ -70,9 +70,9 @@ std::array<std::vector<double>, 2> squareGrid(double l, double r, double a = 0, 
     return {x_filtered, y_filtered};
 }
 
-//todo implement generator
+//todo implement generator(remove?)
 std::array<std::vector<double>, 2>
-triangularGrid(double l, double r, double a = 0, double b = 0, bool center = false)//r-r,l-длинна
+triangularGrid(double l, double r, double a = 0, double b = 0, bool center = false)//r-r, l-длинна
 {
     long double c1 = 1 / 2.0;
     long double c2 = sqrt(3) / 2.0;
@@ -99,7 +99,6 @@ triangularGrid(double l, double r, double a = 0, double b = 0, bool center = fal
 
 
 
-    //todo 2 круг симметричная фигура-> можно подсчитать результаты в 1 четверти
     //а что будет если поместить треугольники так, чробы центр центрального был в центре круга
     if (center) {
         l_t[0]--;

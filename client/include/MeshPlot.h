@@ -15,7 +15,9 @@ using shared::FloatType;
  * @b Surface plot widget for mesh
  */
 class MeshPlot : public QWidget {
+
 Q_OBJECT
+
 public:
 
     MeshPlot();

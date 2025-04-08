@@ -57,7 +57,6 @@ namespace benchUtils {
     public:
         using clk1 = clockType<range>;
 
-        //todo check whether benchmark name can be used as a path
         /**
          *
          * @param name -benchmark name
@@ -161,7 +160,6 @@ namespace benchUtils {
         for (auto &tuple: cart) {
             auto itername = benchmarkName + std::apply(benchNameGenerator, tuple);
             std::apply(lambda, tuple);
-            /*std::cout<<itername<<'\t'<<mul<<'\n';*///todo logging
 
             snapshotTimers(clkArr, tupleToString(tuple, "\t", "", "") + "\t", "\n", mul);
 

@@ -87,7 +87,7 @@ int main(int argc, char *argv[]) {
         double a;
         std::cin >> N >> Ns >> a;
         fetchData(N, Ns, a);
-    }//todo qdebug prints values after
+    }
     app.quit();//how to exit qt epplication(canse clients)
     return app.exec();
 }

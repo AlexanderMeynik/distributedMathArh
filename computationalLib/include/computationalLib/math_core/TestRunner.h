@@ -43,7 +43,6 @@ public:
                state_t state = state_t::openmp_new);
 
     template<typename... Args>
-    //todo переделать часть в сервере для генерации конфигураций
     void generateGeneralized(const std::function<coordinates(Args...)> &functor, Args ... args) {
         coords_.resize(Nsym_.value());
         for (int i = 0; i < Nsym_; ++i) {
