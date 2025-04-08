@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['outofrange_0',['outOfRange',['../classshared_1_1outOfRange.html',1,'shared']]],
-  ['overload_1',['overload',['../structcore__intrefaces_1_1overload.html',1,'core_intrefaces']]]
+  ['httperror_0',['httpError',['../classshared_1_1httpError.html',1,'shared']]]
 ];

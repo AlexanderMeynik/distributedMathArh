@@ -1,5 +1,14 @@
 var annotated_dup =
 [
+    [ "amqpCommon", "namespaceamqpCommon.html", [
+      [ "amqpConsumerService", "classamqpCommon_1_1amqpConsumerService.html", "classamqpCommon_1_1amqpConsumerService" ],
+      [ "amqpPublisherService", "classamqpCommon_1_1amqpPublisherService.html", "classamqpCommon_1_1amqpPublisherService" ],
+      [ "exchange", "structamqpCommon_1_1exchange.html", "structamqpCommon_1_1exchange" ],
+      [ "MyHandler", "classamqpCommon_1_1MyHandler.html", "classamqpCommon_1_1MyHandler" ],
+      [ "queueBinding", "structamqpCommon_1_1queueBinding.html", "structamqpCommon_1_1queueBinding" ],
+      [ "RabbitMQRestService", "classamqpCommon_1_1RabbitMQRestService.html", "classamqpCommon_1_1RabbitMQRestService" ],
+      [ "rabbitMQUser", "structamqpCommon_1_1rabbitMQUser.html", "structamqpCommon_1_1rabbitMQUser" ]
+    ] ],
     [ "commonTypes", "namespacecommonTypes.html", [
       [ "returnToDataTypeT", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT", null ],
       [ "returnToDataTypeT< returnType::ArrayEigenVectors >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1ArrayEigenVectors_01_4", "namespacecommonTypes_structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1ArrayEigenVectors_01_4_dup" ],
@@ -33,18 +42,23 @@ var annotated_dup =
       ] ]
     ] ],
     [ "shared", "namespaceshared.html", [
+      [ "curlError", "classshared_1_1curlError.html", "classshared_1_1curlError" ],
+      [ "httpError", "classshared_1_1httpError.html", "classshared_1_1httpError" ],
       [ "InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
       [ "invalidSizes2", "classshared_1_1invalidSizes2.html", "classshared_1_1invalidSizes2" ],
       [ "ioError", "classshared_1_1ioError.html", "classshared_1_1ioError" ],
       [ "mismatchedSizes", "classshared_1_1mismatchedSizes.html", "classshared_1_1mismatchedSizes" ],
-      [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
+      [ "myException", "classshared_1_1myException.html", "classshared_1_1myException" ],
       [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
       [ "params", "structshared_1_1params.html", null ]
     ] ],
     [ "timing", "namespacetiming.html", [
       [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ]
     ] ],
+    [ "authHandler", "classauthHandler.html", "classauthHandler" ],
+    [ "basicAuthHandler", "classbasicAuthHandler.html", "classbasicAuthHandler" ],
     [ "CompNodeService", "classCompNodeService.html", "classCompNodeService" ],
+    [ "curlWrapper", "classcurlWrapper.html", "classcurlWrapper" ],
     [ "functable", "TestRunner_8h.html#structfunctable", "TestRunner_8h_structfunctable" ],
     [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ],
     [ "TestRunner", "classTestRunner.html", "classTestRunner" ]

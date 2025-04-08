@@ -1,6 +1,6 @@
 var Parsers_8h =
 [
-    [ "DATA_DEDUPLICATION_SERVICE_PARSERS_H", "Parsers_8h.html#af8b613c20a2ac0515b81f7c933209d94", null ],
+    [ "DISTRIBUTED_MATH_ARH_PARSERS_H", "Parsers_8h.html#aa68e19c42c238cf1c8edf6a720d18da9", null ],
     [ "fromJson", "Parsers_8h.html#a0a762198703f22aa507828bf90cb6444", null ],
     [ "jsonToContinuous", "Parsers_8h.html#a3b78025903800f80ef0967c1967cb252", null ],
     [ "jsonToContinuous", "Parsers_8h.html#a51da12a58c8ff6539ac50c616cbabe3f", null ],

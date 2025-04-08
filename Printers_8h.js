@@ -1,6 +1,6 @@
 var Printers_8h =
 [
-    [ "DATA_DEDUPLICATION_SERVICE_PRINTERS_H", "Printers_8h.html#af8d4e01e6bcc7901c3947afcb362c9b9", null ],
+    [ "DISTRIBUTED_MATH_ARH_PRINTERS_H", "Printers_8h.html#aeb1ab41d898db67d5744536b2ca78577", null ],
     [ "continuousToJson", "Printers_8h.html#af1ee082d408499861726fbd8dee2f812", null ],
     [ "continuousToJson", "Printers_8h.html#a918b2531c2fb6f794ed6cf7da718310d", null ],
     [ "matrixPrint1D", "Printers_8h.html#a838ae19802a86bc9e1e1454bbab28b86", null ],

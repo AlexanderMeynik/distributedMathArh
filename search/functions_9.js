@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['loadfrommatrix_0',['loadFromMatrix',['../classdipoles_1_1Dipoles.html#af753b29c6eb24bb089ec666dcf1b2d0d',1,'dipoles::Dipoles']]]
+  ['jsontocontinuous_0',['jsontocontinuous',['../namespaceprintUtils.html#a51da12a58c8ff6539ac50c616cbabe3f',1,'printUtils::jsonToContinuous(Json::Value &amp;val, std::optional&lt; size_t &gt; sz=std::nullopt)'],['../namespaceprintUtils.html#a3b78025903800f80ef0967c1967cb252',1,'printUtils::jsonToContinuous(Json::Value &amp;val, std::optional&lt; size_t &gt; sz)']]]
 ];

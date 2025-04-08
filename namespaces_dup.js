@@ -1,5 +1,6 @@
 var namespaces_dup =
 [
+    [ "amqpCommon", "namespaceamqpCommon.html", "namespaceamqpCommon" ],
     [ "chronoClock", "namespacechronoClock.html", [
       [ "chronoClockTemplate", "namespacechronoClock.html#af1e4a1cb115bedfcc316ccfdbddc3b64", null ],
       [ "clockType", "namespacechronoClock.html#a862ace4683b2169dcb7ef8598b1a67c7", null ],

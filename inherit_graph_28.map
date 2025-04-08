@@ -1,0 +1,19 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,153,124,179"/>
+<area shape="rect" id="Node000001" href="$classshared_1_1myException.html" title="Default parent for user defined exception." alt="" coords="172,153,331,179"/>
+<area shape="poly" id="edge9_Node000000_Node000001" title=" " alt="" coords="138,163,172,163,172,169,138,169"/>
+<area shape="rect" id="Node000002" href="$classshared_1_1InvalidOption.html" title="InvalidOption class." alt="" coords="393,5,554,31"/>
+<area shape="poly" id="edge10_Node000001_Node000002" title=" " alt="" coords="268,141,314,89,344,63,377,40,403,28,406,33,380,44,347,67,318,93,272,144"/>
+<area shape="rect" id="Node000003" href="$classshared_1_1curlError.html" title="HttpError class." alt="" coords="409,55,538,80"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="280,143,325,115,378,89,411,78,413,83,380,94,328,120,283,148"/>
+<area shape="rect" id="Node000004" href="$classshared_1_1httpError.html" title="HttpError class." alt="" coords="408,104,539,129"/>
+<area shape="poly" id="edge12_Node000001_Node000004" title=" " alt="" coords="322,148,415,127,416,132,323,153"/>
+<area shape="rect" id="Node000005" href="$classshared_1_1invalidSizes2.html" title="Error template that captures several size." alt="" coords="393,153,553,179"/>
+<area shape="poly" id="edge13_Node000001_Node000005" title=" " alt="" coords="345,163,393,163,393,169,345,169"/>
+<area shape="rect" id="Node000006" href="$classshared_1_1ioError.html" title="ioError class" alt="" coords="415,203,532,228"/>
+<area shape="poly" id="edge14_Node000001_Node000006" title=" " alt="" coords="323,179,416,200,415,205,322,184"/>
+<area shape="rect" id="Node000007" href="$classshared_1_1mismatchedSizes.html" title=" " alt="" coords="379,252,568,277"/>
+<area shape="poly" id="edge15_Node000001_Node000007" title=" " alt="" coords="284,184,328,211,380,237,416,249,415,254,378,242,325,216,281,188"/>
+<area shape="rect" id="Node000008" href="$classshared_1_1outOfRange.html" title="outOfRange class" alt="" coords="398,301,549,327"/>
+<area shape="poly" id="edge16_Node000001_Node000008" title=" " alt="" coords="273,188,318,238,348,264,380,286,409,299,407,304,377,291,344,268,314,242,269,191"/>
+</map>

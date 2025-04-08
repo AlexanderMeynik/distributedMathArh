@@ -1,0 +1,30 @@
+<map id="/home/runner/work/distributedMathArh/distributedMathArh/mainNode/include/amqpRestService.h" name="/home/runner/work/distributedMathArh/distributedMathArh/mainNode/include/amqpRestService.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="134,5,409,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,68,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,63,82,106,80,101,199,58"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="258,181,317,207"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="186,63,158,77,137,93,128,112,128,121,134,132,156,155,185,171,215,181,245,187,244,192,214,186,182,175,153,159,129,135,123,123,122,111,133,90,155,72,184,58"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="144,108,268,133"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="253,62,225,99,221,95,249,58"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="292,108,384,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="294,58,323,95,318,99,290,62"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="408,108,599,133"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="343,58,460,101,458,106,341,63"/>
+<area shape="rect" id="Node000007" href="$restUtils_8h.html" title=" " alt="" coords="623,108,712,133"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="393,57,609,104,608,109,392,63"/>
+<area shape="poly" id="edge7_Node000007_Node000003" title=" " alt="" coords="623,134,610,136,331,188,330,182,610,131,622,128"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="522,181,599,207"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="652,136,591,176,588,171,649,131"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="624,181,711,207"/>
+<area shape="poly" id="edge9_Node000007_Node000009" title=" " alt="" coords="670,134,670,168,665,168,665,134"/>
+<area shape="rect" id="Node000010" href="$errorHandling_8h.html" title=" " alt="" coords="735,181,919,207"/>
+<area shape="poly" id="edge10_Node000007_Node000010" title=" " alt="" coords="694,131,790,173,788,178,692,136"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="648,255,735,280"/>
+<area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="807,209,727,251,724,246,804,204"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="759,255,815,280"/>
+<area shape="poly" id="edge12_Node000010_Node000012" title=" " alt="" coords="823,208,803,244,798,241,818,206"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="840,255,895,280"/>
+<area shape="poly" id="edge13_Node000010_Node000013" title=" " alt="" coords="836,206,856,241,852,244,832,208"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="919,255,1024,280"/>
+<area shape="poly" id="edge14_Node000010_Node000014" title=" " alt="" coords="852,204,937,246,934,251,849,209"/>
+</map>

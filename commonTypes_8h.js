@@ -12,7 +12,6 @@ var commonTypes_8h =
     [ "commonTypes::returnToDataTypeT< returnType::StdValarray >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1StdValarray_01_4", [
       [ "type", "namespacecommonTypes.html#a605366251fa881d1eb4e4fa055c46d50", null ]
     ] ],
-    [ "DIPLOM_COMMONTYPES_H", "commonTypes_8h.html#a18269e8fc530c48dd29fe1dbb53bd63a", null ],
     [ "Arr2EigenVec", "commonTypes_8h.html#a9d48ba72197c09a9131c4b7ea736c466", null ],
     [ "dimType", "commonTypes_8h.html#a9bc58298494ebd332e207f54d282ba61", null ],
     [ "directionGraph", "commonTypes_8h.html#a1b52a60c80481023bbe016263116c034", null ],

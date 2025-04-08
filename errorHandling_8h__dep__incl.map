@@ -1,22 +1,28 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/errorHandling.h" name="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/errorHandling.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="663,5,945,60"/>
-<area shape="rect" id="Node000002" href="$printUtils_8h.html" title=" " alt="" coords="677,108,931,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="807,74,807,108,801,108,801,74"/>
-<area shape="rect" id="Node000003" href="$MeshCreator_8h.html" title=" " alt="" coords="578,211,854,265"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="774,175,741,212,737,209,770,171"/>
-<area shape="rect" id="Node000010" href="$Printers_8h.html" title=" " alt="" coords="861,321,1105,375"/>
-<area shape="poly" id="edge10_Node000002_Node000010" title=" " alt="" coords="837,172,962,318,958,322,833,175"/>
-<area shape="rect" id="Node000004" href="$MeshPlot_8h.html" title=" " alt="" coords="40,321,259,375"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="565,263,422,286,271,316,241,323,240,318,270,311,421,281,564,258"/>
-<area shape="rect" id="Node000005" href="$TestRunner_8h.html" title=" " alt="" coords="283,313,571,383"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="634,273,518,316,516,311,632,268"/>
-<area shape="rect" id="Node000009" href="$Parsers_8h.html" title=" " alt="" coords="595,321,837,375"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="719,280,719,320,713,320,713,280"/>
-<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="794,268,919,318,917,323,792,273"/>
-<area shape="rect" id="Node000006" href="$math__core_8h.html" title=" " alt="" coords="5,431,293,500"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="334,390,231,433,229,428,332,386"/>
-<area shape="rect" id="Node000007" href="$CompNode_8h.html" title=" " alt="" coords="317,431,536,500"/>
-<area shape="poly" id="edge6_Node000005_Node000007" title=" " alt="" coords="429,397,429,430,424,430,424,397"/>
-<area shape="rect" id="Node000008" href="$ClusterConfigController_8h.html" title=" " alt="" coords="560,431,779,500"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="511,386,600,428,597,433,509,391"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="293,5,576,60"/>
+<area shape="rect" id="Node000002" href="$amqpCommon_8h.html" title=" " alt="" coords="45,108,301,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="355,67,242,110,240,105,353,62"/>
+<area shape="rect" id="Node000003" href="$restUtils_8h.html" title=" " alt="" coords="325,108,544,163"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="437,74,437,108,432,108,432,74"/>
+<area shape="rect" id="Node000005" href="$printUtils_8h.html" title=" " alt="" coords="589,108,843,163"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="522,62,644,105,642,110,520,67"/>
+<area shape="rect" id="Node000004" href="$amqpRestService_8h.html" title=" " alt="" coords="279,211,553,265"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="430,177,423,211,418,210,425,176"/>
+<area shape="rect" id="Node000006" href="$MeshCreator_8h.html" title=" " alt="" coords="578,211,854,265"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="719,176,719,211,713,211,713,176"/>
+<area shape="rect" id="Node000013" href="$Printers_8h.html" title=" " alt="" coords="861,321,1105,375"/>
+<area shape="poly" id="edge13_Node000005_Node000013" title=" " alt="" coords="796,166,832,185,867,209,897,235,925,265,967,319,963,322,921,268,893,239,864,213,830,190,794,171"/>
+<area shape="rect" id="Node000007" href="$MeshPlot_8h.html" title=" " alt="" coords="40,321,259,375"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="565,268,415,290,271,316,241,323,240,318,270,311,415,285,564,263"/>
+<area shape="rect" id="Node000008" href="$TestRunner_8h.html" title=" " alt="" coords="283,313,571,383"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="634,273,518,316,516,311,632,268"/>
+<area shape="rect" id="Node000012" href="$Parsers_8h.html" title=" " alt="" coords="595,321,837,375"/>
+<area shape="poly" id="edge11_Node000006_Node000012" title=" " alt="" coords="719,280,719,320,713,320,713,280"/>
+<area shape="poly" id="edge12_Node000006_Node000013" title=" " alt="" coords="794,268,919,318,917,323,792,273"/>
+<area shape="rect" id="Node000009" href="$math__core_8h.html" title=" " alt="" coords="5,431,293,500"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="334,390,231,433,229,428,332,386"/>
+<area shape="rect" id="Node000010" href="$CompNode_8h.html" title=" " alt="" coords="317,431,536,500"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="429,397,429,430,424,430,424,397"/>
+<area shape="rect" id="Node000011" href="$ClusterConfigController_8h.html" title=" " alt="" coords="560,431,779,500"/>
+<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="511,386,600,428,597,433,509,391"/>
 </map>
