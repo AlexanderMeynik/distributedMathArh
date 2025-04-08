@@ -3,55 +3,53 @@
 
 using namespace rest::v1;
 
-void CompNode::getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+void CompNode::GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
 
+  Json::Value res;
+  res["status"] = handler_->con_ ? "running" : "not running";
+  res["cc"] = *(handler_->cc_);
 
-    Json::Value res;
-    res["status"] = handler->con ? "running" : "not running";
-    res["cc"] = *(handler->cc);
+  res["bench"] = print_utils::ContinuousToJson(bench_res_);
 
-    res["bench"] = printUtils::continuousToJson(benchRes);
-
-    callback(HttpResponse::newHttpJsonResponse(res));
+  callback(HttpResponse::newHttpJsonResponse(res));
 
 }
 
-void CompNode::connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+void CompNode::ConnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
                               const std::string &ip, const std::string &name) {
 
-    Json::Value res;
+  Json::Value res;
 
-    res["input"] = ip;
-    res["name"] = name;
+  res["input"] = ip;
+  res["name"] = name;
 
-    if (handler->con) {
-        auto r = HttpResponse::newHttpJsonResponse(res);//toso cur service?
-        r->setStatusCode(HttpStatusCode::k208AlreadyReported);
-        callback(r);
-        return;
-    }
-    handler->connect(ip, name);
-    res["bench"] = printUtils::continuousToJson(benchRes);
-    auto r = HttpResponse::newHttpJsonResponse(res);
+  if (handler_->con_) {
+    auto r = HttpResponse::newHttpJsonResponse(res);//toso cur service?
+    r->setStatusCode(HttpStatusCode::k208AlreadyReported);
     callback(r);
+    return;
+  }
+  handler_->Connect(ip, name);
+  res["bench"] = print_utils::ContinuousToJson(bench_res_);
+  auto r = HttpResponse::newHttpJsonResponse(res);
+  callback(r);
 
 }
 
-void CompNode::disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
-    Json::Value res;
-    res["request"] = "disconnect";
+void CompNode::DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+  Json::Value res;
+  res["request"] = "Disconnect";
 
-    if (!handler->con) {
-        auto r = HttpResponse::newHttpJsonResponse(res);
-        r->setStatusCode(HttpStatusCode::k409Conflict);
-        callback(r);
-        return;
-    }
-    res["cc"] = *(handler->cc);
+  if (!handler_->con_) {
     auto r = HttpResponse::newHttpJsonResponse(res);
-    handler->disconnect();
-
-
+    r->setStatusCode(HttpStatusCode::k409Conflict);
     callback(r);
+    return;
+  }
+  res["cc"] = *(handler_->cc_);
+  auto r = HttpResponse::newHttpJsonResponse(res);
+  handler_->Disconnect();
+
+  callback(r);
 
 }

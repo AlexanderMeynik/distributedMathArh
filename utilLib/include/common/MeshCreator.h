@@ -8,254 +8,245 @@
 #include "common/commonTypes.h"
 #include "common/printUtils.h"
 
-/// meshStorage namespace
-namespace meshStorage {
-    namespace co = commonTypes;
-    using shared::FloatType, shared::params;
-    using printUtils::IosStateScientific;
-    using commonTypes::dimType;
+namespace mesh_storage {
+namespace co = common_types;
+using shared::FloatType, shared::params;
+using print_utils::IosStateScientific;
+using common_types::DimType;
 
-    ///stores upper and lower limit pairs for meshes
-    using limType = std::array<FloatType, 4>;
+///stores upper and lower limit pairs for meshes
+using LimType = std::array<FloatType, 4>;
 
+template<size_t N>
+using MeshArr = std::array<co::MeshStorageType, N>;
 
-    template<size_t N>
-    using meshArr = std::array<co::meshStorageType, N>;
+/**
+ *
+ * @tparam Ndots
+ * @param function
+ * @param left
+ * @param right
+ * @param max_depth
+ * @param tol
+ */
+template<unsigned Ndots = 61>
+FloatType Integrate(const std::function<FloatType(FloatType)> &function,
+                    FloatType left,
+                    FloatType right,
+                    unsigned int max_depth = 5,
+                    FloatType tol = Eigen::NumTraits<FloatType>::epsilon());
 
-    /**
-     *
-     * @tparam Ndots
-     * @param function
-     * @param left
-     * @param right
-     * @param max_depth
-     * @param tol
-     */
-    template<unsigned Ndots = 61>
-    FloatType integrate(const std::function<FloatType(FloatType)> &function,
-                        FloatType left,
-                        FloatType right,
-                        unsigned int max_depth = 5,
-                        FloatType tol = Eigen::NumTraits<FloatType>::epsilon());
+template<unsigned Ndots = 61>
+FloatType IntegrateLambdaForOneVariable(const co::IntegrableFunction &function,
+                                        FloatType theta,
+                                        FloatType phi,
+                                        FloatType left,
+                                        FloatType right,
+                                        unsigned int max_depth = 5,
+                                        FloatType tol = 1e-20);
 
+/**
+ * @brief Computes functional mesh for 2 coordinates
+ * @param a
+ * @param b
+ * @param func
+ */
+co::MeshStorageType ComputeFunction(const co::MeshStorageType &a,
+                                    const co::MeshStorageType &b,
+                                    const co::DirectionGraph &func);
 
-    template<unsigned Ndots = 61>
-    FloatType integrateLambdaForOneVariable(const co::integrableFunction &function,
-                                            FloatType theta,
-                                            FloatType phi,
-                                            FloatType left,
-                                            FloatType right,
-                                            unsigned int max_depth = 5,
-                                            FloatType tol = 1e-20);
+/**
+ * @brief Computes square Diff norm for two meshes
+ * @param mesh1
+ * @param mesh2
+ */
+FloatType GetMeshDiffNorm(const co::MeshStorageType &mesh1,
+                          const co::MeshStorageType &mesh2);
 
+void AddMesh(co::MeshStorageType &a,
+             const co::MeshStorageType &b);
 
-    /**
-     * @brief Computes functional mesh for 2 coordinates
-     * @param a
-     * @param b
-     * @param func
-     */
-    co::meshStorageType computeFunction(const co::meshStorageType &a,
-                                        const co::meshStorageType &b,
-                                        const co::directionGraph &func);
+/**
+ * @brief Computes meshes using 2 double arrays
+ * @param a
+ * @param b
+ * @return
+ */
+template<template<typename ...> typename container =std::vector>
+std::array<co::MeshStorageType, 2> MyMeshGrid(const container<co::FloatType> &a,
+                                              const container<co::FloatType> &b);
 
+/**
+ * @brief Generates linearly spaced vectors
+ * @tparam container
+ * @tparam T
+ * @tparam end
+ * @param lower_bound
+ * @param upper_bound
+ * @param n
+ * @return
+ */
+template<template<typename ...> typename container =std::vector, typename T=FloatType, bool end = true>
+container<T> MyLinspace(T lower_bound,
+                        T upper_bound,
+                        size_t n);
 
-    /**
-     * @brief Computes square Diff norm for two meshes
-     * @param mesh1
-     * @param mesh2
-     */
-    FloatType getMeshDiffNorm(const co::meshStorageType &mesh1,
-                              const co::meshStorageType &mesh2);
+co::MeshDrawClass Unflatten(const common_types::MeshStorageType &mm,
+                            const DimType &dims);
 
-    void addMesh(co::meshStorageType &a,
-                 const co::meshStorageType &b);
+static constexpr inline const FloatType kRr = 2 * M_PI / params::omega;
 
-    /**
-     * @brief Computes meshes using 2 double arrays
-     * @param a
-     * @param b
-     * @return
-     */
-    template<template<typename ...> typename container =std::vector>
-    std::array<co::meshStorageType, 2> myMeshGrid(const container<co::FloatType> &a,
-                                                  const container<co::FloatType> &b);
+static constexpr inline DimType kDefaultDims = {7, 25};
+static constexpr inline LimType kDefaultLims = {0, M_PI_2, 0, M_PI * 2};
 
+/**
+ * @brief Class that  handles 3d mesh creation and parameters management
+ */
+class MeshCreator {
+ public:
+  /**
+   * @brief Default MeshCreator constructor
+   * @param construct - will allocate memory for data arrays if is true
+   */
+  MeshCreator(bool construct = true);
 
-    /**
-     * @brief Generates linearly spaced vectors
-     * @tparam container
-     * @tparam T
-     * @tparam end
-     * @param lower_bound
-     * @param upper_bound
-     * @param n
-     * @return
-     */
-    template<template<typename ...> typename container =std::vector, typename T=FloatType, bool end = true>
-    container<T> myLinspace(T lower_bound,
-                            T upper_bound,
-                            size_t n);
+  /**
+   * @brief Computes 2d meshgrid using dims,lims
+   * @param dims
+   * @param lims
+   */
+  void ConstructMeshes(const DimType &dims,
+                       const LimType &lims);
 
+  /**
+   * @brief Will substitute any null-opt with default values
+   * @param dim_opt
+   * @param lim_opt
+   */
+  void ConstructMeshes(std::optional<DimType> dim_opt = std::nullopt,
+                       std::optional<LimType> lim_opt = std::nullopt);
 
-    co::meshDrawClass unflatten(const co::meshStorageType &mm,
-                                const dimType &dims);
+  /**
+   * @brief Cartesian to spherical coordinate transformation
+   * @param oth
+   * @return
+   */
+  friend MeshArr<3> SphericalTransformation(const MeshCreator &oth);
 
+  /**
+   * @brief Computes data[2] using provided func function
+   * @param func
+   */
+  void ApplyFunction(const co::DirectionGraph &func);
 
-    static constexpr inline const FloatType rr = 2 * M_PI / params::omega;
+  /**
+   * @brief Uses numerical integration with range [a,b] compute data[2]
+   * @param func
+   * @param a
+   * @param b
+   */
+  void ApplyIntegrate(const co::IntegrableFunction &func,
+                      FloatType a = 0,
+                      FloatType b = kRr);
 
-    static constexpr inline dimType defaultDims = {7, 25};
-    static constexpr inline limType defaultLims = {0, M_PI_2, 0, M_PI * 2};
+  /**
+   * @brief Calls provided callback to Plot this mesh
+   * @param filename
+   * @param plot_callback
+   */
+  void PlotAndSave[[deprecated("remove mathplot support")]](const std::string &filename,
+                                                            const std::function<void(const std::string &filename,
+                                                                                     const MeshCreator &)> &plot_callback) {
+    plot_callback(filename, *this);
+  }
 
-    /**
-     * @brief Class that  handles 3d mesh creation and parameters management
-     */
-    class MeshCreator {
-    public:
-        /**
-         * @brief Default MeshCreator constructor
-         * @param construct - will allocate memory for data arrays if is true
-         */
-        MeshCreator(bool construct = true);
+  DimType dimensions_;
+  LimType limits_;
+  MeshArr<3> data_;
+};
 
-        /**
-         * @brief Computes 2d meshgrid using dims,lims
-         * @param dims
-         * @param lims
-         */
-        void constructMeshes(const dimType &dims,
-                             const limType &lims);
-
-        /**
-         * @brief Will substitute any null-opt with default values
-         * @param dimOpt
-         * @param limOpt
-         */
-        void constructMeshes(std::optional<dimType> dimOpt = std::nullopt,
-                             std::optional<limType> limOpt = std::nullopt);
-
-        /**
-         * @brief Cartesian to spherical coordinate transformation
-         * @param oth
-         * @return
-         */
-        friend meshArr<3> sphericalTransformation(const MeshCreator &oth);
-
-        /**
-         * @brief Computes data[2] using provided func function
-         * @param func
-         */
-        void applyFunction(const co::directionGraph &func);
-
-        /**
-         * @brief Uses numerical integration with range [a,b] compute data[2]
-         * @param func
-         * @param a
-         * @param b
-         */
-        void applyIntegrate(const co::integrableFunction &func,
-                            FloatType a = 0,
-                            FloatType b = rr);
-
-        /**
-         * @brief Calls provided callback to plot this mesh
-         * @param filename
-         * @param plotCallback
-         */
-        void plotAndSave[[deprecated("remove mathplot support")]](const std::string &filename,
-                                                                  const std::function<void(const std::string &filename,
-                                                                                           const MeshCreator &)> &plotCallback) {
-            plotCallback(filename, *this);
-        }
-
-        dimType dimensions;
-        limType limits;
-        meshArr<3> data;
-    };
-
-    /**
-     * @brief Prints mesh in human readable way
-     * @param mmesh
-     * @param out
-     */
-    void printDec(const meshStorage::MeshCreator &mmesh,
-                  std::ostream &out);
-
+/**
+ * @brief Prints mesh in human readable way
+ * @param mmesh
+ * @param out
+ */
+void PrintDec(const mesh_storage::MeshCreator &mmesh,
+              std::ostream &out);
 
 }
 
-namespace meshStorage {
+/// meshStorage namespace
+namespace mesh_storage {
 
-    template<unsigned int Ndots>
-    FloatType integrate(const std::function<FloatType(FloatType)> &function,
-                        FloatType left, FloatType right,
-                        unsigned int max_depth,
-                        FloatType tol) {
-        FloatType error;
-        double Q = boost::math::quadrature::gauss_kronrod<FloatType, Ndots>::integrate(
-                function,
-                left,
-                right,
-                max_depth,
-                tol,
-                &error);
-        return Q;
+template<unsigned int Ndots>
+FloatType Integrate(const std::function<FloatType(FloatType)> &function,
+                    FloatType left, FloatType right,
+                    unsigned int max_depth,
+                    FloatType tol) {
+  FloatType error;
+  double q = boost::math::quadrature::gauss_kronrod<FloatType, Ndots>::integrate(
+      function,
+      left,
+      right,
+      max_depth,
+      tol,
+      &error);
+  return q;
+}
+
+template<unsigned int Ndots>
+FloatType
+IntegrateLambdaForOneVariable(const co::IntegrableFunction &function,
+                              FloatType theta,
+                              FloatType phi,
+                              FloatType left,
+                              FloatType right,
+                              unsigned int max_depth,
+                              FloatType tol) {
+  std::function<FloatType(FloatType)> tt = [&theta, &phi, &function](FloatType t) {
+    return function(theta, phi, t);
+  };
+  return Integrate<Ndots>(tt, left, right, max_depth, tol);
+}
+
+template<template<typename ...> typename container, typename T, bool end>
+container<T> MyLinspace(T lower_bound, T upper_bound, size_t n) {
+
+  if (n == 0 || lower_bound - upper_bound == 0) {
+    throw std::invalid_argument("Zero linspace size");
+  }
+
+  container<T> result(n);
+
+  size_t div;
+  if constexpr (end) {
+    div = n - 1;
+  } else {
+    div = n;
+  }
+  T step = (upper_bound - lower_bound) / (T) div;
+
+  for (int i = 0; i < n; ++i) {
+    result[i] = i * step + lower_bound;
+  }
+  return result;
+}
+
+template<template<typename ...> typename container>
+std::array<co::MeshStorageType, 2>
+MyMeshGrid(const container<co::FloatType> &a,
+           const container<co::FloatType> &b) {
+  std::array<co::MeshStorageType, 2> ret = {co::MeshStorageType(b.size() * a.size()),
+                                            co::MeshStorageType(b.size() * a.size())};
+
+  for (size_t i = 0; i < b.size(); ++i) {
+    for (size_t j = 0; j < a.size(); ++j) {
+      ret[0][i * a.size() + j] = a[j];
+      ret[1][i * a.size() + j] = b[i];
     }
-
-    template<unsigned int Ndots>
-    FloatType
-    integrateLambdaForOneVariable(const commonTypes::integrableFunction &function,
-                                  FloatType theta,
-                                  FloatType phi,
-                                  FloatType left,
-                                  FloatType right,
-                                  unsigned int max_depth,
-                                  FloatType tol) {
-        std::function<FloatType(FloatType)> tt = [&theta, &phi, &function](FloatType t) {
-            return function(theta, phi, t);
-        };
-        return integrate<Ndots>(tt, left, right, max_depth, tol);
-    }
-
-    template<template<typename ...> typename container, typename T, bool end>
-    container<T> myLinspace(T lower_bound, T upper_bound, size_t n) {
-
-        if (n == 0 || lower_bound - upper_bound == 0) {
-            throw std::invalid_argument("Zero linspace size");
-        }
-
-        container<T> result(n);
-
-        size_t div;
-        if constexpr (end) {
-            div = n - 1;
-        } else {
-            div = n;
-        }
-        T step = (upper_bound - lower_bound) / (T) div;
-
-        for (int i = 0; i < n; ++i) {
-            result[i] = i * step + lower_bound;
-        }
-        return result;
-    }
-
-    template<template<typename ...> typename container>
-    std::array<co::meshStorageType, 2>
-    myMeshGrid(const container<co::FloatType> &a,
-               const container<co::FloatType> &b) {
-        std::array<co::meshStorageType, 2> ret = {co::meshStorageType(b.size() * a.size()),
-                                                  co::meshStorageType(b.size() * a.size())};
-
-        for (size_t i = 0; i < b.size(); ++i) {
-            for (size_t j = 0; j < a.size(); ++j) {
-                ret[0][i * a.size() + j] = a[j];
-                ret[1][i * a.size() + j] = b[i];
-            }
-        }
-        return ret;
-    }
-
+  }
+  return ret;
+}
 
 }
 

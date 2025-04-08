@@ -9,92 +9,92 @@ using shared::FloatType;
 
 //todo forward results from nodes
 namespace rest {
-    namespace v1 {
-        class AtmqHandler {
-        public:
-            AtmqHandler() {
-                cc = std::make_shared<int>(0);
-                con = false;
-            }
+namespace v1 {
+class AMQPHandler {
+ public:
+  AMQPHandler() {
+    cc_ = std::make_shared<int>(0);
+    con_ = false;
+  }
 
-            bool checkConnection(std::string &ip, std::string &queue) {
-                //todo check where logs are written
-                con = true;
-                LOG_INFO << "checkConnection\t" << ip << '\t' << queue << '\n';
-                return con;
-            }
+  bool CheckConnection(std::string &ip, std::string &queue) {
+    //todo check where logs are written
+    con_ = true;
+    LOG_INFO << "CheckConnection\t" << ip << '\t' << queue << '\n';
+    return con_;
+  }
 
-            bool connect(const std::string &ip, const std::string &queue) {
-                con = true;
-                LOG_INFO << "connect\t" << ip << '\t' << queue << '\n';
-                queues[0] = queue + "1";
-                queues[1] = queue + "2";
+  bool Connect(const std::string &ip, const std::string &queue) {
+    con_ = true;
+    LOG_INFO << "Connect\t" << ip << '\t' << queue << '\n';
+    queues_[0] = queue + "1";
+    queues_[1] = queue + "2";
 
-                eventLoop = std::jthread([this](std::stop_token stoken) {
-                    //todo listen to queues(from 1 to second)
-                    while (con) {
-                        sleep(1);
-                        std::stringstream ss;
-                        ss << std::this_thread::get_id();
-                        LOG_INFO << ss.str() << '\t' << *cc << '\n';
-                        *cc = *cc + 1;
-                    }
-                });
-                return true;
-            }
+    event_loop_ = std::jthread([this](const std::stop_token &stoken) {
+      //todo listen to queues(from 1 to second)
+      while (con_) {
+        sleep(1);
+        std::stringstream ss;
+        ss << std::this_thread::get_id();
+        LOG_INFO << ss.str() << '\t' << *cc_ << '\n';
+        *cc_ = *cc_ + 1;
+      }
+    });
+    return true;
+  }
 
-            void disconnect() {
-                con = false;
-                eventLoop.join();
-                reset();
-                LOG_INFO << "disconnect\n";
-            }
+  void Disconnect() {
+    con_ = false;
+    event_loop_.join();
+    Reset();
+    LOG_INFO << "Disconnect\n";
+  }
 
-            int getC() {
-                return *cc;
-            }
+  int GetC() {
+    return *cc_;
+  }
 
-            void reset() {
-                *cc = 0;
-            }
+  void Reset() {
+    *cc_ = 0;
+  }
 
-            std::atomic<bool> con;
-            std::array<std::string, 2> queues;//todo combine with producerService
-            std::jthread eventLoop;
-            std::shared_ptr<int> cc;
-        };
+  std::atomic<bool> con_;
+  std::array<std::string, 2> queues_;//todo combine with producerService
+  std::jthread event_loop_;
+  std::shared_ptr<int> cc_;
+};
 
-        class CompNode : public drogon::HttpController<CompNode> {
-            std::unordered_map<std::string, std::thread> thrreads;
-            std::shared_ptr<AtmqHandler> handler;
-            std::valarray<FloatType> benchRes;
+class CompNode : public drogon::HttpController<CompNode> {
+  std::unordered_map<std::string, std::thread> thrreads_;
+  std::shared_ptr<AMQPHandler> handler_;
+  std::valarray<FloatType> bench_res_;
 
-            std::valarray<FloatType> runBench() {
-                return {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
-            }
+  std::valarray<FloatType> RunBench() {
+    return {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+  }
 
-        public:
+ public:
 
-            CompNode() {
-                handler = std::make_shared<AtmqHandler>();
-                benchRes = runBench();
-            }
+  CompNode() {
+    handler_ = std::make_shared<AMQPHandler>();
+    bench_res_ = RunBench();
+  }
 
-            using cont = CompNode;
+  using Cont = CompNode;
 
-            METHOD_LIST_BEGIN
-                //todo ping(status)
-                ADD_METHOD_TO(cont::getStatus, "v1/status", Get);
-                ADD_METHOD_TO(cont::connectHandler, "v1/connect?ip={ip}&name={queue}", Post);
-                ADD_METHOD_TO(cont::disconnectHandler, "v1/disconnect", Post);
-            METHOD_LIST_END
+  METHOD_LIST_BEGIN
+    //todo ping(status)
+    ADD_METHOD_TO(Cont::GetStatus, "v1/status", Get);
+    ADD_METHOD_TO(Cont::ConnectHandler, "v1/Connect?ip={ip}&name={queue}", Post);
+    ADD_METHOD_TO(Cont::DisconnectHandler, "v1/Disconnect", Post);
+  METHOD_LIST_END
 
-            void getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+  void GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-            void connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                                const std::string &ip, const std::string &name);
+  void ConnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                      const std::string &ip, const std::string &name);
 
-            void disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
-        };
-    }
+  void DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+};
+}
 }

@@ -7,7 +7,7 @@
 
 #include "common/errorHandling.h"
 
-class authHandler;
+class AuthHandler;
 
 /**
  * @brief Default curl write callback
@@ -16,7 +16,7 @@ class authHandler;
  * @param nmemb
  * @param userp
  */
-static size_t writeCallback(void *contents,
+static size_t WriteCallback(void *contents,
                             size_t size,
                             size_t nmemb,
                             void *userp);
@@ -26,70 +26,69 @@ static size_t writeCallback(void *contents,
  * @param path
  * @param method
  * @param host
- * @param authHandler
+ * @param auth_handler
  * @param data
  */
-std::string performCurlRequest(const std::string &path,
+std::string PerformCurlRequest(const std::string &path,
                                const std::string &method,
                                const std::string &host,
-                               authHandler *authHandler,
+                               AuthHandler *auth_handler,
                                const std::string &data = "");
 
 /**
  * @brief Lock like class to handler curl initializtion and free
  */
-class curlWrapper {
-public:
-    curlWrapper();
+class CurlWrapper {
+ public:
+  CurlWrapper();
 
-    operator bool();
+  operator bool();
 
-    [[nodiscard]] CURL *get();
+  [[nodiscard]] CURL *Get();
 
-private:
-    std::unique_ptr<CURL, decltype(&curl_easy_cleanup)> m_curl;
+ private:
+  std::unique_ptr<CURL, decltype(&curl_easy_cleanup)> curl_;
 
 };
 
 /**
  * @brief Common interface for handling authentication
  * @details Classes that inherit must provide implementation
- * for addAuth.
+ * for AddAuth.
  *
  */
-class authHandler {
-public:
-    authHandler(bool active = true);
+class AuthHandler {
+ public:
+  AuthHandler(bool active = true);
 
-    void setActive(bool act);
+  void SetActive(bool act);
 
-    void addAuthorization(CURL *curl);
+  void AddAuthorization(CURL *curl);
 
-protected:
+ protected:
 
-    /// Can toggle off authorization
-    bool m_active;
+  /// Can toggle off authorization
+  bool active_;
 
-    virtual void addAuth(CURL *curl) = 0;
+  virtual void AddAuth(CURL *curl) = 0;
 };
-
 
 /**
  * @brief Used for Basic auth
  */
-class basicAuthHandler : public authHandler {
+class BasicAuthHandler : public AuthHandler {
 
-public:
-    basicAuthHandler(const std::string &user,
-                     const std::string &password,
-                     bool active = true);
+ public:
+  BasicAuthHandler(const std::string &user,
+                   const std::string &password,
+                   bool active = true);
 
-    basicAuthHandler(const basicAuthHandler &hndl) = default;
+  BasicAuthHandler(const BasicAuthHandler &handle) = default;
 
-protected:
-    std::string m_user;
-    std::string m_password;
+ protected:
+  std::string user_;
+  std::string password_;
 
-    virtual void addAuth(CURL *curl) override;
+  virtual void AddAuth(CURL *curl) override;
 };
 

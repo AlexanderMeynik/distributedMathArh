@@ -2,103 +2,100 @@
 
 namespace dipoles {
 
-    void
-    Dipoles::getMatrices(const Eigen::Vector<FloatType, 2> &rim, FloatType rMode, Eigen::Matrix<FloatType, 2, 2> &K1,
-                         Eigen::Matrix<FloatType, 2, 2> &K2) const {
-        K1 << 3 * rim(0) * rim(0) / pow(rMode, 5) - 1 / pow(rMode, 3), 3 * rim(0) * rim(1) / pow(rMode, 5),
-                3 * rim(0) * rim(1) / pow(rMode, 5), 3 * rim(1) * rim(1) / pow(rMode, 5) - 1 / pow(rMode, 3);
+void
+Dipoles::GetMatrices(const Eigen::Vector<FloatType, 2> &rim, FloatType r_mode, Eigen::Matrix<FloatType, 2, 2> &k_1,
+                     Eigen::Matrix<FloatType, 2, 2> &k_2) const {
+  k_1 << 3 * rim(0) * rim(0) / pow(r_mode, 5) - 1 / pow(r_mode, 3), 3 * rim(0) * rim(1) / pow(r_mode, 5),
+      3 * rim(0) * rim(1) / pow(r_mode, 5), 3 * rim(1) * rim(1) / pow(r_mode, 5) - 1 / pow(r_mode, 3);
 
-        K2 << params::omega / (params::c * pow(rMode, 2)), 0,
-                0, params::omega / (params::c * pow(rMode, 2));
-    }
+  k_2 << params::omega / (params::c * pow(r_mode, 2)), 0,
+      0, params::omega / (params::c * pow(r_mode, 2));
+}
 
-    void Dipoles::initArrays() {
-        an = params::a / N_;
-        M1_.resize(2 * N_, 2 * N_);
-        M2_.resize(2 * N_, 2 * N_);
+void Dipoles::InitArrays() {
+  an_ = params::a / n_;
+  m_1_.resize(2 * n_, 2 * n_);
+  m_2_.resize(2 * n_, 2 * n_);
 
+  f_.resize(4 * n_);
+  for (int i = 0; i < n_; ++i) {
+    f_(2 * i) = an_ * params::eps;
+    f_(2 * i + 1) = 0;
+    f_(2 * i + 2 * n_) = 0;
+    f_(2 * i + 1 + 2 * n_) = an_ * params::eps;
+  }
+}
 
-        f.resize(4 * N_);
-        for (int i = 0; i < N_; ++i) {
-            f(2 * i) = an * params::eps;
-            f(2 * i + 1) = 0;
-            f(2 * i + 2 * N_) = 0;
-            f(2 * i + 1 + 2 * N_) = an * params::eps;
-        }
-    }
+void Dipoles::LoadFromMatrix(const MatrixType &xi) {
+  this->n_ = xi.rows() / 4;
+  InitArrays();
 
-    void Dipoles::loadFromMatrix(const matrixType &xi) {
-        this->N_ = xi.rows() / 4;
-        initArrays();
+  m_1_ = xi.topLeftCorner(2 * n_, 2 * n_);
+  m_2_ = xi.bottomLeftCorner(2 * n_, 2 * n_);
+}
 
-        M1_ = xi.topLeftCorner(2 * N_, 2 * N_);
-        M2_ = xi.bottomLeftCorner(2 * N_, 2 * N_);
-    }
+const EigenVec &Dipoles::GetRightPart() {
+  return f_;
+}
 
-    const EigenVec &Dipoles::getRightPart() {
-        return f;
-    }
+MatrixType Dipoles::GetMatrixx() {
+  MatrixType matrixx;
+  matrixx.resize(4 * n_, 4 * n_);
+  matrixx.topLeftCorner(2 * n_, 2 * n_).noalias() = m_1_;
+  matrixx.topRightCorner(2 * n_, 2 * n_).noalias() = -m_2_;
+  matrixx.bottomLeftCorner(2 * n_, 2 * n_).noalias() = m_2_;
+  matrixx.bottomRightCorner(2 * n_, 2 * n_).noalias() = m_1_;
+  return matrixx;
+}
 
-    matrixType Dipoles::getMatrixx() {
-        matrixType matrixx;
-        matrixx.resize(4 * N_, 4 * N_);
-        matrixx.topLeftCorner(2 * N_, 2 * N_).noalias() = M1_;
-        matrixx.topRightCorner(2 * N_, 2 * N_).noalias() = -M2_;
-        matrixx.bottomLeftCorner(2 * N_, 2 * N_).noalias() = M2_;
-        matrixx.bottomRightCorner(2 * N_, 2 * N_).noalias() = M1_;
-        return matrixx;
-    }
+template<>
+Arr2EigenVec Dipoles::Solve() {
+  Eigen::PartialPivLU tt = (m_1_ * m_1_ + m_2_ * m_2_).lu();
+  Eigen::Vector<FloatType, Eigen::Dynamic> solution_1;
+  Eigen::Vector<FloatType, Eigen::Dynamic> solution_2;
+  solution_1.resize(2 * n_);
+  solution_2.resize(2 * n_);
+  solution_1 = tt.solve(m_1_ * f_.block(0, 0, 2 * n_, 1) + m_2_ * f_.block(2 * n_, 0, 2 * n_, 1));
+  solution_2 = tt.solve(m_1_ * f_.block(2 * n_, 0, 2 * n_, 1) - m_2_ * f_.block(0, 0, 2 * n_, 1));
+  return {solution_1, solution_2};
+}
 
+template<>
+EigenVec Dipoles::Solve() {
+  Eigen::PartialPivLU tt = (m_1_ * m_1_ + m_2_ * m_2_).lu();
+  Eigen::Vector<FloatType, Eigen::Dynamic> solution;
+  solution.resize(4 * n_);
+  solution.block(0, 0, 2 * n_, 1) = tt.solve(
+      m_1_ * f_.block(0, 0, 2 * n_, 1) + m_2_ * f_.block(2 * n_, 0, 2 * n_, 1));
+  solution.block(2 * n_, 0, 2 * n_, 1) = tt.solve(
+      m_1_ * f_.block(2 * n_, 0, 2 * n_, 1) - m_2_ * f_.block(0, 0, 2 * n_, 1));
+  return solution;
+}
 
-    template<>
-    Arr2EigenVec Dipoles::solve() {
-        Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Vector<FloatType, Eigen::Dynamic> solution_1;
-        Eigen::Vector<FloatType, Eigen::Dynamic> solution_2;
-        solution_1.resize(2 * N_);
-        solution_2.resize(2 * N_);
-        solution_1 = tt.solve(M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_2 = tt.solve(M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return {solution_1, solution_2};
-    }
+template<>
+StdVec Dipoles::Solve() {
+  std::vector<FloatType> sol(4 * n_);
+  Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (m_1_ * m_1_ + m_2_ * m_2_).lu();
+  Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution(sol.data(), sol.size());
+  solution.resize(4 * n_);
+  solution.block(0, 0, 2 * n_, 1) = tt.solve(
+      m_1_ * f_.block(0, 0, 2 * n_, 1) + m_2_ * f_.block(2 * n_, 0, 2 * n_, 1));
+  solution.block(2 * n_, 0, 2 * n_, 1) = tt.solve(
+      m_1_ * f_.block(2 * n_, 0, 2 * n_, 1) - m_2_ * f_.block(0, 0, 2 * n_, 1));
+  return sol;
+}
 
-    template<>
-    EigenVec Dipoles::solve() {
-        Eigen::PartialPivLU tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Vector<FloatType, Eigen::Dynamic> solution_;
-        solution_.resize(4 * N_);
-        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return solution_;
-    }
-
-    template<>
-    stdVec Dipoles::solve() {
-        std::vector<FloatType> sol(4 * N_);
-        Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(sol.data(), sol.size());
-        solution_.resize(4 * N_);
-        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return sol;
-    }
-
-    template<>
-    stdValarr Dipoles::solve() {
-        stdValarr sol(4 * N_);
-        Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (M1_ * M1_ + M2_ * M2_).lu();
-        Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution_(&(sol[0]), sol.size());
-        solution_.resize(4 * N_);
-        solution_.block(0, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(0, 0, 2 * N_, 1) + M2_ * f.block(2 * N_, 0, 2 * N_, 1));
-        solution_.block(2 * N_, 0, 2 * N_, 1) = tt.solve(
-                M1_ * f.block(2 * N_, 0, 2 * N_, 1) - M2_ * f.block(0, 0, 2 * N_, 1));
-        return sol;
-    }
-
+template<>
+StdValarr Dipoles::Solve() {
+  StdValarr sol(4 * n_);
+  Eigen::PartialPivLU<Eigen::Matrix<FloatType, Eigen::Dynamic, Eigen::Dynamic>> tt = (m_1_ * m_1_ + m_2_ * m_2_).lu();
+  Eigen::Map<Eigen::Vector<FloatType, Eigen::Dynamic>> solution(&(sol[0]), sol.size());
+  solution.resize(4 * n_);
+  solution.block(0, 0, 2 * n_, 1) = tt.solve(
+      m_1_ * f_.block(0, 0, 2 * n_, 1) + m_2_ * f_.block(2 * n_, 0, 2 * n_, 1));
+  solution.block(2 * n_, 0, 2 * n_, 1) = tt.solve(
+      m_1_ * f_.block(2 * n_, 0, 2 * n_, 1) - m_2_ * f_.block(0, 0, 2 * n_, 1));
+  return sol;
+}
 
 }

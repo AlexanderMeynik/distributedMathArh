@@ -6,49 +6,49 @@
 #include <QHBoxLayout>
 #include "common/MeshCreator.h"
 
-using meshStorage::MeshCreator, meshStorage::meshArr;
+using mesh_storage::MeshCreator, mesh_storage::MeshArr;
 using shared::FloatType;
-#define FTMax std::numeric_limits<FloatType>::max()
-#define FTMin std::numeric_limits<FloatType>::lowest()
+#define FT_MAX std::numeric_limits<FloatType>::max()
+#define FT_MIN std::numeric_limits<FloatType>::lowest()
 
 /**
- * @b Surface plot widget for mesh
+ * @b Surface Plot widget for mesh
  */
 class MeshPlot : public QWidget {
 
-Q_OBJECT
+ Q_OBJECT
 
-public:
+ public:
 
-    MeshPlot();
+  MeshPlot();
 
-    /**
-     * @brief Constructs MeshPlot and the input mesh
-     */
-    MeshPlot(const MeshCreator &mesh);
+  /**
+   * @brief Constructs MeshPlot and the input mesh
+   */
+  MeshPlot(const MeshCreator &mesh);
 
-    void replot(const MeshCreator &mesh) {
-        emit dataChanged(mesh);
-    }
+  void Replot(const MeshCreator &mesh) {
+    emit DataChanged(mesh);
+  }
 
-    /**
-     * @brief Saves plot into file fname
-     * @param fname
-     */
-    void saveToFile(const QString &fname = QString::fromStdString("plotQt.png"));
+  /**
+   * @brief Saves Plot into file fname
+   * @param fname
+   */
+  void SaveToFile(const QString &fname = QString::fromStdString("plotQt.png"));
 
-signals:
+ signals:
 
-    void dataChanged(const MeshCreator &mesh);
+  void DataChanged(const MeshCreator &mesh);
 
-protected:
+ protected:
 
-    void plot(const meshArr<3> &rr, const std::array<size_t, 2> &dims);
+  void Plot(const MeshArr<3> &rr, const std::array<size_t, 2> &dims);
 
-    /**
-     * @brief Sets the most of style for visualization
-     */
-    void setStyle();
+  /**
+   * @brief Sets the most of style for visualization
+   */
+  void SetStyle();
 
-    Q3DSurface *surface;
+  Q3DSurface *surface_;
 };

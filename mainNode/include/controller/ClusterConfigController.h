@@ -10,70 +10,69 @@ using namespace drogon;
 using shared::FloatType;
 
 namespace rest {
-    namespace v1 {
+namespace v1 {
 
-        /// nodeStatus Enum
-        enum class nodeStatus {
-            /// Node is connected to cluster and is ready to receive it's tasks
-            Active,
-            /// Node is present in cluster but is not ready to recieve tasks
-            Inactive,
-            /// An error occurred moving node to a failed state
-            Failed
-        };
+/// nodeStatus Enum
+enum class NodeStatus {
+  /// Node is connected to cluster and is ready to receive it's tasks
+  ACTIVE,
+  /// Node is present in cluster but is not ready to recieve tasks
+  INACTIVE,
+  /// An error occurred moving node to a failed state
+  FAILED
+};
 
-        //todo std::array
-        /// Look-up table to cast nodeStatus to string
-        const std::unordered_map<const nodeStatus, std::string> nodeStatusToStr
-                {
-                        {nodeStatus::Active,   "Active"},
-                        {nodeStatus::Inactive, "Inactive"},
-                        {nodeStatus::Failed,   "Failed"},
-                };
+//todo std::array
+/// Look-up table to cast nodeStatus to string
+const std::unordered_map<const NodeStatus, std::string> kNodeStatusToStr
+    {
+        {NodeStatus::ACTIVE, "Active"},
+        {NodeStatus::INACTIVE, "Inactive"},
+        {NodeStatus::FAILED, "Failed"},
+    };
 
-        /**
-         * @brief Computational node class
-         */
-        class computationalNode {
-        public:
-            HttpClientPtr httpClient;
+/**
+ * @brief Computational node class
+ */
+class ComputationalNode {
+ public:
+  HttpClientPtr http_client_;
 
-            std::string getPath() {
-                return httpClient->getHost() + ":" + std::to_string(httpClient->getPort());
-            }
+  std::string GetPath() {
+    return http_client_->getHost() + ":" + std::to_string(http_client_->getPort());
+  }
 
-            std::valarray<FloatType> power;//todo spline function
-            nodeStatus st;
-        };
+  std::valarray<FloatType> power_;//todo spline function
+  NodeStatus st_;
+};
 
-        /**
-         * @brief Drogon service for main node
-         */
-        class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
-            std::unordered_map<std::string, computationalNode> clients;
-        public:
-            ClusterConfigController() {
-                //client=HttpClient::newHttpClient("http://localhost:8081");
-                //client->get
+/**
+ * @brief Drogon service for main node
+ */
+class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
+  std::unordered_map<std::string, ComputationalNode> clients_;
+ public:
+  ClusterConfigController() {
+    //client=HttpClient::newHttpClient("http://localhost:8081");
+    //client->get
 
-            }//todo /rebalance
-            //todo ping(measures latencies)?
-            using cont = ClusterConfigController;
+  }//todo /rebalance
+  //todo ping(measures latencies)?
+  using Cont = ClusterConfigController;
 
-            METHOD_LIST_BEGIN
+  METHOD_LIST_BEGIN
+    ADD_METHOD_TO(Cont::GetStatus, "v1/status", Get);
+    ADD_METHOD_TO(Cont::ConnectHandler, "v1/Connect?ip={ip}&qip={qip}&name={queue}", Post);
+    ADD_METHOD_TO(Cont::DisconnectHandler, "v1/Disconnect?ip={ip}", Post);
+  METHOD_LIST_END
 
-                ADD_METHOD_TO(cont::getStatus, "v1/status", Get);
-                ADD_METHOD_TO(cont::connectHandler, "v1/connect?ip={ip}&qip={qip}&name={queue}", Post);
-                ADD_METHOD_TO(cont::disconnectHandler, "v1/disconnect?ip={ip}", Post);
-            METHOD_LIST_END
+  void GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-            void getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+  void ConnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                      const std::string &host_port, const std::string &qip, const std::string &name);
 
-            void connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                                const std::string &hostPort, const std::string &qip, const std::string &name);
-
-            void disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                                   const std::string &hostPort);
-        };
-    }
+  void DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                         const std::string &host_port);
+};
+}
 }

@@ -21,9 +21,9 @@ jobs:
         with:
           path: ./src
       - name: Build
-        run: |  
+        run: |
           cp -r src/res/ res/
-        
+          
           mkdir build && cd build
           
           cmake -G Ninja  \

@@ -5,12 +5,12 @@
 
 ///dipoles namespace
 namespace dipoles {
-    //using namespace chronoClock;
-    using namespace commonTypes;
+//using namespace chronoClock;
+using namespace common_types;
 
-    /**
-     * Check that matrix is symmetric
-     * @param matr
-     */
-    bool isSymmetric(const matrixType &matr);
+/**
+ * Check that matrix is symmetric
+ * @param matr
+ */
+bool IsSymmetric(const MatrixType &matr);
 }

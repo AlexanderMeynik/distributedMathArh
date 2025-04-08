@@ -1,7 +1,6 @@
-#include "benchmarkHandler.h"
+#include "BenchmarkHandler.h"
 
 /// benchUtils namespace
-namespace benchUtils {
-
+namespace bench_utils {
 
 }

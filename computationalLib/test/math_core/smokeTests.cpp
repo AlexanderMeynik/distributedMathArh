@@ -1,7 +1,6 @@
 
 #include <chrono>
 
-
 #include "common/sharedDeclarations.h"
 #include "computationalLib/math_core/Dipoles.h"
 #include "common/commonTypes.h"
@@ -9,123 +8,116 @@
 #include "common/Printers.h"
 #include "../GoogleCommon.h"
 
-
 using namespace pu;
-using namespace testCommon;
+using namespace test_common;
 std::string res_dir_path = "../../../res/";
 std::string filename = res_dir_path.append("config.txt");
 std::string subdir = filename.substr(0, filename.rfind('.')) + "data7_25";
 
-using meshStorage::MeshCreator;
-using ttype = std::tuple<std::string, std::vector<FloatType>, ct::matrixType, ct::EigenVec, MeshCreator>;
+using mesh_storage::MeshCreator;
+using Ttype = std::tuple<std::string, std::vector<FloatType>, ct::MatrixType, ct::EigenVec, MeshCreator>;
 
+std::vector<Ttype> TestFixtureGetter() {
 
-std::vector<ttype> testFixtureGetter() {
+  int nn;
 
-    int NN;
+  std::vector<Ttype> values;
+  std::ifstream coords1(subdir + "/coordinates.txt");
+  std::ifstream sols1(subdir + "/solutions.txt");
+  std::ifstream matrixes1(subdir + "/matrixes.txt");
+  std::ifstream meshes1(subdir + "/meshes.txt");
+  coords1 >> nn;
+  sols1 >> nn;
+  matrixes1 >> nn;
+  meshes1 >> nn;
+  values.reserve(nn);
 
-    std::vector<ttype> values;
-    std::ifstream coords1(subdir + "/coordinates.txt");
-    std::ifstream sols1(subdir + "/solutions.txt");
-    std::ifstream matrixes1(subdir + "/matrixes.txt");
-    std::ifstream meshes1(subdir + "/meshes.txt");
-    coords1 >> NN;
-    sols1 >> NN;
-    matrixes1 >> NN;
-    meshes1 >> NN;
-    values.reserve(NN);
+  IoFormat a;
+  coords1 >> a;
+  sols1 >> a;
+  matrixes1 >> a;
+  meshes1 >> a;
 
-    ioFormat a;
-    coords1 >> a;
-    sols1 >> a;
-    matrixes1 >> a;
-    meshes1 >> a;
+  EFormat ef;
+  coords1 >> ef;
+  sols1 >> ef;
+  matrixes1 >> ef;
+  meshes1 >> ef;
 
-    EFormat ef;
-    coords1 >> ef;
-    sols1 >> ef;
-    matrixes1 >> ef;
-    meshes1 >> ef;
+  for (int i = 0; i < nn; ++i) {
+    my_concepts::isOneDimensionalContinuous auto sol = print_utils::ParseOneDim<ct::EigenVec>(sols1);
+    my_concepts::isOneDimensionalContinuous auto coords = print_utils::ParseOneDim<ct::StdVec>(coords1);
 
-    for (int i = 0; i < NN; ++i) {
-        auto sol = printUtils::parseOneDim<ct::EigenVec>(sols1);
-        auto coords = printUtils::parseOneDim<ct::stdVec>(coords1);
+    long rows, cols;
+    matrixes1 >> rows >> cols;
+    common_types::MatrixType res(rows, cols);
 
-        long rows, cols;
-        matrixes1 >> rows >> cols;
-        commonTypes::matrixType res(rows, cols);
-
-        for (int r = 0; r < rows; ++r) {
-            for (int c = 0; c < cols; ++c) {
-                matrixes1 >> res(r, c);
-            }
-        }
-        //ct::matrixType matr=printUtils::parseMatrix(matrixes1);//todo why this cause segfault
-
-        auto m = printUtils::parseMeshFrom(meshes1);
-
-        values.emplace_back(std::to_string(i), coords, res, sol, m);
+    for (int r = 0; r < rows; ++r) {
+      for (int c = 0; c < cols; ++c) {
+        matrixes1 >> res(r, c);
+      }
     }
+    //ct::matrixType matr=printUtils::parseMatrix(matrixes1);//todo why this cause segfault
 
+    auto m = print_utils::ParseMeshFrom(meshes1);
 
-    coords1.close();
-    sols1.close();
-    matrixes1.close();
-    meshes1.close();
-    return values;
+    values.emplace_back(std::to_string(i), coords, res, sol, m);
+  }
+
+  coords1.close();
+  sols1.close();
+  matrixes1.close();
+  meshes1.close();
+  return values;
 }
 
-class DipolesVerificationTS : public ::testing::TestWithParam<ttype> {
-public:
+class DipolesVerificationTs : public ::testing::TestWithParam<Ttype> {
+ public:
 
-
-protected:
+ protected:
 };
 
-
 INSTANTIATE_TEST_SUITE_P(
-        ValidationTest, DipolesVerificationTS,
-        ::testing::ValuesIn(testFixtureGetter()),
-        firstValueTuplePrinter<DipolesVerificationTS>);
+    ValidationTest, DipolesVerificationTs,
+    ::testing::ValuesIn(TestFixtureGetter()),
+    FirstValueTuplePrinter<DipolesVerificationTs>);
 
-TEST_P(DipolesVerificationTS, test_on_10_basik_conf_matrixes) {
-    auto [nn, conf, matr, _, pp] = GetParam();
+TEST_P(DipolesVerificationTs, test_on_10_basik_conf_matrixes) {
+  auto [nn, conf, matr, _, pp] = GetParam();
 
-    EXPECT_EQ(matr.rows() / 4, conf.size() / 2);
-    dipoles::Dipoles dd(conf);
-    compare2dArrays(dd.getMatrixx(), matr, twoDArrayDoubleComparator<FloatType>::call, 1e20 / 10000);
+  EXPECT_EQ(matr.rows() / 4, conf.size() / 2);
+  dipoles::Dipoles dd(conf);
+  Compare2DArrays(dd.GetMatrixx(), matr, twoDArrayDoubleComparator<FloatType>::call, 1e20 / 10000);
 
 }
 
-TEST_P(DipolesVerificationTS,
+TEST_P(DipolesVerificationTs,
        test_on_10_basik_conf_solutions) {
 
-    auto [nn, _, matr, sol, pp] = GetParam();
+  auto [nn, _, matr, sol, pp] = GetParam();
 
-    dipoles::Dipoles dd;
-    dd.loadFromMatrix(matr);
+  dipoles::Dipoles dd;
+  dd.LoadFromMatrix(matr);
 
-    auto solut = dd.solve<ct::EigenVec>();
-    compareArrays(sol, solut, arrayDoubleComparator<FloatType>::call);
+  auto solut = dd.Solve<ct::EigenVec>();
+  CompareArrays(sol, solut, arrayDoubleComparator<FloatType>::call);
 }
 
+TEST_P(DipolesVerificationTs, test_on_10_basik_conf_meshes) {
+  std::ios_base::sync_with_stdio(false);
 
-TEST_P(DipolesVerificationTS, test_on_10_basik_conf_meshes) {
-    std::ios_base::sync_with_stdio(false);
+  auto [nn, conf, mattr, sol, mesh] = GetParam();
 
+  dipoles::Dipoles dd;
+  dd.GetFullFunction(conf, sol);
 
-    auto [nn, conf, mattr, sol, mesh] = GetParam();
+  MeshCreator mm;
+  mm.ConstructMeshes();
+  mm.ApplyFunction(dd.GetI2Function());
+  auto r2 = mesh_storage::Unflatten(mm.data_[2], mm.dimensions_);
 
-    dipoles::Dipoles dd;
-    dd.getFullFunction_(conf, sol);
+  auto ress = mesh_storage::Unflatten(mesh.data_[2], mesh.dimensions_);
 
-    MeshCreator mm;
-    mm.constructMeshes();
-    mm.applyFunction(dd.getI2function());
-    auto r2 = meshStorage::unflatten(mm.data[2], mm.dimensions);
-
-    auto ress = meshStorage::unflatten(mesh.data[2], mesh.dimensions);
-
-    compare2dArrays<true>(ress, r2, twoDArrayDoubleComparator<FloatType>::call, 1e-3);
+  Compare2DArrays<true>(ress, r2, twoDArrayDoubleComparator<FloatType>::call, 1e-3);
 }
 

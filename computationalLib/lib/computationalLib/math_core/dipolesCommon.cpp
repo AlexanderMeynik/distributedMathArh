@@ -1,20 +1,19 @@
 #include "computationalLib/math_core/dipolesCommon.h"
 
-
 namespace dipoles {
 
-    bool isSymmetric(const matrixType &matr) {
-        size_t N = matr.rows();
+bool IsSymmetric(const MatrixType &matr) {
+  size_t n = matr.rows();
 
-        for (int i = 0; i < N; ++i) {
+  for (int i = 0; i < n; ++i) {
 
-            for (int j = 0; j < i; ++j) {
-                if (matr.coeffRef(i, j) != matr.coeffRef(j, i)) {
-                    return false;
-                }
-            }
-
-        }
-        return true;
+    for (int j = 0; j < i; ++j) {
+      if (matr.coeffRef(i, j) != matr.coeffRef(j, i)) {
+        return false;
+      }
     }
+
+  }
+  return true;
+}
 }

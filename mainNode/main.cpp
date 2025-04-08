@@ -5,5 +5,5 @@ using namespace drogon;
 using rest::v1::ClusterConfigController;
 
 int main() {
-    app().loadConfigFile("config/server_config.json").run();
+  app().loadConfigFile("config/server_config.json").run();
 }

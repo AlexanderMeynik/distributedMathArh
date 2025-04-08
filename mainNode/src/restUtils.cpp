@@ -1,108 +1,106 @@
 #include "restUtils.h"
 
-
-size_t writeCallback(void *contents,
+size_t WriteCallback(void *contents,
                      size_t size,
                      size_t nmemb,
                      void *userp) {
-    size_t realsize = size * nmemb;
-    auto *buffer = static_cast<std::string *>(userp);
-    buffer->append(static_cast<char *>(contents), realsize);
-    return realsize;
+  size_t realsize = size * nmemb;
+  auto *buffer = static_cast<std::string *>(userp);
+  buffer->append(static_cast<char *>(contents), realsize);
+  return realsize;
 }
 
 std::string
-performCurlRequest(const std::string &path,
+PerformCurlRequest(const std::string &path,
                    const std::string &method,
                    const std::string &host,
-                   authHandler *authHandler,
+                   AuthHandler *auth_handler,
                    const std::string &data) {
 
-    curlWrapper curlWrapper;
-    if (!curlWrapper.get()) {
-        throw shared::curlError("Failed to initialize CURL");
-    }
+  CurlWrapper curl_wrapper;
+  if (!curl_wrapper.Get()) {
+    throw shared::curlError("Failed to initialize CURL");
+  }
 
-    std::string fullUrl = host + path;
-    curl_easy_setopt(curlWrapper.get(), CURLOPT_URL, fullUrl.c_str());
+  std::string full_url = host + path;
+  curl_easy_setopt(curl_wrapper.Get(), CURLOPT_URL, full_url.c_str());
 
-    authHandler->addAuthorization(curlWrapper.get());
+  auth_handler->AddAuthorization(curl_wrapper.Get());
 
+  curl_easy_setopt(curl_wrapper.Get(), CURLOPT_CUSTOMREQUEST, method.c_str());
 
-    curl_easy_setopt(curlWrapper.get(), CURLOPT_CUSTOMREQUEST, method.c_str());
+  struct curl_slist *headers = nullptr;
+  if (!data.empty()) {
+    headers = curl_slist_append(headers, "Content-Type: application/json");
+    curl_easy_setopt(curl_wrapper.Get(), CURLOPT_POSTFIELDS, data.c_str());
+    curl_easy_setopt(curl_wrapper.Get(), CURLOPT_POSTFIELDSIZE, data.size());
+  }
 
-    struct curl_slist *headers = nullptr;
-    if (!data.empty()) {
-        headers = curl_slist_append(headers, "Content-Type: application/json");
-        curl_easy_setopt(curlWrapper.get(), CURLOPT_POSTFIELDS, data.c_str());
-        curl_easy_setopt(curlWrapper.get(), CURLOPT_POSTFIELDSIZE, data.size());
-    }
+  curl_easy_setopt(curl_wrapper.Get(), CURLOPT_HTTPHEADER, headers);
 
-    curl_easy_setopt(curlWrapper.get(), CURLOPT_HTTPHEADER, headers);
+  std::string response_body;
+  curl_easy_setopt(curl_wrapper.Get(), CURLOPT_WRITEFUNCTION, WriteCallback);
+  curl_easy_setopt(curl_wrapper.Get(), CURLOPT_WRITEDATA, &response_body);
 
-    std::string responseBody;
-    curl_easy_setopt(curlWrapper.get(), CURLOPT_WRITEFUNCTION, writeCallback);
-    curl_easy_setopt(curlWrapper.get(), CURLOPT_WRITEDATA, &responseBody);
+  CURLcode res = curl_easy_perform(curl_wrapper.Get());
 
-    CURLcode res = curl_easy_perform(curlWrapper.get());
+  long http_code = 0;
+  if (res == CURLE_OK) {
+    curl_easy_getinfo(curl_wrapper.Get(), CURLINFO_RESPONSE_CODE, &http_code);
+  }
 
-    long httpCode = 0;
-    if (res == CURLE_OK) {
-        curl_easy_getinfo(curlWrapper.get(), CURLINFO_RESPONSE_CODE, &httpCode);
-    }
+  curl_slist_free_all(headers);
 
-    curl_slist_free_all(headers);
+  if (res != CURLE_OK) {
+    throw shared::curlError(std::string(curl_easy_strerror(res)));
+  }
 
-    if (res != CURLE_OK) {
-        throw shared::curlError(std::string(curl_easy_strerror(res)));
-    }
+  if (http_code >= 400) {
+    throw shared::httpError(http_code);
+  }
 
-    if (httpCode >= 400) {
-        throw shared::httpError(httpCode);
-    }
-
-    return responseBody;
+  return response_body;
 }
 
-curlWrapper::curlWrapper() : m_curl(curl_easy_init(), &curl_easy_cleanup) {
-    if (!m_curl)
-        throw std::runtime_error("CURL initialization failed");
+CurlWrapper::CurlWrapper() : curl_(curl_easy_init(), &curl_easy_cleanup) {
+  if (!curl_)
+    throw std::runtime_error("CURL initialization failed");
 }
 
-curlWrapper::operator bool() {
-    return m_curl.get();
+CurlWrapper::operator bool() {
+  return curl_.get();
 }
 
-CURL *curlWrapper::get() {
-    return m_curl.get();
+CURL *CurlWrapper::Get() {
+  return curl_.get();
 }
 
-void authHandler::setActive(bool act) {
-    m_active = act;
+void AuthHandler::SetActive(bool act) {
+  active_ = act;
 }
 
-authHandler::authHandler(bool active) : m_active(active) {}
+AuthHandler::AuthHandler(bool active) : active_(active) {}
 
-void authHandler::addAuthorization(CURL *curl) {
-    if (m_active) {
-        addAuth(curl);
-    }
+void AuthHandler::AddAuthorization(CURL *curl) {
+  if (active_) {
+    AddAuth(curl);
+  }
 }
 
-basicAuthHandler::basicAuthHandler(const std::string &user, const std::string &password, bool active) :
-        authHandler(active),
-        m_user(user),
-        m_password(password) {}
+BasicAuthHandler::BasicAuthHandler(const std::string &user, const std::string &password, bool active) :
+    AuthHandler(active),
+    user_(user),
+    password_(password) {}
 
-void basicAuthHandler::addAuth(CURL *curl) {
-    if (!curl) {
-        throw shared::curlError("Curl object in null");
-    }
-    if (m_active) {
-        curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
-        curl_easy_setopt(curl, CURLOPT_USERNAME, m_user.c_str());
-        curl_easy_setopt(curl, CURLOPT_PASSWORD, m_password.c_str());
-    }
+void BasicAuthHandler::AddAuth(CURL *curl) {
+  if (!curl) {
+    throw shared::curlError("Curl object in null");
+  }
+  if (active_) {
+    curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+    curl_easy_setopt(curl, CURLOPT_USERNAME, user_.c_str());
+    curl_easy_setopt(curl, CURLOPT_PASSWORD, password_.c_str());
+  }
 }
 
 

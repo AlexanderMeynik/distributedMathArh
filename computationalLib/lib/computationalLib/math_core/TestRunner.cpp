@@ -1,160 +1,159 @@
 #include "computationalLib/math_core/TestRunner.h"
 #include "common/Printers.h"
 
-void TestRunner::createSubDirectory(const std::string &dirname, const std::string &subdirectory) {
-    if (!std::filesystem::exists("results/")) {
-        std::filesystem::create_directory("results/");
-    }
+void TestRunner::CreateSubDirectory(const std::string &dirname, const std::string &subdirectory) {
+  if (!std::filesystem::exists("results/")) {
+    std::filesystem::create_directory("results/");
+  }
 
-    if (!subdirectory.empty() && !std::filesystem::exists("results/" + subdirectory)) {
-        std::filesystem::create_directory("results/" + subdirectory);
-    }
+  if (!subdirectory.empty() && !std::filesystem::exists("results/" + subdirectory)) {
+    std::filesystem::create_directory("results/" + subdirectory);
+  }
 
-    if (!std::filesystem::exists(dirname)) {
-        std::filesystem::create_directory(dirname);
-    }
+  if (!std::filesystem::exists(dirname)) {
+    std::filesystem::create_directory(dirname);
+  }
 }
-
 
 TestRunner::TestRunner() {
-    coords_ = std::vector<coordinates>();
-    // std::vector<array<vector<FloatType>, 2>>();
-    solutions_ = std::vector<solution>();
-    subdir_ = std::nullopt;
-    dir_ = std::nullopt;
-    aRange_ = std::nullopt;
-    Nsym_ = std::nullopt;
-    N_ = std::nullopt;
+  coords_ = std::vector<Coordinates>();
+  // std::vector<array<vector<FloatType>, 2>>();
+  solutions_ = std::vector<Solution>();
+  subdir_ = std::nullopt;
+  dir_ = std::nullopt;
+  a_range_ = std::nullopt;
+  nsym_ = std::nullopt;
+  n_ = std::nullopt;
 }
 
-void TestRunner::solve() {
-    using dipoles::Dipoles;
+void TestRunner::Solve() {
+  using dipoles::Dipoles;
 
-    Dipoles d1;
-    //clocks_[1].tik();
-    if (inner_state != state_t::openmp_new)
-        goto pp;
-    {
-#pragma omp parallel for default(none) shared(Nsym_, solutions_, coords_) firstprivate(d1)
+  Dipoles d1;
+  //clocks_[1].tik();
+  if (inner_state_ != StateT::OPENMP_NEW)
+    goto pp;
+  {
+#pragma omp parallel for default(none) shared(nsym_, solutions_, coords_) firstprivate(d1)
 //#pragma omp parallel for default(shared)
-        for (int i = 0; i < Nsym_.value(); ++i) {
-            d1.setNewCoordinates(coords_[i]);
-            solutions_[i] = d1.solve<dipoles::EigenVec>();
-        }
+    for (int i = 0; i < nsym_.value(); ++i) {
+      d1.SetNewCoordinates(coords_[i]);
+      solutions_[i] = d1.Solve<dipoles::EigenVec>();
     }
-    pp:
-    for (int i = 0; i < Nsym_.value(); ++i) {
-        d1.setNewCoordinates(coords_[i]);
+  }
+  pp:
+  for (int i = 0; i < nsym_.value(); ++i) {
+    d1.SetNewCoordinates(coords_[i]);
 
-        solutions_[i] = d1.solve<dipoles::EigenVec>();
-        auto filename = getString(this->dir_.value(), "sim", i, "txt");
-        auto fout = openOrCreateFile(filename);
-        fout << "Итерация симуляции i = " << i << "\n\n";
-        printCoordinates2(fout, coords_[i]);
-        fout << "\n";
-        printSolutionFormat1(fout, solutions_[i]);
-        fout << "\n";
-        fout << "\n";
-        fout.close();
-    }
-    //clocks_[1].tak();
+    solutions_[i] = d1.Solve<dipoles::EigenVec>();
+    auto filename = GetString(this->dir_.value(), "sim", i, "txt");
+    auto fout = OpenOrCreateFile(filename);
+    fout << "Итерация симуляции i = " << i << "\n\n";
+    PrintCoordinates2(fout, coords_[i]);
+    fout << "\n";
+    PrintSolutionFormat1(fout, solutions_[i]);
+    fout << "\n";
+    fout << "\n";
+    fout.close();
+  }
+  //clocks_[1].tak();
 }
 
-std::string TestRunner::getString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
-    return dirname + name + "_i" + std::to_string(i) + "." + end;
+std::string TestRunner::GetString(const std::string &dirname, std::string &&name, int i, std::string &&end) {
+  return dirname + name + "_i" + std::to_string(i) + "." + end;
 }
 
-std::fstream TestRunner::openOrCreateFile(std::string filename) {
-    std::fstream appendFileToWorkWith;
-    appendFileToWorkWith.open(filename, std::fstream::in | std::fstream::out | std::fstream::app);
+std::fstream TestRunner::OpenOrCreateFile(std::string filename) {
+  std::fstream append_file_to_work_with;
+  append_file_to_work_with.open(filename, std::fstream::in | std::fstream::out | std::fstream::app);
 
-    if (!appendFileToWorkWith) {
-        appendFileToWorkWith.open(filename, std::fstream::in | std::fstream::out | std::fstream::trunc);
-    }
-    return appendFileToWorkWith;
+  if (!append_file_to_work_with) {
+    append_file_to_work_with.open(filename, std::fstream::in | std::fstream::out | std::fstream::trunc);
+  }
+  return append_file_to_work_with;
 }
 
-void TestRunner::generateFunction() {
+void TestRunner::GenerateFunction() {
 
-    using dipoles::Dipoles;
+  using dipoles::Dipoles;
 
-    Dipoles d1;
-    meshStorage::MeshCreator mesh;
-    mesh.constructMeshes();
-    auto result = mesh.data[2];
+  Dipoles d1;
+  mesh_storage::MeshCreator mesh;
+  mesh.ConstructMeshes();
+  auto result = mesh.data_[2];
 
-    if (inner_state == state_t::openmp_new) {
-#pragma omp parallel for default(none) shared(Nsym_, solutions_, result) firstprivate(d1, mesh)
-        for (int i = 0; i < Nsym_.value(); ++i) {
-            d1.getFullFunction_(coords_[i], solutions_[i]);
+  if (inner_state_ == StateT::OPENMP_NEW) {
+#pragma omp parallel for default(none) shared(nsym_, solutions_, result) firstprivate(d1, mesh)
+    for (int i = 0; i < nsym_.value(); ++i) {
+      d1.GetFullFunction(coords_[i], solutions_[i]);
 
-            mesh.applyFunction(d1.getI2function());
+      mesh.ApplyFunction(d1.GetI2Function());
 
-            auto mesht = mesh.data[2];
+      auto mesht = mesh.data_[2];
 
 #pragma omp critical
-            {
-                meshStorage::addMesh(result, mesht);
-            }
-        }
-
-    } else {
-        for (int i = 0; i < Nsym_.value(); ++i) {
-            d1.getFullFunction_(coords_[i], solutions_[i]);
-
-            mesh.applyFunction(d1.getI2function());
-            auto mesht = mesh.data[2];
-
-            meshStorage::addMesh(result, mesht);
-
-            auto filename = getString(this->dir_.value(), "sim", i, "txt");
-            auto fout = openOrCreateFile(filename);
-            //mesh.printDec(fout);//use print mesh
-
-
-            fout.close();
-        }
-
-        /*for (int i = 0; i < result.size(); ++i) {
-            for (int j = 0; j < result[0].size(); ++j) {
-                result[i][j] /= Nsym_.value();
-            }
-        }*/
-        result /= Nsym_.value();
-
-        std::ofstream out1(dir_.value() + "avg.txt");
-        out1 << "Значение  целевой функции усреднённой по " << Nsym_.value() << " симуляциям "
-             << "для конфигураций, состоящих из " << N_.value() << " диполей\n";
-        mesh.data[2] = result;
-        // mesh.printDec(out1);
-
-        out1.close();
-
+      {
+        mesh_storage::AddMesh(result, mesht);
+      }
     }
-    //clocks_[2].tak();
+
+  } else {
+    for (int i = 0; i < nsym_.value(); ++i) {
+      d1.GetFullFunction(coords_[i], solutions_[i]);
+
+      mesh.ApplyFunction(d1.GetI2Function());
+      auto mesht = mesh.data_[2];
+
+      mesh_storage::AddMesh(result, mesht);
+
+      auto filename = GetString(this->dir_.value(), "sim", i, "txt");
+      auto fout = OpenOrCreateFile(filename);
+      //mesh.printDec(fout);//use print mesh
+
+
+      fout.close();
+    }
+
+    /*for (int i = 0; i < result.size(); ++i) {
+        for (int j = 0; j < result[0].size(); ++j) {
+            result[i][j] /= Nsym_.value();
+        }
+    }*/
+    result /= nsym_.value();
+
+    std::ofstream out1(dir_.value() + "avg.txt");
+    out1 << "Значение  целевой функции усреднённой по " << nsym_.value() << " симуляциям "
+         << "для конфигураций, состоящих из " << n_.value() << " диполей\n";
+    mesh.data_[2] = result;
+    // mesh.printDec(out1);
+
+    out1.close();
+
+  }
+  //clocks_[2].tak();
 }
 
-TestRunner::TestRunner(size_t N, size_t Ns, double aRange, std::string dirname, std::string subdir, state_t state) {
-    N_ = N;
-    Nsym_ = Ns;
-    aRange_ = aRange;
-    subdir_ = subdir;
-    std::stringstream ss;
-    ss << aRange << ".csv";
-    std::string aStr = ss.str();
-    aStr.erase(std::remove(aStr.begin(), aStr.end(), '+'), aStr.end());
-    std::replace(aStr.begin(), aStr.end(), '-', '_');
-    if (dirname.empty()) {
-        dir_ = "results/" + subdir_.value() + "experiment_N=" + std::to_string(N) +
-               "_Nsym=" + std::to_string(Nsym_.value()) + "_a=" + aStr + "_mode=" +
-               ENUM_TO_STR(inner_state, stateToStr) + "/";
-    } else {
-        dir_ = "results/" + subdir_.value() + dirname;
-    }
-    createSubDirectory(dir_.value(), subdir_.value());
-    solutions_.resize(Nsym_.value());
-    coords_.resize(Nsym_.value());
-    inner_state = state;
+TestRunner::TestRunner(size_t n, size_t ns, double a_range, std::string dirname, std::string subdir, StateT state) {
+  n = n;
+  nsym_ = ns;
+  a_range_ = a_range;
+  subdir_ = subdir;
+  std::stringstream ss;
+  ss << a_range << ".csv";
+  std::string a_str = ss.str();
+  a_str.erase(std::remove(a_str.begin(), a_str.end(), '+'), a_str.end());
+  std::replace(a_str.begin(), a_str.end(), '-', '_');
+  if (dirname.empty()) {
+    dir_ = "results/" + subdir_.value() + "experiment_N=" + std::to_string(n) +
+        "_Nsym=" + std::to_string(nsym_.value()) + "_a=" + a_str + "_mode=" +
+        ENUM_TO_STR(inner_state_, kStateToStr) + "/";
+  } else {
+    dir_ = "results/" + subdir_.value() + dirname;
+  }
+  CreateSubDirectory(dir_.value(), subdir_.value());
+  solutions_.resize(nsym_.value());
+  coords_.resize(nsym_.value());
+  inner_state_ = state;
 
 }
 

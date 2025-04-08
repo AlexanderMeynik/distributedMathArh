@@ -2,10 +2,14 @@
 
 #include <functional>
 #include "common/commonTypes.h"
+#include "common/MeshCreator.h"
 
-using commonTypes::FloatType;
-namespace meshStorage {
-    class MeshCreator;
+namespace ms = mesh_storage;
+
+
+using common_types::FloatType;
+namespace mesh_storage {
+class MeshCreator;
 }
 
 /**
@@ -13,20 +17,20 @@ namespace meshStorage {
  * @param filename
  * @param mesh
  */
-void plotFunction(const std::string &filename, const meshStorage::MeshCreator &mesh);
+void PlotFunction(const std::string &filename, const ms::MeshCreator &mesh);
 
 /**
- * @b Plots 2d scatter plot using matplot++ callbacks
+ * @b Plots 2d scatter Plot using matplot++ callbacks
  * @param name
  * @param ar
  * @param xi
  */
-void plotCoordinates(const std::string &name, FloatType ar, std::array<std::vector<FloatType>, 2> &xi);
+void PlotCoordinates(const std::string &name, FloatType ar, std::array<std::vector<FloatType>, 2> &xi);
 
 /**
- * @b plotCoordinates variant that uses 1d array for xy coordinates
+ * @b PlotCoordinates variant that uses 1d array for xy coordinates
  * @param name
  * @param ar
  * @param xi
  */
-void plotCoordinates(const std::string &name, FloatType ar, const std::vector<FloatType> &xi);
+void PlotCoordinates(const std::string &name, FloatType ar, const std::vector<FloatType> &xi);
