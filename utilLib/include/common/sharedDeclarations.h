@@ -10,6 +10,9 @@
  */
 namespace shared {
 using FloatType = double;
+using BenchResultType=uint64_t;
+
+using BenchResVec=std::valarray<BenchResultType>;
 
 /**
  * @brief Common numeric parameters values

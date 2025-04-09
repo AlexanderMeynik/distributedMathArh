@@ -57,8 +57,8 @@ TEST_F(RabbitMqRestServiceTest, whoAmI_Unauthorized) {
           g_serviceParams.host,
           handler_s.get()
       ),
-      shared::httpError,
-      std::make_tuple(401));
+      shared::HttpError,
+      std::make_tuple(401, ""));
 }
 
 TEST_F(RabbitMqRestServiceTest, CreateQueue) {
@@ -88,7 +88,8 @@ TEST_F(RabbitMqRestServiceTest, ListQueues) {
 
   std::vector<std::string> queues2 = m_service_ptr_->ListQueues(vhost_);
 
-  test_common::CompareArrays(queues, queues2, [](const std::string &a, const std::string &a2, size_t i, double tol) {
+  test_common::CompareArrays(queues, queues2,
+                             [](const std::string &a, const std::string &a2, size_t i, double tol) {
     return a == a2;
   });
   //todo more verbose operator
@@ -107,15 +108,23 @@ TEST_F(RabbitMqRestServiceTest, BindQueueToExchange) {
 
 TEST_F(RabbitMqRestServiceTest, BindQueueToExchange_NoExchangeFound) {
 
-  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->BindQueueToExchange(vhost_, qq_, "nonExistentExhc", r_key_),
-                             shared::httpError, std::make_tuple(404));
+  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->BindQueueToExchange(vhost_,
+                                                                 qq_,
+                                                                 "nonExistentExhc",
+                                                                 r_key_),
+                             shared::HttpError,
+                             std::make_tuple(404, ""));
 
 }
 
 TEST_F(RabbitMqRestServiceTest, BindQueueToExchange_NoQueueFound) {
 
-  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->BindQueueToExchange(vhost_, "qdwwcwedc", exch_, r_key_),
-                             shared::httpError, std::make_tuple(404));
+  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->BindQueueToExchange(vhost_,
+                                                                 "qdwwcwedc",
+                                                                 exch_,
+                                                                 r_key_),
+                             shared::HttpError,
+                             std::make_tuple(404, ""));
 
 }
 
@@ -141,7 +150,9 @@ TEST_F(RabbitMqRestServiceTest, DeleteQueue) {
 TEST_F(RabbitMqRestServiceTest, DeleteQueue_DoesNotExists) {
 
   std::string nn = "exch2edw";
-  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->DeleteQueue(vhost_, nn), shared::httpError, std::make_tuple(404));
+  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->DeleteQueue(vhost_, nn),
+                             shared::HttpError,
+                             std::make_tuple(404, ""));
 }
 
 TEST_F(RabbitMqRestServiceTest, CreateUser) {
@@ -202,7 +213,9 @@ TEST_F(RabbitMqRestServiceTest, DeleteExchange) {
 TEST_F(RabbitMqRestServiceTest, DeleteExchange_DoesNotExists) {
 
   std::string nn = "exch2edw";
-  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->DeleteExchange(vhost_, nn), shared::httpError, std::make_tuple(404));
+  EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->DeleteExchange(vhost_, nn),
+                             shared::HttpError,
+                             std::make_tuple(404,""));
 }
 
 int main(int argc, char **argv) {

@@ -6,7 +6,6 @@ using namespace rest::v1;
 
 void
 ClusterConfigController::GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
-  /*auto r=HttpResponse::newHttpResponse();*/
 
   Json::Value root;
 
@@ -66,7 +65,7 @@ void ClusterConfigController::ConnectHandler(const HttpRequestPtr &req,
     return;
   }
 
-  clients_[host_port].power_ = print_utils::JsonToContinuous<std::valarray<double>>((*json_ptr)["bench"]);
+  clients_[host_port].power_ = print_utils::JsonToContinuous<BenchResVec>((*json_ptr)["bench"]);
 
   clients_[host_port].st_ = NodeStatus::ACTIVE;
   res["benchRes"] = print_utils::ContinuousToJson(clients_[host_port].power_);

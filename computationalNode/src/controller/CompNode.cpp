@@ -24,7 +24,7 @@ void CompNode::ConnectHandler(const HttpRequestPtr &req, std::function<void(cons
   res["name"] = name;
 
   if (handler_->con_) {
-    auto r = HttpResponse::newHttpJsonResponse(res);//toso cur service?
+    auto r = HttpResponse::newHttpJsonResponse(res);
     r->setStatusCode(HttpStatusCode::k208AlreadyReported);
     callback(r);
     return;

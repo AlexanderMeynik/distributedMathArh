@@ -5,7 +5,7 @@
 #include "computationalLib/math_core/TestRunner.h"
 
 using namespace drogon;
-using shared::FloatType;
+using shared::BenchResVec;
 
 //todo forward results from nodes
 namespace rest {
@@ -65,12 +65,12 @@ class AMQPHandler {
 };
 
 class CompNode : public drogon::HttpController<CompNode> {
-  std::unordered_map<std::string, std::thread> thrreads_;
+  std::unordered_map<std::string, std::thread> threads_;
   std::shared_ptr<AMQPHandler> handler_;
-  std::valarray<FloatType> bench_res_;
+  BenchResVec bench_res_;
 
-  std::valarray<FloatType> RunBench() {
-    return {1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0};
+  BenchResVec RunBench() {
+    return {1, 1, 1, 1, 1, 1, 1, 1, 1};
   }
 
  public:

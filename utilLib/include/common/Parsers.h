@@ -121,7 +121,7 @@ Struct JsonToContinuous(Json::Value &val,
   Struct res(size);
 
   for (int i = 0; i < size; ++i) {
-    res[i] = val["data"][i].asDouble();
+    res[i] = val["data"][i].as<std::remove_all_extents_t<typename Struct::value_type>>();
   }
   return res;
 }

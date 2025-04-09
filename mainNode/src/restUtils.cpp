@@ -19,7 +19,7 @@ PerformCurlRequest(const std::string &path,
 
   CurlWrapper curl_wrapper;
   if (!curl_wrapper.Get()) {
-    throw shared::curlError("Failed to initialize CURL");
+    throw shared::CurlError("Failed to initialize CURL");
   }
 
   std::string full_url = host + path;
@@ -52,11 +52,11 @@ PerformCurlRequest(const std::string &path,
   curl_slist_free_all(headers);
 
   if (res != CURLE_OK) {
-    throw shared::curlError(std::string(curl_easy_strerror(res)));
+    throw shared::CurlError(std::string(curl_easy_strerror(res)));
   }
 
   if (http_code >= 400) {
-    throw shared::httpError(http_code);
+    throw shared::HttpError(http_code,"");
   }
 
   return response_body;
@@ -94,7 +94,7 @@ BasicAuthHandler::BasicAuthHandler(const std::string &user, const std::string &p
 
 void BasicAuthHandler::AddAuth(CURL *curl) {
   if (!curl) {
-    throw shared::curlError("Curl object in null");
+    throw shared::CurlError("Curl object in null");
   }
   if (active_) {
     curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);

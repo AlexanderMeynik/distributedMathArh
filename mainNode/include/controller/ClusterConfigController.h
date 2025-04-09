@@ -7,7 +7,7 @@
 #include <drogon/HttpRequest.h>
 
 using namespace drogon;
-using shared::FloatType;
+using shared::BenchResVec;
 
 namespace rest {
 namespace v1 {
@@ -41,8 +41,7 @@ class ComputationalNode {
   std::string GetPath() {
     return http_client_->getHost() + ":" + std::to_string(http_client_->getPort());
   }
-
-  std::valarray<FloatType> power_;//todo spline function
+  BenchResVec power_;
   NodeStatus st_;
 };
 
