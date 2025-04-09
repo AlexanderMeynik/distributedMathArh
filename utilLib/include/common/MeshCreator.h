@@ -134,7 +134,7 @@ class MeshCreator {
   friend MeshArr<3> SphericalTransformation(const MeshCreator &oth);
 
   /**
-   * @brief Computes data[2] using provided func function
+   * @brief Computes data[2] using provided Func function
    * @param func
    */
   void ApplyFunction(const co::DirectionGraph &func);

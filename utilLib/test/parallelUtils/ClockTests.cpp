@@ -1,7 +1,7 @@
 #include "parallelUtils/chronoClock.h"
 #include <gtest/gtest.h>
 
-using chrono_clock::chronoClockTemplate;
+using chrono_clock::ChronoClockTemplate;
 using namespace timing;
 using namespace std::chrono_literals;
 
@@ -20,7 +20,7 @@ static constexpr double kRelErr = 1;
  */
 class ClockArrayTest : public ::testing::Test {
  protected:
-  chronoClockTemplate<Ratio> clk_;
+  ChronoClockTemplate<Ratio> clk_;
 };
 
 TEST_F(ClockArrayTest, simple_linear_calculation) {

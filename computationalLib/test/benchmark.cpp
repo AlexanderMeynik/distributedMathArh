@@ -17,16 +17,16 @@ using file_utils::fileHandler;
 using namespace shared;
 using bench_utils::BenchmarkHandler;
 
-void func(int a, char b, uint c) {
+void Func(int a, char b, uint c) {
   std::cout << a << '\n' << b << '\n' << c << '\n';
 }
 
-constexpr auto chararr = std::array<char, 3>{'a', 'b', 'c'};
-constexpr auto intarr = std::array<int, 4>{1, 2, 3, 4};
-constexpr FloatType arange = 1e-6;
+constexpr auto kChararr = std::array<char, 3>{'a', 'b', 'c'};
+constexpr auto kIntarr = std::array<int, 4>{1, 2, 3, 4};
+constexpr FloatType kArange = 1e-6;
 
 void
-loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &dipoles1,
+Loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &dipoles1,
      mesh_storage::MeshCreator &ms, size_t confNum, StateT st) {
   for (size_t i = 0; i < confNum; ++i) {
     clk.tik();
@@ -54,15 +54,15 @@ loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &d
 
 auto firstBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
-  auto confNum = 1000;
-  auto sig = arange * sqrt(2);
+  auto conf_num = 1000;
+  auto sig = kArange * sqrt(2);
   auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
 
   dipoles::Dipoles dipoles1;
 
   mesh_storage::MeshCreator ms;
   ms.ConstructMeshes();
-  loop(coordinates, clk, dipoles1, ms, confNum, st);
+  Loop(coordinates, clk, dipoles1, ms, conf_num, st);
 
 };
 
@@ -71,15 +71,15 @@ auto nameGenerator1 =
       return STR(ENUM_TO_STR(st, kStateToStr)) + "_" + std::to_string(N);
     };
 
-const std::array<size_t, 5> rlims = {10, 50, 200, 500, 1000};
-const std::array<size_t, 6> divs
+const std::array<size_t, 5> kRlims = {10, 50, 200, 500, 1000};
+const std::array<size_t, 6> kDivs
     {
         1, 10, 40, 100, 200, 400
     };
 
 auto rangeFinder = [](size_t N) -> size_t {
-  auto rangeNum = std::lower_bound(rlims.begin(), rlims.end(), N) - rlims.begin();
-  auto currdiv = divs[rangeNum];
+  auto range_num = std::lower_bound(kRlims.begin(), kRlims.end(), N) - kRlims.begin();
+  auto currdiv = kDivs[range_num];
   return currdiv;
 };
 
@@ -88,7 +88,7 @@ auto secondBench = []
   auto div = rangeFinder(N);
   mul = div;
   auto confNum = 10000 / div;
-  auto sig = arange * sqrt(2);
+  auto sig = kArange * sqrt(2);
   auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
 
   dipoles::Dipoles dipoles1;
@@ -124,8 +124,8 @@ std::function<std::string(size_t)> nameGenerator2 =
     };
 auto thirdBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
-  auto confNum = 1000;
-  auto sig = arange * sqrt(2);
+  auto conf_num = 1000;
+  auto sig = kArange * sqrt(2);
   auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
 
   dipoles::Dipoles dipoles1;
@@ -137,7 +137,7 @@ auto thirdBench = []
   dipoles1.GetFullFunction(coordinates, sol);
   clk.tik();
   if (static_cast<size_t>(st) <= 1) {
-    for (size_t i = 0; i < confNum; ++i) {
+    for (size_t i = 0; i < conf_num; ++i) {
       if (st == StateT::NEW) {
         ms.ApplyFunction(dipoles1.GetI2Function());
       } else {
@@ -147,7 +147,7 @@ auto thirdBench = []
     }
   } else {
 #pragma omp parallel for firstprivate(dipoles1, ms), default(shared)
-    for (size_t i = 0; i < confNum; ++i) {
+    for (size_t i = 0; i < conf_num; ++i) {
 
       if (st == StateT::OPENMP_NEW) {
         ms.ApplyFunction(dipoles1.GetI2Function());
@@ -168,7 +168,7 @@ auto nameGenerator3 =
 
 auto fourthBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, size_t confNum, size_t N) {
-  auto sig = arange * sqrt(2);
+  auto sig = kArange * sqrt(2);
   auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
 
   dipoles::Dipoles dipoles1;

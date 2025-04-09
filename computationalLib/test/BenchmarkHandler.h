@@ -16,7 +16,7 @@ namespace fu = file_utils;
 using print_utils::TupleToString;
 
 template<typename ratio=std::milli>
-using ClockType = chrono_clock::chronoClockTemplate<ratio>;
+using ClockType = chrono_clock::ChronoClockTemplate<ratio>;
 
 /**
  * @brief Compile time function to compute cartessian product for arbitrary number of arrays

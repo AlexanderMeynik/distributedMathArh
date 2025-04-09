@@ -191,6 +191,8 @@ template<typename OutType, typename inType, inType (*timeGetter)(), locationType
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
 clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::tak(
     const std::source_location &location) {
+
+  auto newTime=(*timeGetter)();
   const guardType guard{s_mutex};
   auto id = (*sourceTypeConverter)(location);
   if (toTak.empty() || toTak.top()[0] != id[0]) {
@@ -202,7 +204,7 @@ clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::tak
   id[1] = toTak.top()[1];
   id[2] = toTak.top()[2];
   toTak.pop();
-  auto res = timeConverter((*timeGetter)(), startIngTimers[id]);
+  auto res = timeConverter(newTime, startIngTimers[id]);
   if (!timers.contains(id)) {
     timers[id] = {res, 1};
   } else {

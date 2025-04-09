@@ -135,7 +135,7 @@ class amqpPublisherService {
 };
 
 /**
- * @brief Service that allow to start and end reading event loop from specified queue
+ * @brief Service that allow to start and end reading event Loop from specified queue
  */
 class amqpConsumerService {
  public:
@@ -148,12 +148,12 @@ class amqpConsumerService {
                       const std::string &queue_name);
 
   /**
-   * @brief Starts event loop to read from queue1
+   * @brief Starts event Loop to read from queue1
    */
   void Connect();
 
   /**
-   * @brief Ends event loop()
+   * @brief Ends event Loop()
    */
   void Disconnect();
 

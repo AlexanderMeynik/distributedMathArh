@@ -60,10 +60,10 @@ void MeshCreator::ConstructMeshes(const DimType &dims, const LimType &lims) {
 
   auto phi = mesh_storage::MyLinspace<std::valarray>(limits_[2], limits_[3], dimensions_[1]);
   auto theta = mesh_storage::MyLinspace<std::valarray>(limits_[0], limits_[1], dimensions_[0]);
-  std::array<std::valarray<FloatType>, 2> coords;
+  /*std::array<std::valarray<FloatType>, 2> coords;
   for (size_t i = 0; i < 2; ++i) {
     coords[i] = mesh_storage::MyLinspace<std::valarray>(limits_[2 * i], limits_[2 * i + 1], dimensions_[i]);
-  }
+  }*/
 
   auto rrr = mesh_storage::MyMeshGrid(phi, theta);
   data_[0] = rrr[0];

@@ -7,8 +7,14 @@ namespace chrono_clock {
 /**
 * Global clock used for time measurement
 */
-using timepointType = std::chrono::system_clock::time_point;
+
+using ClockType = typename std::conditional<std::chrono::high_resolution_clock::is_steady,
+                                            std::chrono::high_resolution_clock,
+                                            std::chrono::steady_clock >::type ;
+
+using TimepointType = ClockType::time_point/*::chrono::system_clock::time_point*/;
 using timing::locationType;
+
 
 /**
 * Formats source location fields for more readability
@@ -26,23 +32,22 @@ locationType GetFileState(std::source_location location
  * @return
  */
 template<typename to_dur = std::milli, typename doubleType>
-doubleType doubleCastChrono(timepointType curr, timepointType prev);
+doubleType DoubleCastChrono(TimepointType curr, TimepointType prev);
 
 /**
  * @tparam chrono_duration_type
  */
 template<typename chrono_duration_type=std::milli>
-using chronoClockTemplate = timing::clockArray<int64_t, timepointType,
-                                               &std::chrono::high_resolution_clock::now,
+using ChronoClockTemplate = timing::clockArray<int64_t, TimepointType,
+                                               &ClockType::now,
                                                &GetFileState,
-                                               &doubleCastChrono<chrono_duration_type>>;
+                                               &DoubleCastChrono<chrono_duration_type>>;
 
-using clockType = chronoClockTemplate<std::milli>;
-using symbolType = char;
+using clockType = ChronoClockTemplate<std::milli>;
 extern clockType gClk;
 
 template<typename to_dur, typename doubleType>
-doubleType doubleCastChrono(timepointType curr, timepointType prev) {
+doubleType DoubleCastChrono(TimepointType curr, TimepointType prev) {
   std::chrono::duration<doubleType, to_dur> ret =
       std::chrono::duration_cast<std::chrono::duration<doubleType, to_dur>>(curr - prev);
   return ret.count();
