@@ -65,41 +65,54 @@ class clockArray {
   /**
    * Resets timers and converted double values
    */
-  void reset();
+  void Reset();
+
+  /**
+   * @brief resets timer value for one timer
+   */
+  void ResetTimer(const locationType  &location)
+  {
+    const GuardType kGuard{s_mutex_};
+    //auto id = sourceTypeConverter(location);
+
+    if(timers_.contains(location)) {
+      timers_.erase(location);
+    }
+  }
 
   /**
    * This function starts new calculation section
    * @param location source location of call
-   * @attention You must mirror every tik like call with
-   * @ref timing::ClockArray::tak() "tak()"
+   * @attention You must mirror every Tik like call with
+   * @ref timing::ClockArray::tak() "Tak()"
    */
-  void tik(const std::source_location &location
+  void Tik(const std::source_location &location
   = std::source_location::current());
 
   /**
    * Finishes timing for specified section and calculation double value for time
    * @param location
    */
-  void tak(const std::source_location &location
+  void Tak(const std::source_location &location
   = std::source_location::current());
 
   /**
    * This function returns it's source location to chain several
    * compute sections into one.
    * @details Example:
-   * @details auto source =clk.tikLoc();
+   * @details auto source =clk.TikLoc();
    * @details some_func();
-   * @details clk.tak();
+   * @details clk.Tak();
    * @details someOtherFunc();
-   * @details clk.tik(source);
+   * @details clk.Tik(source);
    * @details some_func();
-   * @details clk.tak();
+   * @details clk.Tak();
    * @param location
    * @return source location
    */
-  locationType tikLoc(const std::source_location &location
+  locationType TikLoc(const std::source_location &location
   = std::source_location::current()) {
-    tik(location);
+    Tik(location);
     return sourceTypeConverter(location);
   }
 
@@ -107,25 +120,25 @@ class clockArray {
    * @param location
    * @return pair of std::source_location, location_type
    */
-  std::pair<std::source_location, locationType> tikPair(const std::source_location &location
+  std::pair<std::source_location, locationType> TikPair(const std::source_location &location
   = std::source_location::current()) {
-    return std::make_pair(location, tikLoc(location));
+    return std::make_pair(location, TikLoc(location));
   }
 
   decltype(auto) begin() const {
-    return timers.begin();
+    return timers_.begin();
   }
 
   decltype(auto) end() const {
-    return timers.end();
+    return timers_.end();
   }
 
   auto cbegin() const {
-    return timers.cbegin();
+    return timers_.cbegin();
   }
 
   auto cend() const {
-    return timers.cend();
+    return timers_.cend();
   }
 
   friend std::ostream &
@@ -140,11 +153,11 @@ class clockArray {
   }
 
   auto &operator[](const locationType &loc) {
-    return timers[loc];
+    return timers_[loc];
   }
 
   [[nodiscard]] bool contains(const locationType &loc) const {
-    return timers.contains(loc);
+    return timers_.contains(loc);
   }
 
   /**
@@ -155,21 +168,21 @@ class clockArray {
 
     for (auto &otherclk : other) {
       if (this->contains(otherclk.first)) {
-        this->timers[otherclk.first].time += otherclk.second.time;
-        this->timers[otherclk.first].count += otherclk.second.count;
+        this->timers_[otherclk.first].time += otherclk.second.time;
+        this->timers_[otherclk.first].count += otherclk.second.count;
       } else {
-        this->timers[otherclk.first] = otherclk.second;
+        this->timers_[otherclk.first] = otherclk.second;
       }
     }
   }
 
  private:
-  std::map<locationType, timeStore, decltype(cmp)> timers;
-  std::map<locationType, inType, decltype(cmp)> startIngTimers;
-  std::stack<locationType> toTak;
+  std::map<locationType, timeStore, decltype(cmp)> timers_;
+  std::map<locationType, inType, decltype(cmp)> start_ing_timers_;
+  std::stack<locationType> to_tak_;
 
-  static inline std::mutex s_mutex;
-  using guardType = std::lock_guard<std::mutex>;
+  static inline std::mutex s_mutex_;
+  using GuardType = std::lock_guard<std::mutex>;
 };
 
 }
@@ -189,50 +202,51 @@ namespace timing {
 template<typename OutType, typename inType, inType (*timeGetter)(), locationType (*sourceTypeConverter)(
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
-clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::tak(
+clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tak(
     const std::source_location &location) {
 
-  auto newTime=(*timeGetter)();
-  const guardType guard{s_mutex};
+  auto new_time=(*timeGetter)();
+  const GuardType kGuard{s_mutex_};
   auto id = (*sourceTypeConverter)(location);
-  if (toTak.empty() || toTak.top()[0] != id[0]) {
-    std::string msg = "No paired tik statement found in queue\t"
+  if (to_tak_.empty() || to_tak_.top()[0] != id[0]) {
+    std::string msg = "No paired Tik statement found in queue\t"
                       "Tak values" + id[3] + ":" + id[1] + "\t"
         + id[0] + '\t' + id[2];
     throw std::logic_error(msg);
   }
-  id[1] = toTak.top()[1];
-  id[2] = toTak.top()[2];
-  toTak.pop();
-  auto res = timeConverter(newTime, startIngTimers[id]);
-  if (!timers.contains(id)) {
-    timers[id] = {res, 1};
+  id[1] = to_tak_.top()[1];
+  id[2] = to_tak_.top()[2];
+  to_tak_.pop();
+  auto res = timeConverter(new_time, start_ing_timers_[id]);
+  if (!timers_.contains(id)) {
+    timers_[id] = {res, 1};
   } else {
-    timers[id].time += res;
-    timers[id].count++;
+    timers_[id].time += res;
+    timers_[id].count++;
   }
 }
 
 template<typename OutType, typename inType, inType (*timeGetter)(), locationType (*sourceTypeConverter)(
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
-clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::tik(
+clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tik(
     const std::source_location &location) {
-  const guardType guard{s_mutex};
+  const GuardType kGuard{s_mutex_};
   auto id = sourceTypeConverter(location);
-  startIngTimers[id] = timeGetter();
+  start_ing_timers_[id] = timeGetter();
 
-  toTak.push(id);
+  to_tak_.push(id);
 }
 
 template<typename OutType, typename inType, inType (*timeGetter)(), locationType (*sourceTypeConverter)(
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
-clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::reset() {
-  if (!toTak.empty()) {
-    throw std::logic_error("Missing tak statements for tik ones");
+clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Reset() {
+  const GuardType kGuard{s_mutex_};
+  if (!to_tak_.empty()) {
+    throw std::logic_error("Missing Tak statements for Tik ones");
   }
-  this->timers.clear();
-  this->startIngTimers.clear();
+  this->timers_.clear();
+  this->start_ing_timers_.clear();
 }
 }

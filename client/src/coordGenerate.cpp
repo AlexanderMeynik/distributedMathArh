@@ -76,9 +76,10 @@ int main(int argc, char *argv[]) {
   }
 
   /*CoordGenerator<double> genr(0, aRange);*/
-  std::vector<std::vector<double>> coordinates(nsym);
+  std::vector<std::vector<double>> coordinates(nsym,std::vector<double>(2*n));
+  auto normal_gen=generators::get_normal_generator(0.0, a_range* sqrt(2));
   for (int i = 0; i < nsym; ++i) {
-    coordinates[i] = generators::normal<std::vector>(n, 0.0, a_range * sqrt(2))/*genr.generateCoordinates(N)*/;
+    std::generate(coordinates[i].begin(), coordinates[i].end(), normal_gen);
   }
   Dipoles dipoles1(coordinates[0]);
   using mesh_storage::MeshCreator;

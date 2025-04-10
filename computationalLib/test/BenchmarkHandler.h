@@ -158,7 +158,7 @@ BenchmarkHandler<range>::RunBenchmark(
 
     inner_counter++;
     clkdc.advance(clk_arr_);
-    clk_arr_.reset();
+    clk_arr_.Reset();
   }
   clk_arr_ = clkdc;
 }

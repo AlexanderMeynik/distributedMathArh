@@ -65,7 +65,8 @@ Json::Value ToJson(const ms::MeshCreator &mesh,
  */
 template<typename Collection>
 requires my_concepts::isOneDimensionalContinuous<Collection> &&
-    std::is_floating_point_v<typename Collection::value_type>
+    std::is_floating_point_v<typename Collection::value_type>||
+        std::is_integral_v<typename Collection::value_type>
 void inline OneDimSerialize(std::ostream &out,
                             const Collection &col,
                             bool print_size = true,

@@ -9,6 +9,7 @@ using common_types::EigenVec;
 template<typename T>
 using DynEigenVec = Eigen::Vector<T, -1>;
 static inline FloatType aRange = 1e-6;
+static inline auto  normal_gen=generators::get_normal_generator(0.0, aRange * sqrt(2));
 
 class IsSymmetricTestSuite : public testing::TestWithParam<int> {
 };
@@ -29,7 +30,9 @@ INSTANTIATE_TEST_SUITE_P(Matrixes, IsSymmetricTestSuite, testing::Values(2, 4, 1
 TEST(Dipoles, test_solve_result_in_zero_nev) {
   const int kN = 2;
 
-  auto coord = generators::normal<DynEigenVec>(kN, 0.0, aRange * sqrt(2));
+  DynEigenVec<FloatType> coord(kN*2);
+  std::generate(std::begin(coord),std::end(coord),normal_gen);
+
   dipoles::Dipoles dipolearr(coord);
   auto solution = dipolearr.Solve<EigenVec>();
 
@@ -58,7 +61,9 @@ TEST_P(DipoleSolveMethodNevTests, test_right_part_nev_solve_impl) {
   auto [n, i] = GetParam();
   SCOPED_TRACE("Perform comparison test for N = " + std::to_string(n) + " attempt №" + std::to_string(i));
 
-  auto coord = generators::normal<DynEigenVec>(n, 0.0, aRange * sqrt(2));
+  DynEigenVec<FloatType> coord(n*2);
+  std::generate(std::begin(coord),std::end(coord),normal_gen);
+
   dipoles::Dipoles dipolearr(coord);
   auto rsol = dipolearr.Solve<EigenVec>();
   Eigen::Vector<FloatType, Eigen::Dynamic> nev = dipolearr.GetMatrixx() * rsol - dipolearr.GetRightPart();

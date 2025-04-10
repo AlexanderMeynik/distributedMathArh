@@ -25,28 +25,30 @@ constexpr auto kChararr = std::array<char, 3>{'a', 'b', 'c'};
 constexpr auto kIntarr = std::array<int, 4>{1, 2, 3, 4};
 constexpr FloatType kArange = 1e-6;
 
+auto normal_gen=generators::get_normal_generator(0.0, kArange * sqrt(2));
+
 void
 Loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &dipoles1,
      mesh_storage::MeshCreator &ms, size_t confNum, StateT st) {
   for (size_t i = 0; i < confNum; ++i) {
-    clk.tik();
+    clk.Tik();
     dipoles1.SetNewCoordinates(coordinates);
-    clk.tak();
-    clk.tik();
+    clk.Tak();
+    clk.Tik();
     auto sol = dipoles1.Solve();
-    clk.tak();
+    clk.Tak();
 
-    clk.tik();
+    clk.Tik();
     dipoles1.GetFullFunction(coordinates, sol);
-    clk.tak();
+    clk.Tak();
 
-    clk.tik();
+    clk.Tik();
     if (st == StateT::NEW) {
       ms.ApplyFunction(dipoles1.GetI2Function());
     } else {
       ms.ApplyIntegrate(dipoles1.GetIfunction());
     }
-    clk.tak();
+    clk.Tak();
 
   }
 
@@ -55,8 +57,9 @@ Loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &d
 auto firstBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
   auto conf_num = 1000;
-  auto sig = kArange * sqrt(2);
-  auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+
+  std::valarray<FloatType> coordinates(2*N);
+  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
 
   dipoles::Dipoles dipoles1;
 
@@ -88,8 +91,8 @@ auto secondBench = []
   auto div = rangeFinder(N);
   mul = div;
   auto confNum = 10000 / div;
-  auto sig = kArange * sqrt(2);
-  auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+  std::valarray<FloatType> coordinates(2*N);
+  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
 
   dipoles::Dipoles dipoles1;
 
@@ -97,20 +100,20 @@ auto secondBench = []
   ms.ConstructMeshes();
 
   for (size_t i = 0; i < confNum; ++i) {
-    clk.tik();
+    clk.Tik();
     dipoles1.SetNewCoordinates(coordinates);
-    clk.tak();
-    clk.tik();
+    clk.Tak();
+    clk.Tik();
     auto sol = dipoles1.Solve();
-    clk.tak();
+    clk.Tak();
 
-    clk.tik();
+    clk.Tik();
     dipoles1.GetFullFunction(coordinates, sol);
-    clk.tak();
+    clk.Tak();
 
-    clk.tik();
+    clk.Tik();
     ms.ApplyFunction(dipoles1.GetI2Function());
-    clk.tak();
+    clk.Tak();
 
   }
   std::cout << N << '\n';
@@ -125,8 +128,8 @@ std::function<std::string(size_t)> nameGenerator2 =
 auto thirdBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
   auto conf_num = 1000;
-  auto sig = kArange * sqrt(2);
-  auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+  std::valarray<FloatType> coordinates(2*N);
+  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
 
   dipoles::Dipoles dipoles1;
 
@@ -135,7 +138,7 @@ auto thirdBench = []
   dipoles1.SetNewCoordinates(coordinates);
   auto sol = dipoles1.Solve();
   dipoles1.GetFullFunction(coordinates, sol);
-  clk.tik();
+  clk.Tik();
   if (static_cast<size_t>(st) <= 1) {
     for (size_t i = 0; i < conf_num; ++i) {
       if (st == StateT::NEW) {
@@ -157,7 +160,7 @@ auto thirdBench = []
     }
   }
 
-  clk.tak();
+  clk.Tak();
 
 };
 
@@ -168,8 +171,8 @@ auto nameGenerator3 =
 
 auto fourthBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, size_t confNum, size_t N) {
-  auto sig = kArange * sqrt(2);
-  auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+  std::valarray<FloatType> coordinates(2*N);
+  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
 
   dipoles::Dipoles dipoles1;
 
@@ -177,20 +180,20 @@ auto fourthBench = []
   ms.ConstructMeshes();
 
   for (size_t i = 0; i < confNum; ++i) {
-    clk.tik();
+    clk.Tik();
     dipoles1.SetNewCoordinates(coordinates);
-    clk.tak();
-    clk.tik();
+    clk.Tak();
+    clk.Tik();
     auto sol = dipoles1.Solve();
-    clk.tak();
+    clk.Tak();
 
-    clk.tik();
+    clk.Tik();
     dipoles1.GetFullFunction(coordinates, sol);
-    clk.tak();
+    clk.Tak();
 
-    clk.tik();
+    clk.Tik();
     ms.ApplyFunction(dipoles1.GetI2Function());
-    clk.tak();
+    clk.Tak();
 
   }
   std::cout << N << '\n';

@@ -2,6 +2,7 @@
 
 #include <random>
 #include <functional>
+#include <thread>
 
 #include "common/commonTypes.h"
 #include "common/myConcepts.h"
@@ -9,52 +10,63 @@
 using common_types::FloatType;
 namespace generators {
 
+/**
+ * @brief Interface for distribution functions handling
+ * @tparam randomDevice
+ */
 template<typename randomDevice>
 struct generator {
   generator() {
     std::random_device rd;
-    device = randomDevice(rd());
+    auto seed = rd() ^ std::hash<std::thread::id>{}(std::this_thread::get_id());
+    device = randomDevice(seed);
   }
 
-  template<template<typename ...> typename cont,
-      template<typename...> typename distribution, typename... Args>
-  requires my_concepts::HasBracketOperator<cont<FloatType>>
-  auto Generate(size_t n, Args &...args) {
-    auto dist = distribution<FloatType>(args...);
-    cont<FloatType> container(2 * n);
 
-    for (size_t i = 0; i < 2 * n; ++i) {
-      container[i] = dist(device);
-    }
-    return container;
-
+  template<template<typename...> typename distribution, typename... Args>
+  auto GetGenFunction(Args&&... args) {
+    return [this,args...]() mutable
+    {
+      return distribution<FloatType>(std::forward<Args>(args)...)(device);
+    };
   }
 
  private:
   randomDevice device;
 };
 
-extern generator<std::mt19937> gen_mt19937;
+/// Thread local generator object
+extern thread_local generator<std::mt19937> gen_mt19937;
 
-template<template<typename ...> typename cont>
-std::function<cont<FloatType>(size_t, FloatType, FloatType)>
-    normal = [](size_t N, FloatType mean, FloatType sig) {
-  return gen_mt19937.Generate<cont, std::normal_distribution, FloatType, FloatType>(N, mean, sig);
-};
 
-template<template<typename ...> typename cont>
-std::function<cont<FloatType>(size_t, FloatType, FloatType)>
-    uniform = [](size_t N, FloatType a, FloatType b) {
-  return gen_mt19937.Generate<cont, std::uniform_real_distribution, FloatType, FloatType>(N, a, b);
-};
+/**
+ * @brief Shorthand generator getter for normal distribution
+ * @param mean
+ * @param dev
+ */
+auto inline get_normal_generator(FloatType mean, FloatType dev) {
+  return gen_mt19937.GetGenFunction<std::normal_distribution>(mean, dev);
+}
 
-template<template<typename ...> typename cont>
-std::function<cont<FloatType>(size_t, FloatType)>
-    exponential = [](size_t N, FloatType lam) {
-  return gen_mt19937.Generate<cont, std::exponential_distribution, FloatType>(N, lam);
-};
+/**
+ * @brief Shorthand generator getter for uniform real distribution
+ * @param a
+ * @param b
+ */
+auto inline get_uniform_generator(FloatType a, FloatType b) {
+  return gen_mt19937.GetGenFunction<std::uniform_real_distribution>(a, b);
+}
 
-//todo generate array of arrays(or use md span)
+/**
+ * @brief Shorthand generator getter for exponential distribution
+ * @param lambda
+ * @return
+ */
+auto inline get_exponential_generator(FloatType lambda) {
+  return gen_mt19937.GetGenFunction<std::exponential_distribution>(lambda);
+}
+
+
 
 }
 
