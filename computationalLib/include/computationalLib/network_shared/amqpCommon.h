@@ -19,6 +19,22 @@ using AMQP::Envelope;
 using EnvelopePtr = std::shared_ptr<Envelope>;
 
 /**
+ * @brief Constructs amqp connection string
+ * @param host_port
+ * @param user
+ * @param password
+ * @param secure sets with amqps protocol
+ * @return
+ */
+std::string ConstructCString(const std::string& host_port,
+                            const std::string& user,
+                            const std::string&password,
+                            bool secure=false);
+AMQP::Address ConstructCAddress(const std::string& host_port,
+                                const std::string& user,
+                                const std::string&password,
+                                bool secure=false);
+/**
  * @brief
  * @param channel
  * @param queue1
@@ -146,14 +162,27 @@ class amqpPublisherService {
 class amqpConsumerService {
  public:
 
+
   /**
    *
+   */
+  amqpConsumerService();
+  /**
+   * @brief
    * @param connection_string
    * @param queue_name
    */
   amqpConsumerService(const std::string &connection_string,
                       const std::string &queue_name);
 
+
+  /**
+   * @brief
+   * @param connection_string
+   * @param queue_name
+   */
+  void SetParameters(const std::string &connection_string,
+                    const std::string &queue_name);
   /**
    * @brief Starts event Loop to read from queue1
    */
@@ -167,14 +196,18 @@ class amqpConsumerService {
   ~amqpConsumerService();
 
  private:
+
+  void Reconnect();
+
   boost::asio::io_service m_service;
   std::unique_ptr<boost::asio::io_service::work> m_work;
 
-  MyHandler m_handler;
-  AMQP::TcpConnection m_connection;
-  AMQP::TcpChannel m_channel;
+  std::unique_ptr<MyHandler> m_handler;
+  std::unique_ptr<AMQP::TcpConnection> m_connection;
+  std::unique_ptr<AMQP::TcpChannel> m_channel;
 
   std::string m_queue;
+  std::string m_c_string;
   std::thread m_serviceThread;
 };
 

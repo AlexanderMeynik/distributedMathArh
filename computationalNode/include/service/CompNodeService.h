@@ -12,6 +12,7 @@ namespace comp_service
 class AMQPHandler {
  public:
   AMQPHandler() {
+    //todo meake good
     cc_ = std::make_shared<int>(0);
     con_ = false;
   }
@@ -57,11 +58,10 @@ class AMQPHandler {
     *cc_ = 0;
   }
 
-  //todo parameter assignment
-  std::optional<amqp_common::amqpConsumerService> serv;
+  amqp_common::amqpConsumerService amqp_prod_;
 
   std::atomic<bool> con_;
-  std::array<std::string, 2> queues_;//todo combine with producerService
+  std::array<std::string, 2> queues_;
   std::jthread event_loop_;
   std::shared_ptr<int> cc_;
 };
