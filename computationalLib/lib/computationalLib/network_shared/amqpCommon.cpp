@@ -40,6 +40,13 @@ void amqpConsumerService::Connect() {
 }
 
 void amqpConsumerService::Reconnect() {
+
+  m_work=std::make_unique<boost::asio::io_service::work>(m_service);
+
+  if(IsConnected())
+  {
+    return;
+  }
   if(!m_connection||!m_connection->ready())
   {
     if(m_c_string.empty())
@@ -47,12 +54,11 @@ void amqpConsumerService::Reconnect() {
       throw shared::zeroSize(VARIABLE_NAME(m_c_string));
     }
     m_connection=std::make_unique<AMQP::TcpConnection>(m_handler.get(),AMQP::Address(m_c_string));
+    m_channel=std::make_unique<AMQP::TcpChannel>(m_connection.get());
+
   }
 
-  if(!m_channel||!m_channel->ready())
-  {
-    m_channel=std::make_unique<AMQP::TcpChannel>(m_connection.get());
-  }
+
 
   m_channel->onError([](const char *message) {
     std::cout << "Channel error: " << message << '\n';
@@ -94,12 +100,16 @@ void amqpConsumerService::Reconnect() {
 void amqpConsumerService::Disconnect() {
 
   m_service.post([this]() {
+    m_channel->close();
     m_connection->close();
   });
+
 
   if (m_serviceThread.joinable()) {
     m_serviceThread.join();
   }
+
+  m_service.stop();//todo connect->disconnect->connect loop doesnt work
 }
 
 amqpConsumerService::~amqpConsumerService() {
@@ -107,7 +117,6 @@ amqpConsumerService::~amqpConsumerService() {
 }
 
 amqpConsumerService::amqpConsumerService():m_service(1),
-                                           m_work(std::make_unique<boost::asio::io_service::work>(m_service)),
                                            m_handler(std::make_unique<MyHandler>(m_service, m_work))
 {
 
@@ -117,7 +126,7 @@ amqpConsumerService::amqpConsumerService():m_service(1),
 amqpConsumerService::amqpConsumerService(const std::string &connection_string,
                                          const std::string &queue_name) :
     m_service(1),
-    m_work(std::make_unique<boost::asio::io_service::work>(m_service)),
+    //m_work(std::make_unique<boost::asio::io_service::work>(m_service)),
     m_handler(std::make_unique<MyHandler>(m_service, m_work)),
     m_queue(queue_name),
     m_c_string(connection_string)
@@ -129,7 +138,9 @@ void amqpConsumerService::SetParameters(const std::string &connection_string, co
   m_c_string=connection_string;
   m_queue=queue_name;
 }
-
+bool amqpConsumerService::IsConnected() const {
+  return m_handler&&m_handler->IsConnected();
+}
 
 MyHandler::MyHandler(boost::asio::io_service &service,
                      std::unique_ptr<boost::asio::io_service::work> &work_ref) :
@@ -227,4 +238,9 @@ void amqpPublisherService::RestartLoop() {
     m_service.run();
   });
 }
+
+bool amqpPublisherService::IsConnected() const {
+  return m_handler.IsConnected();
+}
+
 }

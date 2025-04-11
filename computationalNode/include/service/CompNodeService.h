@@ -6,64 +6,32 @@
 #include "network_shared/amqpCommon.h"
 
 using namespace drogon;
-
+//todo not all message are worke on
 namespace comp_service
 {
 class AMQPHandler {
  public:
   AMQPHandler() {
-    //todo meake good
-    cc_ = std::make_shared<int>(0);
-    con_ = false;
   }
 
-  bool CheckConnection(std::string &ip, std::string &queue) {
-    //todo check where logs are written
-    con_ = true;
-    LOG_INFO << "CheckConnection\t" << ip << '\t' << queue << '\n';
-    return con_;
+  bool CheckConnection() {
+    return amqp_prod_.IsConnected();
   }
 
-  bool Connect(const std::string &ip, const std::string &queue) {
-    con_ = true;
-    LOG_INFO << "Connect\t" << ip << '\t' << queue << '\n';
-    queues_[0] = queue + "1";
-    queues_[1] = queue + "2";
-
-    event_loop_ = std::jthread([this](const std::stop_token &stoken) {
-      //todo listen to queues(from 1 to second)
-      while (con_) {
-        sleep(1);
-        std::stringstream ss;
-        ss << std::this_thread::get_id();
-        LOG_INFO << ss.str() << '\t' << *cc_ << '\n';
-        *cc_ = *cc_ + 1;
-      }
-    });
-    return true;
+  void Connect(const std::string &user,
+               const std::string &pass,
+               const std::string &ip,
+               const std::string &queue) {
+    auto c=amqp_common::ConstructCString(ip,user,pass);
+    amqp_prod_.SetParameters(c,queue);
+    amqp_prod_.Connect();
   }
 
   void Disconnect() {
-    con_ = false;
-    event_loop_.join();
-    Reset();
-    LOG_INFO << "Disconnect\n";
-  }
-
-  int GetC() {
-    return *cc_;
-  }
-
-  void Reset() {
-    *cc_ = 0;
+    amqp_prod_.Disconnect();//todo hard and mild disconnect
   }
 
   amqp_common::amqpConsumerService amqp_prod_;
-
-  std::atomic<bool> con_;
-  std::array<std::string, 2> queues_;
-  std::jthread event_loop_;
-  std::shared_ptr<int> cc_;
 };
 
 }

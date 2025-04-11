@@ -141,34 +141,16 @@ using network_types::TestSolveParam;
 int main(int argc, char *argv[]) {
 
 
-  TestSolveParam pp;
-  pp.experiment_id_=12133;
-  pp.range={100,1000};
-  pp.args["a1"]=1.3;
-  pp.args["a2"]=1e10;
-  pp.args["a3"]=124;
-  pp.args["a4"]=1000;
-  auto j=pp.ToJson();
 
-  std::cout<<j.toStyledString()<<'\n';
-
-  TestSolveParam pp2(j);
-  std::cout<<(pp2==pp);
-  pp2.args==pp.args;
-
-  return 0;
-  shared::BenchResVec ns = {1ul, 2ul, 4ul, 5ul, 8ul, 10ul,20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul};//, 800ul, 1000ul ,2000ul};
+  /*shared::BenchResVec ns = {1ul, 2ul, 4ul, 5ul, 8ul, 10ul,20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul};//, 800ul, 1000ul ,2000ul};
   shared::BenchResVec iter_count = {10000ul, 10000ul, 10000ul, 10000ul, 10000ul, 10000ul,1000ul, 1000ul, 1000ul, 250ul, 250ul, 50ul, 50ul};//, 25ul, 10ul, 2ul};
-  //Eigen::initParallel();
-  Eigen::setNbThreads(1);
+  //Eigen::setNbThreads(1);
   BenchResVec vec(ns.size());
   for (int j = 0; j < ns.size(); ++j) {
     std::cout<<ns[j]<<'\t'<<iter_count[j]<<'\t'<<'\n';
     vec[j]=secondBench(ns[j],iter_count[j]);
   }
 
-  /*BenchmarkRunner runner(ns, iter_count);
-  auto vec = runner.Run();*/
 
   print_utils::OneDimSerialize(std::cout,vec, false,print_utils::kEnumTo.at(
       static_cast<unsigned long>(print_utils::EigenPrintFormats::BASIC_ONE_DIMENSIONAL_VECTOR
@@ -179,7 +161,7 @@ int main(int argc, char *argv[]) {
 
 
 
-  return 0;
+  return 0;*/
   app().loadConfigFile("config/server_config.json");
   if (argc == 2) {
     int port = std::stoi(argv[1]);

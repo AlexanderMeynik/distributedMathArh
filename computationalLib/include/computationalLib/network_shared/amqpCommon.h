@@ -142,6 +142,8 @@ class amqpPublisherService {
 
   ~amqpPublisherService();
 
+  bool IsConnected() const;
+
  private:
   boost::asio::io_service m_service;
   std::unique_ptr<boost::asio::io_service::work> m_work;
@@ -194,6 +196,8 @@ class amqpConsumerService {
   void Disconnect();
 
   ~amqpConsumerService();
+
+  bool IsConnected() const;
 
  private:
 
