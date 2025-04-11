@@ -13,14 +13,15 @@
 #include "common/Generator.h"
 #include "parallelUtils/clockArray.h"
 #include "common/commonTypes.h"
-#include "computationalLib/math_core/Dipoles.h"
+#include "math_core/Dipoles.h"
 
 template<typename ...Args>
 struct functable {
   std::function<void(Args...)> func;
   const char *name;
 };
-//todo clean up all redudndant types
+
+
 using namespace print_utils;
 using chrono_clock::gClk;
 using common_types::FloatType;
@@ -31,7 +32,7 @@ using Coordinates = EigenVec;
 using Solution = EigenVec;
 
 /**
- * @brief testRunner class todo doc
+ * @brief testRunner class
  */
 class TestRunner {
 

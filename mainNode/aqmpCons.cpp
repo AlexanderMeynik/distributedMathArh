@@ -1,5 +1,5 @@
 
-#include "amqpCommon.h"
+#include "network_shared/amqpCommon.h"
 #include <thread>
 
 

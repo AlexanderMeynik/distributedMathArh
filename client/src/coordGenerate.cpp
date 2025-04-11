@@ -7,7 +7,7 @@
 
 #include <filesystem>
 
-#include "computationalLib/math_core/Dipoles.h"
+#include "math_core/Dipoles.h"
 #include "common/Generator.h"
 #include "common/MeshCreator.h"
 #include "common/Printers.h"

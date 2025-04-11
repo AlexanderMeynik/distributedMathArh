@@ -3,7 +3,7 @@
 #include <gtest/gtest.h>
 
 #include "common/errorHandling.h"
-#include "amqpRestService.h"
+#include "network_shared/amqpRestService.h"
 #include "../../computationalLib/test/GoogleCommon.h"
 
 using namespace amqp_common;

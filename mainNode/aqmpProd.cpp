@@ -1,7 +1,7 @@
 
 
 #include <iomanip>
-#include "amqpCommon.h"
+#include "network_shared/amqpCommon.h"
 
 #include <fmt/format.h>
 #include <json/json.h>

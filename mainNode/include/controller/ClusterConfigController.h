@@ -1,7 +1,7 @@
 #pragma once
 
 #include <drogon/HttpController.h>
-#include "computationalLib/math_core/TestRunner.h"
+#include "math_core/TestRunner.h"
 #include "common/sharedDeclarations.h"
 #include <drogon/HttpClient.h>
 #include <drogon/HttpRequest.h>

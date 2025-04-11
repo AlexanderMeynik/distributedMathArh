@@ -1,4 +1,4 @@
-#include "computationalLib/math_core/dipolesCommon.h"
+#include "math_core/dipolesCommon.h"
 
 namespace dipoles {
 

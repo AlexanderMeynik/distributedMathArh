@@ -1,6 +1,6 @@
 #include "../GoogleCommon.h"
 
-#include "computationalLib/math_core/Dipoles.h"
+#include "math_core/Dipoles.h"
 #include "common/Generator.h"
 #include "common/typeCasts.h"
 

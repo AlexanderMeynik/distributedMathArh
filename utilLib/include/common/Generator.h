@@ -3,13 +3,15 @@
 #include <random>
 #include <functional>
 #include <thread>
+#include <unordered_map>
 
+#include "common/errorHandling.h"
 #include "common/commonTypes.h"
 #include "common/myConcepts.h"
 
 using common_types::FloatType;
 namespace generators {
-
+using DistributionFunctor=std::function<FloatType ()>;
 /**
  * @brief Interface for distribution functions handling
  * @tparam randomDevice
@@ -22,11 +24,9 @@ struct generator {
     device = randomDevice(seed);
   }
 
-
   template<template<typename...> typename distribution, typename... Args>
-  auto GetGenFunction(Args&&... args) {
-    return [this,args...]() mutable
-    {
+  DistributionFunctor GetGenFunction(Args &&... args) {
+    return [this, args...]() mutable {
       return distribution<FloatType>(std::forward<Args>(args)...)(device);
     };
   }
@@ -38,13 +38,12 @@ struct generator {
 /// Thread local generator object
 extern thread_local generator<std::mt19937> gen_mt19937;
 
-
 /**
  * @brief Shorthand generator getter for normal distribution
  * @param mean
  * @param dev
  */
-auto inline get_normal_generator(FloatType mean, FloatType dev) {
+DistributionFunctor inline get_normal_generator(FloatType mean, FloatType dev) {
   return gen_mt19937.GetGenFunction<std::normal_distribution>(mean, dev);
 }
 
@@ -53,7 +52,7 @@ auto inline get_normal_generator(FloatType mean, FloatType dev) {
  * @param a
  * @param b
  */
-auto inline get_uniform_generator(FloatType a, FloatType b) {
+DistributionFunctor inline get_uniform_generator(FloatType a, FloatType b) {
   return gen_mt19937.GetGenFunction<std::uniform_real_distribution>(a, b);
 }
 
@@ -62,11 +61,31 @@ auto inline get_uniform_generator(FloatType a, FloatType b) {
  * @param lambda
  * @return
  */
-auto inline get_exponential_generator(FloatType lambda) {
+DistributionFunctor inline get_exponential_generator(FloatType lambda) {
   return gen_mt19937.GetGenFunction<std::exponential_distribution>(lambda);
 }
 
+enum class DistributionType {
+  NORMAL,
+  UNIFORM,
+  EXPONENTIAL
+};
 
+static inline std::unordered_map<std::string, DistributionType> stringToDistributionType
+    {
+        {"normal", DistributionType::NORMAL},
+        {"uniform", DistributionType::UNIFORM},
+        {"exponential", DistributionType::EXPONENTIAL}
+    };
 
+/**
+ *
+ * @param distribution_type
+ * @param args
+ * @return DistributionFunctor
+ */
+DistributionFunctor ParseFunc(const DistributionType &distribution_type,
+               const std::unordered_map<std::string, FloatType> &args);
+DistributionFunctor ParseFunc(const std::string &type,
+                                     const std::unordered_map<std::string, FloatType> &args);
 }
-

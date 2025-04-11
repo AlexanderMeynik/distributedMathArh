@@ -1,4 +1,4 @@
-#include "computationalLib/math_core/TestRunner.h"
+#include "math_core/TestRunner.h"
 #include "common/Printers.h"
 
 void TestRunner::CreateSubDirectory(const std::string &dirname, const std::string &subdirectory) {

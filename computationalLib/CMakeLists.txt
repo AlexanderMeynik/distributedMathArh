@@ -18,15 +18,21 @@ file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
 
 add_library(math_core_lib ${math_core_files})
 target_link_libraries(math_core_lib PUBLIC allUtils OpenMP::OpenMP_CXX)
-target_include_directories(math_core_lib PUBLIC include)
+target_include_directories(math_core_lib PUBLIC include/computationalLib)
 enable_coverage_for_target(math_core_lib)
 
-file(GLOB_RECURSE interfaces_files CONFIGURE_DEPENDS
-        "lib/computationalLib/interfaces/*.cpp"
+
+
+file(GLOB_RECURSE network_shared_lib_f CONFIGURE_DEPENDS
+        "lib/computationalLib/network_shared/*.cpp"
 )
-add_library(interfaces_lib ${interfaces_files})
-target_link_libraries(interfaces_lib PUBLIC math_core_lib)
-enable_coverage_for_target(interfaces_lib)
+
+add_library(network_shared_lib ${network_shared_lib_f})
+target_include_directories(network_shared_lib PUBLIC include/computationalLib)
+target_include_directories(network_shared_lib PUBLIC ../utilLib/include)
+target_link_libraries(network_shared_lib PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
+enable_coverage_for_target(network_shared_lib)
+
 
 add_executable(printerssst src/printersTests.cpp)
 target_link_libraries(printerssst PUBLIC allUtils)

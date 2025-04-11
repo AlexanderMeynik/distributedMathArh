@@ -9,7 +9,7 @@
 #include "fileHandler.h"
 #include "BenchmarkHandler.h"
 #include "common/Generator.h"
-#include "computationalLib/math_core/Dipoles.h"
+#include "math_core/Dipoles.h"
 #include "common/MeshCreator.h"
 #include "common/sharedDeclarations.h"
 

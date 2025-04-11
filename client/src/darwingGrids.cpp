@@ -6,7 +6,7 @@
 #include <matplot/matplot.h>
 
 #include "common/MeshCreator.h"
-#include "computationalLib/math_core/Dipoles.h"
+#include "math_core/Dipoles.h"
 
 #include "../include/plotingUtils.h"
 #include "common/Printers.h"

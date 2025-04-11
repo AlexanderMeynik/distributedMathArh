@@ -2,6 +2,8 @@
 #include <controller/CompNode.h>
 #include "parallelUtils/chronoClock.h"
 #include "common/Printers.h"
+#include "network_shared/networkTypes.h"
+#include "common/Generator.h"
 
 using namespace drogon;
 using rest::v1::CompNode;
@@ -134,44 +136,7 @@ auto secondBench = []
   return rr;
 };
 
-struct TestSolveParam
-{
-  TestSolveParam()=default;
-  size_t experiment_id_;
-  std::pair<size_t, size_t > range;
-
-  std::unordered_map<std::string,double> args;
-  bool operator==(const TestSolveParam&oth)const=default;
-  Json::Value ToJson()
-  {
-    Json::Value val;
-
-    val["experiment_id"]=experiment_id_;
-    val["range"][0]=range.first;
-    val["range"][1]=range.second;
-
-    for(auto&[key,value]:args)
-    {
-      val["args"][key]=value;
-    }
-    return val;
-  }
-
-  TestSolveParam(Json::Value&val):
-  experiment_id_(val["experiment_id"].asUInt()),
-  range(val["range"][0].asUInt(), val["range"][1].asUInt())
-  {
-    auto &vv=val["args"];
-    for(auto&key:vv.getMemberNames())
-    {
-      args[key]=vv[key].asDouble();
-    }
-  }
-
-
-
-
-};
+using network_types::TestSolveParam;
 
 int main(int argc, char *argv[]) {
 
