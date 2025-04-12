@@ -1,49 +1,21 @@
 #pragma once
 
-#include <drogon/HttpController.h>
-#include "math_core/TestRunner.h"
-#include "common/sharedDeclarations.h"
-#include <drogon/HttpClient.h>
-#include <drogon/HttpRequest.h>
 
-using namespace drogon;
-using shared::BenchResVec;
+#include <unordered_map>
+
+#include "service/MainNodeService.h"
+#include <drogon/HttpController.h>
+
+
+
+
 
 namespace rest {
 namespace v1 {
 
-/// nodeStatus Enum
-enum class NodeStatus {
-  /// Node is connected to cluster and is ready to receive it's tasks
-  ACTIVE,
-  /// Node is present in cluster but is not ready to recieve tasks
-  INACTIVE,
-  /// An error occurred moving node to a failed state
-  FAILED
-};
+using namespace drogon;
 
-//todo std::array
-/// Look-up table to cast nodeStatus to string
-const std::unordered_map<const NodeStatus, std::string> kNodeStatusToStr
-    {
-        {NodeStatus::ACTIVE, "Active"},
-        {NodeStatus::INACTIVE, "Inactive"},
-        {NodeStatus::FAILED, "Failed"},
-    };
-
-/**
- * @brief Computational node class
- */
-class ComputationalNode {
- public:
-  HttpClientPtr http_client_;
-
-  std::string GetPath() {
-    return http_client_->getHost() + ":" + std::to_string(http_client_->getPort());
-  }
-  BenchResVec power_;
-  NodeStatus st_;
-};
+using namespace main_service;
 
 /**
  * @brief Drogon service for main node

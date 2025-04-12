@@ -90,7 +90,7 @@ void ClusterConfigController::DisconnectHandler(const HttpRequestPtr &req,
   auto [code, resp] = clients_[host_port].http_client_->sendRequest(req1);
 
   if (resp->getStatusCode() != HttpStatusCode::k200OK) {
-    if (!resp->body().empty())//todo use this for conenct if body is empty
+    if (!resp->body().empty())
     {
       res = *resp->getJsonObject();
     }
@@ -104,7 +104,6 @@ void ClusterConfigController::DisconnectHandler(const HttpRequestPtr &req,
   }
 
   clients_[host_port].st_ = NodeStatus::INACTIVE;
-  //todo what to do with http client;
 
   res = *resp->getJsonObject();
   res["ip"] = host_port;

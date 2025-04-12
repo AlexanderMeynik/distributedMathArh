@@ -71,9 +71,18 @@ struct exchange {
 
 class RabbitMQRestService {
  public:
+  RabbitMQRestService();
+
+  //todo set auth and con ndifferently
+  void SetParams(const std::string &base_url,
+                 AuthHandler *auth_handler);
+
   RabbitMQRestService(const std::string &base_url,
                       AuthHandler *auth_handler);
 
+  RabbitMQRestService(const RabbitMQRestService&other)=delete;
+
+  RabbitMQRestService& operator=(const RabbitMQRestService&other)=delete;
   ~RabbitMQRestService();
 
   Json::Value Whoami();

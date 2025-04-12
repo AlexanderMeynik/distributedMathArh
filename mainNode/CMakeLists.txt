@@ -23,7 +23,7 @@ file(GLOB_RECURSE httpSources CONFIGURE_DEPENDS
 
 
 add_library(servLib2 ${httpSources})
-target_link_libraries(servLib2 PUBLIC math_core_lib Drogon::Drogon)
+target_link_libraries(servLib2 PUBLIC math_core_lib network_shared_lib Drogon::Drogon)
 target_include_directories(servLib2 PUBLIC include)
 enable_coverage_for_target(servLib2)
 
@@ -33,11 +33,6 @@ target_link_libraries(mainNode -lssl -lcrypto)
 target_link_libraries(mainNode servLib2 allUtils)
 enable_coverage_for_target(mainNode)
 
-#[[add_library(amqpUtils ../computationalLib/lib/computationalLib/network_shared/amqpCommon.cpp ../computationalLib/lib/computationalLib/network_shared/amqpRestService.cpp ../computationalLib/lib/computationalLib/network_shared/restUtils.cpp)
-target_link_libraries(amqpUtils PUBLIC  network_shared_lib)
-target_include_directories(amqpUtils PUBLIC ../utilLib/include)
-enable_coverage_for_target(amqpUtils)
-target_include_directories(amqpUtils PUBLIC include)]]
 
 add_executable(consumer aqmpCons.cpp)
 target_link_libraries(consumer PUBLIC network_shared_lib)

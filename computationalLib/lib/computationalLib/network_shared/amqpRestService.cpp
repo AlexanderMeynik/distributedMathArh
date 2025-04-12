@@ -4,12 +4,22 @@
 
 namespace amqp_common {
 
-RabbitMQRestService::RabbitMQRestService(const std::string &base_url,
-                                         AuthHandler *auth_handler)
-    : baseUrl(base_url),
-      m_authPtr(auth_handler) {
+
+RabbitMQRestService::RabbitMQRestService() {
   curl_global_init(CURL_GLOBAL_DEFAULT);
 }
+RabbitMQRestService::RabbitMQRestService(const std::string &base_url,
+                                         AuthHandler *auth_handler)
+    :baseUrl(base_url),
+    m_authPtr(auth_handler){
+  curl_global_init(CURL_GLOBAL_DEFAULT);
+}
+
+void RabbitMQRestService::SetParams(const std::string &base_url, AuthHandler *auth_handler) {
+ baseUrl=base_url;
+ m_authPtr=auth_handler;
+}
+
 
 RabbitMQRestService::~RabbitMQRestService() {
   curl_global_cleanup();
@@ -176,5 +186,6 @@ std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost
 
   return out;
 }
+
 
 }

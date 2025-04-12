@@ -32,5 +32,5 @@ class AMQPHandler {
 
   amqp_common::AMQPConsumerService amqp_prod_;
 };
-
+//todo set message worker(test runner?, or any else)
 }
