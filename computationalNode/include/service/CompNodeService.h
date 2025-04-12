@@ -3,10 +3,9 @@
 #include <drogon/HttpSimpleController.h>
 #include "common/sharedDeclarations.h"
 #include "math_core/TestRunner.h"
-#include "network_shared/amqpCommon.h"
+#include "network_shared/amqpConsumerService.h"
 
 using namespace drogon;
-//todo not all message are worke on
 namespace comp_service
 {
 class AMQPHandler {
