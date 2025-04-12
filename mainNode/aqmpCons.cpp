@@ -1,14 +1,6 @@
 
-#include "network_shared/amqpConsumerService.h"
+#include "network_shared/AMQPConsumerService.h"
 #include <thread>
-
-
-
-//todo erro handling(can i throw exception from callbacks)_ how can i notify the main programm
-
-
-
-
 
 static volatile std::sig_atomic_t signalReceived = 0;
 
@@ -24,13 +16,18 @@ int main(int argc, char *argv[]) {
     std::cerr << "Usage: " << argv[0] << " <cString> <queue_name>\n";
     return 1;
   }
+  amqp_common::MessageCallback a=[](const AMQP::Message & ms,uint64_t delivery_tag,bool redelivered)
+  {
+    std::cout<<delivery_tag<<'\n';
+  };
   auto cString = argv[1];
   auto qname = argv[2];
 
   std::signal(SIGINT, SignalHandler);
   using namespace amqp_common;
 
-  amqpConsumerService listener(cString, qname);
+  AMQPConsumerService listener(cString, qname);
+  listener.SetMessageCallback(a);
   listener.Connect();
 
   while (!signalReceived) {

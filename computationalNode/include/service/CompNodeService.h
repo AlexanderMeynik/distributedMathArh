@@ -3,7 +3,7 @@
 #include <drogon/HttpSimpleController.h>
 #include "common/sharedDeclarations.h"
 #include "math_core/TestRunner.h"
-#include "network_shared/amqpConsumerService.h"
+#include "network_shared/AMQPConsumerService.h"
 
 using namespace drogon;
 namespace comp_service
@@ -27,10 +27,10 @@ class AMQPHandler {
   }
 
   void Disconnect() {
-    amqp_prod_.Disconnect();//todo hard and mild disconnect
+    amqp_prod_.Disconnect();
   }
 
-  amqp_common::amqpConsumerService amqp_prod_;
+  amqp_common::AMQPConsumerService amqp_prod_;
 };
 
 }

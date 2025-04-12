@@ -17,6 +17,7 @@ namespace amqp_common {
 
 using AMQP::Envelope;
 using EnvelopePtr = std::shared_ptr<Envelope>;
+using AMQP::MessageCallback;
 
 /**
  * @brief Constructs amqp connection string
@@ -98,6 +99,24 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   bool connected_;
 };
 
+
+static auto inline d_message_callback =
+    [](const AMQP::Message &message,
+           uint64_t delivery_tag,
+           bool redelivered) {
+
+      std::cout << "Body: " << std::string(message.body(), message.bodySize()) << '\n';
+      std::cout << "Priority: " << (int) message.priority() << '\n';
+      std::cout << "Persistent: " << message.persistent() << '\n';
+      std::cout << "Content-Type: " << message.contentType() << '\n';
+      std::cout << "Timestamp: " << message.timestamp() << '\n';
+      for (const auto &key : message.headers().keys()) {
+        std::cout << "Header [" << key << "] = " << message.headers().operator[](key) << '\t'
+                  << message.headers().operator[](key).typeID() << '\n';//typeId
+      }
+      std::cout << '\n';
+      //channel_->ack(delivery_tag);
+    };
 
 
 

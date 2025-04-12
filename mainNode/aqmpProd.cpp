@@ -1,7 +1,7 @@
 
 
 #include <iomanip>
-#include "network_shared/amqpPublisherService.h"
+#include "network_shared/AMQPPublisherService.h"
 
 #include <fmt/format.h>
 #include <json/json.h>
@@ -45,7 +45,7 @@ int main(int argc, char *argv[]) {
 
   std::signal(SIGINT, SignalHandler);
 
-  amqpPublisherService service(c_string);
+  AMQPPublisherService service(c_string);
 
   service.RestartLoop();
 

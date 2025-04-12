@@ -7,7 +7,7 @@ namespace amqp_common {
 /**
  * @brief Service that allow to Publish messages to multiple queues
  */
-class amqpPublisherService {
+class AMQPPublisherService {
  public:
 
   /**
@@ -15,7 +15,7 @@ class amqpPublisherService {
    * @param connection_string
    * @param queues
    */
-  amqpPublisherService(const std::string &connection_string,
+  AMQPPublisherService(const std::string &connection_string,
                        const std::vector<std::string> &queues = {});
 
   /**
@@ -45,7 +45,7 @@ class amqpPublisherService {
 
   void RestartLoop();
 
-  ~amqpPublisherService();
+  ~AMQPPublisherService();
 
   bool IsConnected() const;
 

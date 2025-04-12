@@ -1,11 +1,11 @@
-#include "network_shared/amqpPublisherService.h"
+#include "network_shared/AMQPPublisherService.h"
 
 #include <fmt/format.h>
 
 
 namespace amqp_common {
 
-amqpPublisherService::amqpPublisherService(const std::string &connection_string,
+AMQPPublisherService::AMQPPublisherService(const std::string &connection_string,
                                            const std::vector<std::string> &queues)
     :
     m_service(1),
@@ -33,7 +33,7 @@ amqpPublisherService::amqpPublisherService(const std::string &connection_string,
 
 }
 
-void amqpPublisherService::RemoveQueue(size_t i) {
+void AMQPPublisherService::RemoveQueue(size_t i) {
   if (i >= m_queues.size()) {
     throw shared::outOfRange(i, 0, m_queues.size() - 1);
   }
@@ -41,19 +41,19 @@ void amqpPublisherService::RemoveQueue(size_t i) {
 
 }
 
-void amqpPublisherService::AddQueue(const std::string &queue, bool create) {
+void AMQPPublisherService::AddQueue(const std::string &queue, bool create) {
   if (create) {
     DeclareQueue(m_channel, queue, defaultExhc);
   }
   m_queues.push_back(queue);
 }
 
-amqpPublisherService::~amqpPublisherService() {
+AMQPPublisherService::~AMQPPublisherService() {
   EndLoop();
   m_queues.clear();
 }
 
-void amqpPublisherService::Publish(EnvelopePtr message, size_t i) {
+void AMQPPublisherService::Publish(EnvelopePtr message, size_t i) {
   if (i >= m_queues.size()) {
     throw shared::outOfRange(i, 0, m_queues.size() - 1);
   }
@@ -61,7 +61,7 @@ void amqpPublisherService::Publish(EnvelopePtr message, size_t i) {
   m_channel.publish(defaultExhc, m_queues[i], *message);
 }
 
-void amqpPublisherService::EndLoop() {
+void AMQPPublisherService::EndLoop() {
   if (m_work) {
     m_work.reset();
   }
@@ -77,7 +77,7 @@ void amqpPublisherService::EndLoop() {
 
 }
 
-void amqpPublisherService::RestartLoop() {
+void AMQPPublisherService::RestartLoop() {
   if (m_serviceThread.joinable()) {
     m_serviceThread.join();
   }
@@ -89,7 +89,7 @@ void amqpPublisherService::RestartLoop() {
   });
 }
 
-bool amqpPublisherService::IsConnected() const {
+bool AMQPPublisherService::IsConnected() const {
   return m_handler.IsConnected();
 }
 }
