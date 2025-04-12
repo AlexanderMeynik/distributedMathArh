@@ -5,91 +5,116 @@
 
 namespace amqp_common {
 
+
+AMQPPublisherService::AMQPPublisherService():service_(1), handler_(service_, work_)  {
+
+}
+
+void AMQPPublisherService::SetParameters(const std::string &connection_string, const std::vector<std::string> &queues) {
+  connection_string_ = connection_string;
+  queues_ = queues;
+}
+
 AMQPPublisherService::AMQPPublisherService(const std::string &connection_string,
                                            const std::vector<std::string> &queues)
-    :
-    m_service(1),
-    m_work(std::make_unique<boost::asio::io_service::work>(m_service)),
-    m_handler(m_service, m_work),
-    m_connection(&m_handler, AMQP::Address(connection_string)),
-    m_channel(&m_connection),
-    m_queues(queues) {
+    :service_(1),
+    handler_(service_, work_),
+    connection_string_(connection_string),
+    queues_(queues) {
+}
 
-  m_channel.onError([](const char *message) {
+void AMQPPublisherService::RemoveQueue(size_t i) {
+  if (i >= queues_.size()) {
+    throw shared::outOfRange(i, 0, queues_.size() - 1);
+  }
+  queues_.erase(queues_.begin() + i);
+}
+
+void AMQPPublisherService::AddQueue(const std::string &queue, bool create) {
+  if (create) {
+    DeclareQueue(*channel_, queue, defaultExhc);
+  }
+  queues_.push_back(queue);
+}
+
+AMQPPublisherService::~AMQPPublisherService() {
+  Disconnect();
+  queues_.clear();
+}
+
+void AMQPPublisherService::Publish(EnvelopePtr message, size_t i) {
+
+  /*if (!IsConnected()) {
+    throw std::runtime_error("Not connected");
+  }*///todo find some checks
+
+  if (i >= queues_.size()) {
+    throw shared::outOfRange(i, 0, queues_.size() - 1);
+  }
+  message->setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());
+  channel_->publish(defaultExhc, queues_[i], *message);
+}
+
+void AMQPPublisherService::Disconnect() {
+  service_.post([this]() {
+    if (channel_) channel_->close();
+    if (connection_) connection_->close();
+  });
+
+  if (service_thread_.joinable()) {
+    service_thread_.join();
+  }
+
+  service_.stop();
+  work_.reset();
+  channel_.reset();
+  connection_.reset();
+
+}
+
+void AMQPPublisherService::RestartLoop() {
+
+
+  if(IsConnected())
+  {
+    return;
+  }
+  if(!connection_||!connection_->ready())
+  {
+    if(connection_string_.empty())
+    {
+      throw shared::zeroSize(VARIABLE_NAME(c_string_));
+    }
+    connection_=std::make_unique<AMQP::TcpConnection>(&handler_,AMQP::Address(connection_string_));
+    channel_=std::make_unique<AMQP::TcpChannel>(connection_.get());
+  }
+
+
+  channel_->onError([](const char *message) {
     std::cout << fmt::format("Channel error: {}\n", message);
   });
 
-  m_channel.declareExchange(defaultExhc, AMQP::direct).onSuccess(
-      [] {
+  channel_->declareExchange(defaultExhc, AMQP::direct).onSuccess(
+      [this] {
         std::cout << fmt::format("Exchange \"{}\" declared\n", defaultExhc);
       }).onError([](const char *msg) {
     std::cerr << "Exchange error: " << msg << "\n";
   });
 
-  for (const auto &kQ : m_queues) {
-    std::cout << m_queues.size() << '\n';
-    DeclareQueue(m_channel, kQ, kQ);
+  for (const auto &kQ : queues_) {
+    std::cout << queues_.size() << '\n';
+    DeclareQueue(*channel_, kQ, kQ);
   }
-
-}
-
-void AMQPPublisherService::RemoveQueue(size_t i) {
-  if (i >= m_queues.size()) {
-    throw shared::outOfRange(i, 0, m_queues.size() - 1);
-  }
-  m_queues.erase(m_queues.begin() + i);
-
-}
-
-void AMQPPublisherService::AddQueue(const std::string &queue, bool create) {
-  if (create) {
-    DeclareQueue(m_channel, queue, defaultExhc);
-  }
-  m_queues.push_back(queue);
-}
-
-AMQPPublisherService::~AMQPPublisherService() {
-  EndLoop();
-  m_queues.clear();
-}
-
-void AMQPPublisherService::Publish(EnvelopePtr message, size_t i) {
-  if (i >= m_queues.size()) {
-    throw shared::outOfRange(i, 0, m_queues.size() - 1);
-  }
-  message->setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());
-  m_channel.publish(defaultExhc, m_queues[i], *message);
-}
-
-void AMQPPublisherService::EndLoop() {
-  if (m_work) {
-    m_work.reset();
-  }
-
-  m_service.post([this]() {
-    m_connection.close();
-  });
-
-  if (m_serviceThread.joinable()) {
-    m_serviceThread.join();
-  }
-  m_service.reset();
-
-}
-
-void AMQPPublisherService::RestartLoop() {
-  if (m_serviceThread.joinable()) {
-    m_serviceThread.join();
-  }
-  if (!m_work) {
-    m_work = std::make_unique<boost::asio::io_service::work>(m_service);
-  }
-  m_serviceThread = std::thread([this]() {
-    m_service.run();
-  });
 }
 
 bool AMQPPublisherService::IsConnected() const {
-  return m_handler.IsConnected();
+  return handler_.IsConnected();
 }
+void AMQPPublisherService::Connect() {
+  service_.reset();
+  work_=std::make_unique<boost::asio::io_service::work>(service_);
+  RestartLoop();
+  service_thread_= std::thread([this]() { service_.run(); });
+}
+
 }

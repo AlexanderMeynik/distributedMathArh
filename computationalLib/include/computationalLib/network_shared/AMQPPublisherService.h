@@ -7,8 +7,14 @@ namespace amqp_common {
 /**
  * @brief Service that allow to Publish messages to multiple queues
  */
+ //todo test for connect->disconnect->connect
 class AMQPPublisherService {
  public:
+
+
+  AMQPPublisherService();
+
+  void SetParameters(const std::string &connection_string, const std::vector<std::string> &queues);
 
   /**
    * @details Will declare all queues in provide array
@@ -17,6 +23,9 @@ class AMQPPublisherService {
    */
   AMQPPublisherService(const std::string &connection_string,
                        const std::vector<std::string> &queues = {});
+
+
+  void Connect();
 
   /**
    * @brief delted i's queue
@@ -41,25 +50,28 @@ class AMQPPublisherService {
    */
   void Publish(EnvelopePtr message, size_t i);
 
-  void EndLoop();
+  void Disconnect();
 
-  void RestartLoop();
 
   ~AMQPPublisherService();
 
   bool IsConnected() const;
 
  private:
-  boost::asio::io_service m_service;
-  std::unique_ptr<boost::asio::io_service::work> m_work;
 
-  MyHandler m_handler;
-  AMQP::TcpConnection m_connection;
-  AMQP::TcpChannel m_channel;
-  std::vector<std::string> m_queues;
-  std::thread m_serviceThread;
+  void RestartLoop();
 
-  static inline const std::string defaultExhc = "testexch";//todo delete
+  boost::asio::io_service service_;
+  std::unique_ptr<boost::asio::io_service::work> work_;
+  MyHandler handler_;
+  std::unique_ptr<AMQP::TcpConnection> connection_;
+  std::unique_ptr<AMQP::TcpChannel> channel_;
+  std::vector<std::string> queues_;
+  std::string connection_string_;
+  std::thread service_thread_;
+
+
+  std::string defaultExhc = "testexch";//todo setter
 
 };
 }

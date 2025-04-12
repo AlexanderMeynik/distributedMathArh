@@ -47,7 +47,7 @@ int main(int argc, char *argv[]) {
 
   AMQPPublisherService service(c_string);
 
-  service.RestartLoop();
+  service.Connect();
 
   for (int i = 0; i < numb_queues; ++i) {
     service.AddQueue(fmt::format("queue{}", i), true);
@@ -86,7 +86,7 @@ int main(int argc, char *argv[]) {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
   }
 
-  service.EndLoop();
+  service.Disconnect();
 
   return 0;
 }
