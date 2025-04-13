@@ -7,7 +7,6 @@ namespace amqp_common {
 /**
  * @brief Service that allow to Publish messages to multiple queues
  */
- //todo test for connect->disconnect->connect
 class AMQPPublisherService {
  public:
 
