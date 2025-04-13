@@ -73,7 +73,8 @@ class RabbitMQRestService {
  public:
   RabbitMQRestService();
 
-  //todo set auth and con ndifferently
+  void SetBaseUrl(const std::string &base_url);
+
   void SetParams(const std::string &base_url,
                  AuthHandler *auth_handler);
 
@@ -128,11 +129,11 @@ class RabbitMQRestService {
   std::vector<exchange> GetExchanges(const std::string &vhost);
 
  private:
-  std::string baseUrl;
+  std::string base_url_;
   std::string username;
   std::string password;
 
-  AuthHandler *m_authPtr;
+  AuthHandler *auth_ptr_;
 
   std::string PerformRequest(const std::string &path,
                              const std::string &method,

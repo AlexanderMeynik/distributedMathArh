@@ -7,11 +7,11 @@
 #include "network_shared/amqpRestService.h"
 #include "network_shared/AMQPPublisherService.h"
 #include "common/sharedDeclarations.h"
+#include "common/Parsers.h"
 
 namespace main_service
 {
-
-using drogon::HttpClientPtr;
+using namespace drogon;
 using shared::BenchResVec;
 
 /// nodeStatus Enum
@@ -50,21 +50,140 @@ class ComputationalNode {
 
 class MainNodeService
 {
+ public:
   MainNodeService(const std::string &user,const std::string &password)
   {
-    auth_=std::make_unique<BasicAuthHandler>(user,password);
+    auth_=std::make_unique<JsonAuthHandler>(user,password);
     rest_service_=std::make_unique<amqp_common::RabbitMQRestService>();
+
+    publisher_service_=std::make_unique<amqp_common::AMQPPublisherService>();
   }
   void Connect(const std::string &qip,
-               const std::string &name)
+               const std::vector<std::string> &names)
+  {
+    q_host_=qip;
+
+    rest_service_->SetParams(fmt::format("http://{}:15672",q_host_),auth_.get());
+    auto r=auth_->Retrive();
+    publisher_service_->SetParameters(amqp_common::ConstructCString(q_host_,
+                                                                    r.first,
+                                                                    r.second),
+                                      names);
+    publisher_service_->Connect();
+  }
+
+  Json::Value ConnectNode(const std::string &host_port,
+                   const std::string &name)
+  {
+    Json::Value res_JSON;
+
+    if (!worker_nodes_.count(host_port)) {
+      ComputationalNode cn;
+
+      cn.http_client_ = HttpClient::newHttpClient("http://" + host_port);
+      cn.st_ = NodeStatus::INACTIVE;
+      worker_nodes_[host_port] = std::move(cn);
+    }
+
+
+
+    try {
+
+      rest_service_->CreateQueue(vhost_, name, Json::Value());
+
+      rest_service_->BindQueueToExchange(vhost_,
+                                         name,
+                                         publisher_service_->GetDefaultExchange(), name);
+    }
+    catch (shared::HttpError&err)
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]="Error during queue creation";
+      res_JSON["exception"]["message"]=err.get<1>();
+      res_JSON["exception"]["code"]=err.get<0>();
+      return res_JSON;
+    }
+
+    Json::Value res=auth_->ToJson();
+    res["ip"]=q_host_;
+    res["name"]=name;
+
+    auto req1 = HttpRequest::newHttpJsonRequest(res);
+    req1->setPath("/v1/Connect");
+    req1->setMethod(Post);
+
+    auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
+
+    if(resp->getStatusCode()!=HttpStatusCode::k200OK)
+    {
+      res_JSON["message"]="Unable to connect node to queue";
+      res_JSON["status"]=resp->getStatusCode();
+      return resp->getStatusCode();
+    }
+
+    auto jsoncpp=resp->getJsonObject();
+
+
+    worker_nodes_[host_port].power_=print_utils::JsonToContinuous<BenchResVec>((*jsoncpp)["bench"]);
+    worker_nodes_[host_port].st_ = NodeStatus::ACTIVE;
+
+    res_JSON=*jsoncpp;
+
+    //publisher_service_->AddQueue(name, false);//todo do we nned this?
+
+    res_JSON["status"]=drogon::HttpStatusCode::k200OK;
+
+
+    return res_JSON;
+
+  }
+
+  Json::Value DisconnectNode(const std::string &host_port)
+  {
+    Json::Value res_JSON;
+
+    auto req1 = HttpRequest::newHttpRequest();
+
+    req1->setPath("/v1/Disconnect");
+    req1->setMethod(Post);
+
+    auto ct = HttpClient::newHttpClient(host_port);
+    auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
+
+    if (resp->getStatusCode() != HttpStatusCode::k200OK) {
+      res_JSON["status"]=resp->getStatusCode();
+      res_JSON["message"]="Unable to disconnect node to queue";
+      res_JSON["status"]=resp->getStatusCode();
+
+      return res_JSON;
+    }
+
+    worker_nodes_[host_port].st_ = NodeStatus::INACTIVE;
+
+    res_JSON=*resp->getJsonObject();
+    res_JSON["status"]=drogon::HttpStatusCode::k200OK;
+    return res_JSON;
+
+
+  }
+
+
+  void Disconnect()
+  {
+    publisher_service_->Disconnect();
+  }
+  void Publish(network_types::TestSolveParam&ts,std::string node)
   {
 
   }
  private:
-  std::unique_ptr<BasicAuthHandler> auth_;
+  std::unique_ptr<JsonAuthHandler> auth_;
   std::unique_ptr<amqp_common::RabbitMQRestService> rest_service_;
   std::unique_ptr<amqp_common::AMQPPublisherService> publisher_service_;
   std::unordered_map<std::basic_string<char>, ComputationalNode> worker_nodes_;
+  std::string q_host_;
+
+  static inline std::string vhost_ = "%2F";
 };
 
 

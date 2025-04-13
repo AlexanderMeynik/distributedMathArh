@@ -25,7 +25,6 @@ using AMQP::MessageCallback;
  * @param user
  * @param password
  * @param secure sets with amqps protocol
- * @return
  */
 std::string ConstructCString(const std::string& host_port,
                             const std::string& user,

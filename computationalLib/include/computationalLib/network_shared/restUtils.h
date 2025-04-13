@@ -3,7 +3,9 @@
 #include <string>
 #include <memory>
 
+#include <json/json.h>
 #include <curl/curl.h>
+#include <unordered_map>
 
 #include "common/errorHandling.h"
 
@@ -92,3 +94,21 @@ class BasicAuthHandler : public AuthHandler {
   virtual void AddAuth(CURL *curl) override;
 };
 
+
+class JsonAuthHandler: public BasicAuthHandler
+{
+  using BasicAuthHandler::BasicAuthHandler;
+ public:
+  Json::Value ToJson()
+  {
+    Json::Value res;
+    res["user"]=user_;
+    res["password"]=password_;
+    return res;
+  }
+
+  std::pair<std::string,std::string> Retrive()
+  {
+    return {user_,password_};
+  }
+};

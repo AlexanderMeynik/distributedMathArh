@@ -14,7 +14,9 @@ class AMQPPublisherService {
 
   AMQPPublisherService();
 
-  void SetParameters(const std::string &connection_string, const std::vector<std::string> &queues);
+  void SetParameters(const std::string &connection_string,
+                     const std::vector<std::string> &queues,
+                     const std::string& exchange= "testexch");
 
   /**
    * @details Will declare all queues in provide array
@@ -22,10 +24,18 @@ class AMQPPublisherService {
    * @param queues
    */
   AMQPPublisherService(const std::string &connection_string,
-                       const std::vector<std::string> &queues = {});
+                       const std::vector<std::string> &queues = {},
+                       const std::string& exchange= "testexch");
 
 
+  /**
+   * @brief Starts service operation
+   */
   void Connect();
+
+  const std::string &GetConnectionString() const;
+
+  const std::string &GetDefaultExchange() const;
 
   /**
    * @brief delted i's queue
@@ -49,6 +59,13 @@ class AMQPPublisherService {
    * @throws shared::outOfRange
    */
   void Publish(EnvelopePtr message, size_t i);
+  /**
+    * @brief publishe message to i's queue
+    * @param message
+    * @param qname
+    * */
+  void Publish(EnvelopePtr message, const std::string qname);
+
 
   void Disconnect();
 
@@ -68,10 +85,11 @@ class AMQPPublisherService {
   std::unique_ptr<AMQP::TcpChannel> channel_;
   std::vector<std::string> queues_;
   std::string connection_string_;
+
   std::thread service_thread_;
 
 
-  std::string defaultExhc = "testexch";//todo setter
+  std::string default_exchange_;
 
 };
 }

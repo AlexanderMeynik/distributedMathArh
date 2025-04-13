@@ -10,14 +10,18 @@ RabbitMQRestService::RabbitMQRestService() {
 }
 RabbitMQRestService::RabbitMQRestService(const std::string &base_url,
                                          AuthHandler *auth_handler)
-    :baseUrl(base_url),
-    m_authPtr(auth_handler){
+    : base_url_(base_url),
+      auth_ptr_(auth_handler){
   curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 
+void RabbitMQRestService::SetBaseUrl(const std::string &base_url) {
+  base_url_=base_url;
+}
+
 void RabbitMQRestService::SetParams(const std::string &base_url, AuthHandler *auth_handler) {
- baseUrl=base_url;
- m_authPtr=auth_handler;
+  base_url_=base_url;
+  auth_ptr_=auth_handler;
 }
 
 
@@ -28,7 +32,7 @@ RabbitMQRestService::~RabbitMQRestService() {
 std::string RabbitMQRestService::PerformRequest(const std::string &path,
                                                 const std::string &method,
                                                 const std::string &data) {
-  return PerformCurlRequest(path, method, baseUrl, m_authPtr, data);
+  return PerformCurlRequest(path, method, base_url_, auth_ptr_, data);
 }
 
 Json::Value RabbitMQRestService::ParseJson(const std::string &json_str) {

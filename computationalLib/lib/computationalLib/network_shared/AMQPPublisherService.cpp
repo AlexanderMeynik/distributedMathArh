@@ -10,17 +10,26 @@ AMQPPublisherService::AMQPPublisherService():service_(1), handler_(service_, wor
 
 }
 
-void AMQPPublisherService::SetParameters(const std::string &connection_string, const std::vector<std::string> &queues) {
+void AMQPPublisherService::SetParameters(const std::string &connection_string,
+                                         const std::vector<std::string> &queues,
+                                         const std::string& exchange) {
   connection_string_ = connection_string;
   queues_ = queues;
+  default_exchange_=exchange;
 }
 
 AMQPPublisherService::AMQPPublisherService(const std::string &connection_string,
-                                           const std::vector<std::string> &queues)
-    :service_(1),
-    handler_(service_, work_),
-    connection_string_(connection_string),
-    queues_(queues) {
+                                           const std::vector<std::string> &queues,
+                                           const std::string& exchange)
+    : service_(1),
+      handler_(service_, work_),
+      connection_string_(connection_string),
+      queues_(queues),
+      default_exchange_(exchange)
+    {}
+
+const std::string &AMQPPublisherService::GetConnectionString() const {
+  return connection_string_;
 }
 
 void AMQPPublisherService::RemoveQueue(size_t i) {
@@ -32,7 +41,7 @@ void AMQPPublisherService::RemoveQueue(size_t i) {
 
 void AMQPPublisherService::AddQueue(const std::string &queue, bool create) {
   if (create) {
-    DeclareQueue(*channel_, queue, defaultExhc);
+    DeclareQueue(*channel_, queue, default_exchange_);
   }
   queues_.push_back(queue);
 }
@@ -52,8 +61,15 @@ void AMQPPublisherService::Publish(EnvelopePtr message, size_t i) {
     throw shared::outOfRange(i, 0, queues_.size() - 1);
   }
   message->setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());
-  channel_->publish(defaultExhc, queues_[i], *message);
+  channel_->publish(default_exchange_, queues_[i], *message);
 }
+
+void AMQPPublisherService::Publish(EnvelopePtr message, const std::string qname) {
+  message->setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());
+  channel_->publish(default_exchange_, qname, *message);
+}
+
+
 
 void AMQPPublisherService::Disconnect() {
   service_.post([this]() {
@@ -94,9 +110,9 @@ void AMQPPublisherService::RestartLoop() {
     std::cout << fmt::format("Channel error: {}\n", message);
   });
 
-  channel_->declareExchange(defaultExhc, AMQP::direct).onSuccess(
+  channel_->declareExchange(default_exchange_, AMQP::direct).onSuccess(
       [this] {
-        std::cout << fmt::format("Exchange \"{}\" declared\n", defaultExhc);
+        std::cout << fmt::format("Exchange \"{}\" declared\n", default_exchange_);
       }).onError([](const char *msg) {
     std::cerr << "Exchange error: " << msg << "\n";
   });
@@ -115,6 +131,9 @@ void AMQPPublisherService::Connect() {
   work_=std::make_unique<boost::asio::io_service::work>(service_);
   RestartLoop();
   service_thread_= std::thread([this]() { service_.run(); });
+}
+const std::string &AMQPPublisherService::GetDefaultExchange() const {
+  return default_exchange_;
 }
 
 }
