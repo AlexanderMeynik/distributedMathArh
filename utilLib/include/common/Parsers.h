@@ -117,12 +117,31 @@ template<isOneDimensionalContinuous Struct>
 Struct JsonToContinuous(Json::Value &val,
                         std::optional<size_t> sz) {
 
-  size_t size = sz.value_or(val["size"].asUInt());
+  size_t size;
+  if(sz.has_value())
+  {
+    size=sz.value();
+  }
+  else
+  {
+    size=val["size"].asUInt();
+  }
+
   Struct res(size);
 
-  for (int i = 0; i < size; ++i) {
-    res[i] = val["data"][i].as<std::remove_all_extents_t<typename Struct::value_type>>();
+  if(sz.has_value())
+  {
+    for (int i = 0; i < size; ++i) {
+      res[i] = val[i].as<std::remove_all_extents_t<typename Struct::value_type>>();
+    }
   }
+  else
+  {
+    for (int i = 0; i < size; ++i) {
+      res[i] = val["data"][i].as<std::remove_all_extents_t<typename Struct::value_type>>();
+    }
+  }
+
   return res;
 }
 

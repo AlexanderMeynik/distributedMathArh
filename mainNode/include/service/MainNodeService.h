@@ -24,7 +24,6 @@ enum class NodeStatus {
   FAILED
 };
 
-//todo move to networ_shared?
 /// Look-up table to cast nodeStatus to string
 const std::unordered_map<const NodeStatus, std::string> kNodeStatusToStr
     {
@@ -58,9 +57,11 @@ class MainNodeService
 
     publisher_service_=std::make_unique<amqp_common::AMQPPublisherService>();
   }
-  void Connect(const std::string &qip,
+  Json::Value Connect(const std::string &qip,
                const std::vector<std::string> &names)
   {
+
+    Json::Value res_JSON;
     q_host_=qip;
 
     rest_service_->SetParams(fmt::format("http://{}:15672",q_host_),auth_.get());
@@ -70,6 +71,12 @@ class MainNodeService
                                                                     r.second),
                                       names);
     publisher_service_->Connect();
+
+    res_JSON["status"]=drogon::HttpStatusCode::k200OK;
+
+
+    return res_JSON;
+
   }
 
   Json::Value ConnectNode(const std::string &host_port,
@@ -86,14 +93,15 @@ class MainNodeService
     }
 
 
-
     try {
-
-      rest_service_->CreateQueue(vhost_, name, Json::Value());
-
-      rest_service_->BindQueueToExchange(vhost_,
-                                         name,
-                                         publisher_service_->GetDefaultExchange(), name);
+      auto ls=rest_service_->ListQueues(vhost_);
+      if(std::find(ls.begin(), ls.end(),name)==ls.end()) {
+        //todo create queue object class
+        rest_service_->CreateQueue(vhost_, name, Json::Value());//todo rabbitmq sends code 500
+        rest_service_->BindQueueToExchange(vhost_,
+                                           name,
+                                           publisher_service_->GetDefaultExchange(), name);
+      }
     }
     catch (shared::HttpError&err)
     {
@@ -107,35 +115,24 @@ class MainNodeService
     Json::Value res=auth_->ToJson();
     res["ip"]=q_host_;
     res["name"]=name;
-
     auto req1 = HttpRequest::newHttpJsonRequest(res);
     req1->setPath("/v1/Connect");
     req1->setMethod(Post);
-
     auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
 
-    if(resp->getStatusCode()!=HttpStatusCode::k200OK)
-    {
+    if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
       res_JSON["message"]="Unable to connect node to queue";
       res_JSON["status"]=resp->getStatusCode();
       return resp->getStatusCode();
     }
 
     auto jsoncpp=resp->getJsonObject();
-
-
     worker_nodes_[host_port].power_=print_utils::JsonToContinuous<BenchResVec>((*jsoncpp)["bench"]);
     worker_nodes_[host_port].st_ = NodeStatus::ACTIVE;
-
     res_JSON=*jsoncpp;
-
-    //publisher_service_->AddQueue(name, false);//todo do we nned this?
-
     res_JSON["status"]=drogon::HttpStatusCode::k200OK;
 
-
     return res_JSON;
-
   }
 
   Json::Value DisconnectNode(const std::string &host_port)
@@ -150,7 +147,7 @@ class MainNodeService
     auto ct = HttpClient::newHttpClient(host_port);
     auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
 
-    if (resp->getStatusCode() != HttpStatusCode::k200OK) {
+    if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
       res_JSON["status"]=resp->getStatusCode();
       res_JSON["message"]="Unable to disconnect node to queue";
       res_JSON["status"]=resp->getStatusCode();
@@ -163,18 +160,32 @@ class MainNodeService
     res_JSON=*resp->getJsonObject();
     res_JSON["status"]=drogon::HttpStatusCode::k200OK;
     return res_JSON;
-
-
   }
 
 
-  void Disconnect()
+  Json::Value Disconnect()
   {
+    Json::Value res_JSON;
     publisher_service_->Disconnect();
+
+
+    res_JSON["status"]=drogon::HttpStatusCode::k200OK;
+    return res_JSON;
   }
   void Publish(network_types::TestSolveParam&ts,std::string node)
   {
+    auto str=ts.ToJson().toStyledString();
 
+    auto envelope = std::make_shared<AMQP::Envelope>(str);
+
+    envelope->setPersistent(true);
+    AMQP::Table headers;
+    headers["messageNum"] = ts.experiment_id;
+    headers["time"] = std::chrono::steady_clock::now().time_since_epoch().count();
+    envelope->setHeaders(headers);
+
+    publisher_service_->Publish(envelope, node);
+    //todo error handling
   }
  private:
   std::unique_ptr<JsonAuthHandler> auth_;

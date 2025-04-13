@@ -52,11 +52,6 @@ AMQPPublisherService::~AMQPPublisherService() {
 }
 
 void AMQPPublisherService::Publish(EnvelopePtr message, size_t i) {
-
-  /*if (!IsConnected()) {
-    throw std::runtime_error("Not connected");
-  }*///todo find some checks
-
   if (i >= queues_.size()) {
     throw shared::outOfRange(i, 0, queues_.size() - 1);
   }
@@ -117,10 +112,10 @@ void AMQPPublisherService::RestartLoop() {
     std::cerr << "Exchange error: " << msg << "\n";
   });
 
-  for (const auto &kQ : queues_) {
+  /*for (const auto &kQ : queues_) {
     std::cout << queues_.size() << '\n';
     DeclareQueue(*channel_, kQ, kQ);
-  }
+  }*/
 }
 
 bool AMQPPublisherService::IsConnected() const {

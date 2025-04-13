@@ -26,19 +26,21 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
   std::unique_ptr<MainNodeService> main_node_service_;
  public:
   ClusterConfigController() {
-    //client=HttpClient::newHttpClient("http://localhost:8081");
-    //client->get
+    //todo pass args(create role for q creation/ message send)
+    main_node_service_=std::make_unique<MainNodeService>("sysadmin","syspassword");
 
   }//todo /rebalance
   //todo ping(measures latencies)?
   using Cont = ClusterConfigController;
 
   METHOD_LIST_BEGIN
-  //todo methods to conenct /disconnect from queue(for main node)
-  //message sending
     ADD_METHOD_TO(Cont::GetStatus, "v1/status", Get);
     ADD_METHOD_TO(Cont::ConnectHandler, "v1/Connect?ip={ip}&qip={qip}&name={queue}", Post);
     ADD_METHOD_TO(Cont::DisconnectHandler, "v1/Disconnect?ip={ip}", Post);
+
+    ADD_METHOD_TO(Cont::ConnectQ,"v1/connectQ",Post);
+    ADD_METHOD_TO(Cont::DisconnectQ,"v1/disconnectQ",Post);
+    ADD_METHOD_TO(Cont::SentMessage,"v1/message?node={node}",Put);
   METHOD_LIST_END
 
   void GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
@@ -48,6 +50,17 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
 
   void DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
                          const std::string &host_port);
+
+
+  void SentMessage(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                   const std::string &node);
+
+  void ConnectQ(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+
+  void DisconnectQ(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+
+
+
 };
 }
 }

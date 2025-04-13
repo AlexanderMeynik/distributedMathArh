@@ -15,13 +15,12 @@ namespace network_types
 struct TestSolveParam
 {
   TestSolveParam()=default;
-  size_t experiment_id_;
+  size_t experiment_id;
   std::pair<size_t, size_t > range;
-
   std::unordered_map<std::string,double> args;
   bool operator==(const TestSolveParam&oth)const=default;
-  Json::Value ToJson();
 
+  Json::Value ToJson();
   TestSolveParam(Json::Value&val);
 };
 

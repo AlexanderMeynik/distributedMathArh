@@ -6,7 +6,7 @@ namespace network_types
 Json::Value TestSolveParam::ToJson() {
   Json::Value val;
 
-  val["experiment_id"]=experiment_id_;
+  val["experiment_id"]=experiment_id;
   val["range"][0]=range.first;
   val["range"][1]=range.second;
 
@@ -18,7 +18,7 @@ Json::Value TestSolveParam::ToJson() {
 }
 
 TestSolveParam::TestSolveParam(Json::Value &val):
-    experiment_id_(val["experiment_id"].asUInt()),
+    experiment_id(val["experiment_id"].asUInt()),
     range(val["range"][0].asUInt(), val["range"][1].asUInt())
 {
   auto &vv=val["args"];

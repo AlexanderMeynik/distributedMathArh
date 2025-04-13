@@ -18,7 +18,7 @@ ClusterConfigController::GetStatus(const HttpRequestPtr &req, std::function<void
     root["data"][i]["benchRes"] = print_utils::ContinuousToJson(node.power_);
     i++;
   }
-  //todo call all of nodes;
+
 
   callback(HttpResponse::newHttpJsonResponse(root));
 
@@ -33,7 +33,7 @@ void ClusterConfigController::ConnectHandler(const HttpRequestPtr &req,
 
 
 
-  res=main_node_service_->ConnectNode(host_port,name);
+  res=main_node_service_->ConnectNode(host_port,host_port);
 
   auto r = HttpResponse::newHttpJsonResponse(res);
   r->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
@@ -55,6 +55,47 @@ void ClusterConfigController::DisconnectHandler(const HttpRequestPtr &req,
   auto r = HttpResponse::newHttpJsonResponse(res);
   r->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
 
+  callback(r);
+
+}
+void ClusterConfigController::SentMessage(const HttpRequestPtr &req,
+                                          std::function<void(const HttpResponsePtr &)> &&callback,
+                                          const std::string &node) {
+
+  network_types::TestSolveParam ts(*req->getJsonObject());
+  main_node_service_->Publish(ts,node);
+
+
+  auto r = HttpResponse::newHttpJsonResponse("");
+  r->setStatusCode(drogon::HttpStatusCode::k200OK);
+  callback(r);
+
+}
+void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
+                                       std::function<void(const HttpResponsePtr &)> &&callback) {
+
+  auto json=*req->getJsonObject();
+
+  auto qname=json["queue_host"].asString();
+  auto szs=json["queues"].size();
+  auto queus=print_utils::JsonToContinuous<std::vector<std::string>>(
+      json["queues"],szs);
+
+
+  auto jss=main_node_service_->Connect(qname,queus);
+
+  auto r = HttpResponse::newHttpJsonResponse(jss);
+  r->setStatusCode(drogon::HttpStatusCode::k200OK);
+  callback(r);
+}
+void ClusterConfigController::DisconnectQ(const HttpRequestPtr &req,
+                                          std::function<void(const HttpResponsePtr &)> &&callback) {
+
+  main_node_service_->Disconnect();
+
+
+  auto r = HttpResponse::newHttpJsonResponse("");
+  r->setStatusCode(drogon::HttpStatusCode::k200OK);
   callback(r);
 
 }

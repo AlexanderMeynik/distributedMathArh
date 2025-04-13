@@ -113,7 +113,8 @@ TEST_F(RabbitMqRestServiceTest, BindQueueToExchange_NoExchangeFound) {
                                                                  "nonExistentExhc",
                                                                  r_key_),
                              shared::HttpError,
-                             std::make_tuple(404, ""));
+                             std::make_tuple(404,
+                                             "{\"error\":\"not_found\",\"reason\":\"no exchange 'nonExistentExhc' in vhost '/'\"}"));
 
 }
 
@@ -124,7 +125,8 @@ TEST_F(RabbitMqRestServiceTest, BindQueueToExchange_NoQueueFound) {
                                                                  exch_,
                                                                  r_key_),
                              shared::HttpError,
-                             std::make_tuple(404, ""));
+                             std::make_tuple(404,
+                                             "{\"error\":\"not_found\",\"reason\":\"no queue 'qdwwcwedc' in vhost '/'\"}"));
 
 }
 
@@ -152,7 +154,7 @@ TEST_F(RabbitMqRestServiceTest, DeleteQueue_DoesNotExists) {
   std::string nn = "exch2edw";
   EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->DeleteQueue(vhost_, nn),
                              shared::HttpError,
-                             std::make_tuple(404, ""));
+                             std::make_tuple(404, "{\"error\":\"Object Not Found\",\"reason\":\"Not Found\"}"));
 }
 
 TEST_F(RabbitMqRestServiceTest, CreateUser) {
@@ -215,7 +217,8 @@ TEST_F(RabbitMqRestServiceTest, DeleteExchange_DoesNotExists) {
   std::string nn = "exch2edw";
   EXPECT_EXCEPTION_WITH_ARGS(m_service_ptr_->DeleteExchange(vhost_, nn),
                              shared::HttpError,
-                             std::make_tuple(404,""));
+                             std::make_tuple(404,
+                                             "{\"error\":\"Object Not Found\",\"reason\":\"Not Found\"}"));
 }
 
 int main(int argc, char **argv) {
