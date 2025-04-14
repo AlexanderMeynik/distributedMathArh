@@ -6,28 +6,23 @@ using namespace rest::v1;
 
 void
 ClusterConfigController::GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
-
-  Json::Value root;
-
-  int i = 0;
-  root["size"] = clients_.size();
-  for (auto &[str, node] : clients_) {
-    //root["data"][i]=Json::Value();
-    root["data"][i]["host"] = str;
-    root["data"][i]["status"] = kNodeStatusToStr.at(node.st_);
-    root["data"][i]["benchRes"] = print_utils::ContinuousToJson(node.power_);
-    i++;
-  }
+  
 
 
-  callback(HttpResponse::newHttpJsonResponse(root));
+
+
+  auto json_output=main_node_service_->Status();
+  
+  auto res=HttpResponse::newHttpJsonResponse(json_output);
+  res->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+
+  callback(res);
 
 }
 
 void ClusterConfigController::ConnectHandler(const HttpRequestPtr &req,
                                              std::function<void(const HttpResponsePtr &)> &&callback,
-                                             const std::string &host_port, const std::string &qip,
-                                             const std::string &name) {
+                                             const std::string &host_port) {
 
   Json::Value res;
 
@@ -35,10 +30,10 @@ void ClusterConfigController::ConnectHandler(const HttpRequestPtr &req,
 
   res=main_node_service_->ConnectNode(host_port,host_port);
 
-  auto r = HttpResponse::newHttpJsonResponse(res);
-  r->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
+  auto http_response = HttpResponse::newHttpJsonResponse(res);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
 
-  callback(r);
+  callback(http_response);
 
 }
 
@@ -48,14 +43,12 @@ void ClusterConfigController::DisconnectHandler(const HttpRequestPtr &req,
 
   Json::Value res;
 
-
-
   res=main_node_service_->DisconnectNode(host_port);
 
-  auto r = HttpResponse::newHttpJsonResponse(res);
-  r->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
+  auto http_response = HttpResponse::newHttpJsonResponse(res);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
 
-  callback(r);
+  callback(http_response);
 
 }
 void ClusterConfigController::SentMessage(const HttpRequestPtr &req,
@@ -63,12 +56,12 @@ void ClusterConfigController::SentMessage(const HttpRequestPtr &req,
                                           const std::string &node) {
 
   network_types::TestSolveParam ts(*req->getJsonObject());
-  main_node_service_->Publish(ts,node);
+  auto json_output=main_node_service_->Publish(ts,node);
 
 
-  auto r = HttpResponse::newHttpJsonResponse("");
-  r->setStatusCode(drogon::HttpStatusCode::k200OK);
-  callback(r);
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
 
 }
 void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
@@ -82,20 +75,20 @@ void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
       json["queues"],szs);
 
 
-  auto jss=main_node_service_->Connect(qname,queus);
+  auto json_output=main_node_service_->Connect(qname,queus);
 
-  auto r = HttpResponse::newHttpJsonResponse(jss);
-  r->setStatusCode(drogon::HttpStatusCode::k200OK);
-  callback(r);
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
 }
 void ClusterConfigController::DisconnectQ(const HttpRequestPtr &req,
                                           std::function<void(const HttpResponsePtr &)> &&callback) {
 
-  main_node_service_->Disconnect();
+  auto json_output=main_node_service_->Disconnect();
 
 
-  auto r = HttpResponse::newHttpJsonResponse("");
-  r->setStatusCode(drogon::HttpStatusCode::k200OK);
-  callback(r);
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
 
 }

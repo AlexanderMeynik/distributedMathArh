@@ -50,10 +50,13 @@ bool RabbitMQRestService::CreateQueue(const std::string &vhost,
                                       const std::string &queue_name,
                                       const Json::Value &arguments) {
   std::string path = fmt::format("/api/queues/{}/{}", vhost, queue_name);
+
   Json::Value body;
   body["auto_delete"] = false;
   body["durable"] = true;
-  body["arguments"] = arguments;
+  if(!arguments.empty()) {
+    body["arguments"] = arguments;
+  }
   std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
   PerformRequest(path, "PUT", data);
   return true;

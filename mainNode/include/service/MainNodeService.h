@@ -8,6 +8,7 @@
 #include "network_shared/AMQPPublisherService.h"
 #include "common/sharedDeclarations.h"
 #include "common/Parsers.h"
+#include "common/Printers.h"
 
 namespace main_service
 {
@@ -50,6 +51,36 @@ class ComputationalNode {
 class MainNodeService
 {
  public:
+  Json::Value Status()
+  {
+    Json::Value res_JSON;
+
+    res_JSON["request"]="status";
+
+    if(publisher_service_->IsConnected()) {
+      res_JSON["rabbitmq_service"]["status"] ="Connected";
+      res_JSON["rabbitmq_service"]["c_string"]=publisher_service_->GetConnectionString();
+    }
+    else
+    {
+      res_JSON["RabbitmqService"]["status"] ="Not Connected";
+    }
+
+    auto& ss=res_JSON["clients"];
+
+    int i = 0;
+    for (auto &[str, node] : worker_nodes_) {
+      //root["data"][i]=Json::Value();
+      ss["data"][i]["host"] = str;
+      ss["data"][i]["status"] = kNodeStatusToStr.at(node.st_);
+      ss["data"][i]["benchRes"] = print_utils::ContinuousToJson(node.power_);
+      i++;
+    }
+
+    res_JSON["status"]=drogon::HttpStatusCode::k200OK;
+    return res_JSON;
+
+  }
   MainNodeService(const std::string &user,const std::string &password)
   {
     auth_=std::make_unique<JsonAuthHandler>(user,password);
@@ -62,6 +93,19 @@ class MainNodeService
   {
 
     Json::Value res_JSON;
+
+    res_JSON["request"]="connectQ";
+
+    if(publisher_service_->IsConnected())
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      //todo use another data to sent
+      res_JSON["message"]=fmt::format("Queue service is currently working {}",publisher_service_->GetConnectionString());
+      return res_JSON;
+    }
+
+
+
     q_host_=qip;
 
     rest_service_->SetParams(fmt::format("http://{}:15672",q_host_),auth_.get());
@@ -70,6 +114,33 @@ class MainNodeService
                                                                     r.first,
                                                                     r.second),
                                       names);
+
+
+    try {
+      auto exchanges=rest_service_->GetExchanges(vhost_);
+      if(std::find_if(exchanges.begin(), exchanges.end(), [this](const amqp_common::exchange&e){
+        return e.name==publisher_service_->GetDefaultExchange();
+      })==exchanges.end()) {
+
+        auto user=auth_->Retrive().first;
+        amqp_common::exchange exchange{publisher_service_->GetDefaultExchange(),
+                                       amqp_common::exchange::exchangeData{user,
+                                                                           AMQP::direct}};
+
+        rest_service_->CreateExchange(vhost_,exchange,Json::Value());//todo pass more args?
+      }
+    }
+    catch (shared::HttpError&err)
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]="Error during queue creation";
+      res_JSON["exception"]["message"]=err.get<1>();
+      res_JSON["exception"]["code"]=err.get<0>();
+      return res_JSON;
+    }
+
+
+
     publisher_service_->Connect();
 
     res_JSON["status"]=drogon::HttpStatusCode::k200OK;
@@ -84,6 +155,16 @@ class MainNodeService
   {
     Json::Value res_JSON;
 
+    res_JSON["request"]="connect";
+
+    if(!publisher_service_->IsConnected())
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]="Queue service is currently unavailable try using connectQ/ request";
+      return res_JSON;
+    }
+
+
     if (!worker_nodes_.count(host_port)) {
       ComputationalNode cn;
 
@@ -91,13 +172,23 @@ class MainNodeService
       cn.st_ = NodeStatus::INACTIVE;
       worker_nodes_[host_port] = std::move(cn);
     }
+    else
+    {
+      if(worker_nodes_[host_port].st_==NodeStatus::ACTIVE)
+      {
+        res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+        res_JSON["message"]=fmt::format("Worker node {} is already connected to cluster!",host_port);
+        return res_JSON;
+      }
+    }
 
 
     try {
       auto ls=rest_service_->ListQueues(vhost_);
       if(std::find(ls.begin(), ls.end(),name)==ls.end()) {
         //todo create queue object class
-        rest_service_->CreateQueue(vhost_, name, Json::Value());//todo rabbitmq sends code 500
+
+        rest_service_->CreateQueue(vhost_, name, Json::Value());
         rest_service_->BindQueueToExchange(vhost_,
                                            name,
                                            publisher_service_->GetDefaultExchange(), name);
@@ -120,16 +211,24 @@ class MainNodeService
     req1->setMethod(Post);
     auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
 
+    if(code==drogon::ReqResult::BadServerAddress)
+    {
+      res_JSON["message"]=fmt::format("Unable to access worker on {}! Is working node running?",host_port);
+      res_JSON["status"]=drogon::HttpStatusCode::k504GatewayTimeout;
+      return res_JSON;
+    }
     if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
-      res_JSON["message"]="Unable to connect node to queue";
+      res_JSON["message"]=fmt::format("Error occurred during worker {} connection!",host_port);
       res_JSON["status"]=resp->getStatusCode();
-      return resp->getStatusCode();
+      res_JSON["node_output"]=resp->getJsonObject()->toStyledString();
+      return res_JSON;
     }
 
     auto jsoncpp=resp->getJsonObject();
     worker_nodes_[host_port].power_=print_utils::JsonToContinuous<BenchResVec>((*jsoncpp)["bench"]);
     worker_nodes_[host_port].st_ = NodeStatus::ACTIVE;
     res_JSON=*jsoncpp;
+
     res_JSON["status"]=drogon::HttpStatusCode::k200OK;
 
     return res_JSON;
@@ -137,8 +236,24 @@ class MainNodeService
 
   Json::Value DisconnectNode(const std::string &host_port)
   {
+
     Json::Value res_JSON;
 
+    res_JSON["request"]="disconnect";
+    if(!publisher_service_->IsConnected())
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]="Queue service is currently unavailable try using connectQ/ request";
+      return res_JSON;
+    }
+
+
+    if(!worker_nodes_.count(host_port)||worker_nodes_.at(host_port).st_!=NodeStatus::ACTIVE)
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]=fmt::format("Worker node {} was not connected to cluster!",host_port);
+      return res_JSON;
+    }
     auto req1 = HttpRequest::newHttpRequest();
 
     req1->setPath("/v1/Disconnect");
@@ -147,11 +262,17 @@ class MainNodeService
     auto ct = HttpClient::newHttpClient(host_port);
     auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
 
-    if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
-      res_JSON["status"]=resp->getStatusCode();
-      res_JSON["message"]="Unable to disconnect node to queue";
-      res_JSON["status"]=resp->getStatusCode();
+    if(code==drogon::ReqResult::BadServerAddress)
+    {
+      res_JSON["message"]=fmt::format("Unable to access worker on {}! Is working node running?",host_port);
+      res_JSON["status"]=drogon::HttpStatusCode::k504GatewayTimeout;
+      return res_JSON;
+    }
 
+    if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
+      res_JSON["message"]=fmt::format("Unable to disconnect worker {} from cluster!",host_port);
+      res_JSON["status"]=resp->getStatusCode();
+      res_JSON["node_output"]=resp->getJsonObject()->toStyledString();
       return res_JSON;
     }
 
@@ -165,15 +286,41 @@ class MainNodeService
 
   Json::Value Disconnect()
   {
+
     Json::Value res_JSON;
+    res_JSON["request"]="disconnectQ";
+    if(!publisher_service_->IsConnected())
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]="Queue service is currently unavailable try using connectQ/ request";
+      return res_JSON;
+    }
+
+    if(!publisher_service_->IsConnected())
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]="Queue service is already shut down";
+      return res_JSON;
+    }
+
     publisher_service_->Disconnect();
 
 
     res_JSON["status"]=drogon::HttpStatusCode::k200OK;
     return res_JSON;
   }
-  void Publish(network_types::TestSolveParam&ts,std::string node)
+  Json::Value Publish(network_types::TestSolveParam&ts,std::string node)
   {
+
+    Json::Value res_JSON;
+
+    res_JSON["request"]="message";
+    if(!publisher_service_->IsConnected())
+    {
+      res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
+      res_JSON["message"]="Queue service is already shut down";
+      return res_JSON;
+    }
     auto str=ts.ToJson().toStyledString();
 
     auto envelope = std::make_shared<AMQP::Envelope>(str);
@@ -185,7 +332,9 @@ class MainNodeService
     envelope->setHeaders(headers);
 
     publisher_service_->Publish(envelope, node);
-    //todo error handling
+
+    res_JSON["status"]=drogon::HttpStatusCode::k200OK;
+    return res_JSON;
   }
  private:
   std::unique_ptr<JsonAuthHandler> auth_;

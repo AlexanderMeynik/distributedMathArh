@@ -105,17 +105,7 @@ void AMQPPublisherService::RestartLoop() {
     std::cout << fmt::format("Channel error: {}\n", message);
   });
 
-  channel_->declareExchange(default_exchange_, AMQP::direct).onSuccess(
-      [this] {
-        std::cout << fmt::format("Exchange \"{}\" declared\n", default_exchange_);
-      }).onError([](const char *msg) {
-    std::cerr << "Exchange error: " << msg << "\n";
-  });
 
-  /*for (const auto &kQ : queues_) {
-    std::cout << queues_.size() << '\n';
-    DeclareQueue(*channel_, kQ, kQ);
-  }*/
 }
 
 bool AMQPPublisherService::IsConnected() const {

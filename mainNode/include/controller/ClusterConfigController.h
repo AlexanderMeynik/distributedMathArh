@@ -35,7 +35,7 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
 
   METHOD_LIST_BEGIN
     ADD_METHOD_TO(Cont::GetStatus, "v1/status", Get);
-    ADD_METHOD_TO(Cont::ConnectHandler, "v1/Connect?ip={ip}&qip={qip}&name={queue}", Post);
+    ADD_METHOD_TO(Cont::ConnectHandler, "v1/Connect?ip={ip}", Post);
     ADD_METHOD_TO(Cont::DisconnectHandler, "v1/Disconnect?ip={ip}", Post);
 
     ADD_METHOD_TO(Cont::ConnectQ,"v1/connectQ",Post);
@@ -46,7 +46,7 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
   void GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
   void ConnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                      const std::string &host_port, const std::string &qip, const std::string &name);
+                      const std::string &host_port);
 
   void DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
                          const std::string &host_port);
