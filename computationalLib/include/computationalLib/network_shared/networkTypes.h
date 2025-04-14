@@ -46,6 +46,16 @@ struct TestSolveParam {
   std::unordered_map<std::string, JsonVariant> args;
   bool operator==(const TestSolveParam &oth) const = default;
 
+  bool Slice(size_t iter_count)
+  {
+    if(range.first+iter_count>range.second)
+    {
+      return false;
+    }
+    range.first+=iter_count;
+    return true;
+  }
+
   Json::Value ToJson();
   TestSolveParam(Json::Value &val);
 };

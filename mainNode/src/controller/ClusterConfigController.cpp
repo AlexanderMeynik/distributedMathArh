@@ -16,9 +16,9 @@ ClusterConfigController::GetStatus(const HttpRequestPtr &req, std::function<void
 
 }
 
-void ClusterConfigController::ConnectHandler(const HttpRequestPtr &req,
-                                             std::function<void(const HttpResponsePtr &)> &&callback,
-                                             const std::string &host_port) {
+void ClusterConfigController::ConnectNodeHandler(const HttpRequestPtr &req,
+                                                 std::function<void(const HttpResponsePtr &)> &&callback,
+                                                 const std::string &host_port) {
 
   Json::Value res;
 
@@ -31,9 +31,9 @@ void ClusterConfigController::ConnectHandler(const HttpRequestPtr &req,
 
 }
 
-void ClusterConfigController::DisconnectHandler(const HttpRequestPtr &req,
-                                                std::function<void(const HttpResponsePtr &)> &&callback,
-                                                const std::string &host_port) {
+void ClusterConfigController::DisconnectNodeHandler(const HttpRequestPtr &req,
+                                                    std::function<void(const HttpResponsePtr &)> &&callback,
+                                                    const std::string &host_port) {
 
   Json::Value res;
 
@@ -56,6 +56,16 @@ void ClusterConfigController::SentMessage(const HttpRequestPtr &req,
   http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
   callback(http_response);
 
+}
+
+void ClusterConfigController::SentToExecution(const HttpRequestPtr &req,
+                                              std::function<void(const HttpResponsePtr &)> &&callback) {
+  network_types::TestSolveParam ts(*req->getJsonObject());
+  auto json_output = main_node_service_->SendToExecution(ts);
+
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
 }
 void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
                                        std::function<void(const HttpResponsePtr &)> &&callback) {
@@ -83,3 +93,4 @@ void ClusterConfigController::DisconnectQ(const HttpRequestPtr &req,
   callback(http_response);
 
 }
+

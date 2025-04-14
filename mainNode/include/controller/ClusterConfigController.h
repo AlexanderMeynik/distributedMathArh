@@ -28,24 +28,29 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
 
   METHOD_LIST_BEGIN
     ADD_METHOD_TO(Cont::GetStatus, "v1/status", Get);
-    ADD_METHOD_TO(Cont::ConnectHandler, "v1/connect_node?ip={ip}", Post);
-    ADD_METHOD_TO(Cont::DisconnectHandler, "v1/disconnect_node?ip={ip}", Post);
+    ADD_METHOD_TO(Cont::ConnectNodeHandler, "v1/connect_node?ip={ip}", Post);
+    ADD_METHOD_TO(Cont::DisconnectNodeHandler, "v1/disconnect_node?ip={ip}", Post);
 
     ADD_METHOD_TO(Cont::ConnectQ, "v1/connect_publisher", Post);
     ADD_METHOD_TO(Cont::DisconnectQ, "v1/disconnect_publisher", Post);
     ADD_METHOD_TO(Cont::SentMessage, "v1/message?node={node}", Put);
+
+    ADD_METHOD_TO(Cont::SentToExecution, "v1/send_task", Put);
+
   METHOD_LIST_END
 
   void GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-  void ConnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                      const std::string &host_port);
+  void ConnectNodeHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                          const std::string &host_port);
 
-  void DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                         const std::string &host_port);
+  void DisconnectNodeHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                             const std::string &host_port);
 
   void SentMessage(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
                    const std::string &node);
+
+  void SentToExecution(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
   void ConnectQ(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
