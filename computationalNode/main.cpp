@@ -8,7 +8,6 @@
 using namespace drogon;
 using rest::v1::CompNode;
 
-
 /**
  * @class BenchmarkRunner
  * @brief A class to run performance benchmarks for dipole and mesh computations.
@@ -21,7 +20,7 @@ class BenchmarkRunner {
    * @param iter_counts
    * @throws std::invalid_argument
    */
-  BenchmarkRunner(const shared::BenchResVec& ns, const shared::BenchResVec& iter_counts)
+  BenchmarkRunner(const shared::BenchResVec &ns, const shared::BenchResVec &iter_counts)
       : ns_(ns), iter_counts_(iter_counts) {
     if (ns_.size() != iter_counts_.size()) {
       throw std::invalid_argument("ns and iter_counts must have the same size");
@@ -62,10 +61,9 @@ class BenchmarkRunner {
 
     ms.ConstructMeshes();
 
-    common_types::StdValarr coordinates(2*N);
+    common_types::StdValarr coordinates(2 * N);
 
-    auto loc= clk.TikLoc();
-
+    auto loc = clk.TikLoc();
 
 #pragma omp parallel for firstprivate(coordinates, dipoles1, ms), default(shared)
     for (size_t i = 0; i < conf_num; ++i) {
@@ -89,36 +87,31 @@ class BenchmarkRunner {
   }
 };
 
-
-
 constexpr FloatType kArange = 1e-6;
-constexpr size_t iter_num=10000;
-
+constexpr size_t iter_num = 10000;
 
 chrono_clock::ChronoClockTemplate<std::milli> clk;
 auto secondBench = []
-    (size_t N,size_t conf_num)->shared::BenchResultType {
+    (size_t N, size_t conf_num) -> shared::BenchResultType {
 
   auto mul = iter_num / conf_num;
 
   auto sig = kArange * sqrt(2);
 
-  common_types::StdValarr coordinates(2*N);
+  common_types::StdValarr coordinates(2 * N);
 
-  auto ff= generators::get_normal_generator(0.0,sig);
-
+  auto ff = generators::get_normal_generator(0.0, sig);
 
   dipoles::Dipoles dipoles1;
 
   mesh_storage::MeshCreator ms;
   ms.ConstructMeshes();
-  auto loc= clk.TikLoc();
+  auto loc = clk.TikLoc();
 
-
-  #pragma omp parallel for firstprivate(coordinates,dipoles1, ms), default(shared)
+#pragma omp parallel for firstprivate(coordinates, dipoles1, ms), default(shared)
   for (size_t i = 0; i < conf_num; ++i) {
 
-    std::generate(std::begin(coordinates),std::end(coordinates),ff);
+    std::generate(std::begin(coordinates), std::end(coordinates), ff);
 
     dipoles1.SetNewCoordinates(coordinates);
     auto sol = dipoles1.Solve();
@@ -129,9 +122,8 @@ auto secondBench = []
   }
 
   clk.Tak();
-  auto rr=clk[loc].time*mul;
+  auto rr = clk[loc].time * mul;
   clk.ResetTimer(loc);
-
 
   return rr;
 };

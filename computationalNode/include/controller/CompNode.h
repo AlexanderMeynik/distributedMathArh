@@ -6,7 +6,6 @@
 using namespace drogon;
 using shared::BenchResVec;
 
-
 namespace rest::v1 {
 using comp_service::AMQPHandler;
 

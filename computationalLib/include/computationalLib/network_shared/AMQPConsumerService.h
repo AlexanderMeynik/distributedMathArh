@@ -20,7 +20,6 @@ class AMQPConsumerService {
   AMQPConsumerService(const std::string &connection_string,
                       const std::string &queue_name);
 
-
   /**
    * @brief
    * @param connection_string
@@ -28,7 +27,6 @@ class AMQPConsumerService {
    */
   void SetParameters(const std::string &connection_string,
                      const std::string &queue_name);
-
 
   void SetMessageCallback(MessageCallback callback);
   /**

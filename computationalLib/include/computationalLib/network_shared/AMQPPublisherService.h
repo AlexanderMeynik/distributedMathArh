@@ -10,12 +10,11 @@ namespace amqp_common {
 class AMQPPublisherService {
  public:
 
-
   AMQPPublisherService();
 
   void SetParameters(const std::string &connection_string,
                      const std::vector<std::string> &queues,
-                     const std::string& exchange= "testexch");
+                     const std::string &exchange = "testexch");
 
   /**
    * @details Will declare all queues in provide array
@@ -24,8 +23,7 @@ class AMQPPublisherService {
    */
   AMQPPublisherService(const std::string &connection_string,
                        const std::vector<std::string> &queues = {},
-                       const std::string& exchange= "testexch");
-
+                       const std::string &exchange = "testexch");
 
   /**
    * @brief Starts service operation
@@ -65,9 +63,7 @@ class AMQPPublisherService {
     * */
   void Publish(EnvelopePtr message, const std::string qname);
 
-
   void Disconnect();
-
 
   ~AMQPPublisherService();
 
@@ -86,7 +82,6 @@ class AMQPPublisherService {
   std::string connection_string_;
 
   std::thread service_thread_;
-
 
   std::string default_exchange_;
 

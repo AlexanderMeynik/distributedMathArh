@@ -22,7 +22,7 @@ std::string ConstructCString(const std::string &host_port,
                              const std::string &user,
                              const std::string &password,
                              bool secure) {
-  auto res=fmt::format("amqp{}://{}:{}@{}/",(secure?"s":""),user,password,host_port);
+  auto res = fmt::format("amqp{}://{}:{}@{}/", (secure ? "s" : ""), user, password, host_port);
   return res;
 }
 
@@ -30,23 +30,17 @@ AMQP::Address ConstructCAddress(const std::string &host_port,
                                 const std::string &user,
                                 const std::string &password,
                                 bool secure) {
-  return AMQP::Address(ConstructCString(host_port,user,password,secure));
+  return AMQP::Address(ConstructCString(host_port, user, password, secure));
 }
-
 
 MyHandler::MyHandler(boost::asio::io_service &service,
                      std::unique_ptr<boost::asio::io_service::work> &work_ref) :
     AMQP::LibBoostAsioHandler(service),
     m_work(work_ref),
-    connected_(false)
-    {}
-
-
+    connected_(false) {}
 
 bool MyHandler::IsConnected() const {
   return connected_;
 }
-
-
 
 }

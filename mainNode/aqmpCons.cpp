@@ -16,9 +16,8 @@ int main(int argc, char *argv[]) {
     std::cerr << "Usage: " << argv[0] << " <cString> <queue_name>\n";
     return 1;
   }
-  amqp_common::MessageCallback a=[](const AMQP::Message & ms,uint64_t delivery_tag,bool redelivered)
-  {
-    std::cout<<delivery_tag<<'\n';
+  amqp_common::MessageCallback a = [](const AMQP::Message &ms, uint64_t delivery_tag, bool redelivered) {
+    std::cout << delivery_tag << '\n';
   };
   auto cString = argv[1];
   auto qname = argv[2];

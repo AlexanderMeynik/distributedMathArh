@@ -10,11 +10,10 @@ namespace chrono_clock {
 
 using ClockType = typename std::conditional<std::chrono::high_resolution_clock::is_steady,
                                             std::chrono::high_resolution_clock,
-                                            std::chrono::steady_clock >::type ;
+                                            std::chrono::steady_clock>::type;
 
 using TimepointType = ClockType::time_point/*::chrono::system_clock::time_point*/;
 using timing::locationType;
-
 
 /**
 * Formats source location fields for more readability

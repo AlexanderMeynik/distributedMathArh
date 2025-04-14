@@ -56,7 +56,7 @@ PerformCurlRequest(const std::string &path,
   }
 
   if (http_code >= 400) {
-    throw shared::HttpError(http_code,response_body);
+    throw shared::HttpError(http_code, response_body);
   }
 
   return response_body;

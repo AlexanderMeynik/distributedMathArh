@@ -13,62 +13,6 @@ namespace amqp_common {
 
 using namespace network_types;
 
-
-/**
- * @brief Exchange struct
- */
-struct exchange {
-
-  struct exchangeData {
-    std::string creator;
-    AMQP::ExchangeType type;
-    bool autoDelete;
-    bool durable;
-    bool internal;
-
-    exchangeData(const std::string &creator_a,
-                 const AMQP::ExchangeType &type_a,
-                 bool autoDelete_a = false,
-                 bool durable_a = true,
-                 bool internal_a = false) :
-        creator(creator_a),
-        type(type_a),
-        autoDelete(autoDelete_a),
-        durable(durable_a),
-        internal(internal_a) {}
-
-    exchangeData(Json::Value &val) :
-        creator(val["user_who_performed_action"].asString()),
-        type(static_cast<AMQP::ExchangeType>(stringToExchangeType.at(val["type"].asString()))),
-        autoDelete(val["auto_delete"].asBool()),
-        durable(val["durable"].asBool()),
-        internal(val["internal"].asBool()) {
-    }
-
-    Json::Value toJson() const {
-      Json::Value val;
-      val["user_who_performed_action"] = creator;
-      val["type"] = eTypeToStr[static_cast<size_t>(type)];
-      val["auto_delete"] = autoDelete;
-      val["durable"] = durable;
-      val["internal"] = internal;
-      return val;
-    }
-
-  };
-
-  exchange(const std::string &name_a, exchangeData &&data) : name(name_a),
-                                                             dat(std::move(data)) {}
-
-  exchange(Json::Value &val) :
-      name(val["name"].asString()),
-      dat(val) {}
-
-  std::string name;
-  exchangeData dat;
-
-};
-
 class RabbitMQRestService {
  public:
   RabbitMQRestService();
@@ -81,15 +25,15 @@ class RabbitMQRestService {
   RabbitMQRestService(const std::string &base_url,
                       AuthHandler *auth_handler);
 
-  RabbitMQRestService(const RabbitMQRestService&other)=delete;
+  RabbitMQRestService(const RabbitMQRestService &other) = delete;
 
-  RabbitMQRestService& operator=(const RabbitMQRestService&other)=delete;
+  RabbitMQRestService &operator=(const RabbitMQRestService &other) = delete;
   ~RabbitMQRestService();
 
   Json::Value Whoami();
 
   bool CreateQueue(const std::string &vhost,
-                   const std::string &queue_name,
+                   const network_types::queue &queue,
                    const Json::Value &arguments);
 
   bool DeleteQueue(const std::string &vhost,

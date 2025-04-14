@@ -25,7 +25,7 @@ constexpr auto kChararr = std::array<char, 3>{'a', 'b', 'c'};
 constexpr auto kIntarr = std::array<int, 4>{1, 2, 3, 4};
 constexpr FloatType kArange = 1e-6;
 
-auto normal_gen=generators::get_normal_generator(0.0, kArange * sqrt(2));
+auto normal_gen = generators::get_normal_generator(0.0, kArange * sqrt(2));
 
 void
 Loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &dipoles1,
@@ -58,8 +58,8 @@ auto firstBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
   auto conf_num = 1000;
 
-  std::valarray<FloatType> coordinates(2*N);
-  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
   dipoles::Dipoles dipoles1;
 
@@ -91,8 +91,8 @@ auto secondBench = []
   auto div = rangeFinder(N);
   mul = div;
   auto confNum = 10000 / div;
-  std::valarray<FloatType> coordinates(2*N);
-  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
   dipoles::Dipoles dipoles1;
 
@@ -128,8 +128,8 @@ std::function<std::string(size_t)> nameGenerator2 =
 auto thirdBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
   auto conf_num = 1000;
-  std::valarray<FloatType> coordinates(2*N);
-  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
   dipoles::Dipoles dipoles1;
 
@@ -171,8 +171,8 @@ auto nameGenerator3 =
 
 auto fourthBench = []
     (auto &clk, file_utils::fileHandler &handler, size_t &mul, size_t confNum, size_t N) {
-  std::valarray<FloatType> coordinates(2*N);
-  std::generate(std::begin(coordinates),std::end(coordinates),normal_gen);
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
   dipoles::Dipoles dipoles1;
 

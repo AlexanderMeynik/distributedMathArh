@@ -26,14 +26,14 @@ using AMQP::MessageCallback;
  * @param password
  * @param secure sets with amqps protocol
  */
-std::string ConstructCString(const std::string& host_port,
-                            const std::string& user,
-                            const std::string&password,
-                            bool secure=false);
-AMQP::Address ConstructCAddress(const std::string& host_port,
-                                const std::string& user,
-                                const std::string&password,
-                                bool secure=false);
+std::string ConstructCString(const std::string &host_port,
+                             const std::string &user,
+                             const std::string &password,
+                             bool secure = false);
+AMQP::Address ConstructCAddress(const std::string &host_port,
+                                const std::string &user,
+                                const std::string &password,
+                                bool secure = false);
 /**
  * @brief
  * @param channel
@@ -76,7 +76,7 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
 
   void onClosed(AMQP::TcpConnection *connection) override {
     m_work.reset();
-    connected_= false;
+    connected_ = false;
 
     std::cout << "Connection closed.\n";
   }
@@ -88,7 +88,7 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
 
   void onConnected(AMQP::TcpConnection *connection) override {
     std::cout << "Connection established successfully." << '\n';
-    connected_= true;
+    connected_ = true;
   }
 
   bool IsConnected() const;
@@ -98,11 +98,10 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   bool connected_;
 };
 
-
 static auto inline d_message_callback =
     [](const AMQP::Message &message,
-           uint64_t delivery_tag,
-           bool redelivered) {
+       uint64_t delivery_tag,
+       bool redelivered) {
 
       std::cout << "Body: " << std::string(message.body(), message.bodySize()) << '\n';
       std::cout << "Priority: " << (int) message.priority() << '\n';
@@ -114,10 +113,6 @@ static auto inline d_message_callback =
                   << message.headers().operator[](key).typeID() << '\n';//typeId
       }
       std::cout << '\n';
-      //channel_->ack(delivery_tag);
     };
-
-
-
 
 }

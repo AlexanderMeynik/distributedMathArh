@@ -94,21 +94,17 @@ class BasicAuthHandler : public AuthHandler {
   virtual void AddAuth(CURL *curl) override;
 };
 
-
-class JsonAuthHandler: public BasicAuthHandler
-{
+class JsonAuthHandler : public BasicAuthHandler {
   using BasicAuthHandler::BasicAuthHandler;
  public:
-  Json::Value ToJson()
-  {
+  Json::Value ToJson() {
     Json::Value res;
-    res["user"]=user_;
-    res["password"]=password_;
+    res["user"] = user_;
+    res["password"] = password_;
     return res;
   }
 
-  std::pair<std::string,std::string> Retrive()
-  {
-    return {user_,password_};
+  std::pair<std::string, std::string> Retrive() {
+    return {user_, password_};
   }
 };

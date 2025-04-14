@@ -118,25 +118,19 @@ Struct JsonToContinuous(Json::Value &val,
                         std::optional<size_t> sz) {
 
   size_t size;
-  if(sz.has_value())
-  {
-    size=sz.value();
-  }
-  else
-  {
-    size=val["size"].asUInt();
+  if (sz.has_value()) {
+    size = sz.value();
+  } else {
+    size = val["size"].asUInt();
   }
 
   Struct res(size);
 
-  if(sz.has_value())
-  {
+  if (sz.has_value()) {
     for (int i = 0; i < size; ++i) {
       res[i] = val[i].as<std::remove_all_extents_t<typename Struct::value_type>>();
     }
-  }
-  else
-  {
+  } else {
     for (int i = 0; i < size; ++i) {
       res[i] = val["data"][i].as<std::remove_all_extents_t<typename Struct::value_type>>();
     }

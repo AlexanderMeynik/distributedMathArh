@@ -5,31 +5,26 @@ namespace amqp_common {
 
 void AMQPConsumerService::Connect() {
   service_.reset();
-  work_=std::make_unique<boost::asio::io_service::work>(service_);
+  work_ = std::make_unique<boost::asio::io_service::work>(service_);
   Reconnect();
-  service_thread_= std::thread([this]() { service_.run(); });
+  service_thread_ = std::thread([this]() { service_.run(); });
 }
 
 void AMQPConsumerService::Reconnect() {
-  if(IsConnected())
-  {
+  if (IsConnected()) {
     return;
   }
-  if(!connection_||!connection_->ready())
-  {
-    if(c_string_.empty())
-    {
+  if (!connection_ || !connection_->ready()) {
+    if (c_string_.empty()) {
       throw shared::zeroSize(VARIABLE_NAME(c_string_));
     }
-    connection_=std::make_unique<AMQP::TcpConnection>(handler_.get(),AMQP::Address(c_string_));
-    channel_=std::make_unique<AMQP::TcpChannel>(connection_.get());
+    connection_ = std::make_unique<AMQP::TcpConnection>(handler_.get(), AMQP::Address(c_string_));
+    channel_ = std::make_unique<AMQP::TcpChannel>(connection_.get());
   }
 
-  
   channel_->onError([](const char *message) {
     std::cout << "Channel error: " << message << '\n';
   });
-  
 
   auto start_cb = [](const std::string &consumer_tag) {
     std::cout << "Consumption started successfully with consumer tag: " << consumer_tag << '\n';
@@ -44,7 +39,7 @@ void AMQPConsumerService::Reconnect() {
         if (message_callback_) {
           message_callback_(message, delivery_tag, redelivered);
         } else {
-          amqp_common::d_message_callback(message,delivery_tag,redelivered);
+          amqp_common::d_message_callback(message, delivery_tag, redelivered);
         }
         channel_->ack(delivery_tag);
       }))
@@ -60,7 +55,6 @@ void AMQPConsumerService::Disconnect() {
     connection_->close();
   });
 
-
   if (service_thread_.joinable()) {
     service_thread_.join();
   }
@@ -73,26 +67,23 @@ AMQPConsumerService::~AMQPConsumerService() {
   Disconnect();
 }
 
-AMQPConsumerService::AMQPConsumerService():service_(1),
-                                           handler_(std::make_unique<MyHandler>(service_, work_))
-{
+AMQPConsumerService::AMQPConsumerService() : service_(1),
+                                             handler_(std::make_unique<MyHandler>(service_, work_)) {
 
 }
-
 
 AMQPConsumerService::AMQPConsumerService(const std::string &connection_string,
                                          const std::string &queue_name) :
     service_(1),
     handler_(std::make_unique<MyHandler>(service_, work_)),
     queue_(queue_name),
-    c_string_(connection_string)
-{
+    c_string_(connection_string) {
 
 }
 
 void AMQPConsumerService::SetParameters(const std::string &connection_string, const std::string &queue_name) {
-  c_string_=connection_string;
-  queue_=queue_name;
+  c_string_ = connection_string;
+  queue_ = queue_name;
 }
 
 void AMQPConsumerService::SetMessageCallback(MessageCallback callback) {
@@ -100,9 +91,7 @@ void AMQPConsumerService::SetMessageCallback(MessageCallback callback) {
 }
 
 bool AMQPConsumerService::IsConnected() const {
-  return handler_&&handler_->IsConnected();
+  return handler_ && handler_->IsConnected();
 }
-
-
 
 }

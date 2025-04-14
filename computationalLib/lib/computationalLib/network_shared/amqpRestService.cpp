@@ -4,26 +4,24 @@
 
 namespace amqp_common {
 
-
 RabbitMQRestService::RabbitMQRestService() {
   curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 RabbitMQRestService::RabbitMQRestService(const std::string &base_url,
                                          AuthHandler *auth_handler)
     : base_url_(base_url),
-      auth_ptr_(auth_handler){
+      auth_ptr_(auth_handler) {
   curl_global_init(CURL_GLOBAL_DEFAULT);
 }
 
 void RabbitMQRestService::SetBaseUrl(const std::string &base_url) {
-  base_url_=base_url;
+  base_url_ = base_url;
 }
 
 void RabbitMQRestService::SetParams(const std::string &base_url, AuthHandler *auth_handler) {
-  base_url_=base_url;
-  auth_ptr_=auth_handler;
+  base_url_ = base_url;
+  auth_ptr_ = auth_handler;
 }
-
 
 RabbitMQRestService::~RabbitMQRestService() {
   curl_global_cleanup();
@@ -47,14 +45,12 @@ Json::Value RabbitMQRestService::ParseJson(const std::string &json_str) {
 }
 
 bool RabbitMQRestService::CreateQueue(const std::string &vhost,
-                                      const std::string &queue_name,
+                                      const network_types::queue &queue,
                                       const Json::Value &arguments) {
-  std::string path = fmt::format("/api/queues/{}/{}", vhost, queue_name);
+  std::string path = fmt::format("/api/queues/{}/{}", vhost, queue.name);
 
-  Json::Value body;
-  body["auto_delete"] = false;
-  body["durable"] = true;
-  if(!arguments.empty()) {
+  Json::Value body = queue.ToJson();
+  if (!arguments.empty()) {
     body["arguments"] = arguments;
   }
   std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
@@ -72,7 +68,7 @@ bool RabbitMQRestService::DeleteQueue(const std::string &vhost,
 bool RabbitMQRestService::CreateExchange(const std::string &vhost, const exchange &exchange,
                                          const Json::Value &arguments) {
   std::string path = fmt::format("/api/exchanges/{}/{}", vhost, exchange.name);
-  Json::Value body = exchange.dat.toJson();
+  Json::Value body = exchange.ToJson();
   std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
   PerformRequest(path, "PUT", data);
   return true;
@@ -193,6 +189,5 @@ std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost
 
   return out;
 }
-
 
 }

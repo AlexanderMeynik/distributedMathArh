@@ -70,12 +70,11 @@ class clockArray {
   /**
    * @brief resets timer value for one timer
    */
-  void ResetTimer(const locationType  &location)
-  {
+  void ResetTimer(const locationType &location) {
     const GuardType kGuard{s_mutex_};
     //auto id = sourceTypeConverter(location);
 
-    if(timers_.contains(location)) {
+    if (timers_.contains(location)) {
       timers_.erase(location);
     }
   }
@@ -205,7 +204,7 @@ requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
 clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tak(
     const std::source_location &location) {
 
-  auto new_time=(*timeGetter)();
+  auto new_time = (*timeGetter)();
   const GuardType kGuard{s_mutex_};
   auto id = (*sourceTypeConverter)(location);
   if (to_tak_.empty() || to_tak_.top()[0] != id[0]) {

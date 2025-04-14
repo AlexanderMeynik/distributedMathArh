@@ -21,7 +21,6 @@ struct functable {
   const char *name;
 };
 
-
 using namespace print_utils;
 using chrono_clock::gClk;
 using common_types::FloatType;

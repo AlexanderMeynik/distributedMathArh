@@ -21,21 +21,18 @@ void CompNode::ConnectHandler(const HttpRequestPtr &req, std::function<void(cons
 
   Json::Value res;
 
-  bool parsing_successful = reader.parse(req->bodyData(), val );
-  if ( !parsing_successful )
-  {
+  bool parsing_successful = reader.parse(req->bodyData(), val);
+  if (!parsing_successful) {
     auto r = HttpResponse::newHttpJsonResponse(res);
     r->setStatusCode(HttpStatusCode::k415UnsupportedMediaType);
     callback(r);
     return;
   }
 
-  std::string ip=val["ip"].asString();
-  std::string name=val["name"].asString();
-  std::string user=val["user"].asString();
-  std::string pass=val["password"].asString();
-
-
+  std::string ip = val["ip"].asString();
+  std::string name = val["name"].asString();
+  std::string user = val["user"].asString();
+  std::string pass = val["password"].asString();
 
   res["input"] = ip;
   res["name"] = name;
@@ -47,11 +44,10 @@ void CompNode::ConnectHandler(const HttpRequestPtr &req, std::function<void(cons
     return;
   }
 
-  handler_->Connect(user,pass,ip,name);
+  handler_->Connect(user, pass, ip, name);
 
   res["bench"] = print_utils::ContinuousToJson(bench_res_);
   auto r = HttpResponse::newHttpJsonResponse(res);
-
 
   callback(r);
 

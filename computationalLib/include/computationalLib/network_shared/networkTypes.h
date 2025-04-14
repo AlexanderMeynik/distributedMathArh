@@ -1,27 +1,53 @@
 #pragma once
 #include <string>
 #include <unordered_map>
+#include <vector>
+#include <variant>
 
 #include <json/json.h>
 #include <amqpcpp/exchangetype.h>
 
 /// Namespace for network related types
-namespace network_types
-{
+namespace network_types {
+
+/**
+ * @brief Supertype for simple json values
+ * This is not recursive type, so nested json structures are not supported.
+ * Returns largest int types for any integral variables.
+ */
+using JsonVariant = std::variant<
+    std::nullptr_t,
+    bool,
+    int64_t,
+    uint64_t,
+    double,
+    std::string
+>;
+
+/**
+ * @brief Casts JsonVariant to Json::Value
+ * @param v
+ */
+Json::Value VariantToJson(const JsonVariant &v);
+
+/**
+ * @brief Casts Json::Value to JsonVariant
+ * @param val
+ */
+JsonVariant JsonToVariant(const Json::Value &val);
 
 /**
  * @brief Simple task sent structure
  */
-struct TestSolveParam
-{
-  TestSolveParam()=default;
+struct TestSolveParam {
+  TestSolveParam() = default;
   size_t experiment_id;
-  std::pair<size_t, size_t > range;
-  std::unordered_map<std::string,double> args;
-  bool operator==(const TestSolveParam&oth)const=default;
+  std::pair<size_t, size_t> range;
+  std::unordered_map<std::string, JsonVariant> args;
+  bool operator==(const TestSolveParam &oth) const = default;
 
   Json::Value ToJson();
-  TestSolveParam(Json::Value&val);
+  TestSolveParam(Json::Value &val);
 };
 
 /// std::string to AMQP::ExchangeType
@@ -53,7 +79,7 @@ struct queueBinding {
   std::string exchange;
   std::string routing_key;
 
-  friend bool operator==(const queueBinding &a1, const queueBinding &a2)=default;
+  friend bool operator==(const queueBinding &a1, const queueBinding &a2) = default;
 
   queueBinding(const std::string &exch, const std::string &key);
 
@@ -70,6 +96,50 @@ struct rabbitMQUser {
 
   rabbitMQUser(Json::Value &val);
 
+};
+
+/**
+ * @brief Exchange struct
+ */
+struct exchange {
+
+  std::string name;
+  std::string creator;
+  AMQP::ExchangeType type;
+  bool autoDelete;
+  bool durable;
+  bool internal;
+
+  Json::Value ToJson() const;
+
+  exchange(const std::string &name,
+           const std::string &creator_a,
+           const AMQP::ExchangeType &type_a,
+           bool auto_delete_a = false,
+           bool durable_a = true,
+           bool internal_a = false);
+
+  exchange(Json::Value &val);
+};
+
+/**
+ * @brief Queue struct
+ */
+struct queue {
+
+  std::string name;
+  std::string creator;
+  bool autoDelete;
+  bool durable;
+
+  Json::Value ToJson() const;
+
+  queue(const std::string &name,
+        const std::string &creator_a,
+        bool auto_delete_a = false,
+        bool durable_a = true);
+
+  queue(Json::Value &val);
 };
 
 }

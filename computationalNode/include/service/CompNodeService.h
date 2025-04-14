@@ -6,8 +6,7 @@
 #include "network_shared/AMQPConsumerService.h"
 
 using namespace drogon;
-namespace comp_service
-{
+namespace comp_service {
 class AMQPHandler {
  public:
   AMQPHandler() {
@@ -21,8 +20,8 @@ class AMQPHandler {
                const std::string &pass,
                const std::string &ip,
                const std::string &queue) {
-    auto c=amqp_common::ConstructCString(ip,user,pass);
-    amqp_prod_.SetParameters(c,queue);
+    auto c = amqp_common::ConstructCString(ip, user, pass);
+    amqp_prod_.SetParameters(c, queue);
     amqp_prod_.Connect();
   }
 

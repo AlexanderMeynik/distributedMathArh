@@ -65,7 +65,8 @@ TEST_F(RabbitMqRestServiceTest, CreateQueue) {
   Json::Value args;
   args["worker_id"] = "worker_123";
 
-  EXPECT_TRUE(m_service_ptr_->CreateQueue(vhost_, qq_, args));
+  auto q=network_types::queue{qq_,"user"};
+  EXPECT_TRUE(m_service_ptr_->CreateQueue(vhost_, q, args));
 
   auto queues = m_service_ptr_->ListQueues(vhost_);
 
@@ -183,7 +184,7 @@ TEST_F(RabbitMqRestServiceTest, DeleteUser) {
 }
 
 TEST_F(RabbitMqRestServiceTest, CreateExchange) {
-  exchange exchange{"exch", amqp_common::exchange::exchangeData{"user", AMQP::direct}};
+  exchange exchange{"exch", "user", AMQP::direct};
 
   EXPECT_TRUE(m_service_ptr_->CreateExchange(vhost_, exchange, Json::Value{}));
 

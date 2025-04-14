@@ -131,7 +131,7 @@ DEFINE_EXCEPTION_ER(RowDivisionError,
  * @brief HttpError class
  */
 //todo can return body with reason
-DEFINE_EXCEPTION_IN(HttpError, "HTTP error: code {} , reason \"{}\" !", long,std::string )
+DEFINE_EXCEPTION_IN(HttpError, "HTTP error: code {} , reason \"{}\" !", long, std::string)
 
 /**
  * @brief Curl class
