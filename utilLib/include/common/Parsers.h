@@ -20,7 +20,6 @@ using my_concepts::isOneDimensionalContinuous;
 namespace ms = mesh_storage;
 namespace ct = common_types;
 
-//todo we can get array size for json
 /**
  * @brief Parse one dimensional array from json
  * @tparam Collection
@@ -28,7 +27,7 @@ namespace ct = common_types;
  * @param sz
  */
 template<isOneDimensionalContinuous Collection>
-Collection JsonToContinuous(Json::Value &val,
+Collection JsonToContinuous(const Json::Value &val,
                             std::optional<size_t> sz = std::nullopt);
 
 /**
@@ -114,7 +113,7 @@ mesh_storage::MeshCreator ParseMeshFrom(std::istream &in,
 
 namespace print_utils {
 template<isOneDimensionalContinuous Struct>
-Struct JsonToContinuous(Json::Value &val,
+Struct JsonToContinuous(const Json::Value &val,
                         std::optional<size_t> sz) {
 
   size_t size;

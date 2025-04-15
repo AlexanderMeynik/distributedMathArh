@@ -2,33 +2,27 @@
 
 #include <drogon/HttpController.h>
 #include "service/CompNodeService.h"
+#include "common/sharedDeclarations.h"
 
 using namespace drogon;
-using shared::BenchResVec;
+using namespace shared;
 
 namespace rest::v1 {
-using comp_service::AMQPHandler;
+using comp_services::ComputationNodeService;
 
 class CompNode : public drogon::HttpController<CompNode> {
   std::unordered_map<std::string, std::thread> threads_;
-  std::unique_ptr<AMQPHandler> handler_;
-  BenchResVec bench_res_;
-
-  BenchResVec RunBench() {//todo use my bench
-    return {1, 1, 1, 1, 1, 1, 1, 1, 1};
-  }
+  std::unique_ptr<ComputationNodeService> handler_;
 
  public:
 
   CompNode() {
-    handler_ = std::make_unique<AMQPHandler>();
-    bench_res_ = RunBench();
+    handler_ = std::make_unique<ComputationNodeService>();
   }
 
   using Cont = CompNode;
 
   METHOD_LIST_BEGIN
-    //todo ping(status)
     ADD_METHOD_TO(Cont::GetStatus, "v1/status", Get);
     ADD_METHOD_TO(Cont::ConnectHandler, "v1/Connect", Post);
     ADD_METHOD_TO(Cont::DisconnectHandler, "v1/Disconnect", Post);

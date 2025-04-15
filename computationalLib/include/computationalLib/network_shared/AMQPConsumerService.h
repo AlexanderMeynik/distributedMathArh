@@ -2,6 +2,8 @@
 
 #include "amqpCommon.h"
 
+#include <future>
+
 namespace amqp_common {
 /**
  * @brief Service that allow to start and end reading event Loop from specified queue
@@ -35,13 +37,15 @@ class AMQPConsumerService {
   void Connect();
 
   /**
-   * @brief Ends event Loop()
+   * @brief Disconnects to the specified RabbitMQQueue
    */
   void Disconnect();
 
   ~AMQPConsumerService();
 
   bool IsConnected() const;
+
+  const std::string &GetCString() const;
 
  private:
 
@@ -62,6 +66,12 @@ class AMQPConsumerService {
   std::string queue_;
   std::string c_string_;
   std::thread service_thread_;
+
+  std::promise<std::string> connection_promise_;
+  bool promise_set_;
+
+  static inline std::mutex s_mutex_;
+  using GuardType = std::lock_guard<std::mutex>;
 
   MessageCallback message_callback_;///< callback that processes incomming messages
 };

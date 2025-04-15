@@ -38,6 +38,7 @@ Json::Value TestSolveParam::ToJson() {
   Json::Value val;
 
   val["experiment_id"] = experiment_id;
+  val["N"] = N_;
   val["range"][0] = range.first;
   val["range"][1] = range.second;
 
@@ -49,6 +50,7 @@ Json::Value TestSolveParam::ToJson() {
 
 TestSolveParam::TestSolveParam(Json::Value &val) :
     experiment_id(val["experiment_id"].asUInt()),
+    N_(val["N"].asUInt()),
     range(val["range"][0].asUInt(), val["range"][1].asUInt()) {
   auto &vv = val["args"];
   for (auto &key : vv.getMemberNames()) {

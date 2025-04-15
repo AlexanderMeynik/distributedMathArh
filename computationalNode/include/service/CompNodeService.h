@@ -5,31 +5,39 @@
 #include "math_core/TestRunner.h"
 #include "network_shared/AMQPConsumerService.h"
 
+#include "common/Printers.h"
+
 using namespace drogon;
-namespace comp_service {
-class AMQPHandler {
+
+/// Namespace for comp_node services
+namespace comp_services {
+class ComputationNodeService {
  public:
-  AMQPHandler() {
+  ComputationNodeService() {
+    bench_res_ = RunBench();
   }
 
-  bool CheckConnection() {
-    return amqp_prod_.IsConnected();
+  Json::Value GetStatus() {
+    Json::Value res_JSON;
+    res_JSON["request"] = "status";
+    res_JSON["worker_status"] = amqp_prod_.IsConnected() ? "running" : "not running";
+    res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
+    res_JSON["status"] = drogon::HttpStatusCode::k200OK;
+    return res_JSON;
   }
 
-  void Connect(const std::string &user,
-               const std::string &pass,
-               const std::string &ip,
-               const std::string &queue) {
-    auto c = amqp_common::ConstructCString(ip, user, pass);
-    amqp_prod_.SetParameters(c, queue);
-    amqp_prod_.Connect();
-  }
+  Json::Value Connect(const HttpRequestPtr &req);
 
-  void Disconnect() {
-    amqp_prod_.Disconnect();
+  Json::Value Disconnect();
+
+  BenchResVec RunBench() {
+    return shared::DefaultBench();//todo use bench
   }
+ private:
+  bool CheckConnection();
 
   amqp_common::AMQPConsumerService amqp_prod_;
+  BenchResVec bench_res_;
 };
 //todo set message worker(test runner?, or any else)
 }

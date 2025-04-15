@@ -42,7 +42,8 @@ void PrintMesh(std::ostream &out,
  */
 template<my_concepts::isOneDimensionalContinuous Collection>
 Json::Value ContinuousToJson(const Collection &col,
-                             bool print_size = true);
+                             bool print_size = true,
+                             bool sizeless_format = false);
 
 /**
  * @brief Transforms MeshCreator to json
@@ -167,13 +168,20 @@ namespace print_utils {
 
 template<my_concepts::isOneDimensionalContinuous Struct>
 Json::Value ContinuousToJson(const Struct &col,
-                             bool print_size) {
+                             bool print_size,
+                             bool sizeless_format) {
   Json::Value res;
-  if (print_size) {
-    res["size"] = col.size();
-  }
-  for (size_t i = 0; i < col.size(); i++) {
-    res["data"][(Json::ArrayIndex) i] = col[i];
+  if (!sizeless_format) {
+    if (print_size) {
+      res["size"] = col.size();
+    }
+    for (size_t i = 0; i < col.size(); i++) {
+      res["data"][(Json::ArrayIndex) i] = col[i];
+    }
+  } else {
+    for (size_t i = 0; i < col.size(); i++) {
+      res[(Json::ArrayIndex) i] = col[i];
+    }
   }
 
   return res;

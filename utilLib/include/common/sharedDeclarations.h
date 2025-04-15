@@ -15,6 +15,18 @@ using BenchResultType = uint64_t;
 
 using BenchResVec = std::valarray<BenchResultType>;
 
+static inline const std::valarray<size_t> kNValues = {1ul, 2ul, 4ul,
+                                                      5ul, 8ul, 10ul,
+                                                      20ul, 40ul, 50ul,
+                                                      100ul, 200ul, 400ul,
+                                                      500ul};
+
+/**
+ * @brief Returns properly resized valarray for bench works
+ * @param init - values to set for valarray
+ */
+BenchResVec DefaultBench(BenchResultType init = 1);
+
 /**
  * @brief Common numeric parameters values
  */

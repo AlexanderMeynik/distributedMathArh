@@ -237,7 +237,7 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
   for (; it2 != worker_management_service_->end(); it2++, it++) {
     auto &[key, val] = *it;
 
-    BenchResVec iters = val.w_ * (itercount);
+    BenchResVec iters = val.node_speed_ * (itercount);
     iters /= worker_management_service_->GetSum();
 
     //todo use proper logic to find weight

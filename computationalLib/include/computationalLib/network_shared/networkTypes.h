@@ -2,6 +2,7 @@
 #include <string>
 #include <unordered_map>
 #include <vector>
+#include <valarray>
 #include <variant>
 
 #include <json/json.h>
@@ -42,6 +43,7 @@ JsonVariant JsonToVariant(const Json::Value &val);
 struct TestSolveParam {
   TestSolveParam() = default;
   size_t experiment_id;
+  size_t N_;
   std::pair<size_t, size_t> range;
   std::unordered_map<std::string, JsonVariant> args;
   bool operator==(const TestSolveParam &oth) const = default;

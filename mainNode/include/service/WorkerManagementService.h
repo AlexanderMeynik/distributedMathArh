@@ -1,5 +1,7 @@
 #pragma once
 
+#include <algorithm>
+
 #include <drogon/HttpClient.h>
 #include <drogon/HttpRequest.h>
 
@@ -11,16 +13,13 @@
 namespace main_services {
 
 using namespace drogon;
-using shared::BenchResVec;
-using shared::BenchResultType;
+using namespace shared;
+
 /// nodeStatus Enum
 enum class NodeStatus {
-  /// Node is connected to cluster and is ready to receive it's tasks
-  ACTIVE,
-  /// Node is present in cluster but is not ready to recieve tasks
-  INACTIVE,
-  /// An error occurred moving node to a failed state
-  FAILED
+  ACTIVE,///< Node is connected to cluster and is ready to receive it's tasks
+  INACTIVE,///< Node is present in cluster but is not ready to recieve tasks
+  FAILED///< An error occurred moving node to a failed state
 };
 
 /// Look-up table to cast nodeStatus to string
@@ -30,6 +29,9 @@ const std::unordered_map<const NodeStatus, std::string> kNodeStatusToStr
         {NodeStatus::INACTIVE, "Inactive"},
         {NodeStatus::FAILED, "Failed"},
     };
+
+/// This variable is used as large bench value to determine node "speed"
+static constexpr inline BenchResultType kBenchInfinity = 1000'000'000'000ULL;
 
 /**
  * @brief Computational node class
@@ -41,9 +43,21 @@ class ComputationalNode {
   std::string GetPath() {
     return http_client_->getHost() + ":" + std::to_string(http_client_->getPort());
   }
+
+  /**
+   * @brief Parses and recomputes node performance metrics
+   * @param val - json file to parse bench results from
+   */
+  void RecomputeCoefficients(const Json::Value &val) {
+    bench_result_ = print_utils::JsonToContinuous<BenchResVec>(val);
+    if (node_speed_.size() == 0) {
+      node_speed_ = kBenchInfinity / bench_result_;
+    }
+  }
+
   NodeStatus st_;
-  BenchResVec power_;
-  BenchResVec w_;
+  BenchResVec bench_result_;
+  BenchResVec node_speed_;
 };
 
 class WorkerManagementService {
@@ -54,7 +68,7 @@ class WorkerManagementService {
   Json::Value GetStatus();
 
   WorkerManagementService() {
-    normalized_.resize(9, 0);
+    normalized_ = DefaultBench(0);
   }
 
   Json::Value AddNewNode(const std::string &host_port);
@@ -83,7 +97,6 @@ class WorkerManagementService {
   std::string q_host_;
 
   std::valarray<uint64_t> normalized_;
-  static constexpr inline BenchResultType max_ = 1000'000'000'000ULL;
 };
 
 }

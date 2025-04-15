@@ -11,7 +11,7 @@ Json::Value WorkerManagementService::GetStatus() {
     auto &ss = res[j]["data"];
     for (auto &[str, node] : map) {
       ss[i]["host"] = str;
-      ss[i]["benchRes"] = print_utils::ContinuousToJson(node.power_);
+      ss[i]["benchRes"] = print_utils::ContinuousToJson(node.bench_result_);
       i++;
     }
     j++;
@@ -66,15 +66,10 @@ Json::Value WorkerManagementService::ConnectNode(const std::string &host_port,
 
   auto jsoncpp = resp->getJsonObject();
 
-  worker_nodes_[INACTIVE][host_port].power_ =
-      print_utils::JsonToContinuous<BenchResVec>((*jsoncpp)["bench"]);
-  if (worker_nodes_[INACTIVE][host_port].w_.size() == 0) {
-    worker_nodes_[INACTIVE][host_port].w_ = max_ /
-        worker_nodes_[INACTIVE][host_port].power_;
-  }
+  worker_nodes_[INACTIVE][host_port].RecomputeCoefficients((*jsoncpp)["bench"]);
 
   MoveNode(host_port, INACTIVE, ACTIVE);
-  normalized_ += worker_nodes_[ACTIVE][host_port].w_;
+  normalized_ += worker_nodes_[ACTIVE][host_port].node_speed_;
 
   res_JSON = *jsoncpp;
   return res_JSON;
@@ -113,7 +108,7 @@ Json::Value WorkerManagementService::DisconnectNode(const std::string &host_port
   res_JSON = *resp->getJsonObject();
 
   MoveNode(host_port, ACTIVE, INACTIVE);
-  normalized_ -= worker_nodes_[INACTIVE][host_port].w_;
+  normalized_ -= worker_nodes_[INACTIVE][host_port].node_speed_;
 
   return res_JSON;
 }

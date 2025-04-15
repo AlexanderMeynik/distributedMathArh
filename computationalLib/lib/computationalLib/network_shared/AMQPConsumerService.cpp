@@ -6,8 +6,20 @@ namespace amqp_common {
 void AMQPConsumerService::Connect() {
   service_.reset();
   work_ = std::make_unique<boost::asio::io_service::work>(service_);
+
+  promise_set_ = false;
+  connection_promise_ = std::promise<std::string>();
+  auto connection_future = connection_promise_.get_future();
+
   Reconnect();
   service_thread_ = std::thread([this]() { service_.run(); });
+
+  std::string error = connection_future.get();
+  if (!error.empty()) {
+    Disconnect();
+    throw std::runtime_error(error);
+  }
+
 }
 
 void AMQPConsumerService::Reconnect() {
@@ -22,16 +34,32 @@ void AMQPConsumerService::Reconnect() {
     channel_ = std::make_unique<AMQP::TcpChannel>(connection_.get());
   }
 
-  channel_->onError([](const char *message) {
-    std::cout << "Channel error: " << message << '\n';
+  channel_->onError([this](const char *message) {
+    const GuardType kGuard{s_mutex_};
+    if (!promise_set_) {
+      connection_promise_.set_value(message);
+      promise_set_ = true;
+      std::cout << "Channel error: " << message << '\n';
+    }
   });
 
-  auto start_cb = [](const std::string &consumer_tag) {
-    std::cout << "Consumption started successfully with consumer tag: " << consumer_tag << '\n';
+  auto start_cb = [this](const std::string &consumer_tag) {
+    const GuardType kGuard{s_mutex_};
+    if (!promise_set_) {
+      connection_promise_.set_value("");
+      promise_set_ = true;
+      std::cout << "Consumption started successfully with consumer tag: " << consumer_tag << '\n';
+    }
   };
 
-  auto error_cb = [](const char *message) {
-    std::cout << "Consumption error: " << message << '\n';
+  auto error_cb = [this](const char *message) {
+    const GuardType kGuard{s_mutex_};
+    if (!promise_set_) {
+      connection_promise_.set_value(message);
+      std::cout << "Consumption error: " << message << '\n';
+      promise_set_ = true;
+    }
+
   };
 
   channel_->consume(queue_)
@@ -92,6 +120,9 @@ void AMQPConsumerService::SetMessageCallback(MessageCallback callback) {
 
 bool AMQPConsumerService::IsConnected() const {
   return handler_ && handler_->IsConnected();
+}
+const std::string &AMQPConsumerService::GetCString() const {
+  return c_string_;
 }
 
 }
