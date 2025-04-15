@@ -10,7 +10,7 @@ namespace v1 {
 
 using namespace drogon;
 
-using namespace main_service;
+using namespace main_services;
 
 /**
  * @brief Drogon service for main node

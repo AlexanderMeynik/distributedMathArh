@@ -65,7 +65,7 @@ TEST_F(RabbitMqRestServiceTest, CreateQueue) {
   Json::Value args;
   args["worker_id"] = "worker_123";
 
-  auto q=network_types::queue{qq_,"user"};
+  auto q = network_types::queue{qq_, "user"};
   EXPECT_TRUE(m_service_ptr_->CreateQueue(vhost_, q, args));
 
   auto queues = m_service_ptr_->ListQueues(vhost_);
@@ -91,8 +91,8 @@ TEST_F(RabbitMqRestServiceTest, ListQueues) {
 
   test_common::CompareArrays(queues, queues2,
                              [](const std::string &a, const std::string &a2, size_t i, double tol) {
-    return a == a2;
-  });
+                               return a == a2;
+                             });
   //todo more verbose operator
 }
 

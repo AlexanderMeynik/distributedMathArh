@@ -1,5 +1,6 @@
 #include "service/MainNodeService.h"
-namespace main_service {
+
+namespace main_services {
 Json::Value MainNodeService::Status() {
   Json::Value res_JSON;
 
@@ -12,16 +13,7 @@ Json::Value MainNodeService::Status() {
     res_JSON["RabbitmqService"]["status"] = "Not Connected";
   }
 
-  auto &ss = res_JSON["clients"];
-
-  int i = 0;
-  for (auto &[str, node] : worker_nodes_) {
-    //root["data"][i]=Json::Value();
-    ss["data"][i]["host"] = str;
-    ss["data"][i]["status"] = kNodeStatusToStr.at(node.st_);
-    ss["data"][i]["benchRes"] = print_utils::ContinuousToJson(node.power_);
-    i++;
-  }
+  res_JSON["clients"] = worker_management_service_->GetStatus();
 
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
@@ -38,18 +30,12 @@ Json::Value MainNodeService::ConnectNode(const std::string &host_port, const std
     return res_JSON;
   }
 
-  if (!worker_nodes_.count(host_port)) {
-    ComputationalNode cn;
-
-    cn.http_client_ = HttpClient::newHttpClient("http://" + host_port);
-    cn.st_ = NodeStatus::INACTIVE;
-    worker_nodes_[host_port] = std::move(cn);
-  } else {
-    if (worker_nodes_[host_port].st_ == NodeStatus::ACTIVE) {
-      res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
-      res_JSON["message"] = fmt::format("Worker node {} is already connected to cluster!", host_port);
-      return res_JSON;
-    }
+  auto js1 = worker_management_service_->AddNewNode(host_port);
+  if (js1.isMember("status")) {
+    res_JSON["status"] = js1["status"];
+    js1.removeMember("status");
+    res_JSON["balancer_output"] = js1;
+    return res_JSON;
   }
 
   try {
@@ -74,28 +60,18 @@ Json::Value MainNodeService::ConnectNode(const std::string &host_port, const std
   auto req1 = HttpRequest::newHttpJsonRequest(res);
   req1->setPath("/v1/Connect");
   req1->setMethod(Post);
-  auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
 
-  if (code == drogon::ReqResult::BadServerAddress) {
-    res_JSON["message"] = fmt::format("Unable to access worker on {}! Is working node running?", host_port);
-    res_JSON["status"] = drogon::HttpStatusCode::k504GatewayTimeout;
+  js1 = worker_management_service_->ConnectNode(host_port, req1);
+
+  res_JSON["balancer_output"] = js1;
+  if (js1.isMember("status")) {
+    res_JSON["status"] = js1["status"];
+    res_JSON["balancer_output"].removeMember("status");
+
     return res_JSON;
   }
-  if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
-    res_JSON["message"] = fmt::format("Error occurred during worker {} connection!", host_port);
-    res_JSON["status"] = resp->getStatusCode();
-    res_JSON["node_output"] = resp->getJsonObject()->toStyledString();
-    return res_JSON;
-  }
-
-  auto jsoncpp = resp->getJsonObject();
-  worker_nodes_[host_port].power_ = print_utils::JsonToContinuous<BenchResVec>((*jsoncpp)["bench"]);
-  worker_nodes_[host_port].st_ = NodeStatus::ACTIVE;
-  res_JSON = *jsoncpp;
 
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
-
-  RecomputeWeights();
 
   return res_JSON;
 }
@@ -109,36 +85,15 @@ Json::Value MainNodeService::DisconnectNode(const std::string &host_port) {
     return res_JSON;
   }
 
-  if (!worker_nodes_.count(host_port) || worker_nodes_.at(host_port).st_ != NodeStatus::ACTIVE) {
-    res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
-    res_JSON["message"] = fmt::format("Worker node {} was not connected to cluster!", host_port);
-    return res_JSON;
-  }
-  auto req1 = HttpRequest::newHttpRequest();
+  auto js1 = worker_management_service_->DisconnectNode(host_port);
 
-  req1->setPath("/v1/Disconnect");
-  req1->setMethod(Post);
-
-  auto ct = HttpClient::newHttpClient(host_port);
-  auto [code, resp] = worker_nodes_[host_port].http_client_->sendRequest(req1);
-
-  if (code == drogon::ReqResult::BadServerAddress) {
-    res_JSON["message"] = fmt::format("Unable to access worker on {}! Is working node running?", host_port);
-    res_JSON["status"] = drogon::HttpStatusCode::k504GatewayTimeout;
+  res_JSON["balancer_output"] = js1;
+  if (js1.isMember("status")) {
+    res_JSON["status"] = js1["status"];
+    res_JSON["balancer_output"].removeMember("status");
     return res_JSON;
   }
 
-  if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
-    res_JSON["message"] = fmt::format("Unable to disconnect worker {} from cluster!", host_port);
-    res_JSON["status"] = resp->getStatusCode();
-    res_JSON["node_output"] = resp->getJsonObject()->toStyledString();
-    return res_JSON;
-  }
-
-  worker_nodes_[host_port].st_ = NodeStatus::INACTIVE;
-
-  res_JSON = *resp->getJsonObject();
-  RecomputeWeights();
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
 }
@@ -236,7 +191,6 @@ Json::Value MainNodeService::Publish(network_types::TestSolveParam &ts, std::str
   return res_JSON;
 }
 
-
 Json::Value MainNodeService::Publish2(network_types::TestSolveParam &ts, std::string node) {
   Json::Value res_JSON;
 
@@ -261,51 +215,38 @@ Json::Value MainNodeService::Publish2(network_types::TestSolveParam &ts, std::st
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
 }
-void MainNodeService::RecomputeWeights() {
-  if(worker_nodes_.empty())
-  {
-    return;
-  }
-  auto max=std::numeric_limits<print_utils::BenchResultType>::max();
 
-  normalized_.resize(worker_nodes_.begin()->second.power_.size());
-  normalized_=0;
-  for (auto &[key,val]:worker_nodes_) {
-    if(val.st_==NodeStatus::ACTIVE) {
-      val.w_ = max / val.power_;
-      normalized_ += val.w_;
-    }
-  }
-
-
-}
 Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) {
   Json::Value res_JSON;
 
   res_JSON["request"] = "send_task";
-  //todo test later
-  const std::string* kk= nullptr;
-  for (auto &[key,val]:worker_nodes_) {
-    if (val.st_ == NodeStatus::ACTIVE) {
-      kk=&key;
-      //todo use proper logick to find weight
-      print_utils::BenchResultType iters=val.w_[2]*(ts.range.second-ts.range.first+1);
-      iters/=normalized_[2];//todo integer undeflow
-      if(ts.Slice(iters))//zero itearations(?)
-      {
-        Publish2(ts,key);
-      }
-    }
+  if (worker_management_service_->begin() == worker_management_service_->end()) {
+    res_JSON["message"] = "No nodes to compute task";
+    res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
+    return res_JSON;
   }
 
-  if(kk!= nullptr) {
-    Publish2(ts, *kk);
+  auto itercount = ts.range.second - ts.range.first + 1;
+  network_types::TestSolveParam ts_t;
+
+  auto it = worker_management_service_->begin();
+
+  auto it2 = worker_management_service_->begin();
+  it2++;
+
+  for (; it2 != worker_management_service_->end(); it2++, it++) {
+    auto &[key, val] = *it;
+
+    BenchResVec iters = val.w_ * (itercount);
+    iters /= worker_management_service_->GetSum();
+
+    //todo use proper logic to find weight
+    auto iterss = iters[2];
+    ts_t = ts.SliceAway(iterss);
+    Publish2(ts_t, key);
   }
-  else
-  {
-    res_JSON["message"]="No nodes to compute task";
-    res_JSON["status"]=drogon::HttpStatusCode::k409Conflict;
-  }
+
+  Publish2(ts, it->first);
 
   return res_JSON;
 }

@@ -46,13 +46,20 @@ struct TestSolveParam {
   std::unordered_map<std::string, JsonVariant> args;
   bool operator==(const TestSolveParam &oth) const = default;
 
-  bool Slice(size_t iter_count)
-  {
-    if(range.first+iter_count>range.second)
-    {
+  TestSolveParam SliceAway(size_t iter_count) {
+    TestSolveParam ret = *this;
+
+    ret.range.second = range.first + iter_count - 1;
+    this->range.first = range.first + iter_count;
+
+    return ret;
+  }
+
+  bool Slice(size_t iter_count) {
+    if (range.first + iter_count >= range.second) {
       return false;
     }
-    range.first+=iter_count;
+    range.first += iter_count;
     return true;
   }
 

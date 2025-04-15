@@ -2,10 +2,8 @@
 
 namespace network_types {
 
-
-Json::Value VariantToJson(const JsonVariant& v)
-{
-  return std::visit([](const auto& arg) -> Json::Value {
+Json::Value VariantToJson(const JsonVariant &v) {
+  return std::visit([](const auto &arg) -> Json::Value {
     using T = std::decay_t<decltype(arg)>;
     if constexpr (std::is_same_v<T, std::nullptr_t>) {
       return Json::Value(Json::nullValue);
@@ -23,24 +21,16 @@ Json::Value VariantToJson(const JsonVariant& v)
   }, v);
 }
 
-JsonVariant JsonToVariant(const Json::Value& val)
-{
+JsonVariant JsonToVariant(const Json::Value &val) {
   switch (val.type()) {
-    case Json::nullValue:
-      return JsonVariant(std::nullptr_t{});
-    case Json::booleanValue:
-      return JsonVariant(val.asBool());
-    case Json::intValue:
-      return JsonVariant(val.asInt64());
-    case Json::uintValue:
-      return JsonVariant (val.asUInt64());
-    case Json::realValue:
-      return JsonVariant(val.asDouble());
-    case Json::stringValue:
-      return JsonVariant(val.asString());
+    case Json::nullValue:return JsonVariant(std::nullptr_t{});
+    case Json::booleanValue:return JsonVariant(val.asBool());
+    case Json::intValue:return JsonVariant(val.asInt64());
+    case Json::uintValue:return JsonVariant(val.asUInt64());
+    case Json::realValue:return JsonVariant(val.asDouble());
+    case Json::stringValue:return JsonVariant(val.asString());
 
-    default:
-      throw std::runtime_error("Unknown Json::Value type");
+    default:throw std::runtime_error("Unknown Json::Value type");
   }
 }
 
