@@ -2,6 +2,16 @@
 
 namespace comp_services {
 
+Json::Value ComputationNodeService::GetStatus() {
+  Json::Value res_JSON;
+  res_JSON["request"] = "status";
+  res_JSON["worker_status"] = amqp_prod_.IsConnected() ? "running" : "not running";
+  if(Computed())//todo what will this thing impact
+  res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
+  res_JSON["status"] = drogon::HttpStatusCode::k200OK;
+  return res_JSON;
+}
+
 Json::Value ComputationNodeService::Disconnect() {
   Json::Value res_JSON;
   res_JSON["request"] = "disconnect";
@@ -52,6 +62,8 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
 
   amqp_prod_.SetParameters(c, name);
 
+  amqp_prod_.SetMessageCallback(n_message_callback);
+
   try {
     amqp_prod_.Connect();
   }
@@ -67,5 +79,6 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
 bool ComputationNodeService::CheckConnection() {
   return amqp_prod_.IsConnected();
 }
+
 
 }

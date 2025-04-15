@@ -3,27 +3,16 @@
 #include <unordered_map>
 #include <vector>
 #include <valarray>
-#include <variant>
+
 
 #include <json/json.h>
 #include <amqpcpp/exchangetype.h>
+#include <common/commonTypes.h>
 
 /// Namespace for network related types
 namespace network_types {
 
-/**
- * @brief Supertype for simple json values
- * This is not recursive type, so nested json structures are not supported.
- * Returns largest int types for any integral variables.
- */
-using JsonVariant = std::variant<
-    std::nullptr_t,
-    bool,
-    int64_t,
-    uint64_t,
-    double,
-    std::string
->;
+using common_types::JsonVariant;
 
 /**
  * @brief Casts JsonVariant to Json::Value

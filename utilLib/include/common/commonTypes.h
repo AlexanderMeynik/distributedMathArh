@@ -3,6 +3,7 @@
 #include <vector>
 #include <array>
 #include <valarray>
+#include <variant>
 
 #include <eigen3/Eigen/Dense>
 
@@ -11,6 +12,20 @@
 /// namespace for some common types used elsewhere
 namespace common_types {
 using shared::FloatType;
+
+/**
+ * @brief Supertype for simple json values
+ * This is not recursive type, so nested json structures are not supported.
+ * Returns largest int types for any integral variables.
+ */
+using JsonVariant = std::variant<
+    std::nullptr_t,
+    bool,
+    int64_t,
+    uint64_t,
+    double,
+    std::string
+>;
 
 /**
  * @brief Enum for return types

@@ -6,6 +6,7 @@
 #include <memory>
 
 #include "common/errorHandling.h"
+#include "network_shared/networkTypes.h"
 
 #include <amqpcpp.h>
 #include <amqpcpp/linux_tcp.h>
@@ -116,3 +117,5 @@ static auto inline d_message_callback =
     };
 
 }
+
+

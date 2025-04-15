@@ -49,7 +49,7 @@ class ComputationalNode {
    * @param val - json file to parse bench results from
    */
   void RecomputeCoefficients(const Json::Value &val) {
-    bench_result_ = print_utils::JsonToContinuous<BenchResVec>(val);
+    bench_result_ = print_utils::JsonToContinuous<BenchResVec>(val, true, true);
     if (node_speed_.size() == 0) {
       node_speed_ = kBenchInfinity / bench_result_;
     }

@@ -11,6 +11,7 @@
 
 using common_types::FloatType;
 namespace generators {
+using common_types::JsonVariant;
 using DistributionFunctor = std::function<FloatType()>;
 /**
  * @brief Interface for distribution functions handling
@@ -85,7 +86,7 @@ static inline std::unordered_map<std::string, DistributionType> stringToDistribu
  * @return DistributionFunctor
  */
 DistributionFunctor ParseFunc(const DistributionType &distribution_type,
-                              const std::unordered_map<std::string, FloatType> &args);
+                              const std::unordered_map<std::string, JsonVariant> &args);
 DistributionFunctor ParseFunc(const std::string &type,
-                              const std::unordered_map<std::string, FloatType> &args);
+                              const std::unordered_map<std::string, JsonVariant> &args);
 }

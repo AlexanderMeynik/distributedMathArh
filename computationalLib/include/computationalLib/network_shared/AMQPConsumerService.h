@@ -73,7 +73,7 @@ class AMQPConsumerService {
   static inline std::mutex s_mutex_;
   using GuardType = std::lock_guard<std::mutex>;
 
-  MessageCallback message_callback_;///< callback that processes incomming messages
+  MessageCallback message_callback_;///< callback that processes incoming messages
 };
 
 }

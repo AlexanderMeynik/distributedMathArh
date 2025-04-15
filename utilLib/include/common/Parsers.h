@@ -25,10 +25,12 @@ namespace ct = common_types;
  * @tparam Collection
  * @param val
  * @param sz
+ * @param sizeless_format
  */
 template<isOneDimensionalContinuous Collection>
 Collection JsonToContinuous(const Json::Value &val,
-                            std::optional<size_t> sz = std::nullopt);
+                            std::optional<size_t> sz = std::nullopt,
+                            bool sizeless_format=false);
 
 /**
  * @brief Parse MeshCreator from json
@@ -114,24 +116,33 @@ mesh_storage::MeshCreator ParseMeshFrom(std::istream &in,
 namespace print_utils {
 template<isOneDimensionalContinuous Struct>
 Struct JsonToContinuous(const Json::Value &val,
-                        std::optional<size_t> sz) {
+                        std::optional<size_t> sz,
+                        bool sizeless_format) {
 
   size_t size;
-  if (sz.has_value()) {
-    size = sz.value();
-  } else {
-    size = val["size"].asUInt();
+  if(sz.has_value())
+  {
+    size=sz.value();
+  }
+  else {
+    if (sizeless_format) {
+      size = val.size();
+    } else {
+      size = val["size"].asUInt();
+    }
   }
 
   Struct res(size);
-
-  if (sz.has_value()) {
-    for (int i = 0; i < size; ++i) {
-      res[i] = val[i].as<std::remove_all_extents_t<typename Struct::value_type>>();
-    }
-  } else {
+  if(!sizeless_format)
+  {
     for (int i = 0; i < size; ++i) {
       res[i] = val["data"][i].as<std::remove_all_extents_t<typename Struct::value_type>>();
+    }
+  }
+  else
+  {
+    for (int i = 0; i < size; ++i) {
+      res[i] = val[i].as<std::remove_all_extents_t<typename Struct::value_type>>();
     }
   }
 
