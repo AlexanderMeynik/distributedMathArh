@@ -1,5 +1,3 @@
-
-
 file(GLOB common CONFIGURE_DEPENDS
         "*common/*.h"
         "*common/*.cpp"
@@ -11,8 +9,6 @@ enable_coverage_for_target(common_Tests)
 file(GLOB parallelUtils CONFIGURE_DEPENDS
         "parallelUtils/*.cpp"
 )
-
-
 add_executable(par_Tests ${parallelUtils})
 target_link_libraries(par_Tests gtest gmock gtest_main)
 target_link_libraries(par_Tests parallelLib)

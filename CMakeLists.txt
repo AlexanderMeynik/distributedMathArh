@@ -6,8 +6,12 @@ include(Coverage)
 
 set(CMAKE_CXX_STANDARD 23)
 
-#SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
 SET(CMAKE_CXX_FLAGS "-std=gnu++2b")
+
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release-Coverage)
+endif ()
+
 
 string(REGEX MATCH "^Debug" IS_DEBUG_BUILD "${CMAKE_BUILD_TYPE}")
 if(IS_DEBUG_BUILD)
@@ -17,7 +21,6 @@ endif ()
 
 string(REGEX MATCH "^Release" IS_RELEASE_BUILD "${CMAKE_BUILD_TYPE}")
 if(IS_RELEASE_BUILD)
-
     message(STATUS " Configuring release build: ${CMAKE_BUILD_TYPE}")
     string(APPEND CMAKE_CXX_FLAGS " -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize ")
 endif ()

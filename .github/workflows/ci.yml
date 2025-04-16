@@ -16,6 +16,10 @@ jobs:
     container:
       image: alexandermey/distirbutedmastservice:env1
     steps:
+      - name: LoadTools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y lcov
       - name: Checkout code
         uses: actions/checkout@v4
         with:
@@ -36,12 +40,31 @@ jobs:
           path: /__w/distributedMathArh/distributedMathArh/build
           if-no-files-found: warn
           include-hidden-files: true
-      - name: Run core_tests
+      - name: Run unit_tests
         run: |
-          cd ${GITHUB_WORKSPACE}/build/computationalLib/test
-          ./core_Tests
-      - name: Run utils_tests
-        if: success() || failure()
+          cd ${GITHUB_WORKSPACE}/build
+          ctest -T Test
+      - name: Collect coverage
         run: |
-          cd ${GITHUB_WORKSPACE}/build/utilLib/test
-          ./utilsAll
+          cd ${GITHUB_WORKSPACE}/src
+          mypath=$(pwd)/*
+          
+          cd ..
+          
+          mkdir cov_report && cd cov_report
+          
+          lcov -t "project_cov" -o project_cov.info -c -d ../build/
+          
+          lcov --extract project_cov.info "$mypath" -o project_cov_mycode.info
+          
+          lcov --remove project_cov_mycode.info '*/test/*' -o project_cov_source.info
+          
+          genhtml -o report project_cov_source.info
+
+      - name: Save build
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: /__w/distributedMathArh/distributedMathArh/cov_report
+          if-no-files-found: warn
+          include-hidden-files: true

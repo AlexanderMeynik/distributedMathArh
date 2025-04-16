@@ -1,16 +1,11 @@
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
-endif ()
-
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/bin)
 
 if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalLib/bin)
 
 file(GLOB_RECURSE math_core_files CONFIGURE_DEPENDS
         "lib/computationalLib/math_core/*.cpp"
@@ -26,7 +21,6 @@ enable_coverage_for_target(math_core_lib)
 file(GLOB_RECURSE network_shared_lib_f CONFIGURE_DEPENDS
         "lib/computationalLib/network_shared/*.cpp"
 )
-
 add_library(network_shared_lib ${network_shared_lib_f})
 target_include_directories(network_shared_lib PUBLIC include/computationalLib)
 target_include_directories(network_shared_lib PUBLIC ../utilLib/include)
