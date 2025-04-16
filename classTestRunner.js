@@ -1,10 +1,10 @@
 var classTestRunner =
 [
     [ "TestRunner", "classTestRunner.html#adf6d073e739128299841d29a6701d34b", null ],
-    [ "TestRunner", "classTestRunner.html#a2302df5db754f3bb57196e6a579e30e6", null ],
-    [ "generateFunction", "classTestRunner.html#a27539e00bc2c5295d9811c57f22cb407", null ],
-    [ "generateGeneralized", "classTestRunner.html#a68169d5e7cd18959ada254409f588230", null ],
-    [ "getCoordRef", "classTestRunner.html#a0ddfac6ffb0aaa907348c7153bb7a898", null ],
-    [ "getSolRef", "classTestRunner.html#a0cfa0453f6a0270483837590a0a60ae3", null ],
-    [ "solve", "classTestRunner.html#a34539c153de30c51ea66cb5b11779575", null ]
+    [ "TestRunner", "classTestRunner.html#ae9532b9923dd83053909538327c159ef", null ],
+    [ "GenerateFunction", "classTestRunner.html#ac30ffe3aa7abf25d82d4697c146d3232", null ],
+    [ "GenerateGeneralized", "classTestRunner.html#a7c84f448abf6da61468288733b4b1037", null ],
+    [ "GetCoordRef", "classTestRunner.html#a3ac226b02ca83057332ce56b468f1ce9", null ],
+    [ "GetSolRef", "classTestRunner.html#a31352039b35ed590fbffe8f7ada9bad1", null ],
+    [ "Solve", "classTestRunner.html#ac36b562a031c4bcef2d36145ede44703", null ]
 ];

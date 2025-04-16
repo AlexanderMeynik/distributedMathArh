@@ -1,0 +1,15 @@
+<map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/amqpCommon.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/amqpCommon.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="190,5,478,75"/>
+<area shape="rect" id="Node000002" href="$AMQPConsumerService_8h.html" title=" " alt="" coords="5,123,324,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,85,216,124,213,120,272,80"/>
+<area shape="rect" id="Node000005" href="$AMQPPublisherService_8h.html" title=" " alt="" coords="349,123,661,192"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="397,80,456,120,453,124,394,85"/>
+<area shape="rect" id="Node000003" href="$CompNodeService_8h.html" title=" " alt="" coords="55,240,274,309"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="167,206,167,240,162,240,162,206"/>
+<area shape="rect" id="Node000004" href="$CompNode_8h.html" title=" " alt="" coords="55,357,274,427"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="167,323,167,357,162,357,162,323"/>
+<area shape="rect" id="Node000006" href="$MainNodeService_8h.html" title=" " alt="" coords="342,247,667,302"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="507,206,507,247,502,247,502,206"/>
+<area shape="rect" id="Node000007" href="$ClusterConfigController_8h.html" title=" " alt="" coords="395,357,614,427"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="507,315,507,357,502,357,502,315"/>
+</map>

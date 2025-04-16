@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['basicauthhandler_0',['basicauthhandler',['../classbasicAuthHandler.html#ad27336e7ea43e0cae8b2d3e997d48987',1,'basicAuthHandler::basicAuthHandler(const std::string &amp;user, const std::string &amp;password, bool active=true)'],['../classbasicAuthHandler.html#ac15902c8cde09c3d3827006be593c202',1,'basicAuthHandler::basicAuthHandler(const basicAuthHandler &amp;hndl)=default']]],
-  ['begin_1',['begin',['../classtiming_1_1clockArray.html#adb6efc02e3b5167692e932a3883f9210',1,'timing::clockArray']]],
-  ['bindqueuetoexchange_2',['bindQueueToExchange',['../classamqpCommon_1_1RabbitMQRestService.html#a98500d40ddeb1630d99596235b9cbdad',1,'amqpCommon::RabbitMQRestService']]]
+  ['basicauthhandler_0',['basicauthhandler',['../classBasicAuthHandler.html#a82d2995da5667a6c27c3ea8f1cefc8b3',1,'BasicAuthHandler::BasicAuthHandler(const std::string &amp;user, const std::string &amp;password, bool active=true)'],['../classBasicAuthHandler.html#a7d055efa854dda9c69e5a55a9b83dfee',1,'BasicAuthHandler::BasicAuthHandler(const BasicAuthHandler &amp;handle)=default']]],
+  ['begin_1',['begin',['../classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e',1,'main_services::WorkerManagementService::begin()'],['../classtiming_1_1clockArray.html#adb6efc02e3b5167692e932a3883f9210',1,'timing::clockArray::begin()']]],
+  ['benchmarkrunner_2',['BenchmarkRunner',['../classcomp__services_1_1BenchmarkRunner.html#a24540345b04c57fb77d4887a7d320285',1,'comp_services::BenchmarkRunner']]],
+  ['bindqueuetoexchange_3',['BindQueueToExchange',['../classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170',1,'amqp_common::RabbitMQRestService']]]
 ];

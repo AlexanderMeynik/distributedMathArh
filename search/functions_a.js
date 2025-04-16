@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['listqueues_0',['listQueues',['../classamqpCommon_1_1RabbitMQRestService.html#ae5cf8bef02791ccb62d09dc86aad866e',1,'amqpCommon::RabbitMQRestService']]],
-  ['listusers_1',['listUsers',['../classamqpCommon_1_1RabbitMQRestService.html#a10f452b7bec4a9ebb72c9b4e28d6b15d',1,'amqpCommon::RabbitMQRestService']]],
-  ['loadfrommatrix_2',['loadFromMatrix',['../classdipoles_1_1Dipoles.html#af753b29c6eb24bb089ec666dcf1b2d0d',1,'dipoles::Dipoles']]]
+  ['listqueues_0',['ListQueues',['../classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9',1,'amqp_common::RabbitMQRestService']]],
+  ['listusers_1',['ListUsers',['../classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073',1,'amqp_common::RabbitMQRestService']]],
+  ['loadfrommatrix_2',['LoadFromMatrix',['../classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638',1,'dipoles::Dipoles']]]
 ];

@@ -1,19 +1,18 @@
 var myConcepts_8h =
 [
-    [ "myConcepts::valueTyped", "conceptmyConcepts_1_1valueTyped.html", null ],
-    [ "myConcepts::HasBracketOperator", "conceptmyConcepts_1_1HasBracketOperator.html", null ],
-    [ "myConcepts::HasSizeMethod", "conceptmyConcepts_1_1HasSizeMethod.html", null ],
-    [ "myConcepts::isOneDimensionalContinuous", "conceptmyConcepts_1_1isOneDimensionalContinuous.html", null ],
-    [ "myConcepts::HasBracketsNested", "conceptmyConcepts_1_1HasBracketsNested.html", null ],
-    [ "myConcepts::twodVector", "conceptmyConcepts_1_1twodVector.html", null ],
-    [ "myConcepts::RowCol", "conceptmyConcepts_1_1RowCol.html", null ],
-    [ "myConcepts::parenthesisOperator", "conceptmyConcepts_1_1parenthesisOperator.html", null ],
-    [ "DIPLOM_MYCONCEPTS_H", "myConcepts_8h.html#a51e58eaeba0105d15098bec6e1f8ac12", null ],
+    [ "my_concepts::valueTyped", "conceptmy__concepts_1_1valueTyped.html", null ],
+    [ "my_concepts::HasBracketOperator", "conceptmy__concepts_1_1HasBracketOperator.html", null ],
+    [ "my_concepts::HasSizeMethod", "conceptmy__concepts_1_1HasSizeMethod.html", null ],
+    [ "my_concepts::isOneDimensionalContinuous", "conceptmy__concepts_1_1isOneDimensionalContinuous.html", null ],
+    [ "my_concepts::HasBracketsNested", "conceptmy__concepts_1_1HasBracketsNested.html", null ],
+    [ "my_concepts::twodVector", "conceptmy__concepts_1_1twodVector.html", null ],
+    [ "my_concepts::RowCol", "conceptmy__concepts_1_1RowCol.html", null ],
+    [ "my_concepts::parenthesisOperator", "conceptmy__concepts_1_1parenthesisOperator.html", null ],
     [ "size_t", "myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f", null ],
-    [ "get_shape", "myConcepts_8h.html#a14c9b5b09708145f136fbcf8fbfb026a", null ],
-    [ "get_value", "myConcepts_8h.html#aa908f78c444549d3421422516ac361ef", null ],
-    [ "get_value", "myConcepts_8h.html#a16de4e8994caf1de438bf2369b7a7275", null ],
-    [ "get_value", "myConcepts_8h.html#a2a9963bb54336ae202b68b0ca693b235", null ],
-    [ "getElement", "myConcepts_8h.html#aa880e8ed5431ae9c017c8951bd3dbfb7", null ],
-    [ "getMatrElement", "myConcepts_8h.html#a9370dc6406393ec8692364514ca1a121", null ]
+    [ "GetElement", "myConcepts_8h.html#ac5f15110f601dbc6570ce9a1948163b3", null ],
+    [ "GetMatrElement", "myConcepts_8h.html#a0881d3b502316d96ec5ba6e51560f9ef", null ],
+    [ "GetShape", "myConcepts_8h.html#a600eb13ade0793db2eb5410e7288762e", null ],
+    [ "GetValue", "myConcepts_8h.html#af0c88efc193b2a3cedf12817ac8371fe", null ],
+    [ "GetValue", "myConcepts_8h.html#ad933af21ace2503bc5bdb289fa341aa5", null ],
+    [ "GetValue", "myConcepts_8h.html#a885cfd889759c899d7578b528c8a7041", null ]
 ];

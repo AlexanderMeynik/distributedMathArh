@@ -1,16 +1,15 @@
 var Printers_8h =
 [
-    [ "DISTRIBUTED_MATH_ARH_PRINTERS_H", "Printers_8h.html#aeb1ab41d898db67d5744536b2ca78577", null ],
-    [ "continuousToJson", "Printers_8h.html#af1ee082d408499861726fbd8dee2f812", null ],
-    [ "continuousToJson", "Printers_8h.html#a918b2531c2fb6f794ed6cf7da718310d", null ],
-    [ "matrixPrint1D", "Printers_8h.html#a838ae19802a86bc9e1e1454bbab28b86", null ],
-    [ "matrixPrint2D", "Printers_8h.html#ad32775a65a6568742ccb7e5ee5e06300", null ],
-    [ "oneDimSerialize", "Printers_8h.html#ab27bab38e8411cfd09a292ac88e7a117", null ],
-    [ "printCoordinates", "Printers_8h.html#a30198c06a333db22429812245168e43a", null ],
-    [ "printCoordinates", "Printers_8h.html#a10d1c00f295f851bb95fe22b4d54585c", null ],
-    [ "printCoordinates2", "Printers_8h.html#aec4c48b97af65eed3cf5c17999a66ed8", null ],
-    [ "printMesh", "Printers_8h.html#a82c1480cf753b1bc497e0eee2d6c9052", null ],
-    [ "printSolution", "Printers_8h.html#a62a62c3e9e1a2046026ed49b58ed65b6", null ],
-    [ "printSolutionFormat1", "Printers_8h.html#a7baef26626aa522443963cfefb92d615", null ],
-    [ "toJson", "Printers_8h.html#a8434b17f8ac7c3ecea06c69502e9f9fd", null ]
+    [ "ContinuousToJson", "Printers_8h.html#a4c215113c5319155284729bedc2a4a21", null ],
+    [ "ContinuousToJson", "Printers_8h.html#a2277232e6ddf475b576f77cd15d1b1e2", null ],
+    [ "MatrixPrint1D", "Printers_8h.html#a7828e585739511c7c24a1f0c6035c730", null ],
+    [ "MatrixPrint2D", "Printers_8h.html#a44e2339bede2e3d84620c6dc0226dc7e", null ],
+    [ "OneDimSerialize", "Printers_8h.html#a180b49c0627b496c6d8d86a724d6e37d", null ],
+    [ "PrintCoordinates", "Printers_8h.html#a41be6bccbb432298d3a8cac37969d6b9", null ],
+    [ "PrintCoordinates", "Printers_8h.html#acee88419d4ca063dc5a3ddc1a5f39a5e", null ],
+    [ "PrintCoordinates2", "Printers_8h.html#a44ed8b8118be13bb17b537f12502b76c", null ],
+    [ "PrintMesh", "Printers_8h.html#af1ca94a3088ef150af6898e284b34b07", null ],
+    [ "PrintSolution", "Printers_8h.html#a6094b54cb763a8703807f9b06e1ba364", null ],
+    [ "PrintSolutionFormat1", "Printers_8h.html#a6fe732efc4e70906cb78bdd1d65f9b38", null ],
+    [ "ToJson", "Printers_8h.html#a8d995d401c5c9bf53c6eaaa56ee4d99a", null ]
 ];

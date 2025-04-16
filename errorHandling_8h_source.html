@@ -127,98 +127,105 @@ $(document).ready(function(){initNavTree('errorHandling_8h_source.html',''); ini
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#a9ce440309d36897b05f81199731d53f3">   25</a></span><span class="preprocessor">#define DEFINE_EXCEPTION_ER(Name, fmt_str, ...) DEFINE_EXCEPTION(Name,fmt_str,error,__VA_ARGS__);</span></div>
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#adde73f5429a144966ba92f85ac0a3dea">   26</a></span><span class="preprocessor">#define DEFINE_EXCEPTION_Fa(Name, fmt_str, ...) DEFINE_EXCEPTION(Name,fmt_str,fatal,__VA_ARGS__);</span></div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#a505eab0b9eea62d22690aef3712ab031">   28</a></span><span class="preprocessor">#define ENUM_TO_STR(en,arr) arr[static_cast&lt;size_t&gt;(en)]</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#a505eab0b9eea62d22690aef3712ab031">   28</a></span><span class="preprocessor">#define ENUM_TO_STR(en, arr) arr[static_cast&lt;size_t&gt;(en)]</span></div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#a87e5f89e8bcc6cc80be4cc1deae5c0cb">   30</a></span><span class="preprocessor">#define EXC_TO_STR(ex,arr) ENUM_TO_STR(en.getSev(),arr)</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#a87e5f89e8bcc6cc80be4cc1deae5c0cb">   30</a></span><span class="preprocessor">#define EXC_TO_STR(ex, arr) ENUM_TO_STR(en.getSev(),arr)</span></div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#a11b4065d88861b9e5622eaf8f2d56447">   31</a></span><span class="preprocessor">#define STR(cc) std::string{cc}</span></div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">   33</a></span><span class="preprocessor">#define VARIABLE_NAME(Variable) (#Variable)</span></div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;tuple&gt;</span></div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="preprocessor">#include &lt;stdexcept&gt;</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="preprocessor">#include &lt;array&gt;</span></div>
 <div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;fmt/format.h&gt;</span></div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span><span class="preprocessor">#include &lt;tuple&gt;</span></div>
 <div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="foldopen" id="foldopen00044" data-start="{" data-end="}">
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="namespaceshared.html">   44</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceshared.html">shared</a> {</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="foldopen" id="foldopen00047" data-start="{" data-end="};">
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">   47</a></span>    <span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> {</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>        <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c">info</a> = 0,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1a7b83d3f08fa392b79e3f553b585971cd">warning</a>,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">error</a>,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>        <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1adf6402fd9ecc60f5a2159fdf45711cd4">fatal</a></div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    };</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#include &lt;fmt/format.h&gt;</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="foldopen" id="foldopen00046" data-start="{" data-end="}">
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="namespaceshared.html">   46</a></span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceshared.html">shared</a> {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
+<div class="foldopen" id="foldopen00049" data-start="{" data-end="};">
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">   49</a></span><span class="keyword">enum class</span> <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> {</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c">info</a> = 0,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1a7b83d3f08fa392b79e3f553b585971cd">warning</a>,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">error</a>,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1adf6402fd9ecc60f5a2159fdf45711cd4">fatal</a></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>};</div>
 </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keyword">constexpr</span> <span class="keyword">static</span> std::array&lt;const char*,4&gt;sevToStr</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>            {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>                <span class="stringliteral">&quot;info&quot;</span>,</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>                <span class="stringliteral">&quot;warning&quot;</span>,</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>                <span class="stringliteral">&quot;error&quot;</span>,</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>                <span class="stringliteral">&quot;fatal&quot;</span></div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>            };</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="comment">//todo logging</span></div>
-<div class="foldopen" id="foldopen00066" data-start="{" data-end="};">
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html">   66</a></span>    <span class="keyword">class </span><a class="code hl_class" href="classshared_1_1myException.html">myException</a> : <span class="keyword">public</span> std::logic_error {</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>    <span class="keyword">public</span>:</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>        <span class="keyword">using </span>std::logic_error::logic_error;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="foldopen" id="foldopen00070" data-start="{" data-end="}">
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html#aef1f3a8e05051073fac0c2db7c509cdd">   70</a></span>        <a class="code hl_function" href="classshared_1_1myException.html#aef1f3a8e05051073fac0c2db7c509cdd">myException</a>(<span class="keyword">const</span> std::string&amp; arg, <span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a>&amp;sev):</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        std::logic_error(arg),m_sev(sev){}</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="keyword">constexpr</span> <span class="keyword">static</span> std::array&lt;const char *, 4&gt; sevToStr</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    {</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>        <span class="stringliteral">&quot;info&quot;</span>,</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>        <span class="stringliteral">&quot;warning&quot;</span>,</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>        <span class="stringliteral">&quot;error&quot;</span>,</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>        <span class="stringliteral">&quot;fatal&quot;</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    };</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment">//todo logging</span></div>
+<div class="foldopen" id="foldopen00068" data-start="{" data-end="};">
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html">   68</a></span><span class="keyword">class </span><a class="code hl_class" href="classshared_1_1myException.html">myException</a> : <span class="keyword">public</span> std::logic_error {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> <span class="keyword">public</span>:</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keyword">using </span>std::logic_error::logic_error;</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
+<div class="foldopen" id="foldopen00072" data-start="{" data-end="}">
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html#aef1f3a8e05051073fac0c2db7c509cdd">   72</a></span>  <a class="code hl_function" href="classshared_1_1myException.html#aef1f3a8e05051073fac0c2db7c509cdd">myException</a>(<span class="keyword">const</span> std::string &amp;arg, <span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> &amp;sev) :</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      std::logic_error(arg), m_sev(sev) {}</div>
 </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
-<div class="foldopen" id="foldopen00073" data-start="{" data-end="}">
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html#aadf24bfead53e3e9db7594a8e8d7e7f0">   73</a></span>        <span class="keywordtype">void</span> <a class="code hl_function" href="classshared_1_1myException.html#aadf24bfead53e3e9db7594a8e8d7e7f0">setSeverity</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a>&amp;sev)</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>        {</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>            m_sev=sev;</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>        }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="foldopen" id="foldopen00075" data-start="{" data-end="}">
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html#aadf24bfead53e3e9db7594a8e8d7e7f0">   75</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classshared_1_1myException.html#aadf24bfead53e3e9db7594a8e8d7e7f0">setSeverity</a>(<span class="keyword">const</span> <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> &amp;sev) {</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    m_sev = sev;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
 </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="foldopen" id="foldopen00078" data-start="{" data-end="}">
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html#af7de4b4e67fd39ea1025378c598acc34">   78</a></span>        <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> <a class="code hl_function" href="classshared_1_1myException.html#af7de4b4e67fd39ea1025378c598acc34">getSev</a>()<span class="keyword"> const </span>{</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>            <span class="keywordflow">return</span> m_sev;</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classshared_1_1myException.html#af7de4b4e67fd39ea1025378c598acc34">   79</a></span>  <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> <a class="code hl_function" href="classshared_1_1myException.html#af7de4b4e67fd39ea1025378c598acc34">getSev</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span> m_sev;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  }</div>
 </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    <span class="keyword">private</span>:</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>        <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> m_sev;</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    };</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> <span class="keyword">private</span>:</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <a class="code hl_enumeration" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> m_sev;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>};</div>
 </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
 <div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classshared_1_1InvalidOption.html#a12861f4c2f702e704a48c29751fed967">   90</a></span>    <a class="code hl_define" href="errorHandling_8h.html#a55003970da79f29e084621e4d47c01c4">DEFINE_EXCEPTION_IN</a>(<a class="code hl_class" href="classshared_1_1InvalidOption.html">InvalidOption</a>, <span class="stringliteral">&quot;Option {} does not exist!&quot;</span>, <span class="keyword">const</span> std::string&amp;);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno"><a class="line" href="classshared_1_1InvalidOption.html#a12861f4c2f702e704a48c29751fed967">   90</a></span><a class="code hl_define" href="errorHandling_8h.html#a55003970da79f29e084621e4d47c01c4">DEFINE_EXCEPTION_IN</a>(<a class="code hl_class" href="classshared_1_1InvalidOption.html">InvalidOption</a>, <span class="stringliteral">&quot;Option {} does not exist!&quot;</span>, <span class="keyword">const</span> std::string&amp;)</div>
 <div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classshared_1_1outOfRange.html#ab75fdf3c26ad127cdae752fd4bb8a047">   95</a></span>    <a class="code hl_define" href="errorHandling_8h.html#a55003970da79f29e084621e4d47c01c4">DEFINE_EXCEPTION_IN</a>(<a class="code hl_class" href="classshared_1_1outOfRange.html">outOfRange</a>, <span class="stringliteral">&quot;Value {} is out of range[{},{}]!&quot;</span>, <span class="keywordtype">long</span>, <span class="keywordtype">long</span>, <span class="keywordtype">long</span>)</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classshared_1_1ioError.html#a295f673597e8bf0af42fad44cb70bc50">  100</a></span>    <a class="code hl_define" href="errorHandling_8h.html#a55003970da79f29e084621e4d47c01c4">DEFINE_EXCEPTION_IN</a>(<a class="code hl_class" href="classshared_1_1ioError.html">ioError</a>, &quot;Io <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">error</a> state:{}!<span class="stringliteral">&quot;, const std::string&amp;)</span></div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno"><a class="line" href="classshared_1_1outOfRange.html#ab75fdf3c26ad127cdae752fd4bb8a047">   95</a></span><a class="code hl_define" href="errorHandling_8h.html#a55003970da79f29e084621e4d47c01c4">DEFINE_EXCEPTION_IN</a>(<a class="code hl_class" href="classshared_1_1outOfRange.html">outOfRange</a>, &quot;Value {} is out of range[{},{}]!<span class="stringliteral">&quot;, long, long, long)</span></div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="classshared_1_1zeroSize.html#a13e4538a8e4bad084176bd4424f0a131">  100</a></span>DEFINE_EXCEPTION_IN(zeroSize, &quot;Zero collection {} size!<span class="stringliteral">&quot;, std::string)</span></div>
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span><span class="stringliteral"></span> </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno"><a class="line" href="classshared_1_1mismatchedSizes.html#a811b6c70db4100d53d955a9f39e2f5a8">  102</a></span><span class="stringliteral">    DEFINE_EXCEPTION_IN(mismatchedSizes,&quot;</span>Mismatched container sizes <span class="keywordflow">for</span> input : a.size = {}, b.size() = {} !<span class="stringliteral">&quot;,long,long);</span></div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span><span class="stringliteral"></span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno"><a class="line" href="classshared_1_1invalidSizes2.html#a7ae56769fa9f3f9ed70587f4c5f12f37">  109</a></span>    DEFINE_EXCEPTION_IN(invalidSizes2,&quot;Invalid sizes sz1 = {}, sz2 = {} received!<span class="stringliteral">&quot;,long, long)</span></div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span><span class="stringliteral">    //todo stack tracing</span></div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span><span class="stringliteral">    //https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="classshared_1_1ioError.html#a295f673597e8bf0af42fad44cb70bc50">  105</a></span>DEFINE_EXCEPTION_IN(ioError, &quot;Io <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">error</a> state:{}!<span class="stringliteral">&quot;, const std::string&amp;)</span></div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>DEFINE_EXCEPTION_IN(mismatchedSizes, &quot;Mismatched container sizes <span class="keywordflow">for</span> input : a.size = {}, b.size() = {} !<span class="stringliteral">&quot;, long,</span></div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno"><a class="line" href="classshared_1_1mismatchedSizes.html#a811b6c70db4100d53d955a9f39e2f5a8">  111</a></span><span class="stringliteral">                    long);</span></div>
 <div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span><span class="stringliteral"></span> </div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span><span class="stringliteral"></span> </div>
-<div class="line"><a id="l00117" name="l00117"></a><span class="lineno"><a class="line" href="classshared_1_1httpError.html#ab98233af6736e9d5ee88bc10686b64f4">  117</a></span>    DEFINE_EXCEPTION_IN(httpError, &quot;HTTP <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">error</a>: {} !<span class="stringliteral">&quot;, long)</span></div>
-<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span><span class="stringliteral"></span> </div>
-<div class="line"><a id="l00122" name="l00122"></a><span class="lineno"><a class="line" href="classshared_1_1curlError.html#a13d1e19ad4fce49dc903b8f83149e57f">  122</a></span>    DEFINE_EXCEPTION_IN(curlError, &quot;Curl <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">error</a>: {} !<span class="stringliteral">&quot;, std::string)</span></div>
-<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span><span class="stringliteral"></span> </div>
-<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span><span class="stringliteral">}</span></div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno"><a class="line" href="classshared_1_1invalidSizes2.html#a7ae56769fa9f3f9ed70587f4c5f12f37">  118</a></span>DEFINE_EXCEPTION_IN(invalidSizes2, &quot;Invalid sizes sz1 = {}, sz2 = {} received!<span class="stringliteral">&quot;, long, long)</span></div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span>DEFINE_EXCEPTION_ER(RowDivisionError,</div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>                    &quot;The total collection size {} cannot be evenly divided by the specified number of rows {}.<span class="stringliteral">&quot;,</span></div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno"><a class="line" href="classshared_1_1RowDivisionError.html#aee05795eb21d07d876cd142471a836e6">  125</a></span><span class="stringliteral">                    std::size_t, std::size_t);</span></div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00127" name="l00127"></a><span class="lineno">  127</span><span class="stringliteral">//todo stack tracing</span></div>
+<div class="line"><a id="l00128" name="l00128"></a><span class="lineno">  128</span><span class="stringliteral">//https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes</span></div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>//todo can return body with reason</div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno"><a class="line" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">  134</a></span>DEFINE_EXCEPTION_IN(HttpError, &quot;HTTP <a class="code hl_enumvalue" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">error</a>: code {} , reason \<span class="stringliteral">&quot;{}\&quot; !&quot;</span>, long, std::string)</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span> </div>
+<div class="line"><a id="l00139" name="l00139"></a><span class="lineno"><a class="line" href="classshared_1_1CurlError.html#a52a51c07950449ccaa7ced57ccdf09b2">  139</a></span><a class="code hl_define" href="errorHandling_8h.html#a55003970da79f29e084621e4d47c01c4">DEFINE_EXCEPTION_IN</a>(<a class="code hl_class" href="classshared_1_1CurlError.html">CurlError</a>, <span class="stringliteral">&quot;Curl error: \&quot;{}\&quot; !&quot;</span>, std::string)</div>
+<div class="line"><a id="l00140" name="l00140"></a><span class="lineno">  140</span>}</div>
 </div>
-<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span><span class="stringliteral"></span> </div>
+<div class="line"><a id="l00141" name="l00141"></a><span class="lineno">  141</span> </div>
+<div class="ttc" id="aclassshared_1_1CurlError_html"><div class="ttname"><a href="classshared_1_1CurlError.html">shared::CurlError</a></div><div class="ttdoc">Curl class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:139</div></div>
 <div class="ttc" id="aclassshared_1_1InvalidOption_html"><div class="ttname"><a href="classshared_1_1InvalidOption.html">shared::InvalidOption</a></div><div class="ttdoc">InvalidOption class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:90</div></div>
-<div class="ttc" id="aclassshared_1_1ioError_html"><div class="ttname"><a href="classshared_1_1ioError.html">shared::ioError</a></div><div class="ttdoc">ioError class</div><div class="ttdef"><b>Definition</b> errorHandling.h:100</div></div>
-<div class="ttc" id="aclassshared_1_1myException_html"><div class="ttname"><a href="classshared_1_1myException.html">shared::myException</a></div><div class="ttdoc">Default parent for user defined exception.</div><div class="ttdef"><b>Definition</b> errorHandling.h:66</div></div>
-<div class="ttc" id="aclassshared_1_1myException_html_aadf24bfead53e3e9db7594a8e8d7e7f0"><div class="ttname"><a href="classshared_1_1myException.html#aadf24bfead53e3e9db7594a8e8d7e7f0">shared::myException::setSeverity</a></div><div class="ttdeci">void setSeverity(const Severity &amp;sev)</div><div class="ttdef"><b>Definition</b> errorHandling.h:73</div></div>
-<div class="ttc" id="aclassshared_1_1myException_html_aef1f3a8e05051073fac0c2db7c509cdd"><div class="ttname"><a href="classshared_1_1myException.html#aef1f3a8e05051073fac0c2db7c509cdd">shared::myException::myException</a></div><div class="ttdeci">myException(const std::string &amp;arg, const Severity &amp;sev)</div><div class="ttdef"><b>Definition</b> errorHandling.h:70</div></div>
-<div class="ttc" id="aclassshared_1_1myException_html_af7de4b4e67fd39ea1025378c598acc34"><div class="ttname"><a href="classshared_1_1myException.html#af7de4b4e67fd39ea1025378c598acc34">shared::myException::getSev</a></div><div class="ttdeci">Severity getSev() const</div><div class="ttdef"><b>Definition</b> errorHandling.h:78</div></div>
+<div class="ttc" id="aclassshared_1_1myException_html"><div class="ttname"><a href="classshared_1_1myException.html">shared::myException</a></div><div class="ttdoc">Default parent for user defined exception.</div><div class="ttdef"><b>Definition</b> errorHandling.h:68</div></div>
+<div class="ttc" id="aclassshared_1_1myException_html_aadf24bfead53e3e9db7594a8e8d7e7f0"><div class="ttname"><a href="classshared_1_1myException.html#aadf24bfead53e3e9db7594a8e8d7e7f0">shared::myException::setSeverity</a></div><div class="ttdeci">void setSeverity(const Severity &amp;sev)</div><div class="ttdef"><b>Definition</b> errorHandling.h:75</div></div>
+<div class="ttc" id="aclassshared_1_1myException_html_aef1f3a8e05051073fac0c2db7c509cdd"><div class="ttname"><a href="classshared_1_1myException.html#aef1f3a8e05051073fac0c2db7c509cdd">shared::myException::myException</a></div><div class="ttdeci">myException(const std::string &amp;arg, const Severity &amp;sev)</div><div class="ttdef"><b>Definition</b> errorHandling.h:72</div></div>
+<div class="ttc" id="aclassshared_1_1myException_html_af7de4b4e67fd39ea1025378c598acc34"><div class="ttname"><a href="classshared_1_1myException.html#af7de4b4e67fd39ea1025378c598acc34">shared::myException::getSev</a></div><div class="ttdeci">Severity getSev() const</div><div class="ttdef"><b>Definition</b> errorHandling.h:79</div></div>
 <div class="ttc" id="aclassshared_1_1outOfRange_html"><div class="ttname"><a href="classshared_1_1outOfRange.html">shared::outOfRange</a></div><div class="ttdoc">outOfRange class</div><div class="ttdef"><b>Definition</b> errorHandling.h:95</div></div>
 <div class="ttc" id="aerrorHandling_8h_html_a55003970da79f29e084621e4d47c01c4"><div class="ttname"><a href="errorHandling_8h.html#a55003970da79f29e084621e4d47c01c4">DEFINE_EXCEPTION_IN</a></div><div class="ttdeci">#define DEFINE_EXCEPTION_IN(Name, fmt_str,...)</div><div class="ttdef"><b>Definition</b> errorHandling.h:23</div></div>
-<div class="ttc" id="anamespaceshared_html"><div class="ttname"><a href="namespaceshared.html">shared</a></div><div class="ttdoc">shared namespace</div><div class="ttdef"><b>Definition</b> errorHandling.h:44</div></div>
-<div class="ttc" id="anamespaceshared_html_af59e2e45adcd32ca8a71c3bf467c35c1"><div class="ttname"><a href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">shared::Severity</a></div><div class="ttdeci">Severity</div><div class="ttdoc">severity enum</div><div class="ttdef"><b>Definition</b> errorHandling.h:47</div></div>
+<div class="ttc" id="anamespaceshared_html"><div class="ttname"><a href="namespaceshared.html">shared</a></div><div class="ttdoc">shared namespace</div><div class="ttdef"><b>Definition</b> errorHandling.h:46</div></div>
+<div class="ttc" id="anamespaceshared_html_af59e2e45adcd32ca8a71c3bf467c35c1"><div class="ttname"><a href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">shared::Severity</a></div><div class="ttdeci">Severity</div><div class="ttdoc">severity enum</div><div class="ttdef"><b>Definition</b> errorHandling.h:49</div></div>
 <div class="ttc" id="anamespaceshared_html_af59e2e45adcd32ca8a71c3bf467c35c1a7b83d3f08fa392b79e3f553b585971cd"><div class="ttname"><a href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1a7b83d3f08fa392b79e3f553b585971cd">shared::Severity::warning</a></div><div class="ttdeci">@ warning</div></div>
 <div class="ttc" id="anamespaceshared_html_af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c"><div class="ttname"><a href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c">shared::Severity::info</a></div><div class="ttdeci">@ info</div></div>
 <div class="ttc" id="anamespaceshared_html_af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282"><div class="ttname"><a href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282">shared::Severity::error</a></div><div class="ttdeci">@ error</div></div>

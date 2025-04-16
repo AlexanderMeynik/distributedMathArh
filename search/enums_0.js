@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['eigenprintformats_0',['EigenPrintFormats',['../namespaceprintUtils.html#a2995045d7f78807dec07760e9c69ce80',1,'printUtils']]]
+  ['distributiontype_0',['DistributionType',['../namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748',1,'generators']]]
 ];

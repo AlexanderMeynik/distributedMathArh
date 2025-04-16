@@ -1,0 +1,9 @@
+<map id="shared::DefaultBench" name="shared::DefaultBench">
+<area shape="rect" id="Node000001" title="Returns properly resized valarray for bench works." alt="" coords="637,45,800,70"/>
+<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2" title=" " alt="" coords="355,5,566,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="623,48,566,41,567,36,624,43"/>
+<area shape="rect" id="Node000004" href="$classmain__services_1_1WorkerManagementService.html#a5c470a2a0858114484256e7568faead3" title=" " alt="" coords="332,69,589,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="624,72,590,76,589,71,623,66"/>
+<area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html#a09f092800edf837ad2978fa641a847b0" title=" " alt="" coords="5,5,284,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="342,28,284,28,284,23,342,23"/>
+</map>

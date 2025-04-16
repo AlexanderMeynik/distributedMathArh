@@ -1,0 +1,7 @@
+<map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/amqpRestService.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/amqpRestService.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="24,5,312,75"/>
+<area shape="rect" id="Node000002" href="$MainNodeService_8h.html" title=" " alt="" coords="5,123,331,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,88,171,122,165,122,165,88"/>
+<area shape="rect" id="Node000003" href="$ClusterConfigController_8h.html" title=" " alt="" coords="59,225,277,295"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="171,191,171,225,165,225,165,191"/>
+</map>

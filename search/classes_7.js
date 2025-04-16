@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['httperror_0',['httpError',['../classshared_1_1httpError.html',1,'shared']]]
+  ['httperror_0',['HttpError',['../classshared_1_1HttpError.html',1,'shared']]]
 ];

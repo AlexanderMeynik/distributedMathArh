@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['printutils_0',['printUtils',['../namespaceprintUtils.html',1,'']]]
+  ['network_5ftypes_0',['network_types',['../namespacenetwork__types.html',1,'']]]
 ];

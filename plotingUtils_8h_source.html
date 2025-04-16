@@ -99,27 +99,30 @@ $(document).ready(function(){initNavTree('plotingUtils_8h_source.html',''); init
 </div><!--header-->
 <div class="contents">
 <a href="plotingUtils_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#ifndef DIPLOM_PLOTINGUTILS_H</span></div>
-<div class="line"><a id="l00003" name="l00003"></a><span class="lineno"><a class="line" href="plotingUtils_8h.html#acd32e43725474db01ec69ba30bdf8ad0">    3</a></span><span class="preprocessor">#define DIPLOM_PLOTINGUTILS_H</span></div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;<a class="code" href="commonTypes_8h.html">common/commonTypes.h</a>&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">using </span>commonTypes::FloatType;</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacemeshStorage.html">meshStorage</a></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <span class="keyword">class </span>MeshCreator;</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>}</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="plotingUtils_8h.html#aab74c8599f5febe5f40ffc210e2fd6ad">   17</a></span><span class="keywordtype">void</span>  <a class="code hl_function" href="plotingUtils_8h.html#aab74c8599f5febe5f40ffc210e2fd6ad">plotFunction</a>(<span class="keyword">const</span> std::string&amp; filename,<span class="keyword">const</span> <a class="code hl_class" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a>&amp;mesh);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="plotingUtils_8h.html#a9828df3bc8878edc119e342ee1a13568">   25</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="plotingUtils_8h.html#a9828df3bc8878edc119e342ee1a13568">plotCoordinates</a>(<span class="keyword">const</span> std::string&amp; name, FloatType ar, std::array&lt;std::vector&lt;FloatType &gt;, 2&gt; &amp;xi);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="plotingUtils_8h.html#ada457f9280cdc12d6e55b82e443c19c7">   33</a></span><span class="keywordtype">void</span>  <a class="code hl_function" href="plotingUtils_8h.html#a9828df3bc8878edc119e342ee1a13568">plotCoordinates</a>(<span class="keyword">const</span> std::string&amp; name, FloatType ar, <span class="keyword">const</span> std::vector&lt;FloatType&gt; &amp;xi);</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif </span><span class="comment">//DIPLOM_PLOTINGUTILS_H</span></div>
-<div class="ttc" id="aclassmeshStorage_1_1MeshCreator_html"><div class="ttname"><a href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a></div><div class="ttdoc">Class that handles 3d mesh creation and parameters management.</div><div class="ttdef"><b>Definition</b> MeshCreator.h:116</div></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="commonTypes_8h.html">common/commonTypes.h</a>&quot;</span></div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="MeshCreator_8h.html">common/MeshCreator.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacemesh__storage.html">ms</a> = <a class="code hl_namespace" href="namespacemesh__storage.html">mesh_storage</a>;</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">using </span>common_types::FloatType;</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespacemesh__storage.html">mesh_storage</a> {</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keyword">class </span>MeshCreator;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>}</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="plotingUtils_8h.html#a16ca5729f3118d07136b7a8050b12319">   20</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="plotingUtils_8h.html#a16ca5729f3118d07136b7a8050b12319">PlotFunction</a>(<span class="keyword">const</span> std::string &amp;filename, <span class="keyword">const</span> <a class="code hl_class" href="classmesh__storage_1_1MeshCreator.html">ms::MeshCreator</a> &amp;mesh);</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="plotingUtils_8h.html#af52caca953c5e1cd9c6dc26cd54bdff1">   28</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="plotingUtils_8h.html#af52caca953c5e1cd9c6dc26cd54bdff1">PlotCoordinates</a>(<span class="keyword">const</span> std::string &amp;name, FloatType ar, std::array&lt;std::vector&lt;FloatType&gt;, 2&gt; &amp;xi);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="plotingUtils_8h.html#a1688a8ba05cfcf00aaf4f309447851c4">   36</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="plotingUtils_8h.html#af52caca953c5e1cd9c6dc26cd54bdff1">PlotCoordinates</a>(<span class="keyword">const</span> std::string &amp;name, FloatType ar, <span class="keyword">const</span> std::vector&lt;FloatType&gt; &amp;xi);</div>
+<div class="ttc" id="aMeshCreator_8h_html"><div class="ttname"><a href="MeshCreator_8h.html">MeshCreator.h</a></div></div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html">mesh_storage::MeshCreator</a></div><div class="ttdoc">Class that handles 3d mesh creation and parameters management.</div><div class="ttdef"><b>Definition</b> MeshCreator.h:105</div></div>
 <div class="ttc" id="acommonTypes_8h_html"><div class="ttname"><a href="commonTypes_8h.html">commonTypes.h</a></div></div>
-<div class="ttc" id="anamespacemeshStorage_html"><div class="ttname"><a href="namespacemeshStorage.html">meshStorage</a></div><div class="ttdoc">meshStorage namespace</div><div class="ttdef"><b>Definition</b> MeshCreator.h:15</div></div>
-<div class="ttc" id="aplotingUtils_8h_html_a9828df3bc8878edc119e342ee1a13568"><div class="ttname"><a href="plotingUtils_8h.html#a9828df3bc8878edc119e342ee1a13568">plotCoordinates</a></div><div class="ttdeci">void plotCoordinates(const std::string &amp;name, FloatType ar, std::array&lt; std::vector&lt; FloatType &gt;, 2 &gt; &amp;xi)</div></div>
-<div class="ttc" id="aplotingUtils_8h_html_aab74c8599f5febe5f40ffc210e2fd6ad"><div class="ttname"><a href="plotingUtils_8h.html#aab74c8599f5febe5f40ffc210e2fd6ad">plotFunction</a></div><div class="ttdeci">void plotFunction(const std::string &amp;filename, const meshStorage::MeshCreator &amp;mesh)</div></div>
+<div class="ttc" id="anamespacemesh__storage_html"><div class="ttname"><a href="namespacemesh__storage.html">mesh_storage</a></div><div class="ttdoc">meshStorage namespace</div><div class="ttdef"><b>Definition</b> MeshCreator.h:11</div></div>
+<div class="ttc" id="aplotingUtils_8h_html_a16ca5729f3118d07136b7a8050b12319"><div class="ttname"><a href="plotingUtils_8h.html#a16ca5729f3118d07136b7a8050b12319">PlotFunction</a></div><div class="ttdeci">void PlotFunction(const std::string &amp;filename, const ms::MeshCreator &amp;mesh)</div></div>
+<div class="ttc" id="aplotingUtils_8h_html_af52caca953c5e1cd9c6dc26cd54bdff1"><div class="ttname"><a href="plotingUtils_8h.html#af52caca953c5e1cd9c6dc26cd54bdff1">PlotCoordinates</a></div><div class="ttdeci">void PlotCoordinates(const std::string &amp;name, FloatType ar, std::array&lt; std::vector&lt; FloatType &gt;, 2 &gt; &amp;xi)</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

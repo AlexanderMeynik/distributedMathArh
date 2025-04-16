@@ -1,6 +1,6 @@
 var typeCasts_8h =
 [
-    [ "toEigenMatrix", "typeCasts_8h.html#aa4459ceb2a5f4cef95bced30b6b66c63", null ],
-    [ "toEigenRowVector", "typeCasts_8h.html#a8e791496b9fdc6b72414503c04e2462f", null ],
-    [ "toEigenVector", "typeCasts_8h.html#af6c319b247b76996ce871d1678d418c5", null ]
+    [ "ToEigenMatrix", "typeCasts_8h.html#a1efdfa11852c691d367d6fa151e8138e", null ],
+    [ "ToEigenRowVector", "typeCasts_8h.html#adc37818e5d0af157a49992d0927c8dfc", null ],
+    [ "ToEigenVector", "typeCasts_8h.html#ad7323017d9f1981581476e1778ab8770", null ]
 ];

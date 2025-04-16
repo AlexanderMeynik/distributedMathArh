@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['fromjson_0',['fromJson',['../namespaceprintUtils.html#a0a762198703f22aa507828bf90cb6444',1,'printUtils']]]
+  ['fromjson_0',['FromJson',['../namespaceprint__utils.html#a7ace2bb394174fd24efb227b98314054',1,'print_utils']]]
 ];

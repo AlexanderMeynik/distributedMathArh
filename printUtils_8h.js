@@ -1,27 +1,26 @@
 var printUtils_8h =
 [
-    [ "printUtils::IosStatePreserve", "classprintUtils_1_1IosStatePreserve.html", "classprintUtils_1_1IosStatePreserve" ],
-    [ "printUtils::IosStateScientific", "classprintUtils_1_1IosStateScientific.html", "classprintUtils_1_1IosStateScientific" ],
-    [ "DISTRIBUTED_MATH_ARH_PRINTUTILS_H", "printUtils_8h.html#a6f9242f9b6d139de738fba032ba10baf", null ],
+    [ "print_utils::IosStatePreserve", "classprint__utils_1_1IosStatePreserve.html", "classprint__utils_1_1IosStatePreserve" ],
+    [ "print_utils::IosStateScientific", "classprint__utils_1_1IosStateScientific.html", "classprint__utils_1_1IosStateScientific" ],
     [ "EIGENF", "printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0", null ],
     [ "FORMAT_OPT", "printUtils_8h.html#acb190fbc204e177fa88b3b4a8f0df90a", null ],
-    [ "EFormat", "printUtils_8h.html#a2ff537a4eeedb4f6636c31b6303acb89", null ],
-    [ "EigenPrintFormats", "printUtils_8h.html#a2995045d7f78807dec07760e9c69ce80", [
-      [ "BasicOneDimensionalVector", "printUtils_8h.html#a2995045d7f78807dec07760e9c69ce80a7e30012780cac692d1c94c9d277a7e2d", null ],
-      [ "VectorFormat1", "printUtils_8h.html#a2995045d7f78807dec07760e9c69ce80adfcc62b5b9fdc4b912ed7cd12062f393", null ],
-      [ "MatrixFormat", "printUtils_8h.html#a2995045d7f78807dec07760e9c69ce80aec3e34b5f8cb7fc97d0923e4ab171491", null ],
-      [ "MatrixFormat1", "printUtils_8h.html#a2995045d7f78807dec07760e9c69ce80af7db28523b2f1ea38b89d235d999d86b", null ]
+    [ "EFormat", "printUtils_8h.html#ab5fbaf98f89405270aeefac745a3a553", null ],
+    [ "EigenPrintFormats", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6", [
+      [ "BASIC_ONE_DIMENSIONAL_VECTOR", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a636f3a2ef9d6f38601ad09813162d96d", null ],
+      [ "VECTOR_FORMAT_1", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6aabdcc07a1a3adf779c27627302f03adb", null ],
+      [ "MATRIX_FORMAT", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a004a0f6caf4c955bdd503062bfa419a5", null ],
+      [ "MATRIX_FORMAT_1", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a2d1ed337d3961c02f332be10e0f37454", null ]
     ] ],
-    [ "ioFormat", "printUtils_8h.html#a37dd20c81d688bf0517d73d4c646cc1d", [
-      [ "Serializable", "printUtils_8h.html#a37dd20c81d688bf0517d73d4c646cc1da33909597338639745b2d76081beeb48b", null ],
-      [ "HumanReadable", "printUtils_8h.html#a37dd20c81d688bf0517d73d4c646cc1dae04f919664e727f5d94594a506d9e8b3", null ]
+    [ "IoFormat", "printUtils_8h.html#aaeed027fe3c321b388af4670383dcef4", [
+      [ "SERIALIZABLE", "printUtils_8h.html#aaeed027fe3c321b388af4670383dcef4aadfafde622c8622bb72e4ff73e295cdb", null ],
+      [ "HUMAN_READABLE", "printUtils_8h.html#aaeed027fe3c321b388af4670383dcef4a9c1e5abb68a03ce10b611431a7b987d1", null ]
     ] ],
-    [ "operator<<", "printUtils_8h.html#a95bf9de5d9ef0acb3db98551140d9ee8", null ],
-    [ "operator<<", "printUtils_8h.html#ae4ccd2c5d6b3bc1ff5bc2fc73c96d68b", null ],
-    [ "operator==", "printUtils_8h.html#ab84fc49efd2efcf2b92d4dd2c761bb12", null ],
-    [ "operator>>", "printUtils_8h.html#a334503daa6899a25452487d040a86fa4", null ],
-    [ "operator>>", "printUtils_8h.html#a98ba290cc38869e46e3fb5a0e7d59133", null ],
-    [ "printEnumToFormat", "printUtils_8h.html#a1bd87e7f3ab50b1c30fdc6d65f59e75b", null ],
-    [ "tupleToString", "printUtils_8h.html#a9e7c6e1f8fb50cb6913dfe670aaddd6e", null ],
-    [ "enumTo", "printUtils_8h.html#a57331cbc18c80708976f4de6c2153928", null ]
+    [ "operator<<", "printUtils_8h.html#a0daba847fb82e8ae5f2fe501a744ee86", null ],
+    [ "operator<<", "printUtils_8h.html#a47de332ae8de8ae480deb73bc3ee7a40", null ],
+    [ "operator==", "printUtils_8h.html#a48e34c80f62430802dfa9eeb61358280", null ],
+    [ "operator>>", "printUtils_8h.html#a6c64e6bf1cdaef9f04f37da4ca8533af", null ],
+    [ "operator>>", "printUtils_8h.html#afd4b485906d7923acf216cdc9087d194", null ],
+    [ "PrintEnumToFormat", "printUtils_8h.html#a5c15394e792434eee87f79a2847b4a32", null ],
+    [ "TupleToString", "printUtils_8h.html#ae4a7829e4fa46541e13b8b23db463823", null ],
+    [ "kEnumTo", "printUtils_8h.html#a6447195c9416e901ef77717c50bd037a", null ]
 ];

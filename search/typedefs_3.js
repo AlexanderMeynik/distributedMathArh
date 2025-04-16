@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['eformat_0',['EFormat',['../namespaceprintUtils.html#a2ff537a4eeedb4f6636c31b6303acb89',1,'printUtils']]],
-  ['eigenvec_1',['EigenVec',['../namespacecommonTypes.html#aa89ed70c66e21953cbddc64d9f30e78c',1,'commonTypes']]],
-  ['envelopeptr_2',['EnvelopePtr',['../namespaceamqpCommon.html#a64d45d48c90d14622caeafab41df4ccf',1,'amqpCommon']]]
+  ['dimtype_0',['DimType',['../namespacecommon__types.html#a34ede084a17bb35e2aedf5f373e02bb3',1,'common_types']]],
+  ['directiongraph_1',['DirectionGraph',['../namespacecommon__types.html#a4eb6267fe69b8d2006ee42f30eae0300',1,'common_types']]],
+  ['distributionfunctor_2',['DistributionFunctor',['../namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643',1,'generators']]]
 ];

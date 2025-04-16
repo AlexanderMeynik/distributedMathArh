@@ -1,12 +1,11 @@
 var Parsers_8h =
 [
-    [ "DISTRIBUTED_MATH_ARH_PARSERS_H", "Parsers_8h.html#aa68e19c42c238cf1c8edf6a720d18da9", null ],
-    [ "fromJson", "Parsers_8h.html#a0a762198703f22aa507828bf90cb6444", null ],
-    [ "jsonToContinuous", "Parsers_8h.html#a3b78025903800f80ef0967c1967cb252", null ],
-    [ "jsonToContinuous", "Parsers_8h.html#a51da12a58c8ff6539ac50c616cbabe3f", null ],
-    [ "parseCoordinates", "Parsers_8h.html#a206d696940a5b95f7c13d6131a309e8b", null ],
-    [ "parseMatrix", "Parsers_8h.html#ada5c5386b2879e151ec2bf0ce402cbaa", null ],
-    [ "parseMeshFrom", "Parsers_8h.html#af64f0d6bffea1b112c871c7dda3be464", null ],
-    [ "parseOneDim", "Parsers_8h.html#aa4c0d647e3c6fa0d8ee6e7bae7effa20", null ],
-    [ "parseSolution", "Parsers_8h.html#a7d2fa5149442c377d7502699343dd52c", null ]
+    [ "FromJson", "Parsers_8h.html#a7ace2bb394174fd24efb227b98314054", null ],
+    [ "JsonToContinuous", "Parsers_8h.html#a1dd9cf07e77ef553c268f27ae2f339f1", null ],
+    [ "JsonToContinuous", "Parsers_8h.html#a1564548e62907dbfd71b33096a97c266", null ],
+    [ "ParseCoordinates", "Parsers_8h.html#a4a358aa036b2a5512d696488f2488ed4", null ],
+    [ "ParseMatrix", "Parsers_8h.html#a9cede94a4986a4d2939426e88a7c3d8c", null ],
+    [ "ParseMeshFrom", "Parsers_8h.html#a39a49a70f2b8ad5b00ca82a44ada19ea", null ],
+    [ "ParseOneDim", "Parsers_8h.html#acaa872f5e746f7c4dba3e35bd364fe4d", null ],
+    [ "ParseSolution", "Parsers_8h.html#ab9fc78426b3e43196bc33a54b00fb055", null ]
 ];

@@ -5,6 +5,6 @@ var TestRunner_8h =
       [ "name", "TestRunner_8h.html#a82c82ecefb401027590f155d4f753e83", null ]
     ] ],
     [ "TestRunner", "classTestRunner.html", "classTestRunner" ],
-    [ "coordinates", "TestRunner_8h.html#a2655976547860b047b7cd24a5fa4213f", null ],
-    [ "solution", "TestRunner_8h.html#a61785c8440136ef3a9ffacad60ecf70a", null ]
+    [ "Coordinates", "TestRunner_8h.html#acbeed349b351fb4854ac5a6daa44908b", null ],
+    [ "Solution", "TestRunner_8h.html#ae7adc83d0c3215f36019d6fe61f49756", null ]
 ];

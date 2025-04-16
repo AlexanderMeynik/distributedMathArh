@@ -1,0 +1,7 @@
+<map id="comp_services::ComputationNodeService::ComputationNodeService" name="comp_services::ComputationNodeService::ComputationNodeService">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,284,45"/>
+<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2" title=" " alt="" coords="332,5,543,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="284,23,318,23,318,28,284,28"/>
+<area shape="rect" id="Node000003" href="$namespaceshared.html#afdf3a72bb1d3b2e234049a546d6035a3" title="Returns properly resized valarray for bench works." alt="" coords="591,13,753,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="543,23,577,23,577,28,543,28"/>
+</map>

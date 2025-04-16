@@ -1,7 +1,7 @@
 var namespaceshared =
 [
-    [ "curlError", "classshared_1_1curlError.html", "classshared_1_1curlError" ],
-    [ "httpError", "classshared_1_1httpError.html", "classshared_1_1httpError" ],
+    [ "CurlError", "classshared_1_1CurlError.html", "classshared_1_1CurlError" ],
+    [ "HttpError", "classshared_1_1HttpError.html", "classshared_1_1HttpError" ],
     [ "InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
     [ "invalidSizes2", "classshared_1_1invalidSizes2.html", "classshared_1_1invalidSizes2" ],
     [ "ioError", "classshared_1_1ioError.html", "classshared_1_1ioError" ],
@@ -9,15 +9,19 @@ var namespaceshared =
     [ "myException", "classshared_1_1myException.html", "classshared_1_1myException" ],
     [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
     [ "params", "structshared_1_1params.html", null ],
+    [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
+    [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ],
+    [ "BenchResultType", "namespaceshared.html#a98a73a01c5c6c4ca3e1b3819ce638a98", null ],
+    [ "BenchResVec", "namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f", null ],
     [ "FloatType", "namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b", null ],
-    [ "paramType", "namespaceshared.html#a8bb45eb07b72d7016acbc32e91ba288b", [
-      [ "EmptyParameterValue", "namespaceshared.html#a8bb45eb07b72d7016acbc32e91ba288ba387ba32f98420960c8ceb822965fbdec", null ]
+    [ "ParamType", "namespaceshared.html#a9624128c37558187e9088247c8299fd0", [
+      [ "EMPTY_PARAMETER_VALUE", "namespaceshared.html#a9624128c37558187e9088247c8299fd0a50dc00ee3e54a0317073f751bbb470a0", null ]
     ] ],
-    [ "returnCodes", "namespaceshared.html#a244bad136c7cccce809686bddcf1db7d", [
-      [ "WarningMessage", "namespaceshared.html#a244bad136c7cccce809686bddcf1db7da911c30421b0cc9b126bbb210fc223973", null ],
-      [ "AlreadyExists", "namespaceshared.html#a244bad136c7cccce809686bddcf1db7da227d80fefc08e6a2d9f2452271d6a0d6", null ],
-      [ "ErrorOccured", "namespaceshared.html#a244bad136c7cccce809686bddcf1db7da13ffe20f41d684a723bc780493bec341", null ],
-      [ "ReturnSucess", "namespaceshared.html#a244bad136c7cccce809686bddcf1db7da7dbd46eaf44bbd3d6a51051c7d008205", null ]
+    [ "ReturnCodes", "namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45e", [
+      [ "WARNING_MESSAGE", "namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45ea9379d4f61b67c047d70d5866b1ac48de", null ],
+      [ "ALREADY_EXISTS", "namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45ea621d769c7d1ab2ee4012ca8e8accbf6d", null ],
+      [ "ERROR_OCCURED", "namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45eabddd5475985c502c688194d03bce7d8c", null ],
+      [ "RETURN_SUCESS", "namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45ea13fa7a47d5946771ca65f34b8fcd7e29", null ]
     ] ],
     [ "Severity", "namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1", [
       [ "info", "namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c", null ],
@@ -25,13 +29,14 @@ var namespaceshared =
       [ "error", "namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282", null ],
       [ "fatal", "namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1adf6402fd9ecc60f5a2159fdf45711cd4", null ]
     ] ],
-    [ "state_t", "namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514", [
-      [ "new_", "namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514a06435e9584009a1324c904ad359dcdba", null ],
-      [ "old", "namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514a149603e6c03516362a8da23f624db945", null ],
-      [ "openmp_new", "namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514abf4a0737c6f41cdc5b2578181179cfde", null ],
-      [ "openmp_old", "namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514a412df1a11dffcb84786cad1ebbde1c70", null ],
-      [ "print_", "namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514ad8afd87dc4494b16132afb2dba58e978", null ]
+    [ "StateT", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866", [
+      [ "NEW", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866a24d459a81449d7210c8f9a86c2913034", null ],
+      [ "OLD", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866a90f0f2aff752d90f2bf7eba27e07e874", null ],
+      [ "OPENMP_NEW", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866a1859f21f706104fd3ec16ae03e3944f1", null ],
+      [ "OPENMP_OLD", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866ad500d6041e206f6cbfdff0c1bda10d91", null ],
+      [ "PRINT", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b", null ]
     ] ],
-    [ "operator<<", "namespaceshared.html#a4fca85252018f320a88c33c0a5d5fd07", null ],
-    [ "stateToStr", "namespaceshared.html#aa84eadd14e8a2ca1b6ad3dc2d7360ae8", null ]
+    [ "DefaultBench", "namespaceshared.html#afdf3a72bb1d3b2e234049a546d6035a3", null ],
+    [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
+    [ "kStateToStr", "namespaceshared.html#a7762cf232499ddc3f64cf21408e7e400", null ]
 ];

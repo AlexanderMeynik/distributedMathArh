@@ -1,5 +1,9 @@
-<map id="/home/runner/work/distributedMathArh/distributedMathArh/mainNode/include/restUtils.h" name="/home/runner/work/distributedMathArh/distributedMathArh/mainNode/include/restUtils.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="33,5,252,60"/>
-<area shape="rect" id="Node000002" href="$amqpRestService_8h.html" title=" " alt="" coords="5,108,280,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,74,145,108,140,108,140,74"/>
+<map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/restUtils.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/restUtils.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="24,5,312,75"/>
+<area shape="rect" id="Node000002" href="$amqpRestService_8h.html" title=" " alt="" coords="24,123,312,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,89,171,122,165,122,165,89"/>
+<area shape="rect" id="Node000003" href="$MainNodeService_8h.html" title=" " alt="" coords="5,240,331,295"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="171,206,171,240,165,240,165,206"/>
+<area shape="rect" id="Node000004" href="$ClusterConfigController_8h.html" title=" " alt="" coords="59,343,277,412"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="171,309,171,342,165,342,165,309"/>
 </map>

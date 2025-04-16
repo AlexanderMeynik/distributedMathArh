@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['returnsucess_0',['ReturnSucess',['../namespaceshared.html#a244bad136c7cccce809686bddcf1db7da7dbd46eaf44bbd3d6a51051c7d008205',1,'shared']]]
+  ['return_5fsucess_0',['RETURN_SUCESS',['../namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45ea13fa7a47d5946771ca65f34b8fcd7e29',1,'shared']]]
 ];

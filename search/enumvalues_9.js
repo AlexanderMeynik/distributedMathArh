@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['print_5f_0',['print_',['../namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514ad8afd87dc4494b16132afb2dba58e978',1,'shared']]]
+  ['print_0',['PRINT',['../namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b',1,'shared']]]
 ];

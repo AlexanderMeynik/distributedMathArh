@@ -96,17 +96,28 @@ $(document).ready(function(){initNavTree('structgenerators_1_1generator.html',''
   <div class="headertitle"><div class="title">generators::generator&lt; randomDevice &gt; Struct Template Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Interface for distribution functions handling.  
+ <a href="structgenerators_1_1generator.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:acbb87ed70a7d0c9c4118494b3a0f9e4d" id="r_acbb87ed70a7d0c9c4118494b3a0f9e4d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structgenerators_1_1generator.html#acbb87ed70a7d0c9c4118494b3a0f9e4d">generator</a> ()</td></tr>
 <tr class="separator:acbb87ed70a7d0c9c4118494b3a0f9e4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae6f5b00963b5d9e9b5b8361b8adffd92" id="r_ae6f5b00963b5d9e9b5b8361b8adffd92"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename cont, template&lt; typename... &gt; typename distribution, typename... Args&gt; <br />
-requires <a class="el" href="conceptmyConcepts_1_1HasBracketOperator.html">myConcepts::HasBracketOperator</a>&lt;cont&lt;FloatType&gt;&gt;</td></tr>
-<tr class="memitem:ae6f5b00963b5d9e9b5b8361b8adffd92"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structgenerators_1_1generator.html#ae6f5b00963b5d9e9b5b8361b8adffd92">generate</a> (<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> N, Args &amp;...args)</td></tr>
-<tr class="separator:ae6f5b00963b5d9e9b5b8361b8adffd92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f506c68029d209d6468c0d032fe0df" id="r_ae4f506c68029d209d6468c0d032fe0df"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename... &gt; typename distribution, typename... Args&gt; </td></tr>
+<tr class="memitem:ae4f506c68029d209d6468c0d032fe0df"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643">DistributionFunctor</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="structgenerators_1_1generator.html#ae4f506c68029d209d6468c0d032fe0df">GetGenFunction</a> (Args &amp;&amp;... args)</td></tr>
+<tr class="separator:ae4f506c68029d209d6468c0d032fe0df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename randomDevice&gt;<br />
+struct generators::generator&lt; randomDevice &gt;</div><p>Interface for distribution functions handling. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">randomDevice</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="acbb87ed70a7d0c9c4118494b3a0f9e4d" name="acbb87ed70a7d0c9c4118494b3a0f9e4d"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acbb87ed70a7d0c9c4118494b3a0f9e4d">&#9670;&#160;</a></span>generator()</h2>
 
@@ -135,36 +146,25 @@ template&lt;typename randomDevice &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="ae6f5b00963b5d9e9b5b8361b8adffd92" name="ae6f5b00963b5d9e9b5b8361b8adffd92"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae6f5b00963b5d9e9b5b8361b8adffd92">&#9670;&#160;</a></span>generate()</h2>
+<a id="ae4f506c68029d209d6468c0d032fe0df" name="ae4f506c68029d209d6468c0d032fe0df"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f506c68029d209d6468c0d032fe0df">&#9670;&#160;</a></span>GetGenFunction()</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
 template&lt;typename randomDevice &gt; </div>
 <div class="memtemplate">
-template&lt;template&lt; typename ... &gt; typename cont, template&lt; typename... &gt; typename distribution, typename... Args&gt; <br />
-requires <a class="el" href="conceptmyConcepts_1_1HasBracketOperator.html">myConcepts::HasBracketOperator</a>&lt;cont&lt;FloatType&gt;&gt;</div>
+template&lt;template&lt; typename... &gt; typename distribution, typename... Args&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">auto <a class="el" href="structgenerators_1_1generator.html">generators::generator</a>&lt; randomDevice &gt;::generate </td>
+          <td class="memname"><a class="el" href="namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643">DistributionFunctor</a> <a class="el" href="structgenerators_1_1generator.html">generators::generator</a>&lt; randomDevice &gt;::GetGenFunction </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td>
-          <td class="paramname"><em>N</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
+          <td class="paramtype">Args &amp;&amp;...&#160;</td>
+          <td class="paramname"><em>args</em></td><td>)</td>
           <td></td>
-          <td class="paramtype">Args &amp;...&#160;</td>
-          <td class="paramname"><em>args</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
         </tr>
       </table>
   </td>

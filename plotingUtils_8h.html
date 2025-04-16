@@ -92,13 +92,13 @@ $(document).ready(function(){initNavTree('plotingUtils_8h.html',''); initResizab
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">plotingUtils.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &lt;functional&gt;</code><br />
 <code>#include &quot;<a class="el" href="commonTypes_8h_source.html">common/commonTypes.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="MeshCreator_8h_source.html">common/MeshCreator.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for plotingUtils.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -106,27 +106,54 @@ $(document).ready(function(){initNavTree('plotingUtils_8h.html',''); initResizab
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="plotingUtils_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2client_2include_2plotingUtils_8h" alt=""/></div>
 <map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2client_2include_2plotingUtils_8h" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2client_2include_2plotingUtils_8h">
-<area shape="rect" title=" " alt="" coords="21,5,239,60"/>
-<area shape="rect" title=" " alt="" coords="5,108,92,133"/>
-<area shape="poly" title=" " alt="" coords="107,62,71,100,67,96,103,58"/>
-<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="117,108,306,133"/>
-<area shape="poly" title=" " alt="" coords="157,58,193,96,189,100,153,62"/>
-<area shape="rect" title=" " alt="" coords="5,181,68,207"/>
-<area shape="poly" title=" " alt="" coords="184,136,79,178,77,174,182,131"/>
-<area shape="rect" title=" " alt="" coords="93,181,149,207"/>
-<area shape="poly" title=" " alt="" coords="198,135,148,175,145,170,195,131"/>
-<area shape="rect" title=" " alt="" coords="173,181,249,207"/>
-<area shape="poly" title=" " alt="" coords="214,134,214,168,209,168,209,134"/>
-<area shape="rect" title=" " alt="" coords="273,181,424,207"/>
-<area shape="poly" title=" " alt="" coords="235,131,315,173,313,177,232,136"/>
-<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="449,181,609,207"/>
-<area shape="poly" title=" " alt="" coords="263,131,465,176,464,181,262,136"/>
-<area shape="rect" title=" " alt="" coords="411,255,475,280"/>
-<area shape="poly" title=" " alt="" coords="517,209,469,248,466,244,513,205"/>
-<area shape="rect" title=" " alt="" coords="499,255,558,280"/>
-<area shape="poly" title=" " alt="" coords="531,207,531,241,526,241,526,207"/>
-<area shape="rect" title=" " alt="" coords="583,255,707,280"/>
-<area shape="poly" title=" " alt="" coords="549,204,615,245,613,250,546,209"/>
+<area shape="rect" title=" " alt="" coords="322,5,541,60"/>
+<area shape="rect" title=" " alt="" coords="307,108,393,133"/>
+<area shape="poly" title=" " alt="" coords="408,62,373,100,369,96,405,58"/>
+<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="279,189,469,214"/>
+<area shape="poly" title=" " alt="" coords="428,61,407,134,389,177,384,175,402,132,423,59"/>
+<area shape="rect" href="MeshCreator_8h.html" title=" " alt="" coords="645,108,823,133"/>
+<area shape="poly" title=" " alt="" coords="525,57,681,102,680,107,523,63"/>
+<area shape="rect" title=" " alt="" coords="97,269,160,295"/>
+<area shape="poly" title=" " alt="" coords="339,217,174,269,172,264,338,211"/>
+<area shape="rect" title=" " alt="" coords="750,343,806,368"/>
+<area shape="poly" title=" " alt="" coords="383,213,413,253,434,275,459,292,497,310,530,321,591,328,656,330,737,340,736,345,655,335,590,334,529,326,495,315,457,297,431,279,409,257,379,216"/>
+<area shape="rect" title=" " alt="" coords="167,343,243,368"/>
+<area shape="poly" title=" " alt="" coords="319,217,269,237,245,252,225,271,212,299,207,329,202,328,207,297,221,268,242,248,266,232,317,212"/>
+<area shape="rect" title=" " alt="" coords="5,269,73,295"/>
+<area shape="poly" title=" " alt="" coords="324,217,87,271,86,266,323,211"/>
+<area shape="rect" title=" " alt="" coords="471,269,621,295"/>
+<area shape="poly" title=" " alt="" coords="400,212,510,261,507,266,398,216"/>
+<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="235,269,395,295"/>
+<area shape="poly" title=" " alt="" coords="367,216,334,260,330,257,363,213"/>
+<area shape="poly" title=" " alt="" coords="299,297,236,337,233,333,296,292"/>
+<area shape="rect" title=" " alt="" coords="662,343,726,368"/>
+<area shape="poly" title=" " alt="" coords="377,292,649,343,648,348,376,297"/>
+<area shape="rect" title=" " alt="" coords="279,343,338,368"/>
+<area shape="poly" title=" " alt="" coords="317,295,314,329,308,329,312,295"/>
+<area shape="rect" title=" " alt="" coords="363,343,487,368"/>
+<area shape="poly" title=" " alt="" coords="334,292,397,333,394,337,331,297"/>
+<area shape="poly" title=" " alt="" coords="682,136,440,188,439,183,681,131"/>
+<area shape="poly" title=" " alt="" coords="745,132,758,154,769,181,772,201,769,222,759,254,745,284,714,333,709,330,740,282,754,252,763,221,766,201,763,182,753,156,740,135"/>
+<area shape="rect" title=" " alt="" coords="830,189,905,214"/>
+<area shape="poly" title=" " alt="" coords="755,131,837,179,835,184,752,136"/>
+<area shape="rect" title=" " alt="" coords="929,181,1099,221"/>
+<area shape="poly" title=" " alt="" coords="775,131,934,175,933,180,774,136"/>
+<area shape="rect" href="printUtils_8h.html" title=" " alt="" coords="599,189,754,214"/>
+<area shape="poly" title=" " alt="" coords="728,135,695,179,691,176,723,132"/>
+<area shape="poly" title=" " alt="" coords="659,216,578,264,576,260,656,212"/>
+<area shape="poly" title=" " alt="" coords="625,217,382,269,381,264,624,211"/>
+<area shape="poly" title=" " alt="" coords="688,213,705,237,719,269,721,285,720,302,710,331,705,330,714,301,716,285,714,270,701,240,684,216"/>
+<area shape="rect" title=" " alt="" coords="646,269,705,295"/>
+<area shape="poly" title=" " alt="" coords="679,214,678,256,673,255,674,214"/>
+<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="830,269,1014,295"/>
+<area shape="poly" title=" " alt="" coords="713,211,874,263,873,268,712,217"/>
+<area shape="poly" title=" " alt="" coords="900,297,815,339,813,334,898,292"/>
+<area shape="rect" title=" " alt="" coords="831,343,917,368"/>
+<area shape="poly" title=" " alt="" coords="916,297,892,333,887,330,912,294"/>
+<area shape="rect" title=" " alt="" coords="941,343,996,368"/>
+<area shape="poly" title=" " alt="" coords="932,294,956,330,951,333,927,296"/>
+<area shape="rect" title=" " alt="" coords="1020,343,1125,368"/>
+<area shape="poly" title=" " alt="" coords="947,292,1037,334,1034,339,945,297"/>
 </map>
 </div>
 </div>
@@ -134,48 +161,28 @@ $(document).ready(function(){initNavTree('plotingUtils_8h.html',''); initResizab
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
-<tr class="memitem:namespacemeshStorage" id="r_namespacemeshStorage"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemeshStorage.html">meshStorage</a></td></tr>
-<tr class="memdesc:namespacemeshStorage"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="namespacemeshStorage.html" title="meshStorage namespace">meshStorage</a> namespace <br /></td></tr>
+<tr class="memitem:namespacemesh__storage" id="r_namespacemesh__storage"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html">mesh_storage</a></td></tr>
+<tr class="memdesc:namespacemesh__storage"><td class="mdescLeft">&#160;</td><td class="mdescRight">meshStorage namespace <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:acd32e43725474db01ec69ba30bdf8ad0" id="r_acd32e43725474db01ec69ba30bdf8ad0"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="plotingUtils_8h.html#acd32e43725474db01ec69ba30bdf8ad0">DIPLOM_PLOTINGUTILS_H</a></td></tr>
-<tr class="separator:acd32e43725474db01ec69ba30bdf8ad0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aab74c8599f5febe5f40ffc210e2fd6ad" id="r_aab74c8599f5febe5f40ffc210e2fd6ad"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="plotingUtils_8h.html#aab74c8599f5febe5f40ffc210e2fd6ad">plotFunction</a> (const std::string &amp;filename, const <a class="el" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a> &amp;mesh)</td></tr>
-<tr class="separator:aab74c8599f5febe5f40ffc210e2fd6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9828df3bc8878edc119e342ee1a13568" id="r_a9828df3bc8878edc119e342ee1a13568"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="plotingUtils_8h.html#a9828df3bc8878edc119e342ee1a13568">plotCoordinates</a> (const std::string &amp;name, FloatType ar, std::array&lt; std::vector&lt; FloatType &gt;, 2 &gt; &amp;xi)</td></tr>
-<tr class="separator:a9828df3bc8878edc119e342ee1a13568"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ada457f9280cdc12d6e55b82e443c19c7" id="r_ada457f9280cdc12d6e55b82e443c19c7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="plotingUtils_8h.html#ada457f9280cdc12d6e55b82e443c19c7">plotCoordinates</a> (const std::string &amp;name, FloatType ar, const std::vector&lt; FloatType &gt; &amp;xi)</td></tr>
-<tr class="separator:ada457f9280cdc12d6e55b82e443c19c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16ca5729f3118d07136b7a8050b12319" id="r_a16ca5729f3118d07136b7a8050b12319"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="plotingUtils_8h.html#a16ca5729f3118d07136b7a8050b12319">PlotFunction</a> (const std::string &amp;filename, const <a class="el" href="classmesh__storage_1_1MeshCreator.html">ms::MeshCreator</a> &amp;mesh)</td></tr>
+<tr class="separator:a16ca5729f3118d07136b7a8050b12319"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af52caca953c5e1cd9c6dc26cd54bdff1" id="r_af52caca953c5e1cd9c6dc26cd54bdff1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="plotingUtils_8h.html#af52caca953c5e1cd9c6dc26cd54bdff1">PlotCoordinates</a> (const std::string &amp;name, FloatType ar, std::array&lt; std::vector&lt; FloatType &gt;, 2 &gt; &amp;xi)</td></tr>
+<tr class="separator:af52caca953c5e1cd9c6dc26cd54bdff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1688a8ba05cfcf00aaf4f309447851c4" id="r_a1688a8ba05cfcf00aaf4f309447851c4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="plotingUtils_8h.html#a1688a8ba05cfcf00aaf4f309447851c4">PlotCoordinates</a> (const std::string &amp;name, FloatType ar, const std::vector&lt; FloatType &gt; &amp;xi)</td></tr>
+<tr class="separator:a1688a8ba05cfcf00aaf4f309447851c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="acd32e43725474db01ec69ba30bdf8ad0" name="acd32e43725474db01ec69ba30bdf8ad0"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#acd32e43725474db01ec69ba30bdf8ad0">&#9670;&#160;</a></span>DIPLOM_PLOTINGUTILS_H</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DIPLOM_PLOTINGUTILS_H</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ada457f9280cdc12d6e55b82e443c19c7" name="ada457f9280cdc12d6e55b82e443c19c7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ada457f9280cdc12d6e55b82e443c19c7">&#9670;&#160;</a></span>plotCoordinates() <span class="overload">[1/2]</span></h2>
+<a id="a1688a8ba05cfcf00aaf4f309447851c4" name="a1688a8ba05cfcf00aaf4f309447851c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1688a8ba05cfcf00aaf4f309447851c4">&#9670;&#160;</a></span>PlotCoordinates() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void plotCoordinates </td>
+          <td class="memname">void PlotCoordinates </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -199,7 +206,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><b>plotCoordinates</b> variant that uses 1d array for xy coordinates </p><dl class="params"><dt>Parameters</dt><dd>
+<p><b>PlotCoordinates</b> variant that uses 1d array for xy coordinates </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td></td></tr>
     <tr><td class="paramname">ar</td><td></td></tr>
@@ -210,14 +217,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a9828df3bc8878edc119e342ee1a13568" name="a9828df3bc8878edc119e342ee1a13568"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9828df3bc8878edc119e342ee1a13568">&#9670;&#160;</a></span>plotCoordinates() <span class="overload">[2/2]</span></h2>
+<a id="af52caca953c5e1cd9c6dc26cd54bdff1" name="af52caca953c5e1cd9c6dc26cd54bdff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af52caca953c5e1cd9c6dc26cd54bdff1">&#9670;&#160;</a></span>PlotCoordinates() <span class="overload">[2/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void plotCoordinates </td>
+          <td class="memname">void PlotCoordinates </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>name</em>, </td>
@@ -241,7 +248,7 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p><b>Plots</b> 2d scatter plot using matplot++ callbacks </p><dl class="params"><dt>Parameters</dt><dd>
+<p><b>Plots</b> 2d scatter Plot using matplot++ callbacks </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">name</td><td></td></tr>
     <tr><td class="paramname">ar</td><td></td></tr>
@@ -252,14 +259,14 @@ Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aab74c8599f5febe5f40ffc210e2fd6ad" name="aab74c8599f5febe5f40ffc210e2fd6ad"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab74c8599f5febe5f40ffc210e2fd6ad">&#9670;&#160;</a></span>plotFunction()</h2>
+<a id="a16ca5729f3118d07136b7a8050b12319" name="a16ca5729f3118d07136b7a8050b12319"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16ca5729f3118d07136b7a8050b12319">&#9670;&#160;</a></span>PlotFunction()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void plotFunction </td>
+          <td class="memname">void PlotFunction </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>filename</em>, </td>
@@ -267,7 +274,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="classmeshStorage_1_1MeshCreator.html">meshStorage::MeshCreator</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classmesh__storage_1_1MeshCreator.html">ms::MeshCreator</a> &amp;&#160;</td>
           <td class="paramname"><em>mesh</em>&#160;</td>
         </tr>
         <tr>

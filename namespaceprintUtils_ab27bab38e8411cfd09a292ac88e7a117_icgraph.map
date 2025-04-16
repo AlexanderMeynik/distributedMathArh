@@ -1,7 +1,0 @@
-<map id="printUtils::oneDimSerialize" name="printUtils::oneDimSerialize">
-<area shape="rect" id="Node000001" title="Prints one dimensional Collection using Eigen format." alt="" coords="252,31,449,56"/>
-<area shape="rect" id="Node000002" href="$namespaceprintUtils.html#a30198c06a333db22429812245168e43a" title="Basic interface for printing coordinates." alt="" coords="5,5,204,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="238,34,204,31,205,26,239,29"/>
-<area shape="rect" id="Node000003" href="$namespaceprintUtils.html#a62a62c3e9e1a2046026ed49b58ed65b6" title="Basic interface for printing solution." alt="" coords="18,55,191,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,57,192,62,191,56,238,52"/>
-</map>

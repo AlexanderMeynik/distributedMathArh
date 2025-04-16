@@ -1,9 +1,0 @@
-<map id="printUtils::printSolution" name="printUtils::printSolution">
-<area shape="rect" id="Node000001" title="Basic interface for printing solution." alt="" coords="5,35,179,60"/>
-<area shape="rect" id="Node000002" href="$namespaceprintUtils.html#ab27bab38e8411cfd09a292ac88e7a117" title="Prints one dimensional Collection using Eigen format." alt="" coords="227,5,424,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,34,213,29,213,35,180,39"/>
-<area shape="rect" id="Node000004" href="$namespaceprintUtils.html#a7baef26626aa522443963cfefb92d615" title="Human readable way to print solution vector." alt="" coords="239,55,412,95"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="180,55,225,61,225,66,179,60"/>
-<area shape="rect" id="Node000003" href="$typeCasts_8h.html#a8e791496b9fdc6b72414503c04e2462f" title=" " alt="" coords="472,5,612,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="424,15,459,15,459,21,424,21"/>
-</map>

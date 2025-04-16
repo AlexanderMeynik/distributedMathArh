@@ -1,22 +1,24 @@
 var namespaces_dup =
 [
-    [ "amqpCommon", "namespaceamqpCommon.html", "namespaceamqpCommon" ],
-    [ "chronoClock", "namespacechronoClock.html", [
-      [ "chronoClockTemplate", "namespacechronoClock.html#af1e4a1cb115bedfcc316ccfdbddc3b64", null ],
-      [ "clockType", "namespacechronoClock.html#a862ace4683b2169dcb7ef8598b1a67c7", null ],
-      [ "symbolType", "namespacechronoClock.html#a3519e75efd56ef1d867752f99255d57e", null ],
-      [ "timepointType", "namespacechronoClock.html#a36a7255fb9d63b4ed8cb6c7e28eeb365", null ],
-      [ "doubleCastChrono", "namespacechronoClock.html#ab8f7de340ca62b9bd8fe65075857c935", null ],
-      [ "getFileState", "namespacechronoClock.html#a422bdbf6d6d28682a4d1c45bb7b31586", null ],
-      [ "gClk", "namespacechronoClock.html#a75e163049dc554087ae2fdf75bfaa292", null ]
+    [ "amqp_common", "namespaceamqp__common.html", "namespaceamqp__common" ],
+    [ "chrono_clock", "namespacechrono__clock.html", [
+      [ "ChronoClockTemplate", "namespacechrono__clock.html#a185efc198ea05fbc9940611ddf612d06", null ],
+      [ "ClockType", "namespacechrono__clock.html#a66a2908011fcba5685e33e6a0fc76385", null ],
+      [ "clockType", "namespacechrono__clock.html#afcc4c98a051b0e96986af1282c46bf30", null ],
+      [ "TimepointType", "namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7", null ],
+      [ "DoubleCastChrono", "namespacechrono__clock.html#a7aea20f3f3408a756f58e8cd5c439e67", null ],
+      [ "GetFileState", "namespacechrono__clock.html#afcb5110649eb9883b08467e43f62116b", null ],
+      [ "gClk", "namespacechrono__clock.html#a53841ce0127b201e07e119c0f564d343", null ]
     ] ],
-    [ "commonTypes", "namespacecommonTypes.html", "namespacecommonTypes" ],
-    [ "core_intrefaces", "namespacecore__intrefaces.html", "namespacecore__intrefaces" ],
+    [ "common_types", "namespacecommon__types.html", "namespacecommon__types" ],
+    [ "comp_services", "namespacecomp__services.html", "namespacecomp__services" ],
     [ "dipoles", "namespacedipoles.html", "namespacedipoles" ],
     [ "generators", "namespacegenerators.html", "namespacegenerators" ],
-    [ "meshStorage", "namespacemeshStorage.html", "namespacemeshStorage" ],
-    [ "myConcepts", "namespacemyConcepts.html", "namespacemyConcepts" ],
-    [ "printUtils", "namespaceprintUtils.html", "namespaceprintUtils" ],
+    [ "main_services", "namespacemain__services.html", "namespacemain__services" ],
+    [ "mesh_storage", "namespacemesh__storage.html", "namespacemesh__storage" ],
+    [ "my_concepts", "namespacemy__concepts.html", "namespacemy__concepts" ],
+    [ "network_types", "namespacenetwork__types.html", "namespacenetwork__types" ],
+    [ "print_utils", "namespaceprint__utils.html", "namespaceprint__utils" ],
     [ "rest", "namespacerest.html", "namespacerest" ],
     [ "shared", "namespaceshared.html", "namespaceshared" ],
     [ "timing", "namespacetiming.html", "namespacetiming" ]

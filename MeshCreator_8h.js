@@ -1,16 +1,15 @@
 var MeshCreator_8h =
 [
-    [ "meshStorage::MeshCreator", "classmeshStorage_1_1MeshCreator.html", "classmeshStorage_1_1MeshCreator" ],
-    [ "DIPLOM_MESHCREATOR_H", "MeshCreator_8h.html#a5a61b974383fe1b35f2b433f17a7ae44", null ],
-    [ "limType", "MeshCreator_8h.html#a19491a1b9dd8b8024344c1539993102c", null ],
-    [ "meshArr", "MeshCreator_8h.html#aa4ea33e3e0e37422cacc41e64a653196", null ],
-    [ "addMesh", "MeshCreator_8h.html#a448bff6d366615d385ff5671200f4efc", null ],
-    [ "computeFunction", "MeshCreator_8h.html#a0a1f71859afa37e6eb1bfb7093bd6109", null ],
-    [ "getMeshDiffNorm", "MeshCreator_8h.html#a5013e9a644ef6c654bfdfdf713b27c4d", null ],
-    [ "integrate", "MeshCreator_8h.html#ad2d24bef8806efb4d15df10b72787bfa", null ],
-    [ "integrateLambdaForOneVariable", "MeshCreator_8h.html#aac254f5c60e904a1b92976ebdbef0d5d", null ],
-    [ "myLinspace", "MeshCreator_8h.html#a894b841d6824e1dc8079bcfbdbd52afb", null ],
-    [ "myMeshGrid", "MeshCreator_8h.html#aab3d675b29a1deee8850d1adae356e9e", null ],
-    [ "printDec", "MeshCreator_8h.html#a53c19e87f28e15be4e0410c7bffd4da2", null ],
-    [ "unflatten", "MeshCreator_8h.html#afc1245c878e3222ceabcbd682c457db4", null ]
+    [ "mesh_storage::MeshCreator", "classmesh__storage_1_1MeshCreator.html", "classmesh__storage_1_1MeshCreator" ],
+    [ "LimType", "MeshCreator_8h.html#a8f91f5676835d70266c8f8f990a0e53e", null ],
+    [ "MeshArr", "MeshCreator_8h.html#a7f11b4c2289b930a0dae0b517415d5ed", null ],
+    [ "AddMesh", "MeshCreator_8h.html#a9ce59e3e691dbc108a57170c687a73a3", null ],
+    [ "ComputeFunction", "MeshCreator_8h.html#aa880df7d2ee0d964e30be20ea5bc3379", null ],
+    [ "GetMeshDiffNorm", "MeshCreator_8h.html#a5175347b7f7a2568e6cdc1c31e5eed19", null ],
+    [ "Integrate", "MeshCreator_8h.html#acbc797d349659c7af6d703900b593126", null ],
+    [ "IntegrateLambdaForOneVariable", "MeshCreator_8h.html#a00ef0838542d8e7ad424216a2350d6ad", null ],
+    [ "MyLinspace", "MeshCreator_8h.html#a4f9aec90347196d3bba53c69e6dc4c76", null ],
+    [ "MyMeshGrid", "MeshCreator_8h.html#af24503ecad79824c864b829950a77ea9", null ],
+    [ "PrintDec", "MeshCreator_8h.html#a2089ad2b898da3c6ebfe30cce23fb740", null ],
+    [ "Unflatten", "MeshCreator_8h.html#aaf5ccc0e24b8812a7a2460b00aac704d", null ]
 ];

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['severity_0',['Severity',['../namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1',1,'shared']]],
-  ['state_5ft_1',['state_t',['../namespaceshared.html#a2aa33c2cbccbc76bea8674e39866f514',1,'shared']]]
+  ['returncodes_0',['ReturnCodes',['../namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45e',1,'shared']]],
+  ['returntype_1',['ReturnType',['../namespacecommon__types.html#ab9aa026e1d8b3d5d25734c3842dcb185',1,'common_types']]]
 ];

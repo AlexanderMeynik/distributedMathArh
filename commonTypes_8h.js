@@ -1,32 +1,33 @@
 var commonTypes_8h =
 [
-    [ "commonTypes::returnToDataTypeT< returnType::ArrayEigenVectors >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1ArrayEigenVectors_01_4", [
-      [ "type", "namespacecommonTypes.html#a739d934654d72366024c21d1438d8752", null ]
+    [ "common_types::returnToDataTypeT< ReturnType::ARRAY_EIGEN_VECTORS >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1ARRAY__EIGEN__VECTORS_01_4", [
+      [ "Type", "namespacecommon__types.html#a04a4aa105b8e99fc8ac7db0eb4f45b5b", null ]
     ] ],
-    [ "commonTypes::returnToDataTypeT< returnType::EigenVector >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1EigenVector_01_4", [
-      [ "type", "namespacecommonTypes.html#a1b97b1fc54e9fb1a04ce03ba405c079e", null ]
+    [ "common_types::returnToDataTypeT< ReturnType::EIGEN_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1EIGEN__VECTOR_01_4", [
+      [ "Type", "namespacecommon__types.html#a48772a96b625061df69cdb0bc39b43a7", null ]
     ] ],
-    [ "commonTypes::returnToDataTypeT< returnType::StdVector >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1StdVector_01_4", [
-      [ "type", "namespacecommonTypes.html#a8373d943345ebf051e3b1a09fec288e9", null ]
+    [ "common_types::returnToDataTypeT< ReturnType::STD_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4", [
+      [ "Type", "namespacecommon__types.html#a0b82b15b67fc52453b02dfb14d181eec", null ]
     ] ],
-    [ "commonTypes::returnToDataTypeT< returnType::StdValarray >", "namespacecommonTypes.html#structcommonTypes_1_1returnToDataTypeT_3_01returnType_1_1StdValarray_01_4", [
-      [ "type", "namespacecommonTypes.html#a605366251fa881d1eb4e4fa055c46d50", null ]
+    [ "common_types::returnToDataTypeT< ReturnType::STD_VALARRAY >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VALARRAY_01_4", [
+      [ "Type", "namespacecommon__types.html#ae1406dd858ef66935e3c37229015745b", null ]
     ] ],
-    [ "Arr2EigenVec", "commonTypes_8h.html#a9d48ba72197c09a9131c4b7ea736c466", null ],
-    [ "dimType", "commonTypes_8h.html#a9bc58298494ebd332e207f54d282ba61", null ],
-    [ "directionGraph", "commonTypes_8h.html#a1b52a60c80481023bbe016263116c034", null ],
-    [ "EigenVec", "commonTypes_8h.html#aa89ed70c66e21953cbddc64d9f30e78c", null ],
-    [ "integrableFunction", "commonTypes_8h.html#a8969d96a211494546588bc4bfd080314", null ],
-    [ "matrixType", "commonTypes_8h.html#a5e0bde05e60c67f6bc9a344cafbafa08", null ],
-    [ "meshDrawClass", "commonTypes_8h.html#a6ce4e0acaed4d2cf7b47db0f927b741f", null ],
-    [ "meshStorageType", "commonTypes_8h.html#a6cf34399981fafb917476072bc030c77", null ],
-    [ "returnToDataType", "commonTypes_8h.html#acbba885e0fe1717725e8b64afa46e8da", null ],
-    [ "stdValarr", "commonTypes_8h.html#aea8b8c3dc2aeeed7f329b2cd16df1610", null ],
-    [ "stdVec", "commonTypes_8h.html#a2789b5d145fcbe69152a8b3c4a9edd87", null ],
-    [ "returnType", "commonTypes_8h.html#a38a1d3436cefdbb9b1235c2e453a7b9a", [
-      [ "ArrayEigenVectors", "commonTypes_8h.html#a38a1d3436cefdbb9b1235c2e453a7b9aa0893bbff3c3c8190d5343468115baa48", null ],
-      [ "EigenVector", "commonTypes_8h.html#a38a1d3436cefdbb9b1235c2e453a7b9aa9c36111003ef5b60401eb30a44611bf6", null ],
-      [ "StdVector", "commonTypes_8h.html#a38a1d3436cefdbb9b1235c2e453a7b9aa00a0e0e73da58e0e5067266560a1c236", null ],
-      [ "StdValarray", "commonTypes_8h.html#a38a1d3436cefdbb9b1235c2e453a7b9aafc9edd5b222d6f5998a8f80e5046a05d", null ]
+    [ "Arr2EigenVec", "commonTypes_8h.html#a42693dc99c7b6ad82462b24311fa67fc", null ],
+    [ "DimType", "commonTypes_8h.html#a34ede084a17bb35e2aedf5f373e02bb3", null ],
+    [ "DirectionGraph", "commonTypes_8h.html#a4eb6267fe69b8d2006ee42f30eae0300", null ],
+    [ "EigenVec", "commonTypes_8h.html#abc4d0d103ce28473f78b9f8796511b7b", null ],
+    [ "IntegrableFunction", "commonTypes_8h.html#adfdad3c56c13093b8a1be7e5b2604d29", null ],
+    [ "JsonVariant", "commonTypes_8h.html#ae52d0f2262ef71d75c6c8a2f050852ef", null ],
+    [ "MatrixType", "commonTypes_8h.html#a70e007a3150342b6a8e92499d40461df", null ],
+    [ "MeshDrawClass", "commonTypes_8h.html#a7ee1d29866ec43799760c65858b5f8b2", null ],
+    [ "MeshStorageType", "commonTypes_8h.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57", null ],
+    [ "ReturnToDataType", "commonTypes_8h.html#a91e64613994068f65586b24fe746856a", null ],
+    [ "StdValarr", "commonTypes_8h.html#a2fe0d8a38ec60d14e733f273fddcb393", null ],
+    [ "StdVec", "commonTypes_8h.html#afe619fb0a20486137ed82d75e4feca90", null ],
+    [ "ReturnType", "commonTypes_8h.html#ab9aa026e1d8b3d5d25734c3842dcb185", [
+      [ "ARRAY_EIGEN_VECTORS", "commonTypes_8h.html#ab9aa026e1d8b3d5d25734c3842dcb185a2e9e45a6c81356db86a0b9ac31e7a614", null ],
+      [ "EIGEN_VECTOR", "commonTypes_8h.html#ab9aa026e1d8b3d5d25734c3842dcb185a6fff4b985812c4e10f2b4edaa1409e99", null ],
+      [ "STD_VECTOR", "commonTypes_8h.html#ab9aa026e1d8b3d5d25734c3842dcb185a25f3ecde77268586dec057e55f49c09d", null ],
+      [ "STD_VALARRAY", "commonTypes_8h.html#ab9aa026e1d8b3d5d25734c3842dcb185a360c1acfd920fa9e7cee52a9b2610807", null ]
     ] ]
 ];

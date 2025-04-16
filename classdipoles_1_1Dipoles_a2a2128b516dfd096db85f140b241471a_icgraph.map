@@ -1,7 +1,0 @@
-<map id="dipoles::Dipoles::initArrays" name="dipoles::Dipoles::initArrays">
-<area shape="rect" id="Node000001" title="Intializes dimensions for system of equations matrices." alt="" coords="236,35,433,60"/>
-<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="5,5,188,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="222,36,188,32,189,27,223,31"/>
-<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#aba96a72f2ace32e6082ae91613b6668c" title="Function that allows to reset dipole coordinates." alt="" coords="5,55,188,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,63,188,67,188,62,222,58"/>
-</map>

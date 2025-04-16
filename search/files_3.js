@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['errorhandling_2eh_0',['errorHandling.h',['../errorHandling_8h.html',1,'']]]
+  ['dipoles_2eh_0',['Dipoles.h',['../Dipoles_8h.html',1,'']]],
+  ['dipolescommon_2eh_1',['dipolesCommon.h',['../dipolesCommon_8h.html',1,'']]]
 ];

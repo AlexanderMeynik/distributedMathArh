@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['amqpcommon_0',['amqpCommon',['../namespaceamqpCommon.html',1,'']]]
+  ['amqp_5fcommon_0',['amqp_common',['../namespaceamqp__common.html',1,'']]]
 ];

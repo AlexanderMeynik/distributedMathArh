@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Distributed math architecture: /home/runner/work/distributedMathArh/distributedMathArh/mainNode/include/restUtils.h File Reference</title>
+<title>Distributed math architecture: /home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/restUtils.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -98,32 +98,38 @@ $(document).ready(function(){initNavTree('restUtils_8h.html',''); initResizable(
 <div class="contents">
 <div class="textblock"><code>#include &lt;string&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;json/json.h&gt;</code><br />
 <code>#include &lt;curl/curl.h&gt;</code><br />
+<code>#include &lt;unordered_map&gt;</code><br />
 <code>#include &quot;<a class="el" href="errorHandling_8h_source.html">common/errorHandling.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for restUtils.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="restUtils_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2mainNode_2include_2restUtils_8h" alt=""/></div>
-<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2mainNode_2include_2restUtils_8h" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2mainNode_2include_2restUtils_8h">
-<area shape="rect" title=" " alt="" coords="71,5,289,60"/>
-<area shape="rect" title=" " alt="" coords="5,108,64,133"/>
-<area shape="poly" title=" " alt="" coords="137,62,67,103,65,99,134,58"/>
-<area shape="rect" title=" " alt="" coords="88,108,165,133"/>
-<area shape="poly" title=" " alt="" coords="166,61,143,98,139,95,161,59"/>
-<area shape="rect" title=" " alt="" coords="190,108,277,133"/>
-<area shape="poly" title=" " alt="" coords="199,59,221,95,217,98,194,61"/>
-<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="301,108,485,133"/>
-<area shape="poly" title=" " alt="" coords="246,58,353,100,351,105,244,63"/>
-<area shape="rect" title=" " alt="" coords="214,181,301,207"/>
-<area shape="poly" title=" " alt="" coords="373,136,293,177,290,173,370,131"/>
-<area shape="rect" title=" " alt="" coords="325,181,381,207"/>
-<area shape="poly" title=" " alt="" coords="389,135,369,171,364,168,384,132"/>
-<area shape="rect" title=" " alt="" coords="406,181,461,207"/>
-<area shape="poly" title=" " alt="" coords="402,132,422,168,418,171,398,135"/>
-<area shape="rect" title=" " alt="" coords="485,181,590,207"/>
-<area shape="poly" title=" " alt="" coords="418,131,503,173,500,177,415,136"/>
+<div class="center"><img src="restUtils_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2network__shared_2restUtils_8h" alt=""/></div>
+<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2network__shared_2restUtils_8h" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2network__shared_2restUtils_8h">
+<area shape="rect" title=" " alt="" coords="148,5,436,75"/>
+<area shape="rect" title=" " alt="" coords="5,123,64,148"/>
+<area shape="poly" title=" " alt="" coords="200,77,78,121,76,116,198,72"/>
+<area shape="rect" title=" " alt="" coords="88,123,165,148"/>
+<area shape="poly" title=" " alt="" coords="234,77,161,118,158,113,231,72"/>
+<area shape="rect" title=" " alt="" coords="190,123,282,148"/>
+<area shape="poly" title=" " alt="" coords="274,76,252,112,248,109,270,73"/>
+<area shape="rect" title=" " alt="" coords="306,123,393,148"/>
+<area shape="poly" title=" " alt="" coords="315,73,337,109,333,112,310,76"/>
+<area shape="rect" title=" " alt="" coords="417,123,541,148"/>
+<area shape="poly" title=" " alt="" coords="361,72,444,114,442,119,358,77"/>
+<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="565,123,749,148"/>
+<area shape="poly" title=" " alt="" coords="425,72,600,117,598,122,423,77"/>
+<area shape="rect" title=" " alt="" coords="478,196,565,221"/>
+<area shape="poly" title=" " alt="" coords="637,150,557,192,554,187,634,146"/>
+<area shape="rect" title=" " alt="" coords="589,196,645,221"/>
+<area shape="poly" title=" " alt="" coords="653,150,633,185,628,183,648,147"/>
+<area shape="rect" title=" " alt="" coords="670,196,725,221"/>
+<area shape="poly" title=" " alt="" coords="666,147,686,183,682,185,662,150"/>
+<area shape="rect" title=" " alt="" coords="749,196,854,221"/>
+<area shape="poly" title=" " alt="" coords="682,146,767,187,764,192,679,150"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -131,11 +137,15 @@ $(document).ready(function(){initNavTree('restUtils_8h.html',''); initResizable(
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="restUtils_8h__dep__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2mainNode_2include_2restUtils_8hdep" alt=""/></div>
-<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2mainNode_2include_2restUtils_8hdep" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2mainNode_2include_2restUtils_8hdep">
-<area shape="rect" title=" " alt="" coords="33,5,252,60"/>
-<area shape="rect" href="amqpRestService_8h.html" title=" " alt="" coords="5,108,280,163"/>
-<area shape="poly" title=" " alt="" coords="145,74,145,108,140,108,140,74"/>
+<div class="center"><img src="restUtils_8h__dep__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2network__shared_2restUtils_8hdep" alt=""/></div>
+<map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2network__shared_2restUtils_8hdep" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2network__shared_2restUtils_8hdep">
+<area shape="rect" title=" " alt="" coords="24,5,312,75"/>
+<area shape="rect" href="amqpRestService_8h.html" title=" " alt="" coords="24,123,312,192"/>
+<area shape="poly" title=" " alt="" coords="171,89,171,122,165,122,165,89"/>
+<area shape="rect" href="MainNodeService_8h.html" title=" " alt="" coords="5,240,331,295"/>
+<area shape="poly" title=" " alt="" coords="171,206,171,240,165,240,165,206"/>
+<area shape="rect" href="ClusterConfigController_8h.html" title=" " alt="" coords="59,343,277,412"/>
+<area shape="poly" title=" " alt="" coords="171,309,171,342,165,342,165,309"/>
 </map>
 </div>
 </div>
@@ -143,31 +153,33 @@ $(document).ready(function(){initNavTree('restUtils_8h.html',''); initResizable(
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcurlWrapper.html">curlWrapper</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock like class to handler curl initializtion and free.  <a href="classcurlWrapper.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classCurlWrapper.html">CurlWrapper</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lock like class to handler curl initializtion and free.  <a href="classCurlWrapper.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classauthHandler.html">authHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common interface for handling authentication.  <a href="classauthHandler.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAuthHandler.html">AuthHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common interface for handling authentication.  <a href="classAuthHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classbasicAuthHandler.html">basicAuthHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for Basic auth.  <a href="classbasicAuthHandler.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classBasicAuthHandler.html">BasicAuthHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used for Basic auth.  <a href="classBasicAuthHandler.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classJsonAuthHandler.html">JsonAuthHandler</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aaef50b1f6e01117dfaea67e64b7a168b" id="r_aaef50b1f6e01117dfaea67e64b7a168b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="restUtils_8h.html#aaef50b1f6e01117dfaea67e64b7a168b">performCurlRequest</a> (const std::string &amp;path, const std::string &amp;method, const std::string &amp;host, <a class="el" href="classauthHandler.html">authHandler</a> *<a class="el" href="classauthHandler.html">authHandler</a>, const std::string &amp;data=&quot;&quot;)</td></tr>
-<tr class="memdesc:aaef50b1f6e01117dfaea67e64b7a168b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common function to perform http request uning curl.  <br /></td></tr>
-<tr class="separator:aaef50b1f6e01117dfaea67e64b7a168b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a559737d3a6801e9f89ada9f8e0a6b1ca" id="r_a559737d3a6801e9f89ada9f8e0a6b1ca"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="restUtils_8h.html#a559737d3a6801e9f89ada9f8e0a6b1ca">PerformCurlRequest</a> (const std::string &amp;path, const std::string &amp;method, const std::string &amp;host, <a class="el" href="classAuthHandler.html">AuthHandler</a> *auth_handler, const std::string &amp;data=&quot;&quot;)</td></tr>
+<tr class="memdesc:a559737d3a6801e9f89ada9f8e0a6b1ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common function to perform http request uning curl.  <br /></td></tr>
+<tr class="separator:a559737d3a6801e9f89ada9f8e0a6b1ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aaef50b1f6e01117dfaea67e64b7a168b" name="aaef50b1f6e01117dfaea67e64b7a168b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaef50b1f6e01117dfaea67e64b7a168b">&#9670;&#160;</a></span>performCurlRequest()</h2>
+<a id="a559737d3a6801e9f89ada9f8e0a6b1ca" name="a559737d3a6801e9f89ada9f8e0a6b1ca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a559737d3a6801e9f89ada9f8e0a6b1ca">&#9670;&#160;</a></span>PerformCurlRequest()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">std::string performCurlRequest </td>
+          <td class="memname">std::string PerformCurlRequest </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>path</em>, </td>
@@ -187,8 +199,8 @@ Functions</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classauthHandler.html">authHandler</a> *&#160;</td>
-          <td class="paramname"><em>authHandler</em>, </td>
+          <td class="paramtype"><a class="el" href="classAuthHandler.html">AuthHandler</a> *&#160;</td>
+          <td class="paramname"><em>auth_handler</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -210,7 +222,7 @@ Functions</h2></td></tr>
     <tr><td class="paramname">path</td><td></td></tr>
     <tr><td class="paramname">method</td><td></td></tr>
     <tr><td class="paramname">host</td><td></td></tr>
-    <tr><td class="paramname"><a class="el" href="classauthHandler.html" title="Common interface for handling authentication.">authHandler</a></td><td></td></tr>
+    <tr><td class="paramname">auth_handler</td><td></td></tr>
     <tr><td class="paramname">data</td><td></td></tr>
   </table>
   </dd>
@@ -223,7 +235,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_2a5df1cc1456f21a704a71c4bc4babe7.html">mainNode</a></li><li class="navelem"><a class="el" href="dir_ffb0e269dc22402006620b1f206c58a2.html">include</a></li><li class="navelem"><a class="el" href="restUtils_8h.html">restUtils.h</a></li>
+    <li class="navelem"><a class="el" href="dir_81158eeaacd0141c01054bbb91f9c4c1.html">computationalLib</a></li><li class="navelem"><a class="el" href="dir_1c2cbb32dab03d0c6fc231db0ae4a7ca.html">include</a></li><li class="navelem"><a class="el" href="dir_bdf3d358d3258a0bd853e1775b414e93.html">computationalLib</a></li><li class="navelem"><a class="el" href="dir_d733b0578a8eaac4374dc903c4e1c3ec.html">network_shared</a></li><li class="navelem"><a class="el" href="restUtils_8h.html">restUtils.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>

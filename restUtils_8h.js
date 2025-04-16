@@ -1,7 +1,8 @@
 var restUtils_8h =
 [
-    [ "curlWrapper", "classcurlWrapper.html", "classcurlWrapper" ],
-    [ "authHandler", "classauthHandler.html", "classauthHandler" ],
-    [ "basicAuthHandler", "classbasicAuthHandler.html", "classbasicAuthHandler" ],
-    [ "performCurlRequest", "restUtils_8h.html#aaef50b1f6e01117dfaea67e64b7a168b", null ]
+    [ "CurlWrapper", "classCurlWrapper.html", "classCurlWrapper" ],
+    [ "AuthHandler", "classAuthHandler.html", "classAuthHandler" ],
+    [ "BasicAuthHandler", "classBasicAuthHandler.html", "classBasicAuthHandler" ],
+    [ "JsonAuthHandler", "classJsonAuthHandler.html", "classJsonAuthHandler" ],
+    [ "PerformCurlRequest", "restUtils_8h.html#a559737d3a6801e9f89ada9f8e0a6b1ca", null ]
 ];

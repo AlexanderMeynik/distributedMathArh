@@ -8,10 +8,11 @@ var classtiming_1_1clockArray =
     [ "contains", "classtiming_1_1clockArray.html#aa222a1d6182295c89798c85152f74e8b", null ],
     [ "end", "classtiming_1_1clockArray.html#ad1cf14dc37fffea8075c6e4569f73c9c", null ],
     [ "operator[]", "classtiming_1_1clockArray.html#ad18b07a530d05d0e35d66834b023647a", null ],
-    [ "reset", "classtiming_1_1clockArray.html#a612920c449202ba241c2c0d29bbb4d24", null ],
-    [ "tak", "classtiming_1_1clockArray.html#a5d7d2d619693531fa3da888470a1a533", null ],
-    [ "tik", "classtiming_1_1clockArray.html#a7c550e7a59b3cfde50c5419d8678137e", null ],
-    [ "tikLoc", "classtiming_1_1clockArray.html#a8140ea1a0960a920081d0302aae9bcf0", null ],
-    [ "tikPair", "classtiming_1_1clockArray.html#a347e3db6fe43ae37042eb457ab13ed21", null ],
+    [ "Reset", "classtiming_1_1clockArray.html#a33d293c08f1e9ed1777c7dd45be89391", null ],
+    [ "ResetTimer", "classtiming_1_1clockArray.html#a0fd51e38d4795fee6dd876ed49cb42b9", null ],
+    [ "Tak", "classtiming_1_1clockArray.html#a3e877df3b5a930b12cf686798e3be92f", null ],
+    [ "Tik", "classtiming_1_1clockArray.html#ac4077ecf1289508015cc2ef0dffb38ab", null ],
+    [ "TikLoc", "classtiming_1_1clockArray.html#a37ffc378d887aa9722247387735d4361", null ],
+    [ "TikPair", "classtiming_1_1clockArray.html#ad4b68e3993c9ae98e5c95a197a3ac21d", null ],
     [ "operator<<", "classtiming_1_1clockArray.html#a3c01ab1fbb8d3c8ed2207517076937ff", null ]
 ];

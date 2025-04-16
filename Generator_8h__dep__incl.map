@@ -1,11 +1,14 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/Generator.h" name="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/Generator.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="297,5,556,60"/>
-<area shape="rect" id="Node000002" href="$TestRunner_8h.html" title=" " alt="" coords="283,108,571,177"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="429,74,429,108,424,108,424,74"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="168,5,427,60"/>
+<area shape="rect" id="Node000002" href="$TestRunner_8h.html" title=" " alt="" coords="5,108,293,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="252,70,197,110,194,105,249,66"/>
+<area shape="rect" id="Node000006" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="318,108,575,177"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="347,66,401,105,398,110,343,70"/>
 <area shape="rect" id="Node000003" href="$math__core_8h.html" title=" " alt="" coords="5,225,293,295"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="334,185,231,228,229,223,332,180"/>
-<area shape="rect" id="Node000004" href="$CompNode_8h.html" title=" " alt="" coords="317,225,536,295"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="429,191,429,225,424,225,424,191"/>
-<area shape="rect" id="Node000005" href="$ClusterConfigController_8h.html" title=" " alt="" coords="560,225,779,295"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="511,181,600,223,597,228,509,186"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="152,191,152,225,147,225,147,191"/>
+<area shape="rect" id="Node000004" href="$CompNodeService_8h.html" title=" " alt="" coords="327,225,545,295"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="247,180,353,223,351,228,245,185"/>
+<area shape="rect" id="Node000005" href="$CompNode_8h.html" title=" " alt="" coords="327,343,545,412"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="439,309,439,342,433,342,433,309"/>
+<area shape="poly" id="edge6_Node000006_Node000004" title=" " alt="" coords="445,191,442,225,436,225,440,191"/>
 </map>

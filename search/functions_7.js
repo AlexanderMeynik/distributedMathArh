@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['httperror_0',['httpError',['../classshared_1_1httpError.html#a4a2cea1ff1cabf1edd978cdca3957395',1,'shared::httpError']]]
+  ['httperror_0',['HttpError',['../classshared_1_1HttpError.html#a62157e5e8bcf9234c8cf1390362e7db6',1,'shared::HttpError']]]
 ];

@@ -92,12 +92,11 @@ $(document).ready(function(){initNavTree('Dipoles_8h.html',''); initResizable();
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">Dipoles.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &quot;<a class="el" href="dipolesCommon_8h_source.html">computationalLib/math_core/dipolesCommon.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &quot;<a class="el" href="dipolesCommon_8h_source.html">dipolesCommon.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for Dipoles.h:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -105,34 +104,37 @@ $(document).ready(function(){initNavTree('Dipoles_8h.html',''); initResizable();
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="Dipoles_8h__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2math__core_2Dipoles_8h" alt=""/></div>
 <map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2math__core_2Dipoles_8h" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2math__core_2Dipoles_8h">
-<area shape="rect" title=" " alt="" coords="151,5,439,75"/>
-<area shape="rect" href="dipolesCommon_8h.html" title=" " alt="" coords="206,123,385,163"/>
-<area shape="poly" title=" " alt="" coords="298,75,298,108,293,108,293,75"/>
-<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="105,211,281,236"/>
-<area shape="poly" title=" " alt="" coords="272,165,220,204,217,200,269,161"/>
-<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="321,211,510,236"/>
-<area shape="poly" title=" " alt="" coords="326,161,388,201,385,205,323,165"/>
-<area shape="rect" title=" " alt="" coords="5,284,97,309"/>
-<area shape="poly" title=" " alt="" coords="171,238,88,280,85,275,169,234"/>
-<area shape="rect" title=" " alt="" coords="122,284,202,309"/>
-<area shape="poly" title=" " alt="" coords="190,237,175,273,170,271,185,235"/>
-<area shape="rect" title=" " alt="" coords="226,284,282,309"/>
-<area shape="poly" title=" " alt="" coords="205,235,237,272,233,275,201,238"/>
-<area shape="poly" title=" " alt="" coords="390,238,294,281,292,276,388,234"/>
-<area shape="rect" title=" " alt="" coords="307,284,369,309"/>
-<area shape="poly" title=" " alt="" coords="405,238,363,276,359,273,401,234"/>
-<area shape="rect" title=" " alt="" coords="393,284,469,309"/>
-<area shape="poly" title=" " alt="" coords="421,236,428,270,423,271,415,237"/>
-<area shape="rect" title=" " alt="" coords="493,284,644,309"/>
-<area shape="poly" title=" " alt="" coords="441,234,532,276,530,281,439,238"/>
-<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="669,284,829,309"/>
-<area shape="poly" title=" " alt="" coords="469,233,682,278,681,284,468,239"/>
-<area shape="rect" title=" " alt="" coords="631,357,695,383"/>
-<area shape="poly" title=" " alt="" coords="737,311,689,351,686,346,733,307"/>
-<area shape="rect" title=" " alt="" coords="719,357,778,383"/>
-<area shape="poly" title=" " alt="" coords="751,310,751,344,746,344,746,310"/>
-<area shape="rect" title=" " alt="" coords="803,357,927,383"/>
-<area shape="poly" title=" " alt="" coords="769,307,835,348,833,352,766,312"/>
+<area shape="rect" title=" " alt="" coords="141,5,429,75"/>
+<area shape="rect" href="dipolesCommon_8h.html" title=" " alt="" coords="215,123,355,148"/>
+<area shape="poly" title=" " alt="" coords="287,75,287,109,282,109,282,75"/>
+<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="94,196,270,221"/>
+<area shape="poly" title=" " alt="" coords="270,150,212,190,209,186,267,146"/>
+<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="313,196,502,221"/>
+<area shape="poly" title=" " alt="" coords="306,146,377,187,374,191,303,150"/>
+<area shape="rect" title=" " alt="" coords="5,269,97,295"/>
+<area shape="poly" title=" " alt="" coords="162,224,86,265,83,260,160,219"/>
+<area shape="rect" title=" " alt="" coords="122,269,202,295"/>
+<area shape="poly" title=" " alt="" coords="181,222,171,257,166,255,176,221"/>
+<area shape="rect" title=" " alt="" coords="226,269,282,295"/>
+<area shape="poly" title=" " alt="" coords="196,220,234,258,231,262,192,224"/>
+<area shape="poly" title=" " alt="" coords="384,224,292,266,290,261,382,219"/>
+<area shape="rect" title=" " alt="" coords="307,269,369,295"/>
+<area shape="poly" title=" " alt="" coords="398,224,361,261,357,258,394,220"/>
+<area shape="rect" title=" " alt="" coords="472,343,548,368"/>
+<area shape="poly" title=" " alt="" coords="411,221,418,255,435,293,455,316,479,333,476,338,452,320,430,296,413,257,406,222"/>
+<area shape="rect" title=" " alt="" coords="445,269,513,295"/>
+<area shape="poly" title=" " alt="" coords="421,220,460,258,456,262,417,224"/>
+<area shape="rect" title=" " alt="" coords="537,269,688,295"/>
+<area shape="poly" title=" " alt="" coords="441,219,567,262,566,267,439,224"/>
+<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="713,269,873,295"/>
+<area shape="poly" title=" " alt="" coords="470,219,717,264,716,269,469,224"/>
+<area shape="poly" title=" " alt="" coords="748,297,562,344,561,339,747,292"/>
+<area shape="rect" title=" " alt="" coords="675,343,739,368"/>
+<area shape="poly" title=" " alt="" coords="781,297,733,336,730,332,777,293"/>
+<area shape="rect" title=" " alt="" coords="763,343,822,368"/>
+<area shape="poly" title=" " alt="" coords="795,295,795,329,790,329,790,295"/>
+<area shape="rect" title=" " alt="" coords="847,343,971,368"/>
+<area shape="poly" title=" " alt="" coords="813,292,879,333,877,338,810,297"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -142,16 +144,19 @@ $(document).ready(function(){initNavTree('Dipoles_8h.html',''); initResizable();
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="Dipoles_8h__dep__incl.png" border="0" usemap="#a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2math__core_2Dipoles_8hdep" alt=""/></div>
 <map name="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2math__core_2Dipoles_8hdep" id="a_2home_2runner_2work_2distributedMathArh_2distributedMathArh_2computationalLib_2include_2computationalLib_2math__core_2Dipoles_8hdep">
-<area shape="rect" title=" " alt="" coords="144,5,432,75"/>
-<area shape="rect" href="TestRunner_8h.html" title=" " alt="" coords="259,123,547,192"/>
-<area shape="poly" title=" " alt="" coords="333,83,371,121,367,124,330,87"/>
+<area shape="rect" title=" " alt="" coords="96,5,384,75"/>
+<area shape="rect" href="TestRunner_8h.html" title=" " alt="" coords="96,123,384,192"/>
+<area shape="poly" title=" " alt="" coords="243,89,243,122,237,122,237,89"/>
 <area shape="rect" href="math__core_8h.html" title=" " alt="" coords="5,240,293,309"/>
-<area shape="poly" title=" " alt="" coords="263,88,172,241,167,239,259,85"/>
-<area shape="poly" title=" " alt="" coords="318,200,224,242,222,237,315,195"/>
-<area shape="rect" href="CompNode_8h.html" title=" " alt="" coords="317,240,536,309"/>
-<area shape="poly" title=" " alt="" coords="415,205,422,239,417,240,410,206"/>
-<area shape="rect" href="ClusterConfigController_8h.html" title=" " alt="" coords="560,240,779,309"/>
-<area shape="poly" title=" " alt="" coords="494,195,592,237,590,242,492,200"/>
+<area shape="poly" title=" " alt="" coords="127,84,104,102,86,124,78,141,77,156,86,191,99,216,116,238,112,241,95,219,82,193,72,157,73,140,82,121,100,98,124,80"/>
+<area shape="rect" href="BenchmarkRunnerService_8h.html" title=" " alt="" coords="409,123,666,192"/>
+<area shape="poly" title=" " alt="" coords="340,77,451,120,449,125,338,82"/>
+<area shape="poly" title=" " alt="" coords="207,205,178,241,174,238,203,201"/>
+<area shape="rect" href="CompNodeService_8h.html" title=" " alt="" coords="372,240,591,309"/>
+<area shape="poly" title=" " alt="" coords="324,195,412,237,410,242,321,200"/>
+<area shape="rect" href="CompNode_8h.html" title=" " alt="" coords="372,357,591,427"/>
+<area shape="poly" title=" " alt="" coords="484,323,484,357,479,357,479,323"/>
+<area shape="poly" title=" " alt="" coords="517,206,500,241,495,239,512,204"/>
 </map>
 </div>
 </div>
@@ -160,7 +165,7 @@ $(document).ready(function(){initNavTree('Dipoles_8h.html',''); initResizable();
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html">dipoles::Dipoles</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides interface to solve system of dipoles.  <a href="classdipoles_1_1Dipoles.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Provides interface to Solve system of dipoles.  <a href="classdipoles_1_1Dipoles.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
@@ -168,27 +173,7 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacedipoles" id="r_namespacedipoles"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedipoles.html">dipoles</a></td></tr>
 <tr class="memdesc:namespacedipoles"><td class="mdescLeft">&#160;</td><td class="mdescRight">dipoles namespace <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a48398b6f49ca1502efdea9a8fed34ec4" id="r_a48398b6f49ca1502efdea9a8fed34ec4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="Dipoles_8h.html#a48398b6f49ca1502efdea9a8fed34ec4">DIPLOM_DIPOLES_H</a></td></tr>
-<tr class="separator:a48398b6f49ca1502efdea9a8fed34ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a48398b6f49ca1502efdea9a8fed34ec4" name="a48398b6f49ca1502efdea9a8fed34ec4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a48398b6f49ca1502efdea9a8fed34ec4">&#9670;&#160;</a></span>DIPLOM_DIPOLES_H</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define DIPLOM_DIPOLES_H</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

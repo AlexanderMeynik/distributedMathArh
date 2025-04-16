@@ -1,5 +1,18 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/typeCasts.h" name="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/typeCasts.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,264,60"/>
-<area shape="rect" id="Node000002" href="$Printers_8h.html" title=" " alt="" coords="13,108,257,163"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="137,74,137,108,132,108,132,74"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="171,5,430,60"/>
+<area shape="rect" id="Node000002" href="$Printers_8h.html" title=" " alt="" coords="179,108,423,163"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="303,74,303,108,298,108,298,74"/>
+<area shape="rect" id="Node000003" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="5,211,263,280"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="250,172,188,213,185,208,247,168"/>
+<area shape="rect" id="Node000004" href="$CompNodeService_8h.html" title=" " alt="" coords="62,328,281,397"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="303,177,296,228,288,256,276,281,255,308,230,330,227,326,251,304,272,279,283,254,291,227,298,176"/>
+<area shape="rect" id="Node000006" href="$WorkerManagementService_8h.html" title=" " alt="" coords="338,211,669,280"/>
+<area shape="poly" id="edge6_Node000002_Node000006" title=" " alt="" coords="363,167,441,208,439,213,361,172"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="152,292,163,327,158,329,147,294"/>
+<area shape="rect" id="Node000005" href="$CompNode_8h.html" title=" " alt="" coords="62,445,281,515"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="174,411,174,445,169,445,169,411"/>
+<area shape="rect" id="Node000007" href="$MainNodeService_8h.html" title=" " alt="" coords="341,335,666,390"/>
+<area shape="poly" id="edge7_Node000006_Node000007" title=" " alt="" coords="506,294,506,335,501,335,501,294"/>
+<area shape="rect" id="Node000008" href="$ClusterConfigController_8h.html" title=" " alt="" coords="394,445,613,515"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="506,403,506,445,501,445,501,403"/>
 </map>
