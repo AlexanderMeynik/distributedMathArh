@@ -30,7 +30,7 @@ JsonVariant JsonToVariant(const Json::Value &val) {
     case Json::realValue:return JsonVariant(val.asDouble());
     case Json::stringValue:return JsonVariant(val.asString());
 
-    default:throw std::runtime_error("Unknown Json::Value type");
+    default:throw shared::InvalidOption(std::to_string(val.type()));
   }
 }
 
@@ -57,6 +57,24 @@ TestSolveParam::TestSolveParam(Json::Value &val) :
     args[key] = JsonToVariant(vv[key]);
   }
 }
+TestSolveParam TestSolveParam::SliceAway(size_t iter_count) {
+
+  if(!iter_count
+  ||
+  range.first + iter_count>range.second)
+  {
+
+    throw shared::outOfRange(iter_count,
+                             1,range.second - range.first + 1);
+  }
+
+  TestSolveParam ret = *this;
+
+  ret.range.second = range.first + iter_count - 1;
+  this->range.first = range.first + iter_count;
+
+  return ret;
+}
 
 rabbitMQUser::rabbitMQUser(Json::Value &val) :
     name(val["name"].asString()),
@@ -72,7 +90,8 @@ queueBinding::queueBinding(const Json::Value &val) :
     exchange(val["source"].asString()),
     routing_key(val["routing_key"].asString()) {}
 
-queueBinding::queueBinding(const std::string &exch, const std::string &key) :
+queueBinding::queueBinding(const std::string &exch,
+                           const std::string &key) :
     exchange(exch),
     routing_key(key) {}
 

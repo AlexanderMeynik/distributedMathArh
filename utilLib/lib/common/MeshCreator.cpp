@@ -5,7 +5,7 @@ namespace mesh_storage {
 co::MeshStorageType
 ComputeFunction(const co::MeshStorageType &a, const co::MeshStorageType &b, const co::DirectionGraph &func) {
   if (!a.size() || !b.size()) {
-    throw shared::myException(
+    throw shared::MyException(
         fmt::format("Zero container sizes: a.size() = {},b.size() = {}", a.size(), b.size()));
   }
 

@@ -5,9 +5,11 @@
 #include <valarray>
 
 
+#include "common/commonTypes.h"
+#include "common/errorHandling.h"
+
 #include <json/json.h>
 #include <amqpcpp/exchangetype.h>
-#include <common/commonTypes.h>
 
 /// Namespace for network related types
 namespace network_types {
@@ -28,33 +30,43 @@ JsonVariant JsonToVariant(const Json::Value &val);
 
 /**
  * @brief Simple task sent structure
+ * This structure contains information about iteration count
+ * as well as input parameters.
+ * This one is designed to make process of iteration block separation easier
+ * @see common_types::JsonVariant - for more information about argument types
  */
 struct TestSolveParam {
   TestSolveParam() = default;
-  size_t experiment_id;
-  size_t N_;
-  std::pair<size_t, size_t> range;
-  std::unordered_map<std::string, JsonVariant> args;
+  size_t experiment_id;//< current experiment id
+  size_t N_;//< size of the system
+  std::pair<size_t, size_t> range;//< iteration range: [range.first,range,second]
+  std::unordered_map<std::string, JsonVariant> args;//< map can contain any primitive JSON types
   bool operator==(const TestSolveParam &oth) const = default;
 
-  TestSolveParam SliceAway(size_t iter_count) {
-    TestSolveParam ret = *this;
-
-    ret.range.second = range.first + iter_count - 1;
-    this->range.first = range.first + iter_count;
-
-    return ret;
+  size_t RangeSize()
+  {
+    return range.second-range.first+1;
   }
 
-  bool Slice(size_t iter_count) {
-    if (range.first + iter_count >= range.second) {
-      return false;
-    }
-    range.first += iter_count;
-    return true;
-  }
+  /**
+   * @brief Slices iter_count iterations from current range and creates
+   * @param iter_count
+   * @return TestSolveParam with iter_count iterations
+   * @throws shared::outOfRange - if block with specified size can't sliced away
+   */
+  TestSolveParam SliceAway(size_t iter_count);
 
+
+  /**
+   * @brief Serialize as json
+   * @return Json::Value
+   */
   Json::Value ToJson();
+
+  /**
+   * @brief Deserialize from Json::Value
+   * @param val
+   */
   TestSolveParam(Json::Value &val);
 };
 
@@ -87,7 +99,7 @@ struct queueBinding {
   std::string exchange;
   std::string routing_key;
 
-  friend bool operator==(const queueBinding &a1, const queueBinding &a2) = default;
+  bool operator==(const queueBinding &oth) const = default;
 
   queueBinding(const std::string &exch, const std::string &key);
 

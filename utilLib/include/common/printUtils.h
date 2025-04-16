@@ -1,7 +1,6 @@
 #pragma once
 
 #define EIGENF(form) kEnumTo.at(static_cast<size_t>(form))
-#define FORMAT_OPT(NAME)  { #NAME,  IoFormat::NAME}
 
 #include <iosfwd>
 #include <limits>

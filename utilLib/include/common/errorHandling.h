@@ -1,11 +1,11 @@
 #pragma once
 
 #define DEFINE_EXCEPTION(Name, fmt_str, severity, ...) \
-class Name : public myException { \
+class Name : public MyException { \
 public: \
     template<typename... Args> \
     Name(Args&&... args) \
-        : myException(fmt::format(fmt_string, std::forward<Args>(args)...),Severity::severity), \
+        : MyException(fmt::format(fmt_string, std::forward<Args>(args)...),Severity::severity), \
           args_(std::forward<Args>(args)...) {} \
     \
     template<std::size_t N> \
@@ -54,40 +54,40 @@ enum class Severity {
 };
 
 /// Severity text enum to str lookup
-constexpr static std::array<const char *, 4> sevToStr
+constexpr static std::array<const char *, 4> kSevToStr
     {
         "info",
         "warning",
         "error",
         "fatal"
     };
-//todo logging
+
 /**
  * @brief Default parent for user defined exception
  */
-class myException : public std::logic_error {
+class MyException : public std::logic_error {
  public:
   using std::logic_error::logic_error;
 
-  myException(const std::string &arg, const Severity &sev) :
-      std::logic_error(arg), m_sev(sev) {}
+  MyException(const std::string &arg, const Severity &sev) :
+      std::logic_error(arg), m_sev_(sev) {}
 
   void setSeverity(const Severity &sev) {
-    m_sev = sev;
+    m_sev_ = sev;
   }
 
   Severity getSev() const {
-    return m_sev;
+    return m_sev_;
   }
 
  private:
-  Severity m_sev;
+  Severity m_sev_;
 };
 
 /**
  * @brief InvalidOption class
  */
-DEFINE_EXCEPTION_IN(InvalidOption, "Option {} does not exist!", const std::string&)
+DEFINE_EXCEPTION_IN(InvalidOption, "Option {} does not exist!", std::string)
 
 /**
  * @brief outOfRange class
@@ -124,13 +124,10 @@ DEFINE_EXCEPTION_ER(RowDivisionError,
                     "The total collection size {} cannot be evenly divided by the specified number of rows {}.",
                     std::size_t, std::size_t);
 
-//todo stack tracing
-//https://stackoverflow.com/questions/77005/how-to-automatically-generate-a-stacktrace-when-my-program-crashes
 
 /**
  * @brief HttpError class
  */
-//todo can return body with reason
 DEFINE_EXCEPTION_IN(HttpError, "HTTP error: code {} , reason \"{}\" !", long, std::string)
 
 /**

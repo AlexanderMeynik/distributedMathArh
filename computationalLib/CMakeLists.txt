@@ -33,6 +33,3 @@ target_include_directories(network_shared_lib PUBLIC ../utilLib/include)
 target_link_libraries(network_shared_lib PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
 enable_coverage_for_target(network_shared_lib)
 
-
-add_executable(printerssst src/printersTests.cpp)
-target_link_libraries(printerssst PUBLIC allUtils)

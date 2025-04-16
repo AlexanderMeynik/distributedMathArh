@@ -12,6 +12,7 @@ template<typename T, size_t sz>
 requires std::is_floating_point_v<T> or std::is_integral_v<T>
 std::ostream &operator<<(std::ostream &out, std::array<T, sz> &arr);
 
+//todo make more verbose and move
 template<typename T, size_t sz>
 bool operator==(const std::array<T, sz> &arr1, const std::array<T, sz> &arr2) {
   return std::equal(arr1.begin(), arr1.end(), arr2);
@@ -23,13 +24,15 @@ using locationType = std::array<std::string, 5>;
 /**
  * Comparator for locationType
  */
-static inline auto cmp = [](const locationType &a, const locationType &b) -> bool {
-  constexpr size_t sz = 5;
-  for (int i = 0; i < sz; i++) {
-    if (a[i] != b[i])
-      return b[i] > a[i];
+struct LocationComparator {
+  bool operator()(const locationType& a, const locationType& b) const {
+    constexpr size_t sz = 5;
+    for (size_t i = 0; i < sz; i++) {
+      if (a[i] != b[i])
+        return b[i] > a[i];
+    }
+    return false;
   }
-  return false;
 };
 
 template<typename OutType, typename inType, inType(*timeGetter)(), locationType (*sourceTypeConverter)(
@@ -98,14 +101,16 @@ class clockArray {
   /**
    * This function returns it's source location to chain several
    * compute sections into one.
-   * @details Example:
-   * @details auto source =clk.TikLoc();
-   * @details some_func();
-   * @details clk.Tak();
-   * @details someOtherFunc();
-   * @details clk.Tik(source);
-   * @details some_func();
-   * @details clk.Tak();
+   * Code example:
+   * \code
+   * auto source =clk.TikLoc() //get recorded location
+   * some_func();
+   * clk.Tak();        //record function time
+   * someOtherFunc();  //won't record
+   * clk.Tik(source);   //continue recording for second function
+   * some_func2();
+   * clk.Tak();    //record function time
+   * \endcode
    * @param location
    * @return source location
    */
@@ -176,8 +181,8 @@ class clockArray {
   }
 
  private:
-  std::map<locationType, timeStore, decltype(cmp)> timers_;
-  std::map<locationType, inType, decltype(cmp)> start_ing_timers_;
+  std::map<locationType, timeStore,LocationComparator> timers_;
+  std::map<locationType, inType, LocationComparator> start_ing_timers_;
   std::stack<locationType> to_tak_;
 
   static inline std::mutex s_mutex_;
