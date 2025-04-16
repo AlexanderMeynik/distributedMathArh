@@ -18,8 +18,8 @@ jobs:
     steps:
       - name: LoadTools
         run: |
-          sudo apt-get update
-          sudo apt-get install -y lcov
+          apt-get update
+          apt-get install -y lcov
       - name: Checkout code
         uses: actions/checkout@v4
         with:
