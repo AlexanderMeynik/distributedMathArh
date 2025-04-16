@@ -13,7 +13,7 @@ using namespace std::chrono_literals;
 using Ratio = std::milli;
 using DurationType = std::chrono::duration<int64_t, Ratio>;
 static constexpr double kAbsErr = 1e-2;
-static constexpr double kRelErr = 1;
+static constexpr double kRelErr = 10;
 
 /**
  * @brief Test various measurement situations

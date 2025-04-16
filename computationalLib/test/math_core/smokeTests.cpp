@@ -74,7 +74,6 @@ std::vector<Ttype> TestFixtureGetter() {
 class DipolesVerificationTs : public ::testing::TestWithParam<Ttype> {
  public:
 
- protected:
 };
 
 INSTANTIATE_TEST_SUITE_P(
