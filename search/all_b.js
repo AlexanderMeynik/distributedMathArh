@@ -5,5 +5,6 @@ var searchData=
   ['listqueues_2',['ListQueues',['../classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9',1,'amqp_common::RabbitMQRestService']]],
   ['listusers_3',['ListUsers',['../classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073',1,'amqp_common::RabbitMQRestService']]],
   ['loadfrommatrix_4',['LoadFromMatrix',['../classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638',1,'dipoles::Dipoles']]],
-  ['locationtype_5',['locationType',['../namespacetiming.html#a90abe985843f7783a7a3f8958183f579',1,'timing']]]
+  ['locationcomparator_5',['LocationComparator',['../structtiming_1_1LocationComparator.html',1,'timing']]],
+  ['locationtype_6',['locationType',['../namespacetiming.html#a90abe985843f7783a7a3f8958183f579',1,'timing']]]
 ];

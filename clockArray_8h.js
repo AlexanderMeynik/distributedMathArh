@@ -1,5 +1,6 @@
 var clockArray_8h =
 [
+    [ "timing::LocationComparator", "structtiming_1_1LocationComparator.html", "structtiming_1_1LocationComparator" ],
     [ "timing::clockArray< OutType, inType, timeGetter, sourceTypeConverter, timeConverter >", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ],
     [ "timing::clockArray< OutType, inType, timeGetter, sourceTypeConverter, timeConverter >::timeStore", "structtiming_1_1clockArray_1_1timeStore.html", "structtiming_1_1clockArray_1_1timeStore" ],
     [ "locationType", "clockArray_8h.html#a90abe985843f7783a7a3f8958183f579", null ],

@@ -11,5 +11,6 @@ var Printers_8h =
     [ "PrintMesh", "Printers_8h.html#af1ca94a3088ef150af6898e284b34b07", null ],
     [ "PrintSolution", "Printers_8h.html#a6094b54cb763a8703807f9b06e1ba364", null ],
     [ "PrintSolutionFormat1", "Printers_8h.html#a6fe732efc4e70906cb78bdd1d65f9b38", null ],
+    [ "SerializeException", "Printers_8h.html#ae25dccefb25eb98a6f464a2ac7a091e5", null ],
     [ "ToJson", "Printers_8h.html#a8d995d401c5c9bf53c6eaaa56ee4d99a", null ]
 ];

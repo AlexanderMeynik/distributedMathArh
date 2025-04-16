@@ -3,7 +3,6 @@ var printUtils_8h =
     [ "print_utils::IosStatePreserve", "classprint__utils_1_1IosStatePreserve.html", "classprint__utils_1_1IosStatePreserve" ],
     [ "print_utils::IosStateScientific", "classprint__utils_1_1IosStateScientific.html", "classprint__utils_1_1IosStateScientific" ],
     [ "EIGENF", "printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0", null ],
-    [ "FORMAT_OPT", "printUtils_8h.html#acb190fbc204e177fa88b3b4a8f0df90a", null ],
     [ "EFormat", "printUtils_8h.html#ab5fbaf98f89405270aeefac745a3a553", null ],
     [ "EigenPrintFormats", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6", [
       [ "BASIC_ONE_DIMENSIONAL_VECTOR", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a636f3a2ef9d6f38601ad09813162d96d", null ],

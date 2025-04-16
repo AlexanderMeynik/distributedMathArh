@@ -1,6 +1,6 @@
 var errorHandling_8h =
 [
-    [ "shared::myException", "classshared_1_1myException.html", "classshared_1_1myException" ],
+    [ "shared::MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
     [ "shared::InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
     [ "shared::outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
     [ "shared::zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ],

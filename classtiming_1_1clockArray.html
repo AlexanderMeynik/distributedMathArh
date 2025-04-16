@@ -489,15 +489,14 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-<p>This function returns it's source location to chain several compute sections into one.</p>
-<p>Example:</p>
-<p>auto source =clk.TikLoc();</p>
-<p>some_func();</p>
-<p>clk.Tak();</p>
-<p>someOtherFunc();</p>
-<p>clk.Tik(source);</p>
-<p>some_func();</p>
-<p>clk.Tak(); </p><dl class="params"><dt>Parameters</dt><dd>
+<p>This function returns it's source location to chain several compute sections into one. Code example: </p><div class="fragment"><div class="line"><span class="keyword">auto</span> source =clk.TikLoc() <span class="comment">//get recorded location</span></div>
+<div class="line">some_func();</div>
+<div class="line">clk.Tak();        <span class="comment">//record function time</span></div>
+<div class="line">someOtherFunc();  <span class="comment">//won&#39;t record</span></div>
+<div class="line">clk.Tik(source);   <span class="comment">//continue recording for second function</span></div>
+<div class="line">some_func2();</div>
+<div class="line">clk.Tak();    <span class="comment">//record function time</span></div>
+</div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">location</td><td></td></tr>
   </table>

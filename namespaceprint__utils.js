@@ -38,6 +38,7 @@ var namespaceprint__utils =
     [ "PrintMesh", "namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07", null ],
     [ "PrintSolution", "namespaceprint__utils.html#a6094b54cb763a8703807f9b06e1ba364", null ],
     [ "PrintSolutionFormat1", "namespaceprint__utils.html#a6fe732efc4e70906cb78bdd1d65f9b38", null ],
+    [ "SerializeException", "namespaceprint__utils.html#ae25dccefb25eb98a6f464a2ac7a091e5", null ],
     [ "ToJson", "namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a", null ],
     [ "TupleToString", "namespaceprint__utils.html#ae4a7829e4fa46541e13b8b23db463823", null ],
     [ "kEnumTo", "namespaceprint__utils.html#a6447195c9416e901ef77717c50bd037a", null ]

@@ -27,8 +27,9 @@ var hierarchy =
     [ "AMQP::LibBoostAsioHandler", null, [
       [ "amqp_common::MyHandler", "classamqp__common_1_1MyHandler.html", null ]
     ] ],
+    [ "timing::LocationComparator", "structtiming_1_1LocationComparator.html", null ],
     [ "std::logic_error", null, [
-      [ "shared::myException", "classshared_1_1myException.html", [
+      [ "shared::MyException", "classshared_1_1MyException.html", [
         [ "shared::CurlError", "classshared_1_1CurlError.html", null ],
         [ "shared::HttpError", "classshared_1_1HttpError.html", null ],
         [ "shared::InvalidOption", "classshared_1_1InvalidOption.html", null ],

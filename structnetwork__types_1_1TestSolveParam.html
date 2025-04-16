@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('structnetwork__types_1_1TestSolveParam
 </div><!--header-->
 <div class="contents">
 
-<p>Simple task sent structure.  
+<p>Simple task sent structure This structure contains information about iteration count as well as input parameters. This one is designed to make process of iteration block separation easier.  
  <a href="structnetwork__types_1_1TestSolveParam.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -107,13 +107,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a6becddfae4e0a46a68e0109a46d8b30f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae73b4a40c022006770cb5bd3fc5e4248" id="r_ae73b4a40c022006770cb5bd3fc5e4248"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#ae73b4a40c022006770cb5bd3fc5e4248">operator==</a> (const <a class="el" href="structnetwork__types_1_1TestSolveParam.html">TestSolveParam</a> &amp;oth) const =default</td></tr>
 <tr class="separator:ae73b4a40c022006770cb5bd3fc5e4248"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f833602b099c2c3f63e040ae35daf67" id="r_a5f833602b099c2c3f63e040ae35daf67"><td class="memItemLeft" align="right" valign="top"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#a5f833602b099c2c3f63e040ae35daf67">RangeSize</a> ()</td></tr>
+<tr class="separator:a5f833602b099c2c3f63e040ae35daf67"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5b9ee447f3e0c2d893704ed24dd7152d" id="r_a5b9ee447f3e0c2d893704ed24dd7152d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structnetwork__types_1_1TestSolveParam.html">TestSolveParam</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d">SliceAway</a> (<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> iter_count)</td></tr>
+<tr class="memdesc:a5b9ee447f3e0c2d893704ed24dd7152d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slices iter_count iterations from current range and creates.  <br /></td></tr>
 <tr class="separator:a5b9ee447f3e0c2d893704ed24dd7152d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae834087ee345f9feed247b8cbdd7824e" id="r_ae834087ee345f9feed247b8cbdd7824e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#ae834087ee345f9feed247b8cbdd7824e">Slice</a> (<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> iter_count)</td></tr>
-<tr class="separator:ae834087ee345f9feed247b8cbdd7824e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afd86c96ee05f0317f38298cb373fcd13" id="r_afd86c96ee05f0317f38298cb373fcd13"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13">ToJson</a> ()</td></tr>
+<tr class="memdesc:afd86c96ee05f0317f38298cb373fcd13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serialize as json.  <br /></td></tr>
 <tr class="separator:afd86c96ee05f0317f38298cb373fcd13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab6b44d2104cef733184181dc9e3d5c3c" id="r_ab6b44d2104cef733184181dc9e3d5c3c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#ab6b44d2104cef733184181dc9e3d5c3c">TestSolveParam</a> (Json::Value &amp;val)</td></tr>
+<tr class="memdesc:ab6b44d2104cef733184181dc9e3d5c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deserialize from Json::Value.  <br /></td></tr>
 <tr class="separator:ab6b44d2104cef733184181dc9e3d5c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
@@ -128,7 +131,8 @@ Public Attributes</h2></td></tr>
 <tr class="separator:a3ad9e68158882c9b48dd6d513076ed1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simple task sent structure. </p>
+<div class="textblock"><p>Simple task sent structure This structure contains information about iteration count as well as input parameters. This one is designed to make process of iteration block separation easier. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacecommon__types.html#ae52d0f2262ef71d75c6c8a2f050852ef" title="Supertype for simple json values This is not recursive type, so nested json structures are not suppor...">common_types::JsonVariant</a> - for more information about argument types </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6becddfae4e0a46a68e0109a46d8b30f" name="a6becddfae4e0a46a68e0109a46d8b30f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6becddfae4e0a46a68e0109a46d8b30f">&#9670;&#160;</a></span>TestSolveParam() <span class="overload">[1/2]</span></h2>
@@ -171,6 +175,14 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Deserialize from Json::Value. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">val</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -200,8 +212,8 @@ Public Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="ae834087ee345f9feed247b8cbdd7824e" name="ae834087ee345f9feed247b8cbdd7824e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae834087ee345f9feed247b8cbdd7824e">&#9670;&#160;</a></span>Slice()</h2>
+<a id="a5f833602b099c2c3f63e040ae35daf67" name="a5f833602b099c2c3f63e040ae35daf67"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f833602b099c2c3f63e040ae35daf67">&#9670;&#160;</a></span>RangeSize()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -210,10 +222,9 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool network_types::TestSolveParam::Slice </td>
+          <td class="memname"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> network_types::TestSolveParam::RangeSize </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td>
-          <td class="paramname"><em>iter_count</em></td><td>)</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -231,9 +242,6 @@ Public Attributes</h2></td></tr>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structnetwork__types_1_1TestSolveParam.html">TestSolveParam</a> network_types::TestSolveParam::SliceAway </td>
@@ -243,12 +251,22 @@ Public Attributes</h2></td></tr>
           <td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+
+<p>Slices iter_count iterations from current range and creates. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">iter_count</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structnetwork__types_1_1TestSolveParam.html" title="Simple task sent structure This structure contains information about iteration count as well as input...">TestSolveParam</a> with iter_count iterations </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname"><a class="el" href="classshared_1_1outOfRange.html" title="outOfRange class">shared::outOfRange</a></td><td>- if block with specified size can't sliced away </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -266,6 +284,9 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Serialize as json. </p>
+<dl class="section return"><dt>Returns</dt><dd>Json::Value </dd></dl>
 
 </div>
 </div>

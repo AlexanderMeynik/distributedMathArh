@@ -3,7 +3,7 @@ var structnetwork__types_1_1TestSolveParam =
     [ "TestSolveParam", "structnetwork__types_1_1TestSolveParam.html#a6becddfae4e0a46a68e0109a46d8b30f", null ],
     [ "TestSolveParam", "structnetwork__types_1_1TestSolveParam.html#ab6b44d2104cef733184181dc9e3d5c3c", null ],
     [ "operator==", "structnetwork__types_1_1TestSolveParam.html#ae73b4a40c022006770cb5bd3fc5e4248", null ],
-    [ "Slice", "structnetwork__types_1_1TestSolveParam.html#ae834087ee345f9feed247b8cbdd7824e", null ],
+    [ "RangeSize", "structnetwork__types_1_1TestSolveParam.html#a5f833602b099c2c3f63e040ae35daf67", null ],
     [ "SliceAway", "structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d", null ],
     [ "ToJson", "structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13", null ],
     [ "args", "structnetwork__types_1_1TestSolveParam.html#a3ad9e68158882c9b48dd6d513076ed1e", null ],

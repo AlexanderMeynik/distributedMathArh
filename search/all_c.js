@@ -32,7 +32,7 @@ var searchData=
   ['my_5fconcepts_3a_3atwodvector_29',['twodVector',['../conceptmy__concepts_1_1twodVector.html',1,'my_concepts']]],
   ['my_5fconcepts_3a_3avaluetyped_30',['valueTyped',['../conceptmy__concepts_1_1valueTyped.html',1,'my_concepts']]],
   ['myconcepts_2eh_31',['myConcepts.h',['../myConcepts_8h.html',1,'']]],
-  ['myexception_32',['myexception',['../classshared_1_1myException.html',1,'shared::myException'],['../classshared_1_1myException.html#aef1f3a8e05051073fac0c2db7c509cdd',1,'shared::myException::myException()']]],
+  ['myexception_32',['myexception',['../classshared_1_1MyException.html',1,'shared::MyException'],['../classshared_1_1MyException.html#aa07d4f493cf6dca07bd753158cc0bfac',1,'shared::MyException::MyException()']]],
   ['myhandler_33',['myhandler',['../classamqp__common_1_1MyHandler.html',1,'amqp_common::MyHandler'],['../classamqp__common_1_1MyHandler.html#a9edffad79ce701a4ed3fcba1f380792a',1,'amqp_common::MyHandler::MyHandler()']]],
   ['mylinspace_34',['MyLinspace',['../namespacemesh__storage.html#a4f9aec90347196d3bba53c69e6dc4c76',1,'mesh_storage']]],
   ['mymeshgrid_35',['MyMeshGrid',['../namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9',1,'mesh_storage']]]

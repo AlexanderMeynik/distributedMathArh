@@ -55,14 +55,15 @@ var annotated_dup =
       [ "invalidSizes2", "classshared_1_1invalidSizes2.html", "classshared_1_1invalidSizes2" ],
       [ "ioError", "classshared_1_1ioError.html", "classshared_1_1ioError" ],
       [ "mismatchedSizes", "classshared_1_1mismatchedSizes.html", "classshared_1_1mismatchedSizes" ],
-      [ "myException", "classshared_1_1myException.html", "classshared_1_1myException" ],
+      [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
       [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
       [ "params", "structshared_1_1params.html", null ],
       [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
       [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
     ] ],
     [ "timing", "namespacetiming.html", [
-      [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ]
+      [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ],
+      [ "LocationComparator", "structtiming_1_1LocationComparator.html", "structtiming_1_1LocationComparator" ]
     ] ],
     [ "AuthHandler", "classAuthHandler.html", "classAuthHandler" ],
     [ "BasicAuthHandler", "classBasicAuthHandler.html", "classBasicAuthHandler" ],

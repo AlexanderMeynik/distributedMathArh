@@ -1,4 +1,4 @@
-<map id="shared::myException" name="shared::myException">
+<map id="shared::MyException" name="shared::MyException">
 <area shape="rect" id="Node000001" title="Default parent for user defined exception." alt="" coords="172,203,331,228"/>
 <area shape="rect" id="Node000003" href="$classshared_1_1CurlError.html" title="Curl class." alt="" coords="408,5,539,31"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="262,189,279,155,305,115,338,74,377,40,407,26,409,31,380,44,342,78,309,118,284,158,266,191"/>

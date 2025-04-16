@@ -9,7 +9,7 @@ var searchData=
   ['clockarray_6',['clockArray',['../classtiming_1_1clockArray.html',1,'timing']]],
   ['clockarray_2eh_7',['clockArray.h',['../clockArray_8h.html',1,'']]],
   ['clockarray_3c_20std_3a_3amilli_20_3e_8',['clockArray&lt; std::milli &gt;',['../classtiming_1_1clockArray.html',1,'timing']]],
-  ['clocktype_9',['clocktype',['../namespacechrono__clock.html#a66a2908011fcba5685e33e6a0fc76385',1,'chrono_clock::ClockType'],['../namespacechrono__clock.html#afcc4c98a051b0e96986af1282c46bf30',1,'chrono_clock::clockType']]],
+  ['clocktype_9',['clocktype',['../namespacechrono__clock.html#afcc4c98a051b0e96986af1282c46bf30',1,'chrono_clock::clockType'],['../namespacechrono__clock.html#a66a2908011fcba5685e33e6a0fc76385',1,'chrono_clock::ClockType']]],
   ['clusterconfigcontroller_10',['clusterconfigcontroller',['../classrest_1_1v1_1_1ClusterConfigController.html',1,'rest::v1::ClusterConfigController'],['../classrest_1_1v1_1_1ClusterConfigController.html#aec6c8f3a1213d9480b2883a23559ff7f',1,'rest::v1::ClusterConfigController::ClusterConfigController()']]],
   ['clusterconfigcontroller_2eh_11',['ClusterConfigController.h',['../ClusterConfigController_8h.html',1,'']]],
   ['common_5ftypes_12',['common_types',['../namespacecommon__types.html',1,'']]],
