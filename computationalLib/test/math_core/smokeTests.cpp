@@ -199,7 +199,11 @@ TEST_F(DipolesVerificationTs, TestSetNewCoords) {
 
   dd.SetNewCoordinates(coord);
 
-  Compare2DArrays(dd.GetMatrixx(), matr, twoDArrayDoubleComparator<FloatType>::call, 1e20 / 10000);
+  Compare2DArrays(dd.GetMatrixx(), matr,
+                  twoDArrayDoubleComparator<FloatType>::call,
+                  1e20 / 10000
+                  );
+
 
 }
 

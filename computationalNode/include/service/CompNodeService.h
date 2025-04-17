@@ -4,17 +4,17 @@
 
 #include <drogon/HttpSimpleController.h>
 #include "common/sharedDeclarations.h"
-#include "math_core/TestRunner.h"
 #include "network_shared/AMQPConsumerService.h"
 
 #include "service/BenchmarkRunnerService.h"
 
-#include "common/Printers.h"
+
 
 using namespace drogon;
 
 /// Namespace for comp_node services
 namespace comp_services {
+using namespace shared;
 class ComputationNodeService {
  public:
   ComputationNodeService() {
@@ -56,5 +56,5 @@ class ComputationNodeService {
   std::atomic<bool> characteristic_computed_;
 
 };
-//todo set message worker(test runner?, or any else)
+
 }

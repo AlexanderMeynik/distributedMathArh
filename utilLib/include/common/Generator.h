@@ -66,10 +66,11 @@ DistributionFunctor inline get_exponential_generator(FloatType lambda) {
   return gen_mt19937.GetGenFunction<std::exponential_distribution>(lambda);
 }
 
-enum class DistributionType {
+enum class DistributionType:size_t{
   NORMAL,
   UNIFORM,
-  EXPONENTIAL
+  EXPONENTIAL,
+  LAST
 };
 
 static inline std::unordered_map<std::string, DistributionType> stringToDistributionType
@@ -77,6 +78,15 @@ static inline std::unordered_map<std::string, DistributionType> stringToDistribu
         {"normal", DistributionType::NORMAL},
         {"uniform", DistributionType::UNIFORM},
         {"exponential", DistributionType::EXPONENTIAL}
+    };
+
+static constexpr size_t distribution_size=static_cast<size_t>(DistributionType::LAST)-
+    static_cast<size_t>(DistributionType::NORMAL);
+static inline std::array<std::string,distribution_size> distros
+    {
+        "normal",
+        "uniform",
+        "exponential"
     };
 
 /**

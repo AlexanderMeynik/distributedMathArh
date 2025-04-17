@@ -1,4 +1,5 @@
 #include "service/CompNodeService.h"
+#include "common/Printers.h"
 
 namespace comp_services {
 
@@ -47,7 +48,7 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
 
   res_JSON["input"] = ip;
   res_JSON["name"] = name;
-  res_JSON["bench"] = ContinuousToJson(bench_res_, true, true);
+  res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
 
   if (amqp_prod_.IsConnected()) {
     res_JSON["status"] = HttpStatusCode::k409Conflict;
