@@ -25,7 +25,7 @@ var searchData=
   ['disconnectq_22',['DisconnectQ',['../classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087',1,'rest::v1::ClusterConfigController']]],
   ['distributed_20math_20architecture_23',['Distributed math architecture',['../index.html',1,'']]],
   ['distributionfunctor_24',['DistributionFunctor',['../namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643',1,'generators']]],
-  ['distributiontype_25',['DistributionType',['../namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748',1,'generators']]],
+  ['distributiontype_25',['DistributionType',['../namespacegenerators.html#aa85d949cd066d474ab708da4d406538c',1,'generators']]],
   ['doublecastchrono_26',['DoubleCastChrono',['../namespacechrono__clock.html#a7aea20f3f3408a756f58e8cd5c439e67',1,'chrono_clock']]],
   ['durable_27',['durable',['../structnetwork__types_1_1queue.html#a6fcea50b3e01653dfc1da3a371c12dd7',1,'network_types::queue::durable'],['../structnetwork__types_1_1exchange.html#a20bcc3b3630d8036f0e8235184f0c146',1,'network_types::exchange::durable']]]
 ];

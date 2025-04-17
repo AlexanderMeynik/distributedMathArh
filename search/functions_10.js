@@ -16,6 +16,6 @@ var searchData=
   ['setseverity_13',['setSeverity',['../classshared_1_1MyException.html#a94af19e2b39d2b5c27ee4bd696b23075',1,'shared::MyException']]],
   ['setstyle_14',['SetStyle',['../classMeshPlot.html#a4c434472fec115dd15af54fb3cb93ceb',1,'MeshPlot']]],
   ['sliceaway_15',['SliceAway',['../structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d',1,'network_types::TestSolveParam']]],
-  ['solve_16',['solve',['../classdipoles_1_1Dipoles.html#ae331f492766087cced1653dc56eb4f56',1,'dipoles::Dipoles::Solve()'],['../classTestRunner.html#ac36b562a031c4bcef2d36145ede44703',1,'TestRunner::Solve()']]],
+  ['solve_16',['Solve',['../classdipoles_1_1Dipoles.html#ae331f492766087cced1653dc56eb4f56',1,'dipoles::Dipoles']]],
   ['status_17',['Status',['../classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa',1,'main_services::MainNodeService']]]
 ];

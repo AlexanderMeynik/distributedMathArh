@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['jsonauthhandler_0',['JsonAuthHandler',['../classJsonAuthHandler.html',1,'']]]
+  ['locationcomparator_0',['LocationComparator',['../structtiming_1_1LocationComparator.html',1,'timing']]]
 ];

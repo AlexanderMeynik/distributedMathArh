@@ -68,8 +68,6 @@ var annotated_dup =
     [ "AuthHandler", "classAuthHandler.html", "classAuthHandler" ],
     [ "BasicAuthHandler", "classBasicAuthHandler.html", "classBasicAuthHandler" ],
     [ "CurlWrapper", "classCurlWrapper.html", "classCurlWrapper" ],
-    [ "functable", "TestRunner_8h.html#structfunctable", "TestRunner_8h_structfunctable" ],
     [ "JsonAuthHandler", "classJsonAuthHandler.html", "classJsonAuthHandler" ],
-    [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ],
-    [ "TestRunner", "classTestRunner.html", "classTestRunner" ]
+    [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ]
 ];

@@ -64,10 +64,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AMQPConsumerService_8h.html",
-"classcomp__services_1_1BenchmarkRunner.html",
-"classshared_1_1RowDivisionError.html#a013af2d08e3385d74b0ea14ed8a2992c",
-"namespacecommon__types.html#ab9aa026e1d8b3d5d25734c3842dcb185a25f3ecde77268586dec057e55f49c09d",
-"structnetwork__types_1_1queue.html#a9526bf37b17a37746e48eab99967892d"
+"classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24",
+"classshared_1_1ioError.html",
+"namespacecomp__services.html#a135d1ee5875f454fce4f49675c3da2da",
+"structnetwork__types_1_1queueBinding.html#adfeadebb371433d13aaf9f9517eee813"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

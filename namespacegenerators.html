@@ -113,11 +113,12 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a3d685ecfc77ea42e8de702903834d748" id="r_a3d685ecfc77ea42e8de702903834d748"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748">DistributionType</a> { <a class="el" href="namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748a1e23852820b9154316c7c06e2b7ba051">NORMAL</a>
-, <a class="el" href="namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748a891f35a29c3d51d02ffd42dd6dcc69b2">UNIFORM</a>
-, <a class="el" href="namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748adcd5fc33e211f31cef0cd7cb36518d31">EXPONENTIAL</a>
+<tr class="memitem:aa85d949cd066d474ab708da4d406538c" id="r_aa85d949cd066d474ab708da4d406538c"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538c">DistributionType</a> : size_t { <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051">NORMAL</a>
+, <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca891f35a29c3d51d02ffd42dd6dcc69b2">UNIFORM</a>
+, <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31">EXPONENTIAL</a>
+, <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f">LAST</a>
  }</td></tr>
-<tr class="separator:a3d685ecfc77ea42e8de702903834d748"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:aa85d949cd066d474ab708da4d406538c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -130,7 +131,7 @@ Functions</h2></td></tr>
 <tr class="memitem:a76bba07f310d08b542755760861935cc" id="r_a76bba07f310d08b542755760861935cc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643">DistributionFunctor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a76bba07f310d08b542755760861935cc">get_exponential_generator</a> (FloatType lambda)</td></tr>
 <tr class="memdesc:a76bba07f310d08b542755760861935cc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand generator getter for exponential distribution.  <br /></td></tr>
 <tr class="separator:a76bba07f310d08b542755760861935cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a06e29279648ea72ae3716766050740ac" id="r_a06e29279648ea72ae3716766050740ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643">DistributionFunctor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a06e29279648ea72ae3716766050740ac">ParseFunc</a> (const <a class="el" href="namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748">DistributionType</a> &amp;distribution_type, const std::unordered_map&lt; std::string, JsonVariant &gt; &amp;args)</td></tr>
+<tr class="memitem:a06e29279648ea72ae3716766050740ac" id="r_a06e29279648ea72ae3716766050740ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643">DistributionFunctor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#a06e29279648ea72ae3716766050740ac">ParseFunc</a> (const <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538c">DistributionType</a> &amp;distribution_type, const std::unordered_map&lt; std::string, JsonVariant &gt; &amp;args)</td></tr>
 <tr class="separator:a06e29279648ea72ae3716766050740ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac158ee3caf0a2574ece99b27b80724cb" id="r_ac158ee3caf0a2574ece99b27b80724cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643">DistributionFunctor</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacegenerators.html#ac158ee3caf0a2574ece99b27b80724cb">ParseFunc</a> (const std::string &amp;type, const std::unordered_map&lt; std::string, JsonVariant &gt; &amp;args)</td></tr>
 <tr class="separator:ac158ee3caf0a2574ece99b27b80724cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -157,8 +158,8 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Enumeration Type Documentation</h2>
-<a id="a3d685ecfc77ea42e8de702903834d748" name="a3d685ecfc77ea42e8de702903834d748"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3d685ecfc77ea42e8de702903834d748">&#9670;&#160;</a></span>DistributionType</h2>
+<a id="aa85d949cd066d474ab708da4d406538c" name="aa85d949cd066d474ab708da4d406538c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa85d949cd066d474ab708da4d406538c">&#9670;&#160;</a></span>DistributionType</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -167,7 +168,7 @@ Variables</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">enum class <a class="el" href="namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748">generators::DistributionType</a></td>
+          <td class="memname">enum class <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538c">generators::DistributionType</a> : <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a></td>
         </tr>
       </table>
   </td>
@@ -177,9 +178,10 @@ Variables</h2></td></tr>
 </table>
 </div><div class="memdoc">
 <table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a3d685ecfc77ea42e8de702903834d748a1e23852820b9154316c7c06e2b7ba051" name="a3d685ecfc77ea42e8de702903834d748a1e23852820b9154316c7c06e2b7ba051"></a>NORMAL&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a3d685ecfc77ea42e8de702903834d748a891f35a29c3d51d02ffd42dd6dcc69b2" name="a3d685ecfc77ea42e8de702903834d748a891f35a29c3d51d02ffd42dd6dcc69b2"></a>UNIFORM&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a3d685ecfc77ea42e8de702903834d748adcd5fc33e211f31cef0cd7cb36518d31" name="a3d685ecfc77ea42e8de702903834d748adcd5fc33e211f31cef0cd7cb36518d31"></a>EXPONENTIAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051" name="aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051"></a>NORMAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa85d949cd066d474ab708da4d406538ca891f35a29c3d51d02ffd42dd6dcc69b2" name="aa85d949cd066d474ab708da4d406538ca891f35a29c3d51d02ffd42dd6dcc69b2"></a>UNIFORM&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31" name="aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31"></a>EXPONENTIAL&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f" name="aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f"></a>LAST&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -319,7 +321,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="namespacegenerators.html#ad620f8b5c4a5c357a4acc0091309b643">DistributionFunctor</a> generators::ParseFunc </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacegenerators.html#a3d685ecfc77ea42e8de702903834d748">DistributionType</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538c">DistributionType</a> &amp;&#160;</td>
           <td class="paramname"><em>distribution_type</em>, </td>
         </tr>
         <tr>

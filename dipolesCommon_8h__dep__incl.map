@@ -1,17 +1,13 @@
 <map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/math_core/dipolesCommon.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/math_core/dipolesCommon.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="96,5,384,75"/>
-<area shape="rect" id="Node000002" href="$Dipoles_8h.html" title=" " alt="" coords="96,123,384,192"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="243,89,243,122,237,122,237,89"/>
-<area shape="rect" id="Node000003" href="$TestRunner_8h.html" title=" " alt="" coords="96,240,384,309"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="243,206,243,240,237,240,237,206"/>
-<area shape="rect" id="Node000004" href="$math__core_8h.html" title=" " alt="" coords="5,357,293,427"/>
-<area shape="poly" id="edge6_Node000002_Node000004" title=" " alt="" coords="127,201,104,219,86,241,78,259,77,273,86,308,99,333,116,355,112,359,95,336,82,310,72,274,73,257,82,239,100,215,124,197"/>
-<area shape="rect" id="Node000007" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="409,240,666,309"/>
-<area shape="poly" id="edge7_Node000002_Node000007" title=" " alt="" coords="340,194,451,237,449,242,338,199"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="207,322,178,359,174,355,203,319"/>
-<area shape="rect" id="Node000005" href="$CompNodeService_8h.html" title=" " alt="" coords="372,357,591,427"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="324,313,412,355,410,360,321,318"/>
-<area shape="rect" id="Node000006" href="$CompNode_8h.html" title=" " alt="" coords="372,475,591,544"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="484,441,484,474,479,474,479,441"/>
-<area shape="poly" id="edge8_Node000007_Node000005" title=" " alt="" coords="517,323,500,358,495,356,512,321"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="153,5,441,75"/>
+<area shape="rect" id="Node000002" href="$Dipoles_8h.html" title=" " alt="" coords="153,123,441,192"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="300,89,300,122,295,122,295,89"/>
+<area shape="rect" id="Node000003" href="$math__core_8h.html" title=" " alt="" coords="5,240,293,309"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="245,203,194,242,191,238,242,198"/>
+<area shape="rect" id="Node000004" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="318,240,575,309"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="353,198,404,238,401,242,350,203"/>
+<area shape="rect" id="Node000005" href="$CompNodeService_8h.html" title=" " alt="" coords="337,357,556,427"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="449,323,449,357,444,357,444,323"/>
+<area shape="rect" id="Node000006" href="$CompNode_8h.html" title=" " alt="" coords="337,475,556,544"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="449,441,449,474,444,474,444,441"/>
 </map>

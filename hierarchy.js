@@ -15,7 +15,6 @@ var hierarchy =
     [ "CurlWrapper", "classCurlWrapper.html", null ],
     [ "dipoles::Dipoles", "classdipoles_1_1Dipoles.html", null ],
     [ "network_types::exchange", "structnetwork__types_1_1exchange.html", null ],
-    [ "functable< Args >", "TestRunner_8h.html#structfunctable", null ],
     [ "generators::generator< randomDevice >", "structgenerators_1_1generator.html", null ],
     [ "drogon::HttpController", null, [
       [ "rest::v1::ClusterConfigController", "classrest_1_1v1_1_1ClusterConfigController.html", null ],
@@ -56,7 +55,6 @@ var hierarchy =
     [ "common_types::returnToDataTypeT< ReturnType::EIGEN_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1EIGEN__VECTOR_01_4", null ],
     [ "common_types::returnToDataTypeT< ReturnType::STD_VALARRAY >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VALARRAY_01_4", null ],
     [ "common_types::returnToDataTypeT< ReturnType::STD_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4", null ],
-    [ "TestRunner", "classTestRunner.html", null ],
     [ "network_types::TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", null ],
     [ "timing::clockArray< OutType, inType, timeGetter, sourceTypeConverter, timeConverter >::timeStore", "structtiming_1_1clockArray_1_1timeStore.html", null ],
     [ "main_services::WorkerManagementService", "classmain__services_1_1WorkerManagementService.html", null ]

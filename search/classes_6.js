@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['generator_0',['generator',['../structgenerators_1_1generator.html',1,'generators']]]
+  ['httperror_0',['HttpError',['../classshared_1_1HttpError.html',1,'shared']]]
 ];
