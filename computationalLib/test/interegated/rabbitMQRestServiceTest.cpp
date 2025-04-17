@@ -8,11 +8,7 @@
 
 using namespace amqp_common;
 
-struct AuthParams {
-  std::string host;
-  std::string username;
-  std::string password;
-};
+using test_common::AuthParams;
 
 AuthParams g_serviceParams;
 

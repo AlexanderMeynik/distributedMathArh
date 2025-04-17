@@ -45,6 +45,13 @@ namespace ms = mesh_storage;
 namespace test_common {
 constexpr double kTool = std::numeric_limits<decltype(kTool)>::epsilon();
 
+
+struct AuthParams {
+  std::string host;
+  std::string username;
+  std::string password;
+};
+
 /**
  * @brief Custom check for double near
  * @tparam T
