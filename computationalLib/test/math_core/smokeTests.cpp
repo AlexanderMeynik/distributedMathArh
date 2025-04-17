@@ -120,3 +120,88 @@ TEST_P(DipolesVerificationTs, test_on_10_basik_conf_meshes) {
   Compare2DArrays<true>(ress, r2, twoDArrayDoubleComparator<FloatType>::call, 1e-3);
 }
 
+
+TEST_F(DipolesVerificationTs, TestAllSolutionSpecializations) {
+
+  using namespace common_types;
+
+  auto test_data = TestFixtureGetter()[3];
+  auto [nn, conf, matr, sol, pp] = test_data;
+
+  dipoles::Dipoles dd;
+  dd.LoadFromMatrix(matr);
+
+
+  int n = sol.size() / 4;
+  EXPECT_EQ(sol.size(), 4 * n) << "Expected solution size must be 4 * n";
+
+
+  auto solution_arr = dd.Solve<Arr2EigenVec>();
+  EXPECT_EQ(solution_arr.size(), 2) << "Arr2EigenVec should contain 2 vectors";
+  EXPECT_EQ(solution_arr[0].size(), 2 * n) << "First vector size should be 2 * n";
+  EXPECT_EQ(solution_arr[1].size(), 2 * n) << "Second vector size should be 2 * n";
+
+  CompareArrays(solution_arr[0], sol.segment(0, 2 * n),
+                arrayDoubleComparator<FloatType>::call);
+  CompareArrays(solution_arr[1], sol.segment(2 * n, 2 * n),
+                arrayDoubleComparator<FloatType>::call);
+
+  auto solution_eigen = dd.Solve<EigenVec>();
+  EXPECT_EQ(solution_eigen.size(), 4 * n) << "EigenVec size should be 4 * n";
+  CompareArrays(solution_eigen, sol, arrayDoubleComparator<FloatType>::call);
+
+  auto solution_stdvec = dd.Solve<StdVec>();
+  EXPECT_EQ(solution_stdvec.size(), 4 * n) << "StdVec size should be 4 * n";
+  CompareArrays(solution_stdvec, sol, arrayDoubleComparator<FloatType>::call);
+
+  auto solution_stdvalarr = dd.Solve<StdValarr>();
+  EXPECT_EQ(solution_stdvalarr.size(), 4 * n) << "StdValarr size should be 4 * n";
+  CompareArrays(solution_stdvalarr, sol, arrayDoubleComparator<FloatType>::call);
+}
+
+
+TEST_F(DipolesVerificationTs, TestFunctionImplEqualRes) {
+
+  using namespace common_types;
+
+  auto test_data = TestFixtureGetter()[3];
+  auto [nn, coord, matr, sol, mes] = test_data;
+
+  dipoles::Dipoles dd;
+
+  dd.GetFullFunction(coord,sol);
+
+  auto ff=dd.GetIfunction();
+
+
+  MeshCreator mm;
+  mm.ConstructMeshes();
+  mm.ApplyIntegrate(ff);
+
+  auto resulting_mesh = mesh_storage::Unflatten(mm.data_[2], mm.dimensions_);
+
+  auto expected = mesh_storage::Unflatten(mes.data_[2], mes.dimensions_);
+
+
+  Compare2DArrays<true>(expected, resulting_mesh, twoDArrayDoubleComparator<FloatType>::call, 1e-3);
+
+}
+
+
+TEST_F(DipolesVerificationTs, TestSetNewCoords) {
+
+  using namespace common_types;
+
+  auto test_data = TestFixtureGetter()[3];
+  auto [nn, coord, matr, sol, mesh] = test_data;
+
+  dipoles::Dipoles dd;
+
+  dd.SetNewCoordinates(coord);
+
+  Compare2DArrays(dd.GetMatrixx(), matr, twoDArrayDoubleComparator<FloatType>::call, 1e20 / 10000);
+
+}
+
+
+
