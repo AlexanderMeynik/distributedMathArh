@@ -14,7 +14,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     env:
-      host: http://localhost:15672
+      host: http://rabbitmq:15672
       username: sysadmin
       password: syspassword
     services:
