@@ -31,7 +31,7 @@ JsonVariant JsonToVariant(const Json::Value &val);
 /**
  * @struct TestSolveParam
  * @brief Simple task sent structure
- * @detailed This structure contains information about iteration count
+ * @details This structure contains information about iteration count
  * as well as input parameters.
  * This one is designed to make process of iteration block separation easier
  * @see common_types::JsonVariant - for more information about argument types
