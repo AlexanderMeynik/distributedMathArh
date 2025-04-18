@@ -8,7 +8,7 @@ var searchData=
   ['replot_5',['Replot',['../classMeshPlot.html#a672082e604c9e30047fba2d1027284f0',1,'MeshPlot']]],
   ['reset_6',['Reset',['../classtiming_1_1clockArray.html#a33d293c08f1e9ed1777c7dd45be89391',1,'timing::clockArray']]],
   ['resettimer_7',['ResetTimer',['../classtiming_1_1clockArray.html#a0fd51e38d4795fee6dd876ed49cb42b9',1,'timing::clockArray']]],
-  ['retrive_8',['Retrive',['../classJsonAuthHandler.html#a2489f9d8a0fe0e399a52dd9791e28caa',1,'JsonAuthHandler']]],
+  ['retrive_8',['Retrive',['../classrest__utils_1_1JsonAuthHandler.html#a5f20755ab7094301dcc578298a3799ff',1,'rest_utils::JsonAuthHandler']]],
   ['rowdivisionerror_9',['RowDivisionError',['../classshared_1_1RowDivisionError.html#a5d33b396d705f3cd6ef653513174d0fe',1,'shared::RowDivisionError']]],
   ['run_10',['Run',['../classcomp__services_1_1BenchmarkRunner.html#a70e67d26691cdc3b4d56761c8b68371a',1,'comp_services::BenchmarkRunner']]],
   ['runbench_11',['RunBench',['../classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2',1,'comp_services::ComputationNodeService']]]

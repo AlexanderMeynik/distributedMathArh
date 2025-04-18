@@ -1,0 +1,5 @@
+<map id="network_types::TestSolveParam::ToJson" name="network_types::TestSolveParam::ToJson">
+<area shape="rect" id="Node000001" title="Serialize as json." alt="" coords="5,5,193,45"/>
+<area shape="rect" id="Node000002" href="$namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="241,13,455,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,23,228,23,228,28,194,28"/>
+</map>

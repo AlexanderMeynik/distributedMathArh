@@ -1,8 +1,8 @@
 var restUtils_8h =
 [
-    [ "CurlWrapper", "classCurlWrapper.html", "classCurlWrapper" ],
-    [ "AuthHandler", "classAuthHandler.html", "classAuthHandler" ],
-    [ "BasicAuthHandler", "classBasicAuthHandler.html", "classBasicAuthHandler" ],
-    [ "JsonAuthHandler", "classJsonAuthHandler.html", "classJsonAuthHandler" ],
-    [ "PerformCurlRequest", "restUtils_8h.html#a559737d3a6801e9f89ada9f8e0a6b1ca", null ]
+    [ "rest_utils::CurlWrapper", "classrest__utils_1_1CurlWrapper.html", "classrest__utils_1_1CurlWrapper" ],
+    [ "rest_utils::AuthHandler", "classrest__utils_1_1AuthHandler.html", "classrest__utils_1_1AuthHandler" ],
+    [ "rest_utils::BasicAuthHandler", "classrest__utils_1_1BasicAuthHandler.html", "classrest__utils_1_1BasicAuthHandler" ],
+    [ "rest_utils::JsonAuthHandler", "classrest__utils_1_1JsonAuthHandler.html", "classrest__utils_1_1JsonAuthHandler" ],
+    [ "PerformCurlRequest", "restUtils_8h.html#a13d42dab8d7d47e83ca99acc39ed4533", null ]
 ];

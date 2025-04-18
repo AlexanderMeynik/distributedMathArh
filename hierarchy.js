@@ -2,9 +2,9 @@ var hierarchy =
 [
     [ "amqp_common::AMQPConsumerService", "classamqp__common_1_1AMQPConsumerService.html", null ],
     [ "amqp_common::AMQPPublisherService", "classamqp__common_1_1AMQPPublisherService.html", null ],
-    [ "AuthHandler", "classAuthHandler.html", [
-      [ "BasicAuthHandler", "classBasicAuthHandler.html", [
-        [ "JsonAuthHandler", "classJsonAuthHandler.html", null ]
+    [ "rest_utils::AuthHandler", "classrest__utils_1_1AuthHandler.html", [
+      [ "rest_utils::BasicAuthHandler", "classrest__utils_1_1BasicAuthHandler.html", [
+        [ "rest_utils::JsonAuthHandler", "classrest__utils_1_1JsonAuthHandler.html", null ]
       ] ]
     ] ],
     [ "comp_services::BenchmarkRunner", "classcomp__services_1_1BenchmarkRunner.html", null ],
@@ -12,7 +12,7 @@ var hierarchy =
     [ "timing::clockArray< std::milli >", "classtiming_1_1clockArray.html", null ],
     [ "main_services::ComputationalNode", "classmain__services_1_1ComputationalNode.html", null ],
     [ "comp_services::ComputationNodeService", "classcomp__services_1_1ComputationNodeService.html", null ],
-    [ "CurlWrapper", "classCurlWrapper.html", null ],
+    [ "rest_utils::CurlWrapper", "classrest__utils_1_1CurlWrapper.html", null ],
     [ "dipoles::Dipoles", "classdipoles_1_1Dipoles.html", null ],
     [ "network_types::exchange", "structnetwork__types_1_1exchange.html", null ],
     [ "generators::generator< randomDevice >", "structgenerators_1_1generator.html", null ],

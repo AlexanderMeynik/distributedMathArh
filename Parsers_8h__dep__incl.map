@@ -1,9 +1,18 @@
-<map id="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/Parsers.h" name="/home/runner/work/distributedMathArh/distributedMathArh/utilLib/include/common/Parsers.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="50,5,291,60"/>
-<area shape="rect" id="Node000002" href="$WorkerManagementService_8h.html" title=" " alt="" coords="5,108,336,177"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,74,173,108,168,108,168,74"/>
-<area shape="rect" id="Node000003" href="$MainNodeService_8h.html" title=" " alt="" coords="8,225,333,280"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="173,191,173,225,168,225,168,191"/>
-<area shape="rect" id="Node000004" href="$ClusterConfigController_8h.html" title=" " alt="" coords="61,328,280,397"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="173,294,173,328,168,328,168,294"/>
+<map id="utilLib/include/common/Parsers.h" name="utilLib/include/common/Parsers.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="411,5,585,45"/>
+<area shape="rect" id="Node000002" href="$WorkerManagementService_8h.html" title=" " alt="" coords="236,93,453,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="454,54,380,96,377,91,451,50"/>
+<area shape="rect" id="Node000005" href="$ClusterConfigController_8cpp.html" title=" " alt="" coords="202,357,405,397"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="501,59,495,135,488,179,475,222,452,271,416,311,381,338,345,360,342,355,378,334,412,307,448,268,470,220,483,178,490,134,496,59"/>
+<area shape="rect" id="Node000008" href="$Parsers_8cpp.html" title=" " alt="" coords="536,93,679,133"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="535,52,585,91,581,95,531,56"/>
+<area shape="rect" id="Node000003" href="$MainNodeService_8h.html" title=" " alt="" coords="13,181,204,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="281,141,161,184,159,179,279,136"/>
+<area shape="rect" id="Node000007" href="$WorkerManagementService_8cpp.html" title=" " alt="" coords="229,181,461,221"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="347,147,347,181,342,181,342,147"/>
+<area shape="rect" id="Node000004" href="$ClusterConfigController_8h.html" title=" " alt="" coords="5,269,212,309"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="111,235,111,269,106,269,106,235"/>
+<area shape="rect" id="Node000006" href="$MainNodeService_8cpp.html" title=" " alt="" coords="236,269,403,309"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="168,224,274,267,272,272,166,229"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="165,312,262,355,260,360,163,317"/>
 </map>

@@ -20,7 +20,7 @@ var sharedDeclarations_8h =
       [ "OPENMP_OLD", "sharedDeclarations_8h.html#a945426c73d4f4837f3cf6b4e30555866ad500d6041e206f6cbfdff0c1bda10d91", null ],
       [ "PRINT", "sharedDeclarations_8h.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b", null ]
     ] ],
-    [ "DefaultBench", "sharedDeclarations_8h.html#afdf3a72bb1d3b2e234049a546d6035a3", null ],
+    [ "DefaultBench", "sharedDeclarations_8h.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
     [ "operator<<", "sharedDeclarations_8h.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
     [ "kStateToStr", "sharedDeclarations_8h.html#a7762cf232499ddc3f64cf21408e7e400", null ]
 ];

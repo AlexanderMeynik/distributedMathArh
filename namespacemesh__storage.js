@@ -11,5 +11,6 @@ var namespacemesh__storage =
     [ "MyLinspace", "namespacemesh__storage.html#a4f9aec90347196d3bba53c69e6dc4c76", null ],
     [ "MyMeshGrid", "namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9", null ],
     [ "PrintDec", "namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740", null ],
+    [ "SphericalTransformation", "namespacemesh__storage.html#acb146bf6fbd19270ddd0140e836bff2a", null ],
     [ "Unflatten", "namespacemesh__storage.html#aaf5ccc0e24b8812a7a2460b00aac704d", null ]
 ];

@@ -1,0 +1,5 @@
+<map id="main_services::WorkerManagementService::GetStatus" name="main_services::WorkerManagementService::GetStatus">
+<area shape="rect" id="Node000001" title="returns list of lists with all nodes meta information" alt="" coords="5,5,260,45"/>
+<area shape="rect" id="Node000002" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="308,13,517,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,23,294,23,294,28,260,28"/>
+</map>

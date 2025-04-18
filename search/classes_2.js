@@ -7,5 +7,5 @@ var searchData=
   ['computationalnode_4',['ComputationalNode',['../classmain__services_1_1ComputationalNode.html',1,'main_services']]],
   ['computationnodeservice_5',['ComputationNodeService',['../classcomp__services_1_1ComputationNodeService.html',1,'comp_services']]],
   ['curlerror_6',['CurlError',['../classshared_1_1CurlError.html',1,'shared']]],
-  ['curlwrapper_7',['CurlWrapper',['../classCurlWrapper.html',1,'']]]
+  ['curlwrapper_7',['CurlWrapper',['../classrest__utils_1_1CurlWrapper.html',1,'rest_utils']]]
 ];

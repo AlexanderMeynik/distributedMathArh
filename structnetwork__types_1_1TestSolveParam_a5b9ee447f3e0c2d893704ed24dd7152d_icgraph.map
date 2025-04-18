@@ -1,0 +1,5 @@
+<map id="network_types::TestSolveParam::SliceAway" name="network_types::TestSolveParam::SliceAway">
+<area shape="rect" id="Node000001" title="Slices iter_count iterations from current range and creates." alt="" coords="292,5,480,45"/>
+<area shape="rect" id="Node000002" href="$classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="5,5,244,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="278,28,244,28,244,23,278,23"/>
+</map>

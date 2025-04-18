@@ -1,0 +1,5 @@
+<map id="amqp_common::AMQPConsumerService::Connect" name="amqp_common::AMQPConsumerService::Connect">
+<area shape="rect" id="Node000001" title="Starts event Loop to read from queue1." alt="" coords="5,5,241,45"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPConsumerService.html#a85f38595f3369881c29ecf46dc90fc44" title="Disconnects to the specified RabbitMQQueue." alt="" coords="289,5,525,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,23,275,23,275,28,242,28"/>
+</map>

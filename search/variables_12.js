@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['user_5f_0',['user_',['../classBasicAuthHandler.html#ad36656df7e64d8d26412ce43ba66db34',1,'BasicAuthHandler']]]
+  ['user_5f_0',['user_',['../classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b',1,'rest_utils::BasicAuthHandler']]]
 ];

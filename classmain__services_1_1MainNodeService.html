@@ -96,35 +96,50 @@ $(document).ready(function(){initNavTree('classmain__services_1_1MainNodeService
   <div class="headertitle"><div class="title">main_services::MainNodeService Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Handles most of service side interactions for main Node.  
+ <a href="classmain__services_1_1MainNodeService.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad9b211248ded7903bc762bbd25254225" id="r_ad9b211248ded7903bc762bbd25254225"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#ad9b211248ded7903bc762bbd25254225">MainNodeService</a> (const std::string &amp;user, const std::string &amp;password)</td></tr>
+<tr class="memdesc:ad9b211248ded7903bc762bbd25254225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes all components on heap with default constructors. Creates JsonAuthHandler from user,password pair.  <br /></td></tr>
 <tr class="separator:ad9b211248ded7903bc762bbd25254225"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab1180f7bf6b7716041f1e24ab66ffdfa" id="r_ab1180f7bf6b7716041f1e24ab66ffdfa"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa">Status</a> ()</td></tr>
+<tr class="memdesc:ab1180f7bf6b7716041f1e24ab66ffdfa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Queries the status of the main node and connected workers Status contains:  <br /></td></tr>
 <tr class="separator:ab1180f7bf6b7716041f1e24ab66ffdfa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1dbdf72e1963c5a01797dafd18c02c8" id="r_ad1dbdf72e1963c5a01797dafd18c02c8"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">ConnectNode</a> (const std::string &amp;host_port, const std::string &amp;name)</td></tr>
+<tr class="memdesc:ad1dbdf72e1963c5a01797dafd18c02c8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects the node to the computational cluster.  <br /></td></tr>
 <tr class="separator:ad1dbdf72e1963c5a01797dafd18c02c8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed0379bb3e648c0b8ebd298bc7a08e6a" id="r_aed0379bb3e648c0b8ebd298bc7a08e6a"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a">DisconnectNode</a> (const std::string &amp;host_port)</td></tr>
 <tr class="separator:aed0379bb3e648c0b8ebd298bc7a08e6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af7df0ca5b8758b765b28f5b8e3185bd9" id="r_af7df0ca5b8758b765b28f5b8e3185bd9"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">Connect</a> (const std::string &amp;qip, const std::vector&lt; std::string &gt; &amp;names)</td></tr>
+<tr class="memdesc:af7df0ca5b8758b765b28f5b8e3185bd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects the main node to a RabbiMQ instance at qip.  <br /></td></tr>
 <tr class="separator:af7df0ca5b8758b765b28f5b8e3185bd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3eb84f0590beddc543f0bd979e7ae6dc" id="r_a3eb84f0590beddc543f0bd979e7ae6dc"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc">Disconnect</a> ()</td></tr>
+<tr class="memdesc:a3eb84f0590beddc543f0bd979e7ae6dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects the main node from a RabbitMQ instance.  <br /></td></tr>
 <tr class="separator:a3eb84f0590beddc543f0bd979e7ae6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab62802d468cdc18764b47364b16e2e01" id="r_ab62802d468cdc18764b47364b16e2e01"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#ab62802d468cdc18764b47364b16e2e01">Publish</a> (<a class="el" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> &amp;ts, std::string node)</td></tr>
 <tr class="separator:ab62802d468cdc18764b47364b16e2e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bce308ab8bf59f474fc6618efc61050" id="r_a8bce308ab8bf59f474fc6618efc61050"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">SendToExecution</a> (<a class="el" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> &amp;ts)</td></tr>
+<tr class="memdesc:a8bce308ab8bf59f474fc6618efc61050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the task to be sharded and republished Uses collected node bench information to divide task into non intersecitng ranges And sends them to workers to process.  <br /></td></tr>
 <tr class="separator:a8bce308ab8bf59f474fc6618efc61050"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Handles most of service side interactions for main Node. </p>
+<p>Contains a bunch of other services to maintain the cluster behaviour. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="classamqp__common_1_1RabbitMQRestService.html" title="This service is used to perform http requests to a RabbiMQ management interface.">amqp_common::RabbitMQRestService</a> </dd>
+<dd>
+<a class="el" href="classrest__utils_1_1JsonAuthHandler.html">rest_utils::JsonAuthHandler</a> </dd>
+<dd>
+<a class="el" href="classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues.">amqp_common::AMQPPublisherService</a> </dd>
+<dd>
+<a class="el" href="classmain__services_1_1WorkerManagementService.html" title="Class for worker node enumeration and management.">main_services::WorkerManagementService</a> </dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="ad9b211248ded7903bc762bbd25254225" name="ad9b211248ded7903bc762bbd25254225"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad9b211248ded7903bc762bbd25254225">&#9670;&#160;</a></span>MainNodeService()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">main_services::MainNodeService::MainNodeService </td>
@@ -144,12 +159,23 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
+
+<p>Initializes all components on heap with default constructors. Creates JsonAuthHandler from user,password pair. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">user</td><td></td></tr>
+    <tr><td class="paramname">password</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a42851f6f33843c2583fb13bbd00ce5f4">amqp_common::RabbitMQRestService::RabbitMQRestService()</a> </dd>
+<dd>
+<a class="el" href="classrest__utils_1_1JsonAuthHandler.html">rest_utils::JsonAuthHandler</a> </dd>
+<dd>
+<a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a7cf12e246a3f8cc7f2d80749ae4b031e">amqp_common::AMQPPublisherService::AMQPPublisherService()</a> </dd>
+<dd>
+<a class="el" href="classmain__services_1_1WorkerManagementService.html#a5c470a2a0858114484256e7568faead3">main_services::WorkerManagementService::WorkerManagementService()</a> </dd></dl>
 
 </div>
 </div>
@@ -180,6 +206,29 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Connects the main node to a RabbiMQ instance at qip. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">qip</td><td></td></tr>
+    <tr><td class="paramname">names</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph" id="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph">
+<area shape="rect" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="5,23,244,63"/>
+<area shape="rect" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="292,5,532,31"/>
+<area shape="poly" title=" " alt="" coords="244,30,278,27,279,32,244,35"/>
+<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="331,55,493,80"/>
+<area shape="poly" title=" " alt="" coords="244,51,317,57,317,62,244,56"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ad1dbdf72e1963c5a01797dafd18c02c8" name="ad1dbdf72e1963c5a01797dafd18c02c8"></a>
@@ -208,6 +257,27 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Connects the node to the computational cluster. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host_port</td><td></td></tr>
+    <tr><td class="paramname">name</td><td>-queue name(currently same as host_port) </td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph" id="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph">
+<area shape="rect" title="Connects the node to the computational cluster." alt="" coords="5,5,244,45"/>
+<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="292,13,455,38"/>
+<area shape="poly" title=" " alt="" coords="244,23,278,23,278,28,244,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a3eb84f0590beddc543f0bd979e7ae6dc" name="a3eb84f0590beddc543f0bd979e7ae6dc"></a>
@@ -224,6 +294,8 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Disconnects the main node from a RabbitMQ instance. </p>
 
 </div>
 </div>
@@ -242,6 +314,12 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host_port</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -270,6 +348,28 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ts</td><td></td></tr>
+    <tr><td class="paramname">node</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph" id="aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,244,45"/>
+<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="292,5,480,45"/>
+<area shape="poly" title=" " alt="" coords="244,23,278,23,278,28,244,28"/>
+<area shape="rect" href="namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="528,13,741,38"/>
+<area shape="poly" title=" " alt="" coords="480,23,514,23,514,28,480,28"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -289,6 +389,27 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Sends the task to be sharded and republished Uses collected node bench information to divide task into non intersecitng ranges And sends them to workers to process. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ts</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>amqp_common::AMQPPublisherServicePublish(EnvelopePtr message, const std::string qname) </dd></dl>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph" id="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph">
+<area shape="rect" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="5,5,244,45"/>
+<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d" title="Slices iter_count iterations from current range and creates." alt="" coords="292,5,480,45"/>
+<area shape="poly" title=" " alt="" coords="244,23,278,23,278,28,244,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="ab1180f7bf6b7716041f1e24ab66ffdfa" name="ab1180f7bf6b7716041f1e24ab66ffdfa"></a>
@@ -306,10 +427,17 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Queries the status of the main node and connected workers Status contains: </p>
+<ol type="1">
+<li>Connection status to a RabbitMQ instance (with data if connected)</li>
+<li>Several lists(by status) of all nodes with their characteristics(bench result ...) </li>
+</ol>
+
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/runner/work/distributedMathArh/distributedMathArh/mainNode/include/service/<a class="el" href="MainNodeService_8h_source.html">MainNodeService.h</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>mainNode/include/service/<a class="el" href="MainNodeService_8h_source.html">MainNodeService.h</a></li>
+<li>mainNode/src/service/<a class="el" href="MainNodeService_8cpp.html">MainNodeService.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

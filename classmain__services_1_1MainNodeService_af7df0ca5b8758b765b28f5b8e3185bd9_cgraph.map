@@ -1,0 +1,7 @@
+<map id="main_services::MainNodeService::Connect" name="main_services::MainNodeService::Connect">
+<area shape="rect" id="Node000001" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="5,23,244,63"/>
+<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="292,5,532,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,30,278,27,279,32,244,35"/>
+<area shape="rect" id="Node000003" href="$classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="331,55,493,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,51,317,57,317,62,244,56"/>
+</map>

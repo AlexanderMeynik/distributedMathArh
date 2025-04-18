@@ -21,5 +21,5 @@ var searchData=
   ['createqueue_18',['CreateQueue',['../classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96',1,'amqp_common::RabbitMQRestService']]],
   ['createuser_19',['CreateUser',['../classamqp__common_1_1RabbitMQRestService.html#a5e860706d253929a517dc523507e9365',1,'amqp_common::RabbitMQRestService']]],
   ['curlerror_20',['CurlError',['../classshared_1_1CurlError.html#a52a51c07950449ccaa7ced57ccdf09b2',1,'shared::CurlError']]],
-  ['curlwrapper_21',['CurlWrapper',['../classCurlWrapper.html#aad24ed405bdc97b08536efa983ef7def',1,'CurlWrapper']]]
+  ['curlwrapper_21',['CurlWrapper',['../classrest__utils_1_1CurlWrapper.html#af3838348605721787cc0ca3fbb4bfe72',1,'rest_utils::CurlWrapper']]]
 ];

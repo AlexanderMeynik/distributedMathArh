@@ -96,18 +96,25 @@ $(document).ready(function(){initNavTree('classmain__services_1_1WorkerManagemen
   <div class="headertitle"><div class="title">main_services::WorkerManagementService Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Class for worker node enumeration and management.  
+ <a href="classmain__services_1_1WorkerManagementService.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f1f101f84c7bbb7970e6d18a49ccef5" id="r_a0f1f101f84c7bbb7970e6d18a49ccef5"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5">GetStatus</a> ()</td></tr>
+<tr class="memdesc:a0f1f101f84c7bbb7970e6d18a49ccef5"><td class="mdescLeft">&#160;</td><td class="mdescRight">returns list of lists with all nodes meta information  <br /></td></tr>
 <tr class="separator:a0f1f101f84c7bbb7970e6d18a49ccef5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c470a2a0858114484256e7568faead3" id="r_a5c470a2a0858114484256e7568faead3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a5c470a2a0858114484256e7568faead3">WorkerManagementService</a> ()</td></tr>
 <tr class="separator:a5c470a2a0858114484256e7568faead3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab9d77e0c3170a27ea8d5b972fc3d1014" id="r_ab9d77e0c3170a27ea8d5b972fc3d1014"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#ab9d77e0c3170a27ea8d5b972fc3d1014">AddNewNode</a> (const std::string &amp;host_port)</td></tr>
+<tr class="memdesc:ab9d77e0c3170a27ea8d5b972fc3d1014"><td class="mdescLeft">&#160;</td><td class="mdescRight">Upsets new node into node list This method doesn't perform connection operation, but is used to update node information.  <br /></td></tr>
 <tr class="separator:ab9d77e0c3170a27ea8d5b972fc3d1014"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac1855e26e463aedbd777306020f6eeeb" id="r_ac1855e26e463aedbd777306020f6eeeb"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb">ConnectNode</a> (const std::string &amp;host_port, drogon::HttpRequestPtr req1)</td></tr>
+<tr class="memdesc:ac1855e26e463aedbd777306020f6eeeb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Connects node to computational cluster This method performs http request to connect worker and retrieve benchmark results. Successful request will result in node bench reassignment.  <br /></td></tr>
 <tr class="separator:ac1855e26e463aedbd777306020f6eeeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab5130ead15b2bb67e535c9c1fb042e77" id="r_ab5130ead15b2bb67e535c9c1fb042e77"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77">DisconnectNode</a> (const std::string &amp;host_port)</td></tr>
+<tr class="memdesc:ab5130ead15b2bb67e535c9c1fb042e77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects worker node from cluster This method calls disconnect http request.  <br /></td></tr>
 <tr class="separator:ab5130ead15b2bb67e535c9c1fb042e77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7de5b4e6677141e389caaa4acfc103e" id="r_ab7de5b4e6677141e389caaa4acfc103e"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e">begin</a> ()</td></tr>
 <tr class="separator:ab7de5b4e6677141e389caaa4acfc103e"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -116,7 +123,10 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a41ae1d1fdad373596caaad5e7b630e1c" id="r_a41ae1d1fdad373596caaad5e7b630e1c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">BenchResVec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c">GetSum</a> () const</td></tr>
 <tr class="separator:a41ae1d1fdad373596caaad5e7b630e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class for worker node enumeration and management. </p>
+<p>This class is dedicated to store and manage worker nodes information. Currently only Active(connected and running) nodes are used for message processing. </p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5c470a2a0858114484256e7568faead3" name="a5c470a2a0858114484256e7568faead3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5c470a2a0858114484256e7568faead3">&#9670;&#160;</a></span>WorkerManagementService()</h2>
 
@@ -147,7 +157,7 @@ Public Member Functions</h2></td></tr>
 <div class="center"><img src="classmain__services_1_1WorkerManagementService_a5c470a2a0858114484256e7568faead3_cgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_a5c470a2a0858114484256e7568faead3_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1WorkerManagementService_a5c470a2a0858114484256e7568faead3_cgraph" id="aclassmain__services_1_1WorkerManagementService_a5c470a2a0858114484256e7568faead3_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,263,45"/>
-<area shape="rect" href="namespaceshared.html#afdf3a72bb1d3b2e234049a546d6035a3" title="Returns properly resized valarray for bench works." alt="" coords="311,13,473,38"/>
+<area shape="rect" href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2" title="Returns properly resized valarray for bench works." alt="" coords="311,13,473,38"/>
 <area shape="poly" title=" " alt="" coords="263,23,297,23,297,28,263,28"/>
 </map>
 </div>
@@ -170,6 +180,17 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Upsets new node into node list This method doesn't perform connection operation, but is used to update node information. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host_port</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>empty Json::Value </dd>
+<dd>
+Json:: Value with "status"=409 - if node exists and is Active </dd></dl>
 
 </div>
 </div>
@@ -195,6 +216,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>begin iterator to map of Active nodes </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115" title="Node is connected to cluster and is ready to receive it&#39;s tasks.">NodeStatus::ACTIVE</a> </dd></dl>
 
 </div>
 </div>
@@ -224,6 +247,20 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Connects node to computational cluster This method performs http request to connect worker and retrieve benchmark results. Successful request will result in node bench reassignment. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host_port</td><td></td></tr>
+    <tr><td class="paramname">req1</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Json::Value with "node_output" that contains results </dd>
+<dd>
+Json:: Value with "status"=504 - if worker cannot be accessed for specified host_port </dd>
+<dd>
+Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd></dl>
+
 </div>
 </div>
 <a id="ab5130ead15b2bb67e535c9c1fb042e77" name="ab5130ead15b2bb67e535c9c1fb042e77"></a>
@@ -241,6 +278,21 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Disconnects worker node from cluster This method calls disconnect http request. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host_port</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Json::Value with node output </dd>
+<dd>
+Json:: Value with "status"=409 - if there is no Active node with specified host and port </dd>
+<dd>
+Json:: Value with "status"=504 - if worker cannot be accessed for specified host_port </dd>
+<dd>
+Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd></dl>
 
 </div>
 </div>
@@ -266,6 +318,8 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>end iterator to map of Active nodes </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115" title="Node is connected to cluster and is ready to receive it&#39;s tasks.">NodeStatus::ACTIVE</a> </dd></dl>
 
 </div>
 </div>
@@ -284,6 +338,21 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>returns list of lists with all nodes meta information </p>
+<dl class="section return"><dt>Returns</dt><dd>Json::Value </dd></dl>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph" id="aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph">
+<area shape="rect" title="returns list of lists with all nodes meta information" alt="" coords="5,5,260,45"/>
+<area shape="rect" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="308,13,517,38"/>
+<area shape="poly" title=" " alt="" coords="260,23,294,23,294,28,260,28"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a41ae1d1fdad373596caaad5e7b630e1c" name="a41ae1d1fdad373596caaad5e7b630e1c"></a>
@@ -300,11 +369,13 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>normalization coefficients for becnmark speed results </dd></dl>
 
 </div>
 </div>
-<hr/>The documentation for this class was generated from the following file:<ul>
-<li>/home/runner/work/distributedMathArh/distributedMathArh/mainNode/include/service/<a class="el" href="WorkerManagementService_8h_source.html">WorkerManagementService.h</a></li>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>mainNode/include/service/<a class="el" href="WorkerManagementService_8h_source.html">WorkerManagementService.h</a></li>
+<li>mainNode/src/service/<a class="el" href="WorkerManagementService_8cpp.html">WorkerManagementService.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -6,7 +6,7 @@ var searchData=
   ['parsemeshfrom_3',['ParseMeshFrom',['../namespaceprint__utils.html#a39a49a70f2b8ad5b00ca82a44ada19ea',1,'print_utils']]],
   ['parseonedim_4',['ParseOneDim',['../namespaceprint__utils.html#acaa872f5e746f7c4dba3e35bd364fe4d',1,'print_utils']]],
   ['parsesolution_5',['ParseSolution',['../namespaceprint__utils.html#ab9fc78426b3e43196bc33a54b00fb055',1,'print_utils']]],
-  ['performcurlrequest_6',['PerformCurlRequest',['../restUtils_8h.html#a559737d3a6801e9f89ada9f8e0a6b1ca',1,'restUtils.h']]],
+  ['performcurlrequest_6',['PerformCurlRequest',['../namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533',1,'rest_utils']]],
   ['plot_7',['Plot',['../classMeshPlot.html#a37bbe4ef9c339a3047e3e5baa2483d07',1,'MeshPlot']]],
   ['plotandsave_8',['PlotAndSave',['../classmesh__storage_1_1MeshCreator.html#a8fa86e6faa2afc183f3abf2d22378630',1,'mesh_storage::MeshCreator']]],
   ['plotcoordinates_9',['plotcoordinates',['../plotingUtils_8h.html#af52caca953c5e1cd9c6dc26cd54bdff1',1,'PlotCoordinates(const std::string &amp;name, FloatType ar, std::array&lt; std::vector&lt; FloatType &gt;, 2 &gt; &amp;xi):&#160;plotingUtils.h'],['../plotingUtils_8h.html#a1688a8ba05cfcf00aaf4f309447851c4',1,'PlotCoordinates(const std::string &amp;name, FloatType ar, const std::vector&lt; FloatType &gt; &amp;xi):&#160;plotingUtils.h']]],

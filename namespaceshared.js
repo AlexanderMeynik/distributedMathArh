@@ -36,7 +36,7 @@ var namespaceshared =
       [ "OPENMP_OLD", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866ad500d6041e206f6cbfdff0c1bda10d91", null ],
       [ "PRINT", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b", null ]
     ] ],
-    [ "DefaultBench", "namespaceshared.html#afdf3a72bb1d3b2e234049a546d6035a3", null ],
+    [ "DefaultBench", "namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
     [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
     [ "kStateToStr", "namespaceshared.html#a7762cf232499ddc3f64cf21408e7e400", null ]
 ];

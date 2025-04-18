@@ -1,0 +1,5 @@
+<map id="dipoles::Dipoles::LoadFromMatrix" name="dipoles::Dipoles::LoadFromMatrix">
+<area shape="rect" id="Node000001" title="Loads system of equations matrix." alt="" coords="5,5,204,45"/>
+<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#af02a2a3f874d440c10ed437a24c3cce2" title="Intializes dimensions for system of equations matrices." alt="" coords="252,13,449,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,23,239,23,239,28,204,28"/>
+</map>

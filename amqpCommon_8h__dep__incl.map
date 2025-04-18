@@ -1,15 +1,29 @@
-<map id="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/amqpCommon.h" name="/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/amqpCommon.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="190,5,478,75"/>
-<area shape="rect" id="Node000002" href="$AMQPConsumerService_8h.html" title=" " alt="" coords="5,123,324,192"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,85,216,124,213,120,272,80"/>
-<area shape="rect" id="Node000005" href="$AMQPPublisherService_8h.html" title=" " alt="" coords="349,123,661,192"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="397,80,456,120,453,124,394,85"/>
-<area shape="rect" id="Node000003" href="$CompNodeService_8h.html" title=" " alt="" coords="55,240,274,309"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="167,206,167,240,162,240,162,206"/>
-<area shape="rect" id="Node000004" href="$CompNode_8h.html" title=" " alt="" coords="55,357,274,427"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="167,323,167,357,162,357,162,323"/>
-<area shape="rect" id="Node000006" href="$MainNodeService_8h.html" title=" " alt="" coords="342,247,667,302"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="507,206,507,247,502,247,502,206"/>
-<area shape="rect" id="Node000007" href="$ClusterConfigController_8h.html" title=" " alt="" coords="395,357,614,427"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="507,315,507,357,502,357,502,315"/>
+<map id="computationalLib/include/network_shared/amqpCommon.h" name="computationalLib/include/network_shared/amqpCommon.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="553,5,795,45"/>
+<area shape="rect" id="Node000002" href="$AMQPConsumerService_8h.html" title=" " alt="" coords="205,93,503,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="591,52,425,96,423,91,590,46"/>
+<area shape="rect" id="Node000008" href="$AMQPPublisherService_8h.html" title=" " alt="" coords="527,93,821,133"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="677,59,677,93,671,93,671,59"/>
+<area shape="rect" id="Node000014" href="$amqpCommon_8cpp.html" title=" " alt="" coords="845,93,1103,133"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="754,47,909,91,908,96,752,52"/>
+<area shape="rect" id="Node000003" href="$AMQPConsumerService_8cpp.html" title=" " alt="" coords="5,181,244,236"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="296,141,190,184,188,179,294,136"/>
+<area shape="rect" id="Node000004" href="$CompNodeService_8h.html" title=" " alt="" coords="268,189,477,229"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="363,146,372,188,366,189,358,147"/>
+<area shape="rect" id="Node000005" href="$CompNode_8h.html" title=" " alt="" coords="187,284,388,324"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="348,241,307,286,303,282,344,237"/>
+<area shape="rect" id="Node000007" href="$CompNodeService_8cpp.html" title=" " alt="" coords="413,284,637,324"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="416,233,495,282,493,286,413,238"/>
+<area shape="rect" id="Node000006" href="$CompNode_8cpp.html" title=" " alt="" coords="192,372,383,412"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="290,338,290,372,285,372,285,338"/>
+<area shape="rect" id="Node000009" href="$AMQPPublisherService_8cpp.html" title=" " alt="" coords="539,181,772,236"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="670,147,663,182,658,181,665,146"/>
+<area shape="rect" id="Node000010" href="$MainNodeService_8h.html" title=" " alt="" coords="796,189,987,229"/>
+<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="731,136,848,186,846,191,729,141"/>
+<area shape="rect" id="Node000011" href="$ClusterConfigController_8h.html" title=" " alt="" coords="663,284,869,324"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="857,239,793,286,790,282,854,235"/>
+<area shape="rect" id="Node000013" href="$MainNodeService_8cpp.html" title=" " alt="" coords="893,284,1060,324"/>
+<area shape="poly" id="edge12_Node000010_Node000013" title=" " alt="" coords="920,237,961,282,957,286,916,241"/>
+<area shape="rect" id="Node000012" href="$ClusterConfigController_8cpp.html" title=" " alt="" coords="665,372,867,412"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="769,338,769,372,763,372,763,338"/>
 </map>

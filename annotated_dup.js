@@ -48,6 +48,12 @@ var annotated_dup =
         [ "CompNode", "classrest_1_1v1_1_1CompNode.html", "classrest_1_1v1_1_1CompNode" ]
       ] ]
     ] ],
+    [ "rest_utils", "namespacerest__utils.html", [
+      [ "AuthHandler", "classrest__utils_1_1AuthHandler.html", "classrest__utils_1_1AuthHandler" ],
+      [ "BasicAuthHandler", "classrest__utils_1_1BasicAuthHandler.html", "classrest__utils_1_1BasicAuthHandler" ],
+      [ "CurlWrapper", "classrest__utils_1_1CurlWrapper.html", "classrest__utils_1_1CurlWrapper" ],
+      [ "JsonAuthHandler", "classrest__utils_1_1JsonAuthHandler.html", "classrest__utils_1_1JsonAuthHandler" ]
+    ] ],
     [ "shared", "namespaceshared.html", [
       [ "CurlError", "classshared_1_1CurlError.html", "classshared_1_1CurlError" ],
       [ "HttpError", "classshared_1_1HttpError.html", "classshared_1_1HttpError" ],
@@ -65,9 +71,5 @@ var annotated_dup =
       [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ],
       [ "LocationComparator", "structtiming_1_1LocationComparator.html", "structtiming_1_1LocationComparator" ]
     ] ],
-    [ "AuthHandler", "classAuthHandler.html", "classAuthHandler" ],
-    [ "BasicAuthHandler", "classBasicAuthHandler.html", "classBasicAuthHandler" ],
-    [ "CurlWrapper", "classCurlWrapper.html", "classCurlWrapper" ],
-    [ "JsonAuthHandler", "classJsonAuthHandler.html", "classJsonAuthHandler" ],
     [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ]
 ];

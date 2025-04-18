@@ -1,0 +1,5 @@
+<map id="network_types::queue::ToJson" name="network_types::queue::ToJson">
+<area shape="rect" id="Node000001" title=" " alt="" coords="277,5,444,45"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96" title="Creates queue with specified params." alt="" coords="5,5,229,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,28,229,28,229,23,264,23"/>
+</map>

@@ -20,6 +20,7 @@ var namespaces_dup =
     [ "network_types", "namespacenetwork__types.html", "namespacenetwork__types" ],
     [ "print_utils", "namespaceprint__utils.html", "namespaceprint__utils" ],
     [ "rest", "namespacerest.html", "namespacerest" ],
+    [ "rest_utils", "namespacerest__utils.html", "namespacerest__utils" ],
     [ "shared", "namespaceshared.html", "namespaceshared" ],
     [ "timing", "namespacetiming.html", "namespacetiming" ]
 ];

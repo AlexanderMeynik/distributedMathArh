@@ -1,0 +1,5 @@
+<map id="mesh_storage::PrintDec" name="mesh_storage::PrintDec">
+<area shape="rect" id="Node000001" title="Prints mesh in human readable way." alt="" coords="213,5,391,31"/>
+<area shape="rect" id="Node000002" href="$namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07" title="Print mesh to supplied std::ostream." alt="" coords="5,5,165,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="200,21,166,21,166,15,200,15"/>
+</map>

@@ -13,7 +13,7 @@ var classrest_1_1v1_1_1ClusterConfigController =
     [ "ConnectQ", "classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6", null ],
     [ "DisconnectNodeHandler", "classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29", null ],
     [ "DisconnectQ", "classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087", null ],
-    [ "GetStatus", "classrest_1_1v1_1_1ClusterConfigController.html#af193f20352fe6f7065b86e546e57c62d", null ],
+    [ "GetStatus", "classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308", null ],
     [ "SentMessage", "classrest_1_1v1_1_1ClusterConfigController.html#aefa1756c5cacad3ab7ae1537d568ac81", null ],
     [ "SentToExecution", "classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c", null ]
 ];

@@ -98,7 +98,7 @@ $(document).ready(function(){initNavTree('structnetwork__types_1_1TestSolveParam
 </div><!--header-->
 <div class="contents">
 
-<p>Simple task sent structure This structure contains information about iteration count as well as input parameters. This one is designed to make process of iteration block separation easier.  
+<p>Simple task sent structure.  
  <a href="structnetwork__types_1_1TestSolveParam.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
@@ -122,17 +122,21 @@ Public Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:a63b9e1b846496063ac7952b53ffe02d5" id="r_a63b9e1b846496063ac7952b53ffe02d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#a63b9e1b846496063ac7952b53ffe02d5">experiment_id</a></td></tr>
+<tr class="memdesc:a63b9e1b846496063ac7952b53ffe02d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">current experiment id  <br /></td></tr>
 <tr class="separator:a63b9e1b846496063ac7952b53ffe02d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07fdc209b71bfcf10efef4f774fcced8" id="r_a07fdc209b71bfcf10efef4f774fcced8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#a07fdc209b71bfcf10efef4f774fcced8">N_</a></td></tr>
+<tr class="memdesc:a07fdc209b71bfcf10efef4f774fcced8"><td class="mdescLeft">&#160;</td><td class="mdescRight">size of the system  <br /></td></tr>
 <tr class="separator:a07fdc209b71bfcf10efef4f774fcced8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18fa18c3ebe9450c6138391db60b9610" id="r_a18fa18c3ebe9450c6138391db60b9610"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#a18fa18c3ebe9450c6138391db60b9610">range</a></td></tr>
+<tr class="memdesc:a18fa18c3ebe9450c6138391db60b9610"><td class="mdescLeft">&#160;</td><td class="mdescRight">iteration range: [range.first,range,second]  <br /></td></tr>
 <tr class="separator:a18fa18c3ebe9450c6138391db60b9610"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ad9e68158882c9b48dd6d513076ed1e" id="r_a3ad9e68158882c9b48dd6d513076ed1e"><td class="memItemLeft" align="right" valign="top">std::unordered_map&lt; std::string, JsonVariant &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structnetwork__types_1_1TestSolveParam.html#a3ad9e68158882c9b48dd6d513076ed1e">args</a></td></tr>
+<tr class="memdesc:a3ad9e68158882c9b48dd6d513076ed1e"><td class="mdescLeft">&#160;</td><td class="mdescRight">map can contain any primitive JSON types  <br /></td></tr>
 <tr class="separator:a3ad9e68158882c9b48dd6d513076ed1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Simple task sent structure This structure contains information about iteration count as well as input parameters. This one is designed to make process of iteration block separation easier. </p>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacecommon__types.html#ae52d0f2262ef71d75c6c8a2f050852ef" title="Supertype for simple json values This is not recursive type, so nested json structures are not suppor...">common_types::JsonVariant</a> - for more information about argument types </dd></dl>
+<div class="textblock"><p>Simple task sent structure. </p>
+<p>This structure contains information about iteration count as well as input parameters. This one is designed to make process of iteration block separation easier </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacecommon__types.html#ae52d0f2262ef71d75c6c8a2f050852ef" title="Supertype for simple json values This is not recursive type, so nested json structures are not suppor...">common_types::JsonVariant</a> - for more information about argument types </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a6becddfae4e0a46a68e0109a46d8b30f" name="a6becddfae4e0a46a68e0109a46d8b30f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a6becddfae4e0a46a68e0109a46d8b30f">&#9670;&#160;</a></span>TestSolveParam() <span class="overload">[1/2]</span></h2>
@@ -182,6 +186,18 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structnetwork__types_1_1TestSolveParam_ab6b44d2104cef733184181dc9e3d5c3c_cgraph.png" border="0" usemap="#astructnetwork__types_1_1TestSolveParam_ab6b44d2104cef733184181dc9e3d5c3c_cgraph" alt=""/></div>
+<map name="astructnetwork__types_1_1TestSolveParam_ab6b44d2104cef733184181dc9e3d5c3c_cgraph" id="astructnetwork__types_1_1TestSolveParam_ab6b44d2104cef733184181dc9e3d5c3c_cgraph">
+<area shape="rect" title="Deserialize from Json::Value." alt="" coords="5,5,193,45"/>
+<area shape="rect" href="namespacenetwork__types.html#a72a0d2ba616b55ebaf6e207bbac87331" title="Casts Json::Value to JsonVariant." alt="" coords="241,13,455,38"/>
+<area shape="poly" title=" " alt="" coords="194,23,228,23,228,28,194,28"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -260,13 +276,25 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structnetwork__types_1_1TestSolveParam.html" title="Simple task sent structure This structure contains information about iteration count as well as input...">TestSolveParam</a> with iter_count iterations </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="structnetwork__types_1_1TestSolveParam.html" title="Simple task sent structure.">TestSolveParam</a> with iter_count iterations </dd></dl>
 <dl class="exception"><dt>Exceptions</dt><dd>
   <table class="exception">
     <tr><td class="paramname"><a class="el" href="classshared_1_1outOfRange.html" title="outOfRange class">shared::outOfRange</a></td><td>- if block with specified size can't sliced away </td></tr>
   </table>
   </dd>
 </dl>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structnetwork__types_1_1TestSolveParam_a5b9ee447f3e0c2d893704ed24dd7152d_icgraph.png" border="0" usemap="#astructnetwork__types_1_1TestSolveParam_a5b9ee447f3e0c2d893704ed24dd7152d_icgraph" alt=""/></div>
+<map name="astructnetwork__types_1_1TestSolveParam_a5b9ee447f3e0c2d893704ed24dd7152d_icgraph" id="astructnetwork__types_1_1TestSolveParam_a5b9ee447f3e0c2d893704ed24dd7152d_icgraph">
+<area shape="rect" title="Slices iter_count iterations from current range and creates." alt="" coords="292,5,480,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="5,5,244,45"/>
+<area shape="poly" title=" " alt="" coords="278,28,244,28,244,23,278,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -287,6 +315,30 @@ Public Attributes</h2></td></tr>
 
 <p>Serialize as json. </p>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value </dd></dl>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_cgraph.png" border="0" usemap="#astructnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_cgraph" alt=""/></div>
+<map name="astructnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_cgraph" id="astructnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_cgraph">
+<area shape="rect" title="Serialize as json." alt="" coords="5,5,193,45"/>
+<area shape="rect" href="namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="241,13,455,38"/>
+<area shape="poly" title=" " alt="" coords="194,23,228,23,228,28,194,28"/>
+</map>
+</div>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_icgraph.png" border="0" usemap="#astructnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_icgraph" alt=""/></div>
+<map name="astructnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_icgraph" id="astructnetwork__types_1_1TestSolveParam_afd86c96ee05f0317f38298cb373fcd13_icgraph">
+<area shape="rect" title="Serialize as json." alt="" coords="292,5,480,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ab62802d468cdc18764b47364b16e2e01" title=" " alt="" coords="5,5,244,45"/>
+<area shape="poly" title=" " alt="" coords="278,28,244,28,244,23,278,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -303,6 +355,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>map can contain any primitive JSON types </p>
+
 </div>
 </div>
 <a id="a63b9e1b846496063ac7952b53ffe02d5" name="a63b9e1b846496063ac7952b53ffe02d5"></a>
@@ -316,6 +370,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>current experiment id </p>
 
 </div>
 </div>
@@ -331,6 +387,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>size of the system </p>
+
 </div>
 </div>
 <a id="a18fa18c3ebe9450c6138391db60b9610" name="a18fa18c3ebe9450c6138391db60b9610"></a>
@@ -345,10 +403,13 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>iteration range: [range.first,range,second] </p>
+
 </div>
 </div>
-<hr/>The documentation for this struct was generated from the following file:<ul>
-<li>/home/runner/work/distributedMathArh/distributedMathArh/computationalLib/include/computationalLib/network_shared/<a class="el" href="networkTypes_8h_source.html">networkTypes.h</a></li>
+<hr/>The documentation for this struct was generated from the following files:<ul>
+<li>computationalLib/include/network_shared/<a class="el" href="networkTypes_8h_source.html">networkTypes.h</a></li>
+<li>computationalLib/lib/network_shared/<a class="el" href="networkTypes_8cpp.html">networkTypes.cpp</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
