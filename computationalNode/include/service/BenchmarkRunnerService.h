@@ -6,7 +6,6 @@
 #include "network_shared/networkTypes.h"
 #include "common/Generator.h"
 #include "math_core/Dipoles.h"
-#include "common/MeshCreator.h"
 #include "common/Printers.h"
 
 /// Namespace for comp_node services

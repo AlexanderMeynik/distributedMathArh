@@ -1,6 +1,4 @@
 #include "service/BenchmarkRunnerService.h"
-#include "math_core/Dipoles.h"
-#include "common/Generator.h"
 #include "common/MeshCreator.h"
 
 namespace comp_services {
