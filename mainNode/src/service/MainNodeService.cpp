@@ -1,6 +1,18 @@
 #include "service/MainNodeService.h"
 
+
+/// Namespace for services used in main node
 namespace main_services {
+
+
+MainNodeService::MainNodeService(const std::string &user, const std::string &password) {
+  auth_ = std::make_unique<JsonAuthHandler>(user, password);
+  rest_service_ = std::make_unique<amqp_common::RabbitMQRestService>();
+
+  publisher_service_ = std::make_unique<amqp_common::AMQPPublisherService>();
+  worker_management_service_ = std::make_unique<WorkerManagementService>();
+}
+
 Json::Value MainNodeService::Status() {
   Json::Value res_JSON;
 
@@ -250,6 +262,7 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
 
   return res_JSON;
 }
+
 
 }
 

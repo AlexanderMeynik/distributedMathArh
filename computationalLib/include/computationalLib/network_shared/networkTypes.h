@@ -29,18 +29,19 @@ Json::Value VariantToJson(const JsonVariant &v);
 JsonVariant JsonToVariant(const Json::Value &val);
 
 /**
+ * @struct TestSolveParam
  * @brief Simple task sent structure
- * This structure contains information about iteration count
+ * @detailed This structure contains information about iteration count
  * as well as input parameters.
  * This one is designed to make process of iteration block separation easier
  * @see common_types::JsonVariant - for more information about argument types
  */
 struct TestSolveParam {
   TestSolveParam() = default;
-  size_t experiment_id;//< current experiment id
-  size_t N_;//< size of the system
-  std::pair<size_t, size_t> range;//< iteration range: [range.first,range,second]
-  std::unordered_map<std::string, JsonVariant> args;//< map can contain any primitive JSON types
+  size_t experiment_id;///< current experiment id
+  size_t N_;///< size of the system
+  std::pair<size_t, size_t> range;///< iteration range: [range.first,range,second]
+  std::unordered_map<std::string, JsonVariant> args;///< map can contain any primitive JSON types
   bool operator==(const TestSolveParam &oth) const = default;
 
   size_t RangeSize()

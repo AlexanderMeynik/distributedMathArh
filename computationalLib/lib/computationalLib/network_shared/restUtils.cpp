@@ -1,5 +1,6 @@
 #include "network_shared/restUtils.h"
-
+/// Namespace for httpr rest utilities
+namespace rest_utils {
 size_t WriteCallback(void *contents,
                      size_t size,
                      size_t nmemb,
@@ -102,5 +103,5 @@ void BasicAuthHandler::AddAuth(CURL *curl) {
     curl_easy_setopt(curl, CURLOPT_PASSWORD, password_.c_str());
   }
 }
-
+}
 

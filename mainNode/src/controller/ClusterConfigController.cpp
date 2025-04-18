@@ -2,10 +2,12 @@
 #include "common/Parsers.h"
 #include "common/Printers.h"
 
-using namespace rest::v1;
+/// Namespace for main node rest api handlers
+namespace rest::v1 {
 
 void
-ClusterConfigController::GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+ClusterConfigController::GetStatus(const HttpRequestPtr &req,
+                                   std::function<void(const HttpResponsePtr &)> &&callback) {
 
   auto json_output = main_node_service_->Status();
 
@@ -75,7 +77,7 @@ void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
   auto qname = json["queue_host"].asString();
   auto szs = json["queues"].size();
   auto queus = print_utils::JsonToContinuous<std::vector<std::string>>(
-      json["queues"], szs,true);
+      json["queues"], szs, true);
 
   auto json_output = main_node_service_->Connect(qname, queus);
 
@@ -93,4 +95,4 @@ void ClusterConfigController::DisconnectQ(const HttpRequestPtr &req,
   callback(http_response);
 
 }
-
+}

@@ -85,8 +85,7 @@ class clockArray {
   /**
    * This function starts new calculation section
    * @param location source location of call
-   * @attention You must mirror every Tik like call with
-   * @ref timing::ClockArray::tak() "Tak()"
+   * @attention You must mirror every Tik like call with Tak
    */
   void Tik(const std::source_location &location
   = std::source_location::current());

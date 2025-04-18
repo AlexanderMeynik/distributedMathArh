@@ -8,7 +8,8 @@
 #include <unordered_map>
 
 #include "common/errorHandling.h"
-
+/// Namespace for httpr rest utilities
+namespace rest_utils {
 class AuthHandler;
 
 /**
@@ -30,6 +31,9 @@ static size_t WriteCallback(void *contents,
  * @param host
  * @param auth_handler
  * @param data
+ * @throws shared::CurlError -  if curl error occurs
+ * @throws shared::HttpError - if curl results in return code >=400
+ * @return response_body
  */
 std::string PerformCurlRequest(const std::string &path,
                                const std::string &method,
@@ -38,7 +42,7 @@ std::string PerformCurlRequest(const std::string &path,
                                const std::string &data = "");
 
 /**
- * @brief Lock like class to handler curl initializtion and free
+ * @brief Lock like class to handler curl initialization and free
  */
 class CurlWrapper {
  public:
@@ -108,3 +112,4 @@ class JsonAuthHandler : public BasicAuthHandler {
     return {user_, password_};
   }
 };
+}
