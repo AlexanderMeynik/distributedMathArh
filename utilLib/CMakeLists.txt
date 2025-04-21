@@ -1,18 +1,15 @@
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 project(utilLib)
+
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/bin)
 
 
 if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
 
-
 include_directories(include)
-
-
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/utilLib/bin)
 
 
 file(GLOB common CONFIGURE_DEPENDS
@@ -32,8 +29,7 @@ target_include_directories(parallelLib PUBLIC include)
 enable_coverage_for_target(parallelLib)
 
 
-
-add_library(allUtils STATIC ${parallelUtils})
+add_library(allUtils ${parallelUtils})
 target_link_libraries(allUtils PUBLIC commonLib)
 enable_coverage_for_target(allUtils)
 

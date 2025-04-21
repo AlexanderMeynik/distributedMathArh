@@ -1,87 +1,88 @@
 #include "common/Printers.h"
 
-namespace printUtils {
+namespace print_utils {
 
-    Json::Value toJson(const ms::MeshCreator&mesh,
-                       bool printDims,
-                       bool printLims)
-    {
-        Json::Value res=continuousToJson(mesh.data[2],false);;
+Json::Value ToJson(const ms::MeshCreator &mesh,
+                   bool print_dims,
+                   bool print_lims) {
+  Json::Value res = ContinuousToJson(mesh.data_[2], false);
 
-        if(printDims)
-        {
-            res["dimensions"][0]=mesh.dimensions[0];
-            res["dimensions"][1]=mesh.dimensions[1];
-        }
-        if(printLims)
-        {
-            for(int i=0;i<mesh.limits.size();i++)
-            {
-                res["limits"][i]=mesh.limits[i];
-            }
-        }
-        return res;
+  if (print_dims) {
+    res["dimensions"][0] = mesh.dimensions_[0];
+    res["dimensions"][1] = mesh.dimensions_[1];
+  }
+  if (print_lims) {
+    for (int i = 0; i < mesh.limits_.size(); i++) {
+      res["limits"][i] = mesh.limits_[i];
     }
+  }
+  return res;
+}
 
-    void printMesh(std::ostream &out,
-                   const ms::MeshCreator&mesh,
-                   const ioFormat&form,
-                   bool printDims,
-                   bool printLims,
-                   const EFormat &eigenForm) {
+void PrintMesh(std::ostream &out,
+               const ms::MeshCreator &mesh,
+               const IoFormat &form,
+               bool print_dims,
+               bool print_lims,
+               const EFormat &eigen_form) {
 
-        switch (form) {
-            case ioFormat::Serializable:
-                goto ser;
-            case ioFormat::HumanReadable: {
-                goto human;
-            }
-        }
-
-        ser:
-        {
-
-            IosStateScientific iosStateScientific(out, out.precision());
-            if(printDims) {
-                out << mesh.dimensions[0] << '\t' << mesh.dimensions[1] << '\n';
-            }
-            if(printLims) {
-                out << mesh.limits[0] << '\t' << mesh.limits[1] << '\n';
-                out << mesh.limits[2] << '\t' << mesh.limits[3] << '\n';
-            }
-            auto mm = toEigenRowVector(mesh.data.back());
-
-            out << mm.format(eigenForm);
-            return;
-        }
-        human:
-        {
-            IosStateScientific iosStateScientific(out, out.precision());
-            meshStorage::printDec(mesh, out);
-        };
-
+  switch (form) {
+    case IoFormat::SERIALIZABLE:goto ser;
+    case IoFormat::HUMAN_READABLE: {
+      goto human;
     }
+  }
 
-    void
-    matrixPrint1D(std::ostream &out,
-                  const commonTypes::matrixType &matr,
-                  bool printSize,
-                  const EFormat &eigenForm) {
-        auto map = Eigen::Map<const Eigen::RowVector<FloatType,-1>>(matr.data(),matr.size());
-        if(printSize) {
-            out << matr.size() << '\n';
-        }
-        out << map.format(eigenForm);
-    }
+  ser:
+  {
 
-    void inline
-    matrixPrint2D(std::ostream &out,
-                  const commonTypes::matrixType &matr,
-                  bool printDims,
-                  const EFormat &eigenForm) {
-        if(printDims) {
-            out << matr.rows() << '\t' << matr.cols() << '\n';
-        }
-        out << matr.format(eigenForm);
+    IosStateScientific ios_state_scientific(out, out.precision());
+    if (print_dims) {
+      out << mesh.dimensions_[0] << '\t' << mesh.dimensions_[1] << '\n';
     }
+    if (print_lims) {
+      out << mesh.limits_[0] << '\t' << mesh.limits_[1] << '\n';
+      out << mesh.limits_[2] << '\t' << mesh.limits_[3] << '\n';
+    }
+    auto mm = ToEigenRowVector(mesh.data_.back());
+
+    out << mm.format(eigen_form);
+    return;
+  }
+  human:
+  {
+    IosStateScientific ios_state_scientific(out, out.precision());
+    mesh_storage::PrintDec(mesh, out);
+  }
+
+}
+
+void
+MatrixPrint1D(std::ostream &out,
+              const common_types::MatrixType &matr,
+              bool print_size,
+              const EFormat &eigen_form) {
+  auto map = Eigen::Map<const Eigen::RowVector<FloatType, -1>>(matr.data(), matr.size());
+  if (print_size) {
+    out << matr.size() << '\n';
+  }
+  out << map.format(eigen_form);
+}
+
+void
+MatrixPrint2D(std::ostream &out,
+              const common_types::MatrixType &matr,
+              bool print_dims,
+              const EFormat &eigen_form) {
+  if (print_dims) {
+    out << matr.rows() << '\t' << matr.cols() << '\n';
+  }
+  out << matr.format(eigen_form);
+}
+Json::Value SerializeException(const shared::MyException &ex) {
+  Json::Value res;
+  res["message"]=ex.what();
+  res["severity"]=shared::kSevToStr[static_cast<unsigned long>(ex.getSev())];
+  return res;
+}
 }

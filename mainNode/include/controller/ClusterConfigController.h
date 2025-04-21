@@ -1,72 +1,115 @@
 #pragma once
 
+#include <unordered_map>
+
+#include "service/MainNodeService.h"
 #include <drogon/HttpController.h>
-#include "computationalLib/math_core/TestRunner.h"
-#include <drogon/HttpClient.h>
-#include <drogon/HttpRequest.h>
+
+/// Namespace for main node rest api handlers
+namespace rest::v1 {
 
 using namespace drogon;
-//todo move away
 
+/// namespace for services used in main node
+using namespace main_services;
 
-namespace rest {
-    namespace v1 {
+/**
+ * @class ClusterConfigController
+ * @brief Drogon service for main node
+ */
+class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
+  std::unique_ptr<MainNodeService> main_node_service_;
+ public:
+  /**
+   * @brief Initializes MainNodeService with preconfigured credentials provider
+   */
+  ClusterConfigController() {
+    //todo pass args(create role for q creation/ message send)
+    main_node_service_ = std::make_unique<MainNodeService>("sysadmin", "syspassword");
 
-        enum class NodeStatus {
-            active,
-            inactive,
-            failed
+  }//todo /rebalance
+  //todo ping(measures latencies)?
+  using Cont = ClusterConfigController;
 
-        };
+  METHOD_LIST_BEGIN
+    ADD_METHOD_TO(Cont::GetStatus, "v1/status", Get);
+    ADD_METHOD_TO(Cont::ConnectNodeHandler, "v1/connect_node?ip={ip}", Post);
+    ADD_METHOD_TO(Cont::DisconnectNodeHandler, "v1/disconnect_node?ip={ip}", Post);
 
-        const std::unordered_map<const NodeStatus, std::string> mapss
+    ADD_METHOD_TO(Cont::ConnectQ, "v1/connect_publisher", Post);
+    ADD_METHOD_TO(Cont::DisconnectQ, "v1/disconnect_publisher", Post);
+    ADD_METHOD_TO(Cont::SentMessage, "v1/message?node={node}", Put);
 
+    ADD_METHOD_TO(Cont::SentToExecution, "v1/send_task", Put);
 
-                {
-                        {NodeStatus::active,   "active"},
-                        {NodeStatus::inactive, "inactive"},
-                        {NodeStatus::failed,   "failed"},
-                };
+  METHOD_LIST_END
 
-        class computationalNode {
-        public:
-            HttpClientPtr httpClient;
+  /**
+   * @brief Retrieves the status of whole cluster
+   * @param req
+   * @param callback
+   */
+  void GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-            std::string getPath() {
-                return httpClient->getHost() + ":" + std::to_string(httpClient->getPort());
-            }
+  /**
+   * @brief Connects node to computational cluster
+   * @param req
+   * @param callback
+   * @param host_port
+   * Requires main node to be connected to RabbitMQ
+   * @see ClusterConfigController::ConnectQ
+   */
+  void ConnectNodeHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                          const std::string &host_port);
 
-            std::valarray<double> power;//todo spline function
-            NodeStatus st;
+  /**
+   * @brief Disconnects node to computational cluster
+   * @param req
+   * @param callback
+   * @param host_port
+   * Requires main node to be connected to RabbitMQ
+   * @see ClusterConfigController::ConnectQ
+   */
+  void DisconnectNodeHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                             const std::string &host_port);
 
+  /**
+   *
+   * @param req
+   * @param callback
+   * @param node
+   */
+  [[deprecated("old interface for testing")]]void SentMessage(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
+                   const std::string &node);
 
-        };
+  /**
+   * @brief Sends task to be sharded and published into queues for workers
+   * @param req
+   * @param callback
+   * Requires main node to be connected to RabbitMQ
+   * @see ClusterConfigController::ConnectQ
+   */
+  void SentToExecution(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-        class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
-            std::unordered_map<std::string, computationalNode> clients;
-        public:
-            ClusterConfigController() {
-                //client=HttpClient::newHttpClient("http://localhost:8081");
-                //client->get
+  /**
+   * @brief Connects main node to RabbitMQ
+   * @brief
+   * @param req
+   * @param callback
+   * Main node connects to RabbitMQ in the following manner:
+   * 1. It initializes event loop of AMQPPublisherService
+   * 2. It creates all the objects(if not exists) specified in members
+   * @see amqp_common::AMQPPublisherService
+   */
+  void ConnectQ(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-            }//todo /rebalance
-            //todo ping(measures latencies)?
-            using cont = ClusterConfigController;
+  /**
+   * @brief Disconnects main node from RabbitMQ
+   * @param req
+   * @param callback
+   * @see ClusterConfigController::ConnectQ
+   */
+  void DisconnectQ(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
-            METHOD_LIST_BEGIN
-
-                ADD_METHOD_TO(cont::getStatus, "v1/status", Get);
-                ADD_METHOD_TO(cont::connectHandler, "v1/connect?ip={ip}&qip={qip}&name={queue}", Post);
-                ADD_METHOD_TO(cont::disconnectHandler, "v1/disconnect?ip={ip}", Post);
-            METHOD_LIST_END
-
-            void getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
-
-            void connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                                const std::string &hostPort, const std::string &qip, const std::string &name);
-
-            void disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                                   const std::string &hostPort);
-        };
-    }
+};
 }

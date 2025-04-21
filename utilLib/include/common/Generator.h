@@ -1,68 +1,102 @@
 #pragma once
-#ifndef DIPLOM_GENERATOR_H
-#define DIPLOM_GENERATOR_H
-
 
 #include <random>
 #include <functional>
+#include <thread>
+#include <unordered_map>
 
+#include "common/errorHandling.h"
 #include "common/commonTypes.h"
 #include "common/myConcepts.h"
 
-using commonTypes::FloatType;
+using common_types::FloatType;
 namespace generators {
+using common_types::JsonVariant;
+using DistributionFunctor = std::function<FloatType()>;
+/**
+ * @brief Interface for distribution functions handling
+ * @tparam randomDevice
+ */
+template<typename randomDevice>
+struct generator {
+  generator() {
+    std::random_device rd;
+    auto seed = rd() ^ std::hash<std::thread::id>{}(std::this_thread::get_id());
+    device = randomDevice(seed);
+  }
 
-    template<typename randomDevice>
-    struct generator {
-        //todo this one work only for 1 dimensional arrays
-        generator() {
-            std::random_device rd;
-            device = randomDevice(rd());
-        }
-
-        template<template<typename ...> typename cont,
-                template<typename...> typename distribution, typename... Args>
-        requires myConcepts::HasBracketOperator<cont<FloatType>>
-        auto generate(size_t N, Args &...args) {
-            auto dist = distribution<FloatType>(args...);
-            cont<FloatType> container(2 * N);
-
-            for (size_t i = 0; i < 2 * N; ++i) {
-                container[i] = dist(device);
-            }
-            return container;
-
-        }
-
-    private:
-        randomDevice device;
+  template<template<typename...> typename distribution, typename... Args>
+  DistributionFunctor GetGenFunction(Args &&... args) {
+    return [this, args...]() mutable {
+      return distribution<FloatType>(std::forward<Args>(args)...)(device);
     };
+  }
 
-
-    extern generator<std::mt19937> gen_mt19937;
-
-    template<template<typename ...> typename cont>
-    std::function<cont<FloatType>(size_t, FloatType, FloatType)>
-            normal = [](size_t N, FloatType mean, FloatType sig) {
-        return gen_mt19937.generate<cont, std::normal_distribution, FloatType, FloatType>(N, mean, sig);
-    };
-
-    template<template<typename ...> typename cont>
-    std::function<cont<FloatType>(size_t, FloatType, FloatType)>
-            uniform = [](size_t N, FloatType a, FloatType b) {
-        return gen_mt19937.generate<cont, std::uniform_real_distribution, FloatType, FloatType>(N, a, b);
-    };
-
-    template<template<typename ...> typename cont>
-    std::function<cont<FloatType>(size_t, FloatType)>
-            exponential = [](size_t N, FloatType lam) {
-        return gen_mt19937.generate<cont, std::exponential_distribution, FloatType>(N, lam);
-    };
-
-    //todo generate array of arrays(or use md span)
-
-
-
-
+ private:
+  randomDevice device;
 };
-#endif //DIPLOM_GENERATOR_H
+
+/// Thread local generator object
+extern thread_local generator<std::mt19937> gen_mt19937;
+
+/**
+ * @brief Shorthand generator getter for normal distribution
+ * @param mean
+ * @param dev
+ */
+DistributionFunctor inline get_normal_generator(FloatType mean, FloatType dev) {
+  return gen_mt19937.GetGenFunction<std::normal_distribution>(mean, dev);
+}
+
+/**
+ * @brief Shorthand generator getter for uniform real distribution
+ * @param a
+ * @param b
+ */
+DistributionFunctor inline get_uniform_generator(FloatType a, FloatType b) {
+  return gen_mt19937.GetGenFunction<std::uniform_real_distribution>(a, b);
+}
+
+/**
+ * @brief Shorthand generator getter for exponential distribution
+ * @param lambda
+ * @return
+ */
+DistributionFunctor inline get_exponential_generator(FloatType lambda) {
+  return gen_mt19937.GetGenFunction<std::exponential_distribution>(lambda);
+}
+
+enum class DistributionType:size_t{
+  NORMAL,
+  UNIFORM,
+  EXPONENTIAL,
+  LAST
+};
+
+static inline std::unordered_map<std::string, DistributionType> stringToDistributionType
+    {
+        {"normal", DistributionType::NORMAL},
+        {"uniform", DistributionType::UNIFORM},
+        {"exponential", DistributionType::EXPONENTIAL}
+    };
+
+static constexpr size_t distribution_size=static_cast<size_t>(DistributionType::LAST)-
+    static_cast<size_t>(DistributionType::NORMAL);
+static inline std::array<std::string,distribution_size> distros
+    {
+        "normal",
+        "uniform",
+        "exponential"
+    };
+
+/**
+ *
+ * @param distribution_type
+ * @param args
+ * @return DistributionFunctor
+ */
+DistributionFunctor ParseFunc(const DistributionType &distribution_type,
+                              const std::unordered_map<std::string, JsonVariant> &args);
+DistributionFunctor ParseFunc(const std::string &type,
+                              const std::unordered_map<std::string, JsonVariant> &args);
+}

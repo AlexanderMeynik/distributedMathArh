@@ -1,60 +1,58 @@
 #include "fileHandler.h"
-/// fileUtils namespace
-namespace fileUtils {
 
-    fs::path getNormalAbs(const fs::path &path) {
-        return fs::absolute(path).lexically_normal();
-    }
+/// file_utils namespace
+namespace file_utils {
 
-    bool createDirIfNotPresent(const std::string &path) {
-        if (!fs::exists(path)) {
-            return fs::create_directories(path);
-        }
-        return fs::is_directory(path);
-    }
+fs::path GetNormalAbs(const fs::path &path) {
+  return fs::absolute(path).lexically_normal();
+}
 
+bool CreateDirIfNotPresent(const std::string &path) {
+  if (!fs::exists(path)) {
+    return fs::create_directories(path);
+  }
+  return fs::is_directory(path);
+}
 
-    fileHandler::fileHandler(const std::string &parent_path) :
-            parentPath(parent_path) {
-        createDirIfNotPresent(parentPath);
-    }
+fileHandler::fileHandler(const std::string &parent_path) :
+    parentPath(parent_path) {
+  CreateDirIfNotPresent(parentPath);
+}
 
-    void fileHandler::open(const std::string &filename, std::ios_base::openmode mode) {
-        auto filePath = parentPath / filename;
-        fileMap[filePath]->open(filePath, mode);
-    }
+void fileHandler::Open(const std::string &filename, std::ios_base::openmode mode) {
+  auto file_path = parentPath / filename;
+  fileMap[file_path]->open(file_path, mode);
+}
 
-    void fileHandler::close(const std::string &filename) {
-        auto filePath = parentPath / filename;
-        fileMap[filePath]->close();
-    }
+void fileHandler::Close(const std::string &filename) {
+  auto file_path = parentPath / filename;
+  fileMap[file_path]->close();
+}
 
-    bool fileHandler::upsert(const std::string &filename, std::ios_base::openmode mode) {
-        auto filePath = parentPath / filename;
-        if (!fileMap.contains(filePath)) {
-            fileMap[filePath] = std::make_shared<std::ofstream>();
-        }
-        if (!fileMap[filePath]->is_open()) {
-            fileMap[filePath]->open(filePath, mode);
-        }
-        return fileMap[filePath]->is_open();
+bool fileHandler::Upsert(const std::string &filename, std::ios_base::openmode mode) {
+  auto file_path = parentPath / filename;
+  if (!fileMap.contains(file_path)) {
+    fileMap[file_path] = std::make_shared<std::ofstream>();
+  }
+  if (!fileMap[file_path]->is_open()) {
+    fileMap[file_path]->open(file_path, mode);
+  }
+  return fileMap[file_path]->is_open();
 
-    }
+}
 
+void fileHandler::CloseFiles() {
+  for (auto &ptr : fileMap) {
+    ptr.second->close();
+  }
+}
 
-    void fileHandler::closeFiles() {
-        for (auto &ptr: fileMap) {
-            ptr.second->close();
-        }
-    }
+const fs::path &fileHandler::GetParentPath() const {
+  return parentPath;
+}
 
-    const fs::path &fileHandler::getParentPath() const {
-        return parentPath;
-    }
-
-    bool fileHandler::contains(const std::string &filename) {
-        return fileMap.contains(parentPath / filename);
-    }
-
+bool fileHandler::Contains(const std::string &filename) {
+  return fileMap.contains(parentPath / filename);
+}
 
 }

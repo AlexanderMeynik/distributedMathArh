@@ -6,273 +6,232 @@
 
 #include "../../computationalLib/test/GoogleCommon.h"
 
-using namespace testCommon;
-using namespace printUtils;
+using namespace test_common;
+using namespace print_utils;
 
-using ttype=std::tuple<std::string,meshStorage::MeshCreator,ioFormat,bool,bool>;
-class MeshSerializeDeserializeTs : public ::testing::TestWithParam<ttype> {
-public:
+using Ttype = std::tuple<std::string, mesh_storage::MeshCreator, IoFormat, bool, bool>;
 
+class MeshSerializeDeserializeTs : public ::testing::TestWithParam<Ttype> {
+ public:
 
-protected:
-    static inline FloatType anotherErr = 1e-14;
+ protected:
+  static inline FloatType another_err_ = 1e-14;
 };
 
-std::vector<ttype> generateFixture(int nnum=0)
-{
-    std::vector<ttype> res;
+std::vector<Ttype> GenerateFixture(int nnum = 0) {
+  std::vector<Ttype> res;
 
-    meshStorage::MeshCreator ms;
-    ms.constructMeshes({8ul,15ul},{2,10.0,5,20.0});
+  mesh_storage::MeshCreator ms;
+  ms.ConstructMeshes({8ul, 15ul}, {2, 10.0, 5, 20.0});
 
-    ms.applyFunction([](auto x,auto y){
-       return x+y*100;
-    });
+  ms.ApplyFunction([](auto x, auto y) {
+    return x + y * 100;
+  });
 
-    ttype a1=ttype{"default",ms,ioFormat::Serializable, true, true};
-    ttype a2=ttype{"noDims",ms,ioFormat::Serializable, true, false};
-    ttype a3=ttype{"noLims",ms,ioFormat::Serializable, false, true};
-    ttype a4=ttype{"noDimsNoLims",ms,ioFormat::Serializable, false, false};
+  Ttype a1 = Ttype{"default", ms, IoFormat::SERIALIZABLE, true, true};
+  Ttype a2 = Ttype{"noDims", ms, IoFormat::SERIALIZABLE, true, false};
+  Ttype a3 = Ttype{"noLims", ms, IoFormat::SERIALIZABLE, false, true};
+  Ttype a4 = Ttype{"noDimsNoLims", ms, IoFormat::SERIALIZABLE, false, false};
 
-    res.push_back(a1);
-    res.push_back(a2);
-    res.push_back(a3);
-    res.push_back(a4);
+  res.push_back(a1);
+  res.push_back(a2);
+  res.push_back(a3);
+  res.push_back(a4);
 
-    if(nnum==1)
-    {
-        ttype a5=ttype{"default_HR",ms,ioFormat::HumanReadable, true, true};
-        ttype a6=ttype{"noDims_HR",ms,ioFormat::HumanReadable, true, false};
-        ttype a7=ttype{"noLims_HR",ms,ioFormat::HumanReadable, false, true};
-        ttype a8=ttype{"noDimsNoLims_HR",ms,ioFormat::HumanReadable, false, false};
+  if (nnum == 1) {
+    Ttype a5 = Ttype{"default_HR", ms, IoFormat::HUMAN_READABLE, true, true};
+    Ttype a6 = Ttype{"noDims_HR", ms, IoFormat::HUMAN_READABLE, true, false};
+    Ttype a7 = Ttype{"noLims_HR", ms, IoFormat::HUMAN_READABLE, false, true};
+    Ttype a8 = Ttype{"noDimsNoLims_HR", ms, IoFormat::HUMAN_READABLE, false, false};
 
-        res.push_back(a5);
-        /*res.push_back(a6);
-        res.push_back(a7);
-        res.push_back(a8);*/
-    }
+    res.push_back(a5);
+    /*res.push_back(a6);
+    res.push_back(a7);
+    res.push_back(a8);*/
+  }
 
-    return res;
+  return res;
 }
 
-TEST_P(MeshSerializeDeserializeTs,testJsonSerialization)
-{
-    using namespace testCommon;
-    auto &[_,mesh,io,printDims,printLims]=GetParam();
+TEST_P(MeshSerializeDeserializeTs, testJsonSerialization) {
+  using namespace test_common;
+  auto &[_, mesh, io, print_dims, print_lims] = GetParam();
 
+  auto dimopt = print_dims ? std::nullopt : std::optional{mesh.dimensions_};
+  auto limopt = print_lims ? std::nullopt : std::optional{mesh.limits_};
 
-    auto dimopt=printDims?std::nullopt:std::optional{mesh.dimensions};
-    auto limopt=printLims?std::nullopt:std::optional{mesh.limits};
+  auto ser = ToJson(mesh, print_dims, print_lims);
 
-    auto ser= toJson(mesh,printDims,printLims);
+  auto deser = FromJson(ser, dimopt, limopt);
 
+  if (!print_dims) {
 
-    auto deser= fromJson(ser,dimopt,limopt);
+    CompareArrays(mesh.dimensions_, deser.dimensions_, arrayEqualComparator<size_t>::call, another_err_);
+  }
 
-    if(!printDims)
-    {
-
-        compareArrays(mesh.dimensions,deser.dimensions,arrayEqualComparator<size_t>::call, anotherErr);
-    }
-
-    if(!printLims)
-    {
-        compareArrays(mesh.limits, deser.limits, arrayDoubleComparator<FloatType>::call, anotherErr);
-    }
-    compareArrays(mesh.data[2], deser.data[2], arrayDoubleComparator<FloatType>::call, anotherErr);
-
+  if (!print_lims) {
+    CompareArrays(mesh.limits_, deser.limits_, arrayDoubleComparator<FloatType>::call, another_err_);
+  }
+  CompareArrays(mesh.data_[2], deser.data_[2], arrayDoubleComparator<FloatType>::call, another_err_);
 
 }
+
 INSTANTIATE_TEST_SUITE_P(
-        SerDeserJson,
-        MeshSerializeDeserializeTs,
-        ::testing::ValuesIn(generateFixture()
+    SerDeserJson,
+    MeshSerializeDeserializeTs,
+    ::testing::ValuesIn(GenerateFixture()
 
-        ), [](auto&info){return std::get<0>(info.param);});
+    ), [](auto &info) { return std::get<0>(info.param); });
 
+class MeshPrintReadTs : public ::testing::TestWithParam<Ttype> {
+ public:
 
+  MeshPrintReadTs() {
+    ss_.precision(kDefaultPrec + 1);
+  }
 
-class MeshPrintReadTs : public ::testing::TestWithParam<ttype> {
-public:
+ protected:
+  static inline FloatType another_err_ = 1e-14;
+  static inline std::stringstream ss_ = std::stringstream();
 
-    MeshPrintReadTs()
-    {
-        ss.precision(defaultPrec+1);
-    }
-
-protected:
-    static inline FloatType anotherErr = 1e-14;
-    static inline std::stringstream ss=std::stringstream();
-
-    void TearDown() override {
-        ss.str("");
-        ss.clear();
-    }
+  void TearDown() override {
+    ss_.str("");
+    ss_.clear();
+  }
 };
 
-
 INSTANTIATE_TEST_SUITE_P(
-        PrintParseTests,
-        MeshPrintReadTs,
-        ::testing::ValuesIn(generateFixture(1)
+    PrintParseTests,
+    MeshPrintReadTs,
+    ::testing::ValuesIn(GenerateFixture(1)
 
-        ), [](auto&info){return std::get<0>(info.param);});
+    ), [](auto &info) { return std::get<0>(info.param); });
 
+TEST_P(MeshPrintReadTs, testOstreamPrint) {
+  using namespace test_common;
+  auto &[_, mesh, io, print_dims, print_lims] = GetParam();
 
+  auto dimopt = print_dims ? std::nullopt : std::optional{mesh.dimensions_};
+  auto limopt = print_lims ? std::nullopt : std::optional{mesh.limits_};
 
-TEST_P(MeshPrintReadTs,testOstreamPrint)
-{
-    using namespace testCommon;
-    auto &[_,mesh,io,printDims,printLims]=GetParam();
+  PrintMesh(ss_, mesh, io, print_dims, print_lims);
+  auto deser = ParseMeshFrom(ss_, io, dimopt, limopt);
 
+  if (!print_dims) {
+    CompareArrays(mesh.dimensions_, deser.dimensions_, arrayEqualComparator<size_t>::call, another_err_);
+  }
 
-    auto dimopt=printDims?std::nullopt:std::optional{mesh.dimensions};
-    auto limopt=printLims?std::nullopt:std::optional{mesh.limits};
-
-    printMesh(ss,mesh,io,printDims,printLims);
-    auto deser=parseMeshFrom(ss,io,dimopt,limopt);
-
-    if(!printDims)
-    {
-        compareArrays(mesh.dimensions,deser.dimensions,arrayEqualComparator<size_t>::call, anotherErr);
-    }
-
-    if(!printLims)
-    {
-        compareArrays(mesh.limits, deser.limits, arrayDoubleComparator<FloatType>::call, anotherErr);
-    }
-    compareArrays(mesh.data[2], deser.data[2], arrayDoubleComparator<FloatType>::call, anotherErr);
-
+  if (!print_lims) {
+    CompareArrays(mesh.limits_, deser.limits_, arrayDoubleComparator<FloatType>::call, another_err_);
+  }
+  CompareArrays(mesh.data_[2], deser.data_[2], arrayDoubleComparator<FloatType>::call, another_err_);
 
 }
-
 
 template<typename Col>
-using contFixture=std::tuple<std::string,Col,ioFormat,bool>;
-using ContTypes = ::testing::Types<ct::stdVec,ct::EigenVec,ct::meshStorageType>;
+using ContFixture = std::tuple<std::string, Col, IoFormat, bool>;
+using ContTypes = ::testing::Types<ct::StdVec, ct::EigenVec, ct::MeshStorageType>;
 
-using conT=contFixture<ct::stdVec>;
-class ParseContTs : public ::testing::TestWithParam<conT> {
-public:
-    ParseContTs()
-    {
-        ss.precision(defaultPrec+1);
-    }
+using ConT = ContFixture<ct::StdVec>;
 
-protected:
-    static inline FloatType anotherErr = 1e-14;
+class ParseContTs : public ::testing::TestWithParam<ConT> {
+ public:
+  ParseContTs() {
+    ss_.precision(kDefaultPrec + 1);
+  }
 
-    static inline std::stringstream ss=std::stringstream();
+ protected:
+  static inline FloatType another_err_ = 1e-14;
 
-    void TearDown() override {
-        ss.str("");
-        ss.clear();
-    }
+  static inline std::stringstream ss_ = std::stringstream();
+
+  void TearDown() override {
+    ss_.str("");
+    ss_.clear();
+  }
 };
 
-
-
 template<typename Con>
-std::vector<contFixture<Con>> generateConFix(int nnum=0)
-{
+std::vector<ContFixture<Con>> GenerateConFix(int nnum = 0) {
 
-    using value_type = typename Con::value_type;
-    using container_template = get_template<Con>;
+  using ValueType = typename Con::value_type;
+  using ContainerTemplate = get_template<Con>;
 
-    std::vector<contFixture<Con>> res;
+  std::vector<ContFixture<Con>> res;
 
-    auto a=ms::myLinspace<container_template::template type, value_type>(0.0,20.0,100);
+  auto a = ms::MyLinspace<ContainerTemplate::template Type, ValueType>(0.0, 20.0, 100);
 
-    contFixture<Con> a1={"default",a,ioFormat::Serializable,true};
-    contFixture<Con> a2={"noSize",a,ioFormat::Serializable,false};
+  ContFixture<Con> a1 = {"default", a, IoFormat::SERIALIZABLE, true};
+  ContFixture<Con> a2 = {"noSize", a, IoFormat::SERIALIZABLE, false};
 
-    res.push_back(a1);
-    res.push_back(a2);
-    if(nnum==1)
-    {
-        contFixture<Con> a3={"humanReadable",a,ioFormat::HumanReadable, true};
-        res.push_back(a3);
-    }
-    return res;
+  res.push_back(a1);
+  res.push_back(a2);
+  if (nnum == 1) {
+    ContFixture<Con> a3 = {"humanReadable", a, IoFormat::HUMAN_READABLE, true};
+    res.push_back(a3);
+  }
+  return res;
 }
 
 INSTANTIATE_TEST_SUITE_P(
-        PrintParseTests,
-        ParseContTs,
-        ::testing::ValuesIn(generateConFix<ct::stdVec>(1)
+    PrintParseTests,
+    ParseContTs,
+    ::testing::ValuesIn(GenerateConFix<ct::StdVec>(1)
 
-        ), [](auto&info){return std::get<0>(info.param);});
+    ), [](auto &info) { return std::get<0>(info.param); });
 
+TEST_P(ParseContTs, testSerialization) {
+  using namespace test_common;
+  auto &[_, cont, io, print_size] = GetParam();
 
-TEST_P(ParseContTs,testSerialization)
-{
-    using namespace testCommon;
-    auto &[_,cont,io,printSize]=GetParam();
+  auto sizeopt = print_size ? std::nullopt : std::optional{cont.size()};
 
+  auto json = ContinuousToJson(cont, print_size);
 
-    auto sizeopt=printSize?std::nullopt:std::optional{cont.size()};
+  using ColT = std::remove_const_t<decltype(cont)>;
+  my_concepts::isOneDimensionalContinuous auto deser = JsonToContinuous<ColT>(json, sizeopt);
 
-    auto json=continuousToJson(cont,printSize);
+  if (!print_size) {
+    ASSERT_EQ(cont.size(), deser.size());
+  }
 
-    using colT = std::remove_const_t<decltype(cont)>;
-    auto deser= jsonToContinuous<colT>(json, sizeopt);
-
-    if(!printSize)
-    {
-        ASSERT_EQ(cont.size(),deser.size());
-    }
-
-    compareArrays(cont, cont, arrayDoubleComparator<FloatType>::call, anotherErr);
+  CompareArrays(cont, cont, arrayDoubleComparator<FloatType>::call, another_err_);
 }
 
+TEST_P(ParseContTs, testSolutionPrintParse) {
+  using namespace test_common;
+  auto &[_, cont, io, print_size] = GetParam();
 
-TEST_P(ParseContTs,testSolutionPrintParse)
-{
-    using namespace testCommon;
-    auto &[_,cont,io,printSize]=GetParam();
+  auto sizeopt = print_size ? std::nullopt : std::optional{cont.size()};
 
+  PrintSolution(ss_, cont, io, print_size);
+  using ColT = std::remove_const_t<decltype(cont)>;
 
-    auto sizeopt=printSize?std::nullopt:std::optional{cont.size()};
+  my_concepts::isOneDimensionalContinuous auto deser = ParseSolution<ColT>(ss_, io, sizeopt);
 
-    printSolution(ss,cont,io,printSize);
-    using colT = std::remove_const_t<decltype(cont)>;
+  if (!print_size) {
+    ASSERT_EQ(cont.size(), deser.size());
+  }
 
-    auto deser=parseSolution<colT>(ss,io,sizeopt);
-
-
-
-    if(!printSize)
-    {
-        ASSERT_EQ(cont.size(),deser.size());
-    }
-
-
-    compareArrays(cont, deser, arrayDoubleComparator<FloatType>::call, anotherErr);
-
+  CompareArrays(cont, deser, arrayDoubleComparator<FloatType>::call, another_err_);
 
 }
 
+TEST_P(ParseContTs, testCoordsPrintParse) {
+  using namespace test_common;
+  auto &[_, cont, io, print_size] = GetParam();
 
-TEST_P(ParseContTs,testCoordsPrintParse)
-{
-    using namespace testCommon;
-    auto &[_,cont,io,printSize]=GetParam();
+  auto sizeopt = print_size ? std::nullopt : std::optional{cont.size()};
 
+  PrintCoordinates(ss_, cont, io, print_size);
+  using ColT = std::remove_const_t<decltype(cont)>;
+  my_concepts::isOneDimensionalContinuous auto deser = ParseCoordinates<ColT>(ss_, io, sizeopt);
 
-    auto sizeopt=printSize?std::nullopt:std::optional{cont.size()};
+  if (!print_size) {
+    ASSERT_EQ(cont.size(), deser.size());
+  }
 
-    printCoordinates(ss,cont,io,printSize);
-    using colT = std::remove_const_t<decltype(cont)>;
-    auto deser=parseCoordinates<colT>(ss,io,sizeopt);
-
-    if(!printSize)
-    {
-        ASSERT_EQ(cont.size(),deser.size());
-    }
-
-
-    compareArrays(cont, deser, arrayDoubleComparator<FloatType>::call, anotherErr);
-
+  CompareArrays(cont, deser, arrayDoubleComparator<FloatType>::call, another_err_);
 
 }
 

@@ -1,6 +1,4 @@
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
-endif ()
+
 
 if (BUILD_TESTS)
     add_subdirectory(test)
@@ -23,7 +21,7 @@ file(GLOB_RECURSE httpSources CONFIGURE_DEPENDS
 
 
 add_library(servLib2 ${httpSources})
-target_link_libraries(servLib2 PUBLIC math_core_lib Drogon::Drogon)
+target_link_libraries(servLib2 PUBLIC math_core_lib network_shared_lib Drogon::Drogon)
 target_include_directories(servLib2 PUBLIC include)
 enable_coverage_for_target(servLib2)
 
@@ -33,15 +31,10 @@ target_link_libraries(mainNode -lssl -lcrypto)
 target_link_libraries(mainNode servLib2 allUtils)
 enable_coverage_for_target(mainNode)
 
-add_library(amqpUtils src/amqpCommon.cpp src/amqpRestService.cpp src/restUtils.cpp)
-target_link_libraries( amqpUtils PUBLIC fmt::fmt amqpcpp jsoncpp_lib CURL::libcurl)
-target_include_directories(amqpUtils PUBLIC ../utilLib/include)
-enable_coverage_for_target(amqpUtils)
-target_include_directories(amqpUtils PUBLIC include)
 
 add_executable(consumer aqmpCons.cpp)
-target_link_libraries(consumer PUBLIC amqpUtils )
+target_link_libraries(consumer PUBLIC network_shared_lib)
 
 
-add_executable(producer aqmpProd.cpp )
-target_link_libraries(producer PUBLIC amqpUtils)
+add_executable(producer aqmpProd.cpp)
+target_link_libraries(producer PUBLIC network_shared_lib)

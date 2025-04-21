@@ -1,57 +1,39 @@
 #include "controller/CompNode.h"
 #include "common/Printers.h"
 
-using namespace rest::v1;
+namespace rest::v1 {
+void CompNode::GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
 
-void CompNode::getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+  Json::Value res = handler_->GetStatus();
+  auto response = HttpResponse::newHttpJsonResponse(res);
 
+  response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
 
-    Json::Value res;
-    res["status"] = handler->con ? "running" : "not running";
-    res["cc"] = *(handler->cc);
-
-    res["bench"] = printUtils::continuousToJson(benchRes);
-
-    callback(HttpResponse::newHttpJsonResponse(res));
+  callback(response);
 
 }
 
-void CompNode::connectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                              const std::string &ip, const std::string &name) {
+void CompNode::ConnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
 
-    Json::Value res;
+  Json::Value res = handler_->Connect(req);
 
-    res["input"] = ip;
-    res["name"] = name;
+  auto response = HttpResponse::newHttpJsonResponse(res);
 
-    if (handler->con) {
-        auto r = HttpResponse::newHttpJsonResponse(res);//todo this isa also not very good
-        r->setStatusCode(HttpStatusCode::k208AlreadyReported);
-        callback(r);
-        return;
-    }
-    handler->connect(ip, name);
-    res["bench"] = printUtils::continuousToJson(benchRes);
-    auto r = HttpResponse::newHttpJsonResponse(res);
-    callback(r);
+  response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
+
+  callback(response);
 
 }
 
-void CompNode::disconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
-    Json::Value res;
-    res["request"] = "disconnect";
+void CompNode::DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
 
-    if (!handler->con) {
-        auto r = HttpResponse::newHttpJsonResponse(res);
-        r->setStatusCode(HttpStatusCode::k409Conflict);
-        callback(r);
-        return;
-    }
-    res["cc"] = *(handler->cc);
-    auto r = HttpResponse::newHttpJsonResponse(res);
-    handler->disconenct();
+  Json::Value res = handler_->Disconnect();
 
+  auto response = HttpResponse::newHttpJsonResponse(res);
 
-    callback(r);
+  response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
 
+  callback(response);
+
+}
 }

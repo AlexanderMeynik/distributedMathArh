@@ -1,16 +1,60 @@
 #pragma once
 
+#include <future>
+
 #include <drogon/HttpSimpleController.h>
+#include "common/sharedDeclarations.h"
+#include "network_shared/AMQPConsumerService.h"
+
+#include "service/BenchmarkRunnerService.h"
+
+
 
 using namespace drogon;
 
-class CompNodeService : public drogon::HttpSimpleController<CompNodeService> {
-public:
-    void
-    asyncHandleHttpRequest(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) override;
+/// Namespace for comp_node services
+namespace comp_services {
+using namespace shared;
+class ComputationNodeService {
+ public:
+  ComputationNodeService() {
+    RunBench();
+  }
 
-    PATH_LIST_BEGIN
-        // list path definitions here;
-        // PATH_ADD("/path", "filter1", "filter2", HttpMethod1, HttpMethod2...);
-    PATH_LIST_END
+  Json::Value GetStatus();
+
+  Json::Value Connect(const HttpRequestPtr &req);
+
+  Json::Value Disconnect();
+
+  void RunBench() {
+
+   /* if (!characteristic_computed_.load()) {
+      return;
+    }
+    if (computation_thread_.joinable()) {
+      computation_thread_.join();
+    }*/
+
+    characteristic_computed_.store(false, std::memory_order_release);
+
+    computation_thread_ = std::jthread([this]() {
+      bench_res_ = DefaultBench();
+      std::cout<<"Job done\n";
+      characteristic_computed_.store(true, std::memory_order_release);
+    });
+  }
+ private:
+  bool CheckConnection();
+  bool Computed() {
+    return characteristic_computed_.load(std::memory_order_acquire);
+  }
+
+  amqp_common::AMQPConsumerService amqp_prod_;
+  BenchResVec bench_res_;
+  std::jthread computation_thread_;
+  std::atomic<bool> characteristic_computed_;
+
 };
+
+}

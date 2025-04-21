@@ -6,14 +6,41 @@ include(Coverage)
 
 set(CMAKE_CXX_STANDARD 23)
 
-SET(CMAKE_CXX_FLAGS_RELEASE "-O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize")
 SET(CMAKE_CXX_FLAGS "-std=gnu++2b")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+if (NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE Release-Coverage)
+endif ()
+
 
 string(REGEX MATCH "^Debug" IS_DEBUG_BUILD "${CMAKE_BUILD_TYPE}")
 if(IS_DEBUG_BUILD)
-    message("${CMAKE_BUILD_TYPE}")
+    message("Configuring debug build: ${CMAKE_BUILD_TYPE}")
     string(APPEND CMAKE_CXX_FLAGS " -g -O0 ")
 endif ()
+
+string(REGEX MATCH "^Release" IS_RELEASE_BUILD "${CMAKE_BUILD_TYPE}")
+if(IS_RELEASE_BUILD)
+    message(STATUS " Configuring release build: ${CMAKE_BUILD_TYPE}")
+    string(APPEND CMAKE_CXX_FLAGS " -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize ")
+endif ()
+
+option(BUILD_TESTS "Build tests" ON)
+
+if (BUILD_TESTS)
+    enable_testing()
+    include(GoogleTest)
+    include(CTest)
+endif (BUILD_TESTS)
+option(BUILD_DOC "Build documentation" OFF)
+
+
+
+if (BUILD_DOC)
+    add_subdirectory(doc)
+endif (BUILD_DOC)
+
 
 find_package(Drogon)
 find_package(Qt6)
@@ -27,13 +54,8 @@ find_package(jsoncpp REQUIRED)
 find_package(OpenMP REQUIRED)
 find_package(CURL REQUIRED)
 
-option(BUILD_TESTS "Build tests" ON)
 
-option(BUILD_DOC "Build documentation" OFF)
 
-if (BUILD_DOC)
-    add_subdirectory(doc)
-endif (BUILD_DOC)
 
 add_subdirectory(utilLib)
 add_subdirectory(computationalLib)

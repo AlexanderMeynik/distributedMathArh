@@ -5,15 +5,10 @@ find_package(Matplot++ REQUIRED)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/client/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/client/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/client/bin)
-if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release)
-endif ()
 
-
-if(BUILD_TESTS)
+if (BUILD_TESTS)
     add_subdirectory(test)
 endif ()
-
 
 
 set(CMAKE_AUTOMOC ON)
@@ -24,16 +19,16 @@ add_library(plotLib lib/plotingUtils.cpp lib/MeshPlot.cpp include/MeshPlot.h)
 target_link_libraries(plotLib PUBLIC allUtils Matplot++::matplot Qt6::Charts Qt6::DataVisualization Qt6::Widgets)
 target_include_directories(plotLib PUBLIC include)
 
-add_executable(checker src/eigenTest.cpp )
-target_link_libraries(checker PUBLIC plotLib )
+
+add_executable(checker src/eigenTest.cpp)
+target_link_libraries(checker PUBLIC plotLib)
 
 
 add_executable(generator src/coordGenerate.cpp)
 target_link_libraries(generator PUBLIC math_core_lib plotLib OpenMP::OpenMP_CXX allUtils)
 
 
-
-add_executable(grids src/darwingGrids.cpp )
+add_executable(grids src/darwingGrids.cpp)
 target_link_libraries(grids PUBLIC math_core_lib plotLib allUtils)
 
 

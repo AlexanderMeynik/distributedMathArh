@@ -1,73 +1,87 @@
 #pragma once
-#ifndef DIPLOM_SHARED_DECLARATIONS
-#define DIPLOM_SHARED_DECLARATIONS
 
 #include <iosfwd>
 #include <string>
 #include <unordered_map>
+#include <valarray>
+
 /**
  * @brief shared namespace
- * @details This namespace contains multiple forward declarations for types to be use everywhere
+ * @details This namespace Contains multiple forward declarations for types to be use everywhere
  */
 namespace shared {
-    using FloatType = double;
-    /**
-     * @brief Common numeric parameters values
-     */
-    struct params {
-        static constexpr FloatType c = 3.0 * 1e8;
-        static constexpr FloatType yo = 1e7;
-        static constexpr FloatType omega = 1e15;
-        static constexpr FloatType omega0 = omega;
-        static constexpr FloatType a = 1;
-        static constexpr FloatType eps = 1;
+using FloatType = double;
+using BenchResultType = uint64_t;
+
+using BenchResVec = std::valarray<BenchResultType>;
+
+static inline const std::valarray<size_t> kNValues = {1ul, 2ul, 4ul,
+                                                      5ul, 8ul, 10ul,
+                                                      20ul, 40ul, 50ul,
+                                                      100ul, 200ul, 400ul,
+                                                      500ul};
+
+/**
+ * @brief Returns properly resized valarray for bench works
+ * @param init - values to set for valarray
+ */
+BenchResVec DefaultBench(BenchResultType init = 1);
+
+/**
+ * @brief Common numeric parameters values
+ */
+struct params {
+  static constexpr FloatType c = 3.0 * 1e8;
+  static constexpr FloatType yo = 1e7;
+  static constexpr FloatType omega = 1e15;
+  static constexpr FloatType omega0 = omega;
+  static constexpr FloatType a = 1;
+  static constexpr FloatType eps = 1;
+};
+
+/// enum for computation mode selection
+enum class StateT {
+  NEW,
+  OLD,
+  OPENMP_NEW,
+  OPENMP_OLD,
+  PRINT
+};
+
+constexpr std::array<const char *, 5> kStateToStr =
+    {
+        "openmp_new",
+        "new",
+        "openmp_old",
+        "old",
+        "printImpl"
     };
 
+const static std::unordered_map<std::string, StateT> kStringToState = {
+    {"openmp_new", StateT::OPENMP_NEW},
+    {"new", StateT::NEW},
+    {"openmp_old", StateT::OPENMP_OLD},
+    {"old", StateT::OLD},
+    {"printImpl", StateT::PRINT},
+};
 
-    enum class state_t {
-        new_,
-        old,
-        openmp_new,
-        openmp_old,
-        print_
-    };
+std::ostream &operator<<(std::ostream &out, const StateT &st);
 
-    constexpr std::array<const char*,5> stateToStr=
-            {
-                    "openmp_new",
-                    "new",
-                    "openmp_old",
-                    "old",
-                    "printImpl"
-            };
+/**
+* Return codes enum
+*/
+enum ReturnCodes {
+  WARNING_MESSAGE = -3,
+  ALREADY_EXISTS = -2,
+  ERROR_OCCURED = -1,
+  RETURN_SUCESS = 0
+};
 
-    const static std::unordered_map<std::string, state_t> stringToState = {
-            {"openmp_new", state_t::openmp_new},
-            {"new",        state_t::new_},
-            {"openmp_old", state_t::openmp_old},
-            {"old",        state_t::old},
-            {"printImpl",  state_t::print_},
-    };
-
-    std::ostream &operator<<(std::ostream &out, const state_t &st);
-
-
-    /**
-    * Return codes enum
-    */
-    enum returnCodes {
-        WarningMessage = -3,
-        AlreadyExists = -2,
-        ErrorOccured = -1,
-        ReturnSucess = 0
-    };
-
-    /**
-     *  Parameter type enum
-     */
-    enum paramType {
-        EmptyParameterValue = -1
-    };
+/**
+ *  Parameter type enum
+ */
+enum ParamType {
+  EMPTY_PARAMETER_VALUE = -1
+};
 
 }
-#endif //DIPLOM_SHARED_DECLARATIONS

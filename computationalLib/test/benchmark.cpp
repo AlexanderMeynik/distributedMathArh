@@ -7,260 +7,236 @@
 #include <omp.h>
 
 #include "fileHandler.h"
-#include "benchmarkHandler.h"
+#include "BenchmarkHandler.h"
 #include "common/Generator.h"
-#include "computationalLib/math_core/Dipoles.h"
+#include "math_core/Dipoles.h"
 #include "common/MeshCreator.h"
 #include "common/sharedDeclarations.h"
 
-
-using fileUtils::fileHandler;
+using file_utils::fileHandler;
 using namespace shared;
-using benchUtils::benchmarkHandler;
+using bench_utils::BenchmarkHandler;
 
-void func(int a, char b, uint c) {
-    std::cout << a << '\n' << b << '\n' << c << '\n';
+void Func(int a, char b, uint c) {
+  std::cout << a << '\n' << b << '\n' << c << '\n';
 }
 
+constexpr auto kChararr = std::array<char, 3>{'a', 'b', 'c'};
+constexpr auto kIntarr = std::array<int, 4>{1, 2, 3, 4};
+constexpr FloatType kArange = 1e-6;
 
-constexpr auto chararr = std::array<char, 3>{'a', 'b', 'c'};
-constexpr auto intarr = std::array<int, 4>{1, 2, 3, 4};
-constexpr FloatType arange = 1e-6;
-
+auto normal_gen = generators::get_normal_generator(0.0, kArange * sqrt(2));
 
 void
-loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &dipoles1,
-     meshStorage::MeshCreator &ms, size_t confNum, state_t st) {
-    for (size_t i = 0; i < confNum; ++i) {
-        clk.tik();
-        dipoles1.setNewCoordinates(coordinates);
-        clk.tak();
-        clk.tik();
-        auto sol = dipoles1.solve();
-        clk.tak();
+Loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &dipoles1,
+     mesh_storage::MeshCreator &ms, size_t confNum, StateT st) {
+  for (size_t i = 0; i < confNum; ++i) {
+    clk.Tik();
+    dipoles1.SetNewCoordinates(coordinates);
+    clk.Tak();
+    clk.Tik();
+    auto sol = dipoles1.Solve();
+    clk.Tak();
 
+    clk.Tik();
+    dipoles1.GetFullFunction(coordinates, sol);
+    clk.Tak();
 
-        clk.tik();
-        dipoles1.getFullFunction_(coordinates, sol);
-        clk.tak();
-
-        clk.tik();
-        if (st == state_t::new_) {
-            ms.applyFunction(dipoles1.getI2function());
-        } else {
-            ms.applyIntegrate(dipoles1.getIfunction());
-        }
-        clk.tak();
-
+    clk.Tik();
+    if (st == StateT::NEW) {
+      ms.ApplyFunction(dipoles1.GetI2Function());
+    } else {
+      ms.ApplyIntegrate(dipoles1.GetIfunction());
     }
+    clk.Tak();
+
+  }
 
 }
 
-
 auto firstBench = []
-        (auto &clk, fileUtils::fileHandler &handler, size_t &mul, state_t st, size_t N) {
-    auto confNum = 1000;
-    auto sig = arange * sqrt(2);
-    auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+    (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
+  auto conf_num = 1000;
 
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
-    dipoles::Dipoles dipoles1;
+  dipoles::Dipoles dipoles1;
 
-    meshStorage::MeshCreator ms;
-    ms.constructMeshes();
-    loop(coordinates, clk, dipoles1, ms, confNum, st);
-
+  mesh_storage::MeshCreator ms;
+  ms.ConstructMeshes();
+  Loop(coordinates, clk, dipoles1, ms, conf_num, st);
 
 };
 
-
 auto nameGenerator1 =
-        [](state_t st, size_t N) {
-            return STR(ENUM_TO_STR(st,stateToStr)) + "_" + std::to_string(N);
-        };
+    [](StateT st, size_t N) {
+      return STR(ENUM_TO_STR(st, kStateToStr)) + "_" + std::to_string(N);
+    };
 
-
-const std::array<size_t, 5> rlims = {10, 50, 200, 500, 1000};
-const std::array<size_t, 6> divs
-        {
-                1, 10, 40, 100, 200, 400
-        };
+const std::array<size_t, 5> kRlims = {10, 50, 200, 500, 1000};
+const std::array<size_t, 6> kDivs
+    {
+        1, 10, 40, 100, 200, 400
+    };
 
 auto rangeFinder = [](size_t N) -> size_t {
-    auto rangeNum = std::lower_bound(rlims.begin(), rlims.end(), N) - rlims.begin();
-    auto currdiv = divs[rangeNum];
-    return currdiv;
+  auto range_num = std::lower_bound(kRlims.begin(), kRlims.end(), N) - kRlims.begin();
+  auto currdiv = kDivs[range_num];
+  return currdiv;
 };
 
 auto secondBench = []
-        (auto &clk, fileUtils::fileHandler &handler, size_t &mul, size_t N) {
-    auto div = rangeFinder(N);
-    mul = div;
-    auto confNum = 10000 / div;
-    auto sig = arange * sqrt(2);
-    auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+    (auto &clk, file_utils::fileHandler &handler, size_t &mul, size_t N) {
+  auto div = rangeFinder(N);
+  mul = div;
+  auto confNum = 10000 / div;
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
+  dipoles::Dipoles dipoles1;
 
-    dipoles::Dipoles dipoles1;
+  mesh_storage::MeshCreator ms;
+  ms.ConstructMeshes();
 
-    meshStorage::MeshCreator ms;
-    ms.constructMeshes();
+  for (size_t i = 0; i < confNum; ++i) {
+    clk.Tik();
+    dipoles1.SetNewCoordinates(coordinates);
+    clk.Tak();
+    clk.Tik();
+    auto sol = dipoles1.Solve();
+    clk.Tak();
 
+    clk.Tik();
+    dipoles1.GetFullFunction(coordinates, sol);
+    clk.Tak();
 
-    for (size_t i = 0; i < confNum; ++i) {
-        clk.tik();
-        dipoles1.setNewCoordinates(coordinates);
-        clk.tak();
-        clk.tik();
-        auto sol = dipoles1.solve();
-        clk.tak();
+    clk.Tik();
+    ms.ApplyFunction(dipoles1.GetI2Function());
+    clk.Tak();
 
-
-        clk.tik();
-        dipoles1.getFullFunction_(coordinates, sol);
-        clk.tak();
-
-        clk.tik();
-        ms.applyFunction(dipoles1.getI2function());
-        clk.tak();
-
-    }
-    std::cout << N << '\n';
-    std::cout << clk << "\n\n";
-
+  }
+  std::cout << N << '\n';
+  std::cout << clk << "\n\n";
 
 };
 
-
 std::function<std::string(size_t)> nameGenerator2 =
-        [](size_t N) {
-            return std::to_string(N) + "_";
-        };
+    [](size_t N) {
+      return std::to_string(N) + "_";
+    };
 auto thirdBench = []
-        (auto &clk, fileUtils::fileHandler &handler, size_t &mul, state_t st, size_t N) {
-    auto confNum = 1000;
-    auto sig = arange * sqrt(2);
-    auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+    (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
+  auto conf_num = 1000;
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
+  dipoles::Dipoles dipoles1;
 
-    dipoles::Dipoles dipoles1;
+  mesh_storage::MeshCreator ms;
+  ms.ConstructMeshes();
+  dipoles1.SetNewCoordinates(coordinates);
+  auto sol = dipoles1.Solve();
+  dipoles1.GetFullFunction(coordinates, sol);
+  clk.Tik();
+  if (static_cast<size_t>(st) <= 1) {
+    for (size_t i = 0; i < conf_num; ++i) {
+      if (st == StateT::NEW) {
+        ms.ApplyFunction(dipoles1.GetI2Function());
+      } else {
+        ms.ApplyIntegrate(dipoles1.GetIfunction());
+      }
 
-    meshStorage::MeshCreator ms;
-    ms.constructMeshes();
-    dipoles1.setNewCoordinates(coordinates);
-    auto sol = dipoles1.solve();
-    dipoles1.getFullFunction_(coordinates, sol);
-    clk.tik();
-    if (static_cast<size_t>(st) <= 1) {
-        for (size_t i = 0; i < confNum; ++i) {
-            if (st == state_t::new_) {
-                ms.applyFunction(dipoles1.getI2function());
-            } else {
-                ms.applyIntegrate(dipoles1.getIfunction());
-            }
-
-        }
-    } else {
-#pragma omp parallel for firstprivate(dipoles1, ms), default(shared)
-        for (size_t i = 0; i < confNum; ++i) {
-
-            if (st == state_t::openmp_new) {
-                ms.applyFunction(dipoles1.getI2function());
-            } else {
-                ms.applyIntegrate(dipoles1.getIfunction());
-            }
-        }
     }
+  } else {
+#pragma omp parallel for firstprivate(dipoles1, ms), default(shared)
+    for (size_t i = 0; i < conf_num; ++i) {
 
-    clk.tak();
+      if (st == StateT::OPENMP_NEW) {
+        ms.ApplyFunction(dipoles1.GetI2Function());
+      } else {
+        ms.ApplyIntegrate(dipoles1.GetIfunction());
+      }
+    }
+  }
 
+  clk.Tak();
 
 };
 
 auto nameGenerator3 =
-        [](state_t st, size_t N) {
-            return STR(ENUM_TO_STR(st,stateToStr))  + "_" + std::to_string(N);
-        };
-
+    [](StateT st, size_t N) {
+      return STR(ENUM_TO_STR(st, kStateToStr)) + "_" + std::to_string(N);
+    };
 
 auto fourthBench = []
-        (auto &clk, fileUtils::fileHandler &handler, size_t &mul, size_t confNum, size_t N) {
-    auto sig = arange * sqrt(2);
-    auto coordinates = generators::normal<std::valarray>(N, 0.0, sig);
+    (auto &clk, file_utils::fileHandler &handler, size_t &mul, size_t confNum, size_t N) {
+  std::valarray<FloatType> coordinates(2 * N);
+  std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
+  dipoles::Dipoles dipoles1;
 
-    dipoles::Dipoles dipoles1;
+  mesh_storage::MeshCreator ms;
+  ms.ConstructMeshes();
 
-    meshStorage::MeshCreator ms;
-    ms.constructMeshes();
+  for (size_t i = 0; i < confNum; ++i) {
+    clk.Tik();
+    dipoles1.SetNewCoordinates(coordinates);
+    clk.Tak();
+    clk.Tik();
+    auto sol = dipoles1.Solve();
+    clk.Tak();
 
+    clk.Tik();
+    dipoles1.GetFullFunction(coordinates, sol);
+    clk.Tak();
 
-    for (size_t i = 0; i < confNum; ++i) {
-        clk.tik();
-        dipoles1.setNewCoordinates(coordinates);
-        clk.tak();
-        clk.tik();
-        auto sol = dipoles1.solve();
-        clk.tak();
+    clk.Tik();
+    ms.ApplyFunction(dipoles1.GetI2Function());
+    clk.Tak();
 
-
-        clk.tik();
-        dipoles1.getFullFunction_(coordinates, sol);
-        clk.tak();
-
-        clk.tik();
-        ms.applyFunction(dipoles1.getI2function());
-        clk.tak();
-
-    }
-    std::cout << N << '\n';
-    std::cout << clk << "\n\n";
-
+  }
+  std::cout << N << '\n';
+  std::cout << clk << "\n\n";
 
 };
 
-
 auto nameGenerator4 =
-        [](size_t confNum, size_t N) {
-            return std::to_string(confNum) + "_" + std::to_string(N);
-        };
-
+    [](size_t confNum, size_t N) {
+      return std::to_string(confNum) + "_" + std::to_string(N);
+    };
 
 int main() {
 
-    for (auto &N: std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
-                             20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul, 800ul, 1000ul, 2000ul}) {
-        std::cout << N << '\t' << rangeFinder(N) << '\n';
-    }
+  for (auto &N : std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
+                            20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul, 800ul, 1000ul, 2000ul}) {
+    std::cout << N << '\t' << rangeFinder(N) << '\n';
+  }
 
+  BenchmarkHandler bh("benchFirst", {"benchFirst"});
+  bh.RunBenchmark(nameGenerator1, firstBench, std::array{StateT::NEW, StateT::OLD},
+                  std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul}
+  );
 
-    benchmarkHandler bh("benchFirst", {"benchFirst"});
-    bh.runBenchmark(nameGenerator1, firstBench, std::array{state_t::new_, state_t::old},
-                    std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul}
-    );
+  BenchmarkHandler bh2("benchSecond", {"benchSecond"});
+  bh2.RunBenchmark(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
+                                                           20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul, 800ul,
+                                                           1000ul, 2000ul}
+  );
 
+  BenchmarkHandler bh3("benchThird", {"benchThird"});
+  bh3.RunBenchmark(nameGenerator3, thirdBench,
+                   std::array{StateT::NEW, StateT::OLD, StateT::OPENMP_NEW, StateT::OPENMP_OLD},
+                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul}
 
-    benchmarkHandler bh2("benchSecond", {"benchSecond"});
-    bh2.runBenchmark(nameGenerator2, secondBench, std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
-                                                             20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul, 800ul,
-                                                             1000ul, 2000ul}
-    );
+  );
 
-    benchmarkHandler bh3("benchThird", {"benchThird"});
-    bh3.runBenchmark(nameGenerator3, thirdBench,
-                     std::array{state_t::new_, state_t::old, state_t::openmp_new, state_t::openmp_old},
-                     std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul}
+  BenchmarkHandler bh4("benchFourth", {"benchFourth"});
+  bh4.RunBenchmark(nameGenerator4, fourthBench,
+                   std::array{1ul, 10ul, 100ul, 1000ul, 10000ul},
+                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
+                              20ul, 40ul, 50ul, 100ul, 200ul}
 
-    );
-
-    benchmarkHandler bh4("benchFourth", {"benchFourth"});
-    bh4.runBenchmark(nameGenerator4, fourthBench,
-                     std::array{1ul, 10ul, 100ul, 1000ul, 10000ul},
-                     std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
-                                20ul, 40ul, 50ul, 100ul, 200ul}
-
-    );
+  );
 
 }
-
-////todo gbench

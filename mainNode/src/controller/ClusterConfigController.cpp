@@ -2,121 +2,97 @@
 #include "common/Parsers.h"
 #include "common/Printers.h"
 
-using namespace rest::v1;
+/// Namespace for main node rest api handlers
+namespace rest::v1 {
 
 void
-ClusterConfigController::getStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
-    /*auto r=HttpResponse::newHttpResponse();*/
+ClusterConfigController::GetStatus(const HttpRequestPtr &req,
+                                   std::function<void(const HttpResponsePtr &)> &&callback) {
 
-    Json::Value root;
+  auto json_output = main_node_service_->Status();
 
-    int i = 0;
-    root["size"] = clients.size();
-    for (auto &[str, node]: clients) {
-        //root["data"][i]=Json::Value();
-        root["data"][i]["host"] = str;
-        root["data"][i]["status"] = mapss.at(node.st);
-        root["data"][i]["benchRes"]= printUtils::continuousToJson(node.power);
-        i++;
-    }
-    //todo call all of nodes;
+  auto res = HttpResponse::newHttpJsonResponse(json_output);
+  res->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
 
-    callback(HttpResponse::newHttpJsonResponse(root));
+  callback(res);
 
 }
 
-void ClusterConfigController::connectHandler(const HttpRequestPtr &req,
-                                             std::function<void(const HttpResponsePtr &)> &&callback,
-                                             const std::string &hostPort, const std::string &qip,
-                                             const std::string &name) {
+void ClusterConfigController::ConnectNodeHandler(const HttpRequestPtr &req,
+                                                 std::function<void(const HttpResponsePtr &)> &&callback,
+                                                 const std::string &host_port) {
 
-    Json::Value res;
+  Json::Value res;
 
-    if (!clients.count(hostPort)) {
-        computationalNode cn;
-        //todo ad https as option
-        cn.httpClient = HttpClient::newHttpClient("http://" + hostPort);
-        cn.st = NodeStatus::inactive;
-        clients[hostPort] = std::move(cn);
-    }
+  res = main_node_service_->ConnectNode(host_port, host_port);
 
-    auto req1 = HttpRequest::newHttpRequest();
-    req1->setPath("/v1/connect");
-    req1->setParameter("ip", qip);
-    req1->setParameter("name", name);
-    req1->setMethod(Post);
+  auto http_response = HttpResponse::newHttpJsonResponse(res);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
 
-
-    auto [code, resp] = clients[hostPort].httpClient->sendRequest(req1);
-    auto jsonPtr = resp->jsonObject();
-
-    res["ip"] = hostPort;
-    res["qip"] = qip;
-    res["qname"] = name;
-    if (!resp) {
-
-        res["message"] = "Unable to connect to node";
-        auto r = HttpResponse::newHttpJsonResponse(res);
-        callback(r);
-        return;//todo maybe some guard like class to handle this
-    }
-    if (resp->getStatusCode() != HttpStatusCode::k200OK) {
-        res["code"] = resp->getStatusCode();
-        auto r = HttpResponse::newHttpJsonResponse(res);
-        callback(r);
-        return;
-    }
-
-    clients[hostPort].power = printUtils::jsonToContinuous<std::valarray<double>>((*jsonPtr)["bench"]);
-
-    clients[hostPort].st = NodeStatus::active;
-    res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
-
-    auto r = HttpResponse::newHttpJsonResponse(res);
-
-
-    callback(r);
+  callback(http_response);
 
 }
 
-void ClusterConfigController::disconnectHandler(const HttpRequestPtr &req,
-                                                std::function<void(const HttpResponsePtr &)> &&callback,
-                                                const std::string &hostPort) {
-    Json::Value res;
+void ClusterConfigController::DisconnectNodeHandler(const HttpRequestPtr &req,
+                                                    std::function<void(const HttpResponsePtr &)> &&callback,
+                                                    const std::string &host_port) {
 
-    auto req1 = HttpRequest::newHttpRequest();
+  Json::Value res;
 
-    req1->setPath("/v1/disconnect");
-    req1->setMethod(Post);
+  res = main_node_service_->DisconnectNode(host_port);
 
-    auto ct = HttpClient::newHttpClient(hostPort);
-    auto [code, resp] = clients[hostPort].httpClient->sendRequest(req1);
+  auto http_response = HttpResponse::newHttpJsonResponse(res);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
 
-    if (resp->getStatusCode() != HttpStatusCode::k200OK) {
-        if (!resp->body().empty())//todo use this for conenct if body is empty
-        {
-            res = *resp->getJsonObject();
-        }
+  callback(http_response);
 
-        res["ip"] = hostPort;
-        res["code"] = resp->getStatusCode();
+}
+void ClusterConfigController::SentMessage(const HttpRequestPtr &req,
+                                          std::function<void(const HttpResponsePtr &)> &&callback,
+                                          const std::string &node) {
 
-        auto r = HttpResponse::newHttpJsonResponse(res);
-        callback(r);
-        return;
-    }
+  network_types::TestSolveParam ts(*req->getJsonObject());
+  auto json_output = main_node_service_->Publish(ts, node);
 
-    clients[hostPort].st = NodeStatus::inactive;
-    //todo what to do with http client;
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
 
-    res = *resp->getJsonObject();
-    res["ip"] = hostPort;
-    res["benchRes"] = printUtils::continuousToJson(clients[hostPort].power);
+}
 
+void ClusterConfigController::SentToExecution(const HttpRequestPtr &req,
+                                              std::function<void(const HttpResponsePtr &)> &&callback) {
+  network_types::TestSolveParam ts(*req->getJsonObject());
+  auto json_output = main_node_service_->SendToExecution(ts);
 
-    auto r = HttpResponse::newHttpJsonResponse(res);
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
+}
+void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
+                                       std::function<void(const HttpResponsePtr &)> &&callback) {
 
+  auto json = *req->getJsonObject();
 
-    callback(r);
+  auto qname = json["queue_host"].asString();
+  auto szs = json["queues"].size();
+  auto queus = print_utils::JsonToContinuous<std::vector<std::string>>(
+      json["queues"], szs, true);
 
+  auto json_output = main_node_service_->Connect(qname, queus);
+
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
+}
+void ClusterConfigController::DisconnectQ(const HttpRequestPtr &req,
+                                          std::function<void(const HttpResponsePtr &)> &&callback) {
+
+  auto json_output = main_node_service_->Disconnect();
+
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
+
+}
 }

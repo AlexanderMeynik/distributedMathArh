@@ -1,5 +1,3 @@
-
-
 file(GLOB common CONFIGURE_DEPENDS
         "*common/*.h"
         "*common/*.cpp"
@@ -11,12 +9,11 @@ enable_coverage_for_target(common_Tests)
 file(GLOB parallelUtils CONFIGURE_DEPENDS
         "parallelUtils/*.cpp"
 )
-
-
 add_executable(par_Tests ${parallelUtils})
 target_link_libraries(par_Tests gtest gmock gtest_main)
 target_link_libraries(par_Tests parallelLib)
 enable_coverage_for_target(par_Tests)
+
 
 file(GLOB plotUtils CONFIGURE_DEPENDS
         "plotUtils/*.cpp"
@@ -27,8 +24,10 @@ target_link_libraries(plot_tests gtest gmock gtest_main)
 target_link_libraries(plot_tests commonLib)
 enable_coverage_for_target(plot_tests)
 
+
 add_executable(utilsAll ${common} ${parallelUtils} ${plotUtils})
 target_link_libraries(utilsAll gtest gmock gtest_main)
 target_link_libraries(utilsAll allUtils)
 enable_coverage_for_target(utilsAll)
+gtest_discover_tests(utilsAll NO_PRETTY_TYPES NO_PRETTY_VALUES)
 

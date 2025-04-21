@@ -13,18 +13,37 @@ on:
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
+    env:
+      host: http://rabbitmq:15672
+      username: sysadmin
+      password: syspassword
+    services:
+      rabbitmq:
+        image: rabbitmq:4-management
+        env:
+          RABBITMQ_DEFAULT_USER: ${{ env.username }}
+          RABBITMQ_DEFAULT_PASS: ${{ env.password }}
+        ports:
+          - 5672:5672
+          - 15672:15672
     container:
       image: alexandermey/distirbutedmastservice:env1
     steps:
+      - name: LoadTools
+        run: |
+          apt-get update
+          apt-get install -y lcov
       - name: Checkout code
         uses: actions/checkout@v4
         with:
           path: ./src
       - name: Build
-        run: |  
+        run: |
           cp -r src/res/ res/
-        
+          
           mkdir build && cd build
+          
+          export HOST_PARAMS="$host $username $password"
           
           cmake -G Ninja  \
           ../src/
@@ -36,12 +55,33 @@ jobs:
           path: /__w/distributedMathArh/distributedMathArh/build
           if-no-files-found: warn
           include-hidden-files: true
-      - name: Run core_tests
+      - name: Run tests
         run: |
-          cd ${GITHUB_WORKSPACE}/build/computationalLib/test
-          ./core_Tests
-      - name: Run utils_tests
+          cd ${GITHUB_WORKSPACE}/build
+          ctest -T Test --output-on-failure
+      - name: Collect coverage
         if: success() || failure()
         run: |
-          cd ${GITHUB_WORKSPACE}/build/utilLib/test
-          ./utilsAll
+          cd ${GITHUB_WORKSPACE}/src
+          mypath=$(pwd)/*
+          
+          cd ..
+          
+          mkdir cov_report && cd cov_report
+          
+          lcov -t "project_cov" -o project_cov.info -c -d ../build/
+          
+          lcov --extract project_cov.info "$mypath" -o project_cov_mycode.info
+          
+          lcov --remove project_cov_mycode.info '*/test/*' -o project_cov_source.info
+          
+          genhtml -o report project_cov_source.info
+
+      - name: Save coverage report
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: /__w/distributedMathArh/distributedMathArh/cov_report
+          if-no-files-found: warn
+          include-hidden-files: true

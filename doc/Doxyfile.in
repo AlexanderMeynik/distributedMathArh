@@ -6,6 +6,8 @@ PROJECT_NAME = "Distributed math architecture"
 PROJECT_BRIEF = "This project is dedicated to design a flexible distributed architecture for stochastic modelling."
 
 
+
+
 OUTPUT_DIRECTORY =
 
 GENERATE_LATEX = NO
@@ -40,13 +42,33 @@ HAVE_DOT = YES
 
 CALL_GRAPH = YES
 CALLER_GRAPH = YES
+DIRECTORY_GRAPH =YES
 
 HIDE_IN_BODY_DOCS = YES
 
 
 SHOW_HEADERFILE = NO
 
-INPUT = ../../computationalNode/include ../../computationalLib/include ../../mainNode/include ../../utilLib/include ../../client/include md
+STRIP_FROM_PATH = ../..
+
+INPUT = ../../computationalNode/include \
+        ../../computationalNode/src \
+        ../../computationalLib/include \
+        ../../computationalLib/lib \
+        ../../mainNode/include \
+        ../../mainNode/src \
+        ../../utilLib/include \
+        ../../utilLib/lib \
+        ../../client/include \
+        md
+
+
+INCLUDE_PATH = ../../computationalNode/include \
+               ../../computationalLib/include \
+               ../../mainNode/include \
+               ../../utilLib/include \
+               ../../client/include
+
 
 # The RECURSIVE tag can be used to specify whether or not subdirectories should
 # be searched for input files as well.
