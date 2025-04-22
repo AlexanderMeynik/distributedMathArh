@@ -33,7 +33,7 @@ class BenchmarkRunner {
   /**
    * @brief Runs the benchmark for all parameter pairs and returns the results.
    */
-  shared::BenchResVec Run();
+  std::pair<shared::BenchResVec,shared::BenchResVec> Run(bool use_omp_outer=false, int eigen_threads=false);
 
  private:
   static constexpr double k_arange_ = 1e-6;
@@ -48,7 +48,7 @@ class BenchmarkRunner {
    * @param N
    * @param conf_num
    */
-  shared::BenchResultType RunSingleBenchmark(size_t N, size_t conf_num);
+  shared::BenchResultType RunSingleBenchmark(size_t N, size_t conf_num,bool use_omp_outer, int eigen_threads);
 };
 extern shared::BenchResVec ns;
 extern shared::BenchResVec iter_count;

@@ -1,0 +1,46 @@
+name: Run config benchmark
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/resttest.yml
+jobs:
+  run-bench:
+    runs-on: ubuntu-latest
+    container:
+      image: alexandermey/distirbutedmastservice:env1
+      options:
+        --cap-add=CAP_PERFMON
+    steps:
+      - name: Download artifact
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: build
+          repo: AlexanderMeynik/distributedMathArh
+          workflow: ci.yml
+          path: /__w/distributedMathArh/distributedMathArh/build/
+          search_artifacts: true
+#      - name: install testFixture
+#        run: |
+#          cd ${GITHUB_WORKSPACE}
+#
+#          chmod -R +x build/
+#          wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/fixture/res.zip
+#          unzip -q res.zip
+#          rm res.zip
+
+      - name: Run benchmark
+        if: success() || failure()
+        run: |
+          cd ${GITHUB_WORKSPACE}/build/computationalNode/test
+          ./BenchmarkRunnerService.cpp
+      - name: Save benchBenhc results
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: bench
+          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/test
+          if-no-files-found: warn
+          include-hidden-files: true

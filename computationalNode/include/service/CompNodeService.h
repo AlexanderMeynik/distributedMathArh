@@ -29,17 +29,13 @@ class ComputationNodeService {
 
   void RunBench() {
 
-   /* if (!characteristic_computed_.load()) {
-      return;
-    }
-    if (computation_thread_.joinable()) {
-      computation_thread_.join();
-    }*/
 
     characteristic_computed_.store(false, std::memory_order_release);
 
     computation_thread_ = std::jthread([this]() {
-      bench_res_ = DefaultBench();
+      std::cout<<"Job start\n";
+      bench_res_ = benchmarkRunner.Run().first;
+      //bench_res_ = DefaultBench();
       std::cout<<"Job done\n";
       characteristic_computed_.store(true, std::memory_order_release);
     });
