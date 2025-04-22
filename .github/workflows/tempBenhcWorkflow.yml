@@ -27,7 +27,7 @@ jobs:
         if: success() || failure()
         run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test
-          ./BenchmarkRunnerService
+          ./benchServiceBench
       - name: Save benchBenhc results
         if: success() || failure()
         uses: actions/upload-artifact@v4
