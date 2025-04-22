@@ -27,6 +27,7 @@ jobs:
         if: success() || failure()
         run: |
           cd ${GITHUB_WORKSPACE}/build/computationalNode/test
+          chmod +x benchServiceBench
           ./benchServiceBench
       - name: Save benchBenhc results
         if: success() || failure()
