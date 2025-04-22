@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/resttest.yml
+      - .github/workflows/tempBenhcWorkflow.yml
 jobs:
   run-bench:
     runs-on: ubuntu-latest
@@ -22,14 +22,6 @@ jobs:
           workflow: ci.yml
           path: /__w/distributedMathArh/distributedMathArh/build/
           search_artifacts: true
-#      - name: install testFixture
-#        run: |
-#          cd ${GITHUB_WORKSPACE}
-#
-#          chmod -R +x build/
-#          wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/fixture/res.zip
-#          unzip -q res.zip
-#          rm res.zip
 
       - name: Run benchmark
         if: success() || failure()
