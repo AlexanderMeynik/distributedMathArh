@@ -13,8 +13,8 @@ jobs:
     steps:
       - name:  Check IP
         run: |
-          apt-get update
-          apt-get install -y curl
+          sudo apt-get update
+          sudo apt-get install -y curl
           curl https://api.ipify.org
 
 
