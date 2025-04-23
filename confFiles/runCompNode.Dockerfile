@@ -1,5 +1,6 @@
 FROM ubuntu:22.04 as build
 LABEL authors="Meynik A.V."
+LABEL task = "Runn compNode"
 
 RUN apt-get update && \
     apt-get install -y build-essential ninja-build git wget unzip cmake \
