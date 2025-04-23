@@ -1,4 +1,4 @@
-name: Run Tests with RabbitMQ
+name: Launch computational node
 
 on:
   workflow_dispatch:
@@ -6,15 +6,15 @@ on:
     paths:
       - .github/workflows/launchWorker.yml
 jobs:
-  test:
+  launch:
     runs-on: ubuntu-22.04
     env:
       ENV_PORT: 8081
     steps:
       - name:  Check IP
         run: |
-          apt update
-          apt install curl
+          apt-get update
+          apt-get install -y curl
           curl https://api.ipify.org
 
 
