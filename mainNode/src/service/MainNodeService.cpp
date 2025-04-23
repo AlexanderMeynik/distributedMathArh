@@ -164,7 +164,7 @@ Json::Value MainNodeService::Connect(const std::string &qip, const std::vector<s
   }
   catch (std::runtime_error &err) {
     res_JSON["status"] = HttpStatusCode::k409Conflict;
-    res_JSON["message"] = fmt::format("Publisher connection error {} !", err.what());
+    res_JSON["message"] = fmt::format("Publisher connection error, msg \"{}\"!", err.what());
     return res_JSON;
   }
 

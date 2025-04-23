@@ -70,7 +70,7 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
   }
   catch (std::runtime_error &err) {
     res_JSON["status"] = HttpStatusCode::k409Conflict;
-    res_JSON["message"] = fmt::format("Queue connection error {} !", err.what());
+    res_JSON["message"] = fmt::format("Queue connection error msg :\"{}\"!", err.what());
     return res_JSON;
   }
 

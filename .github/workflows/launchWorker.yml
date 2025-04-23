@@ -1,0 +1,36 @@
+name: Run Tests with RabbitMQ
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/launchWorker.yml
+jobs:
+  test:
+    runs-on: ubuntu-22.04
+    env:
+      ENV_PORT: 8081
+    steps:
+      - name:  Check IP
+        run: |
+          apt update
+          apt install curl
+          curl https://api.ipify.org
+
+
+      - name: Pull Docker image
+        run: docker pull alexandermey/distirbutedmastservice:comp_node
+
+      - name: Run container and print IP
+        run: |
+            docker run -p $ENV_PORT:$ENV_PORT -e PORT=$ENV_PORT alexandermey/distirbutedmastservice:comp_node
+          
+          
+            CONTAINER_ID=$(docker ps -l -q)
+            HOST_IP=$(hostname -i)
+          
+            echo "Node IP: $HOST_IP"
+          
+            sleep 600
+          
+            echo "Node IP: $end"

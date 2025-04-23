@@ -12,6 +12,7 @@ void DeclareQueue(AMQP::Channel &channel,
         std::cout << fmt::format("Queue \"{}\" declared\n", queue1);
       })
       .onError([](const char *msg) {
+
         std::cerr << "Queue error: " << msg << "\n";
       });
 
