@@ -25,6 +25,64 @@ AMQPPublisherService::AMQPPublisherService(const std::string &connection_string,
       queues_(queues),
       default_exchange_(exchange) {}
 
+
+void AMQPPublisherService::Connect() {
+  service_.reset();
+  work_ = std::make_unique<boost::asio::io_service::work>(service_);
+
+  auto connection_future = connection_promise_.get_future();
+
+  RestartLoop();
+
+  service_thread_ = std::thread([this]() { service_.run(); });
+
+  std::string error = connection_future.get();
+  if (!error.empty()) {
+    Disconnect();
+    throw std::runtime_error(error);
+  }
+}
+
+
+void AMQPPublisherService::RestartLoop() {
+
+  if (IsConnected()) {
+    return;
+  }
+  if (!connection_ || !connection_->ready()) {
+    if (connection_string_.empty()) {
+      throw shared::zeroSize(VARIABLE_NAME(c_string_));
+    }
+    connection_ = std::make_unique<AMQP::TcpConnection>(&handler_, AMQP::Address(connection_string_));
+    channel_ = std::make_unique<AMQP::TcpChannel>(connection_.get());
+  }
+
+  channel_->onError([this](const char *message) {
+    const GuardType kGuard{s_mutex_};
+    if (!promise_set_) {
+      connection_promise_.set_value(message);
+      promise_set_ = true;
+      std::cout << fmt::format("Channel error: {}\n", message);
+    }
+  });
+
+
+
+
+  channel_->onReady([this]() {
+    const GuardType kGuard{s_mutex_};
+    if (!promise_set_) {
+      connection_promise_.set_value("");
+      promise_set_ = true;
+      std::cout << "Channel started successfully\n";
+    }
+  }
+  );
+
+
+}
+
+
 const std::string &AMQPPublisherService::GetConnectionString() const {
   return connection_string_;
 }
@@ -78,34 +136,12 @@ void AMQPPublisherService::Disconnect() {
 
 }
 
-void AMQPPublisherService::RestartLoop() {
 
-  if (IsConnected()) {
-    return;
-  }
-  if (!connection_ || !connection_->ready()) {
-    if (connection_string_.empty()) {
-      throw shared::zeroSize(VARIABLE_NAME(c_string_));
-    }
-    connection_ = std::make_unique<AMQP::TcpConnection>(&handler_, AMQP::Address(connection_string_));
-    channel_ = std::make_unique<AMQP::TcpChannel>(connection_.get());
-  }
-
-  channel_->onError([](const char *message) {
-    std::cout << fmt::format("Channel error: {}\n", message);
-  });
-
-}
 
 bool AMQPPublisherService::IsConnected() const {
   return handler_.IsConnected();
 }
-void AMQPPublisherService::Connect() {
-  service_.reset();
-  work_ = std::make_unique<boost::asio::io_service::work>(service_);
-  RestartLoop();
-  service_thread_ = std::thread([this]() { service_.run(); });
-}
+
 const std::string &AMQPPublisherService::GetDefaultExchange() const {
   return default_exchange_;
 }

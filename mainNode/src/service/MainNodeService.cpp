@@ -151,8 +151,22 @@ Json::Value MainNodeService::Connect(const std::string &qip, const std::vector<s
     res_JSON["exception"]["code"] = err.get<0>();
     return res_JSON;
   }
+  catch (CurlError&err) {
+    res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
+    res_JSON["message"] = "Error during http curl request";
+    res_JSON["exception"]["message"] = err.what();
+    return res_JSON;
+  }
 
-  publisher_service_->Connect();
+
+  try {
+    publisher_service_->Connect();
+  }
+  catch (std::runtime_error &err) {
+    res_JSON["status"] = HttpStatusCode::k409Conflict;
+    res_JSON["message"] = fmt::format("Publisher connection error {} !", err.what());
+    return res_JSON;
+  }
 
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
 

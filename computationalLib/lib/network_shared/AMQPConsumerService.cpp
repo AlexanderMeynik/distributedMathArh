@@ -39,7 +39,7 @@ void AMQPConsumerService::Reconnect() {
     if (!promise_set_) {
       connection_promise_.set_value(message);
       promise_set_ = true;
-      std::cout << "Channel error: " << message << '\n';
+      std::cout << fmt::format("Channel error: {}\n", message);
     }
   });
 
@@ -52,14 +52,9 @@ void AMQPConsumerService::Reconnect() {
     }
   };
 
-  auto error_cb = [this](const char *message) {
-    const GuardType kGuard{s_mutex_};
-    if (!promise_set_) {
-      connection_promise_.set_value(message);
+  //todo find way to signal
+  auto error_cb = [](const char *message) {
       std::cout << "Consumption error: " << message << '\n';
-      promise_set_ = true;
-    }
-
   };
 
   channel_->consume(queue_)
@@ -67,7 +62,7 @@ void AMQPConsumerService::Reconnect() {
         if (message_callback_) {
           message_callback_(message, delivery_tag, redelivered);
         } else {
-          amqp_common::d_message_callback(message, delivery_tag, redelivered);
+          amqp_common::DefaultMessageCallback(message, delivery_tag, redelivered);
         }
         channel_->ack(delivery_tag);
       }))

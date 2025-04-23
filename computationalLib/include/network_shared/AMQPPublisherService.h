@@ -1,6 +1,7 @@
 #pragma once
 
 #include "amqpCommon.h"
+#include <future>
 
 namespace amqp_common {
 
@@ -96,6 +97,11 @@ class AMQPPublisherService {
   std::thread service_thread_;///< thread to run boost service
 
   std::string default_exchange_;///< default exchange to bind queues
+
+  std::promise<std::string> connection_promise_;
+  bool promise_set_;
+  static inline std::mutex s_mutex_;
+  using GuardType = std::lock_guard<std::mutex>;
 
 };
 }

@@ -69,7 +69,6 @@ class AMQPConsumerService {
 
   std::promise<std::string> connection_promise_;
   bool promise_set_;
-
   static inline std::mutex s_mutex_;
   using GuardType = std::lock_guard<std::mutex>;
 

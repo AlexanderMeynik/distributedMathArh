@@ -34,8 +34,8 @@ class ComputationNodeService {
 
     computation_thread_ = std::jthread([this]() {
       std::cout<<"Job start\n";
-      bench_res_ = benchmarkRunner.Run().first;
-      //bench_res_ = DefaultBench();
+      //bench_res_ = benchmarkRunner.Run().first;
+      bench_res_ = DefaultBench();
       std::cout<<"Job done\n";
       characteristic_computed_.store(true, std::memory_order_release);
     });
