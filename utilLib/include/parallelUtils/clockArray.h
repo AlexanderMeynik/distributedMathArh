@@ -25,7 +25,7 @@ using locationType = std::array<std::string, 5>;
  * Comparator for locationType
  */
 struct LocationComparator {
-  bool operator()(const locationType& a, const locationType& b) const {
+  bool operator()(const locationType &a, const locationType &b) const {
     constexpr size_t sz = 5;
     for (size_t i = 0; i < sz; i++) {
       if (a[i] != b[i])
@@ -180,7 +180,7 @@ class clockArray {
   }
 
  private:
-  std::map<locationType, timeStore,LocationComparator> timers_;
+  std::map<locationType, timeStore, LocationComparator> timers_;
   std::map<locationType, inType, LocationComparator> start_ing_timers_;
   std::stack<locationType> to_tak_;
 

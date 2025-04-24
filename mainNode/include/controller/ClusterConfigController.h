@@ -79,8 +79,9 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
    * @param callback
    * @param node
    */
-  [[deprecated("old interface for testing")]]void SentMessage(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
-                   const std::string &node);
+  [[deprecated("old interface for testing")]]void SentMessage(const HttpRequestPtr &req,
+                                                              std::function<void(const HttpResponsePtr &)> &&callback,
+                                                              const std::string &node);
 
   /**
    * @brief Sends task to be sharded and published into queues for workers

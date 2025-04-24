@@ -4,7 +4,6 @@
 /// Namespace for services used in main node
 namespace main_services {
 
-
 MainNodeService::MainNodeService(const std::string &user, const std::string &password) {
   auth_ = std::make_unique<JsonAuthHandler>(user, password);
   rest_service_ = std::make_unique<amqp_common::RabbitMQRestService>();
@@ -20,7 +19,7 @@ Json::Value MainNodeService::Status() {
 
   if (publisher_service_->IsConnected()) {
     res_JSON["rabbitmq_service"]["status"] = "Connected";
-    res_JSON["rabbitmq_service"]["c_string"] = publisher_service_->GetConnectionString();
+    res_JSON["rabbitmq_service"]["c_string"] = publisher_service_->GetCString();
   } else {
     res_JSON["RabbitmqService"]["status"] = "Not Connected";
   }
@@ -119,7 +118,7 @@ Json::Value MainNodeService::Connect(const std::string &qip, const std::vector<s
     res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
 
     res_JSON["message"] =
-        fmt::format("Queue service is currently working {}", publisher_service_->GetConnectionString());
+        fmt::format("Queue service is currently working {}", publisher_service_->GetCString());
     return res_JSON;
   }
 
@@ -151,13 +150,12 @@ Json::Value MainNodeService::Connect(const std::string &qip, const std::vector<s
     res_JSON["exception"]["code"] = err.get<0>();
     return res_JSON;
   }
-  catch (CurlError&err) {
+  catch (CurlError &err) {
     res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
     res_JSON["message"] = "Error during http curl request";
     res_JSON["exception"]["message"] = err.what();
     return res_JSON;
   }
-
 
   try {
     publisher_service_->Connect();
@@ -274,9 +272,10 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
 
   Publish2(ts, it->first);
 
+  res_JSON["status"] = drogon::HttpStatusCode::k200OK;
+
   return res_JSON;
 }
-
 
 }
 

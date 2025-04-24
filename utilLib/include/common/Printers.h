@@ -18,7 +18,7 @@ namespace sh = shared;
 
 namespace ms = mesh_storage;
 
-Json::Value SerializeException(const shared::MyException&ex);
+Json::Value SerializeException(const shared::MyException &ex);
 /**
  * @brief Print mesh to supplied std::ostream
  * @param mesh

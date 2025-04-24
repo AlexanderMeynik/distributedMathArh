@@ -8,8 +8,6 @@
 
 #include "service/BenchmarkRunnerService.h"
 
-
-
 using namespace drogon;
 
 /// Namespace for comp_node services
@@ -29,14 +27,13 @@ class ComputationNodeService {
 
   void RunBench() {
 
-
     characteristic_computed_.store(false, std::memory_order_release);
 
     computation_thread_ = std::jthread([this]() {
-      std::cout<<"Job start\n";
+      std::cout << "Job start\n";
       //bench_res_ = benchmarkRunner.Run().first;
       bench_res_ = DefaultBench();
-      std::cout<<"Job done\n";
+      std::cout << "Job done\n";
       characteristic_computed_.store(true, std::memory_order_release);
     });
   }

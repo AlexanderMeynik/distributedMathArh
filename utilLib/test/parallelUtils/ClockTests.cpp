@@ -6,8 +6,6 @@ using chrono_clock::ChronoClockTemplate;
 using namespace timing;
 using namespace std::chrono_literals;
 
-
-
 using Ratio = std::milli;
 using DurationType = std::chrono::duration<int64_t, Ratio>;
 static constexpr double kAbsErr = 1e-2;

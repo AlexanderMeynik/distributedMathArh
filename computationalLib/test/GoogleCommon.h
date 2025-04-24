@@ -8,7 +8,6 @@
 #include "common/MeshCreator.h"
 #include "common/commonTypes.h"
 
-
 #define SLEEP(dur) std::this_thread::sleep_for(dur)
 #define ASSERT_NEAR_REL(val1, val2, rel_error) ASSERT_NEAR(val1,val2,rel_error*val1/100)
 #define EXPECT_NEAR_REL(val1, val2, rel_error) EXPECT_NEAR(val1,val2,rel_error*val1/100)
@@ -25,14 +24,11 @@ do { \
     } \
 } while (0)
 
-
 #define EXPECT_EXCEPTION_WITH_ARGS(statement, exception_type, expected_tuple) \
 do { \
     EXPECT_EXCEPTION_WITH_ARGS_BASE(statement, exception_type, expected_tuple,\
     EXPECT_EQ);                                                                          \
 } while (0)
-
-
 
 using namespace my_concepts;
 using shared::FloatType;
@@ -44,7 +40,6 @@ namespace ms = mesh_storage;
 /// Testing utilities namespace
 namespace test_common {
 constexpr double kTool = std::numeric_limits<decltype(kTool)>::epsilon();
-
 
 struct AuthParams {
   std::string host;

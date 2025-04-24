@@ -4,7 +4,6 @@
 #include <vector>
 #include <valarray>
 
-
 #include "common/commonTypes.h"
 #include "common/errorHandling.h"
 
@@ -181,7 +180,6 @@ struct connection {
 
 };
 
-
 /**
  * @brief channel struct
  */
@@ -193,6 +191,7 @@ struct channel {
   std::string user;
   std::string vhost;
   std::string state;
+  size_t consumer_count;
 
   Json::Value ToJson() const;
 

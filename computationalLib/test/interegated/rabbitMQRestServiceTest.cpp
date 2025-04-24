@@ -218,7 +218,6 @@ TEST_F(RabbitMqRestServiceTest, DeleteExchange_DoesNotExists) {
                                              "{\"error\":\"Object Not Found\",\"reason\":\"Not Found\"}"));
 }
 
-
 TEST_F(RabbitMqRestServiceTest, ListConnectionsNoErroThrown) {
 
   ASSERT_NO_THROW(m_service_ptr_->ListConnections());
@@ -239,9 +238,9 @@ int main(int argc, char **argv) {
   g_serviceParams.host = argv[1];
   g_serviceParams.username = argv[2];
   g_serviceParams.password = argv[3];
-  std::cout<<g_serviceParams.host<<'\t'
-      <<g_serviceParams.username<<'\t'
-      <<g_serviceParams.password<<'\n';
+  std::cout << g_serviceParams.host << '\t'
+            << g_serviceParams.username << '\t'
+            << g_serviceParams.password << '\n';
 
   return RUN_ALL_TESTS();
 }

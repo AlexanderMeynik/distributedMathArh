@@ -19,7 +19,6 @@ int main() {
       {"No OpenMP at all", false, 1}
   };
 
-
   std::ofstream out("outputs.txt");
   if (!out) {
     std::cerr << "Failed to open outputs.txt" << std::endl;
@@ -28,15 +27,15 @@ int main() {
 
   comp_services::BenchmarkRunner benchmarkRunner(comp_services::ns, comp_services::iter_count);
 
-  for (const auto& config : configs) {
+  for (const auto &config : configs) {
     out << "Configuration: " << config.description << "\n";
     out << "N\titer_count\ttime\n";
 
-    auto [results,results2] = benchmarkRunner.Run(config.use_omp_outer, config.eigen_threads);
+    auto [results, results2] = benchmarkRunner.Run(config.use_omp_outer, config.eigen_threads);
 
     for (size_t j = 0; j < comp_services::ns.size(); ++j) {
       out << comp_services::ns[j] << "\t" << comp_services::iter_count[j] << "\t" << results[j]
-          << "\t" << results2[j]<< "\n";
+          << "\t" << results2[j] << "\n";
     }
     out << "\n";
   }

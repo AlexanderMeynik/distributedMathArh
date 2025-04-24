@@ -24,13 +24,12 @@ TEST_P(IsSymmetricTestSuite, CheckGenratedMatrixes) {
   ASSERT_TRUE(dipoles::IsSymmetric(sym_mat));
 }
 
-TEST_F( IsSymmetricTestSuite, CheckNonSymmetricMatrix)
-{
+TEST_F(IsSymmetricTestSuite, CheckNonSymmetricMatrix) {
   const int kSize = 4;
 
   Eigen::MatrixXd mat = Eigen::MatrixXd::Random(kSize, kSize);
-  mat(0,kSize-1)=-2;
-  mat(kSize-1,0)=2;
+  mat(0, kSize - 1) = -2;
+  mat(kSize - 1, 0) = 2;
 
   ASSERT_FALSE(dipoles::IsSymmetric(mat));
 }

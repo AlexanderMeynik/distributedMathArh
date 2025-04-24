@@ -3,25 +3,6 @@
 
 namespace amqp_common {
 
-void AMQPConsumerService::Connect() {
-  service_.reset();
-  work_ = std::make_unique<boost::asio::io_service::work>(service_);
-
-  promise_set_ = false;
-  connection_promise_ = std::promise<std::string>();
-  auto connection_future = connection_promise_.get_future();
-
-  Reconnect();
-  service_thread_ = std::thread([this]() { service_.run(); });
-
-  std::string error = connection_future.get();
-  if (!error.empty()) {
-    Disconnect();
-    throw std::runtime_error(error);
-  }
-
-}
-
 void AMQPConsumerService::Reconnect() {
   if (IsConnected()) {
     return;
@@ -54,7 +35,7 @@ void AMQPConsumerService::Reconnect() {
 
   //todo find way to signal
   auto error_cb = [](const char *message) {
-      std::cout << "Consumption error: " << message << '\n';
+    std::cout << "Consumption error: " << message << '\n';
   };
 
   channel_->consume(queue_)
@@ -71,53 +52,21 @@ void AMQPConsumerService::Reconnect() {
 
 }
 
-void AMQPConsumerService::Disconnect() {
-
-  service_.post([this]() {
-    channel_->close();
-    connection_->close();
-  });
-
-  if (service_thread_.joinable()) {
-    service_thread_.join();
-  }
-  service_.stop();
-  connection_.reset();
-  channel_.reset();
-}
-
-AMQPConsumerService::~AMQPConsumerService() {
-  Disconnect();
-}
-
-AMQPConsumerService::AMQPConsumerService() : service_(1),
-                                             handler_(std::make_unique<MyHandler>(service_, work_)) {
+AMQPConsumerService::AMQPConsumerService() : AMQPService() {
 
 }
 
 AMQPConsumerService::AMQPConsumerService(const std::string &connection_string,
                                          const std::string &queue_name) :
-    service_(1),
-    handler_(std::make_unique<MyHandler>(service_, work_)),
-    queue_(queue_name),
-    c_string_(connection_string) {
-
-}
+    AMQPService(connection_string),
+    queue_(queue_name) {}
 
 void AMQPConsumerService::SetParameters(const std::string &connection_string, const std::string &queue_name) {
   c_string_ = connection_string;
   queue_ = queue_name;
 }
-
 void AMQPConsumerService::SetMessageCallback(MessageCallback callback) {
   message_callback_ = std::move(callback);
-}
-
-bool AMQPConsumerService::IsConnected() const {
-  return handler_ && handler_->IsConnected();
-}
-const std::string &AMQPConsumerService::GetCString() const {
-  return c_string_;
 }
 
 }

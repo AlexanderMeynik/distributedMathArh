@@ -8,20 +8,20 @@ DistributionFunctor ParseFunc(const DistributionType &distribution_type,
   switch (distribution_type) {
     case DistributionType::NORMAL:
       return get_normal_generator
-      (
-          get<FloatType>(args.at("mean")),
-          get<FloatType>(args.at("dev"))
-              );
+          (
+              get<FloatType>(args.at("mean")),
+              get<FloatType>(args.at("dev"))
+          );
     case DistributionType::UNIFORM:
       return get_uniform_generator
-      (
-          get<FloatType>(args.at("a")),
-          get<FloatType>(args.at("b"))
+          (
+              get<FloatType>(args.at("a")),
+              get<FloatType>(args.at("b"))
           );
     case DistributionType::EXPONENTIAL:
       return get_exponential_generator(
           get<FloatType>(args.at("lambda"))
-          );
+      );
     default:return []() { return 1.0; };
   }
 }

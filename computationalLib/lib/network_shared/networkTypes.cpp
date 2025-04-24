@@ -179,6 +179,7 @@ Json::Value channel::ToJson() const {
   val["user"] = user;
   val["vhost"] = vhost;
   val["state"] = state;
+  val["consumer_count"] = consumer_count;
   return val;
 }
 channel::channel(Json::Value &val) :
@@ -187,5 +188,6 @@ channel::channel(Json::Value &val) :
     connection_name(val["connection_details"]["name"].asString()),
     user(val["user"].asString()),
     vhost(val["vhost"].asString()),
-    state(val["state"].asString()) {}
+    state(val["state"].asString()),
+    consumer_count(val["consumer_count"].asUInt()) {}
 }

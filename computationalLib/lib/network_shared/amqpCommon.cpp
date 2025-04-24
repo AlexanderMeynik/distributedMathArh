@@ -58,6 +58,58 @@ void DefaultMessageCallback(const AMQP::Message &message, uint64_t delivery_tag,
   std::cout << '\n';
 }
 
+bool AMQPService::IsConnected() const {
+  return handler_ && handler_->IsConnected();
+}
+const std::string &AMQPService::GetCString() const {
+  return c_string_;
+}
+void AMQPService::Connect() {
+  service_.reset();
+  work_ = std::make_unique<boost::asio::io_service::work>(service_);
 
+  promise_set_ = false;
+  connection_promise_ = std::promise<std::string>();
 
+  auto connection_future = connection_promise_.get_future();
+
+  Reconnect();
+
+  service_thread_ = std::thread([this]() { service_.run(); });
+
+  std::string error = connection_future.get();
+  if (!error.empty()) {
+    Disconnect();
+    throw std::runtime_error(error);
+  }
+}
+void AMQPService::Disconnect() {
+  service_.post([this]() {
+    if (channel_) channel_->close();
+    if (connection_) connection_->close();
+  });
+
+  if (service_thread_.joinable()) {
+    service_thread_.join();
+  }
+  service_.stop();
+  work_.reset();
+  channel_.reset();
+  connection_.reset();
+}
+AMQPService::AMQPService() : service_(1),
+                             handler_(std::make_unique<MyHandler>(service_, work_)) {
+}
+AMQPService::AMQPService(const std::string &connection_string) :
+    service_(1),
+    handler_(std::make_unique<MyHandler>(service_, work_)),
+    c_string_(connection_string) {
+
+}
+void AMQPService::SetParameters(const std::string &connection_string) {
+  c_string_ = connection_string;
+}
+AMQPService::~AMQPService() {
+  Disconnect();
+}
 }

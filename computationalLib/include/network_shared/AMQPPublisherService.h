@@ -8,7 +8,7 @@ namespace amqp_common {
 /**
  * @brief Service that allow to Publish messages to multiple queues
  */
-class AMQPPublisherService {
+class AMQPPublisherService : public AMQPService {
  public:
 
   AMQPPublisherService();
@@ -26,13 +26,6 @@ class AMQPPublisherService {
   AMQPPublisherService(const std::string &connection_string,
                        const std::vector<std::string> &queues = {},
                        const std::string &exchange = "testexch");
-
-  /**
-   * @brief Starts service operation
-   */
-  void Connect();
-
-  const std::string &GetConnectionString() const;
 
   const std::string &GetDefaultExchange() const;
 
@@ -66,42 +59,21 @@ class AMQPPublisherService {
   void Publish(EnvelopePtr message, const std::string qname);
 
   /**
-   * @brief Ends connection and channel to rabbitMQ
-   * This is the variant of soft disconnect:
-   * while the connection is closing the channel may still process
-   * some messages and closes only when it had finished processing
-   * the last one(he managed to get).
-   */
-  void Disconnect();
-
-  /**
    * @brief Calls Disconnect and frees used memory with smart pointers
    * @see AMQPPublisherService Disconnect
    */
   ~AMQPPublisherService();
 
-  bool IsConnected() const;
-
  private:
 
-  void RestartLoop();
+  void Reconnect();
 
-  boost::asio::io_service service_; ///< service used for async event loop
-  std::unique_ptr<boost::asio::io_service::work> work_;///< work object to handle loop work
-  MyHandler handler_; ///< custom connection handler
-  std::unique_ptr<AMQP::TcpConnection> connection_; ///< AMQP::TcpConnection pointer
-  std::unique_ptr<AMQP::TcpChannel> channel_; ///< AMQP::TcpChannel pointer
   std::vector<std::string> queues_;///< list of used queues @todo remove
-  std::string connection_string_;///< connection string
 
   std::thread service_thread_;///< thread to run boost service
 
   std::string default_exchange_;///< default exchange to bind queues
 
-  std::promise<std::string> connection_promise_;
-  bool promise_set_;
-  static inline std::mutex s_mutex_;
-  using GuardType = std::lock_guard<std::mutex>;
 
 };
 }

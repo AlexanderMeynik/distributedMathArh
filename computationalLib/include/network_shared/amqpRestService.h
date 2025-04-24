@@ -52,7 +52,6 @@ class RabbitMQRestService {
   RabbitMQRestService(const std::string &base_url,
                       AuthHandler *auth_handler);
 
-
   RabbitMQRestService(const RabbitMQRestService &other) = delete;
 
   RabbitMQRestService &operator=(const RabbitMQRestService &other) = delete;
@@ -126,13 +125,13 @@ class RabbitMQRestService {
    * @brief retrieve all connection
    * @return std::vector of connection
    */
-  std::vector<connection>ListConnections();
+  std::vector<connection> ListConnections();
 
   /**
    * @brief retrieve all channels
    * @return std::vector of channel
    */
-  std::vector<channel>ListChannels();
+  std::vector<channel> ListChannels();
 
   /**
    * @brief Binds queue to exchange

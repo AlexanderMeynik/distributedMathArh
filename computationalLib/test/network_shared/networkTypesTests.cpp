@@ -20,71 +20,60 @@ void ExpectQueueBindingEqual(const queueBinding &a, const queueBinding &b) {
   EXPECT_EQ(a.routing_key, b.routing_key);
 }
 
-
-
-class TestSolveParam_TS:public testing::Test
-{
+class TestSolveParam_TS : public testing::Test {
  public:
   TestSolveParam GetValidSample
-      ()
-  {
+      () {
     TestSolveParam ts;
-    ts.N_=10;
-    ts.range={0,9999};
-    ts.args["val"]=2.0;
-    ts.args["msg"]="some string";
+    ts.N_ = 10;
+    ts.range = {0, 9999};
+    ts.args["val"] = 2.0;
+    ts.args["msg"] = "some string";
     return ts;
   }
 };
 
-class NetworkTypesConversionTests:public testing::Test
-{
+class NetworkTypesConversionTests : public testing::Test {
 
 };
 
-TEST_F(TestSolveParam_TS,TestValidSlice)
-{
-  size_t iter=1000;
-  auto ts=GetValidSample();
+TEST_F(TestSolveParam_TS, TestValidSlice) {
+  size_t iter = 1000;
+  auto ts = GetValidSample();
 
-  auto ts2=ts.SliceAway(iter);
+  auto ts2 = ts.SliceAway(iter);
 
-  EXPECT_EQ(ts.range.first,ts2.range.second+1);
+  EXPECT_EQ(ts.range.first, ts2.range.second + 1);
 
-  EXPECT_EQ(ts2.range.second-ts2.range.first+1,iter);
+  EXPECT_EQ(ts2.range.second - ts2.range.first + 1, iter);
 }
 
+TEST_F(TestSolveParam_TS, TestZeroSizeSlice) {
+  size_t iter = 0;
 
-TEST_F(TestSolveParam_TS,TestZeroSizeSlice)
-{
-  size_t iter=0;
-
-  auto ts=GetValidSample();
-  auto ts_p=ts;
+  auto ts = GetValidSample();
+  auto ts_p = ts;
 
   EXPECT_EXCEPTION_WITH_ARGS(ts.SliceAway(iter),
                              shared::outOfRange,
-                             std::make_tuple(iter,1l,ts_p.RangeSize()));
+                             std::make_tuple(iter, 1l, ts_p.RangeSize()));
 
-  EXPECT_EQ(ts.range,ts_p.range);
+  EXPECT_EQ(ts.range, ts_p.range);
 
 }
 
+TEST_F(TestSolveParam_TS, TestTooLargeSlice) {
+  size_t iter = 100000;
 
-TEST_F(TestSolveParam_TS,TestTooLargeSlice)
-{
-  size_t iter=100000;
-
-  auto ts=GetValidSample();
-  auto ts_p=ts;
+  auto ts = GetValidSample();
+  auto ts_p = ts;
 
   EXPECT_EXCEPTION_WITH_ARGS(ts.SliceAway(iter),
                              shared::outOfRange,
-                             std::make_tuple(iter,1l,ts_p.RangeSize()));
+                             std::make_tuple(iter, 1l, ts_p.RangeSize()));
 
-  EXPECT_EQ(ts.range,ts_p.range);
+  EXPECT_EQ(ts.range, ts_p.range);
 }
-
 
 TEST_F(TestSolveParam_TS, SerializeToJson) {
 
@@ -157,9 +146,6 @@ TEST_F(TestSolveParam_TS, SerializeDeserializeEquality) {
   ExpectTestSolveParamEqual(original, copy);
 }
 
-
-
-
 TEST_F(NetworkTypesConversionTests, VariantToJson_Nullptr) {
   JsonVariant var = std::nullptr_t{};
   Json::Value json_val = VariantToJson(var);
@@ -205,14 +191,12 @@ TEST_F(NetworkTypesConversionTests, VariantToJson_String) {
   EXPECT_EQ(json_val.asString(), input);
 }
 
-
 TEST_F(NetworkTypesConversionTests, JsonToVariant_Null) {
   Json::Value json_val;
   json_val = Json::nullValue;
   JsonVariant var = JsonToVariant(json_val);
   EXPECT_TRUE(std::holds_alternative<std::nullptr_t>(var));
 }
-
 
 TEST_F(NetworkTypesConversionTests, JsonToVariant_Boolean) {
   Json::Value json_val(true);
@@ -253,23 +237,20 @@ TEST_F(NetworkTypesConversionTests, JsonToVariant_String) {
   EXPECT_EQ(std::get<std::string>(var), str);
 }
 
-
 TEST_F(NetworkTypesConversionTests, JsonToVariant_UnsuprotedType) {
 
   Json::Value json_val;
-  json_val["data"]="ss";
-  json_val["size"]=2;
+  json_val["data"] = "ss";
+  json_val["size"] = 2;
   JsonVariant var;
 
-  EXPECT_EXCEPTION_WITH_ARGS(var=JsonToVariant(json_val),
+  EXPECT_EXCEPTION_WITH_ARGS(var = JsonToVariant(json_val),
                              shared::InvalidOption,
                              std::make_tuple(std::to_string(Json::objectValue)));
 
   EXPECT_TRUE(std::holds_alternative<std::nullptr_t>(var));
-  
+
 }
-
-
 
 TEST(NetworkTypesRabbitMQUserTests, JsonConstructor) {
 
@@ -282,14 +263,13 @@ TEST(NetworkTypesRabbitMQUserTests, JsonConstructor) {
   json_val["tags"] = tags;
 
   rabbitMQUser user(json_val);
-  
+
   EXPECT_EQ(user.name, "user1");
   EXPECT_EQ(user.password_hash, "hash123");
   ASSERT_EQ(user.tags.size(), 2u);
   EXPECT_EQ(user.tags[0], "tag1");
   EXPECT_EQ(user.tags[1], "tag2");
 }
-
 
 TEST(NetworkTypesExchangeTests, JsonConstructorAndToJson) {
 
@@ -312,7 +292,7 @@ TEST(NetworkTypesExchangeTests, JsonConstructorAndToJson) {
   Json::Value out_json = exch.ToJson();
   EXPECT_EQ(out_json["name"].asString(), "exch1");
   EXPECT_EQ(out_json["user_who_performed_action"].asString(), "creator1");
-  
+
   EXPECT_EQ(out_json["type"].asString(), "direct");
   EXPECT_EQ(out_json["auto_delete"].asBool(), false);
   EXPECT_EQ(out_json["durable"].asBool(), true);

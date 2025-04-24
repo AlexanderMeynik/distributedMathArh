@@ -4,6 +4,7 @@
 #include <vector>
 #include <thread>
 #include <memory>
+#include <future>
 
 #include "common/errorHandling.h"
 #include "network_shared/networkTypes.h"
@@ -19,7 +20,7 @@ namespace amqp_common {
 using AMQP::Envelope;
 using EnvelopePtr = std::shared_ptr<Envelope>;
 using AMQP::MessageCallback;
-using WorkPtr=std::unique_ptr<boost::asio::io_service::work>;
+using WorkPtr = std::unique_ptr<boost::asio::io_service::work>;
 
 /**
  * @brief Constructs amqp connection string
@@ -76,7 +77,6 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   MyHandler(boost::asio::io_service &service,
             std::unique_ptr<boost::asio::io_service::work> &work_ref);
 
-
   /**
    * @brief Method that is called on connection close
    * @param connection
@@ -117,8 +117,7 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   /**
    * @brief Resets work to stop event loop
    */
-  void ResetLoop()
-  {
+  void ResetLoop() {
     m_work_.reset();
     connected_ = false;
   }
@@ -126,6 +125,72 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   bool connected_;
 };
 
+/**
+ * @class AMQPService
+ * @brief This class connection/disconnection semantics
+ * @details This class allow to synchronously Connect
+ * @details and soft disconnect.
+ */
+class AMQPService {
+ public:
+  /**
+   *
+   */
+  AMQPService();
+
+  AMQPService(const std::string &connection_string);
+
+  /**
+   * @brief Sets most connection parameter
+   * @param connection_string
+   */
+  void SetParameters(const std::string &connection_string);
+
+  /**
+   * @return connection status
+   */
+  bool IsConnected() const;
+
+  /**
+   * @return connection string
+   */
+  const std::string &GetCString() const;
+  /**
+   * @brief Starts event Loop for service
+   */
+  void Connect();
+
+  /**
+   * @brief Ends connection and channel to rabbitMQ
+   * This is the variant of soft disconnect.
+   */
+  void Disconnect();
+
+  /**
+  * @brief Calls Disconnect and frees used memory with smart pointers
+  * @see AMQPPublisherService Disconnect
+  */
+  ~AMQPService();
+ protected:
+
+  virtual void Reconnect() = 0;
+
+  boost::asio::io_service service_; ///< service used for async event loop
+  std::unique_ptr<boost::asio::io_service::work> work_; ///< work object to handle loop work
+
+  std::unique_ptr<MyHandler> handler_;///< custom connection handler
+  std::unique_ptr<AMQP::TcpConnection> connection_; ///< AMQP::TcpConnection pointer
+  std::unique_ptr<AMQP::TcpChannel> channel_; ///< AMQP::TcpChannel pointer
+
+  std::string c_string_;///< connection string
+
+  std::thread service_thread_;///< thread to run boost service
+
+  std::promise<std::string> connection_promise_;
+  bool promise_set_;
+  static inline std::mutex s_mutex_;
+  using GuardType = std::lock_guard<std::mutex>;
+};
 
 /**
  * @brief Default message processing callback

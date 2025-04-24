@@ -101,9 +101,6 @@ std::vector<std::string> RabbitMQRestService::ListQueues(const std::string &vhos
   return queues;
 }
 
-
-
-
 bool RabbitMQRestService::BindQueueToExchange(const std::string &vhost,
                                               const std::string &queue_name,
                                               const std::string &exchange_name,
@@ -158,7 +155,7 @@ std::vector<rabbitMQUser> RabbitMQRestService::ListUsers(const std::string &vhos
 }
 
 std::vector<connection> RabbitMQRestService::ListConnections() {
-  std::string path="/api/connections";
+  std::string path = "/api/connections";
 
   std::vector<connection> connections;
 
@@ -174,7 +171,7 @@ std::vector<connection> RabbitMQRestService::ListConnections() {
 }
 
 std::vector<channel> RabbitMQRestService::ListChannels() {
-  std::string path="/api/channels";
+  std::string path = "/api/channels";
 
   std::vector<channel> connections;
 
@@ -188,7 +185,6 @@ std::vector<channel> RabbitMQRestService::ListChannels() {
 
   return connections;
 }
-
 
 Json::Value RabbitMQRestService::Whoami() {
 
@@ -227,6 +223,5 @@ std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost
 
   return out;
 }
-
 
 }

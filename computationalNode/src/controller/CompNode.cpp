@@ -15,7 +15,6 @@ void CompNode::GetStatus(const HttpRequestPtr &req, std::function<void(const Htt
 
 void CompNode::ConnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
 
-
   Json::Value res = handler_->Connect(req);
 
   auto response = HttpResponse::newHttpJsonResponse(res);
