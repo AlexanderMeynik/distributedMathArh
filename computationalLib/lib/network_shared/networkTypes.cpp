@@ -59,13 +59,12 @@ TestSolveParam::TestSolveParam(Json::Value &val) :
 }
 TestSolveParam TestSolveParam::SliceAway(size_t iter_count) {
 
-  if(!iter_count
-  ||
-  range.first + iter_count>range.second)
-  {
+  if (!iter_count
+      ||
+          range.first + iter_count > range.second) {
 
     throw shared::outOfRange(iter_count,
-                             1,range.second - range.first + 1);
+                             1, range.second - range.first + 1);
   }
 
   TestSolveParam ret = *this;
@@ -149,4 +148,44 @@ Json::Value queue::ToJson() const {
   return val;
 }
 
+connection::connection(Json::Value &val) :
+    channels(val["channels"].asUInt()),
+    host(val["host"].asString()),
+    name(val["name"].asString()),
+    peer_host(val["peer_host"].asString()),
+    port(val["port"].asUInt()),
+    peer_port(val["peer_port"].asUInt()),
+    connected_at(val["connected_at"].asUInt64()),
+    user(val["user"].asString()) {}
+
+Json::Value connection::ToJson() const {
+  Json::Value val;
+  val["channels"] = static_cast<Json::UInt>(channels);
+  val["host"] = host;
+  val["name"] = name;
+  val["peer_host"] = peer_host;
+  val["port"] = static_cast<Json::UInt>(port);
+  val["peer_port"] = static_cast<Json::UInt>(peer_port);
+  val["connected_at"] = static_cast<Json::UInt64>(connected_at);
+  val["user"] = user;
+  return val;
+}
+
+Json::Value channel::ToJson() const {
+  Json::Value val;
+  val["name"] = name;
+  val["number"] = static_cast<Json::UInt>(channel_number);
+  val["connection_name"] = connection_name;
+  val["user"] = user;
+  val["vhost"] = vhost;
+  val["state"] = state;
+  return val;
+}
+channel::channel(Json::Value &val) :
+    name(val["name"].asString()),
+    channel_number(val["number"].asUInt()),
+    connection_name(val["connection_details"]["name"].asString()),
+    user(val["user"].asString()),
+    vhost(val["vhost"].asString()),
+    state(val["state"].asString()) {}
 }

@@ -218,6 +218,17 @@ TEST_F(RabbitMqRestServiceTest, DeleteExchange_DoesNotExists) {
                                              "{\"error\":\"Object Not Found\",\"reason\":\"Not Found\"}"));
 }
 
+
+TEST_F(RabbitMqRestServiceTest, ListConnectionsNoErroThrown) {
+
+  ASSERT_NO_THROW(m_service_ptr_->ListConnections());
+}
+
+TEST_F(RabbitMqRestServiceTest, ListChannelsNoErroThrown) {
+
+  ASSERT_NO_THROW(m_service_ptr_->ListConnections());
+}
+
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
   if (argc < 4) {

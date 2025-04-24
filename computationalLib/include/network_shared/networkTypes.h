@@ -44,9 +44,8 @@ struct TestSolveParam {
   std::unordered_map<std::string, JsonVariant> args;///< map can contain any primitive JSON types
   bool operator==(const TestSolveParam &oth) const = default;
 
-  size_t RangeSize()
-  {
-    return range.second-range.first+1;
+  size_t RangeSize() {
+    return range.second - range.first + 1;
   }
 
   /**
@@ -56,7 +55,6 @@ struct TestSolveParam {
    * @throws shared::outOfRange - if block with specified size can't sliced away
    */
   TestSolveParam SliceAway(size_t iter_count);
-
 
   /**
    * @brief Serialize as json
@@ -161,6 +159,45 @@ struct queue {
         bool durable_a = true);
 
   queue(Json::Value &val);
+};
+
+/**
+ * @brief connection struct
+ */
+struct connection {
+
+  size_t channels;
+  std::string host;
+  std::string name;
+  std::string peer_host;
+  size_t port;
+  size_t peer_port;
+  uint64_t connected_at;
+  std::string user;
+
+  Json::Value ToJson() const;
+
+  connection(Json::Value &val);
+
+};
+
+
+/**
+ * @brief channel struct
+ */
+struct channel {
+
+  std::string name;
+  size_t channel_number;
+  std::string connection_name;
+  std::string user;
+  std::string vhost;
+  std::string state;
+
+  Json::Value ToJson() const;
+
+  channel(Json::Value &val);
+
 };
 
 }

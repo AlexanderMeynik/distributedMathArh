@@ -123,6 +123,18 @@ class RabbitMQRestService {
   std::vector<std::string> ListQueues(const std::string &vhost);
 
   /**
+   * @brief retrieve all connection
+   * @return std::vector of connection
+   */
+  std::vector<connection>ListConnections();
+
+  /**
+   * @brief retrieve all channels
+   * @return std::vector of channel
+   */
+  std::vector<channel>ListChannels();
+
+  /**
    * @brief Binds queue to exchange
    * @param vhost
    * @param queue_name
