@@ -38,7 +38,7 @@ class BenchmarkRunner {
  private:
   static constexpr double k_arange_ = 1e-6;
   static constexpr size_t iter_num_ = 10000;
-  static auto inline ff_ = generators::get_normal_generator(0.0, k_arange_ * std::sqrt(2.0));
+  static thread_local auto inline ff_ = generators::get_normal_generator(0.0, k_arange_ * std::sqrt(2.0));
   shared::BenchResVec ns_;
   shared::BenchResVec iter_counts_;
   chrono_clock::ChronoClockTemplate<std::milli> clk;

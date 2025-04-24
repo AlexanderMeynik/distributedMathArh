@@ -36,7 +36,6 @@ shared::BenchResultType BenchmarkRunner::RunSingleBenchmark(size_t N,
   for (size_t i = 0; i < conf_num; ++i) {
 
     std::generate(std::begin(coordinates), std::end(coordinates), ff_);
-
     dipoles1.SetNewCoordinates(coordinates);
 
     sol = std::move(dipoles1.Solve());
