@@ -32,8 +32,10 @@ class BenchmarkRunner {
 
   /**
    * @brief Runs the benchmark for all parameter pairs and returns the results.
+   * @param use_omp_outer - uses openmp during runs
+   * @param eigen_threads - sets num of eigen threads(0 for default num)
    */
-  std::pair<shared::BenchResVec, shared::BenchResVec> Run(bool use_omp_outer = false, int eigen_threads = false);
+  std::pair<shared::BenchResVec, shared::BenchResVec> Run(bool use_omp_outer = true, int eigen_threads = 0);
 
  private:
   static constexpr double k_arange_ = 1e-6;
@@ -67,32 +69,41 @@ static auto inline n_message_callback =
 
       network_types::TestSolveParam ts(val);
 
-      auto functor = generators::ParseFunc(
-          get<std::string>(ts.args["type"]),
-          ts.args
-      );
 
       using namespace common_types;
-      EigenVec coords(2 * ts.N_);
-      EigenVec solution(4 * ts.N_);
-      dipoles::Dipoles dp;
-      mesh_storage::MeshCreator mc;
+      dipoles::Dipoles dipoles1;
 
-      mc.ConstructMeshes();
-      StdValarr res = mc.data_[0];
-      //todo use openmp
-      for (int i = ts.range.first; i <= ts.range.second; ++i) {
-        std::generate(std::begin(coords), std::end(coords), functor);
+      mesh_storage::MeshCreator ms;
 
-        dp.SetNewCoordinates(coords);
+      ms.ConstructMeshes();
 
-        solution = dp.Solve();
-        dp.GetFullFunction(coords, solution);
+      StdValarr coordinates(2 * ts.N_);
 
-        auto ff = dp.GetI2Function();
+      EigenVec sol;
 
-        mc.ApplyFunction(ff);
-        res += mc.data_[2];
+      StdValarr res = ms.data_[0];
+
+      #pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol) shared(res)
+      {
+        thread_local auto functor = generators::ParseFunc(
+            get<std::string>(ts.args["type"]),
+            ts.args
+        );
+        #pragma omp for
+        for (int i = ts.range.first; i <= ts.range.second; ++i) {
+          std::generate(std::begin(coordinates), std::end(coordinates), functor);
+          dipoles1.SetNewCoordinates(coordinates);
+
+          sol = std::move(dipoles1.Solve());
+
+          dipoles1.GetFullFunction(coordinates, sol);
+
+          ms.ApplyFunction(dipoles1.GetI2Function());
+          #pragma  omp critical
+          {
+            res += ms.data_[2];
+          }
+        }
       }
 
       std::cout << print_utils::ContinuousToJson(res, false, true);

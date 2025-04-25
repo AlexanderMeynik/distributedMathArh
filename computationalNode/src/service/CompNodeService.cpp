@@ -81,4 +81,18 @@ bool ComputationNodeService::CheckConnection() {
   return amqp_prod_.IsConnected();
 }
 
+void ComputationNodeService::RunBench() {
+
+  characteristic_computed_.store(false, std::memory_order_release);
+
+  computation_thread_ = std::jthread([this]() {
+    std::cout << "Job start\n";
+    bench_res_ = benchmarkRunner.Run().first;
+    //bench_res_ = DefaultBench();
+    std::cout << "Job done\n";
+    characteristic_computed_.store(true, std::memory_order_release);
+  });
+}
+
+
 }

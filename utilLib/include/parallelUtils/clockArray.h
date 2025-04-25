@@ -5,6 +5,7 @@
 #include <map>
 #include <stack>
 #include <source_location>
+#include <mutex>
 #include <thread>
 #include <concepts>
 
@@ -185,7 +186,7 @@ class clockArray {
   std::stack<locationType> to_tak_;
 
   static inline std::mutex s_mutex_;
-  using GuardType = std::lock_guard<std::mutex>;
+  using GuardType = std::scoped_lock<std::mutex>;
 };
 
 }
@@ -209,7 +210,7 @@ clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tak
     const std::source_location &location) {
 
   auto new_time = (*timeGetter)();
-  const GuardType kGuard{s_mutex_};
+  GuardType kGuard{s_mutex_};
   auto id = (*sourceTypeConverter)(location);
   if (to_tak_.empty() || to_tak_.top()[0] != id[0]) {
     std::string msg = "No paired Tik statement found in queue\t"
@@ -234,7 +235,7 @@ template<typename OutType, typename inType, inType (*timeGetter)(), locationType
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
 clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tik(
     const std::source_location &location) {
-  const GuardType kGuard{s_mutex_};
+  GuardType kGuard{s_mutex_};
   auto id = sourceTypeConverter(location);
   start_ing_timers_[id] = timeGetter();
 
@@ -245,7 +246,7 @@ template<typename OutType, typename inType, inType (*timeGetter)(), locationType
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
 clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Reset() {
-  const GuardType kGuard{s_mutex_};
+  GuardType kGuard{s_mutex_};
   if (!to_tak_.empty()) {
     throw std::logic_error("Missing Tak statements for Tik ones");
   }

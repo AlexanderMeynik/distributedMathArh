@@ -16,7 +16,7 @@ void AMQPConsumerService::Reconnect() {
   }
 
   channel_->onError([this](const char *message) {
-    const GuardType kGuard{s_mutex_};
+    GuardType kGuard{s_mutex_};
     if (!promise_set_) {
       connection_promise_.set_value(message);
       promise_set_ = true;
@@ -25,7 +25,7 @@ void AMQPConsumerService::Reconnect() {
   });
 
   auto start_cb = [this](const std::string &consumer_tag) {
-    const GuardType kGuard{s_mutex_};
+    GuardType kGuard{s_mutex_};
     if (!promise_set_) {
       connection_promise_.set_value("");
       promise_set_ = true;
