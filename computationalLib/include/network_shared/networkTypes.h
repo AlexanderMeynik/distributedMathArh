@@ -220,7 +220,8 @@ struct message {
   {
     Json::Value val;
 
-    val["properties"]="{}";
+    val["properties"]=Json::objectValue;
+
     val["routing_key"]=routing_key;
     val["payload"]=payload;
     val["payload_encoding"]=payload_encoding;

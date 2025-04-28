@@ -13,10 +13,13 @@ using namespace amqp_common;
 class AMQPConsumerSeviceIntegratedTs : public testing::Test {
  public:
 
+  using GuardType = std::scoped_lock<std::mutex>;
   std::shared_ptr<RabbitMQRestService> m_service_ptr_;
 
   std::shared_ptr<BasicAuthHandler> hander_;
   std::unique_ptr<AMQPConsumerService> consumer_service_;
+
+  static inline std::mutex mutex_{};
 
   void SetUp() override {
 
@@ -36,6 +39,7 @@ class AMQPConsumerSeviceIntegratedTs : public testing::Test {
     consumer_service_->SetMessageCallback(
         [this](const AMQP::Message &m,uint64_t i,bool b)
         {
+          const GuardType kGuardType{mutex_};
           stack_.emplace_back(m,i,b);
         });
 
@@ -62,7 +66,7 @@ TEST_F(AMQPConsumerSeviceIntegratedTs,TestConnect)
 {
   consumer_service_->Connect();
 
-  sleep(2);
+  sleep(4);
 
   auto cons=m_service_ptr_->ListConnections();
   auto channels=m_service_ptr_->ListChannels();
@@ -76,17 +80,24 @@ TEST_F(AMQPConsumerSeviceIntegratedTs,TestConnect)
   {
     return conn.user==g_serviceParams.username;
   }
-  ));
+  ));//todo service will be delteed(use it inside env to not delted one)
 }
 
 TEST_F(AMQPConsumerSeviceIntegratedTs,TestProcessMessages)
 {
+
   message message_m{qq_,"MyPayload","string"};
 
   int t=10;
   for (int i = 0; i < 10; ++i) {
-    m_service_ptr_->PublishMessage(vhost_,exch_,message_m);//todo C++ exception with description "HTTP error: code 500 , reason "" !" thrown in the test body.
+    m_service_ptr_->PublishMessage(vhost_,exch_,message_m);
   }
+
+  EXPECT_EQ(0,stack_.size());
+  consumer_service_->Connect();
+
+  sleep(4);
+
   EXPECT_EQ(t,stack_.size());
 
   EXPECT_EQ(m_service_ptr_->GetMessageCount(vhost_,qq_),0);

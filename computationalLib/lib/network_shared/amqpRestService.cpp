@@ -156,7 +156,7 @@ size_t RabbitMQRestService::GetMessageCount(const std::string &vhost, const std:
   Json::Value body;
   body["count"]=1000;
   body["ackmode"]="ack_requeue_true";//todo if we need more modes create or find enum
-  body["ackmode"]="auto";
+  body["encoding"]="auto";
   body["truncate"]= 50000;
   std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
   auto rr=ParseJson(PerformRequest(path, "POST", data));
