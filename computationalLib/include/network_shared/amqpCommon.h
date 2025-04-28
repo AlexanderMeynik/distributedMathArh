@@ -5,6 +5,7 @@
 #include <thread>
 #include <memory>
 #include <future>
+#include <optional>
 
 #include "common/errorHandling.h"
 #include "network_shared/networkTypes.h"
@@ -37,6 +38,14 @@ AMQP::Address ConstructCAddress(const std::string &host_port,
                                 const std::string &user,
                                 const std::string &password,
                                 bool secure = false);
+
+
+/**
+ * @brief Extract host from the Full url
+ * @param url
+ * @return
+ */
+std::optional<std::string> ExtractHost(std::string_view url);
 /**
  * @brief
  * @param channel

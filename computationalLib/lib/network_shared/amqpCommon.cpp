@@ -57,6 +57,24 @@ void DefaultMessageCallback(const AMQP::Message &message, uint64_t delivery_tag,
   }
   std::cout << '\n';
 }
+std::optional<std::string> ExtractHost(std::string_view url) {
+  size_t protocolEnd = url.find("://");
+  if (protocolEnd == std::string_view::npos) {
+    return std::nullopt;
+  }
+
+  size_t hostStart = protocolEnd + 3;
+  if (hostStart >= url.length()) {
+    return std::nullopt;
+  }
+
+  size_t hostEnd = url.find_first_of(":/?", hostStart);
+  if (hostEnd == std::string_view::npos) {
+    hostEnd = url.length();
+  }
+
+  return std::string(url.substr(hostStart, hostEnd - hostStart));
+}
 
 bool AMQPService::IsConnected() const {
   return handler_ && handler_->IsConnected();

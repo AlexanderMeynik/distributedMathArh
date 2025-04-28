@@ -114,6 +114,27 @@ class RabbitMQRestService {
   Json::Value GetQueueStats(const std::string &vhost,
                             const std::string &queue_name);
 
+  //todo test
+  /**
+   * @brief Publishes message to the specified exchange and routing key
+   * @param vhost
+   * @param exhange_name
+   * @param message
+   * @return routed ?
+   */
+  bool PublishMessage(const std::string &vhost,
+                      const std::string &exhange_name,
+                      const message&message);
+
+  /**
+   * @brief Retrieves number of messages for the selected queue
+   * @param vhost
+   * @param queue_name
+   * @return number of messages
+   */
+  size_t GetMessageCount(const std::string &vhost,
+                         const std::string &queue_name);
+
   /**
    * @brief Lists all queues
    * @param vhost

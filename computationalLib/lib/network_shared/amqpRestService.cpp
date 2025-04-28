@@ -133,6 +133,37 @@ bool RabbitMQRestService::CreateUser(const std::string &user,
   return true;
 }
 
+
+bool RabbitMQRestService::PublishMessage(const std::string &vhost,
+                                         const std::string &exhange_name,
+                                         const message &message) {
+  std::string path = fmt::format("/api/exchanges/{}/{}/publish", vhost,exhange_name);
+
+
+
+  Json::Value body=message.ToJson();
+  std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+  auto rr=ParseJson(PerformRequest(path, "POST", data));
+
+  return rr["routed"].asBool();
+}
+
+size_t RabbitMQRestService::GetMessageCount(const std::string &vhost, const std::string &queue_name) {
+  std::string path = fmt::format("/api/queues/{}/{}/get", vhost,queue_name);
+
+
+
+  Json::Value body;
+  body["count"]=1000;
+  body["ackmode"]="ack_requeue_true";//todo if we need more modes create or find enum
+  body["ackmode"]="auto";
+  body["truncate"]= 50000;
+  std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+  auto rr=ParseJson(PerformRequest(path, "POST", data));
+
+  return rr.size();
+}
+
 bool RabbitMQRestService::DeleteUser(const std::string &user) {
   std::string path = "/api/users/" + user;
   PerformRequest(path, "DELETE");
@@ -223,5 +254,6 @@ std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost
 
   return out;
 }
+
 
 }

@@ -199,4 +199,41 @@ struct channel {
 
 };
 
+/**
+ * @brief message struct
+ */
+struct message {
+
+  message(const std::string &key, const std::string &pay, const std::string &payloadType) {
+    routing_key=key;
+    payload=pay;
+    payload_encoding=payloadType;
+
+  }
+
+  std::string routing_key;
+  std::string payload;
+  std::string payload_encoding;
+
+
+  Json::Value ToJson() const
+  {
+    Json::Value val;
+
+    val["properties"]="{}";
+    val["routing_key"]=routing_key;
+    val["payload"]=payload;
+    val["payload_encoding"]=payload_encoding;
+    return val;
+  }
+
+  message(Json::Value &val)
+  {
+    routing_key=val["routing_key"].asString();
+    payload=val["payload"].asString();
+    payload_encoding=val["payload_encoding"].asString();
+  }
+
+};
+
 }

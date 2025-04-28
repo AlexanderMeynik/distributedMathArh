@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include "network_shared/AMQPPublisherService.h"
+#include "network_shared/amqpRestService.h"
 #include "../GoogleCommon.h"
 
 using test_common::AuthParams;
