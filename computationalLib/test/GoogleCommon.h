@@ -39,6 +39,19 @@ namespace ms = mesh_storage;
 
 /// Testing utilities namespace
 namespace test_common {
+
+
+template<typename Func>
+bool WaitFor(Func condition, std::chrono::seconds timeout = std::chrono::seconds(5),
+             std::chrono::milliseconds interval = std::chrono::milliseconds(100)) {
+  auto start = std::chrono::steady_clock::now();
+  while ((std::chrono::steady_clock::now() - start) < timeout) {
+    if (condition()) return true;
+    std::this_thread::sleep_for(interval);
+  }
+  return false;
+}
+
 constexpr double kTool = std::numeric_limits<decltype(kTool)>::epsilon();
 
 struct AuthParams {
