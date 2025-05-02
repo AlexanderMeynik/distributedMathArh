@@ -190,4 +190,40 @@ channel::channel(Json::Value &val) :
     vhost(val["vhost"].asString()),
     state(val["state"].asString()),
     consumer_count(val["consumer_count"].asUInt()) {}
+Json::Value message::ToJson() const {
+  Json::Value val;
+
+  val["properties"]=Json::objectValue;
+
+  val["routing_key"]=routing_key;
+  val["payload"]=payload;
+  val["payload_encoding"]=payload_encoding;
+  return val;
+}
+message::message(Json::Value &val) {
+  routing_key=val["routing_key"].asString();
+  payload=val["payload"].asString();
+  payload_encoding=val["payload_encoding"].asString();
+}
+message::message(const std::string &key, const std::string &pay, const std::string &payloadType) {
+  routing_key=key;
+  payload=pay;
+  payload_encoding=payloadType;
+
+}
+global_param::global_param(Json::Value &val) {
+  name=val["name"].asString();
+  value=val["value"];
+}
+Json::Value global_param::ToJson() const {
+  Json::Value ret;
+
+  ret["name"]=name;
+  ret["value"]=value;
+  return ret;
+}
+global_param::global_param(const std::string pName, const Json::Value &val) {
+  name=pName;
+  value=val;
+}
 }

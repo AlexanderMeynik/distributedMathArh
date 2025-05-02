@@ -241,6 +241,42 @@ RabbitMQRestService::GetQueueBindings(const std::string &vhost, const std::strin
   return out;
 }
 
+std::vector<global_param> RabbitMQRestService::ListGlobalParams() {
+
+
+  std::string path = "/api/global-parameters";
+
+  auto res = ParseJson(PerformRequest(path, "GET"));
+  std::vector<global_param> out;
+  if (res.isArray()) {
+    for (auto &re : res) {
+      out.emplace_back(re);
+    }
+  }
+
+  return out;
+}
+//todo enum for requets tyope(or copy drogon one)
+bool RabbitMQRestService::GlobalParam(const global_param &param, const std::string &type) {
+
+  std::string path = fmt::format("/api/global-parameters/{}",param.name);
+
+  if(type=="PUT") {
+    std::string data = Json::writeString(Json::StreamWriterBuilder(), param.ToJson());
+    PerformRequest(path, type, data);
+  } else
+  {
+    PerformRequest(path, type);
+  }
+
+
+  //Put =201
+  //Get =200
+  //Deleted =204
+  return true;
+}
+
+
 std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost) {
   std::string path = fmt::format("/api/exchanges/{}", vhost);
 

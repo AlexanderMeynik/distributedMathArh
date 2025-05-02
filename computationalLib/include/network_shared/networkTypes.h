@@ -204,36 +204,30 @@ struct channel {
  */
 struct message {
 
-  message(const std::string &key, const std::string &pay, const std::string &payloadType) {
-    routing_key=key;
-    payload=pay;
-    payload_encoding=payloadType;
-
-  }
+  message(const std::string &key, const std::string &pay, const std::string &payloadType);
 
   std::string routing_key;
   std::string payload;
   std::string payload_encoding;
 
 
-  Json::Value ToJson() const
-  {
-    Json::Value val;
+  Json::Value ToJson() const;
 
-    val["properties"]=Json::objectValue;
+  message(Json::Value &val);
 
-    val["routing_key"]=routing_key;
-    val["payload"]=payload;
-    val["payload_encoding"]=payload_encoding;
-    return val;
-  }
+};
 
-  message(Json::Value &val)
-  {
-    routing_key=val["routing_key"].asString();
-    payload=val["payload"].asString();
-    payload_encoding=val["payload_encoding"].asString();
-  }
+struct global_param
+{
+  std::string name;
+  Json::Value value;
+
+  global_param(const std::string pName,const Json::Value&val);
+
+  Json::Value ToJson() const;
+
+  global_param(Json::Value &val);
+
 
 };
 

@@ -135,6 +135,22 @@ class RabbitMQRestService {
   size_t GetMessageCount(const std::string &vhost,
                          const std::string &queue_name);
 
+
+  /**
+   * @brief Uses global-parameters api to interact with them
+   * @param param
+   * @param type
+   * @return status
+   */
+  bool GlobalParam(const global_param&param,const std::string& type);
+
+
+  /**
+   * @brief Lists all global params from RabbimMQ
+   * @return std::vector of global parameters
+   */
+  std::vector<global_param> ListGlobalParams();
+
   /**
    * @brief Lists all queues
    * @param vhost
