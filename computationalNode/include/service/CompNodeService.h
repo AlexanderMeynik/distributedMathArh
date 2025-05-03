@@ -32,7 +32,7 @@ class ComputationNodeService {
     return characteristic_computed_.load(std::memory_order_acquire);
   }
 
-  amqp_common::AMQPConsumerService amqp_prod_;
+  amqp_common::AMQPConsumerService consumer_service_;
   BenchResVec bench_res_;
   std::jthread computation_thread_;
   std::atomic<bool> characteristic_computed_;

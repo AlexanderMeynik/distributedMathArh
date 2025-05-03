@@ -217,6 +217,9 @@ struct message {
 
 };
 
+/**
+ * @brief global_param struct
+ */
 struct global_param
 {
   std::string name;

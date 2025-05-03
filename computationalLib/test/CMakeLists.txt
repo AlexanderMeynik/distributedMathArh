@@ -42,8 +42,12 @@ add_executable(publisherServiceTest interegated/AMQPPublisherTests.cpp)
 target_link_libraries(publisherServiceTest PUBLIC network_shared_lib gtest gmock)
 enable_coverage_for_target(publisherServiceTest)
 
+
+add_executable(databaseServiceTest interegated/DbServiceTest.cpp)
+target_link_libraries(databaseServiceTest PUBLIC Drogon::Drogon network_shared_lib gtest gmock)
+enable_coverage_for_target(databaseServiceTest)
 gtest_add_tests(
-        TARGET publisherServiceTest
+        TARGET databaseServiceTest
         EXTRA_ARGS ${HOST_PARAMS_LIST})
 
 add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)
