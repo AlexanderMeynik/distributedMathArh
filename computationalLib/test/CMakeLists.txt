@@ -53,4 +53,5 @@ gtest_add_tests(
 add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)
 target_link_libraries(benchmark math_core_lib commonLib)
 
-
+file(COPY fixture
+        DESTINATION ${CMAKE_BINARY_DIR}/computationalLib/test)

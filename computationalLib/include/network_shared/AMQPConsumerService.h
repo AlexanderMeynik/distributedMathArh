@@ -45,6 +45,8 @@ class AMQPConsumerService : public AMQPService {
    */
   void Reconnect() override;
 
+  std::string ServiceName() override;
+
   std::string queue_; ///< queue to which the srvice will listen
   MessageCallback message_callback_;///< callback that processes incoming messages
 };

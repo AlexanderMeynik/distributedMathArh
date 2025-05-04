@@ -134,5 +134,11 @@ DEFINE_EXCEPTION_IN(HttpError, "HTTP error: code {} , reason \"{}\" !", long, st
  * @brief Curl class
  */
 DEFINE_EXCEPTION_IN(CurlError, "Curl error: \"{}\" !", std::string)
+
+DEFINE_EXCEPTION_IN(SQL_ERROR,"SQL Error: {}. Query: {}. SQL State: {}!",std::string,std::string,std::string)
+
+DEFINE_EXCEPTION_IN(Already_Connected,"Service {} is already connected to {}!",std::string,std::string)
+
+DEFINE_EXCEPTION_IN(Broken_Connection,"Service {} is unable to connect to {}!",std::string,std::string)
 }
 

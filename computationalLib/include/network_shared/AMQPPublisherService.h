@@ -66,7 +66,9 @@ class AMQPPublisherService : public AMQPService {
 
  private:
 
-  void Reconnect();
+  void Reconnect() override;
+
+  std::string ServiceName() override;
 
   std::vector<std::string> queues_;///< list of used queues @todo remove
 

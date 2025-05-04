@@ -184,6 +184,8 @@ class AMQPService {
 
   virtual void Reconnect() = 0;
 
+  virtual std::string ServiceName() = 0;
+
   boost::asio::io_service service_; ///< service used for async event loop
   std::unique_ptr<boost::asio::io_service::work> work_; ///< work object to handle loop work
 

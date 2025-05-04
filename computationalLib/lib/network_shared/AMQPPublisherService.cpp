@@ -90,5 +90,8 @@ void AMQPPublisherService::Publish(EnvelopePtr message, const std::string qname)
 const std::string &AMQPPublisherService::GetDefaultExchange() const {
   return default_exchange_;
 }
+std::string AMQPPublisherService::ServiceName() {
+  return "AMQPPublisherService";
+}
 
 }

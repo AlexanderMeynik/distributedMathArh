@@ -271,6 +271,8 @@ struct myConnString {
 
   [[nodiscard]] unsigned int GetPort() const;
 
+  [[nodiscard]] std::string GetVerboseName() const;
+
  private:
   void UpdateFormat();
 

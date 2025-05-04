@@ -83,6 +83,11 @@ const std::string &AMQPService::GetCString() const {
   return c_string_;
 }
 void AMQPService::Connect() {
+  if(IsConnected())
+  {
+    //todo make subset to connect
+    throw shared::Already_Connected(ServiceName(),c_string_);
+  }
   service_.reset();
   work_ = std::make_unique<boost::asio::io_service::work>(service_);
 

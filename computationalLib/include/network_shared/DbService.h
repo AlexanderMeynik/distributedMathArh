@@ -1,60 +1,56 @@
 #pragma once
 
-#include <pqxx/pqxx>
+#include "dbCommon.h"
 #include <string>
 #include <memory>
 #include <vector>
 #include <json/json.h>
 
+/// Namespace that contains database services
 namespace db_service {
-
-using conn_ptr = std::shared_ptr<pqxx::connection>;
-using transaction_t = pqxx::work;
+using namespace db_common;
 
 class DbService {
  public:
-  DbService(const std::string& conn_str);
+  DbService();
+  DbService(const myConnString& conn_str);
   ~DbService();
 
-  // Database connection management
   bool Connect();
   void Disconnect();
   bool IsConnected() const;
 
-  // User management
-  std::string CreateUser(const std::string& login, const std::string& password, const std::string& role = "user");
+  IndexType  CreateUser(const std::string& login, const std::string& password, const std::string& role = "user");
   bool AuthenticateUser(const std::string& login, const std::string& password);
-  void UpdateUserRole(const std::string& user_id, const std::string& new_role);
-  void DeleteUser(const std::string& user_id);
+  void UpdateUserRole(IndexType user_id, const std::string& new_role);
+  void DeleteUser(IndexType user_id);
 
-  // Experiment management
-  std::string CreateExperiment(const std::string& user_id, const Json::Value& parameters);
-  void UpdateExperimentStatus(const std::string& experiment_id, const std::string& status);
-  Json::Value GetExperiment(const std::string& experiment_id);
+  IndexType CreateExperiment(IndexType user_id, const Json::Value& parameters);
+  void UpdateExperimentStatus(IndexType experiment_id, const std::string& status);
+  Json::Value GetExperiment(IndexType experiment_id);
 
-  // Iteration management
-  std::string CreateIteration(const std::string& experiment_id, const std::string& node_id, const std::string& iter_type);
-  void UpdateIterationStatus(const std::string& iteration_id, const std::string& status, const Json::Value& output_data = Json::Value());
-  Json::Value GetIteration(const std::string& iteration_id);
+  IndexType CreateIteration(IndexType experiment_id, IndexType node_id, const std::string& iter_type);
+  void UpdateIterationStatus(IndexType iteration_id, const std::string& status, const Json::Value& output_data = Json::Value());
+  Json::Value GetIteration(IndexType iteration_id);
 
-  // Node management
-  std::string RegisterNode(const std::string& ip_address, double benchmark_score);
-  void UpdateNodeStatus(const std::string& node_id, const std::string& status);
-  void UnregisterNode(const std::string& node_id);
-  Json::Value GetNode(const std::string& node_id);
 
-  // Logging
-  void Log(const std::string& node_id, const std::string& severity, const std::string& message);
+  IndexType RegisterNode(const std::string& ip_address, double benchmark_score);
+  void UpdateNodeStatus(IndexType node_id, const std::string& status);
+  void UnregisterNode(IndexType node_id);
+  Json::Value GetNode(IndexType node_id);
 
+  void Log(IndexType node_id, const std::string& severity, const std::string& message);
+  const myConnString &GetConnStr() const;
+  void SetConnStr(const myConnString &conn_str);
  private:
-  std::string conn_str_;
-  conn_ptr conn_;
+  myConnString conn_str_;
 
-  // Helper methods
-  std::string GenerateUuid();
-  void EnsureConnection();
-  void ExecuteTransaction(const std::function<void(transaction_t&)>& func);
-  void InitializeDatabase();
+  void Reconnect();
+
+  ConnPtr conn_;
+
+  void ExecuteTransaction(const std::function<void(TransactionT&)>& func);
+  static inline const char * service_name="DbService";
 };
 
 } // namespace db_service

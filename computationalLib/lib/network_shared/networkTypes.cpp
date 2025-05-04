@@ -282,5 +282,8 @@ void myConnString::UpdateFormat() {
   formatted_string = fmt::format("postgresql://{}:{}@{}:{}/{}",
                                  user.c_str(), password.c_str(), host.c_str(), port, dbname.c_str());
 }
+std::string myConnString::GetVerboseName() const {
+  return fmt::format("{}:{} db:{}",host,port,dbname);
+}
 
 }

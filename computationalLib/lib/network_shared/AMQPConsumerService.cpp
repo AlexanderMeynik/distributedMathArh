@@ -68,5 +68,8 @@ void AMQPConsumerService::SetParameters(const std::string &connection_string, co
 void AMQPConsumerService::SetMessageCallback(MessageCallback callback) {
   message_callback_ = std::move(callback);
 }
+std::string AMQPConsumerService::ServiceName() {
+  return "AMQPConsumerService";
+}
 
 }

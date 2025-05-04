@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <fstream>
 #include "network_shared/DbService.h"
 #include "network_shared/networkTypes.h"
 #include "network_shared/amqpCommon.h"
@@ -7,18 +8,19 @@ namespace {
 using test_common::AuthParams;
 using test_common::WaitFor;
 using amqp_common::ExtractHost;
+using namespace db_service;
 AuthParams g_serviceParams;
+const std::string dbName="data_deduplication_service";
 class DbServiceTest : public ::testing::Test {
  protected:
   void SetUp() override {
     conn_string_=network_types::myConnString(g_serviceParams.username,
                                              g_serviceParams.password,
                                              ExtractHost(g_serviceParams.host).value()
-                                             ,"",5432);
+                                             ,dbName,5432);
 
-    conn_string_.SetPort(5432);
-    conn_string_.SetDbname("data_deduplication_service");
-    service = std::make_unique<db_service::DbService>(conn_string_.operator std::string());
+    service = std::make_unique<db_service::DbService>(conn_string_);
+    service->Connect();
   }
 
   network_types::myConnString conn_string_;
@@ -26,22 +28,20 @@ class DbServiceTest : public ::testing::Test {
 };
 
 TEST_F(DbServiceTest, ConnectToDatabase) {
-  ASSERT_TRUE(service->Connect());
   ASSERT_TRUE(service->IsConnected());
 }
 
 TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
-  std::string user_id = service->CreateUser("testuser", "password");
-  ASSERT_FALSE(user_id.empty());
+  auto user_id = service->CreateUser("testuser", "password");
+  /*ASSERT_FALSE(user_id.empty());*/
   ASSERT_TRUE(service->AuthenticateUser("testuser", "password"));
 }
-
+//C++ exception with description "Some other error Started new transaction while transaction was still active. /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalLib/lib/network_shared/dbCommon.cpp:136" thrown in the test body.
 TEST_F(DbServiceTest, CreateExperiment) {
-  std::string user_id = service->CreateUser("expuser", "password");
+  auto user_id = service->CreateUser("expuser", "password");
   Json::Value params;
   params["N"] = 100;
-  std::string exp_id = service->CreateExperiment(user_id, params);
-  ASSERT_FALSE(exp_id.empty());
+  auto exp_id = service->CreateExperiment(user_id, params);
 
   Json::Value exp = service->GetExperiment(exp_id);
   ASSERT_EQ(exp["status"].asString(), "pending");
@@ -49,8 +49,8 @@ TEST_F(DbServiceTest, CreateExperiment) {
 }
 
 TEST_F(DbServiceTest, RegisterNodeAndUpdateStatus) {
-  std::string node_id = service->RegisterNode("192.168.1.1", 100.0);
-  ASSERT_FALSE(node_id.empty());
+  auto node_id = service->RegisterNode("192.168.1.1", 100.0);
+
 
   service->UpdateNodeStatus(node_id, "busy");
   Json::Value node = service->GetNode(node_id);
@@ -58,14 +58,14 @@ TEST_F(DbServiceTest, RegisterNodeAndUpdateStatus) {
 }
 
 TEST_F(DbServiceTest, CreateIterationAndUpdate) {
-  std::string user_id = service->CreateUser("iteruser", "password");
+  auto user_id = service->CreateUser("iteruser", "password");
   Json::Value params;
   params["N"] = 50;
-  std::string exp_id = service->CreateExperiment(user_id, params);
-  std::string node_id = service->RegisterNode("192.168.1.2", 200.0);
+  auto exp_id = service->CreateExperiment(user_id, params);
+  auto node_id = service->RegisterNode("192.168.1.2", 200.0);
 
-  std::string iter_id = service->CreateIteration(exp_id, node_id, "solve");
-  ASSERT_FALSE(iter_id.empty());
+  auto iter_id = service->CreateIteration(exp_id, node_id, "solve");
+
 
   Json::Value output;
   output["result"] = 42;
@@ -76,12 +76,44 @@ TEST_F(DbServiceTest, CreateIterationAndUpdate) {
 }
 
 TEST_F(DbServiceTest, LogMessage) {
-  std::string node_id = service->RegisterNode("192.168.1.3", 300.0);
+  auto node_id = service->RegisterNode("192.168.1.3", 300.0);
   service->Log(node_id, "info", "Test Log message");
   //todo Full log verification requires querying the Log table, omitted for brevity
 }
 
 }
+
+class DatabaseTestEnvironment : public ::testing::Environment {
+ public:
+  void SetUp() override {
+
+   conn_string_=network_types::myConnString(g_serviceParams.username,
+                                             g_serviceParams.password,
+                                             ExtractHost(g_serviceParams.host).value()
+        ,dbName,5432);
+    CreateDatabase(conn_string_, dbName);
+
+
+
+    std::ifstream t("fixture/dbSchem.sql");
+    if(!t)
+    {
+      throw std::runtime_error("No dbSchem to init");
+    }
+    std::stringstream buffer;
+    buffer << t.rdbuf();
+    FillDatabase(conn_string_, buffer.str());
+  }
+
+  void TearDown() override {
+
+   // DropDatabase(conn_string_, dbName);
+  }
+
+ private:
+  ConnPtr conn_ptr_;
+  myConnString conn_string_;
+};
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
@@ -94,5 +126,7 @@ int main(int argc, char **argv) {
   g_serviceParams.host = argv[1];
   g_serviceParams.username = argv[2];
   g_serviceParams.password = argv[3];
+
+  ::testing::AddGlobalTestEnvironment(new DatabaseTestEnvironment);
   return RUN_ALL_TESTS();
 }
