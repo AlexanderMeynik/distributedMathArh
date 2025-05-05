@@ -34,7 +34,7 @@ class DbService {
   Json::Value GetIteration(IndexType iteration_id);
 
 
-  IndexType RegisterNode(const std::string& ip_address, double benchmark_score);
+  IndexType RegisterNode(const std::string& ip_address, const shared::BenchResVec& benchmark_score);
   void UpdateNodeStatus(IndexType node_id, const std::string& status);
   void UnregisterNode(IndexType node_id);
   Json::Value GetNode(IndexType node_id);

@@ -207,17 +207,20 @@ Json::Value DbService::GetIteration(IndexType iteration_id) {
   return result;
 }
 
-IndexType DbService::RegisterNode(const std::string &ip_address, double benchmark_score) {
+IndexType DbService::RegisterNode(const std::string &ip_address,const shared::BenchResVec& benchmark_score) {
 
   IndexType node_id;
   ExecuteTransaction([&](TransactionT &txn) {
+    using namespace print_utils;
 
     std::string qq = "INSERT INTO \"Node\" (ip_address, benchmark_score, status, last_ping)"
                      " VALUES ({}, {}, 'active', NOW())"
                      "RETURNING node_id";
-
+    auto bench_vec=OneDimToString(benchmark_score, false,
+                                               EIGENF(EigenPrintFormats::VECTOR_DB_FORMAT));
     node_id = txn.exec(
-        fmt::format(fmt::runtime(qq), txn.quote(ip_address), benchmark_score)
+
+        fmt::format(fmt::runtime(qq), txn.quote(ip_address), txn.quote(bench_vec))
     ).one_row()[0].as<IndexType>();
 
     InnerLog(txn,node_id, "info", fmt::format("Node registered with IP {}", ip_address));
@@ -245,10 +248,14 @@ void DbService::UnregisterNode(IndexType node_id) {
 Json::Value DbService::GetNode(IndexType node_id) {
   Json::Value result;
   ExecuteTransaction([&](TransactionT &txn) {
+    using namespace print_utils;
     auto row = txn.exec_params("SELECT * FROM \"Node\" WHERE node_id = $1", node_id).one_row();
     result["node_id"] = row["node_id"].as<std::string>();
     result["ip_address"] = row["ip_address"].as<std::string>();
-    result["benchmark_score"] = row["benchmark_score"].as<double>();
+    auto sql_arr=row["benchmark_score"].as<std::string>();
+    auto arr=row["benchmark_score"].as_sql_array<shared::BenchResultType>();
+    auto a=print_utils::ParseOneDimS<shared::BenchResVec>(sql_arr,2,EIGENF(EigenPrintFormats::VECTOR_DB_FORMAT));
+    result["benchmark_score"] =sql_arr;
     result["status"] = row["status"].as<std::string>();
   });
   return result;

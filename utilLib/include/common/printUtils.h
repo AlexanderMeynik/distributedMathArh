@@ -33,12 +33,70 @@ std::string TupleToString(const TupleT &tp,
 /**
  * @brief Eformat lookup Table
  */
-extern const std::array<EFormat, 4> kEnumTo;
+static const std::array<EFormat, 5> kEnumTo =
+    {{
+         // Format 0: Matrix with row enclosures "[...]"
+         EFormat(
+             Eigen::StreamPrecision,  // Precision
+             Eigen::DontAlignCols,    // Flags (no column alignment)
+             ",",                    // Coefficient separator (between elements in a row)
+             "",                      // Row separator (between rows)
+             "[",                     // Row prefix
+             "]",                     // Row suffix
+             "",                      // Matrix prefix
+             "\n"                     // Matrix suffix
+         ),
+         // Format 1: Simple space-separated values
+         EFormat(
+             Eigen::StreamPrecision,
+             Eigen::DontAlignCols,
+             "\t",
+             "",
+             "",
+             "",
+             "",
+             "\n"
+         ),
+         // Format 2: Row-enclosed with newline separators
+         EFormat(
+             Eigen::StreamPrecision,
+             Eigen::DontAlignCols,
+             "\t",
+             "\n",
+             "[",
+             "]",
+             "",
+             "\n"
+         ),
+         // Format 3: Newline-separated rows
+         EFormat(
+             Eigen::StreamPrecision,
+             Eigen::DontAlignCols,
+             "\t",
+             "\n",
+             "",
+             "",
+             "",
+             "\n"
+         ),
+         EFormat(
+             Eigen::StreamPrecision,  // Precision
+             Eigen::DontAlignCols,    // Flags (no column alignment)
+             ",",                    // Coefficient separator (between elements in a row)
+             "",                      // Row separator (between rows)
+             "{",                     // Row prefix
+             "}",                     // Row suffix
+             "",                      // Matrix prefix
+             ""                     // Matrix suffix
+         ),
+     }};
+
 enum class EigenPrintFormats {
   BASIC_ONE_DIMENSIONAL_VECTOR = 0,
   VECTOR_FORMAT_1,
   MATRIX_FORMAT,
-  MATRIX_FORMAT_1
+  MATRIX_FORMAT_1,
+  VECTOR_DB_FORMAT
 };
 
 /**

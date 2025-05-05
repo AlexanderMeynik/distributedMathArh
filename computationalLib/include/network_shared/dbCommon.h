@@ -2,6 +2,8 @@
 
 #include <pqxx/pqxx>
 #include "network_shared/networkTypes.h"
+#include "common/Printers.h"
+#include "common/Parsers.h"
 
 /// Namespace that contains database related utils
 namespace db_common {

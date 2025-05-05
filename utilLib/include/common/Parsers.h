@@ -57,6 +57,23 @@ Struct ParseOneDim(std::istream &in,
                    const EFormat &ef = EFormat());
 
 /**
+ * @brief Parse one dimensional array from std::string
+ * @tparam Struct
+ * @param str - input string
+ * @param size_opt
+ * @param ef
+ * @return Struct to store the values
+ */
+template<isOneDimensionalContinuous Struct>
+Struct inline ParseOneDimS(std::string_view str,
+                   std::optional<size_t> size_opt = std::nullopt,
+                   const EFormat &ef = EFormat())
+{
+  std::istringstream is(str.data());
+  return ParseOneDim<Struct>(is,size_opt,ef);
+}
+
+/**
  * @brief Parse matrix
  * @param in
  * @param dim_opt
@@ -161,9 +178,22 @@ Struct ParseOneDim(std::istream &in,
   }
 
   Struct res(size);
+  int a;
+  if(!ef.rowPrefix.empty())
+  {
+    a=in.get();
+  }
 
   for (size_t i = 0; i < size; ++i) {
     in >> res[i];
+    if(i<size-1&&!ef.coeffSeparator.empty())
+    {
+      a=in.get();//todo only for single chars
+    }
+  }
+  if(!ef.rowSuffix.empty())
+  {
+    a=in.get();
   }
   return res;
 }

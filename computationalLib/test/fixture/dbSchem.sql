@@ -69,7 +69,7 @@ CREATE TABLE "Iteration" (
 CREATE TABLE "Node" (
   "node_id" BIGSERIAL PRIMARY KEY,
   "ip_address" inet NOT NULL,
-  "benchmark_score" double PRECISION,
+  "benchmark_score" bigint [],
   "status" node_status NOT NULL,
   "last_ping" timestamp
 );

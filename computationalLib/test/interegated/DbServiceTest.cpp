@@ -49,7 +49,7 @@ TEST_F(DbServiceTest, CreateExperiment) {
 }
 
 TEST_F(DbServiceTest, RegisterNodeAndUpdateStatus) {
-  auto node_id = service->RegisterNode("192.168.1.1", 100.0);
+  auto node_id = service->RegisterNode("192.168.1.1", shared::BenchResVec{100,200});
 
 
   service->UpdateNodeStatus(node_id, "busy");
@@ -62,7 +62,7 @@ TEST_F(DbServiceTest, CreateIterationAndUpdate) {
   Json::Value params;
   params["N"] = 50;
   auto exp_id = service->CreateExperiment(user_id, params);
-  auto node_id = service->RegisterNode("192.168.1.2", 200.0);
+  auto node_id = service->RegisterNode("192.168.1.2", shared::BenchResVec{200,400});
 
   auto iter_id = service->CreateIteration(exp_id, node_id, "solve");
 
@@ -76,7 +76,7 @@ TEST_F(DbServiceTest, CreateIterationAndUpdate) {
 }
 
 TEST_F(DbServiceTest, LogMessage) {
-  auto node_id = service->RegisterNode("192.168.1.3", 300.0);
+  auto node_id = service->RegisterNode("192.168.1.3", shared::BenchResVec{300,600});
   service->Log(node_id, "info", "Test Log message");
   //todo Full log verification requires querying the Log table, omitted for brevity
 }
@@ -91,6 +91,7 @@ class DatabaseTestEnvironment : public ::testing::Environment {
                                              g_serviceParams.password,
                                              ExtractHost(g_serviceParams.host).value()
         ,dbName,5432);
+
     CreateDatabase(conn_string_, dbName);
 
 
@@ -107,7 +108,7 @@ class DatabaseTestEnvironment : public ::testing::Environment {
 
   void TearDown() override {
 
-    DropDatabase(conn_string_, dbName);
+   // DropDatabase(conn_string_, dbName);
   }
 
  private:
