@@ -83,6 +83,10 @@ bool inline isOnlyWhitespace(std::string_view text) {
 }
 std::istream &operator>>(std::istream &is, const Delimiter &delim) {
   char c;
+  if(isOnlyWhitespace(delim.str))
+  {
+    return is;
+  }
   //todo when formats doesn align this causes errors('\t' ' ')
   for (auto& kCh:delim.str) {
     if (!is.get(c) || c != kCh) {
