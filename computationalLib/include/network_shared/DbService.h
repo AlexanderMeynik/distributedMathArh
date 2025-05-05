@@ -54,7 +54,7 @@ class DbService {
   void ExecuteTransaction(const std::function<void(TransactionT&)>& func);
 
   void ExecuteSubTransaction(TransactionT &txn,
-                             const std::function<void(Subtransction &)> &func,
+                             const std::function<void(Subtransaction &)> &func,
                              std::string_view sub_name="");
 
   static inline const char * service_name="DbService";

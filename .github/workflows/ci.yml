@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       host: http://rabbitmq:15672
+      pghost: http://postgres:15672
       username: sysadmin
       password: syspassword
       coverageD: build-cov
@@ -27,6 +28,18 @@ jobs:
         ports:
           - 5672:5672
           - 15672:15672
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: ${{ env.username }}
+          POSTGRES_PASSWORD: ${{ env.password }}
+        ports:
+          - "5501:5432"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     container:
       image: alexandermey/distirbutedmastservice:env1
     steps:
@@ -45,7 +58,7 @@ jobs:
           mkdir build && cd build
           
           export HOST_PARAMS="$host $username $password"
-          
+          export HOST_PARAMS_DB="$pghost $username $password"
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release  \
           ../src/
           ninja
@@ -62,6 +75,8 @@ jobs:
           mkdir $coverageD && cd $coverageD
           
           export HOST_PARAMS="$host $username $password"
+          
+          export HOST_PARAMS_DB="$pghost $username $password"
           
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release-Coverage  \
           ../src/

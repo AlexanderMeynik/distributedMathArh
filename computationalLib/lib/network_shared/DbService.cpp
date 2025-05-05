@@ -37,7 +37,7 @@ void DbService::ExecuteTransaction(const std::function<void(TransactionT &)> &fu
   ::db_common::ExecuteTransaction(conn_,func,service_name,conn_str_);
 }
 void DbService::ExecuteSubTransaction(TransactionT &txn,
-                                      const std::function<void(Subtransction &)> &func,
+                                      const std::function<void(Subtransaction &)> &func,
                                       std::string_view sub_name) {
   ::db_common::ExecuteSubTransaction(txn,func,sub_name);
 
@@ -271,7 +271,7 @@ void DbService::InnerLog(TransactionT &txn,
                          const std::string &severity,
                          const std::string &message) {
 
-  ExecuteSubTransaction(txn,[&](Subtransction &s)
+  ExecuteSubTransaction(txn,[&](Subtransaction &s)
   {
     std::string qq= "INSERT INTO \"Log\" (node_id, severity, message) VALUES ({}, {}, {})";
     s.exec(

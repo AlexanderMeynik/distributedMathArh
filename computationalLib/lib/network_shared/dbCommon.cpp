@@ -137,11 +137,11 @@ void ExecuteTransaction(ConnPtr &ptr,
   }
 }
 void ExecuteSubTransaction(TransactionT &txn,
-                           const std::function<void(Subtransction &)> &func,
+                           const std::function<void(Subtransaction &)> &func,
                            std::string_view sub_name) {
 
 
-  Subtransction s(txn, sub_name);
+  Subtransaction s(txn, sub_name);
   try {
     func(s);
     s.commit();

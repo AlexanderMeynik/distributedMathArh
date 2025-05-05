@@ -12,7 +12,7 @@ using ConnPtr = std::shared_ptr<pqxx::connection>;
 using TransactionT = pqxx::transaction<pqxx::isolation_level::read_committed>;
 using NonTransType = pqxx::nontransaction;
 using ResType = pqxx::result;
-using Subtransction = pqxx::subtransaction;
+using Subtransaction = pqxx::subtransaction;
 
 using IndexType=int64_t;
 using shared::SQL_ERROR;
@@ -112,7 +112,7 @@ void ExecuteTransaction(ConnPtr& ptr,
  * @throws MyException if any other error happens
  */
 void ExecuteSubTransaction(TransactionT &txn,
-                           const std::function<void(Subtransction &)> &func,
+                           const std::function<void(Subtransaction &)> &func,
                            std::string_view sub_name="");
 
 }

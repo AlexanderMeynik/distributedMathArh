@@ -17,9 +17,9 @@ enable_coverage_for_target(network_common_tests)
 gtest_discover_tests(network_common_tests NO_PRETTY_TYPES NO_PRETTY_VALUES)
 
 separate_arguments(HOST_PARAMS_LIST NATIVE_COMMAND "$ENV{HOST_PARAMS}")
+separate_arguments(HOST_PARAMS_DB_LIST NATIVE_COMMAND "$ENV{HOST_PARAMS_DB}")
 
-
-message("Variable val: ${HOST_PARAMS_LIST}")
+message("Variable vals: ${HOST_PARAMS_LIST} ${HOST_PARAMS_DB_LIST}")
 
 add_executable(serviceTest interegated/rabbitMQRestServiceTest.cpp)
 target_link_libraries(serviceTest PUBLIC network_shared_lib gtest gmock)
@@ -48,7 +48,7 @@ target_link_libraries(databaseServiceTest PUBLIC Drogon::Drogon network_shared_l
 enable_coverage_for_target(databaseServiceTest)
 gtest_add_tests(
         TARGET databaseServiceTest
-        EXTRA_ARGS ${HOST_PARAMS_LIST})
+        EXTRA_ARGS ${HOST_PARAMS_DB_LIST})
 
 add_executable(benchmark benchmark.cpp fileHandler.cpp benchmarkHandler.cpp)
 target_link_libraries(benchmark math_core_lib commonLib)
