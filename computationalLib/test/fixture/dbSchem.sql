@@ -76,7 +76,7 @@ CREATE TABLE "Node" (
 
 CREATE TABLE "Log" (
   "log_id" BIGSERIAL PRIMARY KEY,
-  "node_id" bigint,
+  "node_id" bigint NULL,
   "severity" log_severity NOT NULL,
   "message" text NOT NULL,
   "timestamp" timestamp DEFAULT (now())
@@ -88,4 +88,4 @@ ALTER TABLE "Iteration" ADD FOREIGN KEY ("experiment_id") REFERENCES "Experiment
 
 ALTER TABLE "Iteration" ADD FOREIGN KEY ("node_id") REFERENCES "Node" ("node_id");
 
-ALTER TABLE "Log" ADD FOREIGN KEY ("node_id") REFERENCES "Node" ("node_id");
+--ALTER TABLE "Log" ADD FOREIGN KEY ("node_id") REFERENCES "Node" ("node_id");

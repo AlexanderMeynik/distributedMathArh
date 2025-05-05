@@ -10,7 +10,7 @@ using test_common::WaitFor;
 using amqp_common::ExtractHost;
 using namespace db_service;
 AuthParams g_serviceParams;
-const std::string dbName="data_deduplication_service";
+const std::string dbName="test_db_1";
 class DbServiceTest : public ::testing::Test {
  protected:
   void SetUp() override {
@@ -33,10 +33,10 @@ TEST_F(DbServiceTest, ConnectToDatabase) {
 
 TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
   auto user_id = service->CreateUser("testuser", "password");
-  /*ASSERT_FALSE(user_id.empty());*/
+
   ASSERT_TRUE(service->AuthenticateUser("testuser", "password"));
 }
-//C++ exception with description "Some other error Started new transaction while transaction was still active. /mnt/c/Users/Lenovo/CLionProjects/Magister1/computationalLib/lib/network_shared/dbCommon.cpp:136" thrown in the test body.
+
 TEST_F(DbServiceTest, CreateExperiment) {
   auto user_id = service->CreateUser("expuser", "password");
   Json::Value params;
@@ -107,7 +107,7 @@ class DatabaseTestEnvironment : public ::testing::Environment {
 
   void TearDown() override {
 
-   // DropDatabase(conn_string_, dbName);
+    DropDatabase(conn_string_, dbName);
   }
 
  private:

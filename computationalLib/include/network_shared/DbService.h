@@ -40,7 +40,7 @@ class DbService {
   Json::Value GetNode(IndexType node_id);
 
   void Log(IndexType node_id, const std::string& severity, const std::string& message);
-  const myConnString &GetConnStr() const;
+  [[nodiscard]] const myConnString &GetConnStr() const;
   void SetConnStr(const myConnString &conn_str);
  private:
   myConnString conn_str_;
@@ -49,7 +49,14 @@ class DbService {
 
   ConnPtr conn_;
 
+  void InnerLog(TransactionT &txn,IndexType node_id, const std::string& severity, const std::string& message);
+
   void ExecuteTransaction(const std::function<void(TransactionT&)>& func);
+
+  void ExecuteSubTransaction(TransactionT &txn,
+                             const std::function<void(Subtransction &)> &func,
+                             std::string_view sub_name="");
+
   static inline const char * service_name="DbService";
 };
 

@@ -28,8 +28,7 @@ add_executable(generator src/coordGenerate.cpp)
 target_link_libraries(generator PUBLIC math_core_lib plotLib OpenMP::OpenMP_CXX allUtils)
 
 
-add_executable(grids src/darwingGrids.cpp)
-target_link_libraries(grids PUBLIC math_core_lib plotLib allUtils)
+
 
 
 add_executable(qtPlotExample src/createPlotQt.cpp)

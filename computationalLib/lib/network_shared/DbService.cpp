@@ -36,6 +36,12 @@ bool DbService::IsConnected() const {
 void DbService::ExecuteTransaction(const std::function<void(TransactionT &)> &func) {
   ::db_common::ExecuteTransaction(conn_,func,service_name,conn_str_);
 }
+void DbService::ExecuteSubTransaction(TransactionT &txn,
+                                      const std::function<void(Subtransction &)> &func,
+                                      std::string_view sub_name) {
+  ::db_common::ExecuteSubTransaction(txn,func,sub_name);
+
+}
 
 IndexType DbService::CreateUser(const std::string &login, const std::string &password, const std::string &role) {
   IndexType user_id;
@@ -93,7 +99,7 @@ IndexType DbService::CreateExperiment(IndexType user_id, const Json::Value &para
         fmt::format(fmt::runtime(qq), user_id, txn.quote(params_str))
     ).one_row()[0].as<IndexType>();
 
-    Log(1, "info", fmt::format("User {} created experiment ", user_id, experiment_id));
+    InnerLog(txn,1, "info", fmt::format("User {} created experiment ", user_id, experiment_id));
   });
   return experiment_id;
 }
@@ -107,7 +113,7 @@ void DbService::UpdateExperimentStatus(IndexType experiment_id, const std::strin
                      " THEN NOW() ELSE end_time END WHERE experiment_id = {}";
     txn.exec(fmt::format(fmt::runtime(qq), txn.quote(status), txn.quote(status), experiment_id));
 
-    Log(0, "info", fmt::format("Experiment {}  status updated to {}", experiment_id, status));
+    InnerLog(txn,0, "info", fmt::format("Experiment {}  status updated to {}", experiment_id, status));
   });
 }
 
@@ -137,14 +143,14 @@ IndexType DbService::CreateIteration(IndexType experiment_id,
   IndexType iteration_id;
   //todo use stream api
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "INSERT INTO \"Experiment\" (experiment_id, node_id, iter_t, status)"
-                     " {}, {}, {}, 'pending'"
+    std::string qq = "INSERT INTO \"Iteration\" (experiment_id, node_id, iter_t, status)"
+                     " VALUES ({}, {}, {}, 'pending')"
                      " RETURNING iteration_id";
     iteration_id = txn.exec(
         fmt::format(fmt::runtime(qq), experiment_id, node_id, txn.quote(iter_type))
     ).one_row()[0].as<IndexType>();
 
-    Log(node_id, "info", fmt::format("Iteration {} created for experiment {}", iteration_id, experiment_id));
+    InnerLog(txn,node_id, "info", fmt::format("Iteration {} created for experiment {}", iteration_id, experiment_id));
   });
   return iteration_id;
 }
@@ -174,7 +180,7 @@ void DbService::UpdateIterationStatus(IndexType iteration_id,
                            txn.quote(output_str), txn.quote(status)
                            , iteration_id));
     }
-    Log(0, "info", fmt::format("Iteration {} status updated to {}", iteration_id, status));
+    InnerLog(txn,0, "info", fmt::format("Iteration {} status updated to {}", iteration_id, status));
 
   });
 }
@@ -214,7 +220,7 @@ IndexType DbService::RegisterNode(const std::string &ip_address, double benchmar
         fmt::format(fmt::runtime(qq), txn.quote(ip_address), benchmark_score)
     ).one_row()[0].as<IndexType>();
 
-    Log(node_id, "info", fmt::format("Node registered with IP {}", ip_address));
+    InnerLog(txn,node_id, "info", fmt::format("Node registered with IP {}", ip_address));
   });
   return node_id;
 }
@@ -223,7 +229,7 @@ void DbService::UpdateNodeStatus(IndexType node_id, const std::string &status) {
   ExecuteTransaction([&](TransactionT &txn) {
     std::string qq = "UPDATE \"Node\" SET status = {}, last_ping = NOW() WHERE node_id = {}";
     txn.exec(fmt::format(fmt::runtime(qq), txn.quote(status), node_id));
-    Log(node_id, "info", "Node status updated to " + status);
+    InnerLog(txn,node_id, "info", "Node status updated to " + status);
   });
 }
 
@@ -232,7 +238,7 @@ void DbService::UnregisterNode(IndexType node_id) {
     std::string qq = "UPDATE \"Node\" SET status = 'inactive', last_ping = NOW() WHERE node_id = {}";
     txn.exec(fmt::format(fmt::runtime(qq), node_id));
 
-    Log(node_id, "info", fmt::format("Node {} unregistered.", node_id));
+    InnerLog(txn,node_id, "info", fmt::format("Node {} unregistered.", node_id));
   });
 }
 
@@ -250,15 +256,30 @@ Json::Value DbService::GetNode(IndexType node_id) {
 
 void DbService::Log(IndexType node_id, const std::string &severity, const std::string &message) {
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq= "INSERT INTO \"Log\" (log_id, node_id, severity, message) VALUES ({}, {}, {})";
+    std::string qq= "INSERT INTO \"Log\" (node_id, severity, message) VALUES ({}, {}, {})";
     txn.exec(
         fmt::format(fmt::runtime(qq),node_id, txn.quote(severity), txn.quote(message))
     );
   });
 
-  std::cout << "Node: " << node_id << " - " << message;
+  //std::cout << "Node: " << node_id << " - " << message;
 
 }
+
+void DbService::InnerLog(TransactionT &txn,
+                         IndexType node_id,
+                         const std::string &severity,
+                         const std::string &message) {
+
+  ExecuteSubTransaction(txn,[&](Subtransction &s)
+  {
+    std::string qq= "INSERT INTO \"Log\" (node_id, severity, message) VALUES ({}, {}, {})";
+    s.exec(
+        fmt::format(fmt::runtime(qq),node_id, txn.quote(severity), txn.quote(message))
+    );
+  },"Log");
+}
+
 const myConnString &DbService::GetConnStr() const {
   return conn_str_;
 }
@@ -271,5 +292,6 @@ void DbService::Reconnect() {
   }
   conn_ = TryConnect(conn_str_, service_name);
 }
+
 
 } // namespace db_service

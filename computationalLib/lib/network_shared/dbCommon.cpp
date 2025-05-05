@@ -119,14 +119,32 @@ void FillDatabase(myConnString c_string, std::string_view script) {
 void ExecuteTransaction(ConnPtr &ptr,
                         const std::function<void(TransactionT &)> &func,
                         std::string_view service_name,
-                        const myConnString &conn_str_) {
+                        const myConnString &conn_str) {
   if (!CheckConnection(ptr)) {
-    throw Broken_Connection(service_name, conn_str_.GetVerboseName());
+    throw Broken_Connection(service_name, conn_str.GetVerboseName());
   }
   TransactionT txn(*ptr);
   try {
     func(txn);
     txn.commit();
+  }
+  catch (const pqxx::sql_error &e) {
+    throw SQL_ERROR(e.what(), e.query(), e.sqlstate());
+  }
+  catch (const std::exception &e) {
+    throw shared::MyException(fmt::format("Some other error {} {}:{}",
+                                          e.what(),__FILE__, __LINE__), shared::Severity::info);
+  }
+}
+void ExecuteSubTransaction(TransactionT &txn,
+                           const std::function<void(Subtransction &)> &func,
+                           std::string_view sub_name) {
+
+
+  Subtransction s(txn, sub_name);
+  try {
+    func(s);
+    s.commit();
   }
   catch (const pqxx::sql_error &e) {
     throw SQL_ERROR(e.what(), e.query(), e.sqlstate());

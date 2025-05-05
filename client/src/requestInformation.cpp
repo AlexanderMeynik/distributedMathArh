@@ -23,25 +23,25 @@ void FetchData(int n, int ns, double a) {//todo values are not printed instantly
 
   QNetworkRequest request(url);
 
-  // Send the request
+
   QNetworkReply *reply = manager->get(request);
 
   QObject::connect(reply, &QNetworkReply::finished, [reply]() {
     if (reply->error() == QNetworkReply::NoError) {
-      // Parse the JSON response
+
       QByteArray response_data = reply->readAll();
       QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
       QJsonObject json_obj = json_doc.object();
 
-      // Extract the "retStruct" object
+
       QJsonObject ret_struct = json_obj["retStruct"].toObject();
 
       auto nss = ret_struct["Ns"].toInt();
       auto n_in = ret_struct["N"].toInt();
-      // Extract the "data" array
+
+
       QJsonArray data_array = ret_struct["data"].toArray();
 
-      // Convert to std::vector<DoubleVector>
       std::vector<EigenVec> res(nss, EigenVec(4 * n_in));
 
       int index = 0;
@@ -55,22 +55,17 @@ void FetchData(int n, int ns, double a) {//todo values are not printed instantly
         index++;
       }
 
-      // Print the results for verification
+
       for (const EigenVec &kVec : res) {
 
-        /*for (double val: vec) {
-            qDebug() << val;
-        }*/
         std::stringstream ss;
         PrintSolutionFormat1(ss, kVec);
         qDebug() << QString::fromStdString(ss.str());
-        //qDebug() << "-----";
       }
     } else {
       qDebug() << "Error:" << reply->errorString();
     }
 
-    // Clean up
     reply->deleteLater();
   });
 }

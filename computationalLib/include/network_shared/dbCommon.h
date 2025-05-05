@@ -12,6 +12,7 @@ using ConnPtr = std::shared_ptr<pqxx::connection>;
 using TransactionT = pqxx::transaction<pqxx::isolation_level::read_committed>;
 using NonTransType = pqxx::nontransaction;
 using ResType = pqxx::result;
+using Subtransction = pqxx::subtransaction;
 
 using IndexType=int64_t;
 using shared::SQL_ERROR;
@@ -89,14 +90,29 @@ void FillDatabase(myConnString c_string, std::string_view script);
 
 /**
  * @brief Executes function in the form of transaction
+ * @details Creates new transaction to execute provided function
  * @param ptr
  * @param func
  * @param service_name
- * @param conn_str_
+ * @param conn_str
+ * @throws SQL_ERROR if any sql syntax or semantics issue arises
+ * @throws MyException if any other error happens
  */
 void ExecuteTransaction(ConnPtr& ptr,
                         const std::function<void(TransactionT &)> &func,
                         std::string_view service_name,
-                        const myConnString & conn_str_);
+                        const myConnString & conn_str);
+
+/**
+ * @brief Executes function inside subtransaction of txn
+ * @param txn
+ * @param func
+ * @param sub_name - name for subtransaction
+ * @throws SQL_ERROR if any sql syntax or semantics issue arises
+ * @throws MyException if any other error happens
+ */
+void ExecuteSubTransaction(TransactionT &txn,
+                           const std::function<void(Subtransction &)> &func,
+                           std::string_view sub_name="");
 
 }
