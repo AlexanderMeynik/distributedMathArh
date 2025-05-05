@@ -107,8 +107,7 @@ class DatabaseTestEnvironment : public ::testing::Environment {
   }
 
   void TearDown() override {
-
-   // DropDatabase(conn_string_, dbName);
+    DropDatabase(conn_string_, dbName);
   }
 
  private:

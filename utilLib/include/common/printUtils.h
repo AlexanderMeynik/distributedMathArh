@@ -4,6 +4,7 @@
 
 #include <iosfwd>
 #include <limits>
+#include <string_view>
 
 #include <eigen3/Eigen/Dense>
 #include "common/sharedDeclarations.h"
@@ -128,6 +129,30 @@ static constexpr std::array<const char *, 2> kIoToStr =
         "Serializable",
         "HumanReadable"
     };
+
+/**
+ * @brief Struct to parse and compare delimiters
+ */
+struct Delimiter {
+  std::string_view str;
+  Delimiter(std::string_view s);
+};
+
+/**
+ * @brief Parses specified Delimiter from is
+ * @details Sets failbit if delim is not found
+ * @param is
+ * @param delim
+ */
+std::istream& operator>>(std::istream& is, const Delimiter& delim);
+
+/**
+ * @brief Tries to parse Delim with str content
+ * @param in
+ * @param str
+ * @return in.good()
+ */
+bool ParseDelim(std::istream &in,std::string_view str);
 
 /**
  * @brief Printer for ioFormat

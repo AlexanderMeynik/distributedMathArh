@@ -71,6 +71,27 @@ TEST_F(IoManipulators, test_non_copyable) {
   ASSERT_TRUE(!std::is_copy_constructible_v<IosStatePreserve>) << "Guards should not be copyable";
 }
 
+TEST_F(IoManipulators,testDelimParseSucess)
+{
+  std::string del="sssdwds";
+  std::istringstream ss(del);
+  ASSERT_TRUE(ParseDelim(ss,del));
+}
+
+TEST_F(IoManipulators,testDelimParseError)
+{
+  std::string del="sssdwds";
+  std::istringstream ss(del);
+  del[1]='j';
+  ASSERT_FALSE(ParseDelim(ss,del));
+}
+
+TEST_F(IoManipulators,testDelimParseUnableToRead)
+{
+  std::istringstream ss("s");
+  ASSERT_FALSE(ParseDelim(ss,"sss"));
+}
+
 class TestLookup : public ::testing::Test,
                    public ::testing::WithParamInterface<std::tuple<EigenPrintFormats, size_t>> {
 };

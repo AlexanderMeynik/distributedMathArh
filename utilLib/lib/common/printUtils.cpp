@@ -76,6 +76,29 @@ std::ostream &operator<<(std::ostream &os, const EFormat &fmt) {
   return os;
 }
 
+Delimiter::Delimiter(std::string_view s) : str(s) {}
+
+bool inline isOnlyWhitespace(std::string_view text) {
+  return !text.empty() && std::all_of(text.begin(), text.end(), [](unsigned char c) { return std::isspace(c); });
+}
+std::istream &operator>>(std::istream &is, const Delimiter &delim) {
+  char c;
+  //todo when formats doesn align this causes errors('\t' ' ')
+  for (auto& kCh:delim.str) {
+    if (!is.get(c) || c != kCh) {
+      is.setstate(std::ios::failbit);
+      return is;
+    }
+  }
+  return is;
+}
+
+bool ParseDelim(std::istream &in, std::string_view str) {
+  Delimiter delimiter(str);
+  in>>delimiter;
+  return in.good();
+}
+
 IosStatePreserve::IosStatePreserve(std::ostream &out) : out_(out) {
   flags_ = out.flags();
 }
@@ -106,5 +129,6 @@ IosStateScientific::~IosStateScientific() {
   out_.flags(flags_);
   out_.precision(old_precision_);
 }
+
 
 }

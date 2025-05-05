@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include <algorithm>//do weneed it?
+#include <algorithm>
 #include <numeric>
 #include <fstream>
 #include <iomanip>
@@ -178,23 +178,19 @@ Struct ParseOneDim(std::istream &in,
   }
 
   Struct res(size);
-  int a;
-  if(!ef.rowPrefix.empty())
-  {
-    a=in.get();
-  }
+
+  ParseDelim(in,ef.rowPrefix);
 
   for (size_t i = 0; i < size; ++i) {
     in >> res[i];
-    if(i<size-1&&!ef.coeffSeparator.empty())
+    if(i<size-1)
     {
-      a=in.get();//todo only for single chars
+      ParseDelim(in,ef.coeffSeparator);
     }
   }
-  if(!ef.rowSuffix.empty())
-  {
-    a=in.get();
-  }
+
+  ParseDelim(in,ef.rowSuffix);
+
   return res;
 }
 
