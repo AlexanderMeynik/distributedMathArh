@@ -95,15 +95,13 @@ requires my_concepts::isOneDimensionalContinuous<Collection> &&
     std::is_floating_point_v<typename Collection::value_type> ||
     std::is_integral_v<typename Collection::value_type>
 std::string inline OneDimToString(const Collection &col,
-                            bool print_size = true,
-                            const EFormat &eigen_form = EFormat()) {
+                                  bool print_size = true,
+                                  const EFormat &eigen_form = EFormat()) {
 
   std::ostringstream ss;
-  OneDimSerialize(ss,col,print_size,eigen_form);
+  OneDimSerialize(ss, col, print_size, eigen_form);
   return ss.str();
 }
-
-
 
 /**
  * Flattens and prints matrix as row Vector

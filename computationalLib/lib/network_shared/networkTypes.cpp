@@ -193,38 +193,38 @@ channel::channel(Json::Value &val) :
 Json::Value message::ToJson() const {
   Json::Value val;
 
-  val["properties"]=Json::objectValue;
+  val["properties"] = Json::objectValue;
 
-  val["routing_key"]=routing_key;
-  val["payload"]=payload;
-  val["payload_encoding"]=payload_encoding;
+  val["routing_key"] = routing_key;
+  val["payload"] = payload;
+  val["payload_encoding"] = payload_encoding;
   return val;
 }
 message::message(Json::Value &val) {
-  routing_key=val["routing_key"].asString();
-  payload=val["payload"].asString();
-  payload_encoding=val["payload_encoding"].asString();
+  routing_key = val["routing_key"].asString();
+  payload = val["payload"].asString();
+  payload_encoding = val["payload_encoding"].asString();
 }
 message::message(const std::string &key, const std::string &pay, const std::string &payloadType) {
-  routing_key=key;
-  payload=pay;
-  payload_encoding=payloadType;
+  routing_key = key;
+  payload = pay;
+  payload_encoding = payloadType;
 
 }
 global_param::global_param(Json::Value &val) {
-  name=val["name"].asString();
-  value=val["value"];
+  name = val["name"].asString();
+  value = val["value"];
 }
 Json::Value global_param::ToJson() const {
   Json::Value ret;
 
-  ret["name"]=name;
-  ret["value"]=value;
+  ret["name"] = name;
+  ret["value"] = value;
   return ret;
 }
 global_param::global_param(const std::string pName, const Json::Value &val) {
-  name=pName;
-  value=val;
+  name = pName;
+  value = val;
 }
 myConnString::myConnString(std::string_view user,
                            std::string_view password,
@@ -283,7 +283,7 @@ void myConnString::UpdateFormat() {
                                  user.c_str(), password.c_str(), host.c_str(), port, dbname.c_str());
 }
 std::string myConnString::GetVerboseName() const {
-  return fmt::format("{}:{} db:{}",host,port,dbname);
+  return fmt::format("{}:{} db:{}", host, port, dbname);
 }
 bool myConnString::operator==(const myConnString &rhs) const {
   return user == rhs.user &&

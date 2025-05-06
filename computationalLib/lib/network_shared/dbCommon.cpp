@@ -111,22 +111,22 @@ size_t CheckDatabaseExistence(NonTransType &non_trans, std::string_view db_name)
   return non_trans.exec(qq).size();
 }
 void FillDatabase(myConnString c_string, std::string_view script) {
-  auto conn= TryConnect(c_string,"Outer");
-  ExecuteTransaction(conn,[&](TransactionT &txn) {
-    auto r=txn.exec(script);
+  auto conn = TryConnect(c_string, "Outer");
+  ExecuteTransaction(conn, [&](TransactionT &txn) {
+    auto r = txn.exec(script);
     return r;
-  },"Outer",c_string);
+  }, "Outer", c_string);
 }
 ResType ExecuteTransaction(ConnPtr &ptr,
-                        const std::function<ResType(TransactionT &)> &func,
-                        std::string_view service_name,
-                        const myConnString &conn_str) {
+                           const std::function<ResType(TransactionT &)> &func,
+                           std::string_view service_name,
+                           const myConnString &conn_str) {
   if (!CheckConnection(ptr)) {
     throw Broken_Connection(service_name, conn_str.GetVerboseName());
   }
   TransactionT txn(*ptr);
   try {
-    auto r=func(txn);
+    auto r = func(txn);
     txn.commit();
     return r;
   }
@@ -135,18 +135,18 @@ ResType ExecuteTransaction(ConnPtr &ptr,
   }
   catch (const std::exception &e) {
     throw shared::MyException(fmt::format("Some other error {} {}:{}",
-                                          e.what(),__FILE__, __LINE__), shared::Severity::info);
+                                          e.what(), __FILE__, __LINE__), shared::Severity::info);
   }
 }
 ResType ExecuteSubTransaction(TransactionT &txn,
-                           const std::function<ResType(Subtransaction &)> &func,
-                           std::string_view sub_name) {
+                              const std::function<ResType(Subtransaction &)> &func,
+                              std::string_view sub_name) {
 
   ResType res;
   Subtransaction s(txn, sub_name);
   try {
 
-    auto r=func(s);
+    auto r = func(s);
     s.commit();
     return r;
   }
@@ -155,7 +155,7 @@ ResType ExecuteSubTransaction(TransactionT &txn,
   }
   catch (const std::exception &e) {
     throw shared::MyException(fmt::format("Some other error {} {}:{}",
-                                          e.what(),__FILE__, __LINE__), shared::Severity::info);
+                                          e.what(), __FILE__, __LINE__), shared::Severity::info);
   }
 }
 
@@ -163,16 +163,15 @@ User::User(pqxx::row &row) {
   user_id = row["user_id"].as<IndexType>();
   login = row["login"].as<std::string>();
   hashed_password = row["hashed_password"].as<std::string>();
-  auto rr=row["role"].as<std::string>();
+  auto rr = row["role"].as<std::string>();
   role = kStrToUserRole.at(rr);
   user_id = row["user_id"].as<IndexType>();
 
-  created_at=*fromTimestamp(row["created_at"].as<std::string>());
+  created_at = *StrToTimepoint(row["created_at"].as<std::string>());
   last_login = (!row["last_login"].is_null()) ?
                std::optional<IndexType>{
-                   *fromTimestamp(row["created_at"].as<std::string>())
+                   *StrToTimepoint(row["created_at"].as<std::string>())
                } : std::nullopt;
-
 
 }
 bool User::operator==(const User &rhs) const {

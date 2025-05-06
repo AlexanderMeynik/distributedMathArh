@@ -1,9 +1,7 @@
 #pragma once
 
-#include <iosfwd>
-#include <string>
-#include <unordered_map>
 #include <valarray>
+#include "enumUtils.h"
 
 /**
  * @brief shared namespace
@@ -12,6 +10,8 @@
 namespace shared {
 using FloatType = double;
 using BenchResultType = uint64_t;
+
+using namespace enum_utils;
 
 using BenchResVec = std::valarray<BenchResultType>;
 
@@ -48,22 +48,16 @@ enum class StateT {
   PRINT
 };
 
-constexpr std::array<const char *, 5> kStateToStr =
-    {
-        "openmp_new",
-        "new",
-        "openmp_old",
-        "old",
-        "printImpl"
-    };
-
-const static std::unordered_map<std::string, StateT> kStringToState = {
-    {"openmp_new", StateT::OPENMP_NEW},
-    {"new", StateT::NEW},
-    {"openmp_old", StateT::OPENMP_OLD},
-    {"old", StateT::OLD},
-    {"printImpl", StateT::PRINT},
+static const std::vector<EnumMapping<StateT>> kStateTMappings = {
+    {StateT::NEW, "openmp_new"},
+    {StateT::OLD, "new"},
+    {StateT::OPENMP_NEW, "openmp_old"},
+    {StateT::OPENMP_OLD, "old"},
+    {StateT::PRINT, "printImpl"}
 };
+const static auto kStateToStr = createEnumToStrMap(kStateTMappings);
+
+const static auto kStringToState = createStrToEnumMap(kStateTMappings);
 
 std::ostream &operator<<(std::ostream &out, const StateT &st);
 

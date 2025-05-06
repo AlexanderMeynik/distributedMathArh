@@ -4,9 +4,7 @@
 /// chrono_clock namespace
 namespace chrono_clock {
 
-clockType gClk{};
-
-locationType GetFileState(std::source_location location) {
+LocationType GetFileState(std::source_location location) {
   std::string name = location.function_name();
   auto id = name.find(' ');
   auto id2 = name.find('(');

@@ -66,11 +66,10 @@ Struct ParseOneDim(std::istream &in,
  */
 template<isOneDimensionalContinuous Struct>
 Struct inline ParseOneDimS(std::string_view str,
-                   std::optional<size_t> size_opt = std::nullopt,
-                   const EFormat &ef = EFormat())
-{
+                           std::optional<size_t> size_opt = std::nullopt,
+                           const EFormat &ef = EFormat()) {
   std::istringstream is(str.data());
-  return ParseOneDim<Struct>(is,size_opt,ef);
+  return ParseOneDim<Struct>(is, size_opt, ef);
 }
 
 /**
@@ -179,17 +178,16 @@ Struct ParseOneDim(std::istream &in,
 
   Struct res(size);
 
-  ParseDelim(in,ef.rowPrefix);
+  ParseDelim(in, ef.rowPrefix);
 
   for (size_t i = 0; i < size; ++i) {
     in >> res[i];
-    if(i<size-1)
-    {
-      ParseDelim(in,ef.coeffSeparator);
+    if (i < size - 1) {
+      ParseDelim(in, ef.coeffSeparator);
     }
   }
 
-  ParseDelim(in,ef.rowSuffix);
+  ParseDelim(in, ef.rowSuffix);
 
   return res;
 }

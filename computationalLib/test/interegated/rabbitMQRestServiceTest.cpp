@@ -228,35 +228,31 @@ TEST_F(RabbitMqRestServiceTest, ListChannelsNoErroThrown) {
   ASSERT_NO_THROW(m_service_ptr_->ListConnections());
 }
 
-TEST_F(RabbitMqRestServiceTest, TestCreateGlobalParam)
-{
+TEST_F(RabbitMqRestServiceTest, TestCreateGlobalParam) {
 
-  global_param param("value",Json::objectValue);
+  global_param param("value", Json::objectValue);
 
-  m_service_ptr_->GlobalParam(param,"PUT");
+  m_service_ptr_->GlobalParam(param, "PUT");
 
-  auto list=m_service_ptr_->ListGlobalParams();
-
-  EXPECT_TRUE(std::find_if(list.begin(), list.end(), [&](const auto &item) {
-    return item.name==param.name;
-  })!=list.end());
-}
-
-
-TEST_F(RabbitMqRestServiceTest, TestDeleteGlobalParam)
-{
-
-  global_param param("value",Json::objectValue);
-
-  m_service_ptr_->GlobalParam(param,"DELETE");
-
-  auto list=m_service_ptr_->ListGlobalParams();
+  auto list = m_service_ptr_->ListGlobalParams();
 
   EXPECT_TRUE(std::find_if(list.begin(), list.end(), [&](const auto &item) {
-    return item.name==param.name;
-  })==list.end());
+    return item.name == param.name;
+  }) != list.end());
 }
 
+TEST_F(RabbitMqRestServiceTest, TestDeleteGlobalParam) {
+
+  global_param param("value", Json::objectValue);
+
+  m_service_ptr_->GlobalParam(param, "DELETE");
+
+  auto list = m_service_ptr_->ListGlobalParams();
+
+  EXPECT_TRUE(std::find_if(list.begin(), list.end(), [&](const auto &item) {
+    return item.name == param.name;
+  }) == list.end());
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -133,33 +133,28 @@ bool RabbitMQRestService::CreateUser(const std::string &user,
   return true;
 }
 
-
 bool RabbitMQRestService::PublishMessage(const std::string &vhost,
                                          const std::string &exhange_name,
                                          const message &message) {
-  std::string path = fmt::format("/api/exchanges/{}/{}/publish", vhost,exhange_name);
+  std::string path = fmt::format("/api/exchanges/{}/{}/publish", vhost, exhange_name);
 
-
-
-  Json::Value body=message.ToJson();
+  Json::Value body = message.ToJson();
   std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-  auto rr=ParseJson(PerformRequest(path, "POST", data));
+  auto rr = ParseJson(PerformRequest(path, "POST", data));
 
   return rr["routed"].asBool();
 }
 
 size_t RabbitMQRestService::GetMessageCount(const std::string &vhost, const std::string &queue_name) {
-  std::string path = fmt::format("/api/queues/{}/{}/get", vhost,queue_name);
-
-
+  std::string path = fmt::format("/api/queues/{}/{}/get", vhost, queue_name);
 
   Json::Value body;
-  body["count"]=1000;
-  body["ackmode"]="ack_requeue_true";//todo if we need more modes create or find enum
-  body["encoding"]="auto";
-  body["truncate"]= 50000;
+  body["count"] = 1000;
+  body["ackmode"] = "ack_requeue_true";//todo if we need more modes create or find enum
+  body["encoding"] = "auto";
+  body["truncate"] = 50000;
   std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
-  auto rr=ParseJson(PerformRequest(path, "POST", data));
+  auto rr = ParseJson(PerformRequest(path, "POST", data));
 
   return rr.size();
 }
@@ -243,7 +238,6 @@ RabbitMQRestService::GetQueueBindings(const std::string &vhost, const std::strin
 
 std::vector<global_param> RabbitMQRestService::ListGlobalParams() {
 
-
   std::string path = "/api/global-parameters";
 
   auto res = ParseJson(PerformRequest(path, "GET"));
@@ -259,13 +253,12 @@ std::vector<global_param> RabbitMQRestService::ListGlobalParams() {
 //todo enum for requets tyope(or copy drogon one)
 bool RabbitMQRestService::GlobalParam(const global_param &param, const std::string &type) {
 
-  std::string path = fmt::format("/api/global-parameters/{}",param.name);
+  std::string path = fmt::format("/api/global-parameters/{}", param.name);
 
-  if(type=="PUT") {
+  if (type == "PUT") {
     std::string data = Json::writeString(Json::StreamWriterBuilder(), param.ToJson());
     PerformRequest(path, type, data);
-  } else
-  {
+  } else {
     PerformRequest(path, type);
   }
 
@@ -275,7 +268,6 @@ bool RabbitMQRestService::GlobalParam(const global_param &param, const std::stri
   //Deleted =204
   return true;
 }
-
 
 std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost) {
   std::string path = fmt::format("/api/exchanges/{}", vhost);
@@ -290,6 +282,5 @@ std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost
 
   return out;
 }
-
 
 }

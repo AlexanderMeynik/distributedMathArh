@@ -40,7 +40,6 @@ namespace ms = mesh_storage;
 /// Testing utilities namespace
 namespace test_common {
 
-
 template<typename Func>
 bool WaitFor(Func condition, std::chrono::seconds timeout = std::chrono::seconds(5),
              std::chrono::milliseconds interval = std::chrono::milliseconds(100)) {

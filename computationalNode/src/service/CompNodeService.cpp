@@ -94,5 +94,4 @@ void ComputationNodeService::RunBench() {
   });
 }
 
-
 }

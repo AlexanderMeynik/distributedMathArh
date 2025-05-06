@@ -9,10 +9,11 @@
 #include <eigen3/Eigen/Dense>
 #include "common/sharedDeclarations.h"
 #include "common/errorHandling.h"
+#include "common/enumUtils.h"
 
 /// printUtils namespace
 namespace print_utils {
-
+using namespace enum_utils;
 using EFormat = Eigen::IOFormat;
 
 static constexpr size_t kDefaultPrec = std::numeric_limits<shared::FloatType>::digits10;
@@ -110,25 +111,22 @@ const EFormat &PrintEnumToFormat(EigenPrintFormats fmt);
  * @brief General IOformat
  */
 enum class IoFormat {
-  ///Basic print format(look a lot alike json)
-  SERIALIZABLE,
-  //Human-readable representation for printed struct
-  HUMAN_READABLE
+
+  SERIALIZABLE,///< Basic print format(look a lot alike json)
+  HUMAN_READABLE///<Human-readable representation for printed struct
+};
+
+static const std::vector<EnumMapping<IoFormat>> kIoFormatMappings = {
+    {IoFormat::SERIALIZABLE, "Serializable"},
+    {IoFormat::HUMAN_READABLE, "HumanReadable"}
 };
 
 /// String lookup map for ioformat
-static const std::unordered_map<std::string, IoFormat> kStringToIoFormat =
-    {
-        {"Serializable", IoFormat::SERIALIZABLE},
-        {"HumanReadable", IoFormat::HUMAN_READABLE}
-    };
+static const auto kStringToIoFormat =
+    createStrToEnumMap(kIoFormatMappings);
 
-/// String lookup table for strings
-static constexpr std::array<const char *, 2> kIoToStr =
-    {
-        "Serializable",
-        "HumanReadable"
-    };
+static auto kIoToStr =
+    createEnumToStrMap(kIoFormatMappings);
 
 /**
  * @brief Struct to parse and compare delimiters
@@ -144,7 +142,7 @@ struct Delimiter {
  * @param is
  * @param delim
  */
-std::istream& operator>>(std::istream& is, const Delimiter& delim);
+std::istream &operator>>(std::istream &is, const Delimiter &delim);
 
 /**
  * @brief Tries to parse Delim with str content
@@ -152,7 +150,7 @@ std::istream& operator>>(std::istream& is, const Delimiter& delim);
  * @param str
  * @return in.good()
  */
-bool ParseDelim(std::istream &in,std::string_view str);
+bool ParseDelim(std::istream &in, std::string_view str);
 
 /**
  * @brief Printer for ioFormat

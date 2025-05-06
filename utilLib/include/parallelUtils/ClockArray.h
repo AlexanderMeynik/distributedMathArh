@@ -1,46 +1,22 @@
 #pragma once
 
-#include <array>
 #include <ostream>
 #include <map>
 #include <stack>
-#include <source_location>
 #include <mutex>
 #include <thread>
-#include <concepts>
 
-template<typename T, size_t sz>
-requires std::is_floating_point_v<T> or std::is_integral_v<T>
-std::ostream &operator<<(std::ostream &out, std::array<T, sz> &arr);
+#include "parallelUtils/timingUtils.h"
 
-//todo make more verbose and move
-template<typename T, size_t sz>
-bool operator==(const std::array<T, sz> &arr1, const std::array<T, sz> &arr2) {
-  return std::equal(arr1.begin(), arr1.end(), arr2);
-}
+
 /// timing namespace
 namespace timing {
-using locationType = std::array<std::string, 5>;
 
-/**
- * Comparator for locationType
- */
-struct LocationComparator {
-  bool operator()(const locationType &a, const locationType &b) const {
-    constexpr size_t sz = 5;
-    for (size_t i = 0; i < sz; i++) {
-      if (a[i] != b[i])
-        return b[i] > a[i];
-    }
-    return false;
-  }
-};
-
-template<typename OutType, typename inType, inType(*timeGetter)(), locationType (*sourceTypeConverter)(
+template<typename OutType, typename inType, inType(*timeGetter)(), LocationType (*sourceTypeConverter)(
     std::source_location location),
     OutType(*timeConverter)(inType curr, inType prev)> requires std::is_floating_point_v<OutType>
     or std::is_integral_v<OutType>
-class clockArray;
+class ClockArray;
 
 /**
   * @tparam OutType double type tha will be printed
@@ -50,11 +26,11 @@ class clockArray;
   * @tparam timeConverter a function that casts time difference to type
   * @brief Clock array template class
  */
-template<typename OutType, typename inType, inType(*timeGetter)(), locationType (*sourceTypeConverter)(
+template<typename OutType, typename inType, inType(*timeGetter)(), LocationType (*sourceTypeConverter)(
     std::source_location location),
     OutType(*timeConverter)(inType curr, inType prev)> requires std::is_floating_point_v<OutType>
     or std::is_integral_v<OutType>
-class clockArray {
+class ClockArray {
  public:
   struct timeStore {
     OutType time;
@@ -74,7 +50,7 @@ class clockArray {
   /**
    * @brief resets timer value for one timer
    */
-  void ResetTimer(const locationType &location) {
+  void ResetTimer(const LocationType &location) {
     const GuardType kGuard{s_mutex_};
     //auto id = sourceTypeConverter(location);
 
@@ -114,7 +90,7 @@ class clockArray {
    * @param location
    * @return source location
    */
-  locationType TikLoc(const std::source_location &location
+  LocationType TikLoc(const std::source_location &location
   = std::source_location::current()) {
     Tik(location);
     return sourceTypeConverter(location);
@@ -124,7 +100,7 @@ class clockArray {
    * @param location
    * @return pair of std::source_location, location_type
    */
-  std::pair<std::source_location, locationType> TikPair(const std::source_location &location
+  std::pair<std::source_location, LocationType> TikPair(const std::source_location &location
   = std::source_location::current()) {
     return std::make_pair(location, TikLoc(location));
   }
@@ -147,7 +123,7 @@ class clockArray {
 
   friend std::ostream &
   operator<<(std::ostream &out,
-             const clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter> &ts) {
+             const ClockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter> &ts) {
     out << "Function name\tThread\tLine\tTime\n";
     for (auto &val : ts)
       out << val.first[0] << '\t' << val.first[4] << '\t'
@@ -156,11 +132,11 @@ class clockArray {
     return out;
   }
 
-  auto &operator[](const locationType &loc) {
+  auto &operator[](const LocationType &loc) {
     return timers_[loc];
   }
 
-  [[nodiscard]] bool contains(const locationType &loc) const {
+  [[nodiscard]] bool contains(const LocationType &loc) const {
     return timers_.contains(loc);
   }
 
@@ -168,7 +144,7 @@ class clockArray {
    * @brief adds up all timers from other timer current timer
    * @param other
    */
-  void advance(clockArray &other) {
+  void advance(ClockArray &other) {
 
     for (auto &otherclk : other) {
       if (this->contains(otherclk.first)) {
@@ -181,9 +157,9 @@ class clockArray {
   }
 
  private:
-  std::map<locationType, timeStore, LocationComparator> timers_;
-  std::map<locationType, inType, LocationComparator> start_ing_timers_;
-  std::stack<locationType> to_tak_;
+  std::map<LocationType, timeStore, LocationComparator> timers_;
+  std::map<LocationType, inType, LocationComparator> start_ing_timers_;
+  std::stack<LocationType> to_tak_;
 
   static inline std::mutex s_mutex_;
   using GuardType = std::scoped_lock<std::mutex>;
@@ -191,22 +167,11 @@ class clockArray {
 
 }
 
-template<typename T, size_t sz>
-requires std::is_convertible_v<T, std::string>
-std::ostream &operator<<(std::ostream &out, std::array<T, sz> &arr) {
-  int i = 0;
-  for (; i < sz - 1; ++i) {
-    out << arr[i] << '\t';
-  }
-  out << arr[i] << '\n';
-  return out;
-}
-
 namespace timing {
-template<typename OutType, typename inType, inType (*timeGetter)(), locationType (*sourceTypeConverter)(
+template<typename OutType, typename inType, inType (*timeGetter)(), LocationType (*sourceTypeConverter)(
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
-clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tak(
+ClockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tak(
     const std::source_location &location) {
 
   auto new_time = (*timeGetter)();
@@ -230,10 +195,10 @@ clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tak
   }
 }
 
-template<typename OutType, typename inType, inType (*timeGetter)(), locationType (*sourceTypeConverter)(
+template<typename OutType, typename inType, inType (*timeGetter)(), LocationType (*sourceTypeConverter)(
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
-clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tik(
+ClockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tik(
     const std::source_location &location) {
   GuardType kGuard{s_mutex_};
   auto id = sourceTypeConverter(location);
@@ -242,10 +207,10 @@ clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Tik
   to_tak_.push(id);
 }
 
-template<typename OutType, typename inType, inType (*timeGetter)(), locationType (*sourceTypeConverter)(
+template<typename OutType, typename inType, inType (*timeGetter)(), LocationType (*sourceTypeConverter)(
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
-clockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Reset() {
+ClockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Reset() {
   GuardType kGuard{s_mutex_};
   if (!to_tak_.empty()) {
     throw std::logic_error("Missing Tak statements for Tik ones");

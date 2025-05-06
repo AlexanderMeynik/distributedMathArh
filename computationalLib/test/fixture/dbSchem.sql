@@ -89,3 +89,9 @@ ALTER TABLE "Iteration" ADD FOREIGN KEY ("experiment_id") REFERENCES "Experiment
 ALTER TABLE "Iteration" ADD FOREIGN KEY ("node_id") REFERENCES "Node" ("node_id");
 
 --ALTER TABLE "Log" ADD FOREIGN KEY ("node_id") REFERENCES "Node" ("node_id");
+
+
+CREATE OR REPLACE FUNCTION fmt_ts_us(ts timestamp)
+    RETURNS text AS $$
+SELECT to_char($1, 'YYYY-MM-DD HH24:MI:SS.US');
+$$ LANGUAGE sql IMMUTABLE;

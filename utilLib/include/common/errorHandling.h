@@ -25,8 +25,6 @@ private: \
 #define DEFINE_EXCEPTION_ER(Name, fmt_str, ...) DEFINE_EXCEPTION(Name,fmt_str,error,__VA_ARGS__);
 #define DEFINE_EXCEPTION_Fa(Name, fmt_str, ...) DEFINE_EXCEPTION(Name,fmt_str,fatal,__VA_ARGS__);
 
-#define ENUM_TO_STR(en, arr) arr[static_cast<size_t>(en)]
-
 #define EXC_TO_STR(ex, arr) ENUM_TO_STR(en.getSev(),arr)
 #define STR(cc) std::string{cc}
 
@@ -38,12 +36,14 @@ private: \
 #include <tuple>
 
 #include <fmt/format.h>
+#include "parallelUtils/timingUtils.h"
 
 /**
  * @brief shared namespace
  * @details This namespace Contains multiple forward declarations for types to be use everywhere
  */
 namespace shared {
+using timing::LocationType;
 
 /// severity enum
 enum class Severity {
@@ -135,10 +135,10 @@ DEFINE_EXCEPTION_IN(HttpError, "HTTP error: code {} , reason \"{}\" !", long, st
  */
 DEFINE_EXCEPTION_IN(CurlError, "Curl error: \"{}\" !", std::string)
 
-DEFINE_EXCEPTION_IN(SQL_ERROR,"SQL Error: {}. Query: {}. SQL State: {}!",std::string,std::string,std::string)
+DEFINE_EXCEPTION_IN(SQL_ERROR, "SQL Error: {}. Query: {}. SQL State: {}!", std::string, std::string, std::string)
 
-DEFINE_EXCEPTION_IN(Already_Connected,"Service {} is already connected to {}!",std::string,std::string)
+DEFINE_EXCEPTION_IN(Already_Connected, "Service {} is already connected to {}!", std::string, std::string)
 
-DEFINE_EXCEPTION_IN(Broken_Connection,"Service {} is unable to connect to {}!",std::string,std::string)
+DEFINE_EXCEPTION_IN(Broken_Connection, "Service {} is unable to connect to {}!", std::string, std::string)
 }
 

@@ -69,7 +69,6 @@ static auto inline n_message_callback =
 
       network_types::TestSolveParam ts(val);
 
-
       using namespace common_types;
       dipoles::Dipoles dipoles1;
 
@@ -83,13 +82,13 @@ static auto inline n_message_callback =
 
       StdValarr res = ms.data_[0];
 
-      #pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol) shared(res)
+#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol) shared(res)
       {
         thread_local auto functor = generators::ParseFunc(
             get<std::string>(ts.args["type"]),
             ts.args
         );
-        #pragma omp for
+#pragma omp for
         for (int i = ts.range.first; i <= ts.range.second; ++i) {
           std::generate(std::begin(coordinates), std::end(coordinates), functor);
           dipoles1.SetNewCoordinates(coordinates);
@@ -99,7 +98,7 @@ static auto inline n_message_callback =
           dipoles1.GetFullFunction(coordinates, sol);
 
           ms.ApplyFunction(dipoles1.GetI2Function());
-          #pragma  omp critical
+#pragma  omp critical
           {
             res += ms.data_[2];
           }

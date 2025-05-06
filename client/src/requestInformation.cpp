@@ -23,7 +23,6 @@ void FetchData(int n, int ns, double a) {//todo values are not printed instantly
 
   QNetworkRequest request(url);
 
-
   QNetworkReply *reply = manager->get(request);
 
   QObject::connect(reply, &QNetworkReply::finished, [reply]() {
@@ -33,12 +32,10 @@ void FetchData(int n, int ns, double a) {//todo values are not printed instantly
       QJsonDocument json_doc = QJsonDocument::fromJson(response_data);
       QJsonObject json_obj = json_doc.object();
 
-
       QJsonObject ret_struct = json_obj["retStruct"].toObject();
 
       auto nss = ret_struct["Ns"].toInt();
       auto n_in = ret_struct["N"].toInt();
-
 
       QJsonArray data_array = ret_struct["data"].toArray();
 
@@ -54,7 +51,6 @@ void FetchData(int n, int ns, double a) {//todo values are not printed instantly
         }
         index++;
       }
-
 
       for (const EigenVec &kVec : res) {
 

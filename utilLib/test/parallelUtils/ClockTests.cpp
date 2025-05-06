@@ -32,7 +32,7 @@ TEST_F(ClockArrayTest, inlined_clocks) {
   DurationType dd2{5};
   auto key1 = clk_.TikLoc();
 
-  locationType key2;
+  LocationType key2;
   {
     SLEEP(dd);
     key2 = clk_.TikLoc();
@@ -47,7 +47,7 @@ TEST_F(ClockArrayTest, inlined_clocks) {
 TEST_F(ClockArrayTest, loop_clock) {
   DurationType dd{20};
   constexpr size_t kLoopCount = 10;
-  locationType key;
+  LocationType key;
   for (int i = 0; i < kLoopCount; ++i) {
     key = clk_.TikLoc();
     SLEEP(dd);
@@ -61,7 +61,7 @@ TEST_F(ClockArrayTest, subsequent_section_clock) {
   DurationType dd2{60};
   DurationType dd3{12};
   auto pair = clk_.TikPair();
-  locationType key = pair.second;
+  LocationType key = pair.second;
   SLEEP(dd);
   clk_.Tak();
 
@@ -77,7 +77,7 @@ TEST_F(ClockArrayTest, subsequent_section_clock) {
 TEST_F(ClockArrayTest, lambda_function_call) {
   DurationType dd{20};
 
-  locationType key = clk_.TikLoc();
+  LocationType key = clk_.TikLoc();
 
   std::source_location ss;
 
@@ -100,7 +100,7 @@ TEST_F(ClockArrayTest, reset_empty_tok) {
   DurationType dd2{60};
   DurationType dd3{12};
   auto pair = clk_.TikPair();
-  locationType key = pair.second;
+  LocationType key = pair.second;
   SLEEP(dd);
   clk_.Tak();
 

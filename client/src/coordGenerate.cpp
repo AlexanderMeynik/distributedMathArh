@@ -62,7 +62,7 @@ int main(int argc, char *argv[]) {
   //std::cout<<aStr; // 1e16.csv
   std::string dirname = "results/" + subdirectory + "experiment_N=" + std::to_string(n) +
       "_Nsym=" + std::to_string(nsym) + "_a=" + a_str + "_mode=" +
-      kStateToStr[static_cast<size_t>(state)] + "/";
+      enumToStr(state, kStateToStr) + "/";
   if (!std::filesystem::exists("results/")) {
     std::filesystem::create_directory("results/");
   }

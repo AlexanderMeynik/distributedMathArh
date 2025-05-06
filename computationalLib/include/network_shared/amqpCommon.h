@@ -39,7 +39,6 @@ AMQP::Address ConstructCAddress(const std::string &host_port,
                                 const std::string &password,
                                 bool secure = false);
 
-
 /**
  * @brief Extract host from the Full url
  * @param url

@@ -44,13 +44,13 @@ void AMQPPublisherService::Reconnect() {
   });
 
   channel_->onReady([this]() {
-    GuardType kGuard{s_mutex_};
-    if (!promise_set_) {
-      connection_promise_.set_value("");
-      promise_set_ = true;
-      std::cout << "Channel started successfully\n";
-    }
-  }
+                      GuardType kGuard{s_mutex_};
+                      if (!promise_set_) {
+                        connection_promise_.set_value("");
+                        promise_set_ = true;
+                        std::cout << "Channel started successfully\n";
+                      }
+                    }
   );
 
 }

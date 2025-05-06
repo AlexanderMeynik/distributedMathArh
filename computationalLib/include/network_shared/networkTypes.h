@@ -210,7 +210,6 @@ struct message {
   std::string payload;
   std::string payload_encoding;
 
-
   Json::Value ToJson() const;
 
   message(Json::Value &val);
@@ -220,12 +219,11 @@ struct message {
 /**
  * @brief global_param struct
  */
-struct global_param
-{
+struct global_param {
   std::string name;
   Json::Value value;
 
-  global_param(const std::string pName,const Json::Value&val);
+  global_param(const std::string pName, const Json::Value &val);
 
   Json::Value ToJson() const;
 
@@ -246,7 +244,6 @@ struct myConnString {
   explicit operator std::string() {
     return formatted_string;
   }
-
 
   operator std::string_view();
 
@@ -282,7 +279,5 @@ struct myConnString {
   unsigned port;
   std::string formatted_string;
 };
-
-
 
 }

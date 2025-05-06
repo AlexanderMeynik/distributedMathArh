@@ -72,23 +72,20 @@ TEST_F(AMQPPublisherServiceTS, AddRemoveQueue) {
   publisher_service_->Connect();
   EXPECT_TRUE(publisher_service_->IsConnected());
 
-
   bool connOk = WaitFor([&]() {
     auto conns = rest_service_->ListConnections();
-    return std::any_of(conns.begin(), conns.end(), [&](const connection& c) {
+    return std::any_of(conns.begin(), conns.end(), [&](const connection &c) {
       return c.user == g_serviceParams.username;
     });
   });
   bool chanOk = WaitFor([&]() {
     auto chs = rest_service_->ListChannels();
-    return std::any_of(chs.begin(), chs.end(), [&](const channel& c) {
+    return std::any_of(chs.begin(), chs.end(), [&](const channel &c) {
       return c.user == g_serviceParams.username;
     });
   });
   EXPECT_TRUE(connOk);
   EXPECT_TRUE(chanOk);
-
-
 
   EXPECT_THROW(publisher_service_->RemoveQueue(5), shared::outOfRange);
 

@@ -124,7 +124,7 @@ class RabbitMQRestService {
    */
   bool PublishMessage(const std::string &vhost,
                       const std::string &exhange_name,
-                      const message&message);
+                      const message &message);
 
   /**
    * @brief Retrieves number of messages for the selected queue
@@ -135,15 +135,13 @@ class RabbitMQRestService {
   size_t GetMessageCount(const std::string &vhost,
                          const std::string &queue_name);
 
-
   /**
    * @brief Uses global-parameters api to interact with them
    * @param param
    * @param type
    * @return status
    */
-  bool GlobalParam(const global_param&param,const std::string& type);
-
+  bool GlobalParam(const global_param &param, const std::string &type);
 
   /**
    * @brief Lists all global params from RabbimMQ
