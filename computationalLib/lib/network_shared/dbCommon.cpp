@@ -113,11 +113,12 @@ size_t CheckDatabaseExistence(NonTransType &non_trans, std::string_view db_name)
 void FillDatabase(myConnString c_string, std::string_view script) {
   auto conn= TryConnect(c_string,"Outer");
   ExecuteTransaction(conn,[&](TransactionT &txn) {
-    txn.exec(script);
+    auto r=txn.exec(script);
+    return r;
   },"Outer",c_string);
 }
-void ExecuteTransaction(ConnPtr &ptr,
-                        const std::function<void(TransactionT &)> &func,
+ResType ExecuteTransaction(ConnPtr &ptr,
+                        const std::function<ResType(TransactionT &)> &func,
                         std::string_view service_name,
                         const myConnString &conn_str) {
   if (!CheckConnection(ptr)) {
@@ -125,8 +126,9 @@ void ExecuteTransaction(ConnPtr &ptr,
   }
   TransactionT txn(*ptr);
   try {
-    func(txn);
+    auto r=func(txn);
     txn.commit();
+    return r;
   }
   catch (const pqxx::sql_error &e) {
     throw SQL_ERROR(e.what(), e.query(), e.sqlstate());
@@ -136,15 +138,17 @@ void ExecuteTransaction(ConnPtr &ptr,
                                           e.what(),__FILE__, __LINE__), shared::Severity::info);
   }
 }
-void ExecuteSubTransaction(TransactionT &txn,
-                           const std::function<void(Subtransaction &)> &func,
+ResType ExecuteSubTransaction(TransactionT &txn,
+                           const std::function<ResType(Subtransaction &)> &func,
                            std::string_view sub_name) {
 
-
+  ResType res;
   Subtransaction s(txn, sub_name);
   try {
-    func(s);
+
+    auto r=func(s);
     s.commit();
+    return r;
   }
   catch (const pqxx::sql_error &e) {
     throw SQL_ERROR(e.what(), e.query(), e.sqlstate());
@@ -153,6 +157,28 @@ void ExecuteSubTransaction(TransactionT &txn,
     throw shared::MyException(fmt::format("Some other error {} {}:{}",
                                           e.what(),__FILE__, __LINE__), shared::Severity::info);
   }
+}
+
+User::User(pqxx::row &row) {
+  user_id = row["user_id"].as<IndexType>();
+  login = row["login"].as<std::string>();
+  hashed_password = row["hashed_password"].as<std::string>();
+  auto rr=row["role"].as<std::string>();
+  role = kStrToUserRole.at(rr);
+  user_id = row["user_id"].as<IndexType>();
+
+  created_at=*fromTimestamp(row["created_at"].as<std::string>());
+  last_login = (!row["last_login"].is_null()) ?
+               std::optional<IndexType>{
+                   *fromTimestamp(row["created_at"].as<std::string>())
+               } : std::nullopt;
+
+
+}
+bool User::operator==(const User &rhs) const {
+  return login == rhs.login &&
+      hashed_password == rhs.hashed_password &&
+      role == rhs.role;
 }
 
 }

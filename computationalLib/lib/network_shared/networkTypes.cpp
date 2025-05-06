@@ -285,5 +285,13 @@ void myConnString::UpdateFormat() {
 std::string myConnString::GetVerboseName() const {
   return fmt::format("{}:{} db:{}",host,port,dbname);
 }
+bool myConnString::operator==(const myConnString &rhs) const {
+  return user == rhs.user &&
+      password == rhs.password &&
+      host == rhs.host &&
+      dbname == rhs.dbname &&
+      port == rhs.port &&
+      formatted_string == rhs.formatted_string;
+}
 
 }

@@ -1,6 +1,6 @@
 CREATE TYPE "role" AS ENUM (
   'user',
-  'sysadmin'
+  'admin'
 );
 
 CREATE TYPE "status" AS ENUM (

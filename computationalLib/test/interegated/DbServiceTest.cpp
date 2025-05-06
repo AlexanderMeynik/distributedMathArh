@@ -27,14 +27,48 @@ class DbServiceTest : public ::testing::Test {
   std::unique_ptr<db_service::DbService> service;
 };
 
+TEST_F(DbServiceTest,SetGetCstring)
+{
+  auto cString=network_types::myConnString("a","p","localhost","db",5432);
+  service->SetConnStr(cString);
+
+  ASSERT_EQ(cString,service->GetConnStr());
+}
+
+TEST_F(DbServiceTest,timestampFullCycle)
+{
+  using namespace std;
+  using std::chrono::steady_clock;
+
+  auto r=service->ExecuteTransaction([&](TransactionT&txt){
+    ResType r;
+    r=txt.exec("SELECT now()::timestamp");
+    return r;
+  });
+  auto postgres_time=r[0][0].as<std::string>();
+  auto s= fromTimestamp(postgres_time);
+
+  auto new_time= myTimeStampToTimestamp(s.value());
+
+  ASSERT_EQ(postgres_time, new_time);
+}
+
 TEST_F(DbServiceTest, ConnectToDatabase) {
   ASSERT_TRUE(service->IsConnected());
 }
 
 TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
-  auto user_id = service->CreateUser("testuser", "password");
+  User user;
+  user.login="testuser";
+  user.hashed_password="password";
+  user.role=UserRole::USER;
 
-  ASSERT_TRUE(service->AuthenticateUser("testuser", "password"));
+  user.user_id = service->CreateUser(user);
+
+  ASSERT_TRUE(service->AuthenticateUser(user));
+
+  auto users=service->GetUsers(1);
+  ASSERT_TRUE(std::find(users.begin(), users.end(),user)!=users.end());
 }
 
 TEST_F(DbServiceTest, CreateExperiment) {

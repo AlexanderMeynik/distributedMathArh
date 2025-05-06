@@ -247,6 +247,7 @@ struct myConnString {
     return formatted_string;
   }
 
+
   operator std::string_view();
 
   [[nodiscard]] const char *CStr() const;
@@ -272,6 +273,7 @@ struct myConnString {
   [[nodiscard]] unsigned int GetPort() const;
 
   [[nodiscard]] std::string GetVerboseName() const;
+  bool operator==(const myConnString &rhs) const;
 
  private:
   void UpdateFormat();

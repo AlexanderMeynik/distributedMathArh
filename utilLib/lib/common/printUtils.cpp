@@ -87,7 +87,7 @@ std::istream &operator>>(std::istream &is, const Delimiter &delim) {
   {
     return is;
   }
-  //todo when formats doesn align this causes errors('\t' ' ')
+
   for (auto& kCh:delim.str) {
     if (!is.get(c) || c != kCh) {
       is.setstate(std::ios::failbit);
