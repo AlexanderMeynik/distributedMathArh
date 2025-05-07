@@ -89,6 +89,14 @@ TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
 }
 TEST_F(DbServiceTest,DeleteUser)
 {
+
+  User user2;
+  user2.login = tlogin+"2";
+  user2.hashed_password = tpassword+"2";
+  user2.role = UserRole::USER;
+
+  user2.user_id = service_->CreateUser(user2);
+
   auto users1 = service_->GetUsers(1);
 
   User user = *std::find_if(users1.begin(), users1.end(), [&](const User &item) {
