@@ -50,6 +50,7 @@ CREATE TABLE "Experiment" (
   "user_id" bigint NOT NULL,
   "status" status NOT NULL,
   "parameters" jsonb NOT NULL,
+  "created_at" timestamp DEFAULT (now()),
   "start_time" timestamp,
   "end_time" timestamp,
   "sum_mesh" double PRECISION[]

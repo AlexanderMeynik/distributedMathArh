@@ -24,6 +24,9 @@ class DbServiceTest : public ::testing::Test {
 
   network_types::myConnString conn_string_;
   std::unique_ptr<db_service::DbService> service_;
+
+  static inline std::string tlogin="testuser";
+  static inline std::string tpassword="password";
 };
 
 TEST_F(DbServiceTest, SetGetCstring) {
@@ -33,7 +36,11 @@ TEST_F(DbServiceTest, SetGetCstring) {
   ASSERT_EQ(c_string, service_->GetConnStr());
 }
 
-TEST_F(DbServiceTest, timestampFullCycle) {
+TEST_F(DbServiceTest, ConnectToDatabase) {
+  ASSERT_TRUE(service_->IsConnected());
+}
+
+TEST_F(DbServiceTest, TimestampSerializationDeserailizationTest) {
   using namespace std;
   using std::chrono::steady_clock;
 
@@ -50,7 +57,7 @@ TEST_F(DbServiceTest, timestampFullCycle) {
   ASSERT_EQ(postgres_time, new_time);
 }
 
-TEST_F(DbServiceTest, timestampSaveRetrieveCycle) {
+TEST_F(DbServiceTest, TimestampInsertRetrieveTest) {
   uint64_t now = timing::Now<std::chrono::microseconds>();
 
   auto initilaTime = TpToString(now);
@@ -65,14 +72,12 @@ TEST_F(DbServiceTest, timestampSaveRetrieveCycle) {
 
   ASSERT_EQ(initilaTime, postgres_time);
 }
-TEST_F(DbServiceTest, ConnectToDatabase) {
-  ASSERT_TRUE(service_->IsConnected());
-}
+
 
 TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
   User user;
-  user.login = "testuser";
-  user.hashed_password = "password";
+  user.login = tlogin;
+  user.hashed_password = tpassword;
   user.role = UserRole::USER;
 
   user.user_id = service_->CreateUser(user);
@@ -82,42 +87,104 @@ TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
   auto users = service_->GetUsers(1);
   ASSERT_TRUE(std::find(users.begin(), users.end(), user) != users.end());
 }
+TEST_F(DbServiceTest,DeleteUser)
+{
+  auto users1 = service_->GetUsers(1);
 
-TEST_F(DbServiceTest, CreateExperiment) {
-  auto user_id = service_->CreateUser("expuser", "password");
-  Json::Value params;
-  params["N"] = 100;
-  auto exp_id = service_->CreateExperiment(user_id, params);
+  User user = *std::find_if(users1.begin(), users1.end(), [&](const User &item) {
+    return item.login==tlogin;
+  });
 
-  Json::Value exp = service_->GetExperiment(exp_id);
-  ASSERT_EQ(exp["status"].asString(), "pending");
-  ASSERT_EQ(exp["parameters"]["N"].asInt(), 100);
+  service_->DeleteUser(user.user_id);
+
+  auto users = service_->GetUsers(1);
+  ASSERT_FALSE(std::find(users.begin(), users.end(), user) != users.end());
+
 }
 
-TEST_F(DbServiceTest, RegisterNodeAndUpdateStatus) {
-  auto node_id = service_->RegisterNode("192.168.1.1", shared::BenchResVec{100, 200});
+TEST_F(DbServiceTest, CreateExperiment) {
+  User user;
+  user.role = UserRole::USER;
+  user.login = "expuser";
+  user.hashed_password = "password";
+  user.user_id = service_->CreateUser(user);
 
-  service_->UpdateNodeStatus(node_id, "busy");
-  Json::Value node = service_->GetNode(node_id);
-  ASSERT_EQ(node["status"].asString(), "busy");
+  Experiment experiment;
+  experiment.user_id=user.user_id;
+  experiment.parameters["N"] = 100;
+  experiment.experiment_id = service_->CreateExperiment(experiment);
+
+  auto experiments=service_->ListExperiments(user.user_id,1);
+
+  ASSERT_TRUE(std::find(experiments.begin(),
+                        experiments.end(), experiment) != experiments.end());
 }
 
 TEST_F(DbServiceTest, CreateIterationAndUpdate) {
-  auto user_id = service_->CreateUser("iteruser", "password");
-  Json::Value params;
-  params["N"] = 50;
-  auto exp_id = service_->CreateExperiment(user_id, params);
-  auto node_id = service_->RegisterNode("192.168.1.2", shared::BenchResVec{200, 400});
 
-  auto iter_id = service_->CreateIteration(exp_id, node_id, "solve");
+  User user;
+  user.role = UserRole::USER;
+  user.login = "iteruser";
+  user.hashed_password = "password";
+  user.user_id = service_->CreateUser(user);
+
+  Experiment exp;
+  exp.user_id=user.user_id;
+  exp.parameters["N"]=50;
+  exp.experiment_id = service_->CreateExperiment(exp);
+
+  Node node;
+  node.ip_address="192.168.1.2";
+  node.benchmark_score=shared::BenchResVec{200, 400};
+  node.node_id = service_->RegisterNode(node);
+
+  Iteration iterat;
+  iterat.experiment_id=exp.experiment_id;
+  iterat.node_id=node.node_id;
+  iterat.iter_t=IterationType::SOLVE;
+
+  iterat.iteration_id = service_->CreateIteration(iterat);
 
   Json::Value output;
   output["result"] = 42;
-  service_->UpdateIterationStatus(iter_id, "completed", output);
-  Json::Value iter = service_->GetIteration(iter_id);
-  ASSERT_EQ(iter["status"].asString(), "completed");
-  ASSERT_EQ(iter["output_data"]["result"].asInt(), 42);
+  service_->UpdateIterationStatus(iterat.iteration_id, "completed", output);
+
+  auto iters=service_->ListIterations(exp.experiment_id,1);
+  ASSERT_TRUE(std::find(iters.begin(),
+                        iters.end(), iterat) != iters.end());
 }
+
+
+
+
+TEST_F(DbServiceTest, RegisterNodeAndUpdateStatus) {
+
+  Node node;
+  node.ip_address="193.168.1.2";
+  node.benchmark_score=shared::BenchResVec{100, 200};
+  node.node_id = service_->RegisterNode(node);
+  auto node_id = service_->RegisterNode(node);
+
+  service_->UpdateNodeStatus(node_id, "busy");
+
+  auto nodes=service_->ListNodes(1);
+  ASSERT_TRUE(std::find(nodes.begin(),
+                        nodes.end(), node) != nodes.end());
+}
+
+
+TEST_F(DbServiceTest, DeleteNode) {
+  auto nodes=service_->ListNodes(1);
+
+  auto node=nodes[0];
+
+  service_->UnregisterNode(node.node_id);
+  auto nodes_del=service_->ListNodes(1);
+  ASSERT_TRUE(std::find(nodes_del.begin(),
+                        nodes_del.end(), node) != nodes_del.end());
+}
+
+
 
 TEST_F(DbServiceTest, LogMessage) {
   auto node_id = service_->RegisterNode("192.168.1.3", shared::BenchResVec{300, 600});

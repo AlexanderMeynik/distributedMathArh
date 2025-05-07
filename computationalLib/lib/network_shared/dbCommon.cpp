@@ -159,12 +159,54 @@ ResType ExecuteSubTransaction(TransactionT &txn,
   }
 }
 
+Experiment::Experiment(pqxx::row &row) {
+  experiment_id = row["experiment_id"].as<IndexType>();
+  user_id = row["user_id"].as<IndexType>();
+
+  auto rr = row["status"].as<std::string>();
+  status = strToEnum(rr,kStrToExpStatus);
+  parameters = Json::Value(row["parameters"].as<std::string>());
+  created_at = *StrToTimepoint(row["created_at"].as<std::string>());
+  start_time = (!row["start_time"].is_null()) ?
+               std::optional<IndexType>{
+                   *StrToTimepoint(row["start_time"].as<std::string>())
+               } : std::nullopt;
+  end_time = (!row["end_time"].is_null()) ?
+               std::optional<IndexType>{
+                   *StrToTimepoint(row["end_time"].as<std::string>())
+               } : std::nullopt;
+}
+
+Iteration::Iteration(pqxx::row &row) {
+
+  iteration_id = row["iteration_id"].as<IndexType>();
+  experiment_id = row["experiment_id"].as<IndexType>();
+  node_id = row["node_id"].as<IndexType>();
+
+  auto type=row["iter_t"].as<std::string>();
+  iter_t = strToEnum(type,kStrToIterType);
+
+  auto st=row["status"].as<std::string>();
+  status = strToEnum(st,kStrToIterStatus);
+
+  output_data = Json::Value(row["output_data"].as<std::string>());
+
+
+  start_time = *StrToTimepoint(row["start_time"].as<std::string>());
+
+  end_time = (!row["end_time"].is_null()) ?
+             std::optional<IndexType>{
+                 *StrToTimepoint(row["end_time"].as<std::string>())
+             } : std::nullopt;
+}
+
+
 User::User(pqxx::row &row) {
   user_id = row["user_id"].as<IndexType>();
   login = row["login"].as<std::string>();
   hashed_password = row["hashed_password"].as<std::string>();
   auto rr = row["role"].as<std::string>();
-  role = kStrToUserRole.at(rr);
+  role = strToEnum(rr,kStrToUserRole);
   user_id = row["user_id"].as<IndexType>();
 
   created_at = *StrToTimepoint(row["created_at"].as<std::string>());
@@ -174,10 +216,40 @@ User::User(pqxx::row &row) {
                } : std::nullopt;
 
 }
+
 bool User::operator==(const User &rhs) const {
   return login == rhs.login &&
       hashed_password == rhs.hashed_password &&
       role == rhs.role;
 }
 
+bool Experiment::operator==(const Experiment &rhs) const {
+  return experiment_id == rhs.experiment_id;
+}
+
+bool Iteration::operator==(const Iteration &rhs) const {
+  return iteration_id==rhs.iteration_id;
+}
+
+bool Node::operator==(const Node &rhs) const {
+  return ip_address==rhs.ip_address;
+}
+Node::Node(pqxx::row &row) {
+
+  node_id = row["node_id"].as<IndexType>();
+  ip_address = row["ip_address"].as<std::string>();
+  auto sql_arr = row["benchmark_score"].as<std::string>();
+  auto arr = row["benchmark_score"].as_sql_array<shared::BenchResultType>();
+  using namespace print_utils;
+  benchmark_score =print_utils::ParseOneDimS<shared::BenchResVec>(sql_arr,
+                                                                  arr.size(),//todo use enum semntics
+                                                                  EIGENF(EigenPrintFormats::VECTOR_DB_FORMAT));
+  auto st=row["status"].as<std::string>();
+  status = strToEnum(st,kStrToNodeSt);
+
+  last_ping = (!row["last_ping"].is_null()) ?
+               std::optional<IndexType>{
+                   *StrToTimepoint(row["last_ping"].as<std::string>())
+               } : std::nullopt;
+}
 }

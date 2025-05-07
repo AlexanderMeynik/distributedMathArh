@@ -112,6 +112,24 @@ IndexType DbService::CreateExperiment(IndexType user_id, const Json::Value &para
   return experiment_id;
 }
 
+IndexType DbService::CreateExperiment(Experiment exp) {
+  return CreateExperiment(exp.user_id,exp.parameters);
+}
+
+std::vector<Experiment> DbService::ListExperiments(IndexType user_id,IndexType page_num, IndexType page_size) {
+  std::vector<Experiment> res;
+  ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Experiment\" WHERE user_id ={} LIMIT {} OFFSET {}";
+    auto result = txn.exec(fmt::format(fmt::runtime(qq),user_id, page_size, (page_num - 1) * page_size));
+    res.reserve(result.size());
+    for (auto row : result) {
+      res.emplace_back(row);
+    }
+    return ResType();
+  });
+  return res;
+}
+
 void DbService::UpdateExperimentStatus(IndexType experiment_id, std::string_view status) {
   ExecuteTransaction([&](TransactionT &txn) {
 
@@ -126,25 +144,15 @@ void DbService::UpdateExperimentStatus(IndexType experiment_id, std::string_view
   });
 }
 
-Json::Value DbService::GetExperiment(IndexType experiment_id) {
-  Json::Value result;
+Experiment DbService::GetExperiment(IndexType experiment_id) {
+  Experiment experiment;
   ExecuteTransaction([&](TransactionT &txn) {
     std::string qq = "SELECT * FROM \"Experiment\" WHERE experiment_id = {}";
     auto row = txn.exec(fmt::format(fmt::runtime(qq), experiment_id)).one_row();
-    result["experiment_id"] = row["experiment_id"].as<std::string>();
-    result["user_id"] = row["user_id"].as<std::string>();
-    result["status"] = row["status"].as<std::string>();
-    Json::CharReaderBuilder readerBuilder;
-    std::unique_ptr<Json::CharReader> reader(readerBuilder.newCharReader());
-    std::string params_str = row["parameters"].as<std::string>();
-    Json::Value params;
-    reader->parse(params_str.c_str(), params_str.c_str() + params_str.length(), &params, nullptr);
-    result["parameters"] = params;
-    if (!row["start_time"].is_null()) result["start_time"] = row["start_time"].as<std::string>();
-    if (!row["end_time"].is_null()) result["end_time"] = row["end_time"].as<std::string>();
+    experiment=std::move(Experiment(row));
     return ResType();
   });
-  return result;
+  return experiment;
 }
 
 IndexType DbService::CreateIteration(IndexType experiment_id,
@@ -195,24 +203,12 @@ void DbService::UpdateIterationStatus(IndexType iteration_id,
   });
 }
 
-Json::Value DbService::GetIteration(IndexType iteration_id) {
-  Json::Value result;
+Iteration DbService::GetIteration(IndexType iteration_id) {
+  Iteration result;
   ExecuteTransaction([&](TransactionT &txn) {
     std::string qq = "SELECT * FROM \"Iteration\" WHERE iteration_id = {}";
     auto row = txn.exec(fmt::format(fmt::runtime(qq), iteration_id)).one_row();
-    result["iteration_id"] = row["iteration_id"].as<std::string>();
-    result["experiment_id"] = row["experiment_id"].as<std::string>();
-    result["node_id"] = row["node_id"].as<std::string>();
-    result["iter_t"] = row["iter_t"].as<std::string>();
-    result["status"] = row["status"].as<std::string>();
-    if (!row["output_data"].is_null()) {
-      Json::CharReaderBuilder readerBuilder;
-      std::unique_ptr<Json::CharReader> reader(readerBuilder.newCharReader());
-      std::string output_str = row["output_data"].as<std::string>();
-      Json::Value output;
-      reader->parse(output_str.c_str(), output_str.c_str() + output_str.length(), &output, nullptr);
-      result["output_data"] = output;
-    }
+    result = std::move(Iteration(row));
     return ResType();
   });
   return result;
@@ -230,7 +226,6 @@ IndexType DbService::RegisterNode(std::string_view ip_address, const shared::Ben
     auto bench_vec = OneDimToString(benchmark_score, false,
                                     EIGENF(EigenPrintFormats::VECTOR_DB_FORMAT));
     node_id = txn.exec(
-
         fmt::format(fmt::runtime(qq), txn.quote(ip_address), txn.quote(bench_vec))
     ).one_row()[0].as<IndexType>();
 
@@ -259,20 +254,12 @@ void DbService::UnregisterNode(IndexType node_id) {
   });
 }
 
-Json::Value DbService::GetNode(IndexType node_id) {
-  Json::Value result;
+Node DbService::GetNode(IndexType node_id) {
+  Node result;
   ExecuteTransaction([&](TransactionT &txn) {
     using namespace print_utils;
     auto row = txn.exec_params("SELECT * FROM \"Node\" WHERE node_id = $1", node_id).one_row();
-    result["node_id"] = row["node_id"].as<std::string>();
-    result["ip_address"] = row["ip_address"].as<std::string>();
-    auto sql_arr = row["benchmark_score"].as<std::string>();
-    auto arr = row["benchmark_score"].as_sql_array<shared::BenchResultType>();
-    auto a = print_utils::ParseOneDimS<shared::BenchResVec>(sql_arr,
-                                                            arr.size(),
-                                                            EIGENF(EigenPrintFormats::VECTOR_DB_FORMAT));
-    result["benchmark_score"] = sql_arr;
-    result["status"] = row["status"].as<std::string>();
+    result = std::move(Node(row));
     return ResType();
   });
   return result;
@@ -319,7 +306,43 @@ bool DbService::AuthenticateUser(const User &user) {
   return AuthenticateUser(user.login, user.hashed_password);
 }
 IndexType DbService::CreateUser(const User &user) {
-  return CreateUser(user.login, user.hashed_password, kUserRoleToStr[static_cast<size_t>(user.role)]);
+  return CreateUser(user.login, user.hashed_password, enumToStr(user.role,kUserRoleToStr));
+}
+std::vector<Iteration> DbService::ListIterations(IndexType experiment_id,
+                                                 IndexType page_num,
+                                                 IndexType page_size) {
+  std::vector<Iteration> res;
+  ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Iteration\" WHERE experiment_id ={} LIMIT {} OFFSET {}";
+    auto result = txn.exec(fmt::format(fmt::runtime(qq),experiment_id, page_size, (page_num - 1) * page_size));
+    res.reserve(result.size());
+    for (auto row : result) {
+      res.emplace_back(row);
+    }
+    return ResType();
+  });
+  return res;
+}
+std::vector<Node> DbService::ListNodes(IndexType page_num, IndexType page_size) {
+  std::vector<Node> res;
+  ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Node\" LIMIT {} OFFSET {}";
+    auto result = txn.exec(fmt::format(fmt::runtime(qq), page_size, (page_num - 1) * page_size));
+    res.reserve(result.size());
+    for (auto row : result) {
+      res.emplace_back(row);
+    }
+    return ResType();
+  });
+  return res;
+}
+IndexType DbService::CreateIteration(const Iteration &iter) {
+  return CreateIteration(iter.experiment_id,
+                         iter.node_id,
+                         enumToStr(iter.iter_t,kIterTypeToStr));
+}
+IndexType DbService::RegisterNode(const Node &node) {
+  return RegisterNode(node.ip_address,node.benchmark_score);
 }
 
 } // namespace db_service
