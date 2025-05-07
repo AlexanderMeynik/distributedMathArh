@@ -97,16 +97,10 @@ TEST_F(DbServiceTest,DeleteUser)
 
   user2.user_id = service_->CreateUser(user2);
 
-  auto users1 = service_->GetUsers(1);
-
-  User user = *std::find_if(users1.begin(), users1.end(), [&](const User &item) {
-    return item.login==tlogin;
-  });
-
-  service_->DeleteUser(user.user_id);
+  service_->DeleteUser(user2.user_id);
 
   auto users = service_->GetUsers(1);
-  ASSERT_FALSE(std::find(users.begin(), users.end(), user) != users.end());
+  ASSERT_FALSE(std::find(users.begin(), users.end(), user2) != users.end());
 
 }
 
@@ -182,9 +176,14 @@ TEST_F(DbServiceTest, RegisterNodeAndUpdateStatus) {
 
 
 TEST_F(DbServiceTest, DeleteNode) {
+
+  Node node;
+  node.ip_address="193.168.1.4";
+  node.benchmark_score=shared::BenchResVec{100, 200};
+  node.node_id = service_->RegisterNode(node);
+
   auto nodes=service_->ListNodes(1);
 
-  auto node=nodes[0];
 
   service_->UnregisterNode(node.node_id);
   auto nodes_del=service_->ListNodes(1);
