@@ -1,5 +1,0 @@
-<map id="amqp_common::AMQPConsumerService::~AMQPConsumerService" name="amqp_common::AMQPConsumerService::~AMQPConsumerService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,248,45"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPConsumerService.html#a85f38595f3369881c29ecf46dc90fc44" title="Disconnects to the specified RabbitMQQueue." alt="" coords="296,5,532,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="248,23,283,23,283,28,248,28"/>
-</map>

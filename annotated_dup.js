@@ -3,6 +3,7 @@ var annotated_dup =
     [ "amqp_common", "namespaceamqp__common.html", [
       [ "AMQPConsumerService", "classamqp__common_1_1AMQPConsumerService.html", "classamqp__common_1_1AMQPConsumerService" ],
       [ "AMQPPublisherService", "classamqp__common_1_1AMQPPublisherService.html", "classamqp__common_1_1AMQPPublisherService" ],
+      [ "AMQPService", "classamqp__common_1_1AMQPService.html", "classamqp__common_1_1AMQPService" ],
       [ "MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
       [ "RabbitMQRestService", "classamqp__common_1_1RabbitMQRestService.html", "classamqp__common_1_1RabbitMQRestService" ]
     ] ],
@@ -17,8 +18,20 @@ var annotated_dup =
       [ "BenchmarkRunner", "classcomp__services_1_1BenchmarkRunner.html", "classcomp__services_1_1BenchmarkRunner" ],
       [ "ComputationNodeService", "classcomp__services_1_1ComputationNodeService.html", "classcomp__services_1_1ComputationNodeService" ]
     ] ],
+    [ "db_common", "namespacedb__common.html", [
+      [ "Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
+      [ "Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
+      [ "Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
+      [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ]
+    ] ],
+    [ "db_service", "namespacedb__service.html", [
+      [ "DbService", "classdb__service_1_1DbService.html", "classdb__service_1_1DbService" ]
+    ] ],
     [ "dipoles", "namespacedipoles.html", [
       [ "Dipoles", "classdipoles_1_1Dipoles.html", "classdipoles_1_1Dipoles" ]
+    ] ],
+    [ "enum_utils", "namespaceenum__utils.html", [
+      [ "EnumMapping", "namespaceenum__utils.html#structenum__utils_1_1EnumMapping", "namespaceenum__utils_structenum__utils_1_1EnumMapping_dup" ]
     ] ],
     [ "generators", "namespacegenerators.html", [
       [ "generator", "structgenerators_1_1generator.html", "structgenerators_1_1generator" ]
@@ -31,14 +44,24 @@ var annotated_dup =
     [ "mesh_storage", "namespacemesh__storage.html", [
       [ "MeshCreator", "classmesh__storage_1_1MeshCreator.html", "classmesh__storage_1_1MeshCreator" ]
     ] ],
+    [ "my_concepts", "namespacemy__concepts.html", [
+      [ "is_specialization_of", "structmy__concepts_1_1is__specialization__of.html", null ],
+      [ "is_specialization_of< C< Args... >, C >", "structmy__concepts_1_1is__specialization__of_3_01C_3_01Args_8_8_8_01_4_00_01C_01_4.html", null ]
+    ] ],
     [ "network_types", "namespacenetwork__types.html", [
+      [ "channel", "structnetwork__types_1_1channel.html", "structnetwork__types_1_1channel" ],
+      [ "connection", "structnetwork__types_1_1connection.html", "structnetwork__types_1_1connection" ],
       [ "exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
+      [ "global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
+      [ "message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
+      [ "myConnString", "structnetwork__types_1_1myConnString.html", "structnetwork__types_1_1myConnString" ],
       [ "queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
       [ "queueBinding", "structnetwork__types_1_1queueBinding.html", "structnetwork__types_1_1queueBinding" ],
       [ "rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],
       [ "TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", "structnetwork__types_1_1TestSolveParam" ]
     ] ],
     [ "print_utils", "namespaceprint__utils.html", [
+      [ "Delimiter", "structprint__utils_1_1Delimiter.html", "structprint__utils_1_1Delimiter" ],
       [ "IosStatePreserve", "classprint__utils_1_1IosStatePreserve.html", "classprint__utils_1_1IosStatePreserve" ],
       [ "IosStateScientific", "classprint__utils_1_1IosStateScientific.html", "classprint__utils_1_1IosStateScientific" ]
     ] ],
@@ -55,6 +78,8 @@ var annotated_dup =
       [ "JsonAuthHandler", "classrest__utils_1_1JsonAuthHandler.html", "classrest__utils_1_1JsonAuthHandler" ]
     ] ],
     [ "shared", "namespaceshared.html", [
+      [ "Already_Connected", "classshared_1_1Already__Connected.html", "classshared_1_1Already__Connected" ],
+      [ "Broken_Connection", "classshared_1_1Broken__Connection.html", "classshared_1_1Broken__Connection" ],
       [ "CurlError", "classshared_1_1CurlError.html", "classshared_1_1CurlError" ],
       [ "HttpError", "classshared_1_1HttpError.html", "classshared_1_1HttpError" ],
       [ "InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
@@ -65,10 +90,11 @@ var annotated_dup =
       [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
       [ "params", "structshared_1_1params.html", null ],
       [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
+      [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
       [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
     ] ],
     [ "timing", "namespacetiming.html", [
-      [ "clockArray", "classtiming_1_1clockArray.html", "classtiming_1_1clockArray" ],
+      [ "ClockArray", "classtiming_1_1ClockArray.html", "classtiming_1_1ClockArray" ],
       [ "LocationComparator", "structtiming_1_1LocationComparator.html", "structtiming_1_1LocationComparator" ]
     ] ],
     [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ]

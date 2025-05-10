@@ -1,5 +1,7 @@
 var namespaceshared =
 [
+    [ "Already_Connected", "classshared_1_1Already__Connected.html", "classshared_1_1Already__Connected" ],
+    [ "Broken_Connection", "classshared_1_1Broken__Connection.html", "classshared_1_1Broken__Connection" ],
     [ "CurlError", "classshared_1_1CurlError.html", "classshared_1_1CurlError" ],
     [ "HttpError", "classshared_1_1HttpError.html", "classshared_1_1HttpError" ],
     [ "InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
@@ -10,6 +12,7 @@ var namespaceshared =
     [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
     [ "params", "structshared_1_1params.html", null ],
     [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
+    [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
     [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ],
     [ "BenchResultType", "namespaceshared.html#a98a73a01c5c6c4ca3e1b3819ce638a98", null ],
     [ "BenchResVec", "namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f", null ],
@@ -37,6 +40,5 @@ var namespaceshared =
       [ "PRINT", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b", null ]
     ] ],
     [ "DefaultBench", "namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
-    [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
-    [ "kStateToStr", "namespaceshared.html#a7762cf232499ddc3f64cf21408e7e400", null ]
+    [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ]
 ];

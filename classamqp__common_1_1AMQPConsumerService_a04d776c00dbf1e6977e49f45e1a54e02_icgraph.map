@@ -1,9 +1,0 @@
-<map id="amqp_common::AMQPConsumerService::IsConnected" name="amqp_common::AMQPConsumerService::IsConnected">
-<area shape="rect" id="Node000001" title=" " alt="" coords="264,69,500,109"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="5,5,216,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,69,195,48,197,43,284,63"/>
-<area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html#a6c1604b3b1351fa607ec848613903a79" title=" " alt="" coords="5,69,216,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="251,92,216,92,216,87,251,87"/>
-<area shape="rect" id="Node000004" href="$classcomp__services_1_1ComputationNodeService.html#a76a73721c93bdce971eac3029885d6a9" title=" " alt="" coords="5,133,216,173"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="284,115,197,136,195,131,282,110"/>
-</map>

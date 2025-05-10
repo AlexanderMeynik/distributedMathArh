@@ -92,7 +92,9 @@ $(document).ready(function(){initNavTree('namespacetiming.html',''); initResizab
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#typedef-members">Typedefs</a>  </div>
+<a href="#concepts">Concepts</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">timing Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -102,31 +104,369 @@ $(document).ready(function(){initNavTree('namespacetiming.html',''); initResizab
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtiming_1_1clockArray.html">clockArray</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clock array template class.  <a href="classtiming_1_1clockArray.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classtiming_1_1ClockArray.html">ClockArray</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clock array template class.  <a href="classtiming_1_1ClockArray.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtiming_1_1LocationComparator.html">LocationComparator</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="concepts" name="concepts"></a>
+Concepts</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">concept &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="concepttiming_1_1Duration.html">Duration</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a90abe985843f7783a7a3f8958183f579" id="r_a90abe985843f7783a7a3f8958183f579"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetiming.html#a90abe985843f7783a7a3f8958183f579">locationType</a> = std::array&lt; std::string, 5 &gt;</td></tr>
-<tr class="separator:a90abe985843f7783a7a3f8958183f579"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f5b2cbfbed780ae32b4d022f2306f06" id="r_a5f5b2cbfbed780ae32b4d022f2306f06"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetiming.html#a5f5b2cbfbed780ae32b4d022f2306f06">ClockType</a> = typename std::conditional&lt; std::chrono::high_resolution_clock::is_steady, std::chrono::high_resolution_clock, std::chrono::steady_clock &gt;::type</td></tr>
+<tr class="separator:a5f5b2cbfbed780ae32b4d022f2306f06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa191b74b8cde9a5e2961685c234e54fe" id="r_aa191b74b8cde9a5e2961685c234e54fe"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">ClockTimepoint</a> = ClockType::time_point</td></tr>
+<tr class="separator:aa191b74b8cde9a5e2961685c234e54fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac367f9a778c65fe69d4ca4a06d8251de" id="r_ac367f9a778c65fe69d4ca4a06d8251de"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">TimepointType</a> = uint64_t</td></tr>
+<tr class="memdesc:ac367f9a778c65fe69d4ca4a06d8251de"><td class="mdescLeft">&#160;</td><td class="mdescRight">default portable time-point type  <br /></td></tr>
+<tr class="separator:ac367f9a778c65fe69d4ca4a06d8251de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acd0b30707d239c1ffc1268c286cd37e7" id="r_acd0b30707d239c1ffc1268c286cd37e7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetiming.html#acd0b30707d239c1ffc1268c286cd37e7">LocationType</a> = std::array&lt; std::string, 5 &gt;</td></tr>
+<tr class="memdesc:acd0b30707d239c1ffc1268c286cd37e7"><td class="mdescLeft">&#160;</td><td class="mdescRight">structure to store file data  <br /></td></tr>
+<tr class="separator:acd0b30707d239c1ffc1268c286cd37e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ab3c2845e377c52233a46bf94a6ae79c1" id="r_ab3c2845e377c52233a46bf94a6ae79c1"><td class="memTemplParams" colspan="2">template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> sz&gt; <br />
+requires std::is_floating_point_v&lt;T&gt;</td></tr>
+<tr class="memitem:ab3c2845e377c52233a46bf94a6ae79c1"><td class="memTemplItemLeft" align="right" valign="top">or std::is_integral_v&lt; T &gt; std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetiming.html#ab3c2845e377c52233a46bf94a6ae79c1">operator&lt;&lt;</a> (std::ostream &amp;out, std::array&lt; T, sz &gt; &amp;arr)</td></tr>
+<tr class="memdesc:ab3c2845e377c52233a46bf94a6ae79c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array printer.  <br /></td></tr>
+<tr class="separator:ab3c2845e377c52233a46bf94a6ae79c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3e0b3d95c0df78be178ae44813e8888d" id="r_a3e0b3d95c0df78be178ae44813e8888d"><td class="memTemplParams" colspan="2">template&lt;Duration dur&gt; </td></tr>
+<tr class="memitem:a3e0b3d95c0df78be178ae44813e8888d"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">TimepointType</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetiming.html#a3e0b3d95c0df78be178ae44813e8888d">Now</a> ()</td></tr>
+<tr class="memdesc:a3e0b3d95c0df78be178ae44813e8888d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns now with specified precision.  <br /></td></tr>
+<tr class="separator:a3e0b3d95c0df78be178ae44813e8888d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1b44090abfb2159e7d31161fa333d66" id="r_af1b44090abfb2159e7d31161fa333d66"><td class="memTemplParams" colspan="2">template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> sz&gt; </td></tr>
+<tr class="memitem:af1b44090abfb2159e7d31161fa333d66"><td class="memTemplItemLeft" align="right" valign="top">bool&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetiming.html#af1b44090abfb2159e7d31161fa333d66">operator==</a> (const std::array&lt; T, sz &gt; &amp;arr1, const std::array&lt; T, sz &gt; &amp;arr2)</td></tr>
+<tr class="memdesc:af1b44090abfb2159e7d31161fa333d66"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array comparator.  <br /></td></tr>
+<tr class="separator:af1b44090abfb2159e7d31161fa333d66"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d7753adba6505b56d14db0e424a01d5" id="r_a0d7753adba6505b56d14db0e424a01d5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetiming.html#a0d7753adba6505b56d14db0e424a01d5">TpToString</a> (<a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">TimepointType</a> system_ms)</td></tr>
+<tr class="memdesc:a0d7753adba6505b56d14db0e424a01d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Serializes given timepoint to string.  <br /></td></tr>
+<tr class="separator:a0d7753adba6505b56d14db0e424a01d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad625aa0dba4dadd42847e1d84c062d07" id="r_ad625aa0dba4dadd42847e1d84c062d07"><td class="memItemLeft" align="right" valign="top">std::optional&lt; <a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">TimepointType</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">StrToTimepoint</a> (std::string_view ts)</td></tr>
+<tr class="memdesc:ad625aa0dba4dadd42847e1d84c062d07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrives TimepointType from a given string.  <br /></td></tr>
+<tr class="separator:ad625aa0dba4dadd42847e1d84c062d07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab70dc0514e6b38262f309b86c76039b6" id="r_ab70dc0514e6b38262f309b86c76039b6"><td class="memTemplParams" colspan="2">template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> sz&gt; <br />
+requires std::is_convertible_v&lt;T, std::string&gt;</td></tr>
+<tr class="memitem:ab70dc0514e6b38262f309b86c76039b6"><td class="memTemplItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetiming.html#ab70dc0514e6b38262f309b86c76039b6">operator&lt;&lt;</a> (std::ostream &amp;out, std::array&lt; T, sz &gt; &amp;arr)</td></tr>
+<tr class="memdesc:ab70dc0514e6b38262f309b86c76039b6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Array printer.  <br /></td></tr>
+<tr class="separator:ab70dc0514e6b38262f309b86c76039b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>timing namespace </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="a90abe985843f7783a7a3f8958183f579" name="a90abe985843f7783a7a3f8958183f579"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90abe985843f7783a7a3f8958183f579">&#9670;&#160;</a></span>locationType</h2>
+<a id="aa191b74b8cde9a5e2961685c234e54fe" name="aa191b74b8cde9a5e2961685c234e54fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa191b74b8cde9a5e2961685c234e54fe">&#9670;&#160;</a></span>ClockTimepoint</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacetiming.html#a90abe985843f7783a7a3f8958183f579">timing::locationType</a> = typedef std::array&lt;std::string, 5&gt;</td>
+          <td class="memname">using <a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">timing::ClockTimepoint</a> = typedef ClockType::time_point</td>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5f5b2cbfbed780ae32b4d022f2306f06" name="a5f5b2cbfbed780ae32b4d022f2306f06"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f5b2cbfbed780ae32b4d022f2306f06">&#9670;&#160;</a></span>ClockType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacetiming.html#a5f5b2cbfbed780ae32b4d022f2306f06">timing::ClockType</a> = typedef typename std::conditional&lt;std::chrono::high_resolution_clock::is_steady, std::chrono::high_resolution_clock, std::chrono::steady_clock&gt;::type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Global clock used for range measurement </p>
+
+</div>
+</div>
+<a id="acd0b30707d239c1ffc1268c286cd37e7" name="acd0b30707d239c1ffc1268c286cd37e7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd0b30707d239c1ffc1268c286cd37e7">&#9670;&#160;</a></span>LocationType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacetiming.html#acd0b30707d239c1ffc1268c286cd37e7">timing::LocationType</a> = typedef std::array&lt;std::string, 5&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>structure to store file data </p>
+
+</div>
+</div>
+<a id="ac367f9a778c65fe69d4ca4a06d8251de" name="ac367f9a778c65fe69d4ca4a06d8251de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac367f9a778c65fe69d4ca4a06d8251de">&#9670;&#160;</a></span>TimepointType</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">timing::TimepointType</a> = typedef uint64_t</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>default portable time-point type </p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a3e0b3d95c0df78be178ae44813e8888d" name="a3e0b3d95c0df78be178ae44813e8888d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3e0b3d95c0df78be178ae44813e8888d">&#9670;&#160;</a></span>Now()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;Duration dur&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">TimepointType</a> timing::Now </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Returns now with specified precision. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">dur</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab3c2845e377c52233a46bf94a6ae79c1" name="ab3c2845e377c52233a46bf94a6ae79c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3c2845e377c52233a46bf94a6ae79c1">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> sz&gt; <br />
+requires std::is_floating_point_v&lt;T&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">or std::is_integral_v&lt; T &gt; std::ostream &amp; timing::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::array&lt; T, sz &gt; &amp;&#160;</td>
+          <td class="paramname"><em>arr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Array printer. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+    <tr><td class="paramname">sz</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">arr</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="ab70dc0514e6b38262f309b86c76039b6" name="ab70dc0514e6b38262f309b86c76039b6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab70dc0514e6b38262f309b86c76039b6">&#9670;&#160;</a></span>operator&lt;&lt;() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> sz&gt; <br />
+requires std::is_convertible_v&lt;T, std::string&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::ostream &amp; timing::operator&lt;&lt; </td>
+          <td>(</td>
+          <td class="paramtype">std::ostream &amp;&#160;</td>
+          <td class="paramname"><em>out</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::array&lt; T, sz &gt; &amp;&#160;</td>
+          <td class="paramname"><em>arr</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Array printer. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+    <tr><td class="paramname">sz</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">arr</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="af1b44090abfb2159e7d31161fa333d66" name="af1b44090abfb2159e7d31161fa333d66"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af1b44090abfb2159e7d31161fa333d66">&#9670;&#160;</a></span>operator==()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> sz&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">bool timing::operator== </td>
+          <td>(</td>
+          <td class="paramtype">const std::array&lt; T, sz &gt; &amp;&#160;</td>
+          <td class="paramname"><em>arr1</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::array&lt; T, sz &gt; &amp;&#160;</td>
+          <td class="paramname"><em>arr2</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Array comparator. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+    <tr><td class="paramname">sz</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">arr1</td><td></td></tr>
+    <tr><td class="paramname">arr2</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="ad625aa0dba4dadd42847e1d84c062d07" name="ad625aa0dba4dadd42847e1d84c062d07"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad625aa0dba4dadd42847e1d84c062d07">&#9670;&#160;</a></span>StrToTimepoint()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; <a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">TimepointType</a> &gt; timing::StrToTimepoint </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>ts</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrives TimepointType from a given string. </p>
+<dl class="section note"><dt>Note</dt><dd>uses mktime to get timepoint representation </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">ts</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespacetiming_ad625aa0dba4dadd42847e1d84c062d07_icgraph.png" border="0" usemap="#anamespacetiming_ad625aa0dba4dadd42847e1d84c062d07_icgraph" alt=""/></div>
+<map name="anamespacetiming_ad625aa0dba4dadd42847e1d84c062d07_icgraph" id="anamespacetiming_ad625aa0dba4dadd42847e1d84c062d07_icgraph">
+<area shape="rect" title="Retrives TimepointType from a given string." alt="" coords="240,106,411,131"/>
+<area shape="rect" href="structdb__common_1_1Experiment.html#a1ab0d987b9a073395aaa5495f0450cfb" title=" " alt="" coords="6,5,191,45"/>
+<area shape="poly" title=" " alt="" coords="285,102,191,60,160,48,162,43,193,55,288,98"/>
+<area shape="rect" href="structdb__common_1_1Iteration.html#a1ec5bbacab23a8ebfc316f1ecd9f60fe" title=" " alt="" coords="16,69,181,109"/>
+<area shape="poly" title=" " alt="" coords="226,109,181,103,182,97,227,103"/>
+<area shape="rect" href="structdb__common_1_1Node.html#a6a127ef62b15cd94d4d8dbf331cebc9c" title=" " alt="" coords="5,134,192,159"/>
+<area shape="poly" title=" " alt="" coords="227,133,192,138,192,133,226,128"/>
+<area shape="rect" href="structdb__common_1_1User.html#a351d9d19512cd4d475e36468727751a2" title=" " alt="" coords="9,183,188,209"/>
+<area shape="poly" title=" " alt="" coords="283,139,193,173,151,186,149,181,191,168,281,134"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0d7753adba6505b56d14db0e424a01d5" name="a0d7753adba6505b56d14db0e424a01d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d7753adba6505b56d14db0e424a01d5">&#9670;&#160;</a></span>TpToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string timing::TpToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacetiming.html#ac367f9a778c65fe69d4ca4a06d8251de">timing::TimepointType</a>&#160;</td>
+          <td class="paramname"><em>system_ms</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Serializes given timepoint to string. </p>
+<dl class="section note"><dt>Note</dt><dd>uses localtime_r when forming time </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">system_ms</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

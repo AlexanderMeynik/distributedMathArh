@@ -1,5 +1,0 @@
-<map id="amqp_common::AMQPPublisherService::Disconnect" name="amqp_common::AMQPPublisherService::Disconnect">
-<area shape="rect" id="Node000001" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect: while the connection ..." alt="" coords="289,5,520,45"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPPublisherService.html#aaf4ec517d781be1b15c9981661522b71" title="Calls Disconnect and frees used memory with smart pointers." alt="" coords="5,5,241,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="276,28,241,28,241,23,276,23"/>
-</map>

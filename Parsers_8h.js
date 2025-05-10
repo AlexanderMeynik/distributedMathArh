@@ -7,5 +7,6 @@ var Parsers_8h =
     [ "ParseMatrix", "Parsers_8h.html#a9cede94a4986a4d2939426e88a7c3d8c", null ],
     [ "ParseMeshFrom", "Parsers_8h.html#a39a49a70f2b8ad5b00ca82a44ada19ea", null ],
     [ "ParseOneDim", "Parsers_8h.html#acaa872f5e746f7c4dba3e35bd364fe4d", null ],
+    [ "ParseOneDimS", "Parsers_8h.html#a295195f7820532219d8a81f7c0905bed", null ],
     [ "ParseSolution", "Parsers_8h.html#ab9fc78426b3e43196bc33a54b00fb055", null ]
 ];

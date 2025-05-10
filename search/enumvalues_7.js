@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['matrix_5fformat_0',['MATRIX_FORMAT',['../namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a004a0f6caf4c955bdd503062bfa419a5',1,'print_utils']]],
-  ['matrix_5fformat_5f1_1',['MATRIX_FORMAT_1',['../namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a2d1ed337d3961c02f332be10e0f37454',1,'print_utils']]]
+  ['inactive_0',['inactive',['../namespacedb__common.html#a5dc66f4066b6c13f08d26162d4d955eba6b273343c454f9c53dcfc9c4ccf171d2',1,'db_common::INACTIVE'],['../namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2',1,'main_services::INACTIVE']]],
+  ['info_1',['info',['../namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c',1,'shared']]]
 ];

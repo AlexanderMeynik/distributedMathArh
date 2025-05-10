@@ -5,6 +5,7 @@ var Printers_8h =
     [ "MatrixPrint1D", "Printers_8h.html#a7828e585739511c7c24a1f0c6035c730", null ],
     [ "MatrixPrint2D", "Printers_8h.html#a44e2339bede2e3d84620c6dc0226dc7e", null ],
     [ "OneDimSerialize", "Printers_8h.html#a180b49c0627b496c6d8d86a724d6e37d", null ],
+    [ "OneDimToString", "Printers_8h.html#a914b474f2a424f9c36280f3bef711421", null ],
     [ "PrintCoordinates", "Printers_8h.html#a41be6bccbb432298d3a8cac37969d6b9", null ],
     [ "PrintCoordinates", "Printers_8h.html#acee88419d4ca063dc5a3ddc1a5f39a5e", null ],
     [ "PrintCoordinates2", "Printers_8h.html#a44ed8b8118be13bb17b537f12502b76c", null ],

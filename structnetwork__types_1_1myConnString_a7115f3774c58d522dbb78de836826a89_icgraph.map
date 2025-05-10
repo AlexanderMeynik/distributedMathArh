@@ -1,0 +1,7 @@
+<map id="network_types::myConnString::GetDbname" name="network_types::myConnString::GetDbname">
+<area shape="rect" id="Node000001" title=" " alt="" coords="268,23,487,63"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a913b977f2380ecda652940091c4f83d9" title="Creates database with db_name." alt="" coords="5,5,220,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,34,220,31,220,26,255,29"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,55,214,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,57,215,61,214,55,254,52"/>
+</map>

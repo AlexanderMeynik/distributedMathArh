@@ -94,8 +94,7 @@ $(document).ready(function(){initNavTree('namespaceprint__utils.html',''); initR
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">print_utils Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -105,6 +104,9 @@ $(document).ready(function(){initNavTree('namespaceprint__utils.html',''); initR
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structprint__utils_1_1Delimiter.html">Delimiter</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Struct to parse and compare delimiters.  <a href="structprint__utils_1_1Delimiter.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classprint__utils_1_1IosStatePreserve.html">IosStatePreserve</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">A guard class to save current iostream state.  <a href="classprint__utils_1_1IosStatePreserve.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -119,10 +121,14 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
-<tr class="memitem:a7c4c57d2b5cd44cf47385c0a2ec92ba6" id="r_a7c4c57d2b5cd44cf47385c0a2ec92ba6"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6">EigenPrintFormats</a> { <a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a636f3a2ef9d6f38601ad09813162d96d">BASIC_ONE_DIMENSIONAL_VECTOR</a> = 0
+<tr class="memitem:a7c4c57d2b5cd44cf47385c0a2ec92ba6" id="r_a7c4c57d2b5cd44cf47385c0a2ec92ba6"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6">EigenPrintFormats</a> { <br />
+&#160;&#160;<a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a636f3a2ef9d6f38601ad09813162d96d">BASIC_ONE_DIMENSIONAL_VECTOR</a> = 0
 , <a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6aabdcc07a1a3adf779c27627302f03adb">VECTOR_FORMAT_1</a>
 , <a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a004a0f6caf4c955bdd503062bfa419a5">MATRIX_FORMAT</a>
 , <a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a2d1ed337d3961c02f332be10e0f37454">MATRIX_FORMAT_1</a>
+, <br />
+&#160;&#160;<a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6ad9c117a995aa71218b765f2e83859f38">VECTOR_DB_FORMAT</a>
+<br />
  }</td></tr>
 <tr class="separator:a7c4c57d2b5cd44cf47385c0a2ec92ba6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aaeed027fe3c321b388af4670383dcef4" id="r_aaeed027fe3c321b388af4670383dcef4"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#aaeed027fe3c321b388af4670383dcef4">IoFormat</a> { <a class="el" href="namespaceprint__utils.html#aaeed027fe3c321b388af4670383dcef4aadfafde622c8622bb72e4ff73e295cdb">SERIALIZABLE</a>
@@ -144,6 +150,10 @@ Functions</h2></td></tr>
 <tr class="memitem:acaa872f5e746f7c4dba3e35bd364fe4d"><td class="memTemplItemLeft" align="right" valign="top">Struct&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#acaa872f5e746f7c4dba3e35bd364fe4d">ParseOneDim</a> (std::istream &amp;in, std::optional&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> &gt; size_opt=std::nullopt, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;ef=<a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>())</td></tr>
 <tr class="memdesc:acaa872f5e746f7c4dba3e35bd364fe4d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse one dimensional array from provided istream.  <br /></td></tr>
 <tr class="separator:acaa872f5e746f7c4dba3e35bd364fe4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a295195f7820532219d8a81f7c0905bed" id="r_a295195f7820532219d8a81f7c0905bed"><td class="memTemplParams" colspan="2">template&lt;isOneDimensionalContinuous Struct&gt; </td></tr>
+<tr class="memitem:a295195f7820532219d8a81f7c0905bed"><td class="memTemplItemLeft" align="right" valign="top">Struct&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a295195f7820532219d8a81f7c0905bed">ParseOneDimS</a> (std::string_view str, std::optional&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> &gt; size_opt=std::nullopt, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;ef=<a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>())</td></tr>
+<tr class="memdesc:a295195f7820532219d8a81f7c0905bed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse one dimensional array from std::string.  <br /></td></tr>
+<tr class="separator:a295195f7820532219d8a81f7c0905bed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9cede94a4986a4d2939426e88a7c3d8c" id="r_a9cede94a4986a4d2939426e88a7c3d8c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a70e007a3150342b6a8e92499d40461df">ct::MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a9cede94a4986a4d2939426e88a7c3d8c">ParseMatrix</a> (std::istream &amp;in, std::optional&lt; <a class="el" href="namespacecommon__types.html#a34ede084a17bb35e2aedf5f373e02bb3">ct::DimType</a> &gt; dim_opt=std::nullopt, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;ef=<a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>())</td></tr>
 <tr class="memdesc:a9cede94a4986a4d2939426e88a7c3d8c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse matrix.  <br /></td></tr>
 <tr class="separator:a9cede94a4986a4d2939426e88a7c3d8c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,6 +189,11 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
 <tr class="memitem:a180b49c0627b496c6d8d86a724d6e37d"><td class="memTemplItemLeft" align="right" valign="top">void&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a180b49c0627b496c6d8d86a724d6e37d">OneDimSerialize</a> (std::ostream &amp;out, const Collection &amp;col, bool print_size=true, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;eigen_form=<a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>())</td></tr>
 <tr class="memdesc:a180b49c0627b496c6d8d86a724d6e37d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints one dimensional Collection using Eigen format.  <br /></td></tr>
 <tr class="separator:a180b49c0627b496c6d8d86a724d6e37d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a914b474f2a424f9c36280f3bef711421" id="r_a914b474f2a424f9c36280f3bef711421"><td class="memTemplParams" colspan="2">template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.html">my_concepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt; || std::is_integral_v&lt;typename Collection::value_type&gt;</td></tr>
+<tr class="memitem:a914b474f2a424f9c36280f3bef711421"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a914b474f2a424f9c36280f3bef711421">OneDimToString</a> (const Collection &amp;col, bool print_size=true, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;eigen_form=<a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>())</td></tr>
+<tr class="memdesc:a914b474f2a424f9c36280f3bef711421"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints one dimensional Collection to string using Eigen format.  <br /></td></tr>
+<tr class="separator:a914b474f2a424f9c36280f3bef711421"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7828e585739511c7c24a1f0c6035c730" id="r_a7828e585739511c7c24a1f0c6035c730"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a7828e585739511c7c24a1f0c6035c730">MatrixPrint1D</a> (std::ostream &amp;out, const <a class="el" href="namespacecommon__types.html#a70e007a3150342b6a8e92499d40461df">common_types::MatrixType</a> &amp;matr, bool print_size=true, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;eigen_form=<a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>())</td></tr>
 <tr class="separator:a7828e585739511c7c24a1f0c6035c730"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a44e2339bede2e3d84620c6dc0226dc7e" id="r_a44e2339bede2e3d84620c6dc0226dc7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a44e2339bede2e3d84620c6dc0226dc7e">MatrixPrint2D</a> (std::ostream &amp;out, const <a class="el" href="namespacecommon__types.html#a70e007a3150342b6a8e92499d40461df">common_types::MatrixType</a> &amp;matr, bool print_dims=true, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;eigen_form=<a class="el" href="printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0">EIGENF</a>(<a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6a2d1ed337d3961c02f332be10e0f37454">EigenPrintFormats::MATRIX_FORMAT_1</a>))</td></tr>
@@ -218,6 +233,12 @@ requires (<a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.
 <tr class="memitem:a5c15394e792434eee87f79a2847b4a32" id="r_a5c15394e792434eee87f79a2847b4a32"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a5c15394e792434eee87f79a2847b4a32">PrintEnumToFormat</a> (<a class="el" href="namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6">EigenPrintFormats</a> fmt)</td></tr>
 <tr class="memdesc:a5c15394e792434eee87f79a2847b4a32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts EigenFormat to Eformat.  <br /></td></tr>
 <tr class="separator:a5c15394e792434eee87f79a2847b4a32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ef835f275fd014a43e3a0d96b6cb85e" id="r_a4ef835f275fd014a43e3a0d96b6cb85e"><td class="memItemLeft" align="right" valign="top">std::istream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a4ef835f275fd014a43e3a0d96b6cb85e">operator&gt;&gt;</a> (std::istream &amp;is, const <a class="el" href="structprint__utils_1_1Delimiter.html">Delimiter</a> &amp;delim)</td></tr>
+<tr class="memdesc:a4ef835f275fd014a43e3a0d96b6cb85e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parses specified <a class="el" href="structprint__utils_1_1Delimiter.html" title="Struct to parse and compare delimiters.">Delimiter</a> from is.  <br /></td></tr>
+<tr class="separator:a4ef835f275fd014a43e3a0d96b6cb85e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb4c09c7ab41a3a6a8bc510290023ea5" id="r_afb4c09c7ab41a3a6a8bc510290023ea5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#afb4c09c7ab41a3a6a8bc510290023ea5">ParseDelim</a> (std::istream &amp;in, std::string_view str)</td></tr>
+<tr class="memdesc:afb4c09c7ab41a3a6a8bc510290023ea5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Tries to parse Delim with str content.  <br /></td></tr>
+<tr class="separator:afb4c09c7ab41a3a6a8bc510290023ea5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a47de332ae8de8ae480deb73bc3ee7a40" id="r_a47de332ae8de8ae480deb73bc3ee7a40"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a47de332ae8de8ae480deb73bc3ee7a40">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="namespaceprint__utils.html#aaeed027fe3c321b388af4670383dcef4">IoFormat</a> &amp;form)</td></tr>
 <tr class="memdesc:a47de332ae8de8ae480deb73bc3ee7a40"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printer for ioFormat.  <br /></td></tr>
 <tr class="separator:a47de332ae8de8ae480deb73bc3ee7a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -233,12 +254,8 @@ requires (<a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.
 <tr class="memitem:a48e34c80f62430802dfa9eeb61358280" id="r_a48e34c80f62430802dfa9eeb61358280"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a48e34c80f62430802dfa9eeb61358280">operator==</a> (const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;lhs, const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;rhs)</td></tr>
 <tr class="memdesc:a48e34c80f62430802dfa9eeb61358280"><td class="mdescLeft">&#160;</td><td class="mdescRight">elementwise comparison between EFormat  <br /></td></tr>
 <tr class="separator:a48e34c80f62430802dfa9eeb61358280"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a9ee99cb0d9700040d552dae5dff7ab67" id="r_a9ee99cb0d9700040d552dae5dff7ab67"><td class="memItemLeft" align="right" valign="top">const std::array&lt; <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>, 4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a9ee99cb0d9700040d552dae5dff7ab67">kEnumTo</a></td></tr>
-<tr class="memdesc:a9ee99cb0d9700040d552dae5dff7ab67"><td class="mdescLeft">&#160;</td><td class="mdescRight">Eformat lookup Table.  <br /></td></tr>
-<tr class="separator:a9ee99cb0d9700040d552dae5dff7ab67"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0f7e17209f3cac063146717d49b144c7" id="r_a0f7e17209f3cac063146717d49b144c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a0f7e17209f3cac063146717d49b144c7">isOnlyWhitespace</a> (std::string_view text)</td></tr>
+<tr class="separator:a0f7e17209f3cac063146717d49b144c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>printUtils namespace </p>
@@ -282,6 +299,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a7c4c57d2b5cd44cf47385c0a2ec92ba6aabdcc07a1a3adf779c27627302f03adb" name="a7c4c57d2b5cd44cf47385c0a2ec92ba6aabdcc07a1a3adf779c27627302f03adb"></a>VECTOR_FORMAT_1&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a7c4c57d2b5cd44cf47385c0a2ec92ba6a004a0f6caf4c955bdd503062bfa419a5" name="a7c4c57d2b5cd44cf47385c0a2ec92ba6a004a0f6caf4c955bdd503062bfa419a5"></a>MATRIX_FORMAT&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="a7c4c57d2b5cd44cf47385c0a2ec92ba6a2d1ed337d3961c02f332be10e0f37454" name="a7c4c57d2b5cd44cf47385c0a2ec92ba6a2d1ed337d3961c02f332be10e0f37454"></a>MATRIX_FORMAT_1&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a7c4c57d2b5cd44cf47385c0a2ec92ba6ad9c117a995aa71218b765f2e83859f38" name="a7c4c57d2b5cd44cf47385c0a2ec92ba6ad9c117a995aa71218b765f2e83859f38"></a>VECTOR_DB_FORMAT&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
 </div>
@@ -310,7 +328,8 @@ Variables</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aaeed027fe3c321b388af4670383dcef4aadfafde622c8622bb72e4ff73e295cdb" name="aaeed027fe3c321b388af4670383dcef4aadfafde622c8622bb72e4ff73e295cdb"></a>SERIALIZABLE&#160;</td><td class="fielddoc"><p>Basic print format(look a lot alike json) </p>
 </td></tr>
-<tr><td class="fieldname"><a id="aaeed027fe3c321b388af4670383dcef4a9c1e5abb68a03ce10b611431a7b987d1" name="aaeed027fe3c321b388af4670383dcef4a9c1e5abb68a03ce10b611431a7b987d1"></a>HUMAN_READABLE&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="aaeed027fe3c321b388af4670383dcef4a9c1e5abb68a03ce10b611431a7b987d1" name="aaeed027fe3c321b388af4670383dcef4a9c1e5abb68a03ce10b611431a7b987d1"></a>HUMAN_READABLE&#160;</td><td class="fielddoc"><p>Human-readable representation for printed struct. </p>
+</td></tr>
 </table>
 
 </div>
@@ -477,6 +496,44 @@ template&lt;<a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuou
 <area shape="poly" title=" " alt="" coords="160,23,194,23,194,28,160,28"/>
 <area shape="rect" href="namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9" title="Computes meshes using 2 double arrays." alt="" coords="461,13,665,38"/>
 <area shape="poly" title=" " alt="" coords="414,23,448,23,448,28,414,28"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0f7e17209f3cac063146717d49b144c7" name="a0f7e17209f3cac063146717d49b144c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0f7e17209f3cac063146717d49b144c7">&#9670;&#160;</a></span>isOnlyWhitespace()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool print_utils::isOnlyWhitespace </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>text</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprint__utils_a0f7e17209f3cac063146717d49b144c7_icgraph.png" border="0" usemap="#anamespaceprint__utils_a0f7e17209f3cac063146717d49b144c7_icgraph" alt=""/></div>
+<map name="anamespaceprint__utils_a0f7e17209f3cac063146717d49b144c7_icgraph" id="anamespaceprint__utils_a0f7e17209f3cac063146717d49b144c7_icgraph">
+<area shape="rect" title=" " alt="" coords="225,5,437,31"/>
+<area shape="rect" href="namespaceprint__utils.html#a4ef835f275fd014a43e3a0d96b6cb85e" title="Parses specified Delimiter from is." alt="" coords="5,5,177,31"/>
+<area shape="poly" title=" " alt="" coords="212,21,178,21,178,15,212,15"/>
 </map>
 </div>
 
@@ -751,11 +808,11 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
   </table>
   </dd>
 </dl>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_cgraph.png" border="0" usemap="#anamespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_cgraph" id="anamespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_cgraph">
 <area shape="rect" title="Prints one dimensional Collection using Eigen format." alt="" coords="5,5,209,31"/>
@@ -763,18 +820,96 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
 <area shape="poly" title=" " alt="" coords="209,15,243,15,243,21,209,21"/>
 </map>
 </div>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_icgraph.png" border="0" usemap="#anamespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_icgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_icgraph" id="anamespaceprint__utils_a180b49c0627b496c6d8d86a724d6e37d_icgraph">
-<area shape="rect" title="Prints one dimensional Collection using Eigen format." alt="" coords="256,31,460,56"/>
-<area shape="rect" href="namespaceprint__utils.html#a41be6bccbb432298d3a8cac37969d6b9" title="Basic interface for printing coordinates." alt="" coords="5,5,208,31"/>
-<area shape="poly" title=" " alt="" coords="242,34,208,31,208,26,243,29"/>
-<area shape="rect" href="namespaceprint__utils.html#a6094b54cb763a8703807f9b06e1ba364" title="Basic interface for printing solution." alt="" coords="17,55,196,80"/>
-<area shape="poly" title=" " alt="" coords="243,57,196,61,196,56,242,52"/>
+<area shape="rect" title="Prints one dimensional Collection using Eigen format." alt="" coords="256,55,460,80"/>
+<area shape="rect" href="namespaceprint__utils.html#a914b474f2a424f9c36280f3bef711421" title="Prints one dimensional Collection to string using Eigen format." alt="" coords="7,5,207,31"/>
+<area shape="poly" title=" " alt="" coords="279,55,172,33,173,28,280,49"/>
+<area shape="rect" href="namespaceprint__utils.html#a41be6bccbb432298d3a8cac37969d6b9" title="Basic interface for printing coordinates." alt="" coords="5,55,208,80"/>
+<area shape="poly" title=" " alt="" coords="242,70,208,70,208,65,242,65"/>
+<area shape="rect" href="namespaceprint__utils.html#a6094b54cb763a8703807f9b06e1ba364" title="Basic interface for printing solution." alt="" coords="17,104,196,129"/>
+<area shape="poly" title=" " alt="" coords="280,85,173,107,172,101,279,80"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a914b474f2a424f9c36280f3bef711421" name="a914b474f2a424f9c36280f3bef711421"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a914b474f2a424f9c36280f3bef711421">&#9670;&#160;</a></span>OneDimToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Collection &gt; <br />
+requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.html">my_concepts::isOneDimensionalContinuous</a>&lt;Collection&gt; &amp;&amp; std::is_floating_point_v&lt;typename Collection::value_type&gt; || std::is_integral_v&lt;typename Collection::value_type&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string print_utils::OneDimToString </td>
+          <td>(</td>
+          <td class="paramtype">const Collection &amp;&#160;</td>
+          <td class="paramname"><em>col</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>print_size</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>eigen_form</em> = <code><a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Prints one dimensional Collection to string using Eigen format. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Collection</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">out</td><td></td></tr>
+    <tr><td class="paramname">col</td><td></td></tr>
+    <tr><td class="paramname">print_size</td><td></td></tr>
+    <tr><td class="paramname">eigen_form</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprint__utils_a914b474f2a424f9c36280f3bef711421_cgraph.png" border="0" usemap="#anamespaceprint__utils_a914b474f2a424f9c36280f3bef711421_cgraph" alt=""/></div>
+<map name="anamespaceprint__utils_a914b474f2a424f9c36280f3bef711421_cgraph" id="anamespaceprint__utils_a914b474f2a424f9c36280f3bef711421_cgraph">
+<area shape="rect" title="Prints one dimensional Collection to string using Eigen format." alt="" coords="5,5,205,31"/>
+<area shape="rect" href="namespaceprint__utils.html#a180b49c0627b496c6d8d86a724d6e37d" title="Prints one dimensional Collection using Eigen format." alt="" coords="253,5,457,31"/>
+<area shape="poly" title=" " alt="" coords="205,15,240,15,240,21,205,21"/>
+<area shape="rect" href="typeCasts_8h.html#adc37818e5d0af157a49992d0927c8dfc" title="Casts one dimensional collection to eigen RowVector." alt="" coords="505,5,647,31"/>
+<area shape="poly" title=" " alt="" coords="457,15,491,15,491,21,457,21"/>
 </map>
 </div>
 
@@ -851,6 +986,18 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
   </table>
   </dd>
 </dl>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph.png" border="0" usemap="#anamespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph" alt=""/></div>
+<map name="anamespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph" id="anamespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph">
+<area shape="rect" title="Printer for ioFormat." alt="" coords="5,5,177,31"/>
+<area shape="rect" href="namespaceenum__utils.html#aab4e55a8ed61aa755116d67e124acd4d" title=" " alt="" coords="225,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="178,15,212,15,212,21,178,21"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -893,7 +1040,7 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
 </div>
 </div>
 <a id="a6c64e6bf1cdaef9f04f37da4ca8533af" name="a6c64e6bf1cdaef9f04f37da4ca8533af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6c64e6bf1cdaef9f04f37da4ca8533af">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6c64e6bf1cdaef9f04f37da4ca8533af">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[1/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -932,11 +1079,72 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
   </table>
   </dd>
 </dl>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph.png" border="0" usemap="#anamespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph" alt=""/></div>
+<map name="anamespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph" id="anamespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph">
+<area shape="rect" title="Parser for ioFormat." alt="" coords="5,5,177,31"/>
+<area shape="rect" href="namespaceenum__utils.html#a587b27069da86c333d185d8e493fce46" title="P." alt="" coords="225,5,396,31"/>
+<area shape="poly" title=" " alt="" coords="178,15,212,15,212,21,178,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a4ef835f275fd014a43e3a0d96b6cb85e" name="a4ef835f275fd014a43e3a0d96b6cb85e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ef835f275fd014a43e3a0d96b6cb85e">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::istream &amp; print_utils::operator&gt;&gt; </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>is</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structprint__utils_1_1Delimiter.html">Delimiter</a> &amp;&#160;</td>
+          <td class="paramname"><em>delim</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Parses specified <a class="el" href="structprint__utils_1_1Delimiter.html" title="Struct to parse and compare delimiters.">Delimiter</a> from is. </p>
+<p>Sets failbit if delim is not found </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">is</td><td></td></tr>
+    <tr><td class="paramname">delim</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprint__utils_a4ef835f275fd014a43e3a0d96b6cb85e_cgraph.png" border="0" usemap="#anamespaceprint__utils_a4ef835f275fd014a43e3a0d96b6cb85e_cgraph" alt=""/></div>
+<map name="anamespaceprint__utils_a4ef835f275fd014a43e3a0d96b6cb85e_cgraph" id="anamespaceprint__utils_a4ef835f275fd014a43e3a0d96b6cb85e_cgraph">
+<area shape="rect" title="Parses specified Delimiter from is." alt="" coords="5,5,177,31"/>
+<area shape="rect" href="namespaceprint__utils.html#a0f7e17209f3cac063146717d49b144c7" title=" " alt="" coords="225,5,437,31"/>
+<area shape="poly" title=" " alt="" coords="177,15,212,15,212,21,177,21"/>
+</map>
+</div>
 
 </div>
 </div>
 <a id="afd4b485906d7923acf216cdc9087d194" name="afd4b485906d7923acf216cdc9087d194"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afd4b485906d7923acf216cdc9087d194">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[2/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#afd4b485906d7923acf216cdc9087d194">&#9670;&#160;</a></span>operator&gt;&gt;() <span class="overload">[3/3]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1029,6 +1237,56 @@ template&lt;isOneDimensionalContinuous Struct&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>coordinates vector </dd></dl>
+
+</div>
+</div>
+<a id="afb4c09c7ab41a3a6a8bc510290023ea5" name="afb4c09c7ab41a3a6a8bc510290023ea5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb4c09c7ab41a3a6a8bc510290023ea5">&#9670;&#160;</a></span>ParseDelim()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool print_utils::ParseDelim </td>
+          <td>(</td>
+          <td class="paramtype">std::istream &amp;&#160;</td>
+          <td class="paramname"><em>in</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Tries to parse Delim with str content. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">in</td><td></td></tr>
+    <tr><td class="paramname">str</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>in.good() </dd></dl>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprint__utils_afb4c09c7ab41a3a6a8bc510290023ea5_icgraph.png" border="0" usemap="#anamespaceprint__utils_afb4c09c7ab41a3a6a8bc510290023ea5_icgraph" alt=""/></div>
+<map name="anamespaceprint__utils_afb4c09c7ab41a3a6a8bc510290023ea5_icgraph" id="anamespaceprint__utils_afb4c09c7ab41a3a6a8bc510290023ea5_icgraph">
+<area shape="rect" title="Tries to parse Delim with str content." alt="" coords="236,5,405,31"/>
+<area shape="rect" href="namespaceprint__utils.html#acaa872f5e746f7c4dba3e35bd364fe4d" title="Parse one dimensional array from provided istream." alt="" coords="5,5,188,31"/>
+<area shape="poly" title=" " alt="" coords="222,21,188,21,188,15,222,15"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -1132,11 +1390,11 @@ template&lt;isOneDimensionalContinuous Struct&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>MeshCreator instance </dd></dl>
-<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a39a49a70f2b8ad5b00ca82a44ada19ea_cgraph.png" border="0" usemap="#anamespaceprint__utils_a39a49a70f2b8ad5b00ca82a44ada19ea_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a39a49a70f2b8ad5b00ca82a44ada19ea_cgraph" id="anamespaceprint__utils_a39a49a70f2b8ad5b00ca82a44ada19ea_cgraph">
 <area shape="rect" title="Parses mesh creator from provided istream." alt="" coords="5,13,204,38"/>
@@ -1193,6 +1451,79 @@ template&lt;isOneDimensionalContinuous Struct&gt; </div>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">in</td><td></td></tr>
+    <tr><td class="paramname">size_opt</td><td></td></tr>
+    <tr><td class="paramname">ef</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Struct to store the values </dd></dl>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceprint__utils_acaa872f5e746f7c4dba3e35bd364fe4d_cgraph.png" border="0" usemap="#anamespaceprint__utils_acaa872f5e746f7c4dba3e35bd364fe4d_cgraph" alt=""/></div>
+<map name="anamespaceprint__utils_acaa872f5e746f7c4dba3e35bd364fe4d_cgraph" id="anamespaceprint__utils_acaa872f5e746f7c4dba3e35bd364fe4d_cgraph">
+<area shape="rect" title="Parse one dimensional array from provided istream." alt="" coords="5,5,188,31"/>
+<area shape="rect" href="namespaceprint__utils.html#afb4c09c7ab41a3a6a8bc510290023ea5" title="Tries to parse Delim with str content." alt="" coords="236,5,405,31"/>
+<area shape="poly" title=" " alt="" coords="188,15,222,15,222,21,188,21"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a295195f7820532219d8a81f7c0905bed" name="a295195f7820532219d8a81f7c0905bed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a295195f7820532219d8a81f7c0905bed">&#9670;&#160;</a></span>ParseOneDimS()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;isOneDimensionalContinuous Struct&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Struct print_utils::ParseOneDimS </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::optional&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> &gt;&#160;</td>
+          <td class="paramname"><em>size_opt</em> = <code>std::nullopt</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a> &amp;&#160;</td>
+          <td class="paramname"><em>ef</em> = <code><a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>()</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Parse one dimensional array from std::string. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Struct</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td>- input string </td></tr>
     <tr><td class="paramname">size_opt</td><td></td></tr>
     <tr><td class="paramname">ef</td><td></td></tr>
   </table>
@@ -1326,11 +1657,11 @@ requires (<a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.
   </table>
   </dd>
 </dl>
-<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a41be6bccbb432298d3a8cac37969d6b9_cgraph.png" border="0" usemap="#anamespaceprint__utils_a41be6bccbb432298d3a8cac37969d6b9_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a41be6bccbb432298d3a8cac37969d6b9_cgraph" id="anamespaceprint__utils_a41be6bccbb432298d3a8cac37969d6b9_cgraph">
 <area shape="rect" title="Basic interface for printing coordinates." alt="" coords="5,31,208,56"/>
@@ -1409,11 +1740,11 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
   </table>
   </dd>
 </dl>
-<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_acee88419d4ca063dc5a3ddc1a5f39a5e_cgraph.png" border="0" usemap="#anamespaceprint__utils_acee88419d4ca063dc5a3ddc1a5f39a5e_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_acee88419d4ca063dc5a3ddc1a5f39a5e_cgraph" id="anamespaceprint__utils_acee88419d4ca063dc5a3ddc1a5f39a5e_cgraph">
 <area shape="rect" title="Basic interface for printing coordinates." alt="" coords="5,31,208,56"/>
@@ -1470,11 +1801,11 @@ template&lt;typename Collection &gt; </div>
   </table>
   </dd>
 </dl>
-<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a44ed8b8118be13bb17b537f12502b76c_icgraph.png" border="0" usemap="#anamespaceprint__utils_a44ed8b8118be13bb17b537f12502b76c_icgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a44ed8b8118be13bb17b537f12502b76c_icgraph" id="anamespaceprint__utils_a44ed8b8118be13bb17b537f12502b76c_icgraph">
 <area shape="rect" title="Human readable way to print coordinates vector." alt="" coords="256,5,467,31"/>
@@ -1573,11 +1904,11 @@ template&lt;typename Collection &gt; </div>
   </table>
   </dd>
 </dl>
-<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-15-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div id="dynsection-15-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_af1ca94a3088ef150af6898e284b34b07_cgraph.png" border="0" usemap="#anamespaceprint__utils_af1ca94a3088ef150af6898e284b34b07_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_af1ca94a3088ef150af6898e284b34b07_cgraph" id="anamespaceprint__utils_af1ca94a3088ef150af6898e284b34b07_cgraph">
 <area shape="rect" title="Print mesh to supplied std::ostream." alt="" coords="5,31,165,56"/>
@@ -1654,11 +1985,11 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
   </table>
   </dd>
 </dl>
-<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div id="dynsection-16-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a6094b54cb763a8703807f9b06e1ba364_cgraph.png" border="0" usemap="#anamespaceprint__utils_a6094b54cb763a8703807f9b06e1ba364_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a6094b54cb763a8703807f9b06e1ba364_cgraph" id="anamespaceprint__utils_a6094b54cb763a8703807f9b06e1ba364_cgraph">
 <area shape="rect" title="Basic interface for printing solution." alt="" coords="5,35,184,60"/>
@@ -1717,11 +2048,11 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-17-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div id="dynsection-17-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a6fe732efc4e70906cb78bdd1d65f9b38_icgraph.png" border="0" usemap="#anamespaceprint__utils_a6fe732efc4e70906cb78bdd1d65f9b38_icgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a6fe732efc4e70906cb78bdd1d65f9b38_icgraph" id="anamespaceprint__utils_a6fe732efc4e70906cb78bdd1d65f9b38_icgraph">
 <area shape="rect" title="Human readable way to print solution vector." alt="" coords="232,5,411,45"/>
@@ -1747,11 +2078,11 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
         </tr>
       </table>
 </div><div class="memdoc">
-<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-18-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-18-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div id="dynsection-18-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_ae25dccefb25eb98a6f464a2ac7a091e5_cgraph.png" border="0" usemap="#anamespaceprint__utils_ae25dccefb25eb98a6f464a2ac7a091e5_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_ae25dccefb25eb98a6f464a2ac7a091e5_cgraph" id="anamespaceprint__utils_ae25dccefb25eb98a6f464a2ac7a091e5_cgraph">
 <area shape="rect" title=" " alt="" coords="5,13,220,38"/>
@@ -1804,11 +2135,11 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value with serialized meshCreator </dd></dl>
-<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-19-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div id="dynsection-19-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceprint__utils_a8d995d401c5c9bf53c6eaaa56ee4d99a_cgraph.png" border="0" usemap="#anamespaceprint__utils_a8d995d401c5c9bf53c6eaaa56ee4d99a_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a8d995d401c5c9bf53c6eaaa56ee4d99a_cgraph" id="anamespaceprint__utils_a8d995d401c5c9bf53c6eaaa56ee4d99a_cgraph">
 <area shape="rect" title="Transforms MeshCreator to json." alt="" coords="5,5,141,31"/>
@@ -1876,23 +2207,6 @@ template&lt;typename TupleT , std::size_t TupSize = std::tuple_size_v&lt;TupleT&
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a9ee99cb0d9700040d552dae5dff7ab67" name="a9ee99cb0d9700040d552dae5dff7ab67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9ee99cb0d9700040d552dae5dff7ab67">&#9670;&#160;</a></span>kEnumTo</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">const std::array&lt; <a class="el" href="namespaceprint__utils.html#ab5fbaf98f89405270aeefac745a3a553">EFormat</a>, 4 &gt; print_utils::kEnumTo</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Eformat lookup Table. </p>
 
 </div>
 </div>

@@ -105,9 +105,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a24540345b04c57fb77d4887a7d320285" id="r_a24540345b04c57fb77d4887a7d320285"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcomp__services_1_1BenchmarkRunner.html#a24540345b04c57fb77d4887a7d320285">BenchmarkRunner</a> (const <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a> &amp;nss, const <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a> &amp;iter_counts)</td></tr>
 <tr class="memdesc:a24540345b04c57fb77d4887a7d320285"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a <a class="el" href="classcomp__services_1_1BenchmarkRunner.html" title="A class to run performance benchmarks for dipole and mesh computations.">BenchmarkRunner</a> with benchmark parameters.  <br /></td></tr>
 <tr class="separator:a24540345b04c57fb77d4887a7d320285"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70e67d26691cdc3b4d56761c8b68371a" id="r_a70e67d26691cdc3b4d56761c8b68371a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcomp__services_1_1BenchmarkRunner.html#a70e67d26691cdc3b4d56761c8b68371a">Run</a> ()</td></tr>
-<tr class="memdesc:a70e67d26691cdc3b4d56761c8b68371a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the benchmark for all parameter pairs and returns the results.  <br /></td></tr>
-<tr class="separator:a70e67d26691cdc3b4d56761c8b68371a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a076a748ec297773fd0cded063ddf4e" id="r_a7a076a748ec297773fd0cded063ddf4e"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a>, <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e">Run</a> (bool use_omp_outer=true, int eigen_threads=0)</td></tr>
+<tr class="memdesc:a7a076a748ec297773fd0cded063ddf4e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Runs the benchmark for all parameter pairs and returns the results.  <br /></td></tr>
+<tr class="separator:a7a076a748ec297773fd0cded063ddf4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>A class to run performance benchmarks for dipole and mesh computations. </p>
@@ -156,22 +156,54 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a id="a70e67d26691cdc3b4d56761c8b68371a" name="a70e67d26691cdc3b4d56761c8b68371a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a70e67d26691cdc3b4d56761c8b68371a">&#9670;&#160;</a></span>Run()</h2>
+<a id="a7a076a748ec297773fd0cded063ddf4e" name="a7a076a748ec297773fd0cded063ddf4e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a076a748ec297773fd0cded063ddf4e">&#9670;&#160;</a></span>Run()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a> comp_services::BenchmarkRunner::Run </td>
+          <td class="memname">std::pair&lt; <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a>, <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a> &gt; comp_services::BenchmarkRunner::Run </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>use_omp_outer</em> = <code>true</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>eigen_threads</em> = <code>0</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Runs the benchmark for all parameter pairs and returns the results. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">use_omp_outer</td><td>- uses openmp during runs </td></tr>
+    <tr><td class="paramname">eigen_threads</td><td>- sets num of eigen threads(0 for default num) </td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classcomp__services_1_1BenchmarkRunner_a7a076a748ec297773fd0cded063ddf4e_icgraph.png" border="0" usemap="#aclasscomp__services_1_1BenchmarkRunner_a7a076a748ec297773fd0cded063ddf4e_icgraph" alt=""/></div>
+<map name="aclasscomp__services_1_1BenchmarkRunner_a7a076a748ec297773fd0cded063ddf4e_icgraph" id="aclasscomp__services_1_1BenchmarkRunner_a7a076a748ec297773fd0cded063ddf4e_icgraph">
+<area shape="rect" title="Runs the benchmark for all parameter pairs and returns the results." alt="" coords="591,5,792,45"/>
+<area shape="rect" href="classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2" title=" " alt="" coords="332,5,543,45"/>
+<area shape="poly" title=" " alt="" coords="577,28,543,28,543,23,577,23"/>
+<area shape="rect" href="classcomp__services_1_1ComputationNodeService.html#a09f092800edf837ad2978fa641a847b0" title=" " alt="" coords="5,5,284,45"/>
+<area shape="poly" title=" " alt="" coords="318,28,284,28,284,23,318,23"/>
+</map>
+</div>
 
 </div>
 </div>

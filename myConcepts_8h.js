@@ -1,5 +1,7 @@
 var myConcepts_8h =
 [
+    [ "my_concepts::is_specialization_of< typename, class >", "structmy__concepts_1_1is__specialization__of.html", null ],
+    [ "my_concepts::is_specialization_of< C< Args... >, C >", "structmy__concepts_1_1is__specialization__of_3_01C_3_01Args_8_8_8_01_4_00_01C_01_4.html", null ],
     [ "my_concepts::valueTyped", "conceptmy__concepts_1_1valueTyped.html", null ],
     [ "my_concepts::HasBracketOperator", "conceptmy__concepts_1_1HasBracketOperator.html", null ],
     [ "my_concepts::HasSizeMethod", "conceptmy__concepts_1_1HasSizeMethod.html", null ],

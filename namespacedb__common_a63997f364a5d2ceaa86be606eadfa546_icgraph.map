@@ -1,0 +1,5 @@
+<map id="db_common::ExecuteTransaction" name="db_common::ExecuteTransaction">
+<area shape="rect" id="Node000001" title="Executes function in the form of transaction." alt="" coords="244,5,479,31"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="5,5,196,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,21,196,21,196,15,230,15"/>
+</map>

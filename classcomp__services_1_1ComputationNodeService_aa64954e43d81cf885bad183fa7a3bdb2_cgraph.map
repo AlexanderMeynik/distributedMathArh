@@ -1,5 +1,5 @@
 <map id="comp_services::ComputationNodeService::RunBench" name="comp_services::ComputationNodeService::RunBench">
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,5,216,45"/>
-<area shape="rect" id="Node000002" href="$namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2" title="Returns properly resized valarray for bench works." alt="" coords="264,13,427,38"/>
+<area shape="rect" id="Node000002" href="$classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e" title="Runs the benchmark for all parameter pairs and returns the results." alt="" coords="264,5,465,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="216,23,250,23,250,28,216,28"/>
 </map>

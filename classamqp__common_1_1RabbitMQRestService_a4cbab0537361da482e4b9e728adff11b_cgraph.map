@@ -1,0 +1,5 @@
+<map id="amqp_common::RabbitMQRestService::GlobalParam" name="amqp_common::RabbitMQRestService::GlobalParam">
+<area shape="rect" id="Node000001" title="Uses global&#45;parameters api to interact with them." alt="" coords="5,5,229,45"/>
+<area shape="rect" id="Node000002" href="$structnetwork__types_1_1global__param.html#aaf4fc904fd62e1d3e2154b22b5413a16" title=" " alt="" coords="277,5,444,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,23,264,23,264,28,229,28"/>
+</map>

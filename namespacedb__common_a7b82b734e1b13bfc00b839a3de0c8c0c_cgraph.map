@@ -1,0 +1,9 @@
+<map id="db_common::TryConnect" name="db_common::TryConnect">
+<area shape="rect" id="Node000001" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="5,63,188,88"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="236,5,459,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,60,235,41,277,31,278,36,237,46,154,65"/>
+<area shape="rect" id="Node000003" href="$structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="238,55,457,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,73,224,73,224,78,188,78"/>
+<area shape="rect" id="Node000004" href="$structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="238,119,457,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="148,86,256,113,254,118,147,91"/>
+</map>

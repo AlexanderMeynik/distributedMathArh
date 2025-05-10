@@ -9,5 +9,8 @@ var concepts =
       [ "twodVector", "conceptmy__concepts_1_1twodVector.html", null ],
       [ "RowCol", "conceptmy__concepts_1_1RowCol.html", null ],
       [ "parenthesisOperator", "conceptmy__concepts_1_1parenthesisOperator.html", null ]
+    ] ],
+    [ "timing", "namespacetiming.html", [
+      [ "Duration", "concepttiming_1_1Duration.html", null ]
     ] ]
 ];

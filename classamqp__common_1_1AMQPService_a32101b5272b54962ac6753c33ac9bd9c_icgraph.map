@@ -1,0 +1,5 @@
+<map id="amqp_common::AMQPService::Connect" name="amqp_common::AMQPService::Connect">
+<area shape="rect" id="Node000001" title="Starts event Loop for service." alt="" coords="264,5,483,45"/>
+<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="5,5,216,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,28,216,28,216,23,251,23"/>
+</map>

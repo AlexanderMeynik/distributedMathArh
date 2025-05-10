@@ -92,8 +92,7 @@ $(document).ready(function(){initNavTree('namespacechrono__clock.html',''); init
 <div class="header">
   <div class="summary">
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a> &#124;
-<a href="#var-members">Variables</a>  </div>
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">chrono_clock Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -103,35 +102,24 @@ $(document).ready(function(){initNavTree('namespacechrono__clock.html',''); init
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a66a2908011fcba5685e33e6a0fc76385" id="r_a66a2908011fcba5685e33e6a0fc76385"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#a66a2908011fcba5685e33e6a0fc76385">ClockType</a> = typename std::conditional&lt; std::chrono::high_resolution_clock::is_steady, std::chrono::high_resolution_clock, std::chrono::steady_clock &gt;::type</td></tr>
-<tr class="separator:a66a2908011fcba5685e33e6a0fc76385"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a178c8d691de8bd2ebcd6c2ad984e77b7" id="r_a178c8d691de8bd2ebcd6c2ad984e77b7"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">TimepointType</a> = ClockType::time_point</td></tr>
-<tr class="separator:a178c8d691de8bd2ebcd6c2ad984e77b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a185efc198ea05fbc9940611ddf612d06" id="r_a185efc198ea05fbc9940611ddf612d06"><td class="memTemplParams" colspan="2">template&lt;typename chrono_duration_type  = std::milli&gt; </td></tr>
-<tr class="memitem:a185efc198ea05fbc9940611ddf612d06"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#a185efc198ea05fbc9940611ddf612d06">ChronoClockTemplate</a> = <a class="el" href="classtiming_1_1clockArray.html">timing::clockArray</a>&lt; int64_t, <a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">TimepointType</a>, &amp;ClockType::now, &amp;<a class="el" href="namespacechrono__clock.html#afcb5110649eb9883b08467e43f62116b">GetFileState</a>, &amp;<a class="el" href="namespacechrono__clock.html#a7aea20f3f3408a756f58e8cd5c439e67">DoubleCastChrono</a>&lt; chrono_duration_type &gt; &gt;</td></tr>
-<tr class="separator:a185efc198ea05fbc9940611ddf612d06"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afcc4c98a051b0e96986af1282c46bf30" id="r_afcc4c98a051b0e96986af1282c46bf30"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#afcc4c98a051b0e96986af1282c46bf30">clockType</a> = <a class="el" href="namespacechrono__clock.html#a185efc198ea05fbc9940611ddf612d06">ChronoClockTemplate</a>&lt; std::milli &gt;</td></tr>
-<tr class="separator:afcc4c98a051b0e96986af1282c46bf30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade1dd5104da34edddcf60f31e8c03c93" id="r_ade1dd5104da34edddcf60f31e8c03c93"><td class="memTemplParams" colspan="2">template&lt;typename chrono_duration_type  = std::milli&gt; </td></tr>
+<tr class="memitem:ade1dd5104da34edddcf60f31e8c03c93"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#ade1dd5104da34edddcf60f31e8c03c93">ChronoClockTemplate</a> = <a class="el" href="classtiming_1_1ClockArray.html">timing::ClockArray</a>&lt; int64_t, <a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">ClockTimepoint</a>, &amp;ClockType::now, &amp;<a class="el" href="namespacechrono__clock.html#a4d0cbbce4d34ecc0b454946cd8254908">GetFileState</a>, &amp;<a class="el" href="namespacechrono__clock.html#a71ebb6c7290de62ac533153185d635e2">DoubleCastChrono</a>&lt; chrono_duration_type &gt; &gt;</td></tr>
+<tr class="separator:ade1dd5104da34edddcf60f31e8c03c93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:afcb5110649eb9883b08467e43f62116b" id="r_afcb5110649eb9883b08467e43f62116b"><td class="memItemLeft" align="right" valign="top">locationType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#afcb5110649eb9883b08467e43f62116b">GetFileState</a> (std::source_location location=std::source_location::current())</td></tr>
-<tr class="separator:afcb5110649eb9883b08467e43f62116b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7aea20f3f3408a756f58e8cd5c439e67" id="r_a7aea20f3f3408a756f58e8cd5c439e67"><td class="memTemplParams" colspan="2">template&lt;typename to_dur  = std::milli, typename doubleType &gt; </td></tr>
-<tr class="memitem:a7aea20f3f3408a756f58e8cd5c439e67"><td class="memTemplItemLeft" align="right" valign="top">doubleType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#a7aea20f3f3408a756f58e8cd5c439e67">DoubleCastChrono</a> (<a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">TimepointType</a> curr, <a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">TimepointType</a> prev)</td></tr>
-<tr class="separator:a7aea20f3f3408a756f58e8cd5c439e67"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
-Variables</h2></td></tr>
-<tr class="memitem:a53841ce0127b201e07e119c0f564d343" id="r_a53841ce0127b201e07e119c0f564d343"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacechrono__clock.html#afcc4c98a051b0e96986af1282c46bf30">clockType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#a53841ce0127b201e07e119c0f564d343">gClk</a> {}</td></tr>
-<tr class="separator:a53841ce0127b201e07e119c0f564d343"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d0cbbce4d34ecc0b454946cd8254908" id="r_a4d0cbbce4d34ecc0b454946cd8254908"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacetiming.html#acd0b30707d239c1ffc1268c286cd37e7">LocationType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#a4d0cbbce4d34ecc0b454946cd8254908">GetFileState</a> (std::source_location location=std::source_location::current())</td></tr>
+<tr class="separator:a4d0cbbce4d34ecc0b454946cd8254908"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a71ebb6c7290de62ac533153185d635e2" id="r_a71ebb6c7290de62ac533153185d635e2"><td class="memTemplParams" colspan="2">template&lt;typename to_dur  = std::milli, typename doubleType &gt; </td></tr>
+<tr class="memitem:a71ebb6c7290de62ac533153185d635e2"><td class="memTemplItemLeft" align="right" valign="top">doubleType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacechrono__clock.html#a71ebb6c7290de62ac533153185d635e2">DoubleCastChrono</a> (<a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">ClockTimepoint</a> curr, <a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">ClockTimepoint</a> prev)</td></tr>
+<tr class="separator:a71ebb6c7290de62ac533153185d635e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>chronoClock namespace </p>
 <p><a class="el" href="namespacechrono__clock.html" title="chronoClock namespace">chrono_clock</a> namespace </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="a185efc198ea05fbc9940611ddf612d06" name="a185efc198ea05fbc9940611ddf612d06"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a185efc198ea05fbc9940611ddf612d06">&#9670;&#160;</a></span>ChronoClockTemplate</h2>
+<a id="ade1dd5104da34edddcf60f31e8c03c93" name="ade1dd5104da34edddcf60f31e8c03c93"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade1dd5104da34edddcf60f31e8c03c93">&#9670;&#160;</a></span>ChronoClockTemplate</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -139,7 +127,7 @@ Variables</h2></td></tr>
 template&lt;typename chrono_duration_type  = std::milli&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacechrono__clock.html#a185efc198ea05fbc9940611ddf612d06">chrono_clock::ChronoClockTemplate</a> = typedef <a class="el" href="classtiming_1_1clockArray.html">timing::clockArray</a>&lt;int64_t, <a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">TimepointType</a>, &amp;ClockType::now, &amp;<a class="el" href="namespacechrono__clock.html#afcb5110649eb9883b08467e43f62116b">GetFileState</a>, &amp;<a class="el" href="namespacechrono__clock.html#a7aea20f3f3408a756f58e8cd5c439e67">DoubleCastChrono</a>&lt;chrono_duration_type&gt; &gt;</td>
+          <td class="memname">using <a class="el" href="namespacechrono__clock.html#ade1dd5104da34edddcf60f31e8c03c93">chrono_clock::ChronoClockTemplate</a> = typedef <a class="el" href="classtiming_1_1ClockArray.html">timing::ClockArray</a>&lt;int64_t, <a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">ClockTimepoint</a>, &amp;ClockType::now, &amp;<a class="el" href="namespacechrono__clock.html#a4d0cbbce4d34ecc0b454946cd8254908">GetFileState</a>, &amp;<a class="el" href="namespacechrono__clock.html#a71ebb6c7290de62ac533153185d635e2">DoubleCastChrono</a>&lt;chrono_duration_type&gt; &gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -152,52 +140,9 @@ template&lt;typename chrono_duration_type  = std::milli&gt; </div>
 
 </div>
 </div>
-<a id="a66a2908011fcba5685e33e6a0fc76385" name="a66a2908011fcba5685e33e6a0fc76385"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a66a2908011fcba5685e33e6a0fc76385">&#9670;&#160;</a></span>ClockType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacechrono__clock.html#a66a2908011fcba5685e33e6a0fc76385">chrono_clock::ClockType</a> = typedef typename std::conditional&lt;std::chrono::high_resolution_clock::is_steady, std::chrono::high_resolution_clock, std::chrono::steady_clock&gt;::type</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Global clock used for time measurement </p>
-
-</div>
-</div>
-<a id="afcc4c98a051b0e96986af1282c46bf30" name="afcc4c98a051b0e96986af1282c46bf30"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcc4c98a051b0e96986af1282c46bf30">&#9670;&#160;</a></span>clockType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacechrono__clock.html#afcc4c98a051b0e96986af1282c46bf30">chrono_clock::clockType</a> = typedef <a class="el" href="namespacechrono__clock.html#a185efc198ea05fbc9940611ddf612d06">ChronoClockTemplate</a>&lt;std::milli&gt;</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a id="a178c8d691de8bd2ebcd6c2ad984e77b7" name="a178c8d691de8bd2ebcd6c2ad984e77b7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a178c8d691de8bd2ebcd6c2ad984e77b7">&#9670;&#160;</a></span>TimepointType</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">using <a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">chrono_clock::TimepointType</a> = typedef ClockType::time_point</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a7aea20f3f3408a756f58e8cd5c439e67" name="a7aea20f3f3408a756f58e8cd5c439e67"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7aea20f3f3408a756f58e8cd5c439e67">&#9670;&#160;</a></span>DoubleCastChrono()</h2>
+<a id="a71ebb6c7290de62ac533153185d635e2" name="a71ebb6c7290de62ac533153185d635e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71ebb6c7290de62ac533153185d635e2">&#9670;&#160;</a></span>DoubleCastChrono()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -207,13 +152,13 @@ template&lt;typename to_dur  = std::milli, typename doubleType &gt; </div>
         <tr>
           <td class="memname">doubleType chrono_clock::DoubleCastChrono </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">TimepointType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">ClockTimepoint</a>&#160;</td>
           <td class="paramname"><em>curr</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespacechrono__clock.html#a178c8d691de8bd2ebcd6c2ad984e77b7">TimepointType</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacetiming.html#aa191b74b8cde9a5e2961685c234e54fe">ClockTimepoint</a>&#160;</td>
           <td class="paramname"><em>prev</em>&#160;</td>
         </tr>
         <tr>
@@ -241,14 +186,14 @@ template&lt;typename to_dur  = std::milli, typename doubleType &gt; </div>
 
 </div>
 </div>
-<a id="afcb5110649eb9883b08467e43f62116b" name="afcb5110649eb9883b08467e43f62116b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afcb5110649eb9883b08467e43f62116b">&#9670;&#160;</a></span>GetFileState()</h2>
+<a id="a4d0cbbce4d34ecc0b454946cd8254908" name="a4d0cbbce4d34ecc0b454946cd8254908"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d0cbbce4d34ecc0b454946cd8254908">&#9670;&#160;</a></span>GetFileState()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">locationType chrono_clock::GetFileState </td>
+          <td class="memname"><a class="el" href="namespacetiming.html#acd0b30707d239c1ffc1268c286cd37e7">LocationType</a> chrono_clock::GetFileState </td>
           <td>(</td>
           <td class="paramtype">std::source_location&#160;</td>
           <td class="paramname"><em>location</em> = <code>std::source_location::current()</code></td><td>)</td>
@@ -262,21 +207,6 @@ template&lt;typename to_dur  = std::milli, typename doubleType &gt; </div>
   </table>
   </dd>
 </dl>
-
-</div>
-</div>
-<h2 class="groupheader">Variable Documentation</h2>
-<a id="a53841ce0127b201e07e119c0f564d343" name="a53841ce0127b201e07e119c0f564d343"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a53841ce0127b201e07e119c0f564d343">&#9670;&#160;</a></span>gClk</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="namespacechrono__clock.html#afcc4c98a051b0e96986af1282c46bf30">clockType</a> chrono_clock::gClk {}</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
 
 </div>
 </div>

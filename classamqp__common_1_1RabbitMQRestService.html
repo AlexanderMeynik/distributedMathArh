@@ -138,9 +138,27 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a03c14e043b1b09ab62c254ef2eba23d0" id="r_a03c14e043b1b09ab62c254ef2eba23d0"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a03c14e043b1b09ab62c254ef2eba23d0">GetQueueStats</a> (const std::string &amp;vhost, const std::string &amp;queue_name)</td></tr>
 <tr class="memdesc:a03c14e043b1b09ab62c254ef2eba23d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves Json::Value from queue/stats.  <br /></td></tr>
 <tr class="separator:a03c14e043b1b09ab62c254ef2eba23d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f741db3d430f5c03afc12907cb4068e" id="r_a1f741db3d430f5c03afc12907cb4068e"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e">PublishMessage</a> (const std::string &amp;vhost, const std::string &amp;exhange_name, const <a class="el" href="structnetwork__types_1_1message.html">message</a> &amp;<a class="el" href="structnetwork__types_1_1message.html">message</a>)</td></tr>
+<tr class="memdesc:a1f741db3d430f5c03afc12907cb4068e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes message to the specified exchange and routing key.  <br /></td></tr>
+<tr class="separator:a1f741db3d430f5c03afc12907cb4068e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8d1d11f2dde32874b0b202484af3cc4" id="r_ab8d1d11f2dde32874b0b202484af3cc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab8d1d11f2dde32874b0b202484af3cc4">GetMessageCount</a> (const std::string &amp;vhost, const std::string &amp;queue_name)</td></tr>
+<tr class="memdesc:ab8d1d11f2dde32874b0b202484af3cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves number of messages for the selected queue.  <br /></td></tr>
+<tr class="separator:ab8d1d11f2dde32874b0b202484af3cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cbab0537361da482e4b9e728adff11b" id="r_a4cbab0537361da482e4b9e728adff11b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a4cbab0537361da482e4b9e728adff11b">GlobalParam</a> (const <a class="el" href="structnetwork__types_1_1global__param.html">global_param</a> &amp;param, const std::string &amp;type)</td></tr>
+<tr class="memdesc:a4cbab0537361da482e4b9e728adff11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses global-parameters api to interact with them.  <br /></td></tr>
+<tr class="separator:a4cbab0537361da482e4b9e728adff11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43a397a9fefca04da17b6b25f3a96ec2" id="r_a43a397a9fefca04da17b6b25f3a96ec2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structnetwork__types_1_1global__param.html">global_param</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2">ListGlobalParams</a> ()</td></tr>
+<tr class="memdesc:a43a397a9fefca04da17b6b25f3a96ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all global params from RabbimMQ.  <br /></td></tr>
+<tr class="separator:a43a397a9fefca04da17b6b25f3a96ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7067af56b42247a06b94c09bd2b94c9" id="r_ab7067af56b42247a06b94c09bd2b94c9"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9">ListQueues</a> (const std::string &amp;vhost)</td></tr>
 <tr class="memdesc:ab7067af56b42247a06b94c09bd2b94c9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all queues.  <br /></td></tr>
 <tr class="separator:ab7067af56b42247a06b94c09bd2b94c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a741bd45363fe3ae9bd1de0b5bd5e7297" id="r_a741bd45363fe3ae9bd1de0b5bd5e7297"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structnetwork__types_1_1connection.html">connection</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a741bd45363fe3ae9bd1de0b5bd5e7297">ListConnections</a> ()</td></tr>
+<tr class="memdesc:a741bd45363fe3ae9bd1de0b5bd5e7297"><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieve all connection  <br /></td></tr>
+<tr class="separator:a741bd45363fe3ae9bd1de0b5bd5e7297"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0459c6595cd03c5bf150d70f421c9b9b" id="r_a0459c6595cd03c5bf150d70f421c9b9b"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structnetwork__types_1_1channel.html">channel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a0459c6595cd03c5bf150d70f421c9b9b">ListChannels</a> ()</td></tr>
+<tr class="memdesc:a0459c6595cd03c5bf150d70f421c9b9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">retrieve all channels  <br /></td></tr>
+<tr class="separator:a0459c6595cd03c5bf150d70f421c9b9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2812c32bfddffbb470e948f24f5ff170" id="r_a2812c32bfddffbb470e948f24f5ff170"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170">BindQueueToExchange</a> (const std::string &amp;vhost, const std::string &amp;queue_name, const std::string &amp;exchange_name, const std::string &amp;routing_key)</td></tr>
 <tr class="memdesc:a2812c32bfddffbb470e948f24f5ff170"><td class="mdescLeft">&#160;</td><td class="mdescRight">Binds queue to exchange.  <br /></td></tr>
 <tr class="separator:a2812c32bfddffbb470e948f24f5ff170"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -601,6 +619,44 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a id="ab8d1d11f2dde32874b0b202484af3cc4" name="ab8d1d11f2dde32874b0b202484af3cc4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8d1d11f2dde32874b0b202484af3cc4">&#9670;&#160;</a></span>GetMessageCount()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> amqp_common::RabbitMQRestService::GetMessageCount </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>vhost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>queue_name</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves number of messages for the selected queue. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vhost</td><td></td></tr>
+    <tr><td class="paramname">queue_name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>number of messages </dd></dl>
+
+</div>
+</div>
 <a id="a7c99dbcd2fd516adf13e60b1100609ea" name="a7c99dbcd2fd516adf13e60b1100609ea"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7c99dbcd2fd516adf13e60b1100609ea">&#9670;&#160;</a></span>GetQueueBindings()</h2>
 
@@ -673,6 +729,116 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a4cbab0537361da482e4b9e728adff11b" name="a4cbab0537361da482e4b9e728adff11b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cbab0537361da482e4b9e728adff11b">&#9670;&#160;</a></span>GlobalParam()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool amqp_common::RabbitMQRestService::GlobalParam </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structnetwork__types_1_1global__param.html">global_param</a> &amp;&#160;</td>
+          <td class="paramname"><em>param</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>type</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Uses global-parameters api to interact with them. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">param</td><td></td></tr>
+    <tr><td class="paramname">type</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>status </dd></dl>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph">
+<area shape="rect" title="Uses global&#45;parameters api to interact with them." alt="" coords="5,5,229,45"/>
+<area shape="rect" href="structnetwork__types_1_1global__param.html#aaf4fc904fd62e1d3e2154b22b5413a16" title=" " alt="" coords="277,5,444,45"/>
+<area shape="poly" title=" " alt="" coords="229,23,264,23,264,28,229,28"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a0459c6595cd03c5bf150d70f421c9b9b" name="a0459c6595cd03c5bf150d70f421c9b9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0459c6595cd03c5bf150d70f421c9b9b">&#9670;&#160;</a></span>ListChannels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structnetwork__types_1_1channel.html">channel</a> &gt; amqp_common::RabbitMQRestService::ListChannels </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>retrieve all channels </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector of channel </dd></dl>
+
+</div>
+</div>
+<a id="a741bd45363fe3ae9bd1de0b5bd5e7297" name="a741bd45363fe3ae9bd1de0b5bd5e7297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a741bd45363fe3ae9bd1de0b5bd5e7297">&#9670;&#160;</a></span>ListConnections()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structnetwork__types_1_1connection.html">connection</a> &gt; amqp_common::RabbitMQRestService::ListConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>retrieve all connection </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector of connection </dd></dl>
+
+</div>
+</div>
+<a id="a43a397a9fefca04da17b6b25f3a96ec2" name="a43a397a9fefca04da17b6b25f3a96ec2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43a397a9fefca04da17b6b25f3a96ec2">&#9670;&#160;</a></span>ListGlobalParams()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt; <a class="el" href="structnetwork__types_1_1global__param.html">global_param</a> &gt; amqp_common::RabbitMQRestService::ListGlobalParams </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Lists all global params from RabbimMQ. </p>
+<dl class="section return"><dt>Returns</dt><dd>std::vector of global parameters </dd></dl>
 
 </div>
 </div>
@@ -753,6 +919,63 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a id="a1f741db3d430f5c03afc12907cb4068e" name="a1f741db3d430f5c03afc12907cb4068e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f741db3d430f5c03afc12907cb4068e">&#9670;&#160;</a></span>PublishMessage()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool amqp_common::RabbitMQRestService::PublishMessage </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>vhost</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>exhange_name</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structnetwork__types_1_1message.html">message</a> &amp;&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Publishes message to the specified exchange and routing key. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">vhost</td><td></td></tr>
+    <tr><td class="paramname">exhange_name</td><td></td></tr>
+    <tr><td class="paramname">message</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>routed ? </dd></dl>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph">
+<area shape="rect" title="Publishes message to the specified exchange and routing key." alt="" coords="5,5,229,45"/>
+<area shape="rect" href="structnetwork__types_1_1message.html#a99b0313c4197da4aea06e1463e01347d" title=" " alt="" coords="277,5,463,45"/>
+<area shape="poly" title=" " alt="" coords="229,23,263,23,263,28,229,28"/>
+</map>
+</div>
 
 </div>
 </div>

@@ -109,6 +109,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html">AMQPPublisherService</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Service that allow to Publish messages to multiple queues.  <a href="classamqp__common_1_1AMQPPublisherService.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html">AMQPService</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class connection/disconnection semantics.  <a href="classamqp__common_1_1AMQPService.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1MyHandler.html">MyHandler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom for connection events logging.  <a href="classamqp__common_1_1MyHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,6 +123,8 @@ Classes</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a220e5994f3f6fd563a28ee820411bab2" id="r_a220e5994f3f6fd563a28ee820411bab2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a220e5994f3f6fd563a28ee820411bab2">EnvelopePtr</a> = std::shared_ptr&lt; Envelope &gt;</td></tr>
 <tr class="separator:a220e5994f3f6fd563a28ee820411bab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ddd7b3a0db54bf7c92bff4367606ab6" id="r_a2ddd7b3a0db54bf7c92bff4367606ab6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a2ddd7b3a0db54bf7c92bff4367606ab6">WorkPtr</a> = std::unique_ptr&lt; boost::asio::io_service::work &gt;</td></tr>
+<tr class="separator:a2ddd7b3a0db54bf7c92bff4367606ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -128,12 +133,18 @@ Functions</h2></td></tr>
 <tr class="separator:aad6515e6ea0d240dc7fdaea72649f911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1105fdd68744605f3d67fedd0ea8109" id="r_ae1105fdd68744605f3d67fedd0ea8109"><td class="memItemLeft" align="right" valign="top">AMQP::Address&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109">ConstructCAddress</a> (const std::string &amp;host_port, const std::string &amp;user, const std::string &amp;password, bool secure=false)</td></tr>
 <tr class="separator:ae1105fdd68744605f3d67fedd0ea8109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af451fa3751ba3e892a4b0042b2e27833" id="r_af451fa3751ba3e892a4b0042b2e27833"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">DeclareQueue</a> (AMQP::Channel &amp;channel, const std::string &amp;queue1, const std::string &amp;exchange1)</td></tr>
+<tr class="memitem:a5a133e8ea931aa11e79ee9b1eed3f697" id="r_a5a133e8ea931aa11e79ee9b1eed3f697"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a5a133e8ea931aa11e79ee9b1eed3f697">ExtractHost</a> (std::string_view url)</td></tr>
+<tr class="memdesc:a5a133e8ea931aa11e79ee9b1eed3f697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract host from the Full url.  <br /></td></tr>
+<tr class="separator:a5a133e8ea931aa11e79ee9b1eed3f697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af451fa3751ba3e892a4b0042b2e27833" id="r_af451fa3751ba3e892a4b0042b2e27833"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">DeclareQueue</a> (AMQP::Channel &amp;<a class="el" href="structnetwork__types_1_1channel.html">channel</a>, const std::string &amp;queue1, const std::string &amp;exchange1)</td></tr>
 <tr class="separator:af451fa3751ba3e892a4b0042b2e27833"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac852884ef6968ddbbacea693dd884a31" id="r_ac852884ef6968ddbbacea693dd884a31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#ac852884ef6968ddbbacea693dd884a31">sendMessage</a> (AMQP::Channel &amp;channel, std::string_view exchange1, std::string_view routingKey, std::string_view body, bool persistent=true)</td></tr>
+<tr class="memitem:ac852884ef6968ddbbacea693dd884a31" id="r_ac852884ef6968ddbbacea693dd884a31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#ac852884ef6968ddbbacea693dd884a31">sendMessage</a> (AMQP::Channel &amp;<a class="el" href="structnetwork__types_1_1channel.html">channel</a>, std::string_view exchange1, std::string_view routingKey, std::string_view body, bool persistent=true)</td></tr>
 <tr class="separator:ac852884ef6968ddbbacea693dd884a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a188c2b1c35d101739fabab009affee71" id="r_a188c2b1c35d101739fabab009affee71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a188c2b1c35d101739fabab009affee71">consumeMessages</a> (AMQP::Channel &amp;channel, std::string_view queueName)</td></tr>
+<tr class="memitem:a188c2b1c35d101739fabab009affee71" id="r_a188c2b1c35d101739fabab009affee71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a188c2b1c35d101739fabab009affee71">consumeMessages</a> (AMQP::Channel &amp;<a class="el" href="structnetwork__types_1_1channel.html">channel</a>, std::string_view queueName)</td></tr>
 <tr class="separator:a188c2b1c35d101739fabab009affee71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a731e7318d9b0d18e31f42afed2642c77" id="r_a731e7318d9b0d18e31f42afed2642c77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a731e7318d9b0d18e31f42afed2642c77">DefaultMessageCallback</a> (const AMQP::Message &amp;<a class="el" href="structnetwork__types_1_1message.html">message</a>, uint64_t delivery_tag, bool redelivered)</td></tr>
+<tr class="memdesc:a731e7318d9b0d18e31f42afed2642c77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default message processing callback.  <br /></td></tr>
+<tr class="separator:a731e7318d9b0d18e31f42afed2642c77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>amqpCommon namespace </p>
@@ -146,6 +157,20 @@ Functions</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespaceamqp__common.html#a220e5994f3f6fd563a28ee820411bab2">amqp_common::EnvelopePtr</a> = typedef std::shared_ptr&lt;Envelope&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a2ddd7b3a0db54bf7c92bff4367606ab6" name="a2ddd7b3a0db54bf7c92bff4367606ab6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ddd7b3a0db54bf7c92bff4367606ab6">&#9670;&#160;</a></span>WorkPtr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceamqp__common.html#a2ddd7b3a0db54bf7c92bff4367606ab6">amqp_common::WorkPtr</a> = typedef std::unique_ptr&lt;boost::asio::io_service::work&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -358,6 +383,77 @@ Functions</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a731e7318d9b0d18e31f42afed2642c77" name="a731e7318d9b0d18e31f42afed2642c77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a731e7318d9b0d18e31f42afed2642c77">&#9670;&#160;</a></span>DefaultMessageCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void amqp_common::DefaultMessageCallback </td>
+          <td>(</td>
+          <td class="paramtype">const AMQP::Message &amp;&#160;</td>
+          <td class="paramname"><em>message</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint64_t&#160;</td>
+          <td class="paramname"><em>delivery_tag</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>redelivered</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Default message processing callback. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">message</td><td></td></tr>
+    <tr><td class="paramname">delivery_tag</td><td></td></tr>
+    <tr><td class="paramname">redelivered</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a5a133e8ea931aa11e79ee9b1eed3f697" name="a5a133e8ea931aa11e79ee9b1eed3f697"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a133e8ea931aa11e79ee9b1eed3f697">&#9670;&#160;</a></span>ExtractHost()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::optional&lt; std::string &gt; amqp_common::ExtractHost </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>url</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Extract host from the Full url. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">url</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>

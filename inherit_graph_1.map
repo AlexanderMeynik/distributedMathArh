@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$classamqp__common_1_1AMQPConsumerService.html" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="5,5,241,45"/>
+<area shape="rect" id="Node000000" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="5,45,224,70"/>
+<area shape="rect" id="Node000001" href="$classamqp__common_1_1AMQPConsumerService.html" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="272,5,508,45"/>
+<area shape="poly" id="edge2_Node000000_Node000001" title=" " alt="" coords="237,40,271,36,272,42,238,46"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues." alt="" coords="275,69,505,109"/>
+<area shape="poly" id="edge3_Node000000_Node000002" title=" " alt="" coords="238,69,275,73,274,79,237,74"/>
 </map>

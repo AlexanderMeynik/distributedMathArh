@@ -1,11 +1,21 @@
 var searchData=
 [
   ['last_0',['LAST',['../namespacegenerators.html#aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f',1,'generators']]],
-  ['limits_5f_1',['limits_',['../classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67',1,'mesh_storage::MeshCreator']]],
-  ['limtype_2',['LimType',['../namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e',1,'mesh_storage']]],
-  ['listqueues_3',['ListQueues',['../classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9',1,'amqp_common::RabbitMQRestService']]],
-  ['listusers_4',['ListUsers',['../classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073',1,'amqp_common::RabbitMQRestService']]],
-  ['loadfrommatrix_5',['LoadFromMatrix',['../classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638',1,'dipoles::Dipoles']]],
-  ['locationcomparator_6',['LocationComparator',['../structtiming_1_1LocationComparator.html',1,'timing']]],
-  ['locationtype_7',['locationType',['../namespacetiming.html#a90abe985843f7783a7a3f8958183f579',1,'timing']]]
+  ['last_5flogin_1',['last_login',['../structdb__common_1_1User.html#a29aadb44d93619a024f986985eb3a7d3',1,'db_common::User']]],
+  ['last_5fping_2',['last_ping',['../structdb__common_1_1Node.html#a6e50998ce4724aa4fd4b662868fe1104',1,'db_common::Node']]],
+  ['limits_5f_3',['limits_',['../classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67',1,'mesh_storage::MeshCreator']]],
+  ['limtype_4',['LimType',['../namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e',1,'mesh_storage']]],
+  ['listchannels_5',['ListChannels',['../classamqp__common_1_1RabbitMQRestService.html#a0459c6595cd03c5bf150d70f421c9b9b',1,'amqp_common::RabbitMQRestService']]],
+  ['listconnections_6',['ListConnections',['../classamqp__common_1_1RabbitMQRestService.html#a741bd45363fe3ae9bd1de0b5bd5e7297',1,'amqp_common::RabbitMQRestService']]],
+  ['listexperiments_7',['ListExperiments',['../classdb__service_1_1DbService.html#aca53a3d1a95c8d14b6e9878221eeabef',1,'db_service::DbService']]],
+  ['listglobalparams_8',['ListGlobalParams',['../classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2',1,'amqp_common::RabbitMQRestService']]],
+  ['listiterations_9',['ListIterations',['../classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7',1,'db_service::DbService']]],
+  ['listnodes_10',['ListNodes',['../classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64',1,'db_service::DbService']]],
+  ['listqueues_11',['ListQueues',['../classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9',1,'amqp_common::RabbitMQRestService']]],
+  ['listusers_12',['ListUsers',['../classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073',1,'amqp_common::RabbitMQRestService']]],
+  ['loadfrommatrix_13',['LoadFromMatrix',['../classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638',1,'dipoles::Dipoles']]],
+  ['locationcomparator_14',['LocationComparator',['../structtiming_1_1LocationComparator.html',1,'timing']]],
+  ['locationtype_15',['LocationType',['../namespacetiming.html#acd0b30707d239c1ffc1268c286cd37e7',1,'timing']]],
+  ['log_16',['Log',['../classdb__service_1_1DbService.html#a3f81f6660ebf574038e6310a7e6e6524',1,'db_service::DbService']]],
+  ['login_17',['login',['../structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314',1,'db_common::User']]]
 ];

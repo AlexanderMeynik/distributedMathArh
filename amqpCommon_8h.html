@@ -102,6 +102,8 @@ $(document).ready(function(){initNavTree('amqpCommon_8h.html',''); initResizable
 <code>#include &lt;vector&gt;</code><br />
 <code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;future&gt;</code><br />
+<code>#include &lt;optional&gt;</code><br />
 <code>#include &quot;<a class="el" href="errorHandling_8h_source.html">common/errorHandling.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="networkTypes_8h_source.html">network_shared/networkTypes.h</a>&quot;</code><br />
 <code>#include &lt;amqpcpp.h&gt;</code><br />
@@ -115,62 +117,86 @@ $(document).ready(function(){initNavTree('amqpCommon_8h.html',''); initResizable
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="amqpCommon_8h__incl.png" border="0" usemap="#acomputationalLib_2include_2network__shared_2amqpCommon_8h" alt=""/></div>
 <map name="acomputationalLib_2include_2network__shared_2amqpCommon_8h" id="acomputationalLib_2include_2network__shared_2amqpCommon_8h">
-<area shape="rect" title=" " alt="" coords="1065,5,1307,45"/>
-<area shape="rect" title=" " alt="" coords="1081,313,1139,339"/>
-<area shape="poly" title=" " alt="" coords="1184,46,1119,301,1114,299,1179,45"/>
-<area shape="rect" title=" " alt="" coords="959,240,1021,265"/>
-<area shape="poly" title=" " alt="" coords="1180,47,1162,82,1137,120,1108,154,1076,185,1018,234,1015,230,1072,181,1104,150,1133,117,1158,79,1176,44"/>
-<area shape="rect" title=" " alt="" coords="958,93,1022,119"/>
-<area shape="poly" title=" " alt="" coords="1140,48,1033,91,1031,86,1138,43"/>
-<area shape="rect" title=" " alt="" coords="1046,93,1123,119"/>
-<area shape="poly" title=" " alt="" coords="1163,48,1112,87,1109,82,1160,43"/>
-<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="117,167,301,192"/>
-<area shape="poly" title=" " alt="" coords="1065,44,682,96,463,133,281,167,280,162,462,128,682,91,1064,39"/>
-<area shape="rect" href="networkTypes_8h.html" title=" " alt="" coords="694,93,926,119"/>
-<area shape="poly" title=" " alt="" coords="1096,48,879,93,878,88,1095,43"/>
-<area shape="rect" title=" " alt="" coords="1249,93,1344,119"/>
-<area shape="poly" title=" " alt="" coords="1214,43,1271,83,1268,87,1211,48"/>
-<area shape="rect" title=" " alt="" coords="1369,93,1526,119"/>
-<area shape="poly" title=" " alt="" coords="1249,43,1397,87,1395,92,1248,48"/>
-<area shape="rect" title=" " alt="" coords="1550,93,1737,119"/>
-<area shape="poly" title=" " alt="" coords="1296,43,1564,88,1563,94,1295,48"/>
-<area shape="rect" title=" " alt="" coords="1761,93,1939,119"/>
-<area shape="poly" title=" " alt="" coords="1308,38,1748,90,1748,95,1307,44"/>
-<area shape="rect" title=" " alt="" coords="213,240,300,265"/>
-<area shape="poly" title=" " alt="" coords="219,191,244,227,239,230,214,194"/>
-<area shape="rect" title=" " alt="" coords="375,240,431,265"/>
-<area shape="poly" title=" " alt="" coords="241,190,364,234,362,239,239,195"/>
-<area shape="rect" title=" " alt="" coords="5,240,60,265"/>
-<area shape="poly" title=" " alt="" coords="181,194,74,238,72,233,179,190"/>
-<area shape="rect" title=" " alt="" coords="84,240,189,265"/>
-<area shape="poly" title=" " alt="" coords="199,194,160,232,156,228,195,190"/>
-<area shape="poly" title=" " alt="" coords="884,116,944,134,974,148,1002,165,1036,196,1065,232,1102,299,1097,302,1060,235,1033,199,999,169,972,152,942,139,883,121"/>
-<area shape="poly" title=" " alt="" coords="837,116,877,137,918,165,951,196,976,227,972,231,947,200,915,169,874,141,835,121"/>
-<area shape="poly" title=" " alt="" coords="714,121,315,168,314,163,713,116"/>
-<area shape="rect" title=" " alt="" coords="921,313,1045,339"/>
-<area shape="poly" title=" " alt="" coords="859,116,906,132,956,157,1003,192,1022,214,1037,239,1040,257,1034,276,1011,306,1007,303,1030,273,1034,257,1031,241,1017,217,999,196,954,162,904,137,858,121"/>
-<area shape="rect" title=" " alt="" coords="431,313,507,339"/>
-<area shape="poly" title=" " alt="" coords="694,118,495,139,414,153,388,161,373,169,356,191,350,214,353,238,366,264,389,289,419,307,416,311,386,293,361,267,348,239,345,213,352,189,370,165,386,156,413,148,495,134,693,113"/>
-<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="715,167,905,192"/>
-<area shape="poly" title=" " alt="" coords="813,119,813,153,807,153,807,119"/>
-<area shape="rect" title=" " alt="" coords="384,167,476,192"/>
-<area shape="poly" title=" " alt="" coords="747,121,490,169,489,164,746,116"/>
-<area shape="rect" title=" " alt="" coords="500,167,691,192"/>
-<area shape="poly" title=" " alt="" coords="776,121,644,165,642,160,775,116"/>
-<area shape="poly" title=" " alt="" coords="840,190,949,232,947,237,838,195"/>
-<area shape="poly" title=" " alt="" coords="731,195,599,215,451,243,445,244,444,238,449,237,598,210,730,189"/>
-<area shape="poly" title=" " alt="" coords="725,195,583,218,526,230,496,242,486,254,479,269,472,300,467,299,474,267,481,251,492,238,524,225,582,212,724,189"/>
-<area shape="rect" title=" " alt="" coords="681,240,749,265"/>
-<area shape="poly" title=" " alt="" coords="796,194,743,234,740,229,793,190"/>
-<area shape="rect" title=" " alt="" coords="507,240,657,265"/>
-<area shape="poly" title=" " alt="" coords="774,195,633,238,631,233,773,189"/>
-<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="774,240,934,265"/>
-<area shape="poly" title=" " alt="" coords="820,191,842,227,837,230,815,194"/>
-<area shape="poly" title=" " alt="" coords="896,263,1068,310,1067,315,894,268"/>
-<area shape="poly" title=" " alt="" coords="876,263,951,304,949,309,874,268"/>
-<area shape="poly" title=" " alt="" coords="793,268,521,318,520,313,792,263"/>
-<area shape="rect" title=" " alt="" coords="822,313,886,339"/>
-<area shape="poly" title=" " alt="" coords="857,266,857,300,851,300,851,266"/>
+<area shape="rect" title=" " alt="" coords="1564,5,1807,45"/>
+<area shape="rect" title=" " alt="" coords="1455,533,1513,559"/>
+<area shape="poly" title=" " alt="" coords="1727,43,1764,65,1801,95,1829,133,1837,155,1840,178,1840,401,1837,414,1830,426,1804,449,1765,470,1718,489,1616,519,1528,539,1526,534,1615,514,1717,484,1763,465,1801,445,1826,423,1832,412,1835,400,1835,178,1832,156,1824,135,1797,99,1761,70,1725,48"/>
+<area shape="rect" title=" " alt="" coords="1663,387,1726,412"/>
+<area shape="poly" title=" " alt="" coords="1711,44,1736,68,1761,99,1781,136,1787,157,1789,178,1789,254,1782,292,1765,326,1743,356,1721,379,1717,376,1739,353,1761,324,1777,290,1784,254,1784,178,1782,158,1776,139,1757,102,1732,71,1707,47"/>
+<area shape="rect" title=" " alt="" coords="1219,93,1283,119"/>
+<area shape="poly" title=" " alt="" coords="1564,47,1439,68,1296,96,1295,91,1438,63,1563,42"/>
+<area shape="rect" title=" " alt="" coords="1307,93,1384,119"/>
+<area shape="poly" title=" " alt="" coords="1604,48,1398,95,1397,90,1603,43"/>
+<area shape="rect" title=" " alt="" coords="1408,93,1469,119"/>
+<area shape="poly" title=" " alt="" coords="1627,48,1483,93,1481,88,1625,43"/>
+<area shape="rect" title=" " alt="" coords="5,533,80,559"/>
+<area shape="poly" title=" " alt="" coords="1564,29,1200,34,974,41,745,54,533,72,358,99,290,116,239,134,207,156,199,167,196,178,196,401,193,423,185,444,157,480,121,509,84,530,82,525,118,504,153,477,180,442,188,422,191,400,191,178,194,164,203,152,236,130,289,110,357,94,533,67,745,48,974,36,1200,28,1564,24"/>
+<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="681,387,865,412"/>
+<area shape="poly" title=" " alt="" coords="1564,37,1335,55,1073,85,955,105,858,127,821,139,793,152,776,165,771,179,771,254,775,373,769,373,765,254,765,177,772,162,791,147,819,134,857,122,954,99,1072,80,1334,50,1564,32"/>
+<area shape="rect" href="networkTypes_8h.html" title=" " alt="" coords="1493,93,1725,119"/>
+<area shape="poly" title=" " alt="" coords="1669,47,1632,85,1628,81,1665,44"/>
+<area shape="rect" title=" " alt="" coords="1875,93,1970,119"/>
+<area shape="poly" title=" " alt="" coords="1743,43,1876,87,1874,92,1741,48"/>
+<area shape="rect" title=" " alt="" coords="1995,93,2152,119"/>
+<area shape="poly" title=" " alt="" coords="1779,43,2004,88,2003,93,1778,48"/>
+<area shape="rect" title=" " alt="" coords="2176,93,2363,119"/>
+<area shape="poly" title=" " alt="" coords="1807,40,2171,89,2170,94,1806,46"/>
+<area shape="rect" title=" " alt="" coords="2387,93,2565,119"/>
+<area shape="poly" title=" " alt="" coords="1807,35,2374,91,2373,96,1807,41"/>
+<area shape="rect" title=" " alt="" coords="854,460,941,485"/>
+<area shape="poly" title=" " alt="" coords="795,410,867,451,864,455,792,414"/>
+<area shape="rect" title=" " alt="" coords="555,607,611,632"/>
+<area shape="poly" title=" " alt="" coords="721,414,676,432,655,446,637,462,615,493,601,529,587,593,582,592,596,527,610,491,633,458,652,441,674,428,719,410"/>
+<area shape="rect" title=" " alt="" coords="646,460,701,485"/>
+<area shape="poly" title=" " alt="" coords="759,414,702,454,699,450,756,410"/>
+<area shape="rect" title=" " alt="" coords="725,460,830,485"/>
+<area shape="poly" title=" " alt="" coords="777,412,779,446,773,447,771,412"/>
+<area shape="rect" href="timingUtils_8h.html" title=" " alt="" coords="381,460,571,485"/>
+<area shape="poly" title=" " alt="" coords="726,415,538,459,537,454,725,409"/>
+<area shape="poly" title=" " alt="" coords="571,478,635,483,1441,539,1441,544,634,488,571,483"/>
+<area shape="poly" title=" " alt="" coords="391,488,256,508,94,536,93,531,255,503,390,483"/>
+<area shape="poly" title=" " alt="" coords="490,484,534,532,573,593,568,596,530,535,486,487"/>
+<area shape="rect" title=" " alt="" coords="453,533,520,559"/>
+<area shape="poly" title=" " alt="" coords="480,485,486,519,480,520,475,486"/>
+<area shape="rect" title=" " alt="" coords="305,533,429,559"/>
+<area shape="poly" title=" " alt="" coords="460,488,398,528,395,523,457,483"/>
+<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="104,533,280,559"/>
+<area shape="poly" title=" " alt="" coords="431,488,252,533,250,527,430,483"/>
+<area shape="poly" title=" " alt="" coords="255,556,542,608,541,613,254,561"/>
+<area shape="rect" title=" " alt="" coords="202,607,294,632"/>
+<area shape="poly" title=" " alt="" coords="203,557,233,594,228,597,199,561"/>
+<area shape="rect" title=" " alt="" coords="97,607,177,632"/>
+<area shape="poly" title=" " alt="" coords="185,561,157,597,152,594,181,557"/>
+<area shape="poly" title=" " alt="" coords="1609,119,1595,176,1589,213,1587,251,1587,401,1579,439,1560,474,1536,504,1512,526,1508,523,1532,500,1556,471,1574,437,1581,400,1581,251,1584,213,1590,175,1603,118"/>
+<area shape="poly" title=" " alt="" coords="1645,116,1678,135,1694,149,1706,165,1718,192,1724,221,1726,279,1717,332,1706,374,1701,373,1712,331,1720,278,1719,221,1713,194,1702,168,1690,152,1675,140,1642,121"/>
+<area shape="poly" title=" " alt="" coords="1493,120,1247,145,1141,158,1081,169,1034,188,990,213,908,271,841,330,795,378,791,374,837,327,904,267,987,208,1032,184,1079,164,1140,153,1246,140,1493,115"/>
+<area shape="rect" title=" " alt="" coords="1422,387,1546,412"/>
+<area shape="poly" title=" " alt="" coords="1612,119,1611,152,1605,193,1592,237,1578,270,1536,340,1506,378,1502,375,1531,337,1573,267,1587,235,1600,191,1606,152,1607,119"/>
+<area shape="rect" title=" " alt="" coords="1445,313,1521,339"/>
+<area shape="poly" title=" " alt="" coords="1602,120,1568,168,1527,241,1496,302,1491,300,1522,238,1563,165,1598,117"/>
+<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="1307,167,1496,192"/>
+<area shape="poly" title=" " alt="" coords="1577,121,1449,165,1447,160,1575,116"/>
+<area shape="rect" title=" " alt="" coords="806,167,898,192"/>
+<area shape="poly" title=" " alt="" coords="1493,120,1482,121,1199,141,1076,151,918,169,912,170,912,165,917,164,1075,146,1199,136,1481,116,1493,115"/>
+<area shape="rect" title=" " alt="" coords="1091,167,1282,192"/>
+<area shape="poly" title=" " alt="" coords="1542,121,1269,167,1268,162,1541,116"/>
+<area shape="poly" title=" " alt="" coords="1418,190,1670,376,1667,381,1415,194"/>
+<area shape="poly" title=" " alt="" coords="1309,195,1119,220,1042,233,1007,242,991,260,983,278,981,325,981,474,978,489,970,503,939,527,894,549,840,568,723,597,625,615,624,609,722,592,839,562,892,544,936,523,966,499,973,487,976,474,976,325,978,277,986,257,1004,238,1041,228,1119,215,1309,189"/>
+<area shape="poly" title=" " alt="" coords="1418,191,1439,212,1460,239,1473,269,1481,299,1476,300,1468,271,1455,241,1435,215,1414,194"/>
+<area shape="rect" title=" " alt="" coords="1377,240,1445,265"/>
+<area shape="poly" title=" " alt="" coords="1406,192,1410,226,1405,227,1400,193"/>
+<area shape="rect" title=" " alt="" coords="1017,240,1167,265"/>
+<area shape="poly" title=" " alt="" coords="1352,195,1156,240,1155,234,1351,189"/>
+<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="1192,240,1352,265"/>
+<area shape="poly" title=" " alt="" coords="1382,194,1307,235,1304,231,1379,190"/>
+<area shape="poly" title=" " alt="" coords="1307,263,1437,306,1435,311,1305,268"/>
+<area shape="rect" href="enumUtils_8h.html" title=" " alt="" coords="1291,313,1392,339"/>
+<area shape="poly" title=" " alt="" coords="1285,264,1323,302,1319,305,1282,268"/>
+<area shape="poly" title=" " alt="" coords="1351,338,1471,520,1467,523,1347,340"/>
+<area shape="poly" title=" " alt="" coords="1393,335,1650,386,1649,392,1392,340"/>
+<area shape="poly" title=" " alt="" coords="1291,336,878,388,878,382,1290,331"/>
+<area shape="poly" title=" " alt="" coords="1365,336,1450,378,1447,383,1363,341"/>
+<area shape="rect" title=" " alt="" coords="1283,387,1347,412"/>
+<area shape="poly" title=" " alt="" coords="1339,340,1326,375,1321,373,1334,338"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -217,6 +243,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1MyHandler.html">amqp_common::MyHandler</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom for connection events logging.  <a href="classamqp__common_1_1MyHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html">amqp_common::AMQPService</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class connection/disconnection semantics.  <a href="classamqp__common_1_1AMQPService.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
 Namespaces</h2></td></tr>
@@ -228,6 +257,8 @@ Namespaces</h2></td></tr>
 Typedefs</h2></td></tr>
 <tr class="memitem:a220e5994f3f6fd563a28ee820411bab2" id="r_a220e5994f3f6fd563a28ee820411bab2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a220e5994f3f6fd563a28ee820411bab2">amqp_common::EnvelopePtr</a> = std::shared_ptr&lt; Envelope &gt;</td></tr>
 <tr class="separator:a220e5994f3f6fd563a28ee820411bab2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ddd7b3a0db54bf7c92bff4367606ab6" id="r_a2ddd7b3a0db54bf7c92bff4367606ab6"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a2ddd7b3a0db54bf7c92bff4367606ab6">amqp_common::WorkPtr</a> = std::unique_ptr&lt; boost::asio::io_service::work &gt;</td></tr>
+<tr class="separator:a2ddd7b3a0db54bf7c92bff4367606ab6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
@@ -236,12 +267,18 @@ Functions</h2></td></tr>
 <tr class="separator:aad6515e6ea0d240dc7fdaea72649f911"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae1105fdd68744605f3d67fedd0ea8109" id="r_ae1105fdd68744605f3d67fedd0ea8109"><td class="memItemLeft" align="right" valign="top">AMQP::Address&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109">amqp_common::ConstructCAddress</a> (const std::string &amp;host_port, const std::string &amp;user, const std::string &amp;password, bool secure=false)</td></tr>
 <tr class="separator:ae1105fdd68744605f3d67fedd0ea8109"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af451fa3751ba3e892a4b0042b2e27833" id="r_af451fa3751ba3e892a4b0042b2e27833"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">amqp_common::DeclareQueue</a> (AMQP::Channel &amp;channel, const std::string &amp;queue1, const std::string &amp;exchange1)</td></tr>
+<tr class="memitem:a5a133e8ea931aa11e79ee9b1eed3f697" id="r_a5a133e8ea931aa11e79ee9b1eed3f697"><td class="memItemLeft" align="right" valign="top">std::optional&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a5a133e8ea931aa11e79ee9b1eed3f697">amqp_common::ExtractHost</a> (std::string_view url)</td></tr>
+<tr class="memdesc:a5a133e8ea931aa11e79ee9b1eed3f697"><td class="mdescLeft">&#160;</td><td class="mdescRight">Extract host from the Full url.  <br /></td></tr>
+<tr class="separator:a5a133e8ea931aa11e79ee9b1eed3f697"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af451fa3751ba3e892a4b0042b2e27833" id="r_af451fa3751ba3e892a4b0042b2e27833"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">amqp_common::DeclareQueue</a> (AMQP::Channel &amp;<a class="el" href="structnetwork__types_1_1channel.html">channel</a>, const std::string &amp;queue1, const std::string &amp;exchange1)</td></tr>
 <tr class="separator:af451fa3751ba3e892a4b0042b2e27833"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac852884ef6968ddbbacea693dd884a31" id="r_ac852884ef6968ddbbacea693dd884a31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#ac852884ef6968ddbbacea693dd884a31">amqp_common::sendMessage</a> (AMQP::Channel &amp;channel, std::string_view exchange1, std::string_view routingKey, std::string_view body, bool persistent=true)</td></tr>
+<tr class="memitem:ac852884ef6968ddbbacea693dd884a31" id="r_ac852884ef6968ddbbacea693dd884a31"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#ac852884ef6968ddbbacea693dd884a31">amqp_common::sendMessage</a> (AMQP::Channel &amp;<a class="el" href="structnetwork__types_1_1channel.html">channel</a>, std::string_view exchange1, std::string_view routingKey, std::string_view body, bool persistent=true)</td></tr>
 <tr class="separator:ac852884ef6968ddbbacea693dd884a31"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a188c2b1c35d101739fabab009affee71" id="r_a188c2b1c35d101739fabab009affee71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a188c2b1c35d101739fabab009affee71">amqp_common::consumeMessages</a> (AMQP::Channel &amp;channel, std::string_view queueName)</td></tr>
+<tr class="memitem:a188c2b1c35d101739fabab009affee71" id="r_a188c2b1c35d101739fabab009affee71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a188c2b1c35d101739fabab009affee71">amqp_common::consumeMessages</a> (AMQP::Channel &amp;<a class="el" href="structnetwork__types_1_1channel.html">channel</a>, std::string_view queueName)</td></tr>
 <tr class="separator:a188c2b1c35d101739fabab009affee71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a731e7318d9b0d18e31f42afed2642c77" id="r_a731e7318d9b0d18e31f42afed2642c77"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceamqp__common.html#a731e7318d9b0d18e31f42afed2642c77">amqp_common::DefaultMessageCallback</a> (const AMQP::Message &amp;<a class="el" href="structnetwork__types_1_1message.html">message</a>, uint64_t delivery_tag, bool redelivered)</td></tr>
+<tr class="memdesc:a731e7318d9b0d18e31f42afed2642c77"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default message processing callback.  <br /></td></tr>
+<tr class="separator:a731e7318d9b0d18e31f42afed2642c77"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 </div><!-- doc-content -->
