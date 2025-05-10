@@ -15,8 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     env:
       host: http://rabbitmq:15672
+      pghost: http://postgres:15672
       username: sysadmin
       password: syspassword
+      coverageD: build-cov
     services:
       rabbitmq:
         image: rabbitmq:4-management
@@ -26,6 +28,18 @@ jobs:
         ports:
           - 5672:5672
           - 15672:15672
+      postgres:
+        image: postgres:17
+        env:
+          POSTGRES_USER: ${{ env.username }}
+          POSTGRES_PASSWORD: ${{ env.password }}
+        ports:
+          - "5501:5432"
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
     container:
       image: alexandermey/distirbutedmastservice:env1
     steps:
@@ -44,8 +58,8 @@ jobs:
           mkdir build && cd build
           
           export HOST_PARAMS="$host $username $password"
-          
-          cmake -G Ninja  \
+          export HOST_PARAMS_DB="$pghost $username $password"
+          cmake -G Ninja -DCMAKE_BUILD_TYPE=Release  \
           ../src/
           ninja
       - name: Save build
@@ -57,8 +71,17 @@ jobs:
           include-hidden-files: true
       - name: Run tests
         run: |
-          cd ${GITHUB_WORKSPACE}/build
-          ctest -T Test --output-on-failure
+          
+          mkdir $coverageD && cd $coverageD
+          
+          export HOST_PARAMS="$host $username $password"
+          
+          export HOST_PARAMS_DB="$pghost $username $password"
+          
+          cmake -G Ninja -DCMAKE_BUILD_TYPE=Release-Coverage  \
+          ../src/
+          ctest -T Build -T Test --output-on-failure
+
       - name: Collect coverage
         if: success() || failure()
         run: |
@@ -69,7 +92,7 @@ jobs:
           
           mkdir cov_report && cd cov_report
           
-          lcov -t "project_cov" -o project_cov.info -c -d ../build/
+          lcov -t "project_cov" -o project_cov.info -c -d ../$coverageD/
           
           lcov --extract project_cov.info "$mypath" -o project_cov_mycode.info
           

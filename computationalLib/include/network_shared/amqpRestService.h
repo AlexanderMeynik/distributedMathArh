@@ -52,7 +52,6 @@ class RabbitMQRestService {
   RabbitMQRestService(const std::string &base_url,
                       AuthHandler *auth_handler);
 
-
   RabbitMQRestService(const RabbitMQRestService &other) = delete;
 
   RabbitMQRestService &operator=(const RabbitMQRestService &other) = delete;
@@ -115,12 +114,59 @@ class RabbitMQRestService {
   Json::Value GetQueueStats(const std::string &vhost,
                             const std::string &queue_name);
 
+  //todo test
+  /**
+   * @brief Publishes message to the specified exchange and routing key
+   * @param vhost
+   * @param exhange_name
+   * @param message
+   * @return routed ?
+   */
+  bool PublishMessage(const std::string &vhost,
+                      const std::string &exhange_name,
+                      const message &message);
+
+  /**
+   * @brief Retrieves number of messages for the selected queue
+   * @param vhost
+   * @param queue_name
+   * @return number of messages
+   */
+  size_t GetMessageCount(const std::string &vhost,
+                         const std::string &queue_name);
+
+  /**
+   * @brief Uses global-parameters api to interact with them
+   * @param param
+   * @param type
+   * @return status
+   */
+  bool GlobalParam(const global_param &param, const std::string &type);
+
+  /**
+   * @brief Lists all global params from RabbimMQ
+   * @return std::vector of global parameters
+   */
+  std::vector<global_param> ListGlobalParams();
+
   /**
    * @brief Lists all queues
    * @param vhost
    * @return std::vector of queue names
    */
   std::vector<std::string> ListQueues(const std::string &vhost);
+
+  /**
+   * @brief retrieve all connection
+   * @return std::vector of connection
+   */
+  std::vector<connection> ListConnections();
+
+  /**
+   * @brief retrieve all channels
+   * @return std::vector of channel
+   */
+  std::vector<channel> ListChannels();
 
   /**
    * @brief Binds queue to exchange

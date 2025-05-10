@@ -81,8 +81,8 @@ MatrixPrint2D(std::ostream &out,
 }
 Json::Value SerializeException(const shared::MyException &ex) {
   Json::Value res;
-  res["message"]=ex.what();
-  res["severity"]=shared::kSevToStr[static_cast<unsigned long>(ex.getSev())];
+  res["message"] = ex.what();
+  res["severity"] = shared::kSevToStr[static_cast<unsigned long>(ex.getSev())];
   return res;
 }
 }

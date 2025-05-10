@@ -18,7 +18,7 @@ namespace sh = shared;
 
 namespace ms = mesh_storage;
 
-Json::Value SerializeException(const shared::MyException&ex);
+Json::Value SerializeException(const shared::MyException &ex);
 /**
  * @brief Print mesh to supplied std::ostream
  * @param mesh
@@ -80,6 +80,27 @@ void inline OneDimSerialize(std::ostream &out,
     out << col.size() << '\n';
   }
   out << map.format(eigen_form);
+}
+
+/**
+ * @brief Prints one dimensional Collection to string  using Eigen format
+ * @tparam Collection
+ * @param out
+ * @param col
+ * @param print_size
+ * @param eigen_form
+ */
+template<typename Collection>
+requires my_concepts::isOneDimensionalContinuous<Collection> &&
+    std::is_floating_point_v<typename Collection::value_type> ||
+    std::is_integral_v<typename Collection::value_type>
+std::string inline OneDimToString(const Collection &col,
+                                  bool print_size = true,
+                                  const EFormat &eigen_form = EFormat()) {
+
+  std::ostringstream ss;
+  OneDimSerialize(ss, col, print_size, eigen_form);
+  return ss.str();
 }
 
 /**

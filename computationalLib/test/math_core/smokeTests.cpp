@@ -120,7 +120,6 @@ TEST_P(DipolesVerificationTs, test_on_10_basik_conf_meshes) {
   Compare2DArrays<true>(ress, r2, twoDArrayDoubleComparator<FloatType>::call, 1e-3);
 }
 
-
 TEST_F(DipolesVerificationTs, TestAllSolutionSpecializations) {
 
   using namespace common_types;
@@ -131,10 +130,8 @@ TEST_F(DipolesVerificationTs, TestAllSolutionSpecializations) {
   dipoles::Dipoles dd;
   dd.LoadFromMatrix(matr);
 
-
   int n = sol.size() / 4;
   EXPECT_EQ(sol.size(), 4 * n) << "Expected solution size must be 4 * n";
-
 
   auto solution_arr = dd.Solve<Arr2EigenVec>();
   EXPECT_EQ(solution_arr.size(), 2) << "Arr2EigenVec should contain 2 vectors";
@@ -159,7 +156,6 @@ TEST_F(DipolesVerificationTs, TestAllSolutionSpecializations) {
   CompareArrays(solution_stdvalarr, sol, arrayDoubleComparator<FloatType>::call);
 }
 
-
 TEST_F(DipolesVerificationTs, TestFunctionImplEqualRes) {
 
   using namespace common_types;
@@ -169,10 +165,9 @@ TEST_F(DipolesVerificationTs, TestFunctionImplEqualRes) {
 
   dipoles::Dipoles dd;
 
-  dd.GetFullFunction(coord,sol);
+  dd.GetFullFunction(coord, sol);
 
-  auto ff=dd.GetIfunction();
-
+  auto ff = dd.GetIfunction();
 
   MeshCreator mm;
   mm.ConstructMeshes();
@@ -182,11 +177,9 @@ TEST_F(DipolesVerificationTs, TestFunctionImplEqualRes) {
 
   auto expected = mesh_storage::Unflatten(mes.data_[2], mes.dimensions_);
 
-
   Compare2DArrays<true>(expected, resulting_mesh, twoDArrayDoubleComparator<FloatType>::call, 1e-3);
 
 }
-
 
 TEST_F(DipolesVerificationTs, TestSetNewCoords) {
 
@@ -202,8 +195,7 @@ TEST_F(DipolesVerificationTs, TestSetNewCoords) {
   Compare2DArrays(dd.GetMatrixx(), matr,
                   twoDArrayDoubleComparator<FloatType>::call,
                   1e20 / 10000
-                  );
-
+  );
 
 }
 

@@ -5,70 +5,21 @@
 
 namespace print_utils {
 using namespace shared;
-const std::array<EFormat, 4> kEnumTo =
-    {{
-         // Format 0: Matrix with row enclosures "[...]"
-         EFormat(
-             Eigen::StreamPrecision,  // Precision
-             Eigen::DontAlignCols,    // Flags (no column alignment)
-             ",",                    // Coefficient separator (between elements in a row)
-             "",                      // Row separator (between rows)
-             "[",                     // Row prefix
-             "]",                     // Row suffix
-             "",                      // Matrix prefix
-             "\n"                     // Matrix suffix
-         ),
-         // Format 1: Simple space-separated values
-         EFormat(
-             Eigen::StreamPrecision,
-             Eigen::DontAlignCols,
-             "\t",
-             "",
-             "",
-             "",
-             "",
-             "\n"
-         ),
-         // Format 2: Row-enclosed with newline separators
-         EFormat(
-             Eigen::StreamPrecision,
-             Eigen::DontAlignCols,
-             "\t",
-             "\n",
-             "[",
-             "]",
-             "",
-             "\n"
-         ),
-         // Format 3: Newline-separated rows
-         EFormat(
-             Eigen::StreamPrecision,
-             Eigen::DontAlignCols,
-             "\t",
-             "\n",
-             "",
-             "",
-             "",
-             "\n"
-         )
-     }};
 
 const EFormat &PrintEnumToFormat(EigenPrintFormats fmt) {
   return kEnumTo.at(static_cast<size_t>(fmt));
 }
 
 std::ostream &operator<<(std::ostream &out, const IoFormat &form) {
-  out << ENUM_TO_STR(form, kIoToStr) << '\n';
+  out << enum_utils::enumToStr(form, kIoToStr);
   return out;
 }
 
 std::istream &operator>>(std::istream &in, IoFormat &form) {
   std::string a;
   in >> a;
-  if (!kStringToIoFormat.count(a)) {
-    throw InvalidOption(a);
-  }
-  form = kStringToIoFormat.at(a);
+
+  form = enum_utils::strToEnum(a, kStringToIoFormat);
   return in;
 }
 
@@ -121,6 +72,32 @@ std::ostream &operator<<(std::ostream &os, const EFormat &fmt) {
      << std::quoted(fmt.matSuffix) << ' '
      << std::quoted(std::string(1, fmt.fill));
   return os;
+}
+
+Delimiter::Delimiter(std::string_view s) : str(s) {}
+
+bool inline isOnlyWhitespace(std::string_view text) {
+  return !text.empty() && std::all_of(text.begin(), text.end(), [](unsigned char c) { return std::isspace(c); });
+}
+std::istream &operator>>(std::istream &is, const Delimiter &delim) {
+  char c;
+  if (isOnlyWhitespace(delim.str)) {
+    return is;
+  }
+
+  for (auto &kCh : delim.str) {
+    if (!is.get(c) || c != kCh) {
+      is.setstate(std::ios::failbit);
+      return is;
+    }
+  }
+  return is;
+}
+
+bool ParseDelim(std::istream &in, std::string_view str) {
+  Delimiter delimiter(str);
+  in >> delimiter;
+  return in.good();
 }
 
 IosStatePreserve::IosStatePreserve(std::ostream &out) : out_(out) {

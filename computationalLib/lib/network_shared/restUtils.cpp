@@ -11,6 +11,7 @@ size_t WriteCallback(void *contents,
   return realsize;
 }
 
+//todo return code body pair
 std::string
 PerformCurlRequest(const std::string &path,
                    const std::string &method,

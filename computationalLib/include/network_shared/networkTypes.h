@@ -4,7 +4,6 @@
 #include <vector>
 #include <valarray>
 
-
 #include "common/commonTypes.h"
 #include "common/errorHandling.h"
 
@@ -44,9 +43,8 @@ struct TestSolveParam {
   std::unordered_map<std::string, JsonVariant> args;///< map can contain any primitive JSON types
   bool operator==(const TestSolveParam &oth) const = default;
 
-  size_t RangeSize()
-  {
-    return range.second-range.first+1;
+  size_t RangeSize() {
+    return range.second - range.first + 1;
   }
 
   /**
@@ -56,7 +54,6 @@ struct TestSolveParam {
    * @throws shared::outOfRange - if block with specified size can't sliced away
    */
   TestSolveParam SliceAway(size_t iter_count);
-
 
   /**
    * @brief Serialize as json
@@ -161,6 +158,126 @@ struct queue {
         bool durable_a = true);
 
   queue(Json::Value &val);
+};
+
+/**
+ * @brief connection struct
+ */
+struct connection {
+
+  size_t channels;
+  std::string host;
+  std::string name;
+  std::string peer_host;
+  size_t port;
+  size_t peer_port;
+  uint64_t connected_at;
+  std::string user;
+
+  Json::Value ToJson() const;
+
+  connection(Json::Value &val);
+
+};
+
+/**
+ * @brief channel struct
+ */
+struct channel {
+
+  std::string name;
+  size_t channel_number;
+  std::string connection_name;
+  std::string user;
+  std::string vhost;
+  std::string state;
+  size_t consumer_count;
+
+  Json::Value ToJson() const;
+
+  channel(Json::Value &val);
+
+};
+
+/**
+ * @brief message struct
+ */
+struct message {
+
+  message(const std::string &key, const std::string &pay, const std::string &payloadType);
+
+  std::string routing_key;
+  std::string payload;
+  std::string payload_encoding;
+
+  Json::Value ToJson() const;
+
+  message(Json::Value &val);
+
+};
+
+/**
+ * @brief global_param struct
+ */
+struct global_param {
+  std::string name;
+  Json::Value value;
+
+  global_param(const std::string pName, const Json::Value &val);
+
+  Json::Value ToJson() const;
+
+  global_param(Json::Value &val);
+};
+
+/**
+* @brief  Structure to store and format connection string
+*/
+struct myConnString {
+  myConnString() : port(5432) {}
+
+  myConnString(std::string_view user,
+               std::string_view password,
+               std::string_view host,
+               std::string_view dbname, unsigned port);
+
+  explicit operator std::string() {
+    return formatted_string;
+  }
+
+  operator std::string_view();
+
+  [[nodiscard]] const char *CStr() const;
+
+  void SetUser(std::string_view new_user);
+
+  void SetPassword(std::string_view new_password);
+
+  void SetHost(std::string_view new_host);
+
+  void SetPort(unsigned new_port);
+
+  void SetDbname(std::string_view new_dbname);
+
+  [[nodiscard]] const std::string &GetUser() const;
+
+  [[nodiscard]] const std::string &GetPassword() const;
+
+  [[nodiscard]] const std::string &GetHost() const;
+
+  [[nodiscard]] const std::string &GetDbname() const;
+
+  [[nodiscard]] unsigned int GetPort() const;
+
+  [[nodiscard]] std::string GetVerboseName() const;
+  bool operator==(const myConnString &rhs) const;
+
+ private:
+  void UpdateFormat();
+
+  std::string user, password, host, dbname;
+  unsigned port;
+  std::string formatted_string;
 };
 
 }

@@ -87,7 +87,8 @@ class MainNodeService {
   Json::Value SendToExecution(network_types::TestSolveParam &ts);
  private:
   std::unique_ptr<JsonAuthHandler> auth_; ///< auth handler for authentication in RabbitMQ
-  std::unique_ptr<amqp_common::RabbitMQRestService> rest_service_; ///< rest service for metrics collection and management
+  std::unique_ptr<amqp_common::RabbitMQRestService>
+      rest_service_; ///< rest service for metrics collection and management
   std::unique_ptr<amqp_common::AMQPPublisherService> publisher_service_;///< service to publish messages in
   std::unique_ptr<WorkerManagementService> worker_management_service_; ///< manages connected nodes and their metrics
 

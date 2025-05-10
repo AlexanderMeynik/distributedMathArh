@@ -1,7 +1,10 @@
-name: Run benchmark
+name: Run config benchmark
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/tempBenhcWorkflow.yml
 jobs:
   run-bench:
     runs-on: ubuntu-latest
@@ -19,25 +22,18 @@ jobs:
           workflow: ci.yml
           path: /__w/distributedMathArh/distributedMathArh/build/
           search_artifacts: true
-      - name: install testFixture
-        run: |
-          cd ${GITHUB_WORKSPACE}
-          
-          chmod -R +x build/
-          wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/fixture/res.zip
-          unzip -q res.zip
-          rm res.zip
 
       - name: Run benchmark
         if: success() || failure()
         run: |
-          cd ${GITHUB_WORKSPACE}/build/computationalLib/test
-          ./benchmark
-      - name: Save benchmake results
+          cd ${GITHUB_WORKSPACE}/build/computationalNode/test
+          chmod +x benchServiceBench
+          ./benchServiceBench
+      - name: Save benchBenhc results
         if: success() || failure()
         uses: actions/upload-artifact@v4
         with:
           name: bench
-          path: /__w/distributedMathArh/distributedMathArh/build/computationalLib/test
+          path: /__w/distributedMathArh/distributedMathArh/build/computationalNode/test
           if-no-files-found: warn
           include-hidden-files: true

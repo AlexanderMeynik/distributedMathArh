@@ -6,9 +6,9 @@ namespace comp_services {
 Json::Value ComputationNodeService::GetStatus() {
   Json::Value res_JSON;
   res_JSON["request"] = "status";
-  res_JSON["worker_status"] = amqp_prod_.IsConnected() ? "running" : "not running";
-  if(Computed())//todo what will this thing impact
-  res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
+  res_JSON["worker_status"] = consumer_service_.IsConnected() ? "running" : "not running";
+  if (Computed())//todo what will this thing impact
+    res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
 }
@@ -16,14 +16,14 @@ Json::Value ComputationNodeService::GetStatus() {
 Json::Value ComputationNodeService::Disconnect() {
   Json::Value res_JSON;
   res_JSON["request"] = "disconnect";
-  if (!amqp_prod_.IsConnected()) {
+  if (!consumer_service_.IsConnected()) {
 
     res_JSON["status"] = HttpStatusCode::k409Conflict;
     res_JSON["message"] = "This worker node is currently not connected to any cluster";
     return res_JSON;
   }
 
-  amqp_prod_.Disconnect();
+  consumer_service_.Disconnect();
 
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
 
@@ -50,10 +50,10 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
   res_JSON["name"] = name;
   res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
 
-  if (amqp_prod_.IsConnected()) {
+  if (consumer_service_.IsConnected()) {
     res_JSON["status"] = HttpStatusCode::k409Conflict;
     res_JSON["message"] = fmt::format("Node is already connected to RabbitMQ {}!",
-                                      amqp_prod_.GetCString());
+                                      consumer_service_.GetCString());
     //todo remove user data
 
     return res_JSON;
@@ -61,16 +61,16 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
 
   auto c = amqp_common::ConstructCString(ip, user, pass);
 
-  amqp_prod_.SetParameters(c, name);
+  consumer_service_.SetParameters(c, name);
 
-  amqp_prod_.SetMessageCallback(n_message_callback);
+  consumer_service_.SetMessageCallback(n_message_callback);
 
   try {
-    amqp_prod_.Connect();
+    consumer_service_.Connect();
   }
   catch (std::runtime_error &err) {
     res_JSON["status"] = HttpStatusCode::k409Conflict;
-    res_JSON["message"] = fmt::format("Queue connection error {} !", err.what());
+    res_JSON["message"] = fmt::format("Queue connection error msg :\"{}\"!", err.what());
     return res_JSON;
   }
 
@@ -78,8 +78,20 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
   return res_JSON;
 }
 bool ComputationNodeService::CheckConnection() {
-  return amqp_prod_.IsConnected();
+  return consumer_service_.IsConnected();
 }
 
+void ComputationNodeService::RunBench() {
+
+  characteristic_computed_.store(false, std::memory_order_release);
+
+  computation_thread_ = std::jthread([this]() {
+    std::cout << "Job start\n";
+    bench_res_ = benchmarkRunner.Run().first;
+    //bench_res_ = DefaultBench();
+    std::cout << "Job done\n";
+    characteristic_computed_.store(true, std::memory_order_release);
+  });
+}
 
 }

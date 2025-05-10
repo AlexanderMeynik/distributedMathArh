@@ -79,7 +79,6 @@ class WorkerManagementService {
    */
   Json::Value GetStatus();
 
-
   /**
    *
    */

@@ -59,13 +59,12 @@ TestSolveParam::TestSolveParam(Json::Value &val) :
 }
 TestSolveParam TestSolveParam::SliceAway(size_t iter_count) {
 
-  if(!iter_count
-  ||
-  range.first + iter_count>range.second)
-  {
+  if (!iter_count
+      ||
+          range.first + iter_count > range.second) {
 
     throw shared::outOfRange(iter_count,
-                             1,range.second - range.first + 1);
+                             1, range.second - range.first + 1);
   }
 
   TestSolveParam ret = *this;
@@ -147,6 +146,152 @@ Json::Value queue::ToJson() const {
   val["auto_delete"] = autoDelete;
   val["durable"] = durable;
   return val;
+}
+
+connection::connection(Json::Value &val) :
+    channels(val["channels"].asUInt()),
+    host(val["host"].asString()),
+    name(val["name"].asString()),
+    peer_host(val["peer_host"].asString()),
+    port(val["port"].asUInt()),
+    peer_port(val["peer_port"].asUInt()),
+    connected_at(val["connected_at"].asUInt64()),
+    user(val["user"].asString()) {}
+
+Json::Value connection::ToJson() const {
+  Json::Value val;
+  val["channels"] = static_cast<Json::UInt>(channels);
+  val["host"] = host;
+  val["name"] = name;
+  val["peer_host"] = peer_host;
+  val["port"] = static_cast<Json::UInt>(port);
+  val["peer_port"] = static_cast<Json::UInt>(peer_port);
+  val["connected_at"] = static_cast<Json::UInt64>(connected_at);
+  val["user"] = user;
+  return val;
+}
+
+Json::Value channel::ToJson() const {
+  Json::Value val;
+  val["name"] = name;
+  val["number"] = static_cast<Json::UInt>(channel_number);
+  val["connection_name"] = connection_name;
+  val["user"] = user;
+  val["vhost"] = vhost;
+  val["state"] = state;
+  val["consumer_count"] = consumer_count;
+  return val;
+}
+channel::channel(Json::Value &val) :
+    name(val["name"].asString()),
+    channel_number(val["number"].asUInt()),
+    connection_name(val["connection_details"]["name"].asString()),
+    user(val["user"].asString()),
+    vhost(val["vhost"].asString()),
+    state(val["state"].asString()),
+    consumer_count(val["consumer_count"].asUInt()) {}
+Json::Value message::ToJson() const {
+  Json::Value val;
+
+  val["properties"] = Json::objectValue;
+
+  val["routing_key"] = routing_key;
+  val["payload"] = payload;
+  val["payload_encoding"] = payload_encoding;
+  return val;
+}
+message::message(Json::Value &val) {
+  routing_key = val["routing_key"].asString();
+  payload = val["payload"].asString();
+  payload_encoding = val["payload_encoding"].asString();
+}
+message::message(const std::string &key, const std::string &pay, const std::string &payloadType) {
+  routing_key = key;
+  payload = pay;
+  payload_encoding = payloadType;
+
+}
+global_param::global_param(Json::Value &val) {
+  name = val["name"].asString();
+  value = val["value"];
+}
+Json::Value global_param::ToJson() const {
+  Json::Value ret;
+
+  ret["name"] = name;
+  ret["value"] = value;
+  return ret;
+}
+global_param::global_param(const std::string pName, const Json::Value &val) {
+  name = pName;
+  value = val;
+}
+myConnString::myConnString(std::string_view user,
+                           std::string_view password,
+                           std::string_view host,
+                           std::string_view dbname,
+                           unsigned int port)
+    : user(user), password(password),
+      host(host),
+      dbname(dbname),
+      port(port) {
+  UpdateFormat();
+}
+myConnString::operator std::string_view() {
+  return formatted_string;
+}
+const char *myConnString::CStr() const {
+  return formatted_string.c_str();
+}
+void myConnString::SetPassword(std::string_view new_password) {
+  password = new_password;
+  UpdateFormat();
+}
+void myConnString::SetHost(std::string_view new_host) {
+  host = new_host;
+  UpdateFormat();
+}
+void myConnString::SetPort(unsigned int new_port) {
+  port = new_port;
+  UpdateFormat();
+}
+void myConnString::SetDbname(std::string_view new_dbname) {
+  dbname = new_dbname;
+  UpdateFormat();
+}
+void myConnString::SetUser(std::string_view new_user) {
+  user = std::forward<std::string_view>(new_user);
+  UpdateFormat();
+}
+const std::string &myConnString::GetUser() const {
+  return user;
+}
+const std::string &myConnString::GetPassword() const {
+  return password;
+}
+const std::string &myConnString::GetHost() const {
+  return host;
+}
+const std::string &myConnString::GetDbname() const {
+  return dbname;
+}
+unsigned int myConnString::GetPort() const {
+  return port;
+}
+void myConnString::UpdateFormat() {
+  formatted_string = fmt::format("postgresql://{}:{}@{}:{}/{}",
+                                 user.c_str(), password.c_str(), host.c_str(), port, dbname.c_str());
+}
+std::string myConnString::GetVerboseName() const {
+  return fmt::format("{}:{} db:{}", host, port, dbname);
+}
+bool myConnString::operator==(const myConnString &rhs) const {
+  return user == rhs.user &&
+      password == rhs.password &&
+      host == rhs.host &&
+      dbname == rhs.dbname &&
+      port == rhs.port &&
+      formatted_string == rhs.formatted_string;
 }
 
 }

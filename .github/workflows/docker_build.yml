@@ -21,6 +21,7 @@ jobs:
           PAIRS=(
             "confFiles/multiStage.Dockerfile:alexandermey/distirbutedmastservice:env1",
             "confFiles/collectMetrics.Dockerfile:alexandermey/distirbutedmastservice:metrics"
+            "confFiles/runCompNode.Dockerfile:alexandermey/distirbutedmastservice:comp_node"
           )
 
           CHANGED_FILES=$(git diff --name-only HEAD^ HEAD -- confFiles/)

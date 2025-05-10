@@ -76,10 +76,10 @@ void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
 
   auto qname = json["queue_host"].asString();
   auto szs = json["queues"].size();
-  auto queus = print_utils::JsonToContinuous<std::vector<std::string>>(
+  auto queues = print_utils::JsonToContinuous<std::vector<std::string>>(
       json["queues"], szs, true);
 
-  auto json_output = main_node_service_->Connect(qname, queus);
+  auto json_output = main_node_service_->Connect(qname, queues);
 
   auto http_response = HttpResponse::newHttpJsonResponse(json_output);
   http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));

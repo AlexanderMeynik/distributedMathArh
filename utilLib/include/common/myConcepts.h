@@ -17,6 +17,20 @@ template<typename T>
 concept valueTyped = requires { typename T::value_type; };
 
 /**
+ * @brief Is type a specialization of
+ */
+template<typename, template<typename...> class>
+struct is_specialization_of : std::false_type {};
+
+/**
+ * @brief Is type a specialization of
+ * @tparam C
+ * @tparam Args
+ */
+template<template<typename...> class C, typename... Args>
+struct is_specialization_of<C<Args...>, C> : std::true_type {};
+
+/**
  * @brief Concept to check whether type T has subscript operator
  * @tparam T
  */

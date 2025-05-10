@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-#include <algorithm>//do weneed it?
+#include <algorithm>
 #include <numeric>
 #include <fstream>
 #include <iomanip>
@@ -30,7 +30,7 @@ namespace ct = common_types;
 template<isOneDimensionalContinuous Collection>
 Collection JsonToContinuous(const Json::Value &val,
                             std::optional<size_t> sz = std::nullopt,
-                            bool sizeless_format=false);
+                            bool sizeless_format = false);
 
 /**
  * @brief Parse MeshCreator from json
@@ -55,6 +55,22 @@ template<isOneDimensionalContinuous Struct>
 Struct ParseOneDim(std::istream &in,
                    std::optional<size_t> size_opt = std::nullopt,
                    const EFormat &ef = EFormat());
+
+/**
+ * @brief Parse one dimensional array from std::string
+ * @tparam Struct
+ * @param str - input string
+ * @param size_opt
+ * @param ef
+ * @return Struct to store the values
+ */
+template<isOneDimensionalContinuous Struct>
+Struct inline ParseOneDimS(std::string_view str,
+                           std::optional<size_t> size_opt = std::nullopt,
+                           const EFormat &ef = EFormat()) {
+  std::istringstream is(str.data());
+  return ParseOneDim<Struct>(is, size_opt, ef);
+}
 
 /**
  * @brief Parse matrix
@@ -120,11 +136,9 @@ Struct JsonToContinuous(const Json::Value &val,
                         bool sizeless_format) {
 
   size_t size;
-  if(sz.has_value())
-  {
-    size=sz.value();
-  }
-  else {
+  if (sz.has_value()) {
+    size = sz.value();
+  } else {
     if (sizeless_format) {
       size = val.size();
     } else {
@@ -133,14 +147,11 @@ Struct JsonToContinuous(const Json::Value &val,
   }
 
   Struct res(size);
-  if(!sizeless_format)
-  {
+  if (!sizeless_format) {
     for (int i = 0; i < size; ++i) {
       res[i] = val["data"][i].as<std::remove_all_extents_t<typename Struct::value_type>>();
     }
-  }
-  else
-  {
+  } else {
     for (int i = 0; i < size; ++i) {
       res[i] = val[i].as<std::remove_all_extents_t<typename Struct::value_type>>();
     }
@@ -167,9 +178,17 @@ Struct ParseOneDim(std::istream &in,
 
   Struct res(size);
 
+  ParseDelim(in, ef.rowPrefix);
+
   for (size_t i = 0; i < size; ++i) {
     in >> res[i];
+    if (i < size - 1) {
+      ParseDelim(in, ef.coeffSeparator);
+    }
   }
+
+  ParseDelim(in, ef.rowSuffix);
+
   return res;
 }
 

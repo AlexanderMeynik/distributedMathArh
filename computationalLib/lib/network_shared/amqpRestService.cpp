@@ -133,6 +133,32 @@ bool RabbitMQRestService::CreateUser(const std::string &user,
   return true;
 }
 
+bool RabbitMQRestService::PublishMessage(const std::string &vhost,
+                                         const std::string &exhange_name,
+                                         const message &message) {
+  std::string path = fmt::format("/api/exchanges/{}/{}/publish", vhost, exhange_name);
+
+  Json::Value body = message.ToJson();
+  std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+  auto rr = ParseJson(PerformRequest(path, "POST", data));
+
+  return rr["routed"].asBool();
+}
+
+size_t RabbitMQRestService::GetMessageCount(const std::string &vhost, const std::string &queue_name) {
+  std::string path = fmt::format("/api/queues/{}/{}/get", vhost, queue_name);
+
+  Json::Value body;
+  body["count"] = 1000;
+  body["ackmode"] = "ack_requeue_true";//todo if we need more modes create or find enum
+  body["encoding"] = "auto";
+  body["truncate"] = 50000;
+  std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
+  auto rr = ParseJson(PerformRequest(path, "POST", data));
+
+  return rr.size();
+}
+
 bool RabbitMQRestService::DeleteUser(const std::string &user) {
   std::string path = "/api/users/" + user;
   PerformRequest(path, "DELETE");
@@ -152,6 +178,38 @@ std::vector<rabbitMQUser> RabbitMQRestService::ListUsers(const std::string &vhos
     }
   }
   return out;
+}
+
+std::vector<connection> RabbitMQRestService::ListConnections() {
+  std::string path = "/api/connections";
+
+  std::vector<connection> connections;
+
+  auto res = ParseJson(PerformRequest(path, "GET"));
+  if (res.isArray()) {
+    connections.reserve(res.size());
+    for (auto &re : res) {
+      connections.emplace_back(re);
+    }
+  }
+
+  return connections;
+}
+
+std::vector<channel> RabbitMQRestService::ListChannels() {
+  std::string path = "/api/channels";
+
+  std::vector<channel> connections;
+
+  auto res = ParseJson(PerformRequest(path, "GET"));
+  if (res.isArray()) {
+    connections.reserve(res.size());
+    for (auto &re : res) {
+      connections.emplace_back(re);
+    }
+  }
+
+  return connections;
 }
 
 Json::Value RabbitMQRestService::Whoami() {
@@ -176,6 +234,39 @@ RabbitMQRestService::GetQueueBindings(const std::string &vhost, const std::strin
   }
 
   return out;
+}
+
+std::vector<global_param> RabbitMQRestService::ListGlobalParams() {
+
+  std::string path = "/api/global-parameters";
+
+  auto res = ParseJson(PerformRequest(path, "GET"));
+  std::vector<global_param> out;
+  if (res.isArray()) {
+    for (auto &re : res) {
+      out.emplace_back(re);
+    }
+  }
+
+  return out;
+}
+//todo enum for requets tyope(or copy drogon one)
+bool RabbitMQRestService::GlobalParam(const global_param &param, const std::string &type) {
+
+  std::string path = fmt::format("/api/global-parameters/{}", param.name);
+
+  if (type == "PUT") {
+    std::string data = Json::writeString(Json::StreamWriterBuilder(), param.ToJson());
+    PerformRequest(path, type, data);
+  } else {
+    PerformRequest(path, type);
+  }
+
+
+  //Put =201
+  //Get =200
+  //Deleted =204
+  return true;
 }
 
 std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost) {
