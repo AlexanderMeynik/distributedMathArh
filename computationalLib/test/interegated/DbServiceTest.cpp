@@ -149,7 +149,7 @@ TEST_F(DbServiceTest, CreateIterationAndUpdate) {
 
   Json::Value output;
   output["result"] = 42;
-  service_->UpdateIterationStatus(iterat.iteration_id, "completed", output);
+  service_->UpdateIterationStatus(iterat.iteration_id, "succeeded", output);
 
   auto iters=service_->ListIterations(exp.experiment_id,1);
   ASSERT_TRUE(std::find(iters.begin(),
@@ -194,9 +194,16 @@ TEST_F(DbServiceTest, DeleteNode) {
 
 
 TEST_F(DbServiceTest, LogMessage) {
-  auto node_id = service_->RegisterNode("192.168.1.3", shared::BenchResVec{300, 600});
-  service_->Log(node_id, "info", "Test Log message");
-  //todo Full log verification requires querying the Log table, omitted for brevity
+  db_common::Log lg;
+  lg.message="Test Log message";
+  lg.severity=print_utils::Severity::info;
+
+  service_->Log(lg);
+
+  auto logs=service_->ListLogs(1);
+  //todo for some reason during == call all fields are empty(rhs)
+  ASSERT_TRUE(std::find(logs.begin(),
+                        logs.end(), lg) != logs.end());
 }
 
 }

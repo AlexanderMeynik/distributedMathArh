@@ -42,18 +42,20 @@ const auto kUserRoleToStr=
 
 
 enum class ExperimentStatus {
-  PENDING,///< waiting to be executed
+  CREATED,///< created by user
+  QUEUED,///< waiting to be executed
   RUNNING, ///< currently executing
-  COMPLETED, ///< all iteration were computed
+  SUCCEEDED, ///< all iteration were computed
   ERROR, ///< error occurred during execution
   ARHIVED ///< experiment data is unloaded
 };
 
 static const std::vector<EnumMapping<ExperimentStatus>> kExpStatusMappings = {
-    {ExperimentStatus::PENDING, "pending"},
+    {ExperimentStatus::CREATED, "created"},
+    {ExperimentStatus::QUEUED, "queued"},
     {ExperimentStatus::RUNNING, "running"},
-    {ExperimentStatus::COMPLETED, "completed"},
-    {ExperimentStatus::ERROR, "failed"},
+    {ExperimentStatus::SUCCEEDED, "succeeded"},
+    {ExperimentStatus::ERROR, "error"},
     {ExperimentStatus::ARHIVED, "archived"},
 };
 static const auto kStrToExpStatus =
@@ -63,15 +65,17 @@ const auto kExpStatusToStr=
 
 
 enum class IterationStatus {
-  PENDING,///< waiting to be executed
-  COMPLETED, ///< all iteration were computed
+  QUEUED,///< waiting to be executed
+  RUNNING,///< currently executing
+  SUCCEEDED, ///< all iteration were computed
   ERROR, ///< error occurred during execution
 };
 
 static const std::vector<EnumMapping<IterationStatus>> kIterStatusMappings = {
-    {IterationStatus::PENDING, "pending"},
-    {IterationStatus::COMPLETED, "completed"},
-    {IterationStatus::ERROR, "failed"},
+    {IterationStatus::QUEUED, "queued"},
+    {IterationStatus::RUNNING, "running"},
+    {IterationStatus::SUCCEEDED, "succeeded"},
+    {IterationStatus::ERROR, "error"},
 };
 static const auto kStrToIterStatus =
     createStrToEnumMap(kIterStatusMappings);
@@ -177,6 +181,22 @@ struct Node {
   Node() = default;
   Node(pqxx::row &row);
   bool operator==(const Node &rhs) const;
+};
+
+/**
+ * @brief Log DAO
+ */
+struct Log {
+  IndexType log_id;
+  std::optional<IndexType> node_id;
+  std::optional<IndexType> experiment_id;
+  shared::Severity severity;
+  std::string message;
+  TimepointType timestamp;
+
+  Log() = default;
+  Log(pqxx::row &row);
+  bool operator==(const Log &rhs) const;
 };
 
 

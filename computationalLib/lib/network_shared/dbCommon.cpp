@@ -252,4 +252,23 @@ Node::Node(pqxx::row &row) {
                    *StrToTimepoint(row["last_ping"].as<std::string>())
                } : std::nullopt;
 }
+template<typename T>
+std::optional<T> getOpt(pqxx::field&&a)
+{
+  return (a.is_null())?std::nullopt:std::optional<T>{a.as<T>()};
+}
+Log::Log(pqxx::row &row) {
+  log_id=row["log_id"].as<IndexType>();
+  node_id=std::move(getOpt<IndexType>(row["node_id"]));
+  experiment_id=std::move(getOpt<IndexType>(row["experiment_id"]));
+
+  auto sev=row["severity"].as<std::string>();
+  severity = shared::Severity::info;//todo redo
+  message=row["message"].as<std::string>();
+
+  timestamp=*StrToTimepoint(row["timestamp"].as<std::string>());
+}
+bool Log::operator==(const Log &rhs) const {
+  return log_id==rhs.log_id;
+}
 }

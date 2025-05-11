@@ -159,7 +159,18 @@ class DbService {
    * @param severity
    * @param message
    */
-  void Log(IndexType node_id, std::string_view severity, std::string_view message);
+  void Log(std::optional<IndexType> experiment_id,
+           std::optional<IndexType> node_id,
+           std::string_view severity,
+           std::string_view message);
+  void Log(const db_common::Log&log);
+
+
+  std::vector<db_common::Log> ListLogs(IndexType page_num,
+                                       IndexType page_size = 50);
+
+
+
   [[nodiscard]] const myConnString &GetConnStr() const;
   void SetConnStr(const myConnString &conn_str);
 
@@ -176,7 +187,11 @@ class DbService {
 
   ConnPtr conn_;
 
-  void InnerLog(TransactionT &txn, IndexType node_id, std::string_view severity, std::string_view message);
+  void InnerLog(TransactionT &txn,
+                std::optional<IndexType> experiment_id,
+                std::optional<IndexType> node_id,
+                std::string_view severity,
+                std::string_view message);
 
   static inline const char *service_name = "DbService";
 };
