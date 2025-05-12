@@ -1,6 +1,6 @@
 #pragma once
 
-#define EIGENF(form) kEnumTo.at(static_cast<size_t>(form))
+#define EIGENF(form) kEnumToEigenFormatMap.at(form)
 
 #include <iosfwd>
 #include <limits>
@@ -108,7 +108,7 @@ static const std::vector<EnumDoubleMapping<EigenPrintFormats,EFormat>> kEfEnToEi
     {EigenPrintFormats::VECTOR_DB_FORMAT, kEnumTo[4]},
 };
 
-const auto ks= CreateEnumToTypeMap(kEfEnToEigenFormatMappings);
+const auto kEnumToEigenFormatMap= CreateEnumToTypeMap(kEfEnToEigenFormatMappings);
 
 /**
  * @brief Casts EigenFormat to Eformat

@@ -187,7 +187,7 @@ class DbService {
 
   ConnPtr conn_;
 
-  void InnerLog(TransactionT &txn,
+  IndexType InnerLog(TransactionT &txn,
                 std::optional<IndexType> experiment_id,
                 std::optional<IndexType> node_id,
                 std::string_view severity,

@@ -109,8 +109,9 @@ struct User {
   std::optional<IndexType> last_login;
 
   User() = default;
-  User(pqxx::row &row);
+  User(const pqxx::row &row);
   bool operator==(const User &rhs) const;
+  std::string GetInertValues() const;
 };
 
 /**
@@ -126,7 +127,7 @@ struct Experiment {
   std::optional<TimepointType> end_time;
 
   Experiment() = default;
-  Experiment(pqxx::row &row);
+  Experiment(const pqxx::row &row);
   bool operator==(const Experiment &rhs) const;
 };
 
@@ -144,7 +145,7 @@ struct Iteration {
   std::optional<TimepointType> end_time;
 
   Iteration() = default;
-  Iteration(pqxx::row &row);
+  Iteration(const pqxx::row &row);
   bool operator==(const Iteration &rhs) const;
 };
 
@@ -159,7 +160,7 @@ struct Node {
   std::optional<TimepointType> last_ping;
 
   Node() = default;
-  Node(pqxx::row &row);
+  Node(const pqxx::row &row);
   bool operator==(const Node &rhs) const;
 };
 
@@ -175,7 +176,7 @@ struct Log {
   TimepointType timestamp;
 
   Log() = default;
-  Log(pqxx::row &row);
+  Log(const pqxx::row &row);
   bool operator==(const Log &rhs) const;
 };
 

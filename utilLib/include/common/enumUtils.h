@@ -86,7 +86,8 @@ MapEnumToType<Enum, std::string> CreateEnumToStrMap(const std::vector<EnumMappin
  */
 template<typename Enum,typename From>
 requires std::is_enum_v<Enum>
-Enum inline FromToEnum(const From str, const MapFromTypeToEnum<Enum,From> &map) {
+Enum inline FromToEnum(const From str,
+                       const MapFromTypeToEnum<Enum,From> &map) {
   auto it = map.find(str);
   if (it == map.end()) {
     throw InvalidOption(str);
@@ -104,13 +105,14 @@ Enum inline FromToEnum(const From str, const MapFromTypeToEnum<Enum,From> &map) 
  */
 template<typename Enum,typename To>
 requires std::is_enum_v<Enum>
-To inline EnumToType(Enum value, const std::unordered_map<Enum, To> &map) {
+To inline EnumToType(Enum value,
+                     const std::unordered_map<Enum, To> &map) {
   auto it = map.find(value);
   return it->second;
 }
 
 /**
- * @brief Casstst string to enum
+ * @brief Cast string to enum
  * @tparam Enum
  * @param str
  * @param map
@@ -118,7 +120,8 @@ To inline EnumToType(Enum value, const std::unordered_map<Enum, To> &map) {
  */
 template<typename Enum>
 requires std::is_enum_v<Enum>
-Enum inline StrToEnum(const std::string &str, const std::unordered_map<std::string, Enum> &map) {
+Enum inline StrToEnum(const std::string &str,
+                      const std::unordered_map<std::string, Enum> &map) {
   return FromToEnum(str,map);
 }
 
@@ -131,7 +134,8 @@ Enum inline StrToEnum(const std::string &str, const std::unordered_map<std::stri
  */
 template<typename Enum>
 requires std::is_enum_v<Enum>
-std::string inline EnumToStr(Enum value, const std::unordered_map<Enum, std::string> &map) {
+std::string inline EnumToStr(Enum value,
+                             const std::unordered_map<Enum, std::string> &map) {
   return EnumToType(value,map);
 }
 

@@ -2,6 +2,75 @@
 
 namespace db_common {
 
+
+myConnString::myConnString(std::string_view user,
+                           std::string_view password,
+                           std::string_view host,
+                           std::string_view dbname,
+                           unsigned int port)
+    : user(user), password(password),
+      host(host),
+      dbname(dbname),
+      port(port) {
+  UpdateFormat();
+}
+myConnString::operator std::string_view() {
+  return formatted_string;
+}
+const char *myConnString::CStr() const {
+  return formatted_string.c_str();
+}
+void myConnString::SetPassword(std::string_view new_password) {
+  password = new_password;
+  UpdateFormat();
+}
+void myConnString::SetHost(std::string_view new_host) {
+  host = new_host;
+  UpdateFormat();
+}
+void myConnString::SetPort(unsigned int new_port) {
+  port = new_port;
+  UpdateFormat();
+}
+void myConnString::SetDbname(std::string_view new_dbname) {
+  dbname = new_dbname;
+  UpdateFormat();
+}
+void myConnString::SetUser(std::string_view new_user) {
+  user = std::forward<std::string_view>(new_user);
+  UpdateFormat();
+}
+const std::string &myConnString::GetUser() const {
+  return user;
+}
+const std::string &myConnString::GetPassword() const {
+  return password;
+}
+const std::string &myConnString::GetHost() const {
+  return host;
+}
+const std::string &myConnString::GetDbname() const {
+  return dbname;
+}
+unsigned int myConnString::GetPort() const {
+  return port;
+}
+void myConnString::UpdateFormat() {
+  formatted_string = fmt::format("postgresql://{}:{}@{}:{}/{}",
+                                 user.c_str(), password.c_str(), host.c_str(), port, dbname.c_str());
+}
+std::string myConnString::GetVerboseName() const {
+  return fmt::format("{}:{} db:{}", host, port, dbname);
+}
+bool myConnString::operator==(const myConnString &rhs) const {
+  return user == rhs.user &&
+      password == rhs.password &&
+      host == rhs.host &&
+      dbname == rhs.dbname &&
+      port == rhs.port &&
+      formatted_string == rhs.formatted_string;
+}
+
 bool CheckConnection(const ConnPtr &conn_ptr) {
   return conn_ptr && conn_ptr->is_open();
 }
@@ -36,7 +105,7 @@ ResType TerminateAllDbConnections(NonTransType &no_trans_exec,
 
   return r;
 }
-ConnPtr CreateDatabase(network_types::myConnString c_string, std::string_view db_name) {
+ConnPtr CreateDatabase(myConnString c_string, std::string_view db_name) {
 
   ConnPtr conn;
   c_string.SetDbname(db_name);
@@ -74,7 +143,7 @@ ConnPtr CreateDatabase(network_types::myConnString c_string, std::string_view db
   Disconnect(temp_connection);
   return TryConnect(c_string, "Outer");
 }
-void DropDatabase(network_types::myConnString c_string, std::string_view db_name) {
+void DropDatabase(myConnString c_string, std::string_view db_name) {
   c_string.SetDbname(db_name);
   auto t_string = c_string;
   t_string.SetDbname(SampleTempDb);
@@ -141,7 +210,6 @@ ResType ExecuteTransaction(ConnPtr &ptr,
 ResType ExecuteSubTransaction(TransactionT &txn,
                               const std::function<ResType(Subtransaction &)> &func,
                               std::string_view sub_name) {
-
   ResType res;
   Subtransaction s(txn, sub_name);
   try {
