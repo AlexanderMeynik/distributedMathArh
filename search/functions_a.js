@@ -5,9 +5,10 @@ var searchData=
   ['listexperiments_2',['ListExperiments',['../classdb__service_1_1DbService.html#aca53a3d1a95c8d14b6e9878221eeabef',1,'db_service::DbService']]],
   ['listglobalparams_3',['ListGlobalParams',['../classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2',1,'amqp_common::RabbitMQRestService']]],
   ['listiterations_4',['ListIterations',['../classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7',1,'db_service::DbService']]],
-  ['listnodes_5',['ListNodes',['../classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64',1,'db_service::DbService']]],
-  ['listqueues_6',['ListQueues',['../classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9',1,'amqp_common::RabbitMQRestService']]],
-  ['listusers_7',['ListUsers',['../classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073',1,'amqp_common::RabbitMQRestService']]],
-  ['loadfrommatrix_8',['LoadFromMatrix',['../classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638',1,'dipoles::Dipoles']]],
-  ['log_9',['Log',['../classdb__service_1_1DbService.html#a3f81f6660ebf574038e6310a7e6e6524',1,'db_service::DbService']]]
+  ['listlogs_5',['ListLogs',['../classdb__service_1_1DbService.html#a48a8ee09a064d463d4eb2a6f711ec1d9',1,'db_service::DbService']]],
+  ['listnodes_6',['ListNodes',['../classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64',1,'db_service::DbService']]],
+  ['listqueues_7',['ListQueues',['../classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9',1,'amqp_common::RabbitMQRestService']]],
+  ['listusers_8',['listusers',['../classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073',1,'amqp_common::RabbitMQRestService::ListUsers()'],['../classdb__service_1_1DbService.html#a7e75c54e7cc87a64a84edd283723c34e',1,'db_service::DbService::ListUsers()']]],
+  ['loadfrommatrix_9',['LoadFromMatrix',['../classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638',1,'dipoles::Dipoles']]],
+  ['log_10',['log',['../structdb__common_1_1Log.html#a43abc1a62a334f4d6deaef0bbd3730d2',1,'db_common::Log::Log()=default'],['../structdb__common_1_1Log.html#a9738e6b0c17fe8c28702ebdac49394e5',1,'db_common::Log::Log(const pqxx::row &amp;row)'],['../classdb__service_1_1DbService.html#ac860534db4dc24ded12dd13527513090',1,'db_service::DbService::Log(std::optional&lt; IndexType &gt; experiment_id, std::optional&lt; IndexType &gt; node_id, std::string_view severity, std::string_view message)'],['../classdb__service_1_1DbService.html#a6afe58635847c8836725ff9c0bcf362d',1,'db_service::DbService::Log(const db_common::Log &amp;log)']]]
 ];

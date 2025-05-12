@@ -11,5 +11,5 @@ var searchData=
   ['isconnected_8',['isconnected',['../classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a',1,'amqp_common::MyHandler::IsConnected()'],['../classdb__service_1_1DbService.html#a434be32fce31b5083a418e2b11235b19',1,'db_service::DbService::IsConnected()'],['../classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45',1,'amqp_common::AMQPService::IsConnected()']]],
   ['isonlywhitespace_9',['isOnlyWhitespace',['../namespaceprint__utils.html#a0f7e17209f3cac063146717d49b144c7',1,'print_utils']]],
   ['issymmetric_10',['IsSymmetric',['../namespacedipoles.html#a35779c3321db483a61f208c4b122f78c',1,'dipoles']]],
-  ['iteration_11',['iteration',['../structdb__common_1_1Iteration.html#a882b2527891b6e3e6b9d4a0ae157f2fa',1,'db_common::Iteration::Iteration()=default'],['../structdb__common_1_1Iteration.html#a1ec5bbacab23a8ebfc316f1ecd9f60fe',1,'db_common::Iteration::Iteration(pqxx::row &amp;row)']]]
+  ['iteration_11',['iteration',['../structdb__common_1_1Iteration.html#a882b2527891b6e3e6b9d4a0ae157f2fa',1,'db_common::Iteration::Iteration()=default'],['../structdb__common_1_1Iteration.html#a53998f51dcd0b1fa13317dfc257eb970',1,'db_common::Iteration::Iteration(const pqxx::row &amp;row)']]]
 ];

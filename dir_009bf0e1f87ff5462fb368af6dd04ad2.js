@@ -4,6 +4,7 @@ var dir_009bf0e1f87ff5462fb368af6dd04ad2 =
     [ "AMQPConsumerService.cpp", "AMQPConsumerService_8cpp.html", null ],
     [ "AMQPPublisherService.cpp", "AMQPPublisherService_8cpp.html", null ],
     [ "amqpRestService.cpp", "amqpRestService_8cpp.html", null ],
+    [ "daoClasses.cpp", "daoClasses_8cpp.html", null ],
     [ "dbCommon.cpp", "dbCommon_8cpp.html", "dbCommon_8cpp" ],
     [ "DbService.cpp", "DbService_8cpp.html", null ],
     [ "networkTypes.cpp", "networkTypes_8cpp.html", "networkTypes_8cpp" ],

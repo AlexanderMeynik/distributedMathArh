@@ -1,0 +1,11 @@
+<map id="db_service::DbService::Log" name="db_service::DbService::Log">
+<area shape="rect" id="Node000001" title="Logs with specified message." alt="" coords="5,59,203,84"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546" title="Executes function in the form of transaction." alt="" coords="251,59,485,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,69,237,69,237,74,203,74"/>
+<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="325,60,316,50,321,40,339,34,368,32,406,36,416,41,420,47,415,50,413,45,404,41,368,37,340,39,324,44,321,50,329,57"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="533,29,756,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="485,56,519,53,520,58,486,62"/>
+<area shape="rect" id="Node000004" href="$structdb__common_1_1myConnString.html#a44e994b2505b06d88edebfaa37a416a4" title=" " alt="" coords="543,79,746,119"/>
+<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="486,81,530,85,529,90,485,86"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="600,31,591,21,596,11,614,5,645,3,684,7,695,12,698,18,694,20,691,16,683,12,645,8,615,10,599,15,596,20,604,27"/>
+</map>

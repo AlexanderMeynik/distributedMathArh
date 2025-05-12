@@ -47,5 +47,6 @@ var namespaceprint__utils =
     [ "PrintSolutionFormat1", "namespaceprint__utils.html#a6fe732efc4e70906cb78bdd1d65f9b38", null ],
     [ "SerializeException", "namespaceprint__utils.html#ae25dccefb25eb98a6f464a2ac7a091e5", null ],
     [ "ToJson", "namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a", null ],
-    [ "TupleToString", "namespaceprint__utils.html#ae4a7829e4fa46541e13b8b23db463823", null ]
+    [ "TupleToString", "namespaceprint__utils.html#ae4a7829e4fa46541e13b8b23db463823", null ],
+    [ "kEnumToEigenFormatMap", "namespaceprint__utils.html#a9910067bb1b8337b0bcc0bd062942281", null ]
 ];

@@ -1,7 +1,0 @@
-<map id="db_common::Iteration::Iteration" name="db_common::Iteration::Iteration">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,171,63"/>
-<area shape="rect" id="Node000002" href="$namespaceenum__utils.html#a587b27069da86c333d185d8e493fce46" title="P." alt="" coords="219,5,389,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="171,31,205,27,206,32,172,36"/>
-<area shape="rect" id="Node000003" href="$namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07" title="Retrives TimepointType from a given string." alt="" coords="219,55,389,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="172,50,206,54,205,59,171,55"/>
-</map>

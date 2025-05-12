@@ -26,5 +26,6 @@ var errorHandling_8h =
       [ "warning", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1a7b83d3f08fa392b79e3f553b585971cd", null ],
       [ "error", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282", null ],
       [ "fatal", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1adf6402fd9ecc60f5a2159fdf45711cd4", null ]
-    ] ]
+    ] ],
+    [ "kStrToSev", "errorHandling_8h.html#af570bd9365898d829147c73ee171e266", null ]
 ];

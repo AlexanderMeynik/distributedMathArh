@@ -6,5 +6,5 @@ var searchData=
   ['updateexperimentstatus_3',['UpdateExperimentStatus',['../classdb__service_1_1DbService.html#a442450409b3a8845144b97fd8b46ce27',1,'db_service::DbService']]],
   ['updateiterationstatus_4',['UpdateIterationStatus',['../classdb__service_1_1DbService.html#af5f9fd1b6ec9dbdef174f18832179a6f',1,'db_service::DbService']]],
   ['updatenodestatus_5',['UpdateNodeStatus',['../classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4',1,'db_service::DbService']]],
-  ['user_6',['user',['../structdb__common_1_1User.html#a80bc6a7e44240248586c74c9d2cb514d',1,'db_common::User::User()=default'],['../structdb__common_1_1User.html#a351d9d19512cd4d475e36468727751a2',1,'db_common::User::User(pqxx::row &amp;row)']]]
+  ['user_6',['user',['../structdb__common_1_1User.html#a80bc6a7e44240248586c74c9d2cb514d',1,'db_common::User::User()=default'],['../structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4',1,'db_common::User::User(const pqxx::row &amp;row)']]]
 ];

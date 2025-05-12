@@ -100,55 +100,79 @@ $(document).ready(function(){initNavTree('namespaceenum__utils.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:structenum__utils_1_1EnumMapping" id="r_structenum__utils_1_1EnumMapping"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumMapping">EnumMapping</a></td></tr>
-<tr class="memdesc:structenum__utils_1_1EnumMapping"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to store enum mapping.  <a href="namespaceenum__utils.html#structenum__utils_1_1EnumMapping">More...</a><br /></td></tr>
-<tr class="separator:structenum__utils_1_1EnumMapping"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:structenum__utils_1_1EnumDoubleMapping" id="r_structenum__utils_1_1EnumDoubleMapping"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">EnumDoubleMapping</a></td></tr>
+<tr class="memdesc:structenum__utils_1_1EnumDoubleMapping"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to store enum mapping to some other class.  <a href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">More...</a><br /></td></tr>
+<tr class="separator:structenum__utils_1_1EnumDoubleMapping"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a10c000ea6c1ea9145d6b6f5dfb42e8a4" id="r_a10c000ea6c1ea9145d6b6f5dfb42e8a4"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; </td></tr>
-<tr class="memitem:a10c000ea6c1ea9145d6b6f5dfb42e8a4"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a10c000ea6c1ea9145d6b6f5dfb42e8a4">MapStrToEnum</a> = std::unordered_map&lt; std::string, Enum &gt;</td></tr>
-<tr class="separator:a10c000ea6c1ea9145d6b6f5dfb42e8a4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a614919e5fb460ef7ff8ca8a9026674bd" id="r_a614919e5fb460ef7ff8ca8a9026674bd"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; </td></tr>
-<tr class="memitem:a614919e5fb460ef7ff8ca8a9026674bd"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a614919e5fb460ef7ff8ca8a9026674bd">MapEnumToStr</a> = std::unordered_map&lt; Enum, std::string &gt;</td></tr>
-<tr class="separator:a614919e5fb460ef7ff8ca8a9026674bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af12382e7a085f43fd7e5df140a8d485c" id="r_af12382e7a085f43fd7e5df140a8d485c"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; </td></tr>
+<tr class="memitem:af12382e7a085f43fd7e5df140a8d485c"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a> = <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">EnumDoubleMapping</a>&lt; Enum, std::string &gt;</td></tr>
+<tr class="memdesc:af12382e7a085f43fd7e5df140a8d485c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Structure to store enum mapping.  <br /></td></tr>
+<tr class="separator:af12382e7a085f43fd7e5df140a8d485c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0bd46e591e6d1d1a1e5693ca0154b18" id="r_ae0bd46e591e6d1d1a1e5693ca0154b18"><td class="memTemplParams" colspan="2">template&lt;typename Enum , typename From &gt; </td></tr>
+<tr class="memitem:ae0bd46e591e6d1d1a1e5693ca0154b18"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum</a> = std::unordered_map&lt; From, Enum &gt;</td></tr>
+<tr class="separator:ae0bd46e591e6d1d1a1e5693ca0154b18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a7af7c19dd8fe7975a84fd402fccf4a" id="r_a9a7af7c19dd8fe7975a84fd402fccf4a"><td class="memTemplParams" colspan="2">template&lt;typename Enum , typename To &gt; </td></tr>
+<tr class="memitem:a9a7af7c19dd8fe7975a84fd402fccf4a"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">MapEnumToType</a> = std::unordered_map&lt; Enum, To &gt;</td></tr>
+<tr class="separator:a9a7af7c19dd8fe7975a84fd402fccf4a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a12ceec92484e261f6b833a2056cf384b" id="r_a12ceec92484e261f6b833a2056cf384b"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
+<tr class="memitem:a5d4fbf567321a95b8073ca17dfa65684" id="r_a5d4fbf567321a95b8073ca17dfa65684"><td class="memTemplParams" colspan="2">template&lt;typename Enum , typename From &gt; <br />
 requires std::is_enum_v&lt;Enum&gt;</td></tr>
-<tr class="memitem:a12ceec92484e261f6b833a2056cf384b"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceenum__utils.html#a10c000ea6c1ea9145d6b6f5dfb42e8a4">MapStrToEnum</a>&lt; Enum &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a12ceec92484e261f6b833a2056cf384b">createStrToEnumMap</a> (const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumMapping">EnumMapping</a>&lt; Enum &gt; &gt; &amp;mappings)</td></tr>
-<tr class="memdesc:a12ceec92484e261f6b833a2056cf384b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate map from Str to enum value.  <br /></td></tr>
-<tr class="separator:a12ceec92484e261f6b833a2056cf384b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae34e7db70aba86978e61a40f6835338f" id="r_ae34e7db70aba86978e61a40f6835338f"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
+<tr class="memitem:a5d4fbf567321a95b8073ca17dfa65684"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum</a>&lt; Enum, From &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a5d4fbf567321a95b8073ca17dfa65684">CreateFromTypeToEnumMap</a> (const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">EnumDoubleMapping</a>&lt; Enum, From &gt; &gt; &amp;mappings)</td></tr>
+<tr class="separator:a5d4fbf567321a95b8073ca17dfa65684"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace0938be66f4dafd66ac1a6e0610e023" id="r_ace0938be66f4dafd66ac1a6e0610e023"><td class="memTemplParams" colspan="2">template&lt;typename Enum , typename To &gt; <br />
 requires std::is_enum_v&lt;Enum&gt;</td></tr>
-<tr class="memitem:ae34e7db70aba86978e61a40f6835338f"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceenum__utils.html#a614919e5fb460ef7ff8ca8a9026674bd">MapEnumToStr</a>&lt; Enum &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#ae34e7db70aba86978e61a40f6835338f">createEnumToStrMap</a> (const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumMapping">EnumMapping</a>&lt; Enum &gt; &gt; &amp;mappings)</td></tr>
-<tr class="separator:ae34e7db70aba86978e61a40f6835338f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a587b27069da86c333d185d8e493fce46" id="r_a587b27069da86c333d185d8e493fce46"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
+<tr class="memitem:ace0938be66f4dafd66ac1a6e0610e023"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">MapEnumToType</a>&lt; Enum, To &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023">CreateEnumToTypeMap</a> (const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">EnumDoubleMapping</a>&lt; Enum, To &gt; &gt; &amp;mappings)</td></tr>
+<tr class="memdesc:ace0938be66f4dafd66ac1a6e0610e023"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate map from Enum to To type map.  <br /></td></tr>
+<tr class="separator:ace0938be66f4dafd66ac1a6e0610e023"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:accf3de571bd15912191c8f71e9b5e9db" id="r_accf3de571bd15912191c8f71e9b5e9db"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
 requires std::is_enum_v&lt;Enum&gt;</td></tr>
-<tr class="memitem:a587b27069da86c333d185d8e493fce46"><td class="memTemplItemLeft" align="right" valign="top">Enum&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a587b27069da86c333d185d8e493fce46">strToEnum</a> (const std::string &amp;str, const std::unordered_map&lt; std::string, Enum &gt; &amp;map)</td></tr>
-<tr class="memdesc:a587b27069da86c333d185d8e493fce46"><td class="mdescLeft">&#160;</td><td class="mdescRight">P.  <br /></td></tr>
-<tr class="separator:a587b27069da86c333d185d8e493fce46"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aab4e55a8ed61aa755116d67e124acd4d" id="r_aab4e55a8ed61aa755116d67e124acd4d"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
+<tr class="memitem:accf3de571bd15912191c8f71e9b5e9db"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum</a>&lt; Enum, std::string &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#accf3de571bd15912191c8f71e9b5e9db">CreateStrToEnumMap</a> (const std::vector&lt; <a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a>&lt; Enum &gt; &gt; &amp;mappings)</td></tr>
+<tr class="memdesc:accf3de571bd15912191c8f71e9b5e9db"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generate map from Str to enum value.  <br /></td></tr>
+<tr class="separator:accf3de571bd15912191c8f71e9b5e9db"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add13783fa2441e8f2a665a6304c56996" id="r_add13783fa2441e8f2a665a6304c56996"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
 requires std::is_enum_v&lt;Enum&gt;</td></tr>
-<tr class="memitem:aab4e55a8ed61aa755116d67e124acd4d"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#aab4e55a8ed61aa755116d67e124acd4d">enumToStr</a> (Enum value, const std::unordered_map&lt; Enum, std::string &gt; &amp;map)</td></tr>
-<tr class="separator:aab4e55a8ed61aa755116d67e124acd4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add13783fa2441e8f2a665a6304c56996"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">MapEnumToType</a>&lt; Enum, std::string &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#add13783fa2441e8f2a665a6304c56996">CreateEnumToStrMap</a> (const std::vector&lt; <a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a>&lt; Enum &gt; &gt; &amp;mappings)</td></tr>
+<tr class="separator:add13783fa2441e8f2a665a6304c56996"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac38e21f8f9955c8a8fa96b34df32db2c" id="r_ac38e21f8f9955c8a8fa96b34df32db2c"><td class="memTemplParams" colspan="2">template&lt;typename Enum , typename From &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</td></tr>
+<tr class="memitem:ac38e21f8f9955c8a8fa96b34df32db2c"><td class="memTemplItemLeft" align="right" valign="top">Enum&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c">FromToEnum</a> (const From str, const <a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum</a>&lt; Enum, From &gt; &amp;map)</td></tr>
+<tr class="memdesc:ac38e21f8f9955c8a8fa96b34df32db2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts From type value to enum.  <br /></td></tr>
+<tr class="separator:ac38e21f8f9955c8a8fa96b34df32db2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a895b87a59a61b4f0f015cfd970d95003" id="r_a895b87a59a61b4f0f015cfd970d95003"><td class="memTemplParams" colspan="2">template&lt;typename Enum , typename To &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</td></tr>
+<tr class="memitem:a895b87a59a61b4f0f015cfd970d95003"><td class="memTemplItemLeft" align="right" valign="top">To&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003">EnumToType</a> (Enum value, const std::unordered_map&lt; Enum, To &gt; &amp;map)</td></tr>
+<tr class="memdesc:a895b87a59a61b4f0f015cfd970d95003"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts Enum Value To typed value.  <br /></td></tr>
+<tr class="separator:a895b87a59a61b4f0f015cfd970d95003"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ad2288929e574d72d18771f391b1601" id="r_a2ad2288929e574d72d18771f391b1601"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</td></tr>
+<tr class="memitem:a2ad2288929e574d72d18771f391b1601"><td class="memTemplItemLeft" align="right" valign="top">Enum&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">StrToEnum</a> (const std::string &amp;str, const std::unordered_map&lt; std::string, Enum &gt; &amp;map)</td></tr>
+<tr class="memdesc:a2ad2288929e574d72d18771f391b1601"><td class="mdescLeft">&#160;</td><td class="mdescRight">Cast string to enum.  <br /></td></tr>
+<tr class="separator:a2ad2288929e574d72d18771f391b1601"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaa5e0029061787c474cb2df9b10db88" id="r_acaa5e0029061787c474cb2df9b10db88"><td class="memTemplParams" colspan="2">template&lt;typename Enum &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</td></tr>
+<tr class="memitem:acaa5e0029061787c474cb2df9b10db88"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88">EnumToStr</a> (Enum value, const std::unordered_map&lt; Enum, std::string &gt; &amp;map)</td></tr>
+<tr class="memdesc:acaa5e0029061787c474cb2df9b10db88"><td class="mdescLeft">&#160;</td><td class="mdescRight">Casts enum value to string.  <br /></td></tr>
+<tr class="separator:acaa5e0029061787c474cb2df9b10db88"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <hr/><h2 class="groupheader">Class Documentation</h2>
-<a name="structenum__utils_1_1EnumMapping" id="structenum__utils_1_1EnumMapping"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#structenum__utils_1_1EnumMapping">&#9670;&#160;</a></span>enum_utils::EnumMapping</h2>
+<a name="structenum__utils_1_1EnumDoubleMapping" id="structenum__utils_1_1EnumDoubleMapping"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#structenum__utils_1_1EnumDoubleMapping">&#9670;&#160;</a></span>enum_utils::EnumDoubleMapping</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct enum_utils::EnumMapping</td>
+          <td class="memname">struct enum_utils::EnumDoubleMapping</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="textblock"><div class="compoundTemplParams">template&lt;typename Enum&gt;<br />
+<div class="textblock"><div class="compoundTemplParams">template&lt;typename Enum, typename To&gt;<br />
 requires std::is_enum_v&lt;Enum&gt;<br />
-struct enum_utils::EnumMapping&lt; Enum &gt;</div><p>Structure to store enum mapping. </p>
+struct enum_utils::EnumDoubleMapping&lt; Enum, To &gt;</div><p>Structure to store enum mapping to some other class. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Enum</td><td></td></tr>
@@ -158,13 +182,13 @@ struct enum_utils::EnumMapping&lt; Enum &gt;</div><p>Structure to store enum map
 </div><table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
-<a id="a779f838ff00afb34446d1902172c7779" name="a779f838ff00afb34446d1902172c7779"></a>string</td>
+<a id="ab35c203cab525aed5ccb800c9c664f5f" name="ab35c203cab525aed5ccb800c9c664f5f"></a>To</td>
 <td class="fieldname">
-str</td>
+to</td>
 <td class="fielddoc">
 </td></tr>
 <tr><td class="fieldtype">
-<a id="a2cbae37c4db2f0c98d6e54bdd23e067a" name="a2cbae37c4db2f0c98d6e54bdd23e067a"></a>Enum</td>
+<a id="a2811f7c550fdae9a27f8715eb5a7c11b" name="a2811f7c550fdae9a27f8715eb5a7c11b"></a>Enum</td>
 <td class="fieldname">
 value</td>
 <td class="fielddoc">
@@ -174,8 +198,8 @@ value</td>
 </div>
 </div>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a614919e5fb460ef7ff8ca8a9026674bd" name="a614919e5fb460ef7ff8ca8a9026674bd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a614919e5fb460ef7ff8ca8a9026674bd">&#9670;&#160;</a></span>MapEnumToStr</h2>
+<a id="af12382e7a085f43fd7e5df140a8d485c" name="af12382e7a085f43fd7e5df140a8d485c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af12382e7a085f43fd7e5df140a8d485c">&#9670;&#160;</a></span>EnumMapping</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,23 +207,47 @@ value</td>
 template&lt;typename Enum &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceenum__utils.html#a614919e5fb460ef7ff8ca8a9026674bd">enum_utils::MapEnumToStr</a> = typedef std::unordered_map&lt;Enum, std::string&gt;</td>
+          <td class="memname">using <a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">enum_utils::EnumMapping</a> = typedef <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">EnumDoubleMapping</a>&lt;Enum,std::string&gt;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Structure to store enum mapping. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Enum</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a7af7c19dd8fe7975a84fd402fccf4a" name="a9a7af7c19dd8fe7975a84fd402fccf4a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a7af7c19dd8fe7975a84fd402fccf4a">&#9670;&#160;</a></span>MapEnumToType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Enum , typename To &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">enum_utils::MapEnumToType</a> = typedef std::unordered_map&lt;Enum, To&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a id="a10c000ea6c1ea9145d6b6f5dfb42e8a4" name="a10c000ea6c1ea9145d6b6f5dfb42e8a4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a10c000ea6c1ea9145d6b6f5dfb42e8a4">&#9670;&#160;</a></span>MapStrToEnum</h2>
+<a id="ae0bd46e591e6d1d1a1e5693ca0154b18" name="ae0bd46e591e6d1d1a1e5693ca0154b18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0bd46e591e6d1d1a1e5693ca0154b18">&#9670;&#160;</a></span>MapFromTypeToEnum</h2>
 
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename Enum &gt; </div>
+template&lt;typename Enum , typename From &gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespaceenum__utils.html#a10c000ea6c1ea9145d6b6f5dfb42e8a4">enum_utils::MapStrToEnum</a> = typedef std::unordered_map&lt;std::string, Enum&gt;</td>
+          <td class="memname">using <a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">enum_utils::MapFromTypeToEnum</a> = typedef std::unordered_map&lt;From, Enum&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -207,8 +255,8 @@ template&lt;typename Enum &gt; </div>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ae34e7db70aba86978e61a40f6835338f" name="ae34e7db70aba86978e61a40f6835338f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae34e7db70aba86978e61a40f6835338f">&#9670;&#160;</a></span>createEnumToStrMap()</h2>
+<a id="add13783fa2441e8f2a665a6304c56996" name="add13783fa2441e8f2a665a6304c56996"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add13783fa2441e8f2a665a6304c56996">&#9670;&#160;</a></span>CreateEnumToStrMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -217,9 +265,9 @@ template&lt;typename Enum &gt; <br />
 requires std::is_enum_v&lt;Enum&gt;</div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceenum__utils.html#a614919e5fb460ef7ff8ca8a9026674bd">MapEnumToStr</a>&lt; Enum &gt; enum_utils::createEnumToStrMap </td>
+          <td class="memname"><a class="el" href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">MapEnumToType</a>&lt; Enum, std::string &gt; enum_utils::CreateEnumToStrMap </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumMapping">EnumMapping</a>&lt; Enum &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a>&lt; Enum &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>mappings</em></td><td>)</td>
           <td></td>
         </tr>
@@ -238,11 +286,117 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph.png" border="0" usemap="#anamespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph" alt=""/></div>
+<map name="anamespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph" id="anamespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,201,45"/>
+<area shape="rect" href="namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023" title="Generate map from Enum to To type map." alt="" coords="249,5,445,45"/>
+<area shape="poly" title=" " alt="" coords="201,23,236,23,236,28,201,28"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="a12ceec92484e261f6b833a2056cf384b" name="a12ceec92484e261f6b833a2056cf384b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a12ceec92484e261f6b833a2056cf384b">&#9670;&#160;</a></span>createStrToEnumMap()</h2>
+<a id="ace0938be66f4dafd66ac1a6e0610e023" name="ace0938be66f4dafd66ac1a6e0610e023"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace0938be66f4dafd66ac1a6e0610e023">&#9670;&#160;</a></span>CreateEnumToTypeMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Enum , typename To &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">MapEnumToType</a>&lt; Enum, To &gt; enum_utils::CreateEnumToTypeMap </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">EnumDoubleMapping</a>&lt; Enum, To &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mappings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Generate map from Enum to To type map. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Enum</td><td></td></tr>
+    <tr><td class="paramname">To</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mappings</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph.png" border="0" usemap="#anamespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph" alt=""/></div>
+<map name="anamespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph" id="anamespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph">
+<area shape="rect" title="Generate map from Enum to To type map." alt="" coords="249,5,445,45"/>
+<area shape="rect" href="namespaceenum__utils.html#add13783fa2441e8f2a665a6304c56996" title=" " alt="" coords="5,5,201,45"/>
+<area shape="poly" title=" " alt="" coords="236,28,201,28,201,23,236,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a5d4fbf567321a95b8073ca17dfa65684" name="a5d4fbf567321a95b8073ca17dfa65684"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d4fbf567321a95b8073ca17dfa65684">&#9670;&#160;</a></span>CreateFromTypeToEnumMap()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Enum , typename From &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum</a>&lt; Enum, From &gt; enum_utils::CreateFromTypeToEnumMap </td>
+          <td>(</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping">EnumDoubleMapping</a>&lt; Enum, From &gt; &gt; &amp;&#160;</td>
+          <td class="paramname"><em>mappings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Generate map from From to Enum </p><dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Enum</td><td></td></tr>
+    <tr><td class="paramname">From</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mappings</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph.png" border="0" usemap="#anamespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph" alt=""/></div>
+<map name="anamespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph" id="anamespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph">
+<area shape="rect" title=" " alt="" coords="296,5,504,45"/>
+<area shape="rect" href="namespaceenum__utils.html#accf3de571bd15912191c8f71e9b5e9db" title="Generate map from Str to enum value." alt="" coords="5,13,248,38"/>
+<area shape="poly" title=" " alt="" coords="282,28,248,28,248,23,282,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="accf3de571bd15912191c8f71e9b5e9db" name="accf3de571bd15912191c8f71e9b5e9db"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#accf3de571bd15912191c8f71e9b5e9db">&#9670;&#160;</a></span>CreateStrToEnumMap()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -251,9 +405,9 @@ template&lt;typename Enum &gt; <br />
 requires std::is_enum_v&lt;Enum&gt;</div>
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespaceenum__utils.html#a10c000ea6c1ea9145d6b6f5dfb42e8a4">MapStrToEnum</a>&lt; Enum &gt; enum_utils::createStrToEnumMap </td>
+          <td class="memname"><a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum</a>&lt; Enum, std::string &gt; enum_utils::CreateStrToEnumMap </td>
           <td>(</td>
-          <td class="paramtype">const std::vector&lt; <a class="el" href="namespaceenum__utils.html#structenum__utils_1_1EnumMapping">EnumMapping</a>&lt; Enum &gt; &gt; &amp;&#160;</td>
+          <td class="paramtype">const std::vector&lt; <a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a>&lt; Enum &gt; &gt; &amp;&#160;</td>
           <td class="paramname"><em>mappings</em></td><td>)</td>
           <td></td>
         </tr>
@@ -273,11 +427,23 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </table>
   </dd>
 </dl>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph.png" border="0" usemap="#anamespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph" alt=""/></div>
+<map name="anamespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph" id="anamespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph">
+<area shape="rect" title="Generate map from Str to enum value." alt="" coords="5,13,248,38"/>
+<area shape="rect" href="namespaceenum__utils.html#a5d4fbf567321a95b8073ca17dfa65684" title=" " alt="" coords="296,5,504,45"/>
+<area shape="poly" title=" " alt="" coords="248,23,282,23,282,28,248,28"/>
+</map>
+</div>
 
 </div>
 </div>
-<a id="aab4e55a8ed61aa755116d67e124acd4d" name="aab4e55a8ed61aa755116d67e124acd4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aab4e55a8ed61aa755116d67e124acd4d">&#9670;&#160;</a></span>enumToStr()</h2>
+<a id="acaa5e0029061787c474cb2df9b10db88" name="acaa5e0029061787c474cb2df9b10db88"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaa5e0029061787c474cb2df9b10db88">&#9670;&#160;</a></span>EnumToStr()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -289,7 +455,7 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string enum_utils::enumToStr </td>
+          <td class="memname">std::string enum_utils::EnumToStr </td>
           <td>(</td>
           <td class="paramtype">Enum&#160;</td>
           <td class="paramname"><em>value</em>, </td>
@@ -312,14 +478,42 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </tr>
 </table>
 </div><div class="memdoc">
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+
+<p>Casts enum value to string. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Enum</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespaceenum__utils_aab4e55a8ed61aa755116d67e124acd4d_icgraph.png" border="0" usemap="#anamespaceenum__utils_aab4e55a8ed61aa755116d67e124acd4d_icgraph" alt=""/></div>
-<map name="anamespaceenum__utils_aab4e55a8ed61aa755116d67e124acd4d_icgraph" id="anamespaceenum__utils_aab4e55a8ed61aa755116d67e124acd4d_icgraph">
-<area shape="rect" title=" " alt="" coords="225,106,396,131"/>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph.png" border="0" usemap="#anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph" alt=""/></div>
+<map name="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph" id="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph">
+<area shape="rect" title="Casts enum value to string." alt="" coords="5,5,176,31"/>
+<area shape="rect" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003" title="Casts Enum Value To typed value." alt="" coords="224,5,407,31"/>
+<area shape="poly" title=" " alt="" coords="177,15,210,15,210,21,177,21"/>
+</map>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph.png" border="0" usemap="#anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph" alt=""/></div>
+<map name="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph" id="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph">
+<area shape="rect" title="Casts enum value to string." alt="" coords="225,106,396,131"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#a386d3dcf5dc868d48dc07ab785bc1169" title=" " alt="" coords="8,5,175,45"/>
 <area shape="poly" title=" " alt="" coords="270,102,176,60,147,48,149,43,178,55,272,98"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda" title=" " alt="" coords="8,69,175,109"/>
@@ -333,8 +527,162 @@ requires std::is_enum_v&lt;Enum&gt;</div>
 
 </div>
 </div>
-<a id="a587b27069da86c333d185d8e493fce46" name="a587b27069da86c333d185d8e493fce46"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a587b27069da86c333d185d8e493fce46">&#9670;&#160;</a></span>strToEnum()</h2>
+<a id="a895b87a59a61b4f0f015cfd970d95003" name="a895b87a59a61b4f0f015cfd970d95003"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a895b87a59a61b4f0f015cfd970d95003">&#9670;&#160;</a></span>EnumToType()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Enum , typename To &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">To enum_utils::EnumToType </td>
+          <td>(</td>
+          <td class="paramtype">Enum&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::unordered_map&lt; Enum, To &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Casts Enum Value To typed value. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Enum</td><td></td></tr>
+    <tr><td class="paramname">To</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td></td></tr>
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>To value </dd></dl>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph.png" border="0" usemap="#anamespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph" alt=""/></div>
+<map name="anamespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph" id="anamespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph">
+<area shape="rect" title="Casts Enum Value To typed value." alt="" coords="444,106,627,131"/>
+<area shape="rect" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88" title="Casts enum value to string." alt="" coords="225,106,396,131"/>
+<area shape="poly" title=" " alt="" coords="430,121,396,121,396,116,430,116"/>
+<area shape="rect" href="classdb__service_1_1DbService.html#a386d3dcf5dc868d48dc07ab785bc1169" title=" " alt="" coords="8,5,175,45"/>
+<area shape="poly" title=" " alt="" coords="270,102,176,60,147,48,149,43,178,55,272,98"/>
+<area shape="rect" href="classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda" title=" " alt="" coords="8,69,175,109"/>
+<area shape="poly" title=" " alt="" coords="211,108,174,103,175,98,212,103"/>
+<area shape="rect" href="namespaceprint__utils.html#a47de332ae8de8ae480deb73bc3ee7a40" title="Printer for ioFormat." alt="" coords="5,134,177,159"/>
+<area shape="poly" title=" " alt="" coords="212,134,178,138,177,133,211,129"/>
+<area shape="rect" href="namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b" title=" " alt="" coords="16,183,167,209"/>
+<area shape="poly" title=" " alt="" coords="267,139,178,173,139,186,137,181,176,168,266,134"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="ac38e21f8f9955c8a8fa96b34df32db2c" name="ac38e21f8f9955c8a8fa96b34df32db2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac38e21f8f9955c8a8fa96b34df32db2c">&#9670;&#160;</a></span>FromToEnum()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename Enum , typename From &gt; <br />
+requires std::is_enum_v&lt;Enum&gt;</div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Enum enum_utils::FromToEnum </td>
+          <td>(</td>
+          <td class="paramtype">const From&#160;</td>
+          <td class="paramname"><em>str</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum</a>&lt; Enum, From &gt; &amp;&#160;</td>
+          <td class="paramname"><em>map</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Casts From type value to enum. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">Enum</td><td></td></tr>
+    <tr><td class="paramname">From</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">str</td><td></td></tr>
+    <tr><td class="paramname">map</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Enum value </dd></dl>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph.png" border="0" usemap="#anamespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph" alt=""/></div>
+<map name="anamespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph" id="anamespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph">
+<area shape="rect" title="Casts From type value to enum." alt="" coords="459,134,645,159"/>
+<area shape="rect" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601" title="Cast string to enum." alt="" coords="240,134,411,159"/>
+<area shape="poly" title=" " alt="" coords="445,149,411,149,411,144,445,144"/>
+<area shape="rect" href="structdb__common_1_1Experiment.html#a6d6df4c0ee1fb35d605e647bad9bc425" title=" " alt="" coords="6,5,191,45"/>
+<area shape="poly" title=" " alt="" coords="296,128,248,94,191,60,164,48,166,43,193,55,251,89,299,123"/>
+<area shape="rect" href="structdb__common_1_1Iteration.html#a53998f51dcd0b1fa13317dfc257eb970" title=" " alt="" coords="16,69,181,109"/>
+<area shape="poly" title=" " alt="" coords="261,133,178,112,179,107,262,128"/>
+<area shape="rect" href="structdb__common_1_1Node.html#a4f0ec1e26c847a9b7a991079b4e2a00b" title=" " alt="" coords="5,134,192,159"/>
+<area shape="poly" title=" " alt="" coords="227,149,192,149,192,144,227,144"/>
+<area shape="rect" href="namespaceprint__utils.html#a6c64e6bf1cdaef9f04f37da4ca8533af" title="Parser for ioFormat." alt="" coords="13,183,185,209"/>
+<area shape="poly" title=" " alt="" coords="254,165,158,186,157,181,252,160"/>
+<area shape="rect" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4" title=" " alt="" coords="9,233,188,258"/>
+<area shape="poly" title=" " alt="" coords="295,169,248,196,193,222,156,235,154,230,191,218,245,191,292,164"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a2ad2288929e574d72d18771f391b1601" name="a2ad2288929e574d72d18771f391b1601"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2ad2288929e574d72d18771f391b1601">&#9670;&#160;</a></span>StrToEnum()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -346,7 +694,7 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Enum enum_utils::strToEnum </td>
+          <td class="memname">Enum enum_utils::StrToEnum </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>str</em>, </td>
@@ -370,7 +718,7 @@ requires std::is_enum_v&lt;Enum&gt;</div>
 </table>
 </div><div class="memdoc">
 
-<p>P. </p>
+<p>Cast string to enum. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Enum</td><td></td></tr>
@@ -384,24 +732,36 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+<dl class="section return"><dt>Returns</dt><dd>Enum value </dd></dl>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespaceenum__utils_a587b27069da86c333d185d8e493fce46_icgraph.png" border="0" usemap="#anamespaceenum__utils_a587b27069da86c333d185d8e493fce46_icgraph" alt=""/></div>
-<map name="anamespaceenum__utils_a587b27069da86c333d185d8e493fce46_icgraph" id="anamespaceenum__utils_a587b27069da86c333d185d8e493fce46_icgraph">
-<area shape="rect" title="P." alt="" coords="240,134,411,159"/>
-<area shape="rect" href="structdb__common_1_1Experiment.html#a1ab0d987b9a073395aaa5495f0450cfb" title=" " alt="" coords="6,5,191,45"/>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph.png" border="0" usemap="#anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph" alt=""/></div>
+<map name="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph" id="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph">
+<area shape="rect" title="Cast string to enum." alt="" coords="5,5,176,31"/>
+<area shape="rect" href="namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c" title="Casts From type value to enum." alt="" coords="224,5,411,31"/>
+<area shape="poly" title=" " alt="" coords="176,15,210,15,210,21,176,21"/>
+</map>
+</div>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph.png" border="0" usemap="#anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph" alt=""/></div>
+<map name="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph" id="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph">
+<area shape="rect" title="Cast string to enum." alt="" coords="240,134,411,159"/>
+<area shape="rect" href="structdb__common_1_1Experiment.html#a6d6df4c0ee1fb35d605e647bad9bc425" title=" " alt="" coords="6,5,191,45"/>
 <area shape="poly" title=" " alt="" coords="296,128,248,94,191,60,164,48,166,43,193,55,251,89,299,123"/>
-<area shape="rect" href="structdb__common_1_1Iteration.html#a1ec5bbacab23a8ebfc316f1ecd9f60fe" title=" " alt="" coords="16,69,181,109"/>
+<area shape="rect" href="structdb__common_1_1Iteration.html#a53998f51dcd0b1fa13317dfc257eb970" title=" " alt="" coords="16,69,181,109"/>
 <area shape="poly" title=" " alt="" coords="261,133,178,112,179,107,262,128"/>
-<area shape="rect" href="structdb__common_1_1Node.html#a6a127ef62b15cd94d4d8dbf331cebc9c" title=" " alt="" coords="5,134,192,159"/>
+<area shape="rect" href="structdb__common_1_1Node.html#a4f0ec1e26c847a9b7a991079b4e2a00b" title=" " alt="" coords="5,134,192,159"/>
 <area shape="poly" title=" " alt="" coords="227,149,192,149,192,144,227,144"/>
 <area shape="rect" href="namespaceprint__utils.html#a6c64e6bf1cdaef9f04f37da4ca8533af" title="Parser for ioFormat." alt="" coords="13,183,185,209"/>
 <area shape="poly" title=" " alt="" coords="254,165,158,186,157,181,252,160"/>
-<area shape="rect" href="structdb__common_1_1User.html#a351d9d19512cd4d475e36468727751a2" title=" " alt="" coords="9,233,188,258"/>
+<area shape="rect" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4" title=" " alt="" coords="9,233,188,258"/>
 <area shape="poly" title=" " alt="" coords="295,169,248,196,193,222,156,235,154,230,191,218,245,191,292,164"/>
 </map>
 </div>

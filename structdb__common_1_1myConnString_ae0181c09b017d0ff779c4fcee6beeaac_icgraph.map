@@ -1,0 +1,15 @@
+<map id="db_common::myConnString::CStr" name="db_common::myConnString::CStr">
+<area shape="rect" id="Node000001" title=" " alt="" coords="499,95,701,135"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="268,103,451,128"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="485,118,451,118,451,113,485,113"/>
+<area shape="poly" id="edge8_Node000002_Node000002" title=" " alt="" coords="403,94,391,85,359,81,334,83,320,88,317,94,324,101,320,104,312,94,316,84,332,78,359,76,393,80,406,89"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="5,29,220,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="313,100,219,69,175,57,177,52,221,63,314,95"/>
+<area shape="rect" id="Node000004" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,103,214,128"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="254,118,214,118,214,113,254,113"/>
+<area shape="rect" id="Node000005" href="$namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="17,176,208,201"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="303,135,157,178,156,173,302,130"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="156,20,154,15,146,12,113,8,86,10,72,15,70,20,77,27,73,31,64,21,69,11,85,5,113,3,147,7,157,11,161,17"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="156,93,154,89,146,85,113,81,86,83,72,88,70,94,77,101,73,104,64,94,69,84,85,78,113,76,147,80,157,85,161,90"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="156,167,154,162,146,158,113,155,86,157,72,162,70,167,77,174,73,178,64,168,69,158,85,152,113,149,147,153,157,158,161,164"/>
+</map>

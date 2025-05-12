@@ -24,5 +24,6 @@ var printUtils_8h =
     [ "operator>>", "printUtils_8h.html#afd4b485906d7923acf216cdc9087d194", null ],
     [ "ParseDelim", "printUtils_8h.html#afb4c09c7ab41a3a6a8bc510290023ea5", null ],
     [ "PrintEnumToFormat", "printUtils_8h.html#a5c15394e792434eee87f79a2847b4a32", null ],
-    [ "TupleToString", "printUtils_8h.html#ae4a7829e4fa46541e13b8b23db463823", null ]
+    [ "TupleToString", "printUtils_8h.html#ae4a7829e4fa46541e13b8b23db463823", null ],
+    [ "kEnumToEigenFormatMap", "printUtils_8h.html#a9910067bb1b8337b0bcc0bd062942281", null ]
 ];

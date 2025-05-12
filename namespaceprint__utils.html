@@ -94,7 +94,8 @@ $(document).ready(function(){initNavTree('namespaceprint__utils.html',''); initR
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">print_utils Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -256,6 +257,11 @@ requires (<a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.
 <tr class="separator:a48e34c80f62430802dfa9eeb61358280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0f7e17209f3cac063146717d49b144c7" id="r_a0f7e17209f3cac063146717d49b144c7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a0f7e17209f3cac063146717d49b144c7">isOnlyWhitespace</a> (std::string_view text)</td></tr>
 <tr class="separator:a0f7e17209f3cac063146717d49b144c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a9910067bb1b8337b0bcc0bd062942281" id="r_a9910067bb1b8337b0bcc0bd062942281"><td class="memItemLeft" align="right" valign="top">const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceprint__utils.html#a9910067bb1b8337b0bcc0bd062942281">kEnumToEigenFormatMap</a> = <a class="el" href="namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023">CreateEnumToTypeMap</a>(kEfEnToEigenFormatMappings)</td></tr>
+<tr class="separator:a9910067bb1b8337b0bcc0bd062942281"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>printUtils namespace </p>
@@ -994,8 +1000,10 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
 <div class="center"><img src="namespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph.png" border="0" usemap="#anamespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph" id="anamespaceprint__utils_a47de332ae8de8ae480deb73bc3ee7a40_cgraph">
 <area shape="rect" title="Printer for ioFormat." alt="" coords="5,5,177,31"/>
-<area shape="rect" href="namespaceenum__utils.html#aab4e55a8ed61aa755116d67e124acd4d" title=" " alt="" coords="225,5,396,31"/>
+<area shape="rect" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88" title="Casts enum value to string." alt="" coords="225,5,396,31"/>
 <area shape="poly" title=" " alt="" coords="178,15,212,15,212,21,178,21"/>
+<area shape="rect" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003" title="Casts Enum Value To typed value." alt="" coords="444,5,627,31"/>
+<area shape="poly" title=" " alt="" coords="397,15,430,15,430,21,397,21"/>
 </map>
 </div>
 
@@ -1087,8 +1095,10 @@ requires <a class="el" href="conceptmy__concepts_1_1isOneDimensionalContinuous.h
 <div class="center"><img src="namespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph.png" border="0" usemap="#anamespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph" alt=""/></div>
 <map name="anamespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph" id="anamespaceprint__utils_a6c64e6bf1cdaef9f04f37da4ca8533af_cgraph">
 <area shape="rect" title="Parser for ioFormat." alt="" coords="5,5,177,31"/>
-<area shape="rect" href="namespaceenum__utils.html#a587b27069da86c333d185d8e493fce46" title="P." alt="" coords="225,5,396,31"/>
+<area shape="rect" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601" title="Cast string to enum." alt="" coords="225,5,396,31"/>
 <area shape="poly" title=" " alt="" coords="178,15,212,15,212,21,178,21"/>
+<area shape="rect" href="namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c" title="Casts From type value to enum." alt="" coords="444,5,631,31"/>
+<area shape="poly" title=" " alt="" coords="396,15,430,15,430,21,396,21"/>
 </map>
 </div>
 
@@ -2207,6 +2217,21 @@ template&lt;typename TupleT , std::size_t TupSize = std::tuple_size_v&lt;TupleT&
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a9910067bb1b8337b0bcc0bd062942281" name="a9910067bb1b8337b0bcc0bd062942281"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9910067bb1b8337b0bcc0bd062942281">&#9670;&#160;</a></span>kEnumToEigenFormatMap</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto print_utils::kEnumToEigenFormatMap = <a class="el" href="namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023">CreateEnumToTypeMap</a>(kEfEnToEigenFormatMappings)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

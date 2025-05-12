@@ -1,7 +1,9 @@
 <map id="db_common::ExecuteTransaction" name="db_common::ExecuteTransaction">
-<area shape="rect" id="Node000001" title="Executes function in the form of transaction." alt="" coords="5,35,240,60"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="288,5,511,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,32,274,29,275,34,240,38"/>
-<area shape="rect" id="Node000003" href="$structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="290,55,509,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="240,57,277,60,276,66,240,62"/>
+<area shape="rect" id="Node000001" title="Executes function in the form of transaction." alt="" coords="5,59,240,84"/>
+<area shape="poly" id="edge3_Node000001_Node000001" title=" " alt="" coords="78,60,69,50,74,40,92,34,123,32,162,36,173,41,176,47,172,50,169,45,161,41,123,37,93,39,77,44,74,50,82,57"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="288,29,511,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,56,274,53,275,58,240,62"/>
+<area shape="rect" id="Node000003" href="$structdb__common_1_1myConnString.html#a44e994b2505b06d88edebfaa37a416a4" title=" " alt="" coords="298,79,501,119"/>
+<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="240,81,285,85,284,90,240,86"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="355,31,345,21,350,11,369,5,399,3,439,7,449,12,453,18,449,20,446,16,437,12,399,8,370,10,354,15,351,20,359,27"/>
 </map>

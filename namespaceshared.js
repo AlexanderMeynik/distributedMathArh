@@ -40,5 +40,6 @@ var namespaceshared =
       [ "PRINT", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b", null ]
     ] ],
     [ "DefaultBench", "namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
-    [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ]
+    [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
+    [ "kStrToSev", "namespaceshared.html#af570bd9365898d829147c73ee171e266", null ]
 ];

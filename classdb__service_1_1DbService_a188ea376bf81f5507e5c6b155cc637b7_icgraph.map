@@ -1,49 +1,25 @@
 <map id="db_service::DbService::ExecuteTransaction" name="db_service::DbService::ExecuteTransaction">
-<area shape="rect" id="Node000001" title=" " alt="" coords="465,549,632,589"/>
-<area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#a99c31aaba7911b2434414d0fe3c3b4e5" title="Performs authentication attempt." alt="" coords="235,5,402,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="540,536,524,428,497,285,480,214,461,149,439,95,415,59,401,47,404,43,419,56,444,93,466,147,485,212,503,284,530,427,546,535"/>
-<area shape="rect" id="Node000004" href="$classdb__service_1_1DbService.html#a2f045f38e13e946bd858e17e02cf870b" title="Create new Experiment record." alt="" coords="235,69,402,109"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="545,536,540,453,533,400,522,343,506,284,483,226,454,171,415,123,401,111,404,107,419,119,458,168,488,223,511,282,528,342,539,399,546,453,550,536"/>
-<area shape="rect" id="Node000006" href="$classdb__service_1_1DbService.html#afc2577c4a823f1decda807ef99bbdb22" title="Creates experiment record." alt="" coords="235,133,402,173"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="543,536,535,464,514,370,498,321,476,273,449,227,415,187,400,175,403,171,419,183,453,224,481,270,503,319,519,369,540,463,548,535"/>
-<area shape="rect" id="Node000008" href="$classdb__service_1_1DbService.html#a576eecc67963fdbc8839724aee1aecb3" title="Creates new user record." alt="" coords="235,197,402,237"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="540,536,529,476,506,399,489,359,469,320,445,283,416,251,399,240,402,235,419,247,449,280,474,317,494,357,511,397,534,474,546,535"/>
-<area shape="rect" id="Node000010" href="$classdb__service_1_1DbService.html#a26791e008af386b90712f6c3a4b51c3d" title="Deletes user record." alt="" coords="235,261,402,301"/>
-<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="537,537,521,488,497,428,462,368,440,340,416,315,398,304,401,299,419,311,444,336,466,365,502,426,526,486,542,535"/>
-<area shape="rect" id="Node000011" href="$classdb__service_1_1DbService.html#a3cb306dee5e21200b8347fb14a2e3757" title=" " alt="" coords="235,325,402,365"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="531,538,513,501,487,458,454,416,416,379,396,368,399,363,419,375,458,412,491,455,517,498,536,535"/>
-<area shape="rect" id="Node000012" href="$classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d" title="Gets iteration using its id." alt="" coords="235,389,402,429"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="521,540,475,491,447,465,416,444,392,432,395,427,419,439,450,461,479,487,525,537"/>
-<area shape="rect" id="Node000013" href="$classdb__service_1_1DbService.html#a7477782eb3f2837dd055fcf4ace15410" title="Retrieves node record for id." alt="" coords="235,453,402,493"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="497,545,416,508,384,496,386,491,418,503,499,541"/>
-<area shape="rect" id="Node000014" href="$classdb__service_1_1DbService.html#aa657a2e6520dff8379396ee1e04899ba" title="Retrieves user list in paginated form." alt="" coords="235,517,402,557"/>
-<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="451,559,402,552,403,546,452,553"/>
-<area shape="rect" id="Node000015" href="$classdb__service_1_1DbService.html#aca53a3d1a95c8d14b6e9878221eeabef" title="Retrieves list of Experiments for user_id." alt="" coords="235,581,402,621"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="452,585,403,592,402,587,451,580"/>
-<area shape="rect" id="Node000016" href="$classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7" title="Retrieves iteration list for experiment_id." alt="" coords="235,645,402,685"/>
-<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="499,598,418,636,386,648,384,643,416,631,497,593"/>
-<area shape="rect" id="Node000017" href="$classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64" title="Retrieves node list in paginated format." alt="" coords="235,709,402,749"/>
-<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="525,602,479,652,450,677,419,700,395,712,392,707,416,695,447,673,475,648,521,598"/>
-<area shape="rect" id="Node000018" href="$classdb__service_1_1DbService.html#a3f81f6660ebf574038e6310a7e6e6524" title="Logs with specified message." alt="" coords="220,774,417,799"/>
-<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="536,603,518,641,492,684,459,727,419,764,395,776,392,771,416,759,455,723,488,681,514,638,532,601"/>
-<area shape="rect" id="Node000019" href="$classdb__service_1_1DbService.html#a574ac0a565f490e1ce191df4deeae935" title="Create node record." alt="" coords="235,824,402,864"/>
-<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="541,604,525,651,499,707,465,764,443,791,419,814,401,826,398,822,416,810,439,787,460,761,495,705,520,649,536,602"/>
-<area shape="rect" id="Node000021" href="$classdb__service_1_1DbService.html#ab95a76cc6618e1458a7e650e7797f85b" title="Deletes node." alt="" coords="235,888,402,928"/>
-<area shape="poly" id="edge20_Node000001_Node000021" title=" " alt="" coords="545,603,532,662,509,735,492,774,472,812,448,847,419,878,402,890,399,886,416,874,444,844,468,809,488,772,504,734,527,660,540,602"/>
-<area shape="rect" id="Node000022" href="$classdb__service_1_1DbService.html#a442450409b3a8845144b97fd8b46ce27" title=" " alt="" coords="222,952,415,992"/>
-<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="548,603,539,673,518,764,501,812,480,859,452,903,419,942,403,954,400,950,416,938,448,900,475,856,496,810,513,762,534,672,543,603"/>
-<area shape="rect" id="Node000023" href="$classdb__service_1_1DbService.html#af5f9fd1b6ec9dbdef174f18832179a6f" title=" " alt="" coords="232,1016,405,1056"/>
-<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="550,603,544,684,526,791,509,849,487,906,457,959,419,1006,404,1018,401,1014,415,1002,453,956,482,903,504,847,521,790,539,683,545,603"/>
-<area shape="rect" id="Node000024" href="$classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4" title="Changes node status." alt="" coords="235,1080,402,1120"/>
-<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="545,603,529,709,502,848,484,918,465,981,443,1034,419,1070,404,1082,401,1078,415,1066,438,1031,460,979,479,916,496,847,524,708,540,603"/>
-<area shape="rect" id="Node000003" href="$classdb__service_1_1DbService.html#a489c0ad5a2496659533b037c739b00a1" title=" " alt="" coords="5,5,172,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="222,28,172,28,172,23,222,23"/>
-<area shape="rect" id="Node000005" href="$classdb__service_1_1DbService.html#af28a477998781dcf5c20916de82012b4" title=" " alt="" coords="5,69,172,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="222,92,172,92,172,87,222,87"/>
-<area shape="rect" id="Node000007" href="$classdb__service_1_1DbService.html#a386d3dcf5dc868d48dc07ab785bc1169" title=" " alt="" coords="5,133,172,173"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="222,156,172,156,172,151,222,151"/>
-<area shape="rect" id="Node000009" href="$classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda" title=" " alt="" coords="5,197,172,237"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="222,220,172,220,172,215,222,215"/>
-<area shape="rect" id="Node000020" href="$classdb__service_1_1DbService.html#a157c8a25492feeb7c59ecdd9d6b7b6c0" title=" " alt="" coords="5,824,172,864"/>
-<area shape="poly" id="edge19_Node000019_Node000020" title=" " alt="" coords="222,847,172,847,172,841,222,841"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="461,293,628,333"/>
+<area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#a99c31aaba7911b2434414d0fe3c3b4e5" title="Performs authentication attempt." alt="" coords="233,5,400,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="533,281,517,232,493,172,458,111,436,84,412,59,394,48,397,43,415,55,440,80,462,109,497,170,522,230,538,279"/>
+<area shape="rect" id="Node000003" href="$classdb__service_1_1DbService.html#a2f045f38e13e946bd858e17e02cf870b" title="Create new Experiment record." alt="" coords="233,69,400,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="527,282,508,245,483,203,450,160,412,123,392,112,395,107,415,119,454,156,487,200,513,243,532,279"/>
+<area shape="rect" id="Node000005" href="$classdb__service_1_1DbService.html#afc2577c4a823f1decda807ef99bbdb22" title="Creates experiment record." alt="" coords="233,133,400,173"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="517,284,471,235,443,210,412,188,389,176,391,171,415,183,446,205,475,231,521,281"/>
+<area shape="rect" id="Node000006" href="$classdb__service_1_1DbService.html#a576eecc67963fdbc8839724aee1aecb3" title="Creates new user record." alt="" coords="233,197,400,237"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="493,289,412,252,381,240,383,235,414,247,495,285"/>
+<area shape="rect" id="Node000007" href="$classdb__service_1_1DbService.html#a26791e008af386b90712f6c3a4b51c3d" title="Deletes user record." alt="" coords="233,261,400,301"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="447,302,400,296,401,290,448,297"/>
+<area shape="rect" id="Node000008" href="$classdb__service_1_1DbService.html#a3cb306dee5e21200b8347fb14a2e3757" title=" " alt="" coords="233,325,400,365"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="448,330,401,336,400,331,447,324"/>
+<area shape="rect" id="Node000009" href="$classdb__service_1_1DbService.html#aca53a3d1a95c8d14b6e9878221eeabef" title="Retrieves list of Experiments for user_id." alt="" coords="233,389,400,429"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="495,342,414,380,383,392,381,387,412,375,493,337"/>
+<area shape="rect" id="Node000010" href="$classdb__service_1_1DbService.html#a7e75c54e7cc87a64a84edd283723c34e" title="Retrieves user list in paginated form." alt="" coords="233,453,400,493"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="521,346,475,396,446,421,415,444,391,456,389,451,412,439,443,417,471,392,517,342"/>
+<area shape="rect" id="Node000011" href="$classdb__service_1_1DbService.html#a442450409b3a8845144b97fd8b46ce27" title=" " alt="" coords="220,517,413,557"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="532,347,513,384,487,427,454,470,415,507,395,519,392,515,412,503,450,467,483,424,508,382,527,345"/>
+<area shape="rect" id="Node000012" href="$classdb__service_1_1DbService.html#af5f9fd1b6ec9dbdef174f18832179a6f" title=" " alt="" coords="230,581,403,621"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="538,348,522,397,497,457,462,518,440,546,415,571,397,583,394,579,412,567,436,543,458,515,493,455,517,395,533,346"/>
+<area shape="rect" id="Node000004" href="$classdb__service_1_1DbService.html#af28a477998781dcf5c20916de82012b4" title=" " alt="" coords="5,69,172,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="219,92,172,92,172,87,219,87"/>
 </map>

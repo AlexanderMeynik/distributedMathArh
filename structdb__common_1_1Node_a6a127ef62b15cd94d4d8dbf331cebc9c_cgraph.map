@@ -1,7 +1,0 @@
-<map id="db_common::Node::Node" name="db_common::Node::Node">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,31,192,56"/>
-<area shape="rect" id="Node000002" href="$namespaceenum__utils.html#a587b27069da86c333d185d8e493fce46" title="P." alt="" coords="240,5,411,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="192,30,226,26,226,32,193,36"/>
-<area shape="rect" id="Node000003" href="$namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07" title="Retrives TimepointType from a given string." alt="" coords="240,55,411,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="193,51,226,54,226,60,192,56"/>
-</map>

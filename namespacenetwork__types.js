@@ -5,7 +5,6 @@ var namespacenetwork__types =
     [ "exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
     [ "global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
     [ "message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
-    [ "myConnString", "structnetwork__types_1_1myConnString.html", "structnetwork__types_1_1myConnString" ],
     [ "queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
     [ "queueBinding", "structnetwork__types_1_1queueBinding.html", "structnetwork__types_1_1queueBinding" ],
     [ "rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],

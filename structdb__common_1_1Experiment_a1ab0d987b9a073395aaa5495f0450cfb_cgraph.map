@@ -1,7 +1,0 @@
-<map id="db_common::Experiment::Experiment" name="db_common::Experiment::Experiment">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,191,63"/>
-<area shape="rect" id="Node000002" href="$namespaceenum__utils.html#a587b27069da86c333d185d8e493fce46" title="P." alt="" coords="239,5,409,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,30,225,26,226,32,191,36"/>
-<area shape="rect" id="Node000003" href="$namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07" title="Retrives TimepointType from a given string." alt="" coords="239,55,409,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="191,51,226,54,225,60,191,56"/>
-</map>

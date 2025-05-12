@@ -1,0 +1,9 @@
+<map id="db_common::myConnString::SetDbname" name="db_common::myConnString::SetDbname">
+<area shape="rect" id="Node000001" title=" " alt="" coords="268,59,471,99"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="5,29,220,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,65,200,57,201,52,255,60"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,103,214,128"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="255,98,204,105,203,100,254,93"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="158,20,156,15,147,12,113,8,85,10,70,15,68,20,75,27,71,31,62,21,67,11,84,5,113,3,149,7,159,11,163,17"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="158,93,156,89,147,85,113,81,85,83,70,88,68,94,75,101,71,104,62,94,67,84,84,78,113,76,149,80,159,85,163,90"/>
+</map>

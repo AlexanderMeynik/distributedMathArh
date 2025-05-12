@@ -94,7 +94,8 @@ $(document).ready(function(){initNavTree('namespaceshared.html',''); initResizab
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">shared Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -190,6 +191,12 @@ Functions</h2></td></tr>
 <tr class="separator:a2eee87ed81945fe1ee927edb93e2bdf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7ae339fc4a45fbfc6cbc46fdd3d2863b" id="r_a7ae339fc4a45fbfc6cbc46fdd3d2863b"><td class="memItemLeft" align="right" valign="top">std::ostream &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b">operator&lt;&lt;</a> (std::ostream &amp;out, const <a class="el" href="namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866">StateT</a> &amp;st)</td></tr>
 <tr class="separator:a7ae339fc4a45fbfc6cbc46fdd3d2863b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:af570bd9365898d829147c73ee171e266" id="r_af570bd9365898d829147c73ee171e266"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, <a class="el" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#af570bd9365898d829147c73ee171e266">kStrToSev</a></td></tr>
+<tr class="memdesc:af570bd9365898d829147c73ee171e266"><td class="mdescLeft">&#160;</td><td class="mdescRight">String to severity lookup.  <br /></td></tr>
+<tr class="separator:af570bd9365898d829147c73ee171e266"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>shared namespace </p>
@@ -410,10 +417,35 @@ Functions</h2></td></tr>
 <div class="center"><img src="namespaceshared_a7ae339fc4a45fbfc6cbc46fdd3d2863b_cgraph.png" border="0" usemap="#anamespaceshared_a7ae339fc4a45fbfc6cbc46fdd3d2863b_cgraph" alt=""/></div>
 <map name="anamespaceshared_a7ae339fc4a45fbfc6cbc46fdd3d2863b_cgraph" id="anamespaceshared_a7ae339fc4a45fbfc6cbc46fdd3d2863b_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,156,31"/>
-<area shape="rect" href="namespaceenum__utils.html#aab4e55a8ed61aa755116d67e124acd4d" title=" " alt="" coords="204,5,375,31"/>
+<area shape="rect" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88" title="Casts enum value to string." alt="" coords="204,5,375,31"/>
 <area shape="poly" title=" " alt="" coords="156,15,191,15,191,21,156,21"/>
+<area shape="rect" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003" title="Casts Enum Value To typed value." alt="" coords="423,5,605,31"/>
+<area shape="poly" title=" " alt="" coords="375,15,409,15,409,21,375,21"/>
 </map>
 </div>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="af570bd9365898d829147c73ee171e266" name="af570bd9365898d829147c73ee171e266"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af570bd9365898d829147c73ee171e266">&#9670;&#160;</a></span>kStrToSev</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::unordered_map&lt;std::string,<a class="el" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a>&gt; shared::kStrToSev</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">        {<span class="stringliteral">&quot;info&quot;</span>,Severity::info},</div>
+<div class="line">        {<span class="stringliteral">&quot;warning&quot;</span>,Severity::warning},</div>
+<div class="line">        {<span class="stringliteral">&quot;error&quot;</span>,Severity::error},</div>
+<div class="line">        {<span class="stringliteral">&quot;fatal&quot;</span>,Severity::fatal},</div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p>String to severity lookup. </p>
 
 </div>
 </div>

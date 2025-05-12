@@ -28,9 +28,9 @@ var searchData=
   ['returntodatatypet_3c_20returntype_3a_3astd_5fvector_20_3e_25',['returnToDataTypeT&lt; ReturnType::STD_VECTOR &gt;',['../namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4',1,'common_types']]],
   ['returntype_26',['ReturnType',['../namespacecommon__types.html#ab9aa026e1d8b3d5d25734c3842dcb185',1,'common_types']]],
   ['role_27',['role',['../structdb__common_1_1User.html#ac0ab9ebed727caf63277e56e2236bd38',1,'db_common::User']]],
-  ['routing_5fkey_28',['routing_key',['../structnetwork__types_1_1message.html#a34fe78f9a3d43316f5e013252303c26d',1,'network_types::message::routing_key'],['../structnetwork__types_1_1queueBinding.html#a4e5c0db86f60a8b1c60186a3d37f0e89',1,'network_types::queueBinding::routing_key']]],
+  ['routing_5fkey_28',['routing_key',['../structnetwork__types_1_1queueBinding.html#a4e5c0db86f60a8b1c60186a3d37f0e89',1,'network_types::queueBinding::routing_key'],['../structnetwork__types_1_1message.html#a34fe78f9a3d43316f5e013252303c26d',1,'network_types::message::routing_key']]],
   ['rowdivisionerror_29',['rowdivisionerror',['../classshared_1_1RowDivisionError.html#a5d33b396d705f3cd6ef653513174d0fe',1,'shared::RowDivisionError::RowDivisionError()'],['../classshared_1_1RowDivisionError.html',1,'shared::RowDivisionError']]],
   ['run_30',['Run',['../classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e',1,'comp_services::BenchmarkRunner']]],
   ['runbench_31',['RunBench',['../classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2',1,'comp_services::ComputationNodeService']]],
-  ['running_32',['RUNNING',['../namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a43491564ebcfd38568918efbd6e840fd',1,'db_common']]]
+  ['running_32',['running',['../namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a43491564ebcfd38568918efbd6e840fd',1,'db_common::RUNNING'],['../namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aa43491564ebcfd38568918efbd6e840fd',1,'db_common::RUNNING']]]
 ];

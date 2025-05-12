@@ -1,0 +1,8 @@
+<map id="db_service::DbService::ListUsers" name="db_service::DbService::ListUsers">
+<area shape="rect" id="Node000001" title="Retrieves user list in paginated form." alt="" coords="5,47,172,87"/>
+<area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="246,5,413,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,50,232,39,233,45,173,55"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#afe5a348fb22dd5f91214dd95a80b6973" title="formats request to add pagination" alt="" coords="220,94,439,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,78,240,89,239,94,172,83"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="290,96,282,86,286,76,302,70,329,67,363,71,376,81,373,85,361,76,329,73,304,75,290,80,287,85,294,92"/>
+</map>

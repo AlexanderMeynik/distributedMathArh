@@ -20,7 +20,7 @@ var hierarchy =
     [ "db_service::DbService", "classdb__service_1_1DbService.html", null ],
     [ "print_utils::Delimiter", "structprint__utils_1_1Delimiter.html", null ],
     [ "dipoles::Dipoles", "classdipoles_1_1Dipoles.html", null ],
-    [ "enum_utils::EnumMapping< Enum >", "namespaceenum__utils.html#structenum__utils_1_1EnumMapping", null ],
+    [ "enum_utils::EnumDoubleMapping< Enum, To >", "namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping", null ],
     [ "network_types::exchange", "structnetwork__types_1_1exchange.html", null ],
     [ "db_common::Experiment", "structdb__common_1_1Experiment.html", null ],
     [ "std::false_type", null, [
@@ -40,6 +40,7 @@ var hierarchy =
       [ "amqp_common::MyHandler", "classamqp__common_1_1MyHandler.html", null ]
     ] ],
     [ "timing::LocationComparator", "structtiming_1_1LocationComparator.html", null ],
+    [ "db_common::Log", "structdb__common_1_1Log.html", null ],
     [ "std::logic_error", null, [
       [ "shared::MyException", "classshared_1_1MyException.html", [
         [ "shared::Already_Connected", "classshared_1_1Already__Connected.html", null ],
@@ -59,7 +60,7 @@ var hierarchy =
     [ "main_services::MainNodeService", "classmain__services_1_1MainNodeService.html", null ],
     [ "mesh_storage::MeshCreator", "classmesh__storage_1_1MeshCreator.html", null ],
     [ "network_types::message", "structnetwork__types_1_1message.html", null ],
-    [ "network_types::myConnString", "structnetwork__types_1_1myConnString.html", null ],
+    [ "db_common::myConnString", "structdb__common_1_1myConnString.html", null ],
     [ "db_common::Node", "structdb__common_1_1Node.html", null ],
     [ "shared::params", "structshared_1_1params.html", null ],
     [ "network_types::queue", "structnetwork__types_1_1queue.html", null ],

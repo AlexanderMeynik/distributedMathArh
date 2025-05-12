@@ -2,6 +2,8 @@ var namespacedb__common =
 [
     [ "Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
     [ "Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
+    [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
+    [ "myConnString", "structdb__common_1_1myConnString.html", "structdb__common_1_1myConnString" ],
     [ "Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
     [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ],
     [ "ConnPtr", "namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d", null ],
@@ -11,15 +13,17 @@ var namespacedb__common =
     [ "Subtransaction", "namespacedb__common.html#a82a32b7604217a1d8895b397e145c04e", null ],
     [ "TransactionT", "namespacedb__common.html#ae879f5fb9e426f5e75e92cae51316d72", null ],
     [ "ExperimentStatus", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127", [
-      [ "PENDING", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127ac69f06e1a9b016d133907b4e5f5864d2", null ],
+      [ "CREATED", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a98690bf632c29c17c9e4c5a64069903c", null ],
+      [ "QUEUED", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a9df29ce7ca629ff1d47bca1149d9faae", null ],
       [ "RUNNING", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a43491564ebcfd38568918efbd6e840fd", null ],
-      [ "COMPLETED", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a8f7afecbc8fbc4cd0f50a57d1172482e", null ],
+      [ "SUCCEEDED", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127afd9f6519d3f45276829fe74eb2c4bb85", null ],
       [ "ERROR", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127abb1ca97ec761fc37101737ba0aa2e7c5", null ],
       [ "ARHIVED", "namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a4a7851a877770bcef74973a3e6967fb2", null ]
     ] ],
     [ "IterationStatus", "namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99a", [
-      [ "PENDING", "namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aac69f06e1a9b016d133907b4e5f5864d2", null ],
-      [ "COMPLETED", "namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aa8f7afecbc8fbc4cd0f50a57d1172482e", null ],
+      [ "QUEUED", "namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aa9df29ce7ca629ff1d47bca1149d9faae", null ],
+      [ "RUNNING", "namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aa43491564ebcfd38568918efbd6e840fd", null ],
+      [ "SUCCEEDED", "namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aafd9f6519d3f45276829fe74eb2c4bb85", null ],
       [ "ERROR", "namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aabb1ca97ec761fc37101737ba0aa2e7c5", null ]
     ] ],
     [ "IterationType", "namespacedb__common.html#ae5e31fbbef011ef85d0c5717b136003a", [
@@ -39,12 +43,16 @@ var namespacedb__common =
     ] ],
     [ "CheckConnection", "namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc", null ],
     [ "CheckDatabaseExistence", "namespacedb__common.html#a9355ec163d544700fd17c31ade29f161", null ],
-    [ "CreateDatabase", "namespacedb__common.html#a913b977f2380ecda652940091c4f83d9", null ],
+    [ "CreateDatabase", "namespacedb__common.html#a71f8404357e44abb7d987936256f445b", null ],
     [ "Disconnect", "namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94", null ],
     [ "DropDatabase", "namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a", null ],
     [ "ExecuteSubTransaction", "namespacedb__common.html#ade4a0e64d613a70412fa41a5008b1d35", null ],
     [ "ExecuteTransaction", "namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546", null ],
     [ "FillDatabase", "namespacedb__common.html#a7af436a14081b629f40efa532dc32e22", null ],
+    [ "GetFunctionOpt", "namespacedb__common.html#aa5788b5bace94e5daf2f54f99948f164", null ],
+    [ "GetOpt", "namespacedb__common.html#af2ffdabf4e11ffa2056f4313fe2594ab", null ],
+    [ "PaginateRequest", "namespacedb__common.html#afe5a348fb22dd5f91214dd95a80b6973", null ],
+    [ "ParseArray", "namespacedb__common.html#acec6199e9f3a82271a9af92390122f7e", null ],
     [ "TerminateAllDbConnections", "namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b", null ],
     [ "TryConnect", "namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c", null ],
     [ "kExpStatusToStr", "namespacedb__common.html#ac2029439a3c5ac3130da0085bc9ec6ad", null ],
