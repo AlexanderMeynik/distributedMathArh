@@ -11,7 +11,7 @@ const EFormat &PrintEnumToFormat(EigenPrintFormats fmt) {
 }
 
 std::ostream &operator<<(std::ostream &out, const IoFormat &form) {
-  out << enum_utils::enumToStr(form, kIoToStr);
+  out << enum_utils::EnumToStr(form, kIoToStr);
   return out;
 }
 
@@ -19,7 +19,7 @@ std::istream &operator>>(std::istream &in, IoFormat &form) {
   std::string a;
   in >> a;
 
-  form = enum_utils::strToEnum(a, kStringToIoFormat);
+  form = enum_utils::StrToEnum(a, kStringToIoFormat);
   return in;
 }
 

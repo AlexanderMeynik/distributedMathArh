@@ -25,185 +25,60 @@ using shared::Already_Connected;
 using shared::Broken_Connection;
 static const char *const SampleTempDb = "template1";
 
-enum class UserRole {
-  USER,///< default user role
-  ADMINISTRATOR ///< administrator user role
-};
-
-static const std::vector<EnumMapping<UserRole>> kUserRoleMappings = {
-    {UserRole::USER, "user"},
-    {UserRole::ADMINISTRATOR, "admin"},
-
-};
-static const auto kStrToUserRole =
-    createStrToEnumMap(kUserRoleMappings);
-const auto kUserRoleToStr=
-    createEnumToStrMap(kUserRoleMappings);
-
-
-enum class ExperimentStatus {
-  CREATED,///< created by user
-  QUEUED,///< waiting to be executed
-  RUNNING, ///< currently executing
-  SUCCEEDED, ///< all iteration were computed
-  ERROR, ///< error occurred during execution
-  ARHIVED ///< experiment data is unloaded
-};
-
-static const std::vector<EnumMapping<ExperimentStatus>> kExpStatusMappings = {
-    {ExperimentStatus::CREATED, "created"},
-    {ExperimentStatus::QUEUED, "queued"},
-    {ExperimentStatus::RUNNING, "running"},
-    {ExperimentStatus::SUCCEEDED, "succeeded"},
-    {ExperimentStatus::ERROR, "error"},
-    {ExperimentStatus::ARHIVED, "archived"},
-};
-static const auto kStrToExpStatus =
-    createStrToEnumMap(kExpStatusMappings);
-const auto kExpStatusToStr=
-    createEnumToStrMap(kExpStatusMappings);
-
-
-enum class IterationStatus {
-  QUEUED,///< waiting to be executed
-  RUNNING,///< currently executing
-  SUCCEEDED, ///< all iteration were computed
-  ERROR, ///< error occurred during execution
-};
-
-static const std::vector<EnumMapping<IterationStatus>> kIterStatusMappings = {
-    {IterationStatus::QUEUED, "queued"},
-    {IterationStatus::RUNNING, "running"},
-    {IterationStatus::SUCCEEDED, "succeeded"},
-    {IterationStatus::ERROR, "error"},
-};
-static const auto kStrToIterStatus =
-    createStrToEnumMap(kIterStatusMappings);
-const auto kIterStatusToStr=
-    createEnumToStrMap(kIterStatusMappings);
-
-enum class IterationType {
-  GENERATE,///< generate coordinates
-  SOLVE, ///< solve system of equations
-  MESH, ///< generate mesh
-};
-
-static const std::vector<EnumMapping<IterationType>> kIterTypeMappings = {
-    {IterationType::GENERATE, "generate"},
-    {IterationType::SOLVE, "solve"},
-    {IterationType::MESH, "mesh"},
-};
-static const auto kStrToIterType =
-    createStrToEnumMap(kIterTypeMappings);
-const auto kIterTypeToStr=
-    createEnumToStrMap(kIterTypeMappings);
-
-
-enum class NodeStatus {
-  ACTIVE,///< node is processing messages
-  BUSY, ///< node is busy
-  INACTIVE, ///< node is not listening to queue
-  ERROR, ///< error occurred in node
-};
-
-static const std::vector<EnumMapping<NodeStatus>> kNodeStMappings = {
-    {NodeStatus::ACTIVE, "active"},
-    {NodeStatus::BUSY, "busy"},
-    {NodeStatus::INACTIVE, "inactive"},
-    {NodeStatus::ERROR, "error"},
-};
-static const auto kStrToNodeSt =
-    createStrToEnumMap(kNodeStMappings);
-const auto kNodeStToStr=
-    createEnumToStrMap(kNodeStMappings);
+/**
+ * @brief Function to retrieve optional value
+ * @tparam T
+ * @param a
+ * @return T optional
+ */
+template<typename T>
+std::optional<T> inline GetOpt(pqxx::field&&a)
+{
+  return (a.is_null())?std::nullopt:std::optional<T>{a.as<T>()};
+}
 
 /**
- * @brief User DAO
+ * @brief Function to retrieve optional value while using func to cast it to T
+ * @tparam T
+ * @tparam func
+ * @param a
+ * @return T optinal
  */
-struct User {
-  IndexType user_id;
-  std::string login;
-  std::string hashed_password;
-  UserRole role;
-  IndexType created_at;
-  std::optional<IndexType> last_login;
+template<typename T,std::optional<T>(*func)(std::string_view)>
+std::optional<T> inline GetFunctionOpt(pqxx::field&&a)
+{
+  return (a.is_null())?std::nullopt:std::optional<T>{*func(a.as<std::string>())};
+}
 
-  User() = default;
-  User(pqxx::row &row);
-  bool operator==(const User &rhs) const;
-};
 
 /**
- * @brief Experiment DAO
+ * @brief Parses specified continuous struct from ResType
+ * @note Requires RetType to be constructible from pqxx::field
+ * @tparam VecT
+ * @tparam RetType
+ * @param result
+ * @return VecT<RetType>
  */
-struct Experiment {
-  IndexType experiment_id;
-  IndexType user_id;
-  ExperimentStatus status;
-  Json::Value parameters;
-  TimepointType created_at;
-  std::optional<TimepointType> start_time;
-  std::optional<TimepointType> end_time;
-
-  Experiment() = default;
-  Experiment(pqxx::row &row);
-  bool operator==(const Experiment &rhs) const;
-};
+template<template<typename ...> typename VecT ,typename RetType>
+VecT<RetType> ParseArray(const ResType&result);
 
 /**
- * @brief Iteration DAO
+ * @brief formats request to add pagination
+ * @param initial_request
+ * @param page_num
+ * @param page_size
+ * @return
  */
-struct Iteration {
-  IndexType iteration_id;
-  IndexType experiment_id;
-  IndexType node_id;
-  IterationType iter_t;
-  IterationStatus status;
-  Json::Value output_data;
-  TimepointType start_time;
-  std::optional<TimepointType> end_time;
+std::string PaginateRequest(std::string_view initial_request,
+                            IndexType page_num,
+                            IndexType page_size);
 
-  Iteration() = default;
-  Iteration(pqxx::row &row);
-  bool operator==(const Iteration &rhs) const;
-};
-
-/**
- * @brief Node DAO
- */
-struct Node {
-  IndexType node_id;
-  std::string ip_address;
-  shared::BenchResVec benchmark_score;
-  NodeStatus status;
-  std::optional<TimepointType> last_ping;
-
-  Node() = default;
-  Node(pqxx::row &row);
-  bool operator==(const Node &rhs) const;
-};
-
-/**
- * @brief Log DAO
- */
-struct Log {
-  IndexType log_id;
-  std::optional<IndexType> node_id;
-  std::optional<IndexType> experiment_id;
-  shared::Severity severity;
-  std::string message;
-  TimepointType timestamp;
-
-  Log() = default;
-  Log(pqxx::row &row);
-  bool operator==(const Log &rhs) const;
-};
 
 
 /**
  * @brief Checks connection
  * @param conn_ptr
- * @return conenction status
+ * @return connection status
  */
 bool CheckConnection(const ConnPtr &conn_ptr);
 
@@ -292,4 +167,19 @@ ResType ExecuteSubTransaction(TransactionT &txn,
                               const std::function<ResType(Subtransaction &)> &func,
                               std::string_view sub_name = "");
 
+}
+
+
+namespace db_common
+{
+template<template<typename ...> typename VecT ,typename RetType>
+VecT<RetType> ParseArray(const ResType&result)
+{
+  VecT<RetType> res;
+  res.reserve(result.size());
+  for (auto row : result) {
+    res.emplace_back(row);
+  }
+  return res;
+}
 }

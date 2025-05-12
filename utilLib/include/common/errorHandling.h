@@ -32,7 +32,7 @@ private: \
 
 #include <stdexcept>
 #include <array>
-
+#include <unordered_map>
 #include <tuple>
 
 #include <fmt/format.h>
@@ -62,6 +62,16 @@ constexpr static std::array<const char *, 4> kSevToStr
         "fatal"
     };
 
+/**
+ * @brief String to severity lookup
+ */
+const std::unordered_map<std::string,Severity> kStrToSev
+    {
+        {"info",Severity::info},
+        {"warning",Severity::warning},
+        {"error",Severity::error},
+        {"fatal",Severity::fatal},
+    };
 /**
  * @brief Default parent for user defined exception
  */

@@ -79,18 +79,14 @@ void DbService::DeleteUser(IndexType user_id) {
     return ResType();
   });
 }
-std::vector<User> DbService::GetUsers(IndexType page_num, IndexType page_size) {
-  std::vector<User> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"User\" LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq), page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+std::vector<User> DbService::ListUsers(IndexType page_num, IndexType page_size) {
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"User\"";
+    auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req);
   });
-  return res;
+  return ParseArray<std::vector,User>(result);
 }
 
 IndexType DbService::CreateExperiment(IndexType user_id, const Json::Value &parameters) {
@@ -117,17 +113,14 @@ IndexType DbService::CreateExperiment(Experiment exp) {
 }
 
 std::vector<Experiment> DbService::ListExperiments(IndexType user_id,IndexType page_num, IndexType page_size) {
-  std::vector<Experiment> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Experiment\" WHERE user_id ={} LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq),user_id, page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Experiment\" WHERE user_id ={}";
+    auto req=PaginateRequest(fmt::format(fmt::runtime(qq),user_id),
+                             page_num, page_size);
+    return txn.exec(req);
   });
-  return res;
+  return ParseArray<std::vector,Experiment>(result);
 }
 
 void DbService::UpdateExperimentStatus(IndexType experiment_id, std::string_view status) {
@@ -260,31 +253,37 @@ Node DbService::GetNode(IndexType node_id) {
   Node result;
   ExecuteTransaction([&](TransactionT &txn) {
     using namespace print_utils;
-    auto row = txn.exec_params("SELECT * FROM \"Node\" WHERE node_id = $1", node_id).one_row();
+    auto qq="SELECT * FROM \"Node\" WHERE node_id = {}";
+    auto row = txn.exec(fmt::format(fmt::runtime(qq), node_id)).one_row();
     result = std::move(Node(row));
     return ResType();
   });
   return result;
 }
 
-void DbService::Log(std::optional<IndexType> experiment_id,
+IndexType DbService::Log(std::optional<IndexType> experiment_id,
                     std::optional<IndexType> node_id,
                     std::string_view severity,
                     std::string_view message) {
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "INSERT INTO \"Log\" (node_id,experiment_id, severity, message) VALUES ({},{}, {}, {})";
-    txn.exec(
+  auto res=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "INSERT INTO \"Log\" (node_id,experiment_id, severity, message) VALUES ({},{}, {}, {})"
+                     " RETURNING log_id";
+    return txn.exec(
         fmt::format(fmt::runtime(qq),
                     txn.quote(node_id),
                     txn.quote(experiment_id),
                     txn.quote(severity),
                     txn.quote(message))
     );
-    return ResType();
   });
-
+  return res[0][0].as<IndexType>();
 }
 
+IndexType DbService::Log(const db_common::Log &log) {
+  return Log(log.experiment_id, log.node_id,
+             print_utils::kSevToStr[static_cast<unsigned long>(log.severity)],
+             log.message);
+}
 void DbService::InnerLog(TransactionT &txn,
                          std::optional<IndexType> experiment_id,
                          std::optional<IndexType> node_id,
@@ -320,61 +319,46 @@ bool DbService::AuthenticateUser(const User &user) {
   return AuthenticateUser(user.login, user.hashed_password);
 }
 IndexType DbService::CreateUser(const User &user) {
-  return CreateUser(user.login, user.hashed_password, enumToStr(user.role,kUserRoleToStr));
+  return CreateUser(user.login, user.hashed_password, EnumToStr(user.role, kUserRoleToStr));
 }
 std::vector<Iteration> DbService::ListIterations(IndexType experiment_id,
                                                  IndexType page_num,
                                                  IndexType page_size) {
-  std::vector<Iteration> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Iteration\" WHERE experiment_id ={} LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq),experiment_id, page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Iteration\" WHERE experiment_id ={}";
+    auto req=PaginateRequest(fmt::format(fmt::runtime(qq),experiment_id),
+                             page_num, page_size);
+    return txn.exec(req);
   });
-  return res;
+  return ParseArray<std::vector,Iteration>(result);
 }
 std::vector<Node> DbService::ListNodes(IndexType page_num, IndexType page_size) {
-  std::vector<Node> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Node\" LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq), page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Node\"";
+        auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req);
   });
-  return res;
+  return ParseArray<std::vector,Node>(result);
 }
 IndexType DbService::CreateIteration(const Iteration &iter) {
   return CreateIteration(iter.experiment_id,
                          iter.node_id,
-                         enumToStr(iter.iter_t,kIterTypeToStr));
+                         EnumToStr(iter.iter_t, kIterTypeToStr));
 }
 IndexType DbService::RegisterNode(const Node &node) {
   return RegisterNode(node.ip_address,node.benchmark_score);
 }
-void DbService::Log(const db_common::Log &log) {
-  Log(log.experiment_id, log.node_id,
-      print_utils::kSevToStr[static_cast<unsigned long>(log.severity)],
-      log.message);
-}
+
 std::vector<db_common::Log> DbService::ListLogs(IndexType page_num, IndexType page_size) {
-  std::vector<db_common::Log> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Log\" LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq), page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Log\"";
+    auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req);
   });
-  return res;
+  return ParseArray<std::vector,db_common::Log>(result);
 }
 
 } // namespace db_service

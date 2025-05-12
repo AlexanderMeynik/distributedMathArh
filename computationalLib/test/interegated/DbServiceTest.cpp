@@ -84,7 +84,7 @@ TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
 
   ASSERT_TRUE(service_->AuthenticateUser(user));
 
-  auto users = service_->GetUsers(1);
+  auto users = service_->ListUsers(1);
   ASSERT_TRUE(std::find(users.begin(), users.end(), user) != users.end());
 }
 TEST_F(DbServiceTest,DeleteUser)
@@ -99,7 +99,7 @@ TEST_F(DbServiceTest,DeleteUser)
 
   service_->DeleteUser(user2.user_id);
 
-  auto users = service_->GetUsers(1);
+  auto users = service_->ListUsers(1);
   ASSERT_FALSE(std::find(users.begin(), users.end(), user2) != users.end());
 
 }
@@ -198,10 +198,10 @@ TEST_F(DbServiceTest, LogMessage) {
   lg.message="Test Log message";
   lg.severity=print_utils::Severity::info;
 
-  service_->Log(lg);
+  lg.log_id=service_->Log(lg);
 
   auto logs=service_->ListLogs(1);
-  //todo for some reason during == call all fields are empty(rhs)
+
   ASSERT_TRUE(std::find(logs.begin(),
                         logs.end(), lg) != logs.end());
 }

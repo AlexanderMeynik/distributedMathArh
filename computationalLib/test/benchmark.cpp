@@ -71,7 +71,7 @@ auto firstBench = []
 
 auto nameGenerator1 =
     [](StateT st, size_t N) {
-      return enumToStr(st, kStateToStr) + "_" + std::to_string(N);
+      return EnumToStr(st, kStateToStr) + "_" + std::to_string(N);
     };
 
 const std::array<size_t, 5> kRlims = {10, 50, 200, 500, 1000};
@@ -166,7 +166,7 @@ auto thirdBench = []
 
 auto nameGenerator3 =
     [](StateT st, size_t N) {
-      return STR(enumToStr(st, kStateToStr)) + "_" + std::to_string(N);
+      return STR(EnumToStr(st, kStateToStr)) + "_" + std::to_string(N);
     };
 
 auto fourthBench = []

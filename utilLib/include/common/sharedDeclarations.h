@@ -55,9 +55,9 @@ static const std::vector<EnumMapping<StateT>> kStateTMappings = {
     {StateT::OPENMP_OLD, "old"},
     {StateT::PRINT, "printImpl"}
 };
-const static auto kStateToStr = createEnumToStrMap(kStateTMappings);
+const static auto kStateToStr = CreateEnumToStrMap(kStateTMappings);
 
-const static auto kStringToState = createStrToEnumMap(kStateTMappings);
+const static auto kStringToState = CreateStrToEnumMap(kStateTMappings);
 
 std::ostream &operator<<(std::ostream &out, const StateT &st);
 

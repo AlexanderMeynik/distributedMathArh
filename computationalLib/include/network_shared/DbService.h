@@ -1,6 +1,6 @@
 #pragma once
 
-#include "dbCommon.h"
+#include "daoClasses.h"
 #include <string>
 #include <memory>
 #include <vector>
@@ -51,7 +51,7 @@ class DbService {
    * @param page_size
    * @return userList
    */
-  std::vector<User> GetUsers(IndexType page_num, IndexType page_size = 50);
+  std::vector<User> ListUsers(IndexType page_num, IndexType page_size = 50);
 
 
   /**
@@ -159,11 +159,11 @@ class DbService {
    * @param severity
    * @param message
    */
-  void Log(std::optional<IndexType> experiment_id,
+  IndexType Log(std::optional<IndexType> experiment_id,
            std::optional<IndexType> node_id,
            std::string_view severity,
            std::string_view message);
-  void Log(const db_common::Log&log);
+  IndexType Log(const db_common::Log&log);
 
 
   std::vector<db_common::Log> ListLogs(IndexType page_num,
