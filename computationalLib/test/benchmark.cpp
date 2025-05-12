@@ -206,12 +206,74 @@ auto nameGenerator4 =
       return std::to_string(confNum) + "_" + std::to_string(N);
     };
 
+auto fifthBench = []
+    (auto &clk, file_utils::fileHandler &handler,size_t &mul, size_t eigen_threads, size_t N) {
+  Eigen::setNbThreads(eigen_threads);
+  size_t conf_num = 10000;
+  mul=1;
+
+  dipoles::Dipoles dipoles1;
+
+  mesh_storage::MeshCreator ms;
+
+  ms.ConstructMeshes();
+
+  common_types::StdValarr coordinates(2 * N);
+
+  auto loc = clk.TikLoc();
+
+  common_types::EigenVec sol;
+
+  common_types::StdValarr res = ms.data_[0];
+//todo ticloc with average for threads
+#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res)
+  {
+    thread_local auto functor = generators::get_normal_generator(0.0, kArange);
+#pragma for
+    for (size_t i = 0; i < conf_num; ++i) {
+
+      std::generate(std::begin(coordinates), std::end(coordinates), functor);
+      dipoles1.SetNewCoordinates(coordinates);
+
+      sol = std::move(dipoles1.Solve());
+
+      dipoles1.GetFullFunction(coordinates, sol);
+
+      ms.ApplyFunction(dipoles1.GetI2Function());
+#pragma  omp critical
+      {
+        res += ms.data_[2];
+      }
+    }
+
+  }
+
+  clk.Tak();
+  std::cout << fmt::format("Thread num: {}, N = {} ",eigen_threads,N) << '\n';
+  std::cout << clk << "\n\n";
+};
+
+auto nameGenerator5 =
+    [](size_t thread_count, size_t N) {
+      return std::to_string(thread_count) + "_" + std::to_string(N);
+    };
+
 int main() {
 
   for (auto &N : std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
                             20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul, 800ul, 1000ul, 2000ul}) {
     std::cout << N << '\t' << rangeFinder(N) << '\n';
   }
+
+  BenchmarkHandler bh5("benchFifth", {"benchFifth"});
+  bh5.RunBenchmark(nameGenerator5, fifthBench,
+                   std::array{1ul, 2ul, 3ul, 4ul, 5ul, 6ul, 7ul, 8ul, 9ul, 10ul, 11ul, 12ul, 13ul, 14ul, 15ul, 16ul},
+                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
+                              20ul, 40ul, 50ul}
+
+  );
+
+
 
   BenchmarkHandler bh("benchFirst", {"benchFirst"});
   bh.RunBenchmark(nameGenerator1, firstBench, std::array{StateT::NEW, StateT::OLD},
@@ -238,5 +300,6 @@ int main() {
                               20ul, 40ul, 50ul, 100ul, 200ul}
 
   );
+
 
 }

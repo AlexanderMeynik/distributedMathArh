@@ -21,20 +21,33 @@ jobs:
           mkdir metrics && cd metrics
           
           metrix++ collect --db-file=source.db --exclude-files ".*test.*" \
-          --std.code.filelines.total --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once \
-          --std.code.filelines.comments --std.code.filelines.code --std.code.todo.comments --std.general.procerrors  \
+          --std.general.size --std.code.length.total --std.code.filelines.total --std.code.lines.total \
+          --std.code.filelines.code --std.code.lines.code --std.code.filelines.preprocessor --std.code.lines.preprocessor \
+          --std.code.filelines.comments --std.code.lines.comments --std.code.ratio.comments \
+          --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once --std.code.complexity.maxindent \
+          --std.code.magic.numbers --std.code.todo.comments --std.code.todo.strings \
+          --std.general.proctime --std.general.procerrors --std.code.maintindex.simple \
           -- ../computationalLib/ ../computationalNode/ ../mainNode/ ../utilLib/
           
           metrix++ collect --db-file=wtests.db \
-          --std.code.filelines.total --std.code.complexity.cyclomatic \
-          --std.code.complexity.cyclomatic_switch_case_once --std.code.filelines.comments \
-          --std.code.filelines.code --std.code.todo.comments --std.general.procerrors \
+          --std.general.size --std.code.length.total --std.code.filelines.total --std.code.lines.total \
+          --std.code.filelines.code --std.code.lines.code --std.code.filelines.preprocessor --std.code.lines.preprocessor \
+          --std.code.filelines.comments --std.code.lines.comments --std.code.ratio.comments \
+          --std.code.complexity.cyclomatic --std.code.complexity.cyclomatic_switch_case_once --std.code.complexity.maxindent \
+          --std.code.magic.numbers --std.code.todo.comments --std.code.todo.strings \
+          --std.general.proctime --std.general.procerrors --std.code.maintindex.simple \
           -- ../computationalLib/ ../computationalNode/ ../mainNode/ ../utilLib/
 
           
           metrix++ view --db-file=source.db > source.txt
           metrix++ view --db-file=wtests.db > wtests.txt
           metrix++ view --db-file=source.db --db-file-prev=wtests.db > sourceTestDiff.txt
+          
+          metrix++ report --db-file=source.db --format=txt > source_report.txt
+          metrix++ report --db-file=wtests.db --format=txt >  wtests_report.txt
+          metrix++ report --db-file=source.db --format=json > source_report.json
+          metrix++ report --db-file=wtests.db --format=json > wtests_report.json
+#          https://metrixplusplus.github.io/metrixplusplus/docs/04-u-workflow/ todo
       - name: Download build
         id: download-artifact
         uses: dawidd6/action-download-artifact@v6
