@@ -78,7 +78,7 @@ void consumeMessages(AMQP::Channel &channel,
                      std::string_view queueName);
 
 /**
- * @brief Custom for connection events logging
+ * @brief Custom handler for connection events logging
  */
 class MyHandler : public AMQP::LibBoostAsioHandler {
  public:
@@ -94,7 +94,6 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
 
     std::cout << "Connection closed.\n";
   }
-
   /**
    * @brief Method that is called on connection error
    * @param connection
@@ -116,8 +115,7 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   }
 
   /**
-   * @brief Gets handles connectio status
-   *
+   * @brief Gets handler connection status
    */
   bool IsConnected() const;
 

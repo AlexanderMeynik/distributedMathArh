@@ -17,7 +17,6 @@ int main(int argc, char *argv[]) {
                                inv.what(), argv[1]);
       return -1;
     }
-    auto list = app().getListeners();
     app().addListener("0.0.0.0", port);
     std::cout << port << '\n';
     app().run();

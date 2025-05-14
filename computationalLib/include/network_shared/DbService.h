@@ -155,6 +155,7 @@ class DbService {
 
   /**
    * @brief Logs with specified message
+   * @param experiment_id
    * @param node_id
    * @param severity
    * @param message
