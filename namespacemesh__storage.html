@@ -209,7 +209,10 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">   28</span>                                                               {</div>
+<div class="line"><span class="lineno">   29</span>  a += b;</div>
+<div class="line"><span class="lineno">   30</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aa880df7d2ee0d964e30be20ea5bc3379" name="aa880df7d2ee0d964e30be20ea5bc3379"></a>
@@ -253,6 +256,28 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">    6</span>                                                                                                      {</div>
+<div class="line"><span class="lineno">    7</span>  <span class="keywordflow">if</span> (!a.size() || !b.size()) {</div>
+<div class="line"><span class="lineno">    8</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1MyException.html">shared::MyException</a>(</div>
+<div class="line"><span class="lineno">    9</span>        fmt::format(<span class="stringliteral">&quot;Zero container sizes: a.size() = {},b.size() = {}&quot;</span>, a.size(), b.size()));</div>
+<div class="line"><span class="lineno">   10</span>  }</div>
+<div class="line"><span class="lineno">   11</span> </div>
+<div class="line"><span class="lineno">   12</span>  <span class="keywordflow">if</span> (a.size() != b.size()) {</div>
+<div class="line"><span class="lineno">   13</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1mismatchedSizes.html">shared::mismatchedSizes</a>(a.size(), b.size());</div>
+<div class="line"><span class="lineno">   14</span>  }</div>
+<div class="line"><span class="lineno">   15</span> </div>
+<div class="line"><span class="lineno">   16</span>  <span class="keyword">auto</span> sz = a.size();</div>
+<div class="line"><span class="lineno">   17</span>  <a class="code hl_typedef" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> result(sz);</div>
+<div class="line"><span class="lineno">   18</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; sz; ++i) {</div>
+<div class="line"><span class="lineno">   19</span>    result[i] = func(a[i], b[i]);</div>
+<div class="line"><span class="lineno">   20</span>  }</div>
+<div class="line"><span class="lineno">   21</span>  <span class="keywordflow">return</span> result;</div>
+<div class="line"><span class="lineno">   22</span>}</div>
+<div class="ttc" id="aclassshared_1_1MyException_html"><div class="ttname"><a href="classshared_1_1MyException.html">shared::MyException</a></div><div class="ttdoc">Default parent for user defined exception.</div><div class="ttdef"><b>Definition</b> errorHandling.h:78</div></div>
+<div class="ttc" id="aclassshared_1_1mismatchedSizes_html"><div class="ttname"><a href="classshared_1_1mismatchedSizes.html">shared::mismatchedSizes</a></div><div class="ttdoc">mismatchedSizes error</div><div class="ttdef"><b>Definition</b> errorHandling.h:121</div></div>
+<div class="ttc" id="anamespacecommon__types_html_a9e1d9d3de9bb4ab11fa7a0f6b42cea57"><div class="ttname"><a href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">common_types::MeshStorageType</a></div><div class="ttdeci">std::valarray&lt; FloatType &gt; MeshStorageType</div><div class="ttdef"><b>Definition</b> commonTypes.h:45</div></div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="classmesh__storage_1_1MeshCreator.html#a8a9396d2933475ea85cf163668e4cba4">mesh_storage::MeshCreator::ApplyFunction()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -304,7 +329,10 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                                                          {</div>
+<div class="line"><span class="lineno">   25</span>  <span class="keywordflow">return</span> sqrt(pow((mesh1 - mesh2), 2).sum());</div>
+<div class="line"><span class="lineno">   26</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="acbc797d349659c7af6d703900b593126" name="acbc797d349659c7af6d703900b593126"></a>
@@ -368,7 +396,18 @@ template&lt;unsigned Ndots = 61&gt; </div>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  185</span>                                   {</div>
+<div class="line"><span class="lineno">  186</span>  FloatType error;</div>
+<div class="line"><span class="lineno">  187</span>  <span class="keywordtype">double</span> q = boost::math::quadrature::gauss_kronrod&lt;FloatType, Ndots&gt;::integrate(</div>
+<div class="line"><span class="lineno">  188</span>      function,</div>
+<div class="line"><span class="lineno">  189</span>      left,</div>
+<div class="line"><span class="lineno">  190</span>      right,</div>
+<div class="line"><span class="lineno">  191</span>      max_depth,</div>
+<div class="line"><span class="lineno">  192</span>      tol,</div>
+<div class="line"><span class="lineno">  193</span>      &amp;error);</div>
+<div class="line"><span class="lineno">  194</span>  <span class="keywordflow">return</span> q;</div>
+<div class="line"><span class="lineno">  195</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a00ef0838542d8e7ad424216a2350d6ad" name="a00ef0838542d8e7ad424216a2350d6ad"></a>
@@ -428,7 +467,13 @@ template&lt;unsigned Ndots = 61&gt; </div>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  205</span>                                             {</div>
+<div class="line"><span class="lineno">  206</span>  std::function&lt;FloatType(FloatType)&gt; tt = [&amp;theta, &amp;phi, &amp;function](FloatType t) {</div>
+<div class="line"><span class="lineno">  207</span>    <span class="keywordflow">return</span> function(theta, phi, t);</div>
+<div class="line"><span class="lineno">  208</span>  };</div>
+<div class="line"><span class="lineno">  209</span>  <span class="keywordflow">return</span> Integrate&lt;Ndots&gt;(tt, left, right, max_depth, tol);</div>
+<div class="line"><span class="lineno">  210</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a4f9aec90347196d3bba53c69e6dc4c76" name="a4f9aec90347196d3bba53c69e6dc4c76"></a>
@@ -483,7 +528,28 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector, typ
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  213</span>                                                                {</div>
+<div class="line"><span class="lineno">  214</span> </div>
+<div class="line"><span class="lineno">  215</span>  <span class="keywordflow">if</span> (n == 0 || lower_bound - upper_bound == 0) {</div>
+<div class="line"><span class="lineno">  216</span>    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;Zero linspace size&quot;</span>);</div>
+<div class="line"><span class="lineno">  217</span>  }</div>
+<div class="line"><span class="lineno">  218</span> </div>
+<div class="line"><span class="lineno">  219</span>  container&lt;T&gt; result(n);</div>
+<div class="line"><span class="lineno">  220</span> </div>
+<div class="line"><span class="lineno">  221</span>  <span class="keywordtype">size_t</span> div;</div>
+<div class="line"><span class="lineno">  222</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (end) {</div>
+<div class="line"><span class="lineno">  223</span>    div = n - 1;</div>
+<div class="line"><span class="lineno">  224</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  225</span>    div = n;</div>
+<div class="line"><span class="lineno">  226</span>  }</div>
+<div class="line"><span class="lineno">  227</span>  T step = (upper_bound - lower_bound) / (T) div;</div>
+<div class="line"><span class="lineno">  228</span> </div>
+<div class="line"><span class="lineno">  229</span>  <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
+<div class="line"><span class="lineno">  230</span>    result[i] = i * step + lower_bound;</div>
+<div class="line"><span class="lineno">  231</span>  }</div>
+<div class="line"><span class="lineno">  232</span>  <span class="keywordflow">return</span> result;</div>
+<div class="line"><span class="lineno">  233</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af24503ecad79824c864b829950a77ea9" name="af24503ecad79824c864b829950a77ea9"></a>
@@ -523,6 +589,20 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">  238</span>                                            {</div>
+<div class="line"><span class="lineno">  239</span>  std::array&lt;co::MeshStorageType, 2&gt; ret = {<a class="code hl_typedef" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>(b.size() * a.size()),</div>
+<div class="line"><span class="lineno">  240</span>                                            <a class="code hl_typedef" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>(b.size() * a.size())};</div>
+<div class="line"><span class="lineno">  241</span> </div>
+<div class="line"><span class="lineno">  242</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; b.size(); ++i) {</div>
+<div class="line"><span class="lineno">  243</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; a.size(); ++j) {</div>
+<div class="line"><span class="lineno">  244</span>      ret[0][i * a.size() + j] = a[j];</div>
+<div class="line"><span class="lineno">  245</span>      ret[1][i * a.size() + j] = b[i];</div>
+<div class="line"><span class="lineno">  246</span>    }</div>
+<div class="line"><span class="lineno">  247</span>  }</div>
+<div class="line"><span class="lineno">  248</span>  <span class="keywordflow">return</span> ret;</div>
+<div class="line"><span class="lineno">  249</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84">mesh_storage::MeshCreator::ConstructMeshes()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -578,6 +658,39 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   83</span>                                                                     {</div>
+<div class="line"><span class="lineno">   84</span>  <span class="keyword">auto</span> ext0 = mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[0];</div>
+<div class="line"><span class="lineno">   85</span>  <span class="keyword">auto</span> ext1 = mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[1];</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>  out &lt;&lt; ext0 &lt;&lt; <span class="charliteral">&#39;\t&#39;</span> &lt;&lt; ext1 &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   88</span>  out &lt;&lt; <span class="stringliteral">&quot;Функция I(phi,th)\n&quot;</span>;</div>
+<div class="line"><span class="lineno">   89</span>  out &lt;&lt; <span class="stringliteral">&quot;phi\\th\t\t&quot;</span>;</div>
+<div class="line"><span class="lineno">   90</span>  std::vector&lt;FloatType&gt; row(ext0);</div>
+<div class="line"><span class="lineno">   91</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; ext0 - 1; ++i) {</div>
+<div class="line"><span class="lineno">   92</span>    row[i] = mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1][i * ext1];</div>
+<div class="line"><span class="lineno">   93</span>    out &lt;&lt; mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1][i * ext1] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span>;</div>
+<div class="line"><span class="lineno">   94</span>  }</div>
+<div class="line"><span class="lineno">   95</span>  row[ext0 - 1] = mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1][(ext0 - 1) * ext1];</div>
+<div class="line"><span class="lineno">   96</span>  out &lt;&lt; mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1][(ext0 - 1) * ext1]</div>
+<div class="line"><span class="lineno">   97</span>      &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>  std::vector&lt;FloatType&gt; col(ext1);</div>
+<div class="line"><span class="lineno">  100</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; ext1; ++i) {</div>
+<div class="line"><span class="lineno">  101</span>    <span class="keyword">auto</span> phi = mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[0][i];</div>
+<div class="line"><span class="lineno">  102</span>    col[i] = phi;</div>
+<div class="line"><span class="lineno">  103</span>    out &lt;&lt; phi &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span>;</div>
+<div class="line"><span class="lineno">  104</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; ext0 - 1; ++j) {</div>
+<div class="line"><span class="lineno">  105</span>      out &lt;&lt; mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[2][j * ext1 + i] &lt;&lt; <span class="stringliteral">&quot;\t&quot;</span>;</div>
+<div class="line"><span class="lineno">  106</span>    }</div>
+<div class="line"><span class="lineno">  107</span>    out &lt;&lt; mmesh.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[2][(ext0 - 1) * ext1 + i] &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  108</span>  }</div>
+<div class="line"><span class="lineno">  109</span>}</div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html_a3cfccead3c7556f103d891b87db2b346"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">mesh_storage::MeshCreator::dimensions_</a></div><div class="ttdeci">DimType dimensions_</div><div class="ttdef"><b>Definition</b> MeshCreator.h:163</div></div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html_a4cb86d887a78d2ebfb47e0802657cc87"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">mesh_storage::MeshCreator::data_</a></div><div class="ttdeci">MeshArr&lt; 3 &gt; data_</div><div class="ttdef"><b>Definition</b> MeshCreator.h:165</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">mesh_storage::MeshCreator::data_</a>, and <a class="el" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">mesh_storage::MeshCreator::dimensions_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07">print_utils::PrintMesh()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -615,7 +728,19 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   36</span>                                                           {</div>
+<div class="line"><span class="lineno">   37</span>  <a class="code hl_typedef" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">MeshArr&lt;3&gt;</a> res;</div>
+<div class="line"><span class="lineno">   38</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 3; ++i) {</div>
+<div class="line"><span class="lineno">   39</span>    res[i] = oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[i];</div>
+<div class="line"><span class="lineno">   40</span>  }</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>  res[0] = oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[2] * sin(oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1]) * cos(oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[0]);</div>
+<div class="line"><span class="lineno">   43</span>  res[1] = oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[2] * sin(oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1]) * sin(oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[0]);</div>
+<div class="line"><span class="lineno">   44</span>  res[2] = oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[2] * cos(oth.<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1]);</div>
+<div class="line"><span class="lineno">   45</span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">   46</span>}</div>
+<div class="ttc" id="anamespacemesh__storage_html_a7f11b4c2289b930a0dae0b517415d5ed"><div class="ttname"><a href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">mesh_storage::MeshArr</a></div><div class="ttdeci">std::array&lt; co::MeshStorageType, N &gt; MeshArr</div><div class="ttdef"><b>Definition</b> MeshCreator.h:21</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aaf5ccc0e24b8812a7a2460b00aac704d" name="aaf5ccc0e24b8812a7a2460b00aac704d"></a>
@@ -643,7 +768,20 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  111</span>                                                                                      {</div>
+<div class="line"><span class="lineno">  112</span>  <span class="keyword">auto</span> res = <a class="code hl_typedef" href="namespacecommon__types.html#a7ee1d29866ec43799760c65858b5f8b2">co::MeshDrawClass</a>(dims[0], <a class="code hl_typedef" href="namespacecommon__types.html#afe619fb0a20486137ed82d75e4feca90">co::StdVec</a>(dims[1], 0.0));</div>
+<div class="line"><span class="lineno">  113</span> </div>
+<div class="line"><span class="lineno">  114</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; dims[0]; ++i) {</div>
+<div class="line"><span class="lineno">  115</span>    <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; dims[1]; ++j) {</div>
+<div class="line"><span class="lineno">  116</span>      res[i][j] = mm[i * dims[1] + j];</div>
+<div class="line"><span class="lineno">  117</span>    }</div>
+<div class="line"><span class="lineno">  118</span>  }</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  121</span>}</div>
+<div class="ttc" id="anamespacecommon__types_html_a7ee1d29866ec43799760c65858b5f8b2"><div class="ttname"><a href="namespacecommon__types.html#a7ee1d29866ec43799760c65858b5f8b2">common_types::MeshDrawClass</a></div><div class="ttdeci">std::vector&lt; StdVec &gt; MeshDrawClass</div><div class="ttdef"><b>Definition</b> commonTypes.h:44</div></div>
+<div class="ttc" id="anamespacecommon__types_html_afe619fb0a20486137ed82d75e4feca90"><div class="ttname"><a href="namespacecommon__types.html#afe619fb0a20486137ed82d75e4feca90">common_types::StdVec</a></div><div class="ttdeci">std::vector&lt; FloatType &gt; StdVec</div><div class="ttdef"><b>Definition</b> commonTypes.h:42</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

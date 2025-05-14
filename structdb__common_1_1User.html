@@ -100,6 +100,16 @@ $(document).ready(function(){initNavTree('structdb__common_1_1User.html',''); in
 
 <p><a class="el" href="structdb__common_1_1User.html" title="User DAO.">User</a> DAO.  
  <a href="structdb__common_1_1User.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for db_common::User:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structdb__common_1_1User__coll__graph.png" border="0" usemap="#adb__common_1_1User_coll__map" alt="Collaboration graph"/></div>
+<map name="adb__common_1_1User_coll__map" id="adb__common_1_1User_coll__map">
+<area shape="rect" title="User DAO." alt="" coords="5,5,151,231"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -170,11 +180,34 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">   39</span>                             {</div>
+<div class="line"><span class="lineno">   40</span>  <a class="code hl_variable" href="structdb__common_1_1User.html#a061ab6e39ca514046a3ac35d9b3ffe52">user_id</a> = row[<span class="stringliteral">&quot;user_id&quot;</span>].as&lt;<a class="code hl_typedef" href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">IndexType</a>&gt;();</div>
+<div class="line"><span class="lineno">   41</span>  <a class="code hl_variable" href="structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314">login</a> = row[<span class="stringliteral">&quot;login&quot;</span>].as&lt;std::string&gt;();</div>
+<div class="line"><span class="lineno">   42</span>  <a class="code hl_variable" href="structdb__common_1_1User.html#a42fb11b7bf7ac7eeec7d5809f0c571cb">hashed_password</a> = row[<span class="stringliteral">&quot;hashed_password&quot;</span>].as&lt;std::string&gt;();</div>
+<div class="line"><span class="lineno">   43</span>  <span class="keyword">auto</span> rr = row[<span class="stringliteral">&quot;role&quot;</span>].as&lt;std::string&gt;();</div>
+<div class="line"><span class="lineno">   44</span>  <a class="code hl_variable" href="structdb__common_1_1User.html#ac0ab9ebed727caf63277e56e2236bd38">role</a> = <a class="code hl_function" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">StrToEnum</a>(rr, kStrToUserRole);</div>
+<div class="line"><span class="lineno">   45</span>  <a class="code hl_variable" href="structdb__common_1_1User.html#a061ab6e39ca514046a3ac35d9b3ffe52">user_id</a> = row[<span class="stringliteral">&quot;user_id&quot;</span>].as&lt;<a class="code hl_typedef" href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">IndexType</a>&gt;();</div>
+<div class="line"><span class="lineno">   46</span> </div>
+<div class="line"><span class="lineno">   47</span>  <a class="code hl_variable" href="structdb__common_1_1User.html#a2317b0c7b6ce7bf0ea19b6c6e1dd357a">created_at</a> = *<a class="code hl_function" href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">StrToTimepoint</a>(row[<span class="stringliteral">&quot;created_at&quot;</span>].as&lt;std::string&gt;());</div>
+<div class="line"><span class="lineno">   48</span> </div>
+<div class="line"><span class="lineno">   49</span>  <a class="code hl_variable" href="structdb__common_1_1User.html#a29aadb44d93619a024f986985eb3a7d3">last_login</a> = GetFunctionOpt&lt;TimepointType,StrToTimepoint&gt;(row[<span class="stringliteral">&quot;last_login&quot;</span>]);</div>
+<div class="line"><span class="lineno">   50</span>}</div>
+<div class="ttc" id="anamespacedb__common_html_a0bf5bdeb7108eed0c8454cbcd5c39615"><div class="ttname"><a href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">db_common::IndexType</a></div><div class="ttdeci">uint64_t IndexType</div><div class="ttdef"><b>Definition</b> dbCommon.h:20</div></div>
+<div class="ttc" id="anamespaceenum__utils_html_a2ad2288929e574d72d18771f391b1601"><div class="ttname"><a href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">enum_utils::StrToEnum</a></div><div class="ttdeci">Enum StrToEnum(const std::string &amp;str, const std::unordered_map&lt; std::string, Enum &gt; &amp;map)</div><div class="ttdoc">Cast string to enum.</div><div class="ttdef"><b>Definition</b> enumUtils.h:123</div></div>
+<div class="ttc" id="anamespacetiming_html_ad625aa0dba4dadd42847e1d84c062d07"><div class="ttname"><a href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">timing::StrToTimepoint</a></div><div class="ttdeci">std::optional&lt; TimepointType &gt; StrToTimepoint(std::string_view ts)</div><div class="ttdoc">Retrives TimepointType from a given string.</div><div class="ttdef"><b>Definition</b> timingUtils.cpp:29</div></div>
+<div class="ttc" id="astructdb__common_1_1User_html_a061ab6e39ca514046a3ac35d9b3ffe52"><div class="ttname"><a href="structdb__common_1_1User.html#a061ab6e39ca514046a3ac35d9b3ffe52">db_common::User::user_id</a></div><div class="ttdeci">IndexType user_id</div><div class="ttdef"><b>Definition</b> daoClasses.h:104</div></div>
+<div class="ttc" id="astructdb__common_1_1User_html_a2317b0c7b6ce7bf0ea19b6c6e1dd357a"><div class="ttname"><a href="structdb__common_1_1User.html#a2317b0c7b6ce7bf0ea19b6c6e1dd357a">db_common::User::created_at</a></div><div class="ttdeci">IndexType created_at</div><div class="ttdef"><b>Definition</b> daoClasses.h:108</div></div>
+<div class="ttc" id="astructdb__common_1_1User_html_a29aadb44d93619a024f986985eb3a7d3"><div class="ttname"><a href="structdb__common_1_1User.html#a29aadb44d93619a024f986985eb3a7d3">db_common::User::last_login</a></div><div class="ttdeci">std::optional&lt; IndexType &gt; last_login</div><div class="ttdef"><b>Definition</b> daoClasses.h:109</div></div>
+<div class="ttc" id="astructdb__common_1_1User_html_a42fb11b7bf7ac7eeec7d5809f0c571cb"><div class="ttname"><a href="structdb__common_1_1User.html#a42fb11b7bf7ac7eeec7d5809f0c571cb">db_common::User::hashed_password</a></div><div class="ttdeci">std::string hashed_password</div><div class="ttdef"><b>Definition</b> daoClasses.h:106</div></div>
+<div class="ttc" id="astructdb__common_1_1User_html_aa7e6f7e10a3b4b362fd1dfd45c543314"><div class="ttname"><a href="structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314">db_common::User::login</a></div><div class="ttdeci">std::string login</div><div class="ttdef"><b>Definition</b> daoClasses.h:105</div></div>
+<div class="ttc" id="astructdb__common_1_1User_html_ac0ab9ebed727caf63277e56e2236bd38"><div class="ttname"><a href="structdb__common_1_1User.html#ac0ab9ebed727caf63277e56e2236bd38">db_common::User::role</a></div><div class="ttdeci">UserRole role</div><div class="ttdef"><b>Definition</b> daoClasses.h:107</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="structdb__common_1_1User.html#a2317b0c7b6ce7bf0ea19b6c6e1dd357a">created_at</a>, <a class="el" href="structdb__common_1_1User.html#a42fb11b7bf7ac7eeec7d5809f0c571cb">hashed_password</a>, <a class="el" href="structdb__common_1_1User.html#a29aadb44d93619a024f986985eb3a7d3">last_login</a>, <a class="el" href="structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314">login</a>, <a class="el" href="structdb__common_1_1User.html#ac0ab9ebed727caf63277e56e2236bd38">role</a>, <a class="el" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">enum_utils::StrToEnum()</a>, <a class="el" href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">timing::StrToTimepoint()</a>, and <a class="el" href="structdb__common_1_1User.html#a061ab6e39ca514046a3ac35d9b3ffe52">user_id</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="structdb__common_1_1User_ac7415dc23d15f290ae875cefc5e7a9c4_cgraph.png" border="0" usemap="#astructdb__common_1_1User_ac7415dc23d15f290ae875cefc5e7a9c4_cgraph" alt=""/></div>
 <map name="astructdb__common_1_1User_ac7415dc23d15f290ae875cefc5e7a9c4_cgraph" id="astructdb__common_1_1User_ac7415dc23d15f290ae875cefc5e7a9c4_cgraph">
 <area shape="rect" title=" " alt="" coords="5,31,184,56"/>
@@ -204,7 +237,12 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">   51</span>                                     {</div>
+<div class="line"><span class="lineno">   52</span>  <span class="keywordflow">return</span> <span class="stringliteral">&quot;&quot;</span>;</div>
+<div class="line"><span class="lineno">   53</span>  <span class="comment">/*TransactionT::quote(&quot;s&quot;);</span></div>
+<div class="line"><span class="lineno">   54</span><span class="comment">  return fmt::format(&quot;{}, {}, {}&quot;,pqxx::work::quote(login), txn.quote(password), txn.quote(role));</span></div>
+<div class="line"><span class="lineno">   55</span><span class="comment">*/</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aa4e36c57e246bce10a7b3f476c5b1965" name="aa4e36c57e246bce10a7b3f476c5b1965"></a>
@@ -222,6 +260,13 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                                           {</div>
+<div class="line"><span class="lineno">   58</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314">login</a> == rhs.login &amp;&amp;</div>
+<div class="line"><span class="lineno">   59</span>      <a class="code hl_variable" href="structdb__common_1_1User.html#a42fb11b7bf7ac7eeec7d5809f0c571cb">hashed_password</a> == rhs.hashed_password &amp;&amp;</div>
+<div class="line"><span class="lineno">   60</span>      <a class="code hl_variable" href="structdb__common_1_1User.html#ac0ab9ebed727caf63277e56e2236bd38">role</a> == rhs.role;</div>
+<div class="line"><span class="lineno">   61</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="structdb__common_1_1User.html#a42fb11b7bf7ac7eeec7d5809f0c571cb">hashed_password</a>, <a class="el" href="structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314">login</a>, and <a class="el" href="structdb__common_1_1User.html#ac0ab9ebed727caf63277e56e2236bd38">role</a>.</p>
 
 </div>
 </div>
@@ -238,6 +283,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="reference">Referenced by <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">User()</a>.</p>
+
 </div>
 </div>
 <a id="a42fb11b7bf7ac7eeec7d5809f0c571cb" name="a42fb11b7bf7ac7eeec7d5809f0c571cb"></a>
@@ -251,6 +298,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="classdb__service_1_1DbService.html#a489c0ad5a2496659533b037c739b00a1">db_service::DbService::AuthenticateUser()</a>, <a class="el" href="classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda">db_service::DbService::CreateUser()</a>, <a class="el" href="structdb__common_1_1User.html#aa4e36c57e246bce10a7b3f476c5b1965">operator==()</a>, and <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">User()</a>.</p>
 
 </div>
 </div>
@@ -266,6 +315,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="reference">Referenced by <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">User()</a>.</p>
+
 </div>
 </div>
 <a id="aa7e6f7e10a3b4b362fd1dfd45c543314" name="aa7e6f7e10a3b4b362fd1dfd45c543314"></a>
@@ -279,6 +330,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="classdb__service_1_1DbService.html#a489c0ad5a2496659533b037c739b00a1">db_service::DbService::AuthenticateUser()</a>, <a class="el" href="classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda">db_service::DbService::CreateUser()</a>, <a class="el" href="structdb__common_1_1User.html#aa4e36c57e246bce10a7b3f476c5b1965">operator==()</a>, and <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">User()</a>.</p>
 
 </div>
 </div>
@@ -294,6 +347,8 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="reference">Referenced by <a class="el" href="classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda">db_service::DbService::CreateUser()</a>, <a class="el" href="structdb__common_1_1User.html#aa4e36c57e246bce10a7b3f476c5b1965">operator==()</a>, and <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">User()</a>.</p>
+
 </div>
 </div>
 <a id="a061ab6e39ca514046a3ac35d9b3ffe52" name="a061ab6e39ca514046a3ac35d9b3ffe52"></a>
@@ -307,6 +362,8 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">User()</a>.</p>
 
 </div>
 </div>

@@ -108,11 +108,11 @@ $(document).ready(function(){initNavTree('classmesh__storage_1_1MeshCreator.html
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmesh__storage_1_1MeshCreator__coll__graph.png" border="0" usemap="#amesh__storage_1_1MeshCreator_coll__map" alt="Collaboration graph"/></div>
 <map name="amesh__storage_1_1MeshCreator_coll__map" id="amesh__storage_1_1MeshCreator_coll__map">
-<area shape="rect" title="Class that handles 3d mesh creation and parameters management." alt="" coords="5,93,211,119"/>
-<area shape="rect" title=" " alt="" coords="69,5,147,31"/>
-<area shape="poly" title=" " alt="" coords="111,45,111,93,105,93,105,45"/>
+<area shape="rect" title="Class that handles 3d mesh creation and parameters management." alt="" coords="5,133,203,319"/>
+<area shape="rect" title=" " alt="" coords="69,5,139,71"/>
+<area shape="poly" title=" " alt="" coords="107,71,107,117,101,117,101,71"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -176,6 +176,20 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   48</span>                                       : <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>(kDefaultDims), <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">limits_</a>(kDefaultLims) {</div>
+<div class="line"><span class="lineno">   49</span> </div>
+<div class="line"><span class="lineno">   50</span>  <span class="keywordflow">if</span> (construct) {</div>
+<div class="line"><span class="lineno">   51</span>    <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a> = {{<a class="code hl_typedef" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>(<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[0] * <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[1]),</div>
+<div class="line"><span class="lineno">   52</span>              <a class="code hl_typedef" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>(<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[0] * <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[1]),</div>
+<div class="line"><span class="lineno">   53</span>              <a class="code hl_typedef" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>(<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[0] * <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[1])}};</div>
+<div class="line"><span class="lineno">   54</span>  }</div>
+<div class="line"><span class="lineno">   55</span>}</div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html_a1554f480c52d77ff3f504c5b5c4b3e67"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">mesh_storage::MeshCreator::limits_</a></div><div class="ttdeci">LimType limits_</div><div class="ttdef"><b>Definition</b> MeshCreator.h:164</div></div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html_a3cfccead3c7556f103d891b87db2b346"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">mesh_storage::MeshCreator::dimensions_</a></div><div class="ttdeci">DimType dimensions_</div><div class="ttdef"><b>Definition</b> MeshCreator.h:163</div></div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html_a4cb86d887a78d2ebfb47e0802657cc87"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">mesh_storage::MeshCreator::data_</a></div><div class="ttdeci">MeshArr&lt; 3 &gt; data_</div><div class="ttdef"><b>Definition</b> MeshCreator.h:165</div></div>
+<div class="ttc" id="anamespacecommon__types_html_a9e1d9d3de9bb4ab11fa7a0f6b42cea57"><div class="ttname"><a href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">common_types::MeshStorageType</a></div><div class="ttdeci">std::valarray&lt; FloatType &gt; MeshStorageType</div><div class="ttdef"><b>Definition</b> commonTypes.h:45</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>, and <a class="el" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>.</p>
 
 </div>
 </div>
@@ -203,6 +217,14 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   32</span>                                                            {</div>
+<div class="line"><span class="lineno">   33</span>  <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[2] = <a class="code hl_function" href="namespacemesh__storage.html#aa880df7d2ee0d964e30be20ea5bc3379">mesh_storage::ComputeFunction</a>(<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[0], <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1], func);</div>
+<div class="line"><span class="lineno">   34</span>}</div>
+<div class="ttc" id="anamespacemesh__storage_html_aa880df7d2ee0d964e30be20ea5bc3379"><div class="ttname"><a href="namespacemesh__storage.html#aa880df7d2ee0d964e30be20ea5bc3379">mesh_storage::ComputeFunction</a></div><div class="ttdeci">co::MeshStorageType ComputeFunction(const co::MeshStorageType &amp;a, const co::MeshStorageType &amp;b, const co::DirectionGraph &amp;func)</div><div class="ttdoc">Computes functional mesh for 2 coordinates.</div><div class="ttdef"><b>Definition</b> MeshCreator.cpp:6</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespacemesh__storage.html#aa880df7d2ee0d964e30be20ea5bc3379">mesh_storage::ComputeFunction()</a>, and <a class="el" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmesh__storage_1_1MeshCreator.html#a47074624402c0eed9257a4b50717f068">ApplyIntegrate()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -271,6 +293,14 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   77</span>                                                                                           {</div>
+<div class="line"><span class="lineno">   78</span>  this-&gt;<a class="code hl_function" href="classmesh__storage_1_1MeshCreator.html#a8a9396d2933475ea85cf163668e4cba4">ApplyFunction</a>([&amp;func, &amp;a, b](FloatType x, FloatType y) {</div>
+<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">return</span> IntegrateLambdaForOneVariable&lt;61&gt;(func, y, x, a, b);</div>
+<div class="line"><span class="lineno">   80</span>  });</div>
+<div class="line"><span class="lineno">   81</span>}</div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html_a8a9396d2933475ea85cf163668e4cba4"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html#a8a9396d2933475ea85cf163668e4cba4">mesh_storage::MeshCreator::ApplyFunction</a></div><div class="ttdeci">void ApplyFunction(const co::DirectionGraph &amp;func)</div><div class="ttdoc">Computes data[2] using provided Func function.</div><div class="ttdef"><b>Definition</b> MeshCreator.cpp:32</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classmesh__storage_1_1MeshCreator.html#a8a9396d2933475ea85cf163668e4cba4">ApplyFunction()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -322,6 +352,26 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   57</span>                                                                          {</div>
+<div class="line"><span class="lineno">   58</span>  this-&gt;<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a> = dims;</div>
+<div class="line"><span class="lineno">   59</span>  this-&gt;<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">limits_</a> = lims;</div>
+<div class="line"><span class="lineno">   60</span> </div>
+<div class="line"><span class="lineno">   61</span>  <span class="keyword">auto</span> phi = mesh_storage::MyLinspace&lt;std::valarray&gt;(<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">limits_</a>[2], <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">limits_</a>[3], <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[1]);</div>
+<div class="line"><span class="lineno">   62</span>  <span class="keyword">auto</span> theta = mesh_storage::MyLinspace&lt;std::valarray&gt;(<a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">limits_</a>[0], <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">limits_</a>[1], <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>[0]);</div>
+<div class="line"><span class="lineno">   63</span>  <span class="comment">/*std::array&lt;std::valarray&lt;FloatType&gt;, 2&gt; coords;</span></div>
+<div class="line"><span class="lineno">   64</span><span class="comment">  for (size_t i = 0; i &lt; 2; ++i) {</span></div>
+<div class="line"><span class="lineno">   65</span><span class="comment">    coords[i] = mesh_storage::MyLinspace&lt;std::valarray&gt;(limits_[2 * i], limits_[2 * i + 1], dimensions_[i]);</span></div>
+<div class="line"><span class="lineno">   66</span><span class="comment">  }*/</span></div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>  <span class="keyword">auto</span> rrr = <a class="code hl_function" href="namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9">mesh_storage::MyMeshGrid</a>(phi, theta);</div>
+<div class="line"><span class="lineno">   69</span>  <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[0] = rrr[0];</div>
+<div class="line"><span class="lineno">   70</span>  <a class="code hl_variable" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>[1] = rrr[1];</div>
+<div class="line"><span class="lineno">   71</span>}</div>
+<div class="ttc" id="anamespacemesh__storage_html_af24503ecad79824c864b829950a77ea9"><div class="ttname"><a href="namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9">mesh_storage::MyMeshGrid</a></div><div class="ttdeci">std::array&lt; co::MeshStorageType, 2 &gt; MyMeshGrid(const container&lt; co::FloatType &gt; &amp;a, const container&lt; co::FloatType &gt; &amp;b)</div><div class="ttdoc">Computes meshes using 2 double arrays.</div><div class="ttdef"><b>Definition</b> MeshCreator.h:237</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">data_</a>, <a class="el" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">dimensions_</a>, <a class="el" href="classmesh__storage_1_1MeshCreator.html#a1554f480c52d77ff3f504c5b5c4b3e67">limits_</a>, and <a class="el" href="namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9">mesh_storage::MyMeshGrid()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmesh__storage_1_1MeshCreator.html#a7956ecedf7ba1ab0cfd2794edffb286f">ConstructMeshes()</a>, <a class="el" href="namespaceprint__utils.html#a7ace2bb394174fd24efb227b98314054">print_utils::FromJson()</a>, and <a class="el" href="namespaceprint__utils.html#a39a49a70f2b8ad5b00ca82a44ada19ea">print_utils::ParseMeshFrom()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
@@ -387,6 +437,12 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   73</span>                                                                                            {</div>
+<div class="line"><span class="lineno">   74</span>  <a class="code hl_function" href="classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84">ConstructMeshes</a>(dim_opt.value_or(this-&gt;dimensions_), lim_opt.value_or(this-&gt;limits_));</div>
+<div class="line"><span class="lineno">   75</span>}</div>
+<div class="ttc" id="aclassmesh__storage_1_1MeshCreator_html_a5f4cda19798d2e55e4d6399dc2f64b84"><div class="ttname"><a href="classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84">mesh_storage::MeshCreator::ConstructMeshes</a></div><div class="ttdeci">void ConstructMeshes(const DimType &amp;dims, const LimType &amp;lims)</div><div class="ttdoc">Computes 2d meshgrid using dims,lims.</div><div class="ttdef"><b>Definition</b> MeshCreator.cpp:57</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84">ConstructMeshes()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
@@ -446,7 +502,10 @@ Friends</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  159</span>                                                                                                                           {</div>
+<div class="line"><span class="lineno">  160</span>    plot_callback(filename, *<span class="keyword">this</span>);</div>
+<div class="line"><span class="lineno">  161</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Symbol Documentation</h2>
@@ -482,7 +541,18 @@ Friends</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   36</span>                                                           {</div>
+<div class="line"><span class="lineno">   37</span>  MeshArr&lt;3&gt; res;</div>
+<div class="line"><span class="lineno">   38</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> i = 0; i &lt; 3; ++i) {</div>
+<div class="line"><span class="lineno">   39</span>    res[i] = oth.data_[i];</div>
+<div class="line"><span class="lineno">   40</span>  }</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>  res[0] = oth.data_[2] * sin(oth.data_[1]) * cos(oth.data_[0]);</div>
+<div class="line"><span class="lineno">   43</span>  res[1] = oth.data_[2] * sin(oth.data_[1]) * sin(oth.data_[0]);</div>
+<div class="line"><span class="lineno">   44</span>  res[2] = oth.data_[2] * cos(oth.data_[1]);</div>
+<div class="line"><span class="lineno">   45</span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">   46</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
@@ -498,6 +568,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="reference">Referenced by <a class="el" href="classmesh__storage_1_1MeshCreator.html#a8a9396d2933475ea85cf163668e4cba4">ApplyFunction()</a>, <a class="el" href="classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84">ConstructMeshes()</a>, <a class="el" href="namespaceprint__utils.html#a7ace2bb394174fd24efb227b98314054">print_utils::FromJson()</a>, <a class="el" href="classmesh__storage_1_1MeshCreator.html#ab0a483539dc5309d61824c2c7e09db80">MeshCreator()</a>, <a class="el" href="namespaceprint__utils.html#a39a49a70f2b8ad5b00ca82a44ada19ea">print_utils::ParseMeshFrom()</a>, <a class="el" href="namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740">mesh_storage::PrintDec()</a>, <a class="el" href="namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07">print_utils::PrintMesh()</a>, and <a class="el" href="namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a">print_utils::ToJson()</a>.</p>
+
 </div>
 </div>
 <a id="a3cfccead3c7556f103d891b87db2b346" name="a3cfccead3c7556f103d891b87db2b346"></a>
@@ -512,6 +584,8 @@ Friends</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p class="reference">Referenced by <a class="el" href="classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84">ConstructMeshes()</a>, <a class="el" href="classmesh__storage_1_1MeshCreator.html#ab0a483539dc5309d61824c2c7e09db80">MeshCreator()</a>, <a class="el" href="namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740">mesh_storage::PrintDec()</a>, <a class="el" href="namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07">print_utils::PrintMesh()</a>, and <a class="el" href="namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a">print_utils::ToJson()</a>.</p>
+
 </div>
 </div>
 <a id="a1554f480c52d77ff3f504c5b5c4b3e67" name="a1554f480c52d77ff3f504c5b5c4b3e67"></a>
@@ -525,6 +599,8 @@ Friends</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84">ConstructMeshes()</a>, <a class="el" href="namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07">print_utils::PrintMesh()</a>, and <a class="el" href="namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a">print_utils::ToJson()</a>.</p>
 
 </div>
 </div>

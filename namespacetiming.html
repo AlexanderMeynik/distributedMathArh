@@ -253,7 +253,11 @@ template&lt;Duration dur&gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   48</span>                           {</div>
+<div class="line"><span class="lineno">   49</span>  <span class="keywordflow">return</span> duration_cast&lt;dur&gt;(std::chrono::system_clock::now().time_since_epoch())</div>
+<div class="line"><span class="lineno">   50</span>      .count();</div>
+<div class="line"><span class="lineno">   51</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab3c2845e377c52233a46bf94a6ae79c1" name="ab3c2845e377c52233a46bf94a6ae79c1"></a>
@@ -301,7 +305,15 @@ requires std::is_floating_point_v&lt;T&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   90</span>                                                              {</div>
+<div class="line"><span class="lineno">   91</span>  <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">   92</span>  <span class="keywordflow">for</span> (; i &lt; sz - 1; ++i) {</div>
+<div class="line"><span class="lineno">   93</span>    out &lt;&lt; arr[i] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span>;</div>
+<div class="line"><span class="lineno">   94</span>  }</div>
+<div class="line"><span class="lineno">   95</span>  out &lt;&lt; arr[i] &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   96</span>  <span class="keywordflow">return</span> out;</div>
+<div class="line"><span class="lineno">   97</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab70dc0514e6b38262f309b86c76039b6" name="ab70dc0514e6b38262f309b86c76039b6"></a>
@@ -349,7 +361,15 @@ requires std::is_convertible_v&lt;T, std::string&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   90</span>                                                              {</div>
+<div class="line"><span class="lineno">   91</span>  <span class="keywordtype">int</span> i = 0;</div>
+<div class="line"><span class="lineno">   92</span>  <span class="keywordflow">for</span> (; i &lt; sz - 1; ++i) {</div>
+<div class="line"><span class="lineno">   93</span>    out &lt;&lt; arr[i] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span>;</div>
+<div class="line"><span class="lineno">   94</span>  }</div>
+<div class="line"><span class="lineno">   95</span>  out &lt;&lt; arr[i] &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   96</span>  <span class="keywordflow">return</span> out;</div>
+<div class="line"><span class="lineno">   97</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af1b44090abfb2159e7d31161fa333d66" name="af1b44090abfb2159e7d31161fa333d66"></a>
@@ -395,7 +415,10 @@ template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   61</span>                                                                          {</div>
+<div class="line"><span class="lineno">   62</span>  <span class="keywordflow">return</span> std::equal(arr1.begin(), arr1.end(), arr2);</div>
+<div class="line"><span class="lineno">   63</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad625aa0dba4dadd42847e1d84c062d07" name="ad625aa0dba4dadd42847e1d84c062d07"></a>
@@ -422,6 +445,35 @@ template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   29</span>                                                             {</div>
+<div class="line"><span class="lineno">   30</span>  std::tm tm{};</div>
+<div class="line"><span class="lineno">   31</span>  <span class="keywordtype">int</span> micros = 0;</div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>  <span class="keyword">auto</span> dot = ts.find(<span class="charliteral">&#39;.&#39;</span>);</div>
+<div class="line"><span class="lineno">   34</span> </div>
+<div class="line"><span class="lineno">   35</span>  <span class="keywordflow">if</span> (std::sscanf(ts.data(),</div>
+<div class="line"><span class="lineno">   36</span>                  <span class="stringliteral">&quot;%d-%d-%d %d:%d:%d.%d&quot;</span>,</div>
+<div class="line"><span class="lineno">   37</span>                  &amp;tm.tm_year, &amp;tm.tm_mon, &amp;tm.tm_mday,</div>
+<div class="line"><span class="lineno">   38</span>                  &amp;tm.tm_hour, &amp;tm.tm_min, &amp;tm.tm_sec,</div>
+<div class="line"><span class="lineno">   39</span>                  &amp;micros) != 7)</div>
+<div class="line"><span class="lineno">   40</span>    <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><span class="lineno">   41</span> </div>
+<div class="line"><span class="lineno">   42</span>  std::string_view frac_part = ts.substr(dot + 1);</div>
+<div class="line"><span class="lineno">   43</span>  micros *= std::pow(10, 6 - frac_part.size());</div>
+<div class="line"><span class="lineno">   44</span> </div>
+<div class="line"><span class="lineno">   45</span>  tm.tm_year -= 1900;</div>
+<div class="line"><span class="lineno">   46</span>  tm.tm_mon -= 1;</div>
+<div class="line"><span class="lineno">   47</span> </div>
+<div class="line"><span class="lineno">   48</span>  time_t secs = mktime(&amp;tm);</div>
+<div class="line"><span class="lineno">   49</span>  uint64_t total_us = uint64_t(secs) * 1&#39;000&#39;000 + micros;</div>
+<div class="line"><span class="lineno">   50</span> </div>
+<div class="line"><span class="lineno">   51</span>  <span class="keyword">using namespace </span>std::chrono;</div>
+<div class="line"><span class="lineno">   52</span>  <span class="keyword">auto</span> sys_dur = microseconds(total_us);</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>  <span class="keywordflow">return</span> uint64_t(duration_cast&lt;microseconds&gt;(sys_dur).count());</div>
+<div class="line"><span class="lineno">   55</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="structdb__common_1_1Experiment.html#a6d6df4c0ee1fb35d605e647bad9bc425">db_common::Experiment::Experiment()</a>, <a class="el" href="structdb__common_1_1Iteration.html#a53998f51dcd0b1fa13317dfc257eb970">db_common::Iteration::Iteration()</a>, <a class="el" href="structdb__common_1_1Log.html#a9738e6b0c17fe8c28702ebdac49394e5">db_common::Log::Log()</a>, and <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">db_common::User::User()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -467,7 +519,30 @@ template&lt;typename T , <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">    7</span>                                                    {</div>
+<div class="line"><span class="lineno">    8</span> </div>
+<div class="line"><span class="lineno">    9</span>  <span class="keyword">using namespace </span>std::chrono;</div>
+<div class="line"><span class="lineno">   10</span> </div>
+<div class="line"><span class="lineno">   11</span>  microseconds <a class="code hl_namespace" href="namespacemesh__storage.html">ms</a>{system_ms};</div>
+<div class="line"><span class="lineno">   12</span> </div>
+<div class="line"><span class="lineno">   13</span>  system_clock::time_point tp{</div>
+<div class="line"><span class="lineno">   14</span>      duration_cast&lt;system_clock::duration&gt;(<a class="code hl_namespace" href="namespacemesh__storage.html">ms</a>)</div>
+<div class="line"><span class="lineno">   15</span>  };</div>
+<div class="line"><span class="lineno">   16</span> </div>
+<div class="line"><span class="lineno">   17</span>  <span class="keyword">auto</span> epoch_us = duration_cast&lt;microseconds&gt;(tp.time_since_epoch()).count();</div>
+<div class="line"><span class="lineno">   18</span>  time_t secs = epoch_us / 1&#39;000&#39;000;</div>
+<div class="line"><span class="lineno">   19</span>  <span class="keywordtype">int</span> frac = epoch_us % 1&#39;000&#39;000;</div>
+<div class="line"><span class="lineno">   20</span> </div>
+<div class="line"><span class="lineno">   21</span>  std::tm tm{};</div>
+<div class="line"><span class="lineno">   22</span>  localtime_r(&amp;secs, &amp;tm);</div>
+<div class="line"><span class="lineno">   23</span> </div>
+<div class="line"><span class="lineno">   24</span>  std::ostringstream os;</div>
+<div class="line"><span class="lineno">   25</span>  os &lt;&lt; std::put_time(&amp;tm, <span class="stringliteral">&quot;%Y-%m-%d %H:%M:%S&quot;</span>)</div>
+<div class="line"><span class="lineno">   26</span>     &lt;&lt; <span class="charliteral">&#39;.&#39;</span> &lt;&lt; std::setw(6) &lt;&lt; std::setfill(<span class="charliteral">&#39;0&#39;</span>) &lt;&lt; frac;</div>
+<div class="line"><span class="lineno">   27</span>  <span class="keywordflow">return</span> os.str();</div>
+<div class="line"><span class="lineno">   28</span>}</div>
+<div class="ttc" id="anamespacemesh__storage_html"><div class="ttname"><a href="namespacemesh__storage.html">mesh_storage</a></div><div class="ttdoc">meshStorage namespace</div><div class="ttdef"><b>Definition</b> MeshCreator.h:11</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

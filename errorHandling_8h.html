@@ -421,6 +421,24 @@ Variables</h2></td></tr>
 <div class="line">    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* fmt_string = fmt_str; \</div>
 <div class="line">    std::tuple&lt;__VA_ARGS__&gt; args_; \</div>
 <div class="line">};</div>
+</div><!-- fragment --><div class="fragment"><div class="line"><span class="lineno">    4</span>           : <span class="keyword">public</span> MyException { \</div>
+<div class="line"><span class="lineno">    5</span><span class="keyword">public</span>: \</div>
+<div class="line"><span class="lineno">    6</span>    template&lt;typename... Args&gt; \</div>
+<div class="line"><span class="lineno">    7</span>    Name(Args&amp;&amp;... args) \</div>
+<div class="line"><span class="lineno">    8</span>        : MyException(fmt::format(fmt_string, std::forward&lt;Args&gt;(args)...),Severity::severity), \</div>
+<div class="line"><span class="lineno">    9</span>          args_(std::forward&lt;Args&gt;(args)...) {} \</div>
+<div class="line"><span class="lineno">   10</span>    \</div>
+<div class="line"><span class="lineno">   11</span>    <span class="keyword">template</span>&lt;std::<span class="keywordtype">size_t</span> N&gt; \</div>
+<div class="line"><span class="lineno">   12</span>    <span class="keyword">const</span> <span class="keyword">auto</span>&amp; <span class="keyword">get</span>() <span class="keyword">const</span> { <span class="keywordflow">return</span> std::get&lt;N&gt;(args_); } \</div>
+<div class="line"><span class="lineno">   13</span>    <span class="keyword">const</span> <span class="keyword">auto</span> &amp; getParams() const               \</div>
+<div class="line"><span class="lineno">   14</span>    {                                       \</div>
+<div class="line"><span class="lineno">   15</span>        <span class="keywordflow">return</span> args_;                        \</div>
+<div class="line"><span class="lineno">   16</span>    } \</div>
+<div class="line"><span class="lineno">   17</span>    \</div>
+<div class="line"><span class="lineno">   18</span><span class="keyword">private</span>: \</div>
+<div class="line"><span class="lineno">   19</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* fmt_string = fmt_str; \</div>
+<div class="line"><span class="lineno">   20</span>    std::tuple&lt;__VA_ARGS__&gt; args_; \</div>
+<div class="line"><span class="lineno">   21</span>};</div>
 </div><!-- fragment -->
 </div>
 </div>

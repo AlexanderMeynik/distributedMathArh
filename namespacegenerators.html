@@ -183,7 +183,17 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31" name="aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31"></a>EXPONENTIAL&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f" name="aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f"></a>LAST&#160;</td><td class="fielddoc"></td></tr>
 </table>
-
+<div class="fragment"><div class="line"><span class="lineno">   69</span>                            : <span class="keywordtype">size_t</span> {</div>
+<div class="line"><span class="lineno">   70</span>  <a class="code hl_enumvalue" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051">NORMAL</a>,</div>
+<div class="line"><span class="lineno">   71</span>  <a class="code hl_enumvalue" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca891f35a29c3d51d02ffd42dd6dcc69b2">UNIFORM</a>,</div>
+<div class="line"><span class="lineno">   72</span>  <a class="code hl_enumvalue" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31">EXPONENTIAL</a>,</div>
+<div class="line"><span class="lineno">   73</span>  <a class="code hl_enumvalue" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f">LAST</a></div>
+<div class="line"><span class="lineno">   74</span>};</div>
+<div class="ttc" id="anamespacegenerators_html_aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051"><div class="ttname"><a href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051">generators::DistributionType::NORMAL</a></div><div class="ttdeci">@ NORMAL</div></div>
+<div class="ttc" id="anamespacegenerators_html_aa85d949cd066d474ab708da4d406538ca891f35a29c3d51d02ffd42dd6dcc69b2"><div class="ttname"><a href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca891f35a29c3d51d02ffd42dd6dcc69b2">generators::DistributionType::UNIFORM</a></div><div class="ttdeci">@ UNIFORM</div></div>
+<div class="ttc" id="anamespacegenerators_html_aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31"><div class="ttname"><a href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31">generators::DistributionType::EXPONENTIAL</a></div><div class="ttdeci">@ EXPONENTIAL</div></div>
+<div class="ttc" id="anamespacegenerators_html_aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f"><div class="ttname"><a href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538caf447f5c03508de4d88e340390ba7c78f">generators::DistributionType::LAST</a></div><div class="ttdeci">@ LAST</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
@@ -219,6 +229,14 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">   65</span>                                                                       {</div>
+<div class="line"><span class="lineno">   66</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="namespacegenerators.html#a15da8a2da1ef457952466cd4f380919e">gen_mt19937</a>.GetGenFunction&lt;std::exponential_distribution&gt;(lambda);</div>
+<div class="line"><span class="lineno">   67</span>}</div>
+<div class="ttc" id="anamespacegenerators_html_a15da8a2da1ef457952466cd4f380919e"><div class="ttname"><a href="namespacegenerators.html#a15da8a2da1ef457952466cd4f380919e">generators::gen_mt19937</a></div><div class="ttdeci">thread_local generator&lt; std::mt19937 &gt; gen_mt19937</div><div class="ttdoc">Thread local generator object.</div><div class="ttdef"><b>Definition</b> Generator.cpp:4</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespacegenerators.html#a15da8a2da1ef457952466cd4f380919e">gen_mt19937</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="namespacegenerators.html#a06e29279648ea72ae3716766050740ac">ParseFunc()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -278,6 +296,13 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   47</span>                                                                               {</div>
+<div class="line"><span class="lineno">   48</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="namespacegenerators.html#a15da8a2da1ef457952466cd4f380919e">gen_mt19937</a>.GetGenFunction&lt;std::normal_distribution&gt;(mean, dev);</div>
+<div class="line"><span class="lineno">   49</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespacegenerators.html#a15da8a2da1ef457952466cd4f380919e">gen_mt19937</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="namespacegenerators.html#a06e29279648ea72ae3716766050740ac">ParseFunc()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -337,6 +362,13 @@ Variables</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   56</span>                                                                           {</div>
+<div class="line"><span class="lineno">   57</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="namespacegenerators.html#a15da8a2da1ef457952466cd4f380919e">gen_mt19937</a>.GetGenFunction&lt;std::uniform_real_distribution&gt;(a, b);</div>
+<div class="line"><span class="lineno">   58</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespacegenerators.html#a15da8a2da1ef457952466cd4f380919e">gen_mt19937</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="namespacegenerators.html#a06e29279648ea72ae3716766050740ac">ParseFunc()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -387,6 +419,34 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>DistributionFunctor </dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">    7</span>                                                                                    {</div>
+<div class="line"><span class="lineno">    8</span>  <span class="keywordflow">switch</span> (distribution_type) {</div>
+<div class="line"><span class="lineno">    9</span>    <span class="keywordflow">case</span> DistributionType::NORMAL:</div>
+<div class="line"><span class="lineno">   10</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacegenerators.html#a82e4967c168a113f525f118fae6387d5">get_normal_generator</a></div>
+<div class="line"><span class="lineno">   11</span>          (</div>
+<div class="line"><span class="lineno">   12</span>              get&lt;FloatType&gt;(args.at(<span class="stringliteral">&quot;mean&quot;</span>)),</div>
+<div class="line"><span class="lineno">   13</span>              get&lt;FloatType&gt;(args.at(<span class="stringliteral">&quot;dev&quot;</span>))</div>
+<div class="line"><span class="lineno">   14</span>          );</div>
+<div class="line"><span class="lineno">   15</span>    <span class="keywordflow">case</span> DistributionType::UNIFORM:</div>
+<div class="line"><span class="lineno">   16</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacegenerators.html#a9d672a4eaf5e7b1a961a7050578ca8f2">get_uniform_generator</a></div>
+<div class="line"><span class="lineno">   17</span>          (</div>
+<div class="line"><span class="lineno">   18</span>              get&lt;FloatType&gt;(args.at(<span class="stringliteral">&quot;a&quot;</span>)),</div>
+<div class="line"><span class="lineno">   19</span>              get&lt;FloatType&gt;(args.at(<span class="stringliteral">&quot;b&quot;</span>))</div>
+<div class="line"><span class="lineno">   20</span>          );</div>
+<div class="line"><span class="lineno">   21</span>    <span class="keywordflow">case</span> DistributionType::EXPONENTIAL:</div>
+<div class="line"><span class="lineno">   22</span>      <span class="keywordflow">return</span> <a class="code hl_function" href="namespacegenerators.html#a76bba07f310d08b542755760861935cc">get_exponential_generator</a>(</div>
+<div class="line"><span class="lineno">   23</span>          get&lt;FloatType&gt;(args.at(<span class="stringliteral">&quot;lambda&quot;</span>))</div>
+<div class="line"><span class="lineno">   24</span>      );</div>
+<div class="line"><span class="lineno">   25</span>    <span class="keywordflow">default</span>:<span class="keywordflow">return</span> []() { <span class="keywordflow">return</span> 1.0; };</div>
+<div class="line"><span class="lineno">   26</span>  }</div>
+<div class="line"><span class="lineno">   27</span>}</div>
+<div class="ttc" id="anamespacegenerators_html_a76bba07f310d08b542755760861935cc"><div class="ttname"><a href="namespacegenerators.html#a76bba07f310d08b542755760861935cc">generators::get_exponential_generator</a></div><div class="ttdeci">DistributionFunctor get_exponential_generator(FloatType lambda)</div><div class="ttdoc">Shorthand generator getter for exponential distribution.</div><div class="ttdef"><b>Definition</b> Generator.h:65</div></div>
+<div class="ttc" id="anamespacegenerators_html_a82e4967c168a113f525f118fae6387d5"><div class="ttname"><a href="namespacegenerators.html#a82e4967c168a113f525f118fae6387d5">generators::get_normal_generator</a></div><div class="ttdeci">DistributionFunctor get_normal_generator(FloatType mean, FloatType dev)</div><div class="ttdoc">Shorthand generator getter for normal distribution.</div><div class="ttdef"><b>Definition</b> Generator.h:47</div></div>
+<div class="ttc" id="anamespacegenerators_html_a9d672a4eaf5e7b1a961a7050578ca8f2"><div class="ttname"><a href="namespacegenerators.html#a9d672a4eaf5e7b1a961a7050578ca8f2">generators::get_uniform_generator</a></div><div class="ttdeci">DistributionFunctor get_uniform_generator(FloatType a, FloatType b)</div><div class="ttdoc">Shorthand generator getter for uniform real distribution.</div><div class="ttdef"><b>Definition</b> Generator.h:56</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538cadcd5fc33e211f31cef0cd7cb36518d31">EXPONENTIAL</a>, <a class="el" href="namespacegenerators.html#a76bba07f310d08b542755760861935cc">get_exponential_generator()</a>, <a class="el" href="namespacegenerators.html#a82e4967c168a113f525f118fae6387d5">get_normal_generator()</a>, <a class="el" href="namespacegenerators.html#a9d672a4eaf5e7b1a961a7050578ca8f2">get_uniform_generator()</a>, <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051">NORMAL</a>, and <a class="el" href="namespacegenerators.html#aa85d949cd066d474ab708da4d406538ca891f35a29c3d51d02ffd42dd6dcc69b2">UNIFORM</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="namespacegenerators.html#ac158ee3caf0a2574ece99b27b80724cb">ParseFunc()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -443,6 +503,15 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   30</span>                                                                                    {</div>
+<div class="line"><span class="lineno">   31</span>  <span class="keywordflow">if</span> (!stringToDistributionType.contains(type)) {</div>
+<div class="line"><span class="lineno">   32</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1InvalidOption.html">shared::InvalidOption</a>(type);</div>
+<div class="line"><span class="lineno">   33</span>  }</div>
+<div class="line"><span class="lineno">   34</span>  <span class="keywordflow">return</span> ParseFunc(stringToDistributionType.at(type), args);</div>
+<div class="line"><span class="lineno">   35</span>}</div>
+<div class="ttc" id="aclassshared_1_1InvalidOption_html"><div class="ttname"><a href="classshared_1_1InvalidOption.html">shared::InvalidOption</a></div><div class="ttdoc">InvalidOption class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:100</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespacegenerators.html#a06e29279648ea72ae3716766050740ac">ParseFunc()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-5-summary" class="dynsummary" style="display:block;">
@@ -478,6 +547,8 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Thread local generator object. </p>
+
+<p class="reference">Referenced by <a class="el" href="namespacegenerators.html#a76bba07f310d08b542755760861935cc">get_exponential_generator()</a>, <a class="el" href="namespacegenerators.html#a82e4967c168a113f525f118fae6387d5">get_normal_generator()</a>, and <a class="el" href="namespacegenerators.html#a9d672a4eaf5e7b1a961a7050578ca8f2">get_uniform_generator()</a>.</p>
 
 </div>
 </div>

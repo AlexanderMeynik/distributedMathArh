@@ -1,5 +1,5 @@
 <map id="amqp_common::AMQPConsumerService" name="amqp_common::AMQPConsumerService">
-<area shape="rect" id="Node000001" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="5,79,241,119"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="14,5,233,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,44,126,79,121,79,121,44"/>
+<area shape="rect" id="Node000001" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="5,479,233,619"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="14,5,225,431"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="122,444,122,478,117,478,117,444"/>
 </map>

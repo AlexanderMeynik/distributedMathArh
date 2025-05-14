@@ -283,6 +283,36 @@ requires isOneDimensionalContinuous&lt;Collection&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Eigen::Map&lt;Eigen::Matrix&lt;Scalar, Eigen::Dynamic, Eigen::Dynamic&gt;&gt; </dd></dl>
+<div class="fragment"><div class="line"><span class="lineno">   95</span>                                                   {</div>
+<div class="line"><span class="lineno">   96</span> </div>
+<div class="line"><span class="lineno">   97</span>  <span class="keyword">using </span>Scalar = std::remove_reference_t&lt;typename Collection::value_type&gt;;</div>
+<div class="line"><span class="lineno">   98</span>  <span class="keyword">using </span>DataPtr = <span class="keyword">decltype</span>(&amp;collection[0]);</div>
+<div class="line"><span class="lineno">   99</span> </div>
+<div class="line"><span class="lineno">  100</span>  <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> kIsConst = std::is_const_v&lt;std::remove_pointer_t&lt;DataPtr&gt;&gt;;</div>
+<div class="line"><span class="lineno">  101</span> </div>
+<div class="line"><span class="lineno">  102</span>  <span class="keyword">using </span>EigenMatrix = Eigen::Matrix&lt;Scalar, Eigen::Dynamic, Eigen::Dynamic&gt;;</div>
+<div class="line"><span class="lineno">  103</span>  <span class="keyword">using </span>MapType = std::conditional_t&lt;kIsConst,</div>
+<div class="line"><span class="lineno">  104</span>                                     Eigen::Map&lt;const EigenMatrix&gt;,</div>
+<div class="line"><span class="lineno">  105</span>                                     Eigen::Map&lt;EigenMatrix&gt;</div>
+<div class="line"><span class="lineno">  106</span>  &gt;;</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>  <span class="keywordflow">if</span> (collection.size() == 0) {</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1zeroSize.html">zeroSize</a>(<a class="code hl_define" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a>(collection));</div>
+<div class="line"><span class="lineno">  110</span>  }</div>
+<div class="line"><span class="lineno">  111</span> </div>
+<div class="line"><span class="lineno">  112</span>  <span class="keywordflow">if</span> (collection.size() % columns != 0) {</div>
+<div class="line"><span class="lineno">  113</span> </div>
+<div class="line"><span class="lineno">  114</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1RowDivisionError.html">RowDivisionError</a>(collection.size(), columns);</div>
+<div class="line"><span class="lineno">  115</span>  }</div>
+<div class="line"><span class="lineno">  116</span>  <span class="keywordtype">size_t</span> rows = collection.size() / columns;</div>
+<div class="line"><span class="lineno">  117</span> </div>
+<div class="line"><span class="lineno">  118</span>  <span class="keywordflow">return</span> MapType(&amp;collection[0], rows, columns);</div>
+<div class="line"><span class="lineno">  119</span>}</div>
+<div class="ttc" id="aclassshared_1_1RowDivisionError_html"><div class="ttname"><a href="classshared_1_1RowDivisionError.html">shared::RowDivisionError</a></div><div class="ttdoc">Exception thrown when the number of rows does not divide the total collection size.</div><div class="ttdef"><b>Definition</b> errorHandling.h:135</div></div>
+<div class="ttc" id="aclassshared_1_1zeroSize_html"><div class="ttname"><a href="classshared_1_1zeroSize.html">shared::zeroSize</a></div><div class="ttdoc">zeroSize class</div><div class="ttdef"><b>Definition</b> errorHandling.h:110</div></div>
+<div class="ttc" id="aerrorHandling_8h_html_a42b70123b8a8ad2a5a0f653944ef67fa"><div class="ttname"><a href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a></div><div class="ttdeci">#define VARIABLE_NAME(Variable)</div><div class="ttdef"><b>Definition</b> errorHandling.h:31</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a>.</p>
 
 </div>
 </div>
@@ -325,6 +355,29 @@ requires isOneDimensionalContinuous&lt;Collection&gt;</div>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   72</span>                                         {</div>
+<div class="line"><span class="lineno">   73</span> </div>
+<div class="line"><span class="lineno">   74</span>  <span class="keyword">using </span>Scalar = std::remove_reference_t&lt;typename Collection::value_type&gt;;</div>
+<div class="line"><span class="lineno">   75</span>  <span class="keyword">using </span>DataPtr = <span class="keyword">decltype</span>(&amp;collection[0]);</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>  <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> kIsConst = std::is_const_v&lt;std::remove_pointer_t&lt;DataPtr&gt;&gt;;</div>
+<div class="line"><span class="lineno">   78</span> </div>
+<div class="line"><span class="lineno">   79</span>  <span class="keyword">using </span>EigenVector = Eigen::RowVector&lt;Scalar, Eigen::Dynamic&gt;;</div>
+<div class="line"><span class="lineno">   80</span>  <span class="keyword">using </span>MapType = std::conditional_t&lt;kIsConst,</div>
+<div class="line"><span class="lineno">   81</span>                                     Eigen::Map&lt;const EigenVector&gt;,</div>
+<div class="line"><span class="lineno">   82</span>                                     Eigen::Map&lt;EigenVector&gt;</div>
+<div class="line"><span class="lineno">   83</span>  &gt;;</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>  <span class="keywordflow">if</span> (collection.size() == 0) {</div>
+<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1zeroSize.html">zeroSize</a>(<a class="code hl_define" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a>(collection));</div>
+<div class="line"><span class="lineno">   87</span>  }</div>
+<div class="line"><span class="lineno">   88</span> </div>
+<div class="line"><span class="lineno">   89</span>  <span class="keywordflow">return</span> MapType(&amp;collection[0], collection.size());</div>
+<div class="line"><span class="lineno">   90</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="namespaceprint__utils.html#a180b49c0627b496c6d8d86a724d6e37d">print_utils::OneDimSerialize()</a>, and <a class="el" href="namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07">print_utils::PrintMesh()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -387,6 +440,26 @@ requires isOneDimensionalContinuous&lt;Collection&gt;</div>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   50</span>                                      {</div>
+<div class="line"><span class="lineno">   51</span>  <span class="keyword">using </span>Scalar = std::remove_reference_t&lt;typename Collection::value_type&gt;;</div>
+<div class="line"><span class="lineno">   52</span>  <span class="keyword">using </span>DataPtr = <span class="keyword">decltype</span>(&amp;collection[0]);</div>
+<div class="line"><span class="lineno">   53</span> </div>
+<div class="line"><span class="lineno">   54</span>  <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> kIsConst = std::is_const_v&lt;std::remove_pointer_t&lt;DataPtr&gt;&gt;;</div>
+<div class="line"><span class="lineno">   55</span> </div>
+<div class="line"><span class="lineno">   56</span>  <span class="keyword">using </span>EigenVector = Eigen::Vector&lt;Scalar, Eigen::Dynamic&gt;;</div>
+<div class="line"><span class="lineno">   57</span>  <span class="keyword">using </span>MapType = std::conditional_t&lt;kIsConst,</div>
+<div class="line"><span class="lineno">   58</span>                                     Eigen::Map&lt;const EigenVector&gt;,</div>
+<div class="line"><span class="lineno">   59</span>                                     Eigen::Map&lt;EigenVector&gt;</div>
+<div class="line"><span class="lineno">   60</span>  &gt;;</div>
+<div class="line"><span class="lineno">   61</span> </div>
+<div class="line"><span class="lineno">   62</span>  <span class="keywordflow">if</span> (collection.size() == 0) {</div>
+<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1zeroSize.html">zeroSize</a>(<a class="code hl_define" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a>(collection));</div>
+<div class="line"><span class="lineno">   64</span>  }</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>  <span class="keywordflow">return</span> MapType(&amp;collection[0], collection.size());</div>
+<div class="line"><span class="lineno">   67</span>}</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a>.</p>
 
 </div>
 </div>

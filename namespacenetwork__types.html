@@ -165,6 +165,21 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   24</span>                                                {</div>
+<div class="line"><span class="lineno">   25</span>  <span class="keywordflow">switch</span> (val.type()) {</div>
+<div class="line"><span class="lineno">   26</span>    <span class="keywordflow">case</span> Json::nullValue:<span class="keywordflow">return</span> JsonVariant(std::nullptr_t{});</div>
+<div class="line"><span class="lineno">   27</span>    <span class="keywordflow">case</span> Json::booleanValue:<span class="keywordflow">return</span> JsonVariant(val.asBool());</div>
+<div class="line"><span class="lineno">   28</span>    <span class="keywordflow">case</span> Json::intValue:<span class="keywordflow">return</span> JsonVariant(val.asInt64());</div>
+<div class="line"><span class="lineno">   29</span>    <span class="keywordflow">case</span> Json::uintValue:<span class="keywordflow">return</span> JsonVariant(val.asUInt64());</div>
+<div class="line"><span class="lineno">   30</span>    <span class="keywordflow">case</span> Json::realValue:<span class="keywordflow">return</span> JsonVariant(val.asDouble());</div>
+<div class="line"><span class="lineno">   31</span>    <span class="keywordflow">case</span> Json::stringValue:<span class="keywordflow">return</span> JsonVariant(val.asString());</div>
+<div class="line"><span class="lineno">   32</span> </div>
+<div class="line"><span class="lineno">   33</span>    <span class="keywordflow">default</span>:<span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1InvalidOption.html">shared::InvalidOption</a>(std::to_string(val.type()));</div>
+<div class="line"><span class="lineno">   34</span>  }</div>
+<div class="line"><span class="lineno">   35</span>}</div>
+<div class="ttc" id="aclassshared_1_1InvalidOption_html"><div class="ttname"><a href="classshared_1_1InvalidOption.html">shared::InvalidOption</a></div><div class="ttdoc">InvalidOption class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:100</div></div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="structnetwork__types_1_1TestSolveParam.html#ab6b44d2104cef733184181dc9e3d5c3c">network_types::TestSolveParam::TestSolveParam()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -203,6 +218,26 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">    5</span>                                              {</div>
+<div class="line"><span class="lineno">    6</span>  <span class="keywordflow">return</span> std::visit([](<span class="keyword">const</span> <span class="keyword">auto</span> &amp;arg) -&gt; Json::Value {</div>
+<div class="line"><span class="lineno">    7</span>    <span class="keyword">using </span>T = std::decay_t&lt;<span class="keyword">decltype</span>(arg)&gt;;</div>
+<div class="line"><span class="lineno">    8</span>    <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, std::nullptr_t&gt;) {</div>
+<div class="line"><span class="lineno">    9</span>      <span class="keywordflow">return</span> Json::Value(Json::nullValue);</div>
+<div class="line"><span class="lineno">   10</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, bool&gt;) {</div>
+<div class="line"><span class="lineno">   11</span>      <span class="keywordflow">return</span> Json::Value(arg);</div>
+<div class="line"><span class="lineno">   12</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, int64_t&gt;) {</div>
+<div class="line"><span class="lineno">   13</span>      <span class="keywordflow">return</span> Json::Value(arg);</div>
+<div class="line"><span class="lineno">   14</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, uint64_t&gt;) {</div>
+<div class="line"><span class="lineno">   15</span>      <span class="keywordflow">return</span> Json::Value(arg);</div>
+<div class="line"><span class="lineno">   16</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, double&gt;) {</div>
+<div class="line"><span class="lineno">   17</span>      <span class="keywordflow">return</span> Json::Value(arg);</div>
+<div class="line"><span class="lineno">   18</span>    } <span class="keywordflow">else</span> <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (std::is_same_v&lt;T, std::string&gt;) {</div>
+<div class="line"><span class="lineno">   19</span>      <span class="keywordflow">return</span> Json::Value(arg);</div>
+<div class="line"><span class="lineno">   20</span>    }</div>
+<div class="line"><span class="lineno">   21</span>  }, v);</div>
+<div class="line"><span class="lineno">   22</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13">network_types::TestSolveParam::ToJson()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">

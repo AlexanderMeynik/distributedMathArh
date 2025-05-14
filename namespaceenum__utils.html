@@ -179,7 +179,17 @@ struct enum_utils::EnumDoubleMapping&lt; Enum, To &gt;</div><p>Structure to stor
   </table>
   </dd>
 </dl>
-</div><table class="fieldtable">
+</div><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for enum_utils::EnumDoubleMapping&lt; Enum, To &gt;:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="structenum__utils_1_1EnumDoubleMapping__coll__graph.png" border="0" usemap="#aenum__utils_1_1EnumDoubleMapping_3_01Enum_00_01To_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="aenum__utils_1_1EnumDoubleMapping_3_01Enum_00_01To_01_4_coll__map" id="aenum__utils_1_1EnumDoubleMapping_3_01Enum_00_01To_01_4_coll__map">
+<area shape="rect" title="Structure to store enum mapping to some other class." alt="" coords="5,5,239,105"/>
+</map>
+</div>
+<table class="fieldtable">
 <tr><th colspan="3">Class Members</th></tr>
 <tr><td class="fieldtype">
 <a id="ab35c203cab525aed5ccb800c9c664f5f" name="ab35c203cab525aed5ccb800c9c664f5f"></a>To</td>
@@ -286,11 +296,17 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  178</span>                                                                                                {</div>
+<div class="line"><span class="lineno">  179</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023">CreateEnumToTypeMap</a>(mappings);</div>
+<div class="line"><span class="lineno">  180</span>}</div>
+<div class="ttc" id="anamespaceenum__utils_html_ace0938be66f4dafd66ac1a6e0610e023"><div class="ttname"><a href="namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023">enum_utils::CreateEnumToTypeMap</a></div><div class="ttdeci">MapEnumToType&lt; Enum, To &gt; CreateEnumToTypeMap(const std::vector&lt; EnumDoubleMapping&lt; Enum, To &gt; &gt; &amp;mappings)</div><div class="ttdoc">Generate map from Enum to To type map.</div><div class="ttdef"><b>Definition</b> enumUtils.h:161</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023">CreateEnumToTypeMap()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph.png" border="0" usemap="#anamespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph" alt=""/></div>
 <map name="anamespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph" id="anamespaceenum__utils_add13783fa2441e8f2a665a6304c56996_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,201,45"/>
@@ -334,11 +350,21 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </table>
   </dd>
 </dl>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  162</span>{</div>
+<div class="line"><span class="lineno">  163</span>  <a class="code hl_typedef" href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">MapEnumToType&lt;Enum, To&gt;</a> map;</div>
+<div class="line"><span class="lineno">  164</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;mapping : mappings) {</div>
+<div class="line"><span class="lineno">  165</span>    map[mapping.value] = mapping.to;</div>
+<div class="line"><span class="lineno">  166</span>  }</div>
+<div class="line"><span class="lineno">  167</span>  <span class="keywordflow">return</span> map;</div>
+<div class="line"><span class="lineno">  168</span>}</div>
+<div class="ttc" id="anamespaceenum__utils_html_a9a7af7c19dd8fe7975a84fd402fccf4a"><div class="ttname"><a href="namespaceenum__utils.html#a9a7af7c19dd8fe7975a84fd402fccf4a">enum_utils::MapEnumToType</a></div><div class="ttdeci">std::unordered_map&lt; Enum, To &gt; MapEnumToType</div><div class="ttdef"><b>Definition</b> enumUtils.h:33</div></div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="namespaceenum__utils.html#add13783fa2441e8f2a665a6304c56996">CreateEnumToStrMap()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph.png" border="0" usemap="#anamespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph" alt=""/></div>
 <map name="anamespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph" id="anamespaceenum__utils_ace0938be66f4dafd66ac1a6e0610e023_icgraph">
 <area shape="rect" title="Generate map from Enum to To type map." alt="" coords="249,5,445,45"/>
@@ -380,11 +406,21 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </table>
   </dd>
 </dl>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  151</span>{</div>
+<div class="line"><span class="lineno">  152</span>  <a class="code hl_typedef" href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">MapFromTypeToEnum&lt;Enum, From&gt;</a> map;</div>
+<div class="line"><span class="lineno">  153</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;mapping : mappings) {</div>
+<div class="line"><span class="lineno">  154</span>    map[mapping.to] = mapping.value;</div>
+<div class="line"><span class="lineno">  155</span>  }</div>
+<div class="line"><span class="lineno">  156</span>  <span class="keywordflow">return</span> map;</div>
+<div class="line"><span class="lineno">  157</span>}</div>
+<div class="ttc" id="anamespaceenum__utils_html_ae0bd46e591e6d1d1a1e5693ca0154b18"><div class="ttname"><a href="namespaceenum__utils.html#ae0bd46e591e6d1d1a1e5693ca0154b18">enum_utils::MapFromTypeToEnum</a></div><div class="ttdeci">std::unordered_map&lt; From, Enum &gt; MapFromTypeToEnum</div><div class="ttdef"><b>Definition</b> enumUtils.h:30</div></div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="namespaceenum__utils.html#accf3de571bd15912191c8f71e9b5e9db">CreateStrToEnumMap()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph.png" border="0" usemap="#anamespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph" alt=""/></div>
 <map name="anamespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph" id="anamespaceenum__utils_a5d4fbf567321a95b8073ca17dfa65684_icgraph">
 <area shape="rect" title=" " alt="" coords="296,5,504,45"/>
@@ -427,11 +463,17 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </table>
   </dd>
 </dl>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  172</span>                                                                                                    {</div>
+<div class="line"><span class="lineno">  173</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceenum__utils.html#a5d4fbf567321a95b8073ca17dfa65684">CreateFromTypeToEnumMap</a>(mappings);</div>
+<div class="line"><span class="lineno">  174</span>}</div>
+<div class="ttc" id="anamespaceenum__utils_html_a5d4fbf567321a95b8073ca17dfa65684"><div class="ttname"><a href="namespaceenum__utils.html#a5d4fbf567321a95b8073ca17dfa65684">enum_utils::CreateFromTypeToEnumMap</a></div><div class="ttdeci">MapFromTypeToEnum&lt; Enum, From &gt; CreateFromTypeToEnumMap(const std::vector&lt; EnumDoubleMapping&lt; Enum, From &gt; &gt; &amp;mappings)</div><div class="ttdef"><b>Definition</b> enumUtils.h:150</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespaceenum__utils.html#a5d4fbf567321a95b8073ca17dfa65684">CreateFromTypeToEnumMap()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph.png" border="0" usemap="#anamespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph" alt=""/></div>
 <map name="anamespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph" id="anamespaceenum__utils_accf3de571bd15912191c8f71e9b5e9db_cgraph">
 <area shape="rect" title="Generate map from Str to enum value." alt="" coords="5,13,248,38"/>
@@ -494,11 +536,19 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::string </dd></dl>
-<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  138</span>                                                                           {</div>
+<div class="line"><span class="lineno">  139</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003">EnumToType</a>(value,map);</div>
+<div class="line"><span class="lineno">  140</span>}</div>
+<div class="ttc" id="anamespaceenum__utils_html_a895b87a59a61b4f0f015cfd970d95003"><div class="ttname"><a href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003">enum_utils::EnumToType</a></div><div class="ttdeci">To EnumToType(Enum value, const std::unordered_map&lt; Enum, To &gt; &amp;map)</div><div class="ttdoc">Casts Enum Value To typed value.</div><div class="ttdef"><b>Definition</b> enumUtils.h:108</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003">EnumToType()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classdb__service_1_1DbService.html#a386d3dcf5dc868d48dc07ab785bc1169">db_service::DbService::CreateIteration()</a>, <a class="el" href="classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda">db_service::DbService::CreateUser()</a>, <a class="el" href="namespaceprint__utils.html#a47de332ae8de8ae480deb73bc3ee7a40">print_utils::operator&lt;&lt;()</a>, and <a class="el" href="namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b">shared::operator&lt;&lt;()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph.png" border="0" usemap="#anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph" alt=""/></div>
 <map name="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph" id="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_cgraph">
 <area shape="rect" title="Casts enum value to string." alt="" coords="5,5,176,31"/>
@@ -506,11 +556,11 @@ requires std::is_enum_v&lt;Enum&gt;</div>
 <area shape="poly" title=" " alt="" coords="177,15,210,15,210,21,177,21"/>
 </map>
 </div>
-<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph.png" border="0" usemap="#anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph" alt=""/></div>
 <map name="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph" id="anamespaceenum__utils_acaa5e0029061787c474cb2df9b10db88_icgraph">
 <area shape="rect" title="Casts enum value to string." alt="" coords="225,106,396,131"/>
@@ -580,11 +630,17 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>To value </dd></dl>
-<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  109</span>                                                            {</div>
+<div class="line"><span class="lineno">  110</span>  <span class="keyword">auto</span> it = map.find(value);</div>
+<div class="line"><span class="lineno">  111</span>  <span class="keywordflow">return</span> it-&gt;second;</div>
+<div class="line"><span class="lineno">  112</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88">EnumToStr()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph.png" border="0" usemap="#anamespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph" alt=""/></div>
 <map name="anamespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph" id="anamespaceenum__utils_a895b87a59a61b4f0f015cfd970d95003_icgraph">
 <area shape="rect" title="Casts Enum Value To typed value." alt="" coords="444,106,627,131"/>
@@ -656,11 +712,21 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Enum value </dd></dl>
-<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">   90</span>                                                                {</div>
+<div class="line"><span class="lineno">   91</span>  <span class="keyword">auto</span> it = map.find(str);</div>
+<div class="line"><span class="lineno">   92</span>  <span class="keywordflow">if</span> (it == map.end()) {</div>
+<div class="line"><span class="lineno">   93</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1InvalidOption.html">InvalidOption</a>(str);</div>
+<div class="line"><span class="lineno">   94</span>  }</div>
+<div class="line"><span class="lineno">   95</span>  <span class="keywordflow">return</span> it-&gt;second;</div>
+<div class="line"><span class="lineno">   96</span>}</div>
+<div class="ttc" id="aclassshared_1_1InvalidOption_html"><div class="ttname"><a href="classshared_1_1InvalidOption.html">shared::InvalidOption</a></div><div class="ttdoc">InvalidOption class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:100</div></div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">StrToEnum()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph.png" border="0" usemap="#anamespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph" alt=""/></div>
 <map name="anamespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph" id="anamespaceenum__utils_ac38e21f8f9955c8a8fa96b34df32db2c_icgraph">
 <area shape="rect" title="Casts From type value to enum." alt="" coords="459,134,645,159"/>
@@ -733,11 +799,19 @@ requires std::is_enum_v&lt;Enum&gt;</div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Enum value </dd></dl>
-<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  124</span>                                                                    {</div>
+<div class="line"><span class="lineno">  125</span>  <span class="keywordflow">return</span> <a class="code hl_function" href="namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c">FromToEnum</a>(str,map);</div>
+<div class="line"><span class="lineno">  126</span>}</div>
+<div class="ttc" id="anamespaceenum__utils_html_ac38e21f8f9955c8a8fa96b34df32db2c"><div class="ttname"><a href="namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c">enum_utils::FromToEnum</a></div><div class="ttdeci">Enum FromToEnum(const From str, const MapFromTypeToEnum&lt; Enum, From &gt; &amp;map)</div><div class="ttdoc">Casts From type value to enum.</div><div class="ttdef"><b>Definition</b> enumUtils.h:89</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c">FromToEnum()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="structdb__common_1_1Experiment.html#a6d6df4c0ee1fb35d605e647bad9bc425">db_common::Experiment::Experiment()</a>, <a class="el" href="structdb__common_1_1Iteration.html#a53998f51dcd0b1fa13317dfc257eb970">db_common::Iteration::Iteration()</a>, <a class="el" href="structdb__common_1_1Node.html#a4f0ec1e26c847a9b7a991079b4e2a00b">db_common::Node::Node()</a>, <a class="el" href="namespaceprint__utils.html#a6c64e6bf1cdaef9f04f37da4ca8533af">print_utils::operator&gt;&gt;()</a>, and <a class="el" href="structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4">db_common::User::User()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph.png" border="0" usemap="#anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph" alt=""/></div>
 <map name="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph" id="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_cgraph">
 <area shape="rect" title="Cast string to enum." alt="" coords="5,5,176,31"/>
@@ -745,11 +819,11 @@ requires std::is_enum_v&lt;Enum&gt;</div>
 <area shape="poly" title=" " alt="" coords="176,15,210,15,210,21,176,21"/>
 </map>
 </div>
-<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph.png" border="0" usemap="#anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph" alt=""/></div>
 <map name="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph" id="anamespaceenum__utils_a2ad2288929e574d72d18771f391b1601_icgraph">
 <area shape="rect" title="Cast string to enum." alt="" coords="240,134,411,159"/>

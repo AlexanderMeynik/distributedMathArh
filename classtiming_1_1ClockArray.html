@@ -101,6 +101,28 @@ $(document).ready(function(){initNavTree('classtiming_1_1ClockArray.html',''); i
 
 <p>Clock array template class.  
  <a href="classtiming_1_1ClockArray.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for timing::ClockArray&lt; OutType, inType, timeGetter, sourceTypeConverter, timeConverter &gt;:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classtiming_1_1ClockArray__inherit__graph.png" border="0" usemap="#atiming_1_1ClockArray_3_01OutType_00_01inType_00_01timeGetter_00_01sourceTypeConverter_00_01timeConverter_01_4_inherit__map" alt="Inheritance graph"/></div>
+<map name="atiming_1_1ClockArray_3_01OutType_00_01inType_00_01timeGetter_00_01sourceTypeConverter_00_01timeConverter_01_4_inherit__map" id="atiming_1_1ClockArray_3_01OutType_00_01inType_00_01timeGetter_00_01sourceTypeConverter_00_01timeConverter_01_4_inherit__map">
+<area shape="rect" title="Clock array template class." alt="" coords="5,5,277,340"/>
+<area shape="rect" href="classtiming_1_1ClockArray.html" title=" " alt="" coords="74,403,209,723"/>
+<area shape="poly" title=" " alt="" coords="144,354,144,402,139,402,139,354"/>
+</map>
+</div>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for timing::ClockArray&lt; OutType, inType, timeGetter, sourceTypeConverter, timeConverter &gt;:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classtiming_1_1ClockArray__coll__graph.png" border="0" usemap="#atiming_1_1ClockArray_3_01OutType_00_01inType_00_01timeGetter_00_01sourceTypeConverter_00_01timeConverter_01_4_coll__map" alt="Collaboration graph"/></div>
+<map name="atiming_1_1ClockArray_3_01OutType_00_01inType_00_01timeGetter_00_01sourceTypeConverter_00_01timeConverter_01_4_coll__map" id="atiming_1_1ClockArray_3_01OutType_00_01inType_00_01timeGetter_00_01sourceTypeConverter_00_01timeConverter_01_4_coll__map">
+<area shape="rect" title="Clock array template class." alt="" coords="5,5,277,340"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
@@ -191,7 +213,19 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  147</span>                                  {</div>
+<div class="line"><span class="lineno">  148</span> </div>
+<div class="line"><span class="lineno">  149</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;otherclk : other) {</div>
+<div class="line"><span class="lineno">  150</span>      <span class="keywordflow">if</span> (this-&gt;<a class="code hl_function" href="classtiming_1_1ClockArray.html#a7f60b4fb167478c3837c8e07502d8e6e">contains</a>(otherclk.first)) {</div>
+<div class="line"><span class="lineno">  151</span>        this-&gt;timers_[otherclk.first].time += otherclk.second.time;</div>
+<div class="line"><span class="lineno">  152</span>        this-&gt;timers_[otherclk.first].count += otherclk.second.count;</div>
+<div class="line"><span class="lineno">  153</span>      } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  154</span>        this-&gt;timers_[otherclk.first] = otherclk.second;</div>
+<div class="line"><span class="lineno">  155</span>      }</div>
+<div class="line"><span class="lineno">  156</span>    }</div>
+<div class="line"><span class="lineno">  157</span>  }</div>
+<div class="ttc" id="aclasstiming_1_1ClockArray_html_a7f60b4fb167478c3837c8e07502d8e6e"><div class="ttname"><a href="classtiming_1_1ClockArray.html#a7f60b4fb167478c3837c8e07502d8e6e">timing::ClockArray::contains</a></div><div class="ttdeci">bool contains(const LocationType &amp;loc) const</div><div class="ttdef"><b>Definition</b> ClockArray.h:139</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a86f3cf0d6284a8f952bc88c2328c4db2" name="a86f3cf0d6284a8f952bc88c2328c4db2"></a>
@@ -218,7 +252,10 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  108</span>                               {</div>
+<div class="line"><span class="lineno">  109</span>    <span class="keywordflow">return</span> timers_.begin();</div>
+<div class="line"><span class="lineno">  110</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad725ea1d5704cd887ea977ac766c013c" name="ad725ea1d5704cd887ea977ac766c013c"></a>
@@ -245,7 +282,10 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  116</span>                      {</div>
+<div class="line"><span class="lineno">  117</span>    <span class="keywordflow">return</span> timers_.cbegin();</div>
+<div class="line"><span class="lineno">  118</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aaf65b6e95a979230215d27902f368dac" name="aaf65b6e95a979230215d27902f368dac"></a>
@@ -272,7 +312,10 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  120</span>                    {</div>
+<div class="line"><span class="lineno">  121</span>    <span class="keywordflow">return</span> timers_.cend();</div>
+<div class="line"><span class="lineno">  122</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a7f60b4fb167478c3837c8e07502d8e6e" name="a7f60b4fb167478c3837c8e07502d8e6e"></a>
@@ -300,7 +343,10 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  139</span>                                                             {</div>
+<div class="line"><span class="lineno">  140</span>    <span class="keywordflow">return</span> timers_.contains(loc);</div>
+<div class="line"><span class="lineno">  141</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a438b70c2d684edcb099f06f3e2589b61" name="a438b70c2d684edcb099f06f3e2589b61"></a>
@@ -327,7 +373,10 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  112</span>                             {</div>
+<div class="line"><span class="lineno">  113</span>    <span class="keywordflow">return</span> timers_.end();</div>
+<div class="line"><span class="lineno">  114</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="af4637d48baf541390f42af78af9188ef" name="af4637d48baf541390f42af78af9188ef"></a>
@@ -355,7 +404,10 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  135</span>                                            {</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">return</span> timers_[loc];</div>
+<div class="line"><span class="lineno">  137</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a51d8f516a93a895155a905c0bba76920" name="a51d8f516a93a895155a905c0bba76920"></a>
@@ -376,7 +428,15 @@ requires std::is_floating_point_v&lt;OutType&gt;</div>
       </table>
 </div><div class="memdoc">
 <p>Resets timers and converted double values </p>
-
+<div class="fragment"><div class="line"><span class="lineno">  213</span>                                                                                   {</div>
+<div class="line"><span class="lineno">  214</span>  GuardType kGuard{s_mutex_};</div>
+<div class="line"><span class="lineno">  215</span>  <span class="keywordflow">if</span> (!to_tak_.empty()) {</div>
+<div class="line"><span class="lineno">  216</span>    <span class="keywordflow">throw</span> std::logic_error(<span class="stringliteral">&quot;Missing Tak statements for Tik ones&quot;</span>);</div>
+<div class="line"><span class="lineno">  217</span>  }</div>
+<div class="line"><span class="lineno">  218</span>  this-&gt;timers_.clear();</div>
+<div class="line"><span class="lineno">  219</span>  this-&gt;start_ing_timers_.clear();</div>
+<div class="line"><span class="lineno">  220</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aece3c40b8d1445f34ebad55db930f269" name="aece3c40b8d1445f34ebad55db930f269"></a>
@@ -406,7 +466,15 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
 </div><div class="memdoc">
 
 <p>resets timer value for one timer </p>
-
+<div class="fragment"><div class="line"><span class="lineno">   53</span>                                                {</div>
+<div class="line"><span class="lineno">   54</span>    <span class="keyword">const</span> GuardType kGuard{s_mutex_};</div>
+<div class="line"><span class="lineno">   55</span>    <span class="comment">//auto id = sourceTypeConverter(location);</span></div>
+<div class="line"><span class="lineno">   56</span> </div>
+<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">if</span> (timers_.contains(location)) {</div>
+<div class="line"><span class="lineno">   58</span>      timers_.erase(location);</div>
+<div class="line"><span class="lineno">   59</span>    }</div>
+<div class="line"><span class="lineno">   60</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a24ecab5c829c8c79eea0773cb04fed7c" name="a24ecab5c829c8c79eea0773cb04fed7c"></a>
@@ -433,7 +501,29 @@ requires std::is_floating_point_v&lt;OutType&gt;</div>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  175</span>                                        {</div>
+<div class="line"><span class="lineno">  176</span> </div>
+<div class="line"><span class="lineno">  177</span>  <span class="keyword">auto</span> new_time = (*timeGetter)();</div>
+<div class="line"><span class="lineno">  178</span>  GuardType kGuard{s_mutex_};</div>
+<div class="line"><span class="lineno">  179</span>  <span class="keyword">auto</span> <span class="keywordtype">id</span> = (*sourceTypeConverter)(location);</div>
+<div class="line"><span class="lineno">  180</span>  <span class="keywordflow">if</span> (to_tak_.empty() || to_tak_.top()[0] != <span class="keywordtype">id</span>[0]) {</div>
+<div class="line"><span class="lineno">  181</span>    std::string msg = <span class="stringliteral">&quot;No paired Tik statement found in queue\t&quot;</span></div>
+<div class="line"><span class="lineno">  182</span>                      <span class="stringliteral">&quot;Tak values&quot;</span> + <span class="keywordtype">id</span>[3] + <span class="stringliteral">&quot;:&quot;</span> + <span class="keywordtype">id</span>[1] + <span class="stringliteral">&quot;\t&quot;</span></div>
+<div class="line"><span class="lineno">  183</span>        + <span class="keywordtype">id</span>[0] + <span class="charliteral">&#39;\t&#39;</span> + <span class="keywordtype">id</span>[2];</div>
+<div class="line"><span class="lineno">  184</span>    <span class="keywordflow">throw</span> std::logic_error(msg);</div>
+<div class="line"><span class="lineno">  185</span>  }</div>
+<div class="line"><span class="lineno">  186</span>  <span class="keywordtype">id</span>[1] = to_tak_.top()[1];</div>
+<div class="line"><span class="lineno">  187</span>  <span class="keywordtype">id</span>[2] = to_tak_.top()[2];</div>
+<div class="line"><span class="lineno">  188</span>  to_tak_.pop();</div>
+<div class="line"><span class="lineno">  189</span>  <span class="keyword">auto</span> res = timeConverter(new_time, start_ing_timers_[<span class="keywordtype">id</span>]);</div>
+<div class="line"><span class="lineno">  190</span>  <span class="keywordflow">if</span> (!timers_.contains(<span class="keywordtype">id</span>)) {</div>
+<div class="line"><span class="lineno">  191</span>    timers_[id] = {res, 1};</div>
+<div class="line"><span class="lineno">  192</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">  193</span>    timers_[id].time += res;</div>
+<div class="line"><span class="lineno">  194</span>    timers_[id].count++;</div>
+<div class="line"><span class="lineno">  195</span>  }</div>
+<div class="line"><span class="lineno">  196</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a2fae0cc021766bbae6d5cb866e814a97" name="a2fae0cc021766bbae6d5cb866e814a97"></a>
@@ -461,7 +551,14 @@ requires std::is_floating_point_v&lt;OutType&gt;</div>
   </dd>
 </dl>
 <dl class="section attention"><dt>Attention</dt><dd>You must mirror every Tik like call with Tak </dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  202</span>                                        {</div>
+<div class="line"><span class="lineno">  203</span>  GuardType kGuard{s_mutex_};</div>
+<div class="line"><span class="lineno">  204</span>  <span class="keyword">auto</span> <span class="keywordtype">id</span> = sourceTypeConverter(location);</div>
+<div class="line"><span class="lineno">  205</span>  start_ing_timers_[id] = timeGetter();</div>
+<div class="line"><span class="lineno">  206</span> </div>
+<div class="line"><span class="lineno">  207</span>  to_tak_.push(<span class="keywordtype">id</span>);</div>
+<div class="line"><span class="lineno">  208</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ad1fae0a616e825cba239a1340721bf94" name="ad1fae0a616e825cba239a1340721bf94"></a>
@@ -503,7 +600,12 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>source location </dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   94</span>                                 {</div>
+<div class="line"><span class="lineno">   95</span>    <a class="code hl_function" href="classtiming_1_1ClockArray.html#a2fae0cc021766bbae6d5cb866e814a97">Tik</a>(location);</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">return</span> sourceTypeConverter(location);</div>
+<div class="line"><span class="lineno">   97</span>  }</div>
+<div class="ttc" id="aclasstiming_1_1ClockArray_html_a2fae0cc021766bbae6d5cb866e814a97"><div class="ttname"><a href="classtiming_1_1ClockArray.html#a2fae0cc021766bbae6d5cb866e814a97">timing::ClockArray::Tik</a></div><div class="ttdeci">void Tik(const std::source_location &amp;location=std::source_location::current())</div><div class="ttdef"><b>Definition</b> ClockArray.h:201</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a2871677eb3a722f1db838dd3e23e7be9" name="a2871677eb3a722f1db838dd3e23e7be9"></a>
@@ -538,7 +640,11 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>pair of std::source_location, location_type </dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  104</span>                                 {</div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">return</span> std::make_pair(location, <a class="code hl_function" href="classtiming_1_1ClockArray.html#ad1fae0a616e825cba239a1340721bf94">TikLoc</a>(location));</div>
+<div class="line"><span class="lineno">  106</span>  }</div>
+<div class="ttc" id="aclasstiming_1_1ClockArray_html_ad1fae0a616e825cba239a1340721bf94"><div class="ttname"><a href="classtiming_1_1ClockArray.html#ad1fae0a616e825cba239a1340721bf94">timing::ClockArray::TikLoc</a></div><div class="ttdeci">LocationType TikLoc(const std::source_location &amp;location=std::source_location::current())</div><div class="ttdef"><b>Definition</b> ClockArray.h:93</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Friends And Related Symbol Documentation</h2>
@@ -577,7 +683,15 @@ template&lt;typename OutType , typename inType , inType(*)() timeGetter, <a clas
   </tr>
 </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">  126</span>                                                                                                    {</div>
+<div class="line"><span class="lineno">  127</span>    out &lt;&lt; <span class="stringliteral">&quot;Function name\tThread\tLine\tTime\n&quot;</span>;</div>
+<div class="line"><span class="lineno">  128</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;val : ts)</div>
+<div class="line"><span class="lineno">  129</span>      out &lt;&lt; val.first[0] &lt;&lt; <span class="stringliteral">&#39;\t&#39;</span> &lt;&lt; val.first[4] &lt;&lt; <span class="stringliteral">&#39;\t&#39;</span></div>
+<div class="line"><span class="lineno">  130</span>          &lt;&lt; val.first[3] &lt;&lt; <span class="stringliteral">&quot;:&quot;</span> &lt;&lt; val.first[1]</div>
+<div class="line"><span class="lineno">  131</span>          &lt;&lt; <span class="stringliteral">&#39;\t&#39;</span> &lt;&lt; val.second &lt;&lt; <span class="stringliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  132</span>    <span class="keywordflow">return</span> out;</div>
+<div class="line"><span class="lineno">  133</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>

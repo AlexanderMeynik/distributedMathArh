@@ -103,13 +103,13 @@ $(document).ready(function(){initNavTree('classrest__utils_1_1JsonAuthHandler.ht
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classrest__utils_1_1JsonAuthHandler__inherit__graph.png" border="0" usemap="#arest__utils_1_1JsonAuthHandler_inherit__map" alt="Inheritance graph"/></div>
 <map name="arest__utils_1_1JsonAuthHandler_inherit__map" id="arest__utils_1_1JsonAuthHandler_inherit__map">
-<area shape="rect" title=" " alt="" coords="9,152,208,177"/>
-<area shape="rect" href="classrest__utils_1_1BasicAuthHandler.html" title="Used for Basic auth." alt="" coords="5,79,212,104"/>
-<area shape="poly" title=" " alt="" coords="111,118,111,152,106,152,106,118"/>
-<area shape="rect" href="classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="23,5,194,31"/>
-<area shape="poly" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
+<area shape="rect" title=" " alt="" coords="9,352,200,437"/>
+<area shape="rect" href="classrest__utils_1_1BasicAuthHandler.html" title="Used for Basic auth." alt="" coords="5,179,204,304"/>
+<area shape="poly" title=" " alt="" coords="107,318,107,352,102,352,102,318"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="23,5,186,131"/>
+<area shape="poly" title=" " alt="" coords="107,145,107,178,102,178,102,145"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+</div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for rest_utils::JsonAuthHandler:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -117,13 +117,13 @@ $(document).ready(function(){initNavTree('classrest__utils_1_1JsonAuthHandler.ht
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classrest__utils_1_1JsonAuthHandler__coll__graph.png" border="0" usemap="#arest__utils_1_1JsonAuthHandler_coll__map" alt="Collaboration graph"/></div>
 <map name="arest__utils_1_1JsonAuthHandler_coll__map" id="arest__utils_1_1JsonAuthHandler_coll__map">
-<area shape="rect" title=" " alt="" coords="9,152,208,177"/>
-<area shape="rect" href="classrest__utils_1_1BasicAuthHandler.html" title="Used for Basic auth." alt="" coords="5,79,212,104"/>
-<area shape="poly" title=" " alt="" coords="111,118,111,152,106,152,106,118"/>
-<area shape="rect" href="classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="23,5,194,31"/>
-<area shape="poly" title=" " alt="" coords="111,44,111,79,106,79,106,44"/>
+<area shape="rect" title=" " alt="" coords="9,352,200,437"/>
+<area shape="rect" href="classrest__utils_1_1BasicAuthHandler.html" title="Used for Basic auth." alt="" coords="5,179,204,304"/>
+<area shape="poly" title=" " alt="" coords="107,318,107,352,102,352,102,318"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="23,5,186,131"/>
+<area shape="poly" title=" " alt="" coords="107,145,107,178,102,178,102,145"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -182,6 +182,13 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  111</span>                                          {</div>
+<div class="line"><span class="lineno">  112</span>    <span class="keywordflow">return</span> {<a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">user_</a>, <a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">password_</a>};</div>
+<div class="line"><span class="lineno">  113</span>  }</div>
+<div class="ttc" id="aclassrest__utils_1_1BasicAuthHandler_html_a64576a6b73807edd59a62ce65f361d9b"><div class="ttname"><a href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">rest_utils::BasicAuthHandler::user_</a></div><div class="ttdeci">std::string user_</div><div class="ttdef"><b>Definition</b> restUtils.h:95</div></div>
+<div class="ttc" id="aclassrest__utils_1_1BasicAuthHandler_html_ae751749c16d3947235526b9447570b1d"><div class="ttname"><a href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">rest_utils::BasicAuthHandler::password_</a></div><div class="ttdeci">std::string password_</div><div class="ttdef"><b>Definition</b> restUtils.h:96</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">rest_utils::BasicAuthHandler::password_</a>, and <a class="el" href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">rest_utils::BasicAuthHandler::user_</a>.</p>
 
 </div>
 </div>
@@ -207,6 +214,14 @@ Additional Inherited Members</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">  104</span>                     {</div>
+<div class="line"><span class="lineno">  105</span>    Json::Value res;</div>
+<div class="line"><span class="lineno">  106</span>    res[<span class="stringliteral">&quot;user&quot;</span>] = <a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">user_</a>;</div>
+<div class="line"><span class="lineno">  107</span>    res[<span class="stringliteral">&quot;password&quot;</span>] = <a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">password_</a>;</div>
+<div class="line"><span class="lineno">  108</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">  109</span>  }</div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">rest_utils::BasicAuthHandler::password_</a>, and <a class="el" href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">rest_utils::BasicAuthHandler::user_</a>.</p>
 
 </div>
 </div>

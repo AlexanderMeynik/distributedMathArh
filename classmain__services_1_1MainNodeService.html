@@ -99,6 +99,16 @@ $(document).ready(function(){initNavTree('classmain__services_1_1MainNodeService
 
 <p>Handles most of service side interactions for main Node.  
  <a href="classmain__services_1_1MainNodeService.html#details">More...</a></p>
+<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Collaboration diagram for main_services::MainNodeService:</div>
+<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService__coll__graph.png" border="0" usemap="#amain__services_1_1MainNodeService_coll__map" alt="Collaboration graph"/></div>
+<map name="amain__services_1_1MainNodeService_coll__map" id="amain__services_1_1MainNodeService_coll__map">
+<area shape="rect" title="Handles most of service side interactions for main Node." alt="" coords="5,5,236,211"/>
+</map>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -176,7 +186,14 @@ Public Member Functions</h2></td></tr>
 <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a7cf12e246a3f8cc7f2d80749ae4b031e">amqp_common::AMQPPublisherService::AMQPPublisherService()</a> </dd>
 <dd>
 <a class="el" href="classmain__services_1_1WorkerManagementService.html#a5c470a2a0858114484256e7568faead3">main_services::WorkerManagementService::WorkerManagementService()</a> </dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">    7</span>                                                                                 {</div>
+<div class="line"><span class="lineno">    8</span>  auth_ = std::make_unique&lt;JsonAuthHandler&gt;(user, password);</div>
+<div class="line"><span class="lineno">    9</span>  rest_service_ = std::make_unique&lt;amqp_common::RabbitMQRestService&gt;();</div>
+<div class="line"><span class="lineno">   10</span> </div>
+<div class="line"><span class="lineno">   11</span>  publisher_service_ = std::make_unique&lt;amqp_common::AMQPPublisherService&gt;();</div>
+<div class="line"><span class="lineno">   12</span>  worker_management_service_ = std::make_unique&lt;WorkerManagementService&gt;();</div>
+<div class="line"><span class="lineno">   13</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -214,11 +231,79 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-0-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  111</span>                                                                                          {</div>
+<div class="line"><span class="lineno">  112</span> </div>
+<div class="line"><span class="lineno">  113</span>  Json::Value res_JSON;</div>
+<div class="line"><span class="lineno">  114</span> </div>
+<div class="line"><span class="lineno">  115</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;connect_publisher&quot;</span>;</div>
+<div class="line"><span class="lineno">  116</span> </div>
+<div class="line"><span class="lineno">  117</span>  <span class="keywordflow">if</span> (publisher_service_-&gt;IsConnected()) {</div>
+<div class="line"><span class="lineno">  118</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  119</span> </div>
+<div class="line"><span class="lineno">  120</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] =</div>
+<div class="line"><span class="lineno">  121</span>        fmt::format(<span class="stringliteral">&quot;Queue service is currently working {}&quot;</span>, publisher_service_-&gt;GetCString());</div>
+<div class="line"><span class="lineno">  122</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  123</span>  }</div>
+<div class="line"><span class="lineno">  124</span> </div>
+<div class="line"><span class="lineno">  125</span>  q_host_ = qip;</div>
+<div class="line"><span class="lineno">  126</span> </div>
+<div class="line"><span class="lineno">  127</span>  rest_service_-&gt;SetParams(fmt::format(<span class="stringliteral">&quot;http://{}:15672&quot;</span>, q_host_), auth_.get());</div>
+<div class="line"><span class="lineno">  128</span>  <span class="keyword">auto</span> r = auth_-&gt;Retrive();</div>
+<div class="line"><span class="lineno">  129</span>  publisher_service_-&gt;SetParameters(<a class="code hl_function" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString</a>(q_host_,</div>
+<div class="line"><span class="lineno">  130</span>                                                                  r.first,</div>
+<div class="line"><span class="lineno">  131</span>                                                                  r.second),</div>
+<div class="line"><span class="lineno">  132</span>                                    names);</div>
+<div class="line"><span class="lineno">  133</span> </div>
+<div class="line"><span class="lineno">  134</span>  <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  135</span>    <span class="keyword">auto</span> exchanges = rest_service_-&gt;GetExchanges(vhost_);</div>
+<div class="line"><span class="lineno">  136</span>    <span class="keywordflow">if</span> (std::find_if(exchanges.begin(), exchanges.end(), [<span class="keyword">this</span>](<span class="keyword">const</span> <a class="code hl_struct" href="structnetwork__types_1_1exchange.html">amqp_common::exchange</a> &amp;e) {</div>
+<div class="line"><span class="lineno">  137</span>      return e.name == publisher_service_-&gt;GetDefaultExchange();</div>
+<div class="line"><span class="lineno">  138</span>    }) == exchanges.end()) {</div>
+<div class="line"><span class="lineno">  139</span> </div>
+<div class="line"><span class="lineno">  140</span>      <span class="keyword">auto</span> user = auth_-&gt;Retrive().first;</div>
+<div class="line"><span class="lineno">  141</span>      <a class="code hl_struct" href="structnetwork__types_1_1exchange.html">amqp_common::exchange</a> exchange{publisher_service_-&gt;GetDefaultExchange(), user, AMQP::direct};</div>
+<div class="line"><span class="lineno">  142</span> </div>
+<div class="line"><span class="lineno">  143</span>      rest_service_-&gt;CreateExchange(vhost_, exchange, Json::Value());<span class="comment">//todo pass more args?</span></div>
+<div class="line"><span class="lineno">  144</span>    }</div>
+<div class="line"><span class="lineno">  145</span>  }</div>
+<div class="line"><span class="lineno">  146</span>  <span class="keywordflow">catch</span> (<a class="code hl_class" href="classshared_1_1HttpError.html">shared::HttpError</a> &amp;err) {</div>
+<div class="line"><span class="lineno">  147</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  148</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Error during queue creation&quot;</span>;</div>
+<div class="line"><span class="lineno">  149</span>    res_JSON[<span class="stringliteral">&quot;exception&quot;</span>][<span class="stringliteral">&quot;message&quot;</span>] = err.<a class="code hl_function" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">get</a>&lt;1&gt;();</div>
+<div class="line"><span class="lineno">  150</span>    res_JSON[<span class="stringliteral">&quot;exception&quot;</span>][<span class="stringliteral">&quot;code&quot;</span>] = err.<a class="code hl_function" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">get</a>&lt;0&gt;();</div>
+<div class="line"><span class="lineno">  151</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  152</span>  }</div>
+<div class="line"><span class="lineno">  153</span>  <span class="keywordflow">catch</span> (CurlError &amp;err) {</div>
+<div class="line"><span class="lineno">  154</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  155</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Error during http curl request&quot;</span>;</div>
+<div class="line"><span class="lineno">  156</span>    res_JSON[<span class="stringliteral">&quot;exception&quot;</span>][<span class="stringliteral">&quot;message&quot;</span>] = err.what();</div>
+<div class="line"><span class="lineno">  157</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  158</span>  }</div>
+<div class="line"><span class="lineno">  159</span> </div>
+<div class="line"><span class="lineno">  160</span>  <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">  161</span>    publisher_service_-&gt;Connect();</div>
+<div class="line"><span class="lineno">  162</span>  }</div>
+<div class="line"><span class="lineno">  163</span>  <span class="keywordflow">catch</span> (std::runtime_error &amp;err) {</div>
+<div class="line"><span class="lineno">  164</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  165</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Publisher connection error, msg \&quot;{}\&quot;!&quot;</span>, err.what());</div>
+<div class="line"><span class="lineno">  166</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  167</span>  }</div>
+<div class="line"><span class="lineno">  168</span> </div>
+<div class="line"><span class="lineno">  169</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
+<div class="line"><span class="lineno">  170</span> </div>
+<div class="line"><span class="lineno">  171</span>  <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  172</span>}</div>
+<div class="ttc" id="aclassshared_1_1HttpError_html"><div class="ttname"><a href="classshared_1_1HttpError.html">shared::HttpError</a></div><div class="ttdoc">HttpError class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:141</div></div>
+<div class="ttc" id="aclassshared_1_1HttpError_html_a6dbaa62bdba6e4fe1831e6713d9a8301"><div class="ttname"><a href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">shared::HttpError::get</a></div><div class="ttdeci">const auto &amp; get() const</div><div class="ttdef"><b>Definition</b> errorHandling.h:141</div></div>
+<div class="ttc" id="anamespaceamqp__common_html_aad6515e6ea0d240dc7fdaea72649f911"><div class="ttname"><a href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString</a></div><div class="ttdeci">std::string ConstructCString(const std::string &amp;host_port, const std::string &amp;user, const std::string &amp;password, bool secure=false)</div><div class="ttdoc">Constructs amqp connection string.</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:32</div></div>
+<div class="ttc" id="astructnetwork__types_1_1exchange_html"><div class="ttname"><a href="structnetwork__types_1_1exchange.html">network_types::exchange</a></div><div class="ttdoc">Exchange struct.</div><div class="ttdef"><b>Definition</b> networkTypes.h:122</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString()</a>, and <a class="el" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">shared::HttpError::get()</a>.</p>
+<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-0-content" class="dyncontent" style="display:none;">
+<div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph" id="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph">
 <area shape="rect" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="5,23,244,63"/>
@@ -265,11 +350,70 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-1-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">   33</span>                                                                                        {</div>
+<div class="line"><span class="lineno">   34</span>  Json::Value res_JSON;</div>
+<div class="line"><span class="lineno">   35</span> </div>
+<div class="line"><span class="lineno">   36</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;connect_node&quot;</span>;</div>
+<div class="line"><span class="lineno">   37</span> </div>
+<div class="line"><span class="lineno">   38</span>  <span class="keywordflow">if</span> (!publisher_service_-&gt;IsConnected()) {</div>
+<div class="line"><span class="lineno">   39</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">   40</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Queue service is currently unavailable try using connect_publisher/ request&quot;</span>;</div>
+<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">   42</span>  }</div>
+<div class="line"><span class="lineno">   43</span> </div>
+<div class="line"><span class="lineno">   44</span>  <span class="keyword">auto</span> js1 = worker_management_service_-&gt;AddNewNode(host_port);</div>
+<div class="line"><span class="lineno">   45</span>  <span class="keywordflow">if</span> (js1.isMember(<span class="stringliteral">&quot;status&quot;</span>)) {</div>
+<div class="line"><span class="lineno">   46</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = js1[<span class="stringliteral">&quot;status&quot;</span>];</div>
+<div class="line"><span class="lineno">   47</span>    js1.removeMember(<span class="stringliteral">&quot;status&quot;</span>);</div>
+<div class="line"><span class="lineno">   48</span>    res_JSON[<span class="stringliteral">&quot;balancer_output&quot;</span>] = js1;</div>
+<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">   50</span>  }</div>
+<div class="line"><span class="lineno">   51</span> </div>
+<div class="line"><span class="lineno">   52</span>  <span class="keywordflow">try</span> {</div>
+<div class="line"><span class="lineno">   53</span>    <span class="keyword">auto</span> ls = rest_service_-&gt;ListQueues(vhost_);</div>
+<div class="line"><span class="lineno">   54</span>    <span class="keywordflow">if</span> (std::find(ls.begin(), ls.end(), name) == ls.end()) {</div>
+<div class="line"><span class="lineno">   55</span>      <span class="keyword">auto</span> queue = <a class="code hl_struct" href="structnetwork__types_1_1queue.html">network_types::queue</a>(name, auth_-&gt;Retrive().first);</div>
+<div class="line"><span class="lineno">   56</span>      rest_service_-&gt;CreateQueue(vhost_, queue, Json::Value());</div>
+<div class="line"><span class="lineno">   57</span>      rest_service_-&gt;BindQueueToExchange(vhost_, name, publisher_service_-&gt;GetDefaultExchange(), name);</div>
+<div class="line"><span class="lineno">   58</span>    }</div>
+<div class="line"><span class="lineno">   59</span>  }</div>
+<div class="line"><span class="lineno">   60</span>  <span class="keywordflow">catch</span> (<a class="code hl_class" href="classshared_1_1HttpError.html">shared::HttpError</a> &amp;err) {</div>
+<div class="line"><span class="lineno">   61</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">   62</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Error during queue creation&quot;</span>;</div>
+<div class="line"><span class="lineno">   63</span>    res_JSON[<span class="stringliteral">&quot;exception&quot;</span>][<span class="stringliteral">&quot;message&quot;</span>] = err.<a class="code hl_function" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">get</a>&lt;1&gt;();</div>
+<div class="line"><span class="lineno">   64</span>    res_JSON[<span class="stringliteral">&quot;exception&quot;</span>][<span class="stringliteral">&quot;code&quot;</span>] = err.<a class="code hl_function" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">get</a>&lt;0&gt;();</div>
+<div class="line"><span class="lineno">   65</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">   66</span>  }</div>
+<div class="line"><span class="lineno">   67</span> </div>
+<div class="line"><span class="lineno">   68</span>  Json::Value res = auth_-&gt;ToJson();</div>
+<div class="line"><span class="lineno">   69</span>  res[<span class="stringliteral">&quot;ip&quot;</span>] = q_host_;</div>
+<div class="line"><span class="lineno">   70</span>  res[<span class="stringliteral">&quot;name&quot;</span>] = name;</div>
+<div class="line"><span class="lineno">   71</span>  <span class="keyword">auto</span> req1 = HttpRequest::newHttpJsonRequest(res);</div>
+<div class="line"><span class="lineno">   72</span>  req1-&gt;setPath(<span class="stringliteral">&quot;/v1/Connect&quot;</span>);</div>
+<div class="line"><span class="lineno">   73</span>  req1-&gt;setMethod(Post);</div>
+<div class="line"><span class="lineno">   74</span> </div>
+<div class="line"><span class="lineno">   75</span>  js1 = worker_management_service_-&gt;ConnectNode(host_port, req1);</div>
+<div class="line"><span class="lineno">   76</span> </div>
+<div class="line"><span class="lineno">   77</span>  res_JSON[<span class="stringliteral">&quot;balancer_output&quot;</span>] = js1;</div>
+<div class="line"><span class="lineno">   78</span>  <span class="keywordflow">if</span> (js1.isMember(<span class="stringliteral">&quot;status&quot;</span>)) {</div>
+<div class="line"><span class="lineno">   79</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = js1[<span class="stringliteral">&quot;status&quot;</span>];</div>
+<div class="line"><span class="lineno">   80</span>    res_JSON[<span class="stringliteral">&quot;balancer_output&quot;</span>].removeMember(<span class="stringliteral">&quot;status&quot;</span>);</div>
+<div class="line"><span class="lineno">   81</span> </div>
+<div class="line"><span class="lineno">   82</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">   83</span>  }</div>
+<div class="line"><span class="lineno">   84</span> </div>
+<div class="line"><span class="lineno">   85</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
+<div class="line"><span class="lineno">   86</span> </div>
+<div class="line"><span class="lineno">   87</span>  <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">   88</span>}</div>
+<div class="ttc" id="astructnetwork__types_1_1queue_html"><div class="ttname"><a href="structnetwork__types_1_1queue.html">network_types::queue</a></div><div class="ttdoc">Queue struct.</div><div class="ttdef"><b>Definition</b> networkTypes.h:146</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">shared::HttpError::get()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-1-content" class="dyncontent" style="display:none;">
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph" id="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph">
 <area shape="rect" title="Connects the node to the computational cluster." alt="" coords="5,5,244,45"/>
@@ -296,7 +440,27 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Disconnects the main node from a RabbitMQ instance. </p>
-
+<div class="fragment"><div class="line"><span class="lineno">  173</span>                                      {</div>
+<div class="line"><span class="lineno">  174</span>  Json::Value res_JSON;</div>
+<div class="line"><span class="lineno">  175</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;disconnect_publisher&quot;</span>;</div>
+<div class="line"><span class="lineno">  176</span>  <span class="keywordflow">if</span> (!publisher_service_-&gt;IsConnected()) {</div>
+<div class="line"><span class="lineno">  177</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  178</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Queue service is currently unavailable try using connect_publisher/ request&quot;</span>;</div>
+<div class="line"><span class="lineno">  179</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  180</span>  }</div>
+<div class="line"><span class="lineno">  181</span> </div>
+<div class="line"><span class="lineno">  182</span>  <span class="keywordflow">if</span> (!publisher_service_-&gt;IsConnected()) {</div>
+<div class="line"><span class="lineno">  183</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  184</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Queue service is already shut down&quot;</span>;</div>
+<div class="line"><span class="lineno">  185</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  186</span>  }</div>
+<div class="line"><span class="lineno">  187</span> </div>
+<div class="line"><span class="lineno">  188</span>  publisher_service_-&gt;Disconnect();</div>
+<div class="line"><span class="lineno">  189</span> </div>
+<div class="line"><span class="lineno">  190</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
+<div class="line"><span class="lineno">  191</span>  <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  192</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="aed0379bb3e648c0b8ebd298bc7a08e6a" name="aed0379bb3e648c0b8ebd298bc7a08e6a"></a>
@@ -320,7 +484,29 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   89</span>                                                                    {</div>
+<div class="line"><span class="lineno">   90</span>  Json::Value res_JSON;</div>
+<div class="line"><span class="lineno">   91</span> </div>
+<div class="line"><span class="lineno">   92</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;disconnect_node&quot;</span>;</div>
+<div class="line"><span class="lineno">   93</span>  <span class="keywordflow">if</span> (!publisher_service_-&gt;IsConnected()) {</div>
+<div class="line"><span class="lineno">   94</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">   95</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Queue service is currently unavailable try using connect_publisher/ request&quot;</span>;</div>
+<div class="line"><span class="lineno">   96</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">   97</span>  }</div>
+<div class="line"><span class="lineno">   98</span> </div>
+<div class="line"><span class="lineno">   99</span>  <span class="keyword">auto</span> js1 = worker_management_service_-&gt;DisconnectNode(host_port);</div>
+<div class="line"><span class="lineno">  100</span> </div>
+<div class="line"><span class="lineno">  101</span>  res_JSON[<span class="stringliteral">&quot;balancer_output&quot;</span>] = js1;</div>
+<div class="line"><span class="lineno">  102</span>  <span class="keywordflow">if</span> (js1.isMember(<span class="stringliteral">&quot;status&quot;</span>)) {</div>
+<div class="line"><span class="lineno">  103</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = js1[<span class="stringliteral">&quot;status&quot;</span>];</div>
+<div class="line"><span class="lineno">  104</span>    res_JSON[<span class="stringliteral">&quot;balancer_output&quot;</span>].removeMember(<span class="stringliteral">&quot;status&quot;</span>);</div>
+<div class="line"><span class="lineno">  105</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  106</span>  }</div>
+<div class="line"><span class="lineno">  107</span> </div>
+<div class="line"><span class="lineno">  108</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
+<div class="line"><span class="lineno">  109</span>  <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  110</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ab62802d468cdc18764b47364b16e2e01" name="ab62802d468cdc18764b47364b16e2e01"></a>
@@ -356,11 +542,39 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  193</span>                                                                                  {</div>
+<div class="line"><span class="lineno">  194</span>  Json::Value res_JSON;</div>
+<div class="line"><span class="lineno">  195</span> </div>
+<div class="line"><span class="lineno">  196</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;message&quot;</span>;</div>
+<div class="line"><span class="lineno">  197</span>  <span class="keywordflow">if</span> (!publisher_service_-&gt;IsConnected()) {</div>
+<div class="line"><span class="lineno">  198</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  199</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;Queue service is already shut down&quot;</span>;</div>
+<div class="line"><span class="lineno">  200</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  201</span>  }</div>
+<div class="line"><span class="lineno">  202</span>  <span class="keyword">auto</span> str = ts.<a class="code hl_function" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13">ToJson</a>().toStyledString();</div>
+<div class="line"><span class="lineno">  203</span> </div>
+<div class="line"><span class="lineno">  204</span>  <span class="keyword">auto</span> envelope = std::make_shared&lt;AMQP::Envelope&gt;(str);</div>
+<div class="line"><span class="lineno">  205</span> </div>
+<div class="line"><span class="lineno">  206</span>  envelope-&gt;setPersistent(<span class="keyword">true</span>);</div>
+<div class="line"><span class="lineno">  207</span>  AMQP::Table headers;</div>
+<div class="line"><span class="lineno">  208</span>  headers[<span class="stringliteral">&quot;messageNum&quot;</span>] = ts.<a class="code hl_variable" href="structnetwork__types_1_1TestSolveParam.html#a63b9e1b846496063ac7952b53ffe02d5">experiment_id</a>;</div>
+<div class="line"><span class="lineno">  209</span>  headers[<span class="stringliteral">&quot;time&quot;</span>] = std::chrono::steady_clock::now().time_since_epoch().count();</div>
+<div class="line"><span class="lineno">  210</span>  envelope-&gt;setHeaders(headers);</div>
+<div class="line"><span class="lineno">  211</span> </div>
+<div class="line"><span class="lineno">  212</span>  publisher_service_-&gt;Publish(envelope, node);</div>
+<div class="line"><span class="lineno">  213</span> </div>
+<div class="line"><span class="lineno">  214</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
+<div class="line"><span class="lineno">  215</span>  <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  216</span>}</div>
+<div class="ttc" id="astructnetwork__types_1_1TestSolveParam_html_a63b9e1b846496063ac7952b53ffe02d5"><div class="ttname"><a href="structnetwork__types_1_1TestSolveParam.html#a63b9e1b846496063ac7952b53ffe02d5">network_types::TestSolveParam::experiment_id</a></div><div class="ttdeci">size_t experiment_id</div><div class="ttdoc">current experiment id</div><div class="ttdef"><b>Definition</b> networkTypes.h:40</div></div>
+<div class="ttc" id="astructnetwork__types_1_1TestSolveParam_html_afd86c96ee05f0317f38298cb373fcd13"><div class="ttname"><a href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13">network_types::TestSolveParam::ToJson</a></div><div class="ttdeci">Json::Value ToJson()</div><div class="ttdoc">Serialize as json.</div><div class="ttdef"><b>Definition</b> networkTypes.cpp:37</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a63b9e1b846496063ac7952b53ffe02d5">network_types::TestSolveParam::experiment_id</a>, and <a class="el" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13">network_types::TestSolveParam::ToJson()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph" id="aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph">
 <area shape="rect" title=" " alt="" coords="5,5,244,45"/>
@@ -397,11 +611,53 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>amqp_common::AMQPPublisherServicePublish(EnvelopePtr message, const std::string qname) </dd></dl>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<div class="fragment"><div class="line"><span class="lineno">  243</span>                                                                          {</div>
+<div class="line"><span class="lineno">  244</span>  Json::Value res_JSON;</div>
+<div class="line"><span class="lineno">  245</span> </div>
+<div class="line"><span class="lineno">  246</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;send_task&quot;</span>;</div>
+<div class="line"><span class="lineno">  247</span>  <span class="keywordflow">if</span> (worker_management_service_-&gt;begin() == worker_management_service_-&gt;end()) {</div>
+<div class="line"><span class="lineno">  248</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;No nodes to compute task&quot;</span>;</div>
+<div class="line"><span class="lineno">  249</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
+<div class="line"><span class="lineno">  250</span>    <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  251</span>  }</div>
+<div class="line"><span class="lineno">  252</span> </div>
+<div class="line"><span class="lineno">  253</span>  <span class="keyword">auto</span> itercount = ts.<a class="code hl_variable" href="structnetwork__types_1_1TestSolveParam.html#a18fa18c3ebe9450c6138391db60b9610">range</a>.second - ts.<a class="code hl_variable" href="structnetwork__types_1_1TestSolveParam.html#a18fa18c3ebe9450c6138391db60b9610">range</a>.first + 1;</div>
+<div class="line"><span class="lineno">  254</span>  <a class="code hl_struct" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> ts_t;</div>
+<div class="line"><span class="lineno">  255</span> </div>
+<div class="line"><span class="lineno">  256</span>  <span class="keyword">auto</span> it = worker_management_service_-&gt;begin();</div>
+<div class="line"><span class="lineno">  257</span> </div>
+<div class="line"><span class="lineno">  258</span>  <span class="keyword">auto</span> it2 = worker_management_service_-&gt;begin();</div>
+<div class="line"><span class="lineno">  259</span>  it2++;</div>
+<div class="line"><span class="lineno">  260</span> </div>
+<div class="line"><span class="lineno">  261</span>  <span class="keywordflow">for</span> (; it2 != worker_management_service_-&gt;end(); it2++, it++) {</div>
+<div class="line"><span class="lineno">  262</span>    <span class="keyword">auto</span> &amp;[key, val] = *it;</div>
+<div class="line"><span class="lineno">  263</span> </div>
+<div class="line"><span class="lineno">  264</span>    <a class="code hl_typedef" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">BenchResVec</a> iters = val.node_speed_ * (itercount);</div>
+<div class="line"><span class="lineno">  265</span>    iters /= worker_management_service_-&gt;GetSum();</div>
+<div class="line"><span class="lineno">  266</span> </div>
+<div class="line"><span class="lineno">  267</span>    <span class="comment">//todo use proper logic to find weight</span></div>
+<div class="line"><span class="lineno">  268</span>    <span class="keyword">auto</span> iterss = iters[2];</div>
+<div class="line"><span class="lineno">  269</span>    ts_t = ts.<a class="code hl_function" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d">SliceAway</a>(iterss);</div>
+<div class="line"><span class="lineno">  270</span>    Publish2(ts_t, key);</div>
+<div class="line"><span class="lineno">  271</span>  }</div>
+<div class="line"><span class="lineno">  272</span> </div>
+<div class="line"><span class="lineno">  273</span>  Publish2(ts, it-&gt;first);</div>
+<div class="line"><span class="lineno">  274</span> </div>
+<div class="line"><span class="lineno">  275</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
+<div class="line"><span class="lineno">  276</span> </div>
+<div class="line"><span class="lineno">  277</span>  <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">  278</span>}</div>
+<div class="ttc" id="anamespaceshared_html_aa5d7938a2acc14cba538e883c9be6f9f"><div class="ttname"><a href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a></div><div class="ttdeci">std::valarray&lt; BenchResultType &gt; BenchResVec</div><div class="ttdef"><b>Definition</b> sharedDeclarations.h:16</div></div>
+<div class="ttc" id="astructnetwork__types_1_1TestSolveParam_html"><div class="ttname"><a href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a></div><div class="ttdoc">Simple task sent structure.</div><div class="ttdef"><b>Definition</b> networkTypes.h:38</div></div>
+<div class="ttc" id="astructnetwork__types_1_1TestSolveParam_html_a18fa18c3ebe9450c6138391db60b9610"><div class="ttname"><a href="structnetwork__types_1_1TestSolveParam.html#a18fa18c3ebe9450c6138391db60b9610">network_types::TestSolveParam::range</a></div><div class="ttdeci">std::pair&lt; size_t, size_t &gt; range</div><div class="ttdoc">iteration range: [range.first,range,second]</div><div class="ttdef"><b>Definition</b> networkTypes.h:42</div></div>
+<div class="ttc" id="astructnetwork__types_1_1TestSolveParam_html_a5b9ee447f3e0c2d893704ed24dd7152d"><div class="ttname"><a href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d">network_types::TestSolveParam::SliceAway</a></div><div class="ttdeci">TestSolveParam SliceAway(size_t iter_count)</div><div class="ttdoc">Slices iter_count iterations from current range and creates.</div><div class="ttdef"><b>Definition</b> networkTypes.cpp:60</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a18fa18c3ebe9450c6138391db60b9610">network_types::TestSolveParam::range</a>, and <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d">network_types::TestSolveParam::SliceAway()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph" id="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph">
 <area shape="rect" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="5,5,244,45"/>
@@ -432,7 +688,25 @@ Public Member Functions</h2></td></tr>
 <li>Connection status to a RabbitMQ instance (with data if connected)</li>
 <li>Several lists(by status) of all nodes with their characteristics(bench result ...) </li>
 </ol>
-
+<div class="fragment"><div class="line"><span class="lineno">   15</span>                                  {</div>
+<div class="line"><span class="lineno">   16</span>  Json::Value res_JSON;</div>
+<div class="line"><span class="lineno">   17</span> </div>
+<div class="line"><span class="lineno">   18</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;status&quot;</span>;</div>
+<div class="line"><span class="lineno">   19</span> </div>
+<div class="line"><span class="lineno">   20</span>  <span class="keywordflow">if</span> (publisher_service_-&gt;IsConnected()) {</div>
+<div class="line"><span class="lineno">   21</span>    res_JSON[<span class="stringliteral">&quot;rabbitmq_service&quot;</span>][<span class="stringliteral">&quot;status&quot;</span>] = <span class="stringliteral">&quot;Connected&quot;</span>;</div>
+<div class="line"><span class="lineno">   22</span>    res_JSON[<span class="stringliteral">&quot;rabbitmq_service&quot;</span>][<span class="stringliteral">&quot;c_string&quot;</span>] = publisher_service_-&gt;GetCString();</div>
+<div class="line"><span class="lineno">   23</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><span class="lineno">   24</span>    res_JSON[<span class="stringliteral">&quot;RabbitmqService&quot;</span>][<span class="stringliteral">&quot;status&quot;</span>] = <span class="stringliteral">&quot;Not Connected&quot;</span>;</div>
+<div class="line"><span class="lineno">   25</span>  }</div>
+<div class="line"><span class="lineno">   26</span> </div>
+<div class="line"><span class="lineno">   27</span>  res_JSON[<span class="stringliteral">&quot;clients&quot;</span>] = worker_management_service_-&gt;GetStatus();</div>
+<div class="line"><span class="lineno">   28</span> </div>
+<div class="line"><span class="lineno">   29</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
+<div class="line"><span class="lineno">   30</span>  <span class="keywordflow">return</span> res_JSON;</div>
+<div class="line"><span class="lineno">   31</span> </div>
+<div class="line"><span class="lineno">   32</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

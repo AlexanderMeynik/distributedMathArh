@@ -97,7 +97,7 @@ $(document).ready(function(){initNavTree('classamqp__common_1_1MyHandler.html','
 </div><!--header-->
 <div class="contents">
 
-<p>Custom for connection events logging.  
+<p>Custom handler for connection events logging.  
  <a href="classamqp__common_1_1MyHandler.html#details">More...</a></p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Inheritance diagram for amqp_common::MyHandler:</div>
@@ -106,11 +106,11 @@ $(document).ready(function(){initNavTree('classamqp__common_1_1MyHandler.html','
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1MyHandler__inherit__graph.png" border="0" usemap="#aamqp__common_1_1MyHandler_inherit__map" alt="Inheritance graph"/></div>
 <map name="aamqp__common_1_1MyHandler_inherit__map" id="aamqp__common_1_1MyHandler_inherit__map">
-<area shape="rect" title="Custom for connection events logging." alt="" coords="6,79,209,104"/>
-<area shape="rect" title=" " alt="" coords="5,5,209,31"/>
-<area shape="poly" title=" " alt="" coords="110,44,110,79,105,79,105,44"/>
+<area shape="rect" title="Custom handler for connection events logging." alt="" coords="6,119,201,264"/>
+<area shape="rect" title=" " alt="" coords="5,5,201,71"/>
+<area shape="poly" title=" " alt="" coords="106,84,106,118,101,118,101,84"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+</div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Collaboration diagram for amqp_common::MyHandler:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -118,11 +118,11 @@ $(document).ready(function(){initNavTree('classamqp__common_1_1MyHandler.html','
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1MyHandler__coll__graph.png" border="0" usemap="#aamqp__common_1_1MyHandler_coll__map" alt="Collaboration graph"/></div>
 <map name="aamqp__common_1_1MyHandler_coll__map" id="aamqp__common_1_1MyHandler_coll__map">
-<area shape="rect" title="Custom for connection events logging." alt="" coords="6,79,209,104"/>
-<area shape="rect" title=" " alt="" coords="5,5,209,31"/>
-<area shape="poly" title=" " alt="" coords="110,44,110,79,105,79,105,44"/>
+<area shape="rect" title="Custom handler for connection events logging." alt="" coords="6,119,201,264"/>
+<area shape="rect" title=" " alt="" coords="5,5,201,71"/>
+<area shape="poly" title=" " alt="" coords="106,84,106,118,101,118,101,84"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
@@ -138,11 +138,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a0a8716a19cdbad1421839fc1f6f47287"><td class="mdescLeft">&#160;</td><td class="mdescRight">Method that is called when connection is established.  <br /></td></tr>
 <tr class="separator:a0a8716a19cdbad1421839fc1f6f47287"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6ebb8cfbfb2200330442d21a485d8e2a" id="r_a6ebb8cfbfb2200330442d21a485d8e2a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a">IsConnected</a> () const</td></tr>
-<tr class="memdesc:a6ebb8cfbfb2200330442d21a485d8e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets handles connectio status.  <br /></td></tr>
+<tr class="memdesc:a6ebb8cfbfb2200330442d21a485d8e2a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets handler connection status.  <br /></td></tr>
 <tr class="separator:a6ebb8cfbfb2200330442d21a485d8e2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Custom for connection events logging. </p>
+<div class="textblock"><p>Custom handler for connection events logging. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a9edffad79ce701a4ed3fcba1f380792a" name="a9edffad79ce701a4ed3fcba1f380792a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a9edffad79ce701a4ed3fcba1f380792a">&#9670;&#160;</a></span>MyHandler()</h2>
@@ -169,7 +169,11 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
+<div class="fragment"><div class="line"><span class="lineno">   23</span>                                                                       :</div>
+<div class="line"><span class="lineno">   24</span>    AMQP::LibBoostAsioHandler(service),</div>
+<div class="line"><span class="lineno">   25</span>    m_work_(work_ref),</div>
+<div class="line"><span class="lineno">   26</span>    connected_(<span class="keyword">false</span>) {}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -188,8 +192,11 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Gets handles connectio status. </p>
-
+<p>Gets handler connection status. </p>
+<div class="fragment"><div class="line"><span class="lineno">   28</span>                                  {</div>
+<div class="line"><span class="lineno">   29</span>  <span class="keywordflow">return</span> connected_;</div>
+<div class="line"><span class="lineno">   30</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac1f0eb02464d096c002228933212c1dd" name="ac1f0eb02464d096c002228933212c1dd"></a>
@@ -223,7 +230,12 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   92</span>                                                        {</div>
+<div class="line"><span class="lineno">   93</span>    ResetLoop();</div>
+<div class="line"><span class="lineno">   94</span> </div>
+<div class="line"><span class="lineno">   95</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connection closed.\n&quot;</span>;</div>
+<div class="line"><span class="lineno">   96</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a0a8716a19cdbad1421839fc1f6f47287" name="a0a8716a19cdbad1421839fc1f6f47287"></a>
@@ -257,7 +269,11 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                           {</div>
+<div class="line"><span class="lineno">  113</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connection established successfully.&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">  114</span>    connected_ = <span class="keyword">true</span>;</div>
+<div class="line"><span class="lineno">  115</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a8b33b5471f57c267a1eb4656f1fb1eb2" name="a8b33b5471f57c267a1eb4656f1fb1eb2"></a>
@@ -302,7 +318,11 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">  103</span>                                             {</div>
+<div class="line"><span class="lineno">  104</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connection error: &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;<span class="comment">//todo log</span></div>
+<div class="line"><span class="lineno">  105</span>    ResetLoop();</div>
+<div class="line"><span class="lineno">  106</span>  }</div>
+</div><!-- fragment -->
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

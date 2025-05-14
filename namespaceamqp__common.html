@@ -113,7 +113,7 @@ Classes</h2></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This class connection/disconnection semantics.  <a href="classamqp__common_1_1AMQPService.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1MyHandler.html">MyHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom for connection events logging.  <a href="classamqp__common_1_1MyHandler.html#details">More...</a><br /></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Custom handler for connection events logging.  <a href="classamqp__common_1_1MyHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html">RabbitMQRestService</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">This service is used to perform http requests to a RabbiMQ management interface.  <a href="classamqp__common_1_1RabbitMQRestService.html#details">More...</a><br /></td></tr>
@@ -215,6 +215,13 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<div class="fragment"><div class="line"><span class="lineno">   43</span>                                             {</div>
+<div class="line"><span class="lineno">   44</span>  <span class="keywordflow">return</span> AMQP::Address(<a class="code hl_function" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">ConstructCString</a>(host_port, user, password, secure));</div>
+<div class="line"><span class="lineno">   45</span> </div>
+<div class="line"><span class="lineno">   46</span>}</div>
+<div class="ttc" id="anamespaceamqp__common_html_aad6515e6ea0d240dc7fdaea72649f911"><div class="ttname"><a href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString</a></div><div class="ttdeci">std::string ConstructCString(const std::string &amp;host_port, const std::string &amp;user, const std::string &amp;password, bool secure=false)</div><div class="ttdoc">Constructs amqp connection string.</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:32</div></div>
+</div><!-- fragment -->
+<p class="reference">References <a class="el" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">ConstructCString()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -278,6 +285,12 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">   35</span>                                          {</div>
+<div class="line"><span class="lineno">   36</span>  <span class="keyword">auto</span> res = fmt::format(<span class="stringliteral">&quot;amqp{}://{}:{}@{}/&quot;</span>, (secure ? <span class="stringliteral">&quot;s&quot;</span> : <span class="stringliteral">&quot;&quot;</span>), user, password, host_port);</div>
+<div class="line"><span class="lineno">   37</span>  <span class="keywordflow">return</span> res;</div>
+<div class="line"><span class="lineno">   38</span>}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24">comp_services::ComputationNodeService::Connect()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">main_services::MainNodeService::Connect()</a>, and <a class="el" href="namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109">ConstructCAddress()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -371,6 +384,21 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+<div class="fragment"><div class="line"><span class="lineno">    9</span>                                              {</div>
+<div class="line"><span class="lineno">   10</span>  <a class="code hl_struct" href="structnetwork__types_1_1channel.html">channel</a>.declareQueue(queue1)</div>
+<div class="line"><span class="lineno">   11</span>      .onSuccess([queue1]() {</div>
+<div class="line"><span class="lineno">   12</span>        std::cout &lt;&lt; fmt::format(<span class="stringliteral">&quot;Queue \&quot;{}\&quot; declared\n&quot;</span>, queue1);</div>
+<div class="line"><span class="lineno">   13</span>      })</div>
+<div class="line"><span class="lineno">   14</span>      .onError([](<span class="keyword">const</span> <span class="keywordtype">char</span> *msg) {</div>
+<div class="line"><span class="lineno">   15</span> </div>
+<div class="line"><span class="lineno">   16</span>        std::cerr &lt;&lt; <span class="stringliteral">&quot;Queue error: &quot;</span> &lt;&lt; msg &lt;&lt; <span class="stringliteral">&quot;\n&quot;</span>;</div>
+<div class="line"><span class="lineno">   17</span>      });</div>
+<div class="line"><span class="lineno">   18</span> </div>
+<div class="line"><span class="lineno">   19</span>  channel.bindQueue(exchange1, queue1, queue1);</div>
+<div class="line"><span class="lineno">   20</span>}</div>
+<div class="ttc" id="astructnetwork__types_1_1channel_html"><div class="ttname"><a href="structnetwork__types_1_1channel.html">network_types::channel</a></div><div class="ttdoc">channel struct</div><div class="ttdef"><b>Definition</b> networkTypes.h:186</div></div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a37120a0cc3c5f4ab5631f671839e71a1">amqp_common::AMQPPublisherService::AddQueue()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -427,7 +455,20 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   48</span>                                                                                                 {</div>
+<div class="line"><span class="lineno">   49</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;Body: &quot;</span> &lt;&lt; std::string(<a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.body(), <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.bodySize()) &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   50</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;Priority: &quot;</span> &lt;&lt; (int) <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.priority() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   51</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;Persistent: &quot;</span> &lt;&lt; <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.persistent() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   52</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;Content-Type: &quot;</span> &lt;&lt; <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.contentType() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   53</span>  std::cout &lt;&lt; <span class="stringliteral">&quot;Timestamp: &quot;</span> &lt;&lt; <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.timestamp() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   54</span>  <span class="keywordflow">for</span> (<span class="keyword">const</span> <span class="keyword">auto</span> &amp;key : <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.headers().keys()) {</div>
+<div class="line"><span class="lineno">   55</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Header [&quot;</span> &lt;&lt; key &lt;&lt; <span class="stringliteral">&quot;] = &quot;</span> &lt;&lt; <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.headers().operator[](key) &lt;&lt; <span class="charliteral">&#39;\t&#39;</span></div>
+<div class="line"><span class="lineno">   56</span>              &lt;&lt; <a class="code hl_struct" href="structnetwork__types_1_1message.html">message</a>.headers().operator[](key).typeID() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;<span class="comment">//typeId</span></div>
+<div class="line"><span class="lineno">   57</span>  }</div>
+<div class="line"><span class="lineno">   58</span>  std::cout &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
+<div class="line"><span class="lineno">   59</span>}</div>
+<div class="ttc" id="astructnetwork__types_1_1message_html"><div class="ttname"><a href="structnetwork__types_1_1message.html">network_types::message</a></div><div class="ttdoc">message struct</div><div class="ttdef"><b>Definition</b> networkTypes.h:205</div></div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="a5a133e8ea931aa11e79ee9b1eed3f697" name="a5a133e8ea931aa11e79ee9b1eed3f697"></a>
@@ -454,7 +495,25 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-
+<div class="fragment"><div class="line"><span class="lineno">   60</span>                                                       {</div>
+<div class="line"><span class="lineno">   61</span>  <span class="keywordtype">size_t</span> protocolEnd = url.find(<span class="stringliteral">&quot;://&quot;</span>);</div>
+<div class="line"><span class="lineno">   62</span>  <span class="keywordflow">if</span> (protocolEnd == std::string_view::npos) {</div>
+<div class="line"><span class="lineno">   63</span>    <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><span class="lineno">   64</span>  }</div>
+<div class="line"><span class="lineno">   65</span> </div>
+<div class="line"><span class="lineno">   66</span>  <span class="keywordtype">size_t</span> hostStart = protocolEnd + 3;</div>
+<div class="line"><span class="lineno">   67</span>  <span class="keywordflow">if</span> (hostStart &gt;= url.length()) {</div>
+<div class="line"><span class="lineno">   68</span>    <span class="keywordflow">return</span> std::nullopt;</div>
+<div class="line"><span class="lineno">   69</span>  }</div>
+<div class="line"><span class="lineno">   70</span> </div>
+<div class="line"><span class="lineno">   71</span>  <span class="keywordtype">size_t</span> hostEnd = url.find_first_of(<span class="stringliteral">&quot;:/?&quot;</span>, hostStart);</div>
+<div class="line"><span class="lineno">   72</span>  <span class="keywordflow">if</span> (hostEnd == std::string_view::npos) {</div>
+<div class="line"><span class="lineno">   73</span>    hostEnd = url.length();</div>
+<div class="line"><span class="lineno">   74</span>  }</div>
+<div class="line"><span class="lineno">   75</span> </div>
+<div class="line"><span class="lineno">   76</span>  <span class="keywordflow">return</span> std::string(url.substr(hostStart, hostEnd - hostStart));</div>
+<div class="line"><span class="lineno">   77</span>}</div>
+</div><!-- fragment -->
 </div>
 </div>
 <a id="ac852884ef6968ddbbacea693dd884a31" name="ac852884ef6968ddbbacea693dd884a31"></a>
