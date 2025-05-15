@@ -96,26 +96,31 @@ class MyException : public std::logic_error {
 
 /**
  * @brief InvalidOption class
+ * @details Use case: option resolution result in an error
  */
 DEFINE_EXCEPTION_IN(InvalidOption, "Option {} does not exist!", std::string)
 
 /**
  * @brief outOfRange class
+ * @details Use case: index is out of range
  */
 DEFINE_EXCEPTION_IN(outOfRange, "Value {} is out of range[{},{}]!", long, long, long)
 
 /**
  * @brief zeroSize class
+ * @details Use case: empty collection used as init
  */
 DEFINE_EXCEPTION_IN(zeroSize, "Zero collection {} size!", std::string)
 
 /**
  * @brief ioError class
+ * @details Use case: error during ios management
  */
 DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", const std::string&)
 
 /**
  * @brief mismatchedSizes error
+ * @details Use case: empty collection used as init
  */
 DEFINE_EXCEPTION_IN(mismatchedSizes, "Mismatched container sizes for input : a.size = {}, b.size() = {} !", long,
                     long);
@@ -141,14 +146,26 @@ DEFINE_EXCEPTION_ER(RowDivisionError,
 DEFINE_EXCEPTION_IN(HttpError, "HTTP error: code {} , reason \"{}\" !", long, std::string)
 
 /**
- * @brief Curl class
+ * @brief Curl error class
+ * @details Use case: handling curl abnormalities
  */
 DEFINE_EXCEPTION_IN(CurlError, "Curl error: \"{}\" !", std::string)
 
+/**
+ * @brief SQL error class
+ * @details Use case: handling SQL abnormalities
+ */
 DEFINE_EXCEPTION_IN(SQL_ERROR, "SQL Error: {}. Query: {}. SQL State: {}!", std::string, std::string, std::string)
 
+/**
+ * @brief Already conencted error class
+ * @details Use case: to avoid reconnection
+ */
 DEFINE_EXCEPTION_IN(Already_Connected, "Service {} is already connected to {}!", std::string, std::string)
-
+/**
+ * @brief Broken connection error class
+ * @details Use case: some thing cannot connect to some other thing
+ */
 DEFINE_EXCEPTION_IN(Broken_Connection, "Service {} is unable to connect to {}!", std::string, std::string)
 }
 

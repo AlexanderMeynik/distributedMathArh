@@ -10,6 +10,7 @@
 #include "common/myConcepts.h"
 
 using common_types::FloatType;
+/// namespace for the utilities related to data generation
 namespace generators {
 using common_types::JsonVariant;
 using DistributionFunctor = std::function<FloatType()>;

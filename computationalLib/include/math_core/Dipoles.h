@@ -12,6 +12,8 @@ using shared::FloatType, shared::params;
  * @brief Provides interface to Solve system of dipoles
  * @details Allows to construct and Solve system of equations for the selected mathematical model.
  * @details Can accept various input formats for coordinates and solutions to crete system,
+ * @details This class implements more verbose solution algorithm. It uses quasi symmetricity of block matrix
+ * @details to cut computation i half.
  * @details to Solve it, to Generate direction graph for magnetic field.
  */
 class Dipoles {
@@ -19,7 +21,7 @@ class Dipoles {
   Dipoles() = default;
 
   /**
-   * @brief Basic constructor that acccepts dipole coordinates Container
+   * @brief Basic constructor that accepts dipole coordinates Container
    * @tparam Container
    * @param xi
    */
@@ -123,14 +125,15 @@ class Dipoles {
   template<typename Container>
   void SetMatrixes(const Container &xi);
 
-  MatrixType m_1_;
-  MatrixType m_2_;
-  IntegrableFunction ifunction_;
-  DirectionGraph i_2_function_;
-  Eigen::Vector<FloatType, Eigen::Dynamic> f_;
+  MatrixType m_1_; ///< upper left block of matrix
+  MatrixType m_2_; ///< down left block of matrix
 
-  FloatType an_ = params::a;
-  int n_;
+  Eigen::Vector<FloatType, Eigen::Dynamic> f_; ///< right part of system of equations
+
+  FloatType an_ = params::a; ///< a_n coefficient value
+  int n_; /// < size of the system
+  IntegrableFunction ifunction_; ///< numeric/analytic representation of the target function.
+  DirectionGraph i_2_function_; ///< analytic representation of the target function
 };
 
 template<typename Container>
