@@ -4,7 +4,7 @@
 #include "common/Parsers.h"
 #include "common/Printers.h"
 #include "MeshPlot.h"
-
+using namespace gui_objects;
 using namespace common_types;
 using namespace print_utils;
 static inline std::string res_dir_path = "../../../res/";
