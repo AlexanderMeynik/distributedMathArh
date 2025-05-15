@@ -17,15 +17,15 @@ file(GLOB_RECURSE httpSources CONFIGURE_DEPENDS
 )
 
 
-add_library(servLib ${httpSources})
-target_link_libraries(servLib PUBLIC math_core_lib OpenMP::OpenMP_CXX Drogon::Drogon network_shared_lib)
-target_include_directories(servLib PUBLIC include)
-enable_coverage_for_target(servLib)
+add_library(computationalNodeLib ${httpSources})
+target_link_libraries(computationalNodeLib PUBLIC math_core_lib Drogon::Drogon network_shared_lib)
+target_include_directories(computationalNodeLib PUBLIC include)
+enable_coverage_for_target(computationalNodeLib)
 
 add_executable(compNode main.cpp)
 target_link_libraries(compNode)
 target_link_libraries(compNode -lssl -lcrypto)
-target_link_libraries(compNode servLib allUtils)
+target_link_libraries(compNode computationalNodeLib allUtils)
 enable_coverage_for_target(compNode)
 
 
