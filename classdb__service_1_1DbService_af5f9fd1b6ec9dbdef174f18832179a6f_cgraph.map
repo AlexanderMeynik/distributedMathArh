@@ -1,5 +1,10 @@
 <map id="db_service::DbService::UpdateIterationStatus" name="db_service::DbService::UpdateIterationStatus">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,179,45"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,179,77"/>
 <area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="227,5,393,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,23,213,23,213,28,179,28"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,42,213,37,214,42,179,47"/>
+<area shape="rect" id="Node000003" href="$classdb__service_1_1DbService.html#a285d98fb1ac9d4bd614f43dea27dccd8" title=" " alt="" coords="227,69,393,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="179,67,214,73,213,78,179,73"/>
+<area shape="rect" id="Node000004" href="$namespacedb__common.html#ade4a0e64d613a70412fa41a5008b1d35" title="Executes function inside subtransaction of txn." alt="" coords="441,77,700,102"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="394,87,428,87,428,92,394,92"/>
+<area shape="poly" id="edge4_Node000004_Node000004" title=" " alt="" coords="529,78,520,68,524,58,542,52,571,50,607,54,617,59,621,64,617,67,614,63,606,59,571,55,543,57,528,62,525,68,533,75"/>
 </map>

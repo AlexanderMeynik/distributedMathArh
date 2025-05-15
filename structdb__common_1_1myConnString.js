@@ -16,5 +16,12 @@ var structdb__common_1_1myConnString =
     [ "SetHost", "structdb__common_1_1myConnString.html#aab3af8cc3c4589c7f12cc44c7fed400c", null ],
     [ "SetPassword", "structdb__common_1_1myConnString.html#a02a866dc4b33849b386519fc272883f9", null ],
     [ "SetPort", "structdb__common_1_1myConnString.html#a9535cb2fe3534115df37c16ee0d8a408", null ],
-    [ "SetUser", "structdb__common_1_1myConnString.html#af3ca7616633d2b136c9c81166afbd077", null ]
+    [ "SetUser", "structdb__common_1_1myConnString.html#af3ca7616633d2b136c9c81166afbd077", null ],
+    [ "UpdateFormat", "structdb__common_1_1myConnString.html#a290d23811a404d8c232c49674341e035", null ],
+    [ "dbname", "structdb__common_1_1myConnString.html#a558d2b86e880421be0f5a546bb68f283", null ],
+    [ "formatted_string", "structdb__common_1_1myConnString.html#a7543e7d67544f696488259a0fc68f83b", null ],
+    [ "host", "structdb__common_1_1myConnString.html#a5b093ba32513f3315b3be7f41c5ae052", null ],
+    [ "password", "structdb__common_1_1myConnString.html#a954947f26edaf109304b75e66d899e71", null ],
+    [ "port", "structdb__common_1_1myConnString.html#ac634f7ca298214be2d6ac78e0896759c", null ],
+    [ "user", "structdb__common_1_1myConnString.html#aef8d336e39573fd449d5720f525774c7", null ]
 ];

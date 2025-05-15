@@ -1,13 +1,17 @@
 <map id="db_common::TryConnect" name="db_common::TryConnect">
-<area shape="rect" id="Node000001" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="268,103,451,128"/>
-<area shape="poly" id="edge7_Node000001_Node000001" title=" " alt="" coords="403,93,400,89,393,85,359,81,333,83,319,88,316,94,323,101,320,104,311,94,315,84,332,78,359,76,394,80,404,85,408,90"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="5,29,220,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="313,100,219,69,175,57,177,52,221,63,314,95"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,103,214,128"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="254,118,214,118,214,113,254,113"/>
-<area shape="rect" id="Node000004" href="$namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="17,176,208,201"/>
-<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="303,135,157,178,156,173,302,130"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="156,20,154,15,146,12,113,8,86,10,72,15,70,20,77,27,73,31,64,21,69,11,85,5,113,3,147,7,157,11,161,17"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="156,93,154,89,146,85,113,81,86,83,72,88,70,94,77,101,73,104,64,94,69,84,85,78,113,76,147,80,157,85,161,90"/>
-<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="156,167,154,162,146,158,113,155,86,157,72,162,70,167,77,174,73,178,64,168,69,158,85,152,113,149,147,153,157,158,161,164"/>
+<area shape="rect" id="Node000001" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="483,140,665,165"/>
+<area shape="poly" id="edge9_Node000001_Node000001" title=" " alt="" coords="618,131,615,126,607,122,574,119,548,121,534,126,531,131,538,138,534,142,526,132,530,122,547,116,574,113,609,117,619,122,622,128"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="220,29,435,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="544,134,494,100,434,68,400,57,401,52,436,64,497,96,547,129"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="226,103,429,128"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="476,141,411,131,412,125,476,135"/>
+<area shape="rect" id="Node000004" href="$namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="232,176,423,201"/>
+<area shape="poly" id="edge5_Node000001_Node000004" title=" " alt="" coords="474,170,415,179,414,173,473,165"/>
+<area shape="rect" id="Node000005" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,226,411,266"/>
+<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="534,174,436,215,397,228,395,223,434,210,532,169"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="370,20,359,11,327,8,302,10,288,15,286,20,293,27,289,31,280,21,285,11,301,5,327,3,361,7,373,16"/>
+<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="370,94,359,85,327,81,302,83,288,88,286,94,293,101,289,104,280,94,285,84,301,78,327,76,361,80,373,89"/>
+<area shape="poly" id="edge6_Node000004_Node000004" title=" " alt="" coords="370,167,359,158,327,155,302,157,288,162,286,167,293,174,289,178,280,168,285,158,301,152,327,149,361,153,373,163"/>
+<area shape="rect" id="Node000006" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="5,226,172,266"/>
+<area shape="poly" id="edge8_Node000005_Node000006" title=" " alt="" coords="230,249,172,249,172,243,230,243"/>
 </map>

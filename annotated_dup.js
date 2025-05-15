@@ -38,6 +38,9 @@ var annotated_dup =
     [ "generators", "namespacegenerators.html", [
       [ "generator", "structgenerators_1_1generator.html", "structgenerators_1_1generator" ]
     ] ],
+    [ "gui_objects", "namespacegui__objects.html", [
+      [ "MeshPlot", "classgui__objects_1_1MeshPlot.html", "classgui__objects_1_1MeshPlot" ]
+    ] ],
     [ "main_services", "namespacemain__services.html", [
       [ "ComputationalNode", "classmain__services_1_1ComputationalNode.html", "classmain__services_1_1ComputationalNode" ],
       [ "MainNodeService", "classmain__services_1_1MainNodeService.html", "classmain__services_1_1MainNodeService" ],
@@ -89,7 +92,7 @@ var annotated_dup =
       [ "mismatchedSizes", "classshared_1_1mismatchedSizes.html", "classshared_1_1mismatchedSizes" ],
       [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
       [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
-      [ "params", "structshared_1_1params.html", null ],
+      [ "params", "structshared_1_1params.html", "structshared_1_1params" ],
       [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
       [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
       [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
@@ -97,6 +100,5 @@ var annotated_dup =
     [ "timing", "namespacetiming.html", [
       [ "ClockArray", "classtiming_1_1ClockArray.html", "classtiming_1_1ClockArray" ],
       [ "LocationComparator", "structtiming_1_1LocationComparator.html", "structtiming_1_1LocationComparator" ]
-    ] ],
-    [ "MeshPlot", "classMeshPlot.html", "classMeshPlot" ]
+    ] ]
 ];

@@ -7,5 +7,6 @@ var WorkerManagementService_8h =
       [ "INACTIVE", "WorkerManagementService_8h.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2", null ],
       [ "FAILED", "WorkerManagementService_8h.html#a2fadec975591f46253b38185db954f41ab9e14d9b2886bcff408b85aefa780419", null ]
     ] ],
+    [ "kBenchInfinity", "WorkerManagementService_8h.html#a70261e0ffef3e8765c3a560c6ddd617e", null ],
     [ "kNodeStatusToStr", "WorkerManagementService_8h.html#a2bce54d73da5d9bb873529b1fac0394b", null ]
 ];

@@ -3,11 +3,14 @@ var searchData=
   ['f_5f_0',['f_',['../classdipoles_1_1Dipoles.html#a54ad85e0252623761f810c53442da455',1,'dipoles::Dipoles']]],
   ['failed_1',['FAILED',['../namespacemain__services.html#a2fadec975591f46253b38185db954f41ab9e14d9b2886bcff408b85aefa780419',1,'main_services']]],
   ['fatal_2',['fatal',['../namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1adf6402fd9ecc60f5a2159fdf45711cd4',1,'shared']]],
-  ['filldatabase_3',['FillDatabase',['../namespacedb__common.html#a7af436a14081b629f40efa532dc32e22',1,'db_common']]],
-  ['flags_5f_4',['flags_',['../classprint__utils_1_1IosStatePreserve.html#af2f78012c01961997a8963e1d361ebed',1,'print_utils::IosStatePreserve']]],
-  ['floattype_5',['FloatType',['../namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b',1,'shared']]],
-  ['fromjson_6',['FromJson',['../namespaceprint__utils.html#a7ace2bb394174fd24efb227b98314054',1,'print_utils']]],
-  ['fromtoenum_7',['FromToEnum',['../namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c',1,'enum_utils']]],
-  ['ft_5fmax_8',['FT_MAX',['../MeshPlot_8h.html#aed6f9396bd7fa8f70379447daba084ec',1,'MeshPlot.h']]],
-  ['ft_5fmin_9',['FT_MIN',['../MeshPlot_8h.html#a84720e7b93bf917912f9f275d93fd4d0',1,'MeshPlot.h']]]
+  ['ff_5f_3',['ff_',['../classcomp__services_1_1BenchmarkRunner.html#a4750af69592e310cd8d618ddf3a7ed46',1,'comp_services::BenchmarkRunner']]],
+  ['filldatabase_4',['FillDatabase',['../namespacedb__common.html#a7af436a14081b629f40efa532dc32e22',1,'db_common']]],
+  ['flags_5f_5',['flags_',['../classprint__utils_1_1IosStatePreserve.html#af2f78012c01961997a8963e1d361ebed',1,'print_utils::IosStatePreserve']]],
+  ['floattype_6',['FloatType',['../namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b',1,'shared']]],
+  ['fmt_5fstring_7',['fmt_string',['../classshared_1_1SQL__ERROR.html#a8b2009a1fcf11befadc6ad51f3580c13',1,'shared::SQL_ERROR::fmt_string'],['../classshared_1_1Broken__Connection.html#a8bdac5603017276c5adf8075b5b13a29',1,'shared::Broken_Connection::fmt_string'],['../classshared_1_1Already__Connected.html#a7f6c6a61a33da9239ed0234e791b6ce0',1,'shared::Already_Connected::fmt_string'],['../classshared_1_1CurlError.html#aa47fefd92ab18d7aff99a39533d4f3ed',1,'shared::CurlError::fmt_string'],['../classshared_1_1HttpError.html#a7fac65b238ab36043f1c4648b00208e9',1,'shared::HttpError::fmt_string'],['../classshared_1_1RowDivisionError.html#a429d9edcef9770f7af793db1a702330f',1,'shared::RowDivisionError::fmt_string'],['../classshared_1_1invalidSizes2.html#aaa1b567ccd2e3da839af5e4ffc48a80d',1,'shared::invalidSizes2::fmt_string'],['../classshared_1_1mismatchedSizes.html#a75332570b95d2453f8e6528c8136999f',1,'shared::mismatchedSizes::fmt_string'],['../classshared_1_1ioError.html#a5a87495e5b214aab43207522c9817b89',1,'shared::ioError::fmt_string'],['../classshared_1_1zeroSize.html#a5d6c5be60e913a1909c21951e65a6598',1,'shared::zeroSize::fmt_string'],['../classshared_1_1outOfRange.html#a86edfe6c4140b3a9219385655aa9ddfe',1,'shared::outOfRange::fmt_string'],['../classshared_1_1InvalidOption.html#a5c976c06c413614d00d4a90eef59f145',1,'shared::InvalidOption::fmt_string']]],
+  ['formatted_5fstring_8',['formatted_string',['../structdb__common_1_1myConnString.html#a7543e7d67544f696488259a0fc68f83b',1,'db_common::myConnString']]],
+  ['fromjson_9',['FromJson',['../namespaceprint__utils.html#a7ace2bb394174fd24efb227b98314054',1,'print_utils']]],
+  ['fromtoenum_10',['FromToEnum',['../namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c',1,'enum_utils']]],
+  ['ft_5fmax_11',['FT_MAX',['../MeshPlot_8h.html#aed6f9396bd7fa8f70379447daba084ec',1,'MeshPlot.h']]],
+  ['ft_5fmin_12',['FT_MIN',['../MeshPlot_8h.html#a84720e7b93bf917912f9f275d93fd4d0',1,'MeshPlot.h']]]
 ];

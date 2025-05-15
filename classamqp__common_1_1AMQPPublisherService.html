@@ -92,6 +92,8 @@ $(document).ready(function(){initNavTree('classamqp__common_1_1AMQPPublisherServ
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classamqp__common_1_1AMQPPublisherService-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">amqp_common::AMQPPublisherService Class Reference</div></div>
 </div><!--header-->
@@ -106,9 +108,9 @@ $(document).ready(function(){initNavTree('classamqp__common_1_1AMQPPublisherServ
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1AMQPPublisherService__inherit__graph.png" border="0" usemap="#aamqp__common_1_1AMQPPublisherService_inherit__map" alt="Inheritance graph"/></div>
 <map name="aamqp__common_1_1AMQPPublisherService_inherit__map" id="aamqp__common_1_1AMQPPublisherService_inherit__map">
-<area shape="rect" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,479,228,719"/>
+<area shape="rect" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,479,228,799"/>
 <area shape="rect" href="classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="11,5,222,431"/>
-<area shape="poly" title=" " alt="" coords="119,445,119,478,114,478,114,445"/>
+<area shape="poly" title=" " alt="" coords="119,444,119,478,114,478,114,444"/>
 </map>
 </div>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -118,9 +120,13 @@ $(document).ready(function(){initNavTree('classamqp__common_1_1AMQPPublisherServ
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1AMQPPublisherService__coll__graph.png" border="0" usemap="#aamqp__common_1_1AMQPPublisherService_coll__map" alt="Collaboration graph"/></div>
 <map name="aamqp__common_1_1AMQPPublisherService_coll__map" id="aamqp__common_1_1AMQPPublisherService_coll__map">
-<area shape="rect" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,479,228,719"/>
-<area shape="rect" href="classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="11,5,222,431"/>
-<area shape="poly" title=" " alt="" coords="119,445,119,478,114,478,114,445"/>
+<area shape="rect" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,823,228,1143"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="11,368,222,773"/>
+<area shape="poly" title=" " alt="" coords="119,787,119,822,114,822,114,787"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="19,120,214,305"/>
+<area shape="poly" title=" " alt="" coords="119,306,119,352,114,352,114,306"/>
+<area shape="rect" title=" " alt="" coords="19,5,215,71"/>
+<area shape="poly" title=" " alt="" coords="119,85,119,120,114,120,114,85"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -170,6 +176,25 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a13069829565fe147402bd55c5eb765e5 inherit pub_methods_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calls Disconnect and frees used memory with smart pointers.  <br /></td></tr>
 <tr class="separator:a13069829565fe147402bd55c5eb765e5 inherit pub_methods_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a7d0c5c67479d6b8b96b5b0d52a633cdf" id="r_a7d0c5c67479d6b8b96b5b0d52a633cdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a7d0c5c67479d6b8b96b5b0d52a633cdf">Reconnect</a> () override</td></tr>
+<tr class="separator:a7d0c5c67479d6b8b96b5b0d52a633cdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a40e4d5dba401d193325ddd70e243f39b" id="r_a40e4d5dba401d193325ddd70e243f39b"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a40e4d5dba401d193325ddd70e243f39b">ServiceName</a> () override</td></tr>
+<tr class="separator:a40e4d5dba401d193325ddd70e243f39b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:a60cc0330092d84034bba7dfeb1590af8" id="r_a60cc0330092d84034bba7dfeb1590af8"><td class="memItemLeft" align="right" valign="top">std::vector&lt; std::string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60cc0330092d84034bba7dfeb1590af8">queues_</a></td></tr>
+<tr class="memdesc:a60cc0330092d84034bba7dfeb1590af8"><td class="mdescLeft">&#160;</td><td class="mdescRight">list of used queues  <br /></td></tr>
+<tr class="separator:a60cc0330092d84034bba7dfeb1590af8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afad8f470bbcddc021c3f1aeb0bcc84bb" id="r_afad8f470bbcddc021c3f1aeb0bcc84bb"><td class="memItemLeft" align="right" valign="top">std::thread&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html#afad8f470bbcddc021c3f1aeb0bcc84bb">service_thread_</a></td></tr>
+<tr class="memdesc:afad8f470bbcddc021c3f1aeb0bcc84bb"><td class="mdescLeft">&#160;</td><td class="mdescRight">thread to run boost service  <br /></td></tr>
+<tr class="separator:afad8f470bbcddc021c3f1aeb0bcc84bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaf131a660b9cb7fd05a781976b368c7" id="r_abaf131a660b9cb7fd05a781976b368c7"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html#abaf131a660b9cb7fd05a781976b368c7">default_exchange_</a></td></tr>
+<tr class="memdesc:abaf131a660b9cb7fd05a781976b368c7"><td class="mdescLeft">&#160;</td><td class="mdescRight">default exchange to bind queues  <br /></td></tr>
+<tr class="separator:abaf131a660b9cb7fd05a781976b368c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
 <tr class="inherit_header pro_types_classamqp__common_1_1AMQPService"><td colspan="2" onclick="javascript:toggleInherit('pro_types_classamqp__common_1_1AMQPService')"><img src="closed.png" alt="-"/>&#160;Protected Types inherited from <a class="el" href="classamqp__common_1_1AMQPService.html">amqp_common::AMQPService</a></td></tr>
@@ -179,18 +204,18 @@ Additional Inherited Members</h2></td></tr>
 <tr class="memitem:a9f5a084260cbf97b8c829fa9a0715639 inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a9f5a084260cbf97b8c829fa9a0715639"><td class="memItemLeft" align="right" valign="top">boost::asio::io_service&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a9f5a084260cbf97b8c829fa9a0715639">service_</a></td></tr>
 <tr class="memdesc:a9f5a084260cbf97b8c829fa9a0715639 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">service used for async event loop  <br /></td></tr>
 <tr class="separator:a9f5a084260cbf97b8c829fa9a0715639 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae4b8e20b0b2efbb8e1480c8baca8fbcf inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_ae4b8e20b0b2efbb8e1480c8baca8fbcf"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; boost::asio::io_service::work &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#ae4b8e20b0b2efbb8e1480c8baca8fbcf">work_</a></td></tr>
-<tr class="memdesc:ae4b8e20b0b2efbb8e1480c8baca8fbcf inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">work object to handle loop work  <br /></td></tr>
-<tr class="separator:ae4b8e20b0b2efbb8e1480c8baca8fbcf inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14c57f2f03bb5572de1a555cf6c8e989 inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a14c57f2f03bb5572de1a555cf6c8e989"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; <a class="el" href="classamqp__common_1_1MyHandler.html">MyHandler</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a14c57f2f03bb5572de1a555cf6c8e989">handler_</a></td></tr>
-<tr class="memdesc:a14c57f2f03bb5572de1a555cf6c8e989 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">custom connection handler  <br /></td></tr>
-<tr class="separator:a14c57f2f03bb5572de1a555cf6c8e989 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7f2906d64510a13a3055f91a8542a759 inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a7f2906d64510a13a3055f91a8542a759"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; AMQP::TcpConnection &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a7f2906d64510a13a3055f91a8542a759">connection_</a></td></tr>
-<tr class="memdesc:a7f2906d64510a13a3055f91a8542a759 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">AMQP::TcpConnection pointer.  <br /></td></tr>
-<tr class="separator:a7f2906d64510a13a3055f91a8542a759 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2cb238ea25dc0710bbb4688b0d754d79 inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a2cb238ea25dc0710bbb4688b0d754d79"><td class="memItemLeft" align="right" valign="top">std::unique_ptr&lt; AMQP::TcpChannel &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">channel_</a></td></tr>
-<tr class="memdesc:a2cb238ea25dc0710bbb4688b0d754d79 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">AMQP::TcpChannel pointer.  <br /></td></tr>
-<tr class="separator:a2cb238ea25dc0710bbb4688b0d754d79 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d35b71591bd5d1f4101ac1ce1dbeb37 inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a3d35b71591bd5d1f4101ac1ce1dbeb37"><td class="memItemLeft" align="right" valign="top">boost::asio::io_service::work *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a3d35b71591bd5d1f4101ac1ce1dbeb37">work_</a></td></tr>
+<tr class="memdesc:a3d35b71591bd5d1f4101ac1ce1dbeb37 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">work object to handle loop work  <br /></td></tr>
+<tr class="separator:a3d35b71591bd5d1f4101ac1ce1dbeb37 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa1aed061022408efd05d2f288107c24f inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_aa1aed061022408efd05d2f288107c24f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classamqp__common_1_1MyHandler.html">MyHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#aa1aed061022408efd05d2f288107c24f">handler_</a></td></tr>
+<tr class="memdesc:aa1aed061022408efd05d2f288107c24f inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">custom connection handler  <br /></td></tr>
+<tr class="separator:aa1aed061022408efd05d2f288107c24f inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c5e386b9094f0cdc38f7fec8eafa878 inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a9c5e386b9094f0cdc38f7fec8eafa878"><td class="memItemLeft" align="right" valign="top">AMQP::TcpConnection *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a9c5e386b9094f0cdc38f7fec8eafa878">connection_</a></td></tr>
+<tr class="memdesc:a9c5e386b9094f0cdc38f7fec8eafa878 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">AMQP::TcpConnection pointer.  <br /></td></tr>
+<tr class="separator:a9c5e386b9094f0cdc38f7fec8eafa878 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a51180e079662ea2ade81ff3da8904e9d inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a51180e079662ea2ade81ff3da8904e9d"><td class="memItemLeft" align="right" valign="top">AMQP::TcpChannel *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a51180e079662ea2ade81ff3da8904e9d">channel_</a></td></tr>
+<tr class="memdesc:a51180e079662ea2ade81ff3da8904e9d inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">AMQP::TcpChannel pointer.  <br /></td></tr>
+<tr class="separator:a51180e079662ea2ade81ff3da8904e9d inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6455603505f2b709a4f321dcbae9f2a5 inherit pro_attribs_classamqp__common_1_1AMQPService" id="r_a6455603505f2b709a4f321dcbae9f2a5"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1AMQPService.html#a6455603505f2b709a4f321dcbae9f2a5">c_string_</a></td></tr>
 <tr class="memdesc:a6455603505f2b709a4f321dcbae9f2a5 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="mdescLeft">&#160;</td><td class="mdescRight">connection string  <br /></td></tr>
 <tr class="separator:a6455603505f2b709a4f321dcbae9f2a5 inherit pro_attribs_classamqp__common_1_1AMQPService"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -285,7 +310,7 @@ Additional Inherited Members</h2></td></tr>
 <p>Calls Disconnect and frees used memory with smart pointers. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues.">AMQPPublisherService</a> <a class="el" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect.">Disconnect</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">amqp_common::AMQPService::Disconnect()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">amqp_common::AMQPService::Disconnect()</a>, and <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60cc0330092d84034bba7dfeb1590af8">queues_</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
@@ -335,7 +360,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">amqp_common::AMQPService::channel_</a>, and <a class="el" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">amqp_common::DeclareQueue()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a51180e079662ea2ade81ff3da8904e9d">amqp_common::AMQPService::channel_</a>, <a class="el" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">amqp_common::DeclareQueue()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#abaf131a660b9cb7fd05a781976b368c7">default_exchange_</a>, and <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60cc0330092d84034bba7dfeb1590af8">queues_</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -365,6 +390,28 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#abaf131a660b9cb7fd05a781976b368c7">default_exchange_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">main_services::MainNodeService::Connect()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">main_services::MainNodeService::ConnectNode()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1AMQPPublisherService_a60bf80a868e5259d7d2ef10af8126665_icgraph.png" border="0" usemap="#aclassamqp__common_1_1AMQPPublisherService_a60bf80a868e5259d7d2ef10af8126665_icgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1AMQPPublisherService_a60bf80a868e5259d7d2ef10af8126665_icgraph" id="aclassamqp__common_1_1AMQPPublisherService_a60bf80a868e5259d7d2ef10af8126665_icgraph">
+<area shape="rect" title=" " alt="" coords="571,37,801,77"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,45,522,41,523,36,557,40"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,69,523,109"/>
+<area shape="poly" title=" " alt="" coords="557,75,523,78,522,73,557,69"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,69,236,109"/>
+<area shape="poly" title=" " alt="" coords="270,92,236,92,236,87,270,87"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -403,7 +450,7 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">amqp_common::AMQPService::channel_</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a51180e079662ea2ade81ff3da8904e9d">amqp_common::AMQPService::channel_</a>, and <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#abaf131a660b9cb7fd05a781976b368c7">default_exchange_</a>.</p>
 
 </div>
 </div>
@@ -448,7 +495,68 @@ Additional Inherited Members</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">amqp_common::AMQPService::channel_</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a51180e079662ea2ade81ff3da8904e9d">amqp_common::AMQPService::channel_</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#abaf131a660b9cb7fd05a781976b368c7">default_exchange_</a>, and <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60cc0330092d84034bba7dfeb1590af8">queues_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e">main_services::MainNodeService::PublishMessage()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1AMQPPublisherService_a385d87b5f00977708cecfbbba2e93121_icgraph.png" border="0" usemap="#aclassamqp__common_1_1AMQPPublisherService_a385d87b5f00977708cecfbbba2e93121_icgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1AMQPPublisherService_a385d87b5f00977708cecfbbba2e93121_icgraph" id="aclassamqp__common_1_1AMQPPublisherService_a385d87b5f00977708cecfbbba2e93121_icgraph">
+<area shape="rect" title="publishe message to i&#39;s queue" alt="" coords="857,5,1088,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e" title="Publishes message to queue with routingKey=node." alt="" coords="571,5,809,45"/>
+<area shape="poly" title=" " alt="" coords="844,28,809,28,809,23,844,23"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a7d0c5c67479d6b8b96b5b0d52a633cdf" name="a7d0c5c67479d6b8b96b5b0d52a633cdf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7d0c5c67479d6b8b96b5b0d52a633cdf">&#9670;&#160;</a></span>Reconnect()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void amqp_common::AMQPPublisherService::Reconnect </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classamqp__common_1_1AMQPService.html#ab0e168f45113842ca9e77bb5b1e6e405">amqp_common::AMQPService</a>.</p>
+
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a6455603505f2b709a4f321dcbae9f2a5">amqp_common::AMQPService::c_string_</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#a51180e079662ea2ade81ff3da8904e9d">amqp_common::AMQPService::channel_</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#a9c5e386b9094f0cdc38f7fec8eafa878">amqp_common::AMQPService::connection_</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#a5837ad68469252e8edbd9c44b7720b35">amqp_common::AMQPService::connection_promise_</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#aa1aed061022408efd05d2f288107c24f">amqp_common::AMQPService::handler_</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#a7b2794b98bcd966852c2b5308e74d255">amqp_common::AMQPService::promise_set_</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#afa816e9e95782b224931fa847978dc22">amqp_common::AMQPService::s_mutex_</a>, and <a class="el" href="errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa">VARIABLE_NAME</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1AMQPPublisherService_a7d0c5c67479d6b8b96b5b0d52a633cdf_cgraph.png" border="0" usemap="#aclassamqp__common_1_1AMQPPublisherService_a7d0c5c67479d6b8b96b5b0d52a633cdf_cgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1AMQPPublisherService_a7d0c5c67479d6b8b96b5b0d52a633cdf_cgraph" id="aclassamqp__common_1_1AMQPPublisherService_a7d0c5c67479d6b8b96b5b0d52a633cdf_cgraph">
+<area shape="rect" title=" " alt="" coords="5,5,236,45"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="284,5,503,45"/>
+<area shape="poly" title=" " alt="" coords="236,23,271,23,271,28,236,28"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="551,5,753,45"/>
+<area shape="poly" title=" " alt="" coords="503,23,537,23,537,28,503,28"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -481,6 +589,35 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60cc0330092d84034bba7dfeb1590af8">queues_</a>.</p>
+
+</div>
+</div>
+<a id="a40e4d5dba401d193325ddd70e243f39b" name="a40e4d5dba401d193325ddd70e243f39b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a40e4d5dba401d193325ddd70e243f39b">&#9670;&#160;</a></span>ServiceName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string amqp_common::AMQPPublisherService::ServiceName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">override</span><span class="mlabel">private</span><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implements <a class="el" href="classamqp__common_1_1AMQPService.html#ac2c728377055fee86a840c8295a1ab22">amqp_common::AMQPService</a>.</p>
 
 </div>
 </div>
@@ -516,7 +653,101 @@ Additional Inherited Members</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a6455603505f2b709a4f321dcbae9f2a5">amqp_common::AMQPService::c_string_</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a6455603505f2b709a4f321dcbae9f2a5">amqp_common::AMQPService::c_string_</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#abaf131a660b9cb7fd05a781976b368c7">default_exchange_</a>, and <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60cc0330092d84034bba7dfeb1590af8">queues_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">main_services::MainNodeService::Connect()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1AMQPPublisherService_aff2a68e7717be0f1f5c25fc2fc4dcfc2_icgraph.png" border="0" usemap="#aclassamqp__common_1_1AMQPPublisherService_aff2a68e7717be0f1f5c25fc2fc4dcfc2_icgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1AMQPPublisherService_aff2a68e7717be0f1f5c25fc2fc4dcfc2_icgraph" id="aclassamqp__common_1_1AMQPPublisherService_aff2a68e7717be0f1f5c25fc2fc4dcfc2_icgraph">
+<area shape="rect" title=" " alt="" coords="571,5,801,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="abaf131a660b9cb7fd05a781976b368c7" name="abaf131a660b9cb7fd05a781976b368c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaf131a660b9cb7fd05a781976b368c7">&#9670;&#160;</a></span>default_exchange_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string amqp_common::AMQPPublisherService::default_exchange_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>default exchange to bind queues </p>
+
+<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a37120a0cc3c5f4ab5631f671839e71a1">AddQueue()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60bf80a868e5259d7d2ef10af8126665">GetDefaultExchange()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a56009f7788336c779d4bef7f07f70b04">Publish()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a385d87b5f00977708cecfbbba2e93121">Publish()</a>, and <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#aff2a68e7717be0f1f5c25fc2fc4dcfc2">SetParameters()</a>.</p>
+
+</div>
+</div>
+<a id="a60cc0330092d84034bba7dfeb1590af8" name="a60cc0330092d84034bba7dfeb1590af8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a60cc0330092d84034bba7dfeb1590af8">&#9670;&#160;</a></span>queues_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;std::string&gt; amqp_common::AMQPPublisherService::queues_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>list of used queues </p>
+<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>remove </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a37120a0cc3c5f4ab5631f671839e71a1">AddQueue()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a385d87b5f00977708cecfbbba2e93121">Publish()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#afc0fc883b25f5bb3b3a57f7a08ae5074">RemoveQueue()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#aff2a68e7717be0f1f5c25fc2fc4dcfc2">SetParameters()</a>, and <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#aaf4ec517d781be1b15c9981661522b71">~AMQPPublisherService()</a>.</p>
+
+</div>
+</div>
+<a id="afad8f470bbcddc021c3f1aeb0bcc84bb" name="afad8f470bbcddc021c3f1aeb0bcc84bb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afad8f470bbcddc021c3f1aeb0bcc84bb">&#9670;&#160;</a></span>service_thread_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::thread amqp_common::AMQPPublisherService::service_thread_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>thread to run boost service </p>
 
 </div>
 </div>

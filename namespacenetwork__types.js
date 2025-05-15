@@ -10,5 +10,7 @@ var namespacenetwork__types =
     [ "rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],
     [ "TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", "structnetwork__types_1_1TestSolveParam" ],
     [ "JsonToVariant", "namespacenetwork__types.html#a72a0d2ba616b55ebaf6e207bbac87331", null ],
-    [ "VariantToJson", "namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff", null ]
+    [ "VariantToJson", "namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff", null ],
+    [ "eTypeToStr", "namespacenetwork__types.html#afdfa5a12102fcda9289d7884119912c5", null ],
+    [ "stringToExchangeType", "namespacenetwork__types.html#aa4f31aa0e2e13d76520a0f0ac13ba97a", null ]
 ];

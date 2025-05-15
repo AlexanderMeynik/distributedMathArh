@@ -1,5 +1,9 @@
 <map id="network_types::exchange::ToJson" name="network_types::exchange::ToJson">
-<area shape="rect" id="Node000001" title=" " alt="" coords="277,5,467,45"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="5,5,229,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,28,229,28,229,23,264,23"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="843,5,1032,45"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="571,5,795,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="829,28,795,28,795,23,829,23"/>
+<area shape="rect" id="Node000003" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" id="Node000004" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
 </map>

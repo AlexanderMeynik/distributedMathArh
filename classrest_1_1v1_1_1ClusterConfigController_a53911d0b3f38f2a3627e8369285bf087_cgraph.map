@@ -1,0 +1,11 @@
+<map id="rest::v1::ClusterConfigController::DisconnectQ" name="rest::v1::ClusterConfigController::DisconnectQ">
+<area shape="rect" id="Node000001" title="Disconnects main node from RabbitMQ." alt="" coords="5,37,236,77"/>
+<area shape="rect" id="Node000002" href="$classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc" title="Disconnects the main node from a RabbitMQ instance." alt="" coords="284,37,523,77"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,55,271,55,271,60,236,60"/>
+<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="571,5,789,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="523,41,557,37,557,42,523,46"/>
+<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="571,69,789,109"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="523,68,557,72,557,78,523,74"/>
+<area shape="rect" id="Node000005" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="837,69,1040,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="790,87,824,87,824,92,790,92"/>
+</map>

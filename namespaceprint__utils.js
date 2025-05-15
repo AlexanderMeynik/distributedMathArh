@@ -48,5 +48,11 @@ var namespaceprint__utils =
     [ "SerializeException", "namespaceprint__utils.html#ae25dccefb25eb98a6f464a2ac7a091e5", null ],
     [ "ToJson", "namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a", null ],
     [ "TupleToString", "namespaceprint__utils.html#ae4a7829e4fa46541e13b8b23db463823", null ],
-    [ "kEnumToEigenFormatMap", "namespaceprint__utils.html#a9910067bb1b8337b0bcc0bd062942281", null ]
+    [ "kDefaultPrec", "namespaceprint__utils.html#a1aade2743b5b315b7883a119f1e6caa6", null ],
+    [ "kEfEnToEigenFormatMappings", "namespaceprint__utils.html#a401218d6cba8091f9ee03c5ea6701042", null ],
+    [ "kEnumTo", "namespaceprint__utils.html#af403aaa3c3560b734ba84c916a1f42fb", null ],
+    [ "kEnumToEigenFormatMap", "namespaceprint__utils.html#a9910067bb1b8337b0bcc0bd062942281", null ],
+    [ "kIoFormatMappings", "namespaceprint__utils.html#a6976f4aebefffcbe7ce66ae8f291aa2f", null ],
+    [ "kIoToStr", "namespaceprint__utils.html#abe39f4c84222b80e25b068e237570f17", null ],
+    [ "kStringToIoFormat", "namespaceprint__utils.html#aeb8406d74a3678756ad420412ab3eb84", null ]
 ];

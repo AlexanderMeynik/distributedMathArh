@@ -92,6 +92,9 @@ $(document).ready(function(){initNavTree('classmain__services_1_1MainNodeService
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
+<a href="#pri-static-attribs">Static Private Attributes</a> &#124;
 <a href="classmain__services_1_1MainNodeService-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">main_services::MainNodeService Class Reference</div></div>
 </div><!--header-->
@@ -106,7 +109,26 @@ $(document).ready(function(){initNavTree('classmain__services_1_1MainNodeService
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService__coll__graph.png" border="0" usemap="#amain__services_1_1MainNodeService_coll__map" alt="Collaboration graph"/></div>
 <map name="amain__services_1_1MainNodeService_coll__map" id="amain__services_1_1MainNodeService_coll__map">
-<area shape="rect" title="Handles most of service side interactions for main Node." alt="" coords="5,5,236,211"/>
+<area shape="rect" title="Handles most of service side interactions for main Node." alt="" coords="200,1859,431,2084"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html" title=" " alt="" coords="7,1559,197,1684"/>
+<area shape="poly" title=" " alt="" coords="120,1683,146,1758,164,1796,184,1833,192,1845,188,1848,180,1836,159,1799,141,1759,115,1685"/>
+<area shape="rect" href="classrest__utils_1_1BasicAuthHandler.html" title="Used for Basic auth." alt="" coords="5,508,204,633"/>
+<area shape="poly" title=" " alt="" coords="107,647,105,1558,99,1558,102,647"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="139,150,302,275"/>
+<area shape="poly" title=" " alt="" coords="199,289,127,508,122,507,194,288"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html" title="This service is used to perform http requests to a RabbiMQ management interface." alt="" coords="131,797,353,1437"/>
+<area shape="poly" title=" " alt="" coords="225,276,237,781,231,781,219,276"/>
+<area shape="poly" title=" " alt="" coords="236,1437,243,1609,251,1696,262,1781,275,1842,270,1843,257,1782,245,1696,238,1609,231,1438"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues." alt="" coords="367,1461,589,1781"/>
+<area shape="poly" title=" " alt="" coords="406,1783,377,1845,372,1843,401,1780"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="373,368,583,773"/>
+<area shape="poly" title=" " alt="" coords="481,787,481,1461,475,1461,475,787"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="381,120,575,305"/>
+<area shape="poly" title=" " alt="" coords="481,306,481,352,475,352,475,306"/>
+<area shape="rect" title=" " alt="" coords="380,5,576,71"/>
+<area shape="poly" title=" " alt="" coords="481,85,481,120,475,120,475,85"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html" title="Class for worker node enumeration and management." alt="" coords="613,1481,860,1761"/>
+<area shape="poly" title=" " alt="" coords="623,1763,602,1783,526,1846,446,1900,443,1895,523,1842,599,1779,619,1760"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -129,11 +151,39 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a3eb84f0590beddc543f0bd979e7ae6dc" id="r_a3eb84f0590beddc543f0bd979e7ae6dc"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc">Disconnect</a> ()</td></tr>
 <tr class="memdesc:a3eb84f0590beddc543f0bd979e7ae6dc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects the main node from a RabbitMQ instance.  <br /></td></tr>
 <tr class="separator:a3eb84f0590beddc543f0bd979e7ae6dc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab62802d468cdc18764b47364b16e2e01" id="r_ab62802d468cdc18764b47364b16e2e01"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#ab62802d468cdc18764b47364b16e2e01">Publish</a> (<a class="el" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> &amp;ts, std::string node)</td></tr>
-<tr class="separator:ab62802d468cdc18764b47364b16e2e01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8bce308ab8bf59f474fc6618efc61050" id="r_a8bce308ab8bf59f474fc6618efc61050"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">SendToExecution</a> (<a class="el" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> &amp;ts)</td></tr>
-<tr class="memdesc:a8bce308ab8bf59f474fc6618efc61050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the task to be sharded and republished Uses collected node bench information to divide task into non intersecitng ranges And sends them to workers to process.  <br /></td></tr>
+<tr class="memdesc:a8bce308ab8bf59f474fc6618efc61050"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends the task to be sharded and republished Uses collected node bench information to divide task into non intersecting ranges And sends them to workers to process.  <br /></td></tr>
 <tr class="separator:a8bce308ab8bf59f474fc6618efc61050"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:aecde0745d284fb5b405747782567d68e" id="r_aecde0745d284fb5b405747782567d68e"><td class="memItemLeft" align="right" valign="top">Json::Value&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e">PublishMessage</a> (<a class="el" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> &amp;ts, std::string node)</td></tr>
+<tr class="memdesc:aecde0745d284fb5b405747782567d68e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Publishes message to queue with routingKey=node.  <br /></td></tr>
+<tr class="separator:aecde0745d284fb5b405747782567d68e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aca1e9ba24fa57ddf602dc93ebc4d784c" id="r_aca1e9ba24fa57ddf602dc93ebc4d784c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classrest__utils_1_1JsonAuthHandler.html">JsonAuthHandler</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#aca1e9ba24fa57ddf602dc93ebc4d784c">auth_</a></td></tr>
+<tr class="memdesc:aca1e9ba24fa57ddf602dc93ebc4d784c"><td class="mdescLeft">&#160;</td><td class="mdescRight">auth handler for authentication in RabbitMQ  <br /></td></tr>
+<tr class="separator:aca1e9ba24fa57ddf602dc93ebc4d784c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef69566cf0914abb268c80b04c180c2" id="r_a8ef69566cf0914abb268c80b04c180c2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html">amqp_common::RabbitMQRestService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a8ef69566cf0914abb268c80b04c180c2">rest_service_</a></td></tr>
+<tr class="memdesc:a8ef69566cf0914abb268c80b04c180c2"><td class="mdescLeft">&#160;</td><td class="mdescRight">rest service for metrics collection and management  <br /></td></tr>
+<tr class="separator:a8ef69566cf0914abb268c80b04c180c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea7a527915b183699717507bf2be97a0" id="r_aea7a527915b183699717507bf2be97a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html">amqp_common::AMQPPublisherService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a></td></tr>
+<tr class="memdesc:aea7a527915b183699717507bf2be97a0"><td class="mdescLeft">&#160;</td><td class="mdescRight">service to publish messages in  <br /></td></tr>
+<tr class="separator:aea7a527915b183699717507bf2be97a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a23fb51c750edfe2ab2499ed7d93f8b44" id="r_a23fb51c750edfe2ab2499ed7d93f8b44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmain__services_1_1WorkerManagementService.html">WorkerManagementService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a23fb51c750edfe2ab2499ed7d93f8b44">worker_management_service_</a></td></tr>
+<tr class="memdesc:a23fb51c750edfe2ab2499ed7d93f8b44"><td class="mdescLeft">&#160;</td><td class="mdescRight">manages connected nodes and their metrics  <br /></td></tr>
+<tr class="separator:a23fb51c750edfe2ab2499ed7d93f8b44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4ed9981327ab7a805cc4c085db2b1114" id="r_a4ed9981327ab7a805cc4c085db2b1114"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a4ed9981327ab7a805cc4c085db2b1114">q_host_</a></td></tr>
+<tr class="memdesc:a4ed9981327ab7a805cc4c085db2b1114"><td class="mdescLeft">&#160;</td><td class="mdescRight">RabbitMQ queue host.  <br /></td></tr>
+<tr class="separator:a4ed9981327ab7a805cc4c085db2b1114"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-attribs" name="pri-static-attribs"></a>
+Static Private Attributes</h2></td></tr>
+<tr class="memitem:a16c41ea1e0127ab565d6471205024951" id="r_a16c41ea1e0127ab565d6471205024951"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1MainNodeService.html#a16c41ea1e0127ab565d6471205024951">vhost_</a> = &quot;%2F&quot;</td></tr>
+<tr class="memdesc:a16c41ea1e0127ab565d6471205024951"><td class="mdescLeft">&#160;</td><td class="mdescRight">default vhost  <br /></td></tr>
+<tr class="separator:a16c41ea1e0127ab565d6471205024951"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Handles most of service side interactions for main Node. </p>
@@ -187,6 +237,8 @@ Public Member Functions</h2></td></tr>
 <dd>
 <a class="el" href="classmain__services_1_1WorkerManagementService.html#a5c470a2a0858114484256e7568faead3">main_services::WorkerManagementService::WorkerManagementService()</a> </dd></dl>
 
+<p class="reference">References <a class="el" href="classmain__services_1_1MainNodeService.html#aca1e9ba24fa57ddf602dc93ebc4d784c">auth_</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a8ef69566cf0914abb268c80b04c180c2">rest_service_</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#a23fb51c750edfe2ab2499ed7d93f8b44">worker_management_service_</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -225,7 +277,9 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString()</a>, and <a class="el" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">shared::HttpError::get()</a>.</p>
+<p class="reference">References <a class="el" href="classmain__services_1_1MainNodeService.html#aca1e9ba24fa57ddf602dc93ebc4d784c">auth_</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c">amqp_common::AMQPService::Connect()</a>, <a class="el" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5">amqp_common::RabbitMQRestService::CreateExchange()</a>, <a class="el" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">shared::HttpError::get()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b">amqp_common::AMQPService::GetCString()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60bf80a868e5259d7d2ef10af8126665">amqp_common::AMQPPublisherService::GetDefaultExchange()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f">amqp_common::RabbitMQRestService::GetExchanges()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a4ed9981327ab7a805cc4c085db2b1114">q_host_</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a8ef69566cf0914abb268c80b04c180c2">rest_service_</a>, <a class="el" href="classrest__utils_1_1JsonAuthHandler.html#a5f20755ab7094301dcc578298a3799ff">rest_utils::JsonAuthHandler::Retrive()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#aff2a68e7717be0f1f5c25fc2fc4dcfc2">amqp_common::AMQPPublisherService::SetParameters()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0">amqp_common::RabbitMQRestService::SetParams()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#a16c41ea1e0127ab565d6471205024951">vhost_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6">rest::v1::ClusterConfigController::ConnectQ()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -233,11 +287,65 @@ Public Member Functions</h2></td></tr>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph" id="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_cgraph">
-<area shape="rect" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="5,23,244,63"/>
-<area shape="rect" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="292,5,532,31"/>
-<area shape="poly" title=" " alt="" coords="244,30,278,27,279,32,244,35"/>
-<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="331,55,493,80"/>
-<area shape="poly" title=" " alt="" coords="244,51,317,57,317,62,244,56"/>
+<area shape="rect" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="5,331,244,371"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="303,101,521,141"/>
+<area shape="poly" title=" " alt="" coords="135,329,159,291,194,243,238,193,290,151,302,145,304,149,294,156,242,197,198,246,163,294,140,332"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="583,5,801,45"/>
+<area shape="poly" title=" " alt="" coords="130,330,149,279,182,213,203,177,229,144,258,113,291,87,323,69,357,54,429,32,501,21,569,17,569,22,502,26,430,38,359,59,325,73,293,92,261,117,233,147,208,180,186,215,154,281,135,331"/>
+<area shape="rect" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="292,166,532,191"/>
+<area shape="poly" title=" " alt="" coords="141,329,202,265,244,231,291,202,311,193,313,198,293,206,247,235,206,269,144,332"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="300,216,524,256"/>
+<area shape="poly" title=" " alt="" coords="160,328,220,297,291,266,314,258,315,263,293,270,223,301,163,333"/>
+<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="331,281,493,306"/>
+<area shape="poly" title=" " alt="" coords="225,328,334,306,335,311,226,333"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b" title=" " alt="" coords="303,331,521,371"/>
+<area shape="poly" title=" " alt="" coords="244,348,289,348,289,353,244,353"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#a60bf80a868e5259d7d2ef10af8126665" title=" " alt="" coords="297,395,527,435"/>
+<area shape="poly" title=" " alt="" coords="216,368,309,389,308,394,215,373"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f" title="Retrieves list of exhnages." alt="" coords="300,459,524,499"/>
+<area shape="poly" title=" " alt="" coords="157,369,218,407,293,444,314,452,312,457,291,449,216,411,154,373"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html#a5f20755ab7094301dcc578298a3799ff" title=" " alt="" coords="313,523,511,563"/>
+<area shape="poly" title=" " alt="" coords="143,369,204,438,246,476,293,508,306,515,304,520,291,513,243,480,200,441,139,372"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#aff2a68e7717be0f1f5c25fc2fc4dcfc2" title=" " alt="" coords="297,587,527,627"/>
+<area shape="poly" title=" " alt="" coords="138,370,160,412,194,468,239,524,265,550,294,572,303,578,300,583,290,577,262,554,235,528,189,471,155,415,133,372"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0" title="Set&#39;s url and auth provider." alt="" coords="300,651,524,691"/>
+<area shape="poly" title=" " alt="" coords="134,370,153,424,185,496,206,535,232,572,261,607,294,637,301,642,298,646,290,641,257,610,227,575,202,537,180,499,148,426,129,372"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="583,69,801,109"/>
+<area shape="poly" title=" " alt="" coords="521,106,569,101,570,106,522,112"/>
+<area shape="poly" title=" " alt="" coords="461,99,579,55,604,47,605,52,581,60,463,104"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ab0e168f45113842ca9e77bb5b1e6e405" title=" " alt="" coords="583,133,801,173"/>
+<area shape="poly" title=" " alt="" coords="522,131,570,137,569,142,521,136"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ac2c728377055fee86a840c8295a1ab22" title=" " alt="" coords="583,197,801,237"/>
+<area shape="poly" title=" " alt="" coords="502,139,533,151,558,167,581,183,599,190,597,195,579,188,555,171,531,156,500,144"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="861,5,1064,45"/>
+<area shape="poly" title=" " alt="" coords="802,23,847,23,847,28,802,28"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="580,344,804,384"/>
+<area shape="poly" title=" " alt="" coords="507,254,533,266,549,277,559,288,568,299,582,311,627,336,624,341,578,316,564,303,554,292,545,281,531,270,505,258"/>
+<area shape="rect" href="structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939" title=" " alt="" coords="597,261,787,301"/>
+<area shape="poly" title=" " alt="" coords="525,251,584,261,583,266,524,257"/>
+<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="852,351,1073,377"/>
+<area shape="poly" title=" " alt="" coords="804,361,838,361,838,367,804,367"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="1137,287,1308,327"/>
+<area shape="poly" title=" " alt="" coords="1021,349,1123,326,1124,331,1022,354"/>
+<area shape="rect" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="1121,351,1324,377"/>
+<area shape="poly" title=" " alt="" coords="1074,361,1108,361,1108,367,1074,367"/>
+<area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="1132,401,1313,426"/>
+<area shape="poly" title=" " alt="" coords="1031,374,1142,395,1141,401,1030,379"/>
+<area shape="poly" title=" " alt="" coords="496,456,531,444,591,417,644,389,647,393,593,422,533,449,498,461"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="580,459,804,499"/>
+<area shape="poly" title=" " alt="" coords="524,476,566,476,566,481,524,481"/>
+</map>
+</div>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_icgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_icgraph" id="aclassmain__services_1_1MainNodeService_af7df0ca5b8758b765b28f5b8e3185bd9_icgraph">
+<area shape="rect" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
 </map>
 </div>
 
@@ -278,17 +386,69 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">shared::HttpError::get()</a>.</p>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab9d77e0c3170a27ea8d5b972fc3d1014">main_services::WorkerManagementService::AddNewNode()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aca1e9ba24fa57ddf602dc93ebc4d784c">auth_</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170">amqp_common::RabbitMQRestService::BindQueueToExchange()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb">main_services::WorkerManagementService::ConnectNode()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96">amqp_common::RabbitMQRestService::CreateQueue()</a>, <a class="el" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301">shared::HttpError::get()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a60bf80a868e5259d7d2ef10af8126665">amqp_common::AMQPPublisherService::GetDefaultExchange()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9">amqp_common::RabbitMQRestService::ListQueues()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a4ed9981327ab7a805cc4c085db2b1114">q_host_</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a8ef69566cf0914abb268c80b04c180c2">rest_service_</a>, <a class="el" href="classrest__utils_1_1JsonAuthHandler.html#a5f20755ab7094301dcc578298a3799ff">rest_utils::JsonAuthHandler::Retrive()</a>, <a class="el" href="classrest__utils_1_1JsonAuthHandler.html#a1de67808e4a12918a61007e81c5fc0f2">rest_utils::JsonAuthHandler::ToJson()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a16c41ea1e0127ab565d6471205024951">vhost_</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#a23fb51c750edfe2ab2499ed7d93f8b44">worker_management_service_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190">rest::v1::ClusterConfigController::ConnectNodeHandler()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph" id="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_cgraph">
-<area shape="rect" title="Connects the node to the computational cluster." alt="" coords="5,5,244,45"/>
-<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="292,13,455,38"/>
-<area shape="poly" title=" " alt="" coords="244,23,278,23,278,28,244,28"/>
+<area shape="rect" title="Connects the node to the computational cluster." alt="" coords="5,284,244,324"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ab9d77e0c3170a27ea8d5b972fc3d1014" title="Upsets new node into node list This method doesn&#39;t perform connection operation, but is used to updat..." alt="" coords="292,5,547,45"/>
+<area shape="poly" title=" " alt="" coords="131,283,152,236,186,174,232,110,260,80,290,55,299,49,302,54,294,59,263,84,236,113,190,177,157,238,136,285"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170" title="Binds queue to exchange." alt="" coords="306,197,533,237"/>
+<area shape="poly" title=" " alt="" coords="185,281,291,248,326,238,327,244,293,253,186,287"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb" title="Connects node to computational cluster This method performs http request to connect worker and retrie..." alt="" coords="292,69,547,109"/>
+<area shape="poly" title=" " alt="" coords="136,282,161,247,196,203,240,157,291,119,302,113,305,117,293,124,243,161,200,206,165,250,141,286"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96" title="Creates queue with specified params." alt="" coords="307,133,531,173"/>
+<area shape="poly" title=" " alt="" coords="147,282,209,232,249,206,291,183,309,175,311,180,293,188,251,210,212,237,150,286"/>
+<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="338,262,501,287"/>
+<area shape="poly" title=" " alt="" coords="244,289,324,281,325,287,245,295"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#a60bf80a868e5259d7d2ef10af8126665" title=" " alt="" coords="304,312,535,352"/>
+<area shape="poly" title=" " alt="" coords="245,313,291,317,290,322,244,318"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="310,440,529,480"/>
+<area shape="poly" title=" " alt="" coords="149,322,211,374,251,402,293,426,311,433,309,438,291,430,248,406,208,378,146,326"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9" title="Lists all queues." alt="" coords="307,376,531,416"/>
+<area shape="poly" title=" " alt="" coords="178,322,293,361,322,370,321,375,291,367,177,327"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html#a5f20755ab7094301dcc578298a3799ff" title=" " alt="" coords="320,504,519,544"/>
+<area shape="poly" title=" " alt="" coords="140,323,164,359,199,405,243,451,293,490,309,498,306,502,291,494,239,455,195,408,160,363,136,326"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html#a1de67808e4a12918a61007e81c5fc0f2" title=" " alt="" coords="320,568,519,608"/>
+<area shape="poly" title=" " alt="" coords="136,323,156,371,189,433,235,499,263,528,294,554,309,563,306,568,290,558,259,532,231,502,185,436,151,373,131,325"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="610,197,834,237"/>
+<area shape="poly" title=" " alt="" coords="533,215,596,215,596,220,533,220"/>
+<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="897,205,1119,230"/>
+<area shape="poly" title=" " alt="" coords="834,215,883,215,883,220,834,220"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="1183,140,1353,180"/>
+<area shape="poly" title=" " alt="" coords="1066,202,1169,179,1170,184,1067,207"/>
+<area shape="rect" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="1167,205,1369,230"/>
+<area shape="poly" title=" " alt="" coords="1119,215,1153,215,1153,220,1119,220"/>
+<area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="1177,254,1359,279"/>
+<area shape="poly" title=" " alt="" coords="1076,227,1187,249,1186,254,1075,233"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="595,69,849,109"/>
+<area shape="poly" title=" " alt="" coords="547,87,581,87,581,92,547,92"/>
+<area shape="poly" title=" " alt="" coords="515,171,614,192,613,197,514,176"/>
+<area shape="rect" href="structnetwork__types_1_1queue.html#ac3a1e75e5d17500ca2e6782387ac1740" title=" " alt="" coords="639,133,805,173"/>
+<area shape="poly" title=" " alt="" coords="532,151,625,151,625,156,532,156"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="621,440,823,480"/>
+<area shape="poly" title=" " alt="" coords="529,457,607,457,607,463,529,463"/>
+<area shape="poly" title=" " alt="" coords="518,373,545,362,588,336,628,305,691,246,695,250,631,309,591,340,548,366,520,378"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="610,376,834,416"/>
+<area shape="poly" title=" " alt="" coords="532,393,596,393,596,399,532,399"/>
+</map>
+</div>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_icgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_icgraph" id="aclassmain__services_1_1MainNodeService_ad1dbdf72e1963c5a01797dafd18c02c8_icgraph">
+<area shape="rect" title="Connects the node to the computational cluster." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
 </map>
 </div>
 
@@ -310,6 +470,38 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Disconnects the main node from a RabbitMQ instance. </p>
+
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">amqp_common::AMQPService::Disconnect()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087">rest::v1::ClusterConfigController::DisconnectQ()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_cgraph" id="aclassmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_cgraph">
+<area shape="rect" title="Disconnects the main node from a RabbitMQ instance." alt="" coords="5,37,244,77"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="292,5,511,45"/>
+<area shape="poly" title=" " alt="" coords="244,41,278,37,279,42,244,46"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="292,69,511,109"/>
+<area shape="poly" title=" " alt="" coords="244,68,279,72,278,78,244,74"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="559,69,761,109"/>
+<area shape="poly" title=" " alt="" coords="511,87,545,87,545,92,511,92"/>
+</map>
+</div>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_icgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_icgraph" id="aclassmain__services_1_1MainNodeService_a3eb84f0590beddc543f0bd979e7ae6dc_icgraph">
+<area shape="rect" title="Disconnects the main node from a RabbitMQ instance." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087" title="Disconnects main node from RabbitMQ." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -335,16 +527,53 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="reference">References <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77">main_services::WorkerManagementService::DisconnectNode()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#a23fb51c750edfe2ab2499ed7d93f8b44">worker_management_service_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29">rest::v1::ClusterConfigController::DisconnectNodeHandler()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_cgraph" id="aclassmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_cgraph">
+<area shape="rect" title=" " alt="" coords="5,37,244,77"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77" title="Disconnects worker node from cluster This method calls disconnect http request." alt="" coords="292,5,547,45"/>
+<area shape="poly" title=" " alt="" coords="244,42,278,38,279,43,245,47"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="310,69,529,109"/>
+<area shape="poly" title=" " alt="" coords="245,68,296,73,296,79,244,73"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="595,5,849,45"/>
+<area shape="poly" title=" " alt="" coords="547,23,581,23,581,28,547,28"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="621,69,823,109"/>
+<area shape="poly" title=" " alt="" coords="529,87,607,87,607,92,529,92"/>
+</map>
+</div>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_icgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_icgraph" id="aclassmain__services_1_1MainNodeService_aed0379bb3e648c0b8ebd298bc7a08e6a_icgraph">
+<area shape="rect" title=" " alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29" title="Disconnects node to computational cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
+
 </div>
 </div>
-<a id="ab62802d468cdc18764b47364b16e2e01" name="ab62802d468cdc18764b47364b16e2e01"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab62802d468cdc18764b47364b16e2e01">&#9670;&#160;</a></span>Publish()</h2>
+<a id="aecde0745d284fb5b405747782567d68e" name="aecde0745d284fb5b405747782567d68e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecde0745d284fb5b405747782567d68e">&#9670;&#160;</a></span>PublishMessage()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">Json::Value main_services::MainNodeService::Publish </td>
+          <td class="memname">Json::Value main_services::MainNodeService::PublishMessage </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> &amp;&#160;</td>
           <td class="paramname"><em>ts</em>, </td>
@@ -361,7 +590,14 @@ Public Member Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
+
+<p>Publishes message to queue with routingKey=node. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ts</td><td></td></tr>
@@ -369,21 +605,45 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Json with status =200 if </dd>
+<dd>
+Json with status = 409 if connection was closed </dd></dl>
 
-<p class="reference">References <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a63b9e1b846496063ac7952b53ffe02d5">network_types::TestSolveParam::experiment_id</a>, and <a class="el" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13">network_types::TestSolveParam::ToJson()</a>.</p>
-<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a63b9e1b846496063ac7952b53ffe02d5">network_types::TestSolveParam::experiment_id</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, <a class="el" href="classamqp__common_1_1AMQPPublisherService.html#a385d87b5f00977708cecfbbba2e93121">amqp_common::AMQPPublisherService::Publish()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a>, and <a class="el" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13">network_types::TestSolveParam::ToJson()</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">SendToExecution()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-3-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph" alt=""/></div>
-<map name="aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph" id="aclassmain__services_1_1MainNodeService_ab62802d468cdc18764b47364b16e2e01_cgraph">
-<area shape="rect" title=" " alt="" coords="5,5,244,45"/>
-<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="292,5,480,45"/>
-<area shape="poly" title=" " alt="" coords="244,23,278,23,278,28,244,28"/>
-<area shape="rect" href="namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="528,13,741,38"/>
-<area shape="poly" title=" " alt="" coords="480,23,514,23,514,28,480,28"/>
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_cgraph" id="aclassmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_cgraph">
+<area shape="rect" title="Publishes message to queue with routingKey=node." alt="" coords="5,69,244,109"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="298,5,517,45"/>
+<area shape="poly" title=" " alt="" coords="213,67,305,46,306,51,214,72"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#a385d87b5f00977708cecfbbba2e93121" title="publishe message to i&#39;s queue" alt="" coords="292,69,523,109"/>
+<area shape="poly" title=" " alt="" coords="244,87,278,87,278,92,244,92"/>
+<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="313,133,501,173"/>
+<area shape="poly" title=" " alt="" coords="214,107,306,128,305,133,213,112"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="576,5,779,45"/>
+<area shape="poly" title=" " alt="" coords="517,23,562,23,562,28,517,28"/>
+<area shape="rect" href="namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="571,141,784,166"/>
+<area shape="poly" title=" " alt="" coords="501,151,557,151,557,156,501,156"/>
+</map>
+</div>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_icgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_icgraph" id="aclassmain__services_1_1MainNodeService_aecde0745d284fb5b405747782567d68e_icgraph">
+<area shape="rect" title="Publishes message to queue with routingKey=node." alt="" coords="571,5,809,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
 </map>
 </div>
 
@@ -405,7 +665,7 @@ Public Member Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Sends the task to be sharded and republished Uses collected node bench information to divide task into non intersecitng ranges And sends them to workers to process. </p>
+<p>Sends the task to be sharded and republished Uses collected node bench information to divide task into non intersecting ranges And sends them to workers to process. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">ts</td><td></td></tr>
@@ -414,17 +674,49 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See also</dt><dd>amqp_common::AMQPPublisherServicePublish(EnvelopePtr message, const std::string qname) </dd></dl>
 
-<p class="reference">References <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a18fa18c3ebe9450c6138391db60b9610">network_types::TestSolveParam::range</a>, and <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d">network_types::TestSolveParam::SliceAway()</a>.</p>
-<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e">main_services::WorkerManagementService::begin()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a033361c3f1627d040e1f357342e794a0">main_services::WorkerManagementService::end()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c">main_services::WorkerManagementService::GetSum()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e">PublishMessage()</a>, <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a18fa18c3ebe9450c6138391db60b9610">network_types::TestSolveParam::range</a>, <a class="el" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d">network_types::TestSolveParam::SliceAway()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#a23fb51c750edfe2ab2499ed7d93f8b44">worker_management_service_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c">rest::v1::ClusterConfigController::SentToExecution()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph" id="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_cgraph">
-<area shape="rect" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="5,5,244,45"/>
-<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d" title="Slices iter_count iterations from current range and creates." alt="" coords="292,5,480,45"/>
-<area shape="poly" title=" " alt="" coords="244,23,278,23,278,28,244,28"/>
+<area shape="rect" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="5,133,244,173"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e" title=" " alt="" coords="292,5,547,45"/>
+<area shape="poly" title=" " alt="" coords="154,131,215,93,291,55,312,47,314,52,293,60,218,97,157,135"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a033361c3f1627d040e1f357342e794a0" title=" " alt="" coords="292,69,547,109"/>
+<area shape="poly" title=" " alt="" coords="217,131,313,110,314,115,218,136"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c" title=" " alt="" coords="292,133,547,173"/>
+<area shape="poly" title=" " alt="" coords="244,151,278,151,278,156,244,156"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e" title="Publishes message to queue with routingKey=node." alt="" coords="300,197,539,237"/>
+<area shape="poly" title=" " alt="" coords="218,171,314,192,313,197,217,176"/>
+<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d" title="Slices iter_count iterations from current range and creates." alt="" coords="325,261,513,301"/>
+<area shape="poly" title=" " alt="" coords="157,171,218,210,293,247,314,255,312,260,291,252,215,214,154,176"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="601,133,819,173"/>
+<area shape="poly" title=" " alt="" coords="510,195,605,174,606,179,512,200"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#a385d87b5f00977708cecfbbba2e93121" title="publishe message to i&#39;s queue" alt="" coords="595,197,825,237"/>
+<area shape="poly" title=" " alt="" coords="539,215,581,215,581,220,539,220"/>
+<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="616,261,804,301"/>
+<area shape="poly" title=" " alt="" coords="512,235,606,256,605,261,510,240"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="879,133,1081,173"/>
+<area shape="poly" title=" " alt="" coords="820,151,865,151,865,156,820,156"/>
+<area shape="rect" href="namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="873,269,1087,294"/>
+<area shape="poly" title=" " alt="" coords="804,279,860,279,860,284,804,284"/>
+</map>
+</div>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_icgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_icgraph" id="aclassmain__services_1_1MainNodeService_a8bce308ab8bf59f474fc6618efc61050_icgraph">
+<area shape="rect" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
 </map>
 </div>
 
@@ -450,6 +742,199 @@ Public Member Functions</h2></td></tr>
 <li>Connection status to a RabbitMQ instance (with data if connected)</li>
 <li>Several lists(by status) of all nodes with their characteristics(bench result ...) </li>
 </ol>
+
+<p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b">amqp_common::AMQPService::GetCString()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5">main_services::WorkerManagementService::GetStatus()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aea7a527915b183699717507bf2be97a0">publisher_service_</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#a23fb51c750edfe2ab2499ed7d93f8b44">worker_management_service_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308">rest::v1::ClusterConfigController::GetStatus()</a>.</p>
+<div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-13-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-13-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_cgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_cgraph" id="aclassmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_cgraph">
+<area shape="rect" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="5,69,244,109"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b" title=" " alt="" coords="310,5,529,45"/>
+<area shape="poly" title=" " alt="" coords="217,67,313,46,314,51,218,72"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5" title="returns list of lists with all nodes meta information" alt="" coords="292,69,547,109"/>
+<area shape="poly" title=" " alt="" coords="244,87,278,87,278,92,244,92"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="310,133,529,173"/>
+<area shape="poly" title=" " alt="" coords="218,107,314,128,313,133,217,112"/>
+<area shape="rect" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="595,77,804,102"/>
+<area shape="poly" title=" " alt="" coords="547,87,581,87,581,92,547,92"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="598,133,801,173"/>
+<area shape="poly" title=" " alt="" coords="529,151,585,151,585,156,529,156"/>
+</map>
+</div>
+<div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-14-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-14-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_icgraph.png" border="0" usemap="#aclassmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_icgraph" id="aclassmain__services_1_1MainNodeService_ab1180f7bf6b7716041f1e24ab66ffdfa_icgraph">
+<area shape="rect" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308" title="Retrieves the status of whole cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aca1e9ba24fa57ddf602dc93ebc4d784c" name="aca1e9ba24fa57ddf602dc93ebc4d784c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aca1e9ba24fa57ddf602dc93ebc4d784c">&#9670;&#160;</a></span>auth_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classrest__utils_1_1JsonAuthHandler.html">JsonAuthHandler</a>* main_services::MainNodeService::auth_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>auth handler for authentication in RabbitMQ </p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">Connect()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">ConnectNode()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ad9b211248ded7903bc762bbd25254225">MainNodeService()</a>.</p>
+
+</div>
+</div>
+<a id="aea7a527915b183699717507bf2be97a0" name="aea7a527915b183699717507bf2be97a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea7a527915b183699717507bf2be97a0">&#9670;&#160;</a></span>publisher_service_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classamqp__common_1_1AMQPPublisherService.html">amqp_common::AMQPPublisherService</a>* main_services::MainNodeService::publisher_service_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>service to publish messages in </p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">Connect()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">ConnectNode()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc">Disconnect()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a">DisconnectNode()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#ad9b211248ded7903bc762bbd25254225">MainNodeService()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e">PublishMessage()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa">Status()</a>.</p>
+
+</div>
+</div>
+<a id="a4ed9981327ab7a805cc4c085db2b1114" name="a4ed9981327ab7a805cc4c085db2b1114"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4ed9981327ab7a805cc4c085db2b1114">&#9670;&#160;</a></span>q_host_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string main_services::MainNodeService::q_host_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>RabbitMQ queue host. </p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">Connect()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">ConnectNode()</a>.</p>
+
+</div>
+</div>
+<a id="a8ef69566cf0914abb268c80b04c180c2" name="a8ef69566cf0914abb268c80b04c180c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ef69566cf0914abb268c80b04c180c2">&#9670;&#160;</a></span>rest_service_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html">amqp_common::RabbitMQRestService</a>* main_services::MainNodeService::rest_service_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>rest service for metrics collection and management </p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">Connect()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">ConnectNode()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ad9b211248ded7903bc762bbd25254225">MainNodeService()</a>.</p>
+
+</div>
+</div>
+<a id="a16c41ea1e0127ab565d6471205024951" name="a16c41ea1e0127ab565d6471205024951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16c41ea1e0127ab565d6471205024951">&#9670;&#160;</a></span>vhost_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string main_services::MainNodeService::vhost_ = &quot;%2F&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>default vhost </p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">Connect()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">ConnectNode()</a>.</p>
+
+</div>
+</div>
+<a id="a23fb51c750edfe2ab2499ed7d93f8b44" name="a23fb51c750edfe2ab2499ed7d93f8b44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a23fb51c750edfe2ab2499ed7d93f8b44">&#9670;&#160;</a></span>worker_management_service_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmain__services_1_1WorkerManagementService.html">WorkerManagementService</a>* main_services::MainNodeService::worker_management_service_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>manages connected nodes and their metrics </p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">ConnectNode()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a">DisconnectNode()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#ad9b211248ded7903bc762bbd25254225">MainNodeService()</a>, <a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">SendToExecution()</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa">Status()</a>.</p>
 
 </div>
 </div>

@@ -66,7 +66,7 @@ var hierarchy =
     [ "network_types::queue", "structnetwork__types_1_1queue.html", null ],
     [ "network_types::queueBinding", "structnetwork__types_1_1queueBinding.html", null ],
     [ "QWidget", null, [
-      [ "MeshPlot", "classMeshPlot.html", null ]
+      [ "gui_objects::MeshPlot", "classgui__objects_1_1MeshPlot.html", null ]
     ] ],
     [ "amqp_common::RabbitMQRestService", "classamqp__common_1_1RabbitMQRestService.html", null ],
     [ "network_types::rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", null ],

@@ -93,7 +93,8 @@ $(document).ready(function(){initNavTree('namespacemesh__storage.html',''); init
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#typedef-members">Typedefs</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">mesh_storage Namespace Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -109,44 +110,53 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a8f91f5676835d70266c8f8f990a0e53e" id="r_a8f91f5676835d70266c8f8f990a0e53e"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e">LimType</a> = std::array&lt; FloatType, 4 &gt;</td></tr>
+<tr class="memitem:a8f91f5676835d70266c8f8f990a0e53e" id="r_a8f91f5676835d70266c8f8f990a0e53e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">using</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e">LimType</a> = std::array&lt; FloatType, 4 &gt;</td></tr>
 <tr class="memdesc:a8f91f5676835d70266c8f8f990a0e53e"><td class="mdescLeft">&#160;</td><td class="mdescRight">stores upper and lower limit pairs for meshes  <br /></td></tr>
 <tr class="separator:a8f91f5676835d70266c8f8f990a0e53e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f11b4c2289b930a0dae0b517415d5ed" id="r_a7f11b4c2289b930a0dae0b517415d5ed"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> N&gt; </td></tr>
-<tr class="memitem:a7f11b4c2289b930a0dae0b517415d5ed"><td class="memTemplItemLeft" align="right" valign="top">using&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">MeshArr</a> = std::array&lt; <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>, N &gt;</td></tr>
+<tr class="memitem:a7f11b4c2289b930a0dae0b517415d5ed"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">using</a>&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">MeshArr</a> = std::array&lt; <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">N</a> &gt;</td></tr>
 <tr class="separator:a7f11b4c2289b930a0dae0b517415d5ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:acbc797d349659c7af6d703900b593126" id="r_acbc797d349659c7af6d703900b593126"><td class="memTemplParams" colspan="2">template&lt;unsigned Ndots = 61&gt; </td></tr>
-<tr class="memitem:acbc797d349659c7af6d703900b593126"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#acbc797d349659c7af6d703900b593126">Integrate</a> (const std::function&lt; FloatType(FloatType)&gt; &amp;function, FloatType left, FloatType right, unsigned int max_depth=5, FloatType tol=Eigen::NumTraits&lt; FloatType &gt;::epsilon())</td></tr>
+<tr class="memitem:acbc797d349659c7af6d703900b593126" id="r_acbc797d349659c7af6d703900b593126"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> Ndots = 61&gt; </td></tr>
+<tr class="memitem:acbc797d349659c7af6d703900b593126"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#acbc797d349659c7af6d703900b593126">Integrate</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> std::function&lt; FloatType(FloatType)&gt; &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">function</a>, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">left</a>, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">right</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">int</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">max_depth</a>=5, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">tol</a>=Eigen::NumTraits&lt; FloatType &gt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">::epsilon</a>())</td></tr>
 <tr class="separator:acbc797d349659c7af6d703900b593126"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a00ef0838542d8e7ad424216a2350d6ad" id="r_a00ef0838542d8e7ad424216a2350d6ad"><td class="memTemplParams" colspan="2">template&lt;unsigned Ndots = 61&gt; </td></tr>
-<tr class="memitem:a00ef0838542d8e7ad424216a2350d6ad"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a00ef0838542d8e7ad424216a2350d6ad">IntegrateLambdaForOneVariable</a> (const <a class="el" href="namespacecommon__types.html#adfdad3c56c13093b8a1be7e5b2604d29">co::IntegrableFunction</a> &amp;function, FloatType theta, FloatType phi, FloatType left, FloatType right, unsigned int max_depth=5, FloatType tol=1e-20)</td></tr>
+<tr class="memitem:a00ef0838542d8e7ad424216a2350d6ad" id="r_a00ef0838542d8e7ad424216a2350d6ad"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> Ndots = 61&gt; </td></tr>
+<tr class="memitem:a00ef0838542d8e7ad424216a2350d6ad"><td class="memTemplItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a00ef0838542d8e7ad424216a2350d6ad">IntegrateLambdaForOneVariable</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#adfdad3c56c13093b8a1be7e5b2604d29">co::IntegrableFunction</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">function</a>, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">theta</a>, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">phi</a>, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">left</a>, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">right</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">int</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">max_depth</a>=5, FloatType <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">tol</a>=1<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">e</a>-20)</td></tr>
 <tr class="separator:a00ef0838542d8e7ad424216a2350d6ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa880df7d2ee0d964e30be20ea5bc3379" id="r_aa880df7d2ee0d964e30be20ea5bc3379"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#aa880df7d2ee0d964e30be20ea5bc3379">ComputeFunction</a> (const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;a, const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;b, const <a class="el" href="namespacecommon__types.html#a4eb6267fe69b8d2006ee42f30eae0300">co::DirectionGraph</a> &amp;func)</td></tr>
+<tr class="memitem:aa880df7d2ee0d964e30be20ea5bc3379" id="r_aa880df7d2ee0d964e30be20ea5bc3379"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#aa880df7d2ee0d964e30be20ea5bc3379">ComputeFunction</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;a, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">b</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a4eb6267fe69b8d2006ee42f30eae0300">co::DirectionGraph</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">func</a>)</td></tr>
 <tr class="memdesc:aa880df7d2ee0d964e30be20ea5bc3379"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes functional mesh for 2 coordinates.  <br /></td></tr>
 <tr class="separator:aa880df7d2ee0d964e30be20ea5bc3379"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5175347b7f7a2568e6cdc1c31e5eed19" id="r_a5175347b7f7a2568e6cdc1c31e5eed19"><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a5175347b7f7a2568e6cdc1c31e5eed19">GetMeshDiffNorm</a> (const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;mesh1, const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;mesh2)</td></tr>
+<tr class="memitem:a5175347b7f7a2568e6cdc1c31e5eed19" id="r_a5175347b7f7a2568e6cdc1c31e5eed19"><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a5175347b7f7a2568e6cdc1c31e5eed19">GetMeshDiffNorm</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">mesh1</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">mesh2</a>)</td></tr>
 <tr class="memdesc:a5175347b7f7a2568e6cdc1c31e5eed19"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes square Diff norm for two meshes.  <br /></td></tr>
 <tr class="separator:a5175347b7f7a2568e6cdc1c31e5eed19"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9ce59e3e691dbc108a57170c687a73a3" id="r_a9ce59e3e691dbc108a57170c687a73a3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a9ce59e3e691dbc108a57170c687a73a3">AddMesh</a> (<a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;a, const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;b)</td></tr>
+<tr class="memitem:a9ce59e3e691dbc108a57170c687a73a3" id="r_a9ce59e3e691dbc108a57170c687a73a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a9ce59e3e691dbc108a57170c687a73a3">AddMesh</a> (<a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;a, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">b</a>)</td></tr>
 <tr class="separator:a9ce59e3e691dbc108a57170c687a73a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af24503ecad79824c864b829950a77ea9" id="r_af24503ecad79824c864b829950a77ea9"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; </td></tr>
-<tr class="memitem:af24503ecad79824c864b829950a77ea9"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>, 2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9">MyMeshGrid</a> (const container&lt; co::FloatType &gt; &amp;a, const container&lt; co::FloatType &gt; &amp;b)</td></tr>
+<tr class="memitem:af24503ecad79824c864b829950a77ea9" id="r_af24503ecad79824c864b829950a77ea9"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">template</a>&lt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> ... &gt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> container = std::vector&gt; </td></tr>
+<tr class="memitem:af24503ecad79824c864b829950a77ea9"><td class="memTemplItemLeft" align="right" valign="top">std::array&lt; <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>, 2 &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9">MyMeshGrid</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">container</a>&lt; co::FloatType &gt; &amp;a, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">container</a>&lt; co::FloatType &gt; &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">b</a>)</td></tr>
 <tr class="memdesc:af24503ecad79824c864b829950a77ea9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Computes meshes using 2 double arrays.  <br /></td></tr>
 <tr class="separator:af24503ecad79824c864b829950a77ea9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4f9aec90347196d3bba53c69e6dc4c76" id="r_a4f9aec90347196d3bba53c69e6dc4c76"><td class="memTemplParams" colspan="2">template&lt;template&lt; typename ... &gt; typename container = std::vector, typename T  = FloatType, bool end = true&gt; </td></tr>
-<tr class="memitem:a4f9aec90347196d3bba53c69e6dc4c76"><td class="memTemplItemLeft" align="right" valign="top">container&lt; T &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a4f9aec90347196d3bba53c69e6dc4c76">MyLinspace</a> (T lower_bound, T upper_bound, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> n)</td></tr>
+<tr class="memitem:a4f9aec90347196d3bba53c69e6dc4c76" id="r_a4f9aec90347196d3bba53c69e6dc4c76"><td class="memTemplParams" colspan="2">template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">template</a>&lt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> ... &gt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> container = std::vector, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a>  = FloatType, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">bool</a> end = true&gt; </td></tr>
+<tr class="memitem:a4f9aec90347196d3bba53c69e6dc4c76"><td class="memTemplItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">container</a>&lt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a> &gt;&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a4f9aec90347196d3bba53c69e6dc4c76">MyLinspace</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">lower_bound</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">upper_bound</a>, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">n</a>)</td></tr>
 <tr class="memdesc:a4f9aec90347196d3bba53c69e6dc4c76"><td class="mdescLeft">&#160;</td><td class="mdescRight">Generates linearly spaced vectors.  <br /></td></tr>
 <tr class="separator:a4f9aec90347196d3bba53c69e6dc4c76"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf5ccc0e24b8812a7a2460b00aac704d" id="r_aaf5ccc0e24b8812a7a2460b00aac704d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a7ee1d29866ec43799760c65858b5f8b2">co::MeshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#aaf5ccc0e24b8812a7a2460b00aac704d">Unflatten</a> (const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">common_types::MeshStorageType</a> &amp;mm, const DimType &amp;dims)</td></tr>
+<tr class="memitem:aaf5ccc0e24b8812a7a2460b00aac704d" id="r_aaf5ccc0e24b8812a7a2460b00aac704d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a7ee1d29866ec43799760c65858b5f8b2">co::MeshDrawClass</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#aaf5ccc0e24b8812a7a2460b00aac704d">Unflatten</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">common_types::MeshStorageType</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">mm</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> DimType &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">dims</a>)</td></tr>
 <tr class="separator:aaf5ccc0e24b8812a7a2460b00aac704d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2089ad2b898da3c6ebfe30cce23fb740" id="r_a2089ad2b898da3c6ebfe30cce23fb740"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740">PrintDec</a> (const <a class="el" href="classmesh__storage_1_1MeshCreator.html">mesh_storage::MeshCreator</a> &amp;mmesh, std::ostream &amp;out)</td></tr>
+<tr class="memitem:a2089ad2b898da3c6ebfe30cce23fb740" id="r_a2089ad2b898da3c6ebfe30cce23fb740"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740">PrintDec</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="classmesh__storage_1_1MeshCreator.html">mesh_storage::MeshCreator</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">mmesh</a>, std::ostream &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">out</a>)</td></tr>
 <tr class="memdesc:a2089ad2b898da3c6ebfe30cce23fb740"><td class="mdescLeft">&#160;</td><td class="mdescRight">Prints mesh in human readable way.  <br /></td></tr>
 <tr class="separator:a2089ad2b898da3c6ebfe30cce23fb740"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acb146bf6fbd19270ddd0140e836bff2a" id="r_acb146bf6fbd19270ddd0140e836bff2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">MeshArr</a>&lt; 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#acb146bf6fbd19270ddd0140e836bff2a">SphericalTransformation</a> (const <a class="el" href="classmesh__storage_1_1MeshCreator.html">MeshCreator</a> &amp;oth)</td></tr>
+<tr class="memitem:acb146bf6fbd19270ddd0140e836bff2a" id="r_acb146bf6fbd19270ddd0140e836bff2a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">MeshArr</a>&lt; 3 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#acb146bf6fbd19270ddd0140e836bff2a">SphericalTransformation</a> (<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="classmesh__storage_1_1MeshCreator.html">MeshCreator</a> &amp;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">oth</a>)</td></tr>
 <tr class="separator:acb146bf6fbd19270ddd0140e836bff2a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aaa2c83f1383033579e2ad25e06ab8fc2" id="r_aaa2c83f1383033579e2ad25e06ab8fc2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">static</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">constexpr</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#aaa2c83f1383033579e2ad25e06ab8fc2">kRr</a> = 2 * <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">M_PI</a> / <a class="el" href="structshared_1_1params.html#a00d01412ad84793663797eb6b3a2d48f">params::omega</a></td></tr>
+<tr class="separator:aaa2c83f1383033579e2ad25e06ab8fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4af57fcf2d696904b51cfe3a2e908a94" id="r_a4af57fcf2d696904b51cfe3a2e908a94"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">static</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">constexpr</a> DimType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a4af57fcf2d696904b51cfe3a2e908a94">kDefaultDims</a> = {7, 25}</td></tr>
+<tr class="separator:a4af57fcf2d696904b51cfe3a2e908a94"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05b557c9660d197d5b63223539c8d105" id="r_a05b557c9660d197d5b63223539c8d105"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">static</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">constexpr</a> <a class="el" href="namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e">LimType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemesh__storage.html#a05b557c9660d197d5b63223539c8d105">kDefaultLims</a> = {0, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">M_PI_2</a>, 0, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">M_PI</a> * 2}</td></tr>
+<tr class="separator:a05b557c9660d197d5b63223539c8d105"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>meshStorage namespace </p>
@@ -158,7 +168,7 @@ Functions</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e">mesh_storage::LimType</a> = typedef std::array&lt;FloatType, 4&gt;</td>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">using</a> <a class="el" href="namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e">mesh_storage::LimType</a> = <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typedef</a> std::array&lt;FloatType, 4&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -176,7 +186,7 @@ Functions</h2></td></tr>
 template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> N&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">mesh_storage::MeshArr</a> = typedef std::array&lt;<a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>, N&gt;</td>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">using</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">mesh_storage::MeshArr</a> = <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typedef</a> std::array&lt;<a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">N</a>&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -191,7 +201,7 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mesh_storage::AddMesh </td>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">void</a> mesh_storage::AddMesh </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
@@ -199,7 +209,7 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -221,19 +231,19 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
         <tr>
           <td class="memname"><a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> mesh_storage::ComputeFunction </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
           <td class="paramname"><em>b</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#a4eb6267fe69b8d2006ee42f30eae0300">co::DirectionGraph</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a4eb6267fe69b8d2006ee42f30eae0300">co::DirectionGraph</a> &amp;&#160;</td>
           <td class="paramname"><em>func</em>&#160;</td>
         </tr>
         <tr>
@@ -281,13 +291,13 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
         <tr>
           <td class="memname">FloatType mesh_storage::GetMeshDiffNorm </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
           <td class="paramname"><em>mesh1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a> &amp;&#160;</td>
           <td class="paramname"><em>mesh2</em>&#160;</td>
         </tr>
         <tr>
@@ -315,12 +325,12 @@ template&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;unsigned Ndots = 61&gt; </div>
+template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> Ndots = 61&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">FloatType mesh_storage::Integrate </td>
           <td>(</td>
-          <td class="paramtype">const std::function&lt; FloatType(FloatType)&gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> std::function&lt; FloatType(FloatType)&gt; &amp;&#160;</td>
           <td class="paramname"><em>function</em>, </td>
         </tr>
         <tr>
@@ -338,14 +348,14 @@ template&lt;unsigned Ndots = 61&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">int</a>&#160;</td>
           <td class="paramname"><em>max_depth</em> = <code>5</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">FloatType&#160;</td>
-          <td class="paramname"><em>tol</em> = <code>Eigen::NumTraits&lt;FloatType&gt;::epsilon()</code>&#160;</td>
+          <td class="paramname"><em>tol</em> = <code>Eigen::NumTraits&lt;FloatType&gt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">::epsilon</a>()</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -379,12 +389,12 @@ template&lt;unsigned Ndots = 61&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;unsigned Ndots = 61&gt; </div>
+template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> Ndots = 61&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">FloatType mesh_storage::IntegrateLambdaForOneVariable </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#adfdad3c56c13093b8a1be7e5b2604d29">co::IntegrableFunction</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#adfdad3c56c13093b8a1be7e5b2604d29">co::IntegrableFunction</a> &amp;&#160;</td>
           <td class="paramname"><em>function</em>, </td>
         </tr>
         <tr>
@@ -414,14 +424,14 @@ template&lt;unsigned Ndots = 61&gt; </div>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">unsigned int&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">unsigned</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">int</a>&#160;</td>
           <td class="paramname"><em>max_depth</em> = <code>5</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">FloatType&#160;</td>
-          <td class="paramname"><em>tol</em> = <code>1e-20</code>&#160;</td>
+          <td class="paramname"><em>tol</em> = <code>1<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">e</a>-20</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -439,18 +449,18 @@ template&lt;unsigned Ndots = 61&gt; </div>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename ... &gt; typename container = std::vector, typename T  = FloatType, bool end = true&gt; </div>
+template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">template</a>&lt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> ... &gt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> container = std::vector, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a>  = FloatType, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">bool</a> end = true&gt; </div>
       <table class="memname">
         <tr>
-          <td class="memname">container&lt; T &gt; mesh_storage::MyLinspace </td>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">container</a>&lt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a> &gt; mesh_storage::MyLinspace </td>
           <td>(</td>
-          <td class="paramtype">T&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a>&#160;</td>
           <td class="paramname"><em>lower_bound</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">T&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">T</a>&#160;</td>
           <td class="paramname"><em>upper_bound</em>, </td>
         </tr>
         <tr>
@@ -494,18 +504,18 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector, typ
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; </div>
+template&lt;<a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">template</a>&lt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> ... &gt; <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">typename</a> container = std::vector&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">std::array&lt; <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">co::MeshStorageType</a>, 2 &gt; mesh_storage::MyMeshGrid </td>
           <td>(</td>
-          <td class="paramtype">const container&lt; co::FloatType &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">container</a>&lt; co::FloatType &gt; &amp;&#160;</td>
           <td class="paramname"><em>a</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const container&lt; co::FloatType &gt; &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">container</a>&lt; co::FloatType &gt; &amp;&#160;</td>
           <td class="paramname"><em>b</em>&#160;</td>
         </tr>
         <tr>
@@ -555,9 +565,9 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void mesh_storage::PrintDec </td>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">void</a> mesh_storage::PrintDec </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classmesh__storage_1_1MeshCreator.html">mesh_storage::MeshCreator</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="classmesh__storage_1_1MeshCreator.html">mesh_storage::MeshCreator</a> &amp;&#160;</td>
           <td class="paramname"><em>mmesh</em>, </td>
         </tr>
         <tr>
@@ -582,8 +592,6 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
   </table>
   </dd>
 </dl>
-
-<p class="reference">References <a class="el" href="classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87">mesh_storage::MeshCreator::data_</a>, and <a class="el" href="classmesh__storage_1_1MeshCreator.html#a3cfccead3c7556f103d891b87db2b346">mesh_storage::MeshCreator::dimensions_</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07">print_utils::PrintMesh()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -610,7 +618,7 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
         <tr>
           <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">MeshArr</a>&lt; 3 &gt; mesh_storage::SphericalTransformation </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="classmesh__storage_1_1MeshCreator.html">MeshCreator</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="classmesh__storage_1_1MeshCreator.html">MeshCreator</a> &amp;&#160;</td>
           <td class="paramname"><em>oth</em></td><td>)</td>
           <td></td>
         </tr>
@@ -635,13 +643,13 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
         <tr>
           <td class="memname"><a class="el" href="namespacecommon__types.html#a7ee1d29866ec43799760c65858b5f8b2">co::MeshDrawClass</a> mesh_storage::Unflatten </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">common_types::MeshStorageType</a> &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> <a class="el" href="namespacecommon__types.html#a9e1d9d3de9bb4ab11fa7a0f6b42cea57">common_types::MeshStorageType</a> &amp;&#160;</td>
           <td class="paramname"><em>mm</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const DimType &amp;&#160;</td>
+          <td class="paramtype"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> DimType &amp;&#160;</td>
           <td class="paramname"><em>dims</em>&#160;</td>
         </tr>
         <tr>
@@ -650,6 +658,73 @@ template&lt;template&lt; typename ... &gt; typename container = std::vector&gt; 
           <td></td><td></td>
         </tr>
       </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a4af57fcf2d696904b51cfe3a2e908a94" name="a4af57fcf2d696904b51cfe3a2e908a94"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4af57fcf2d696904b51cfe3a2e908a94">&#9670;&#160;</a></span>kDefaultDims</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">constexpr</a> DimType mesh_storage::kDefaultDims = {7, 25}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a05b557c9660d197d5b63223539c8d105" name="a05b557c9660d197d5b63223539c8d105"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a05b557c9660d197d5b63223539c8d105">&#9670;&#160;</a></span>kDefaultLims</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">constexpr</a> <a class="el" href="namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e">LimType</a> mesh_storage::kDefaultLims = {0, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">M_PI_2</a>, 0, <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">M_PI</a> * 2}</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aaa2c83f1383033579e2ad25e06ab8fc2" name="aaa2c83f1383033579e2ad25e06ab8fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa2c83f1383033579e2ad25e06ab8fc2">&#9670;&#160;</a></span>kRr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">constexpr</a> <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">const</a> FloatType mesh_storage::kRr = 2 * <a class="el" href="namespacemesh__storage.html#a7f11b4c2289b930a0dae0b517415d5ed">M_PI</a> / <a class="el" href="structshared_1_1params.html#a00d01412ad84793663797eb6b3a2d48f">params::omega</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 </div>

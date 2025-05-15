@@ -1,0 +1,28 @@
+<map id="rest::v1::CompNode::ConnectHandler" name="rest::v1::CompNode::ConnectHandler">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,176,156,216"/>
+<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="204,176,415,216"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,193,190,193,190,199,156,199"/>
+<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="473,69,692,109"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="347,173,400,147,462,120,488,111,490,116,464,125,403,151,349,178"/>
+<area shape="rect" id="Node000005" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="751,5,969,45"/>
+<area shape="poly" id="edge11_Node000002_Node000005" title=" " alt="" coords="323,174,379,113,418,80,462,55,530,32,601,19,672,13,737,13,737,18,672,18,602,24,531,37,464,60,421,85,382,117,327,178"/>
+<area shape="rect" id="Node000009" href="$namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="463,134,703,159"/>
+<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="414,174,498,159,499,164,415,180"/>
+<area shape="rect" id="Node000010" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="478,183,687,209"/>
+<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="415,193,464,193,464,199,415,199"/>
+<area shape="rect" id="Node000011" href="$classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b" title=" " alt="" coords="473,233,692,273"/>
+<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="406,213,474,228,473,233,405,219"/>
+<area shape="rect" id="Node000012" href="$classamqp__common_1_1AMQPConsumerService.html#ab74da76322394ebf90b8e20a5720b26f" title="Sets message processing callback." alt="" coords="465,297,701,337"/>
+<area shape="poly" id="edge12_Node000002_Node000012" title=" " alt="" coords="341,214,397,249,464,283,484,291,482,296,462,288,394,253,338,219"/>
+<area shape="rect" id="Node000013" href="$classamqp__common_1_1AMQPConsumerService.html#a5dbefa27652bfd8061c4711cb19896dd" title=" " alt="" coords="465,361,701,401"/>
+<area shape="poly" id="edge13_Node000002_Node000013" title=" " alt="" coords="327,215,382,280,421,316,464,347,477,354,474,358,461,352,417,320,378,284,323,218"/>
+<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="751,69,969,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="692,87,737,87,737,92,692,92"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="670,67,759,46,760,51,671,72"/>
+<area shape="rect" id="Node000007" href="$classamqp__common_1_1AMQPService.html#ab0e168f45113842ca9e77bb5b1e6e405" title=" " alt="" coords="751,133,969,173"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="671,107,760,128,759,133,670,112"/>
+<area shape="rect" id="Node000008" href="$classamqp__common_1_1AMQPService.html#ac2c728377055fee86a840c8295a1ab22" title=" " alt="" coords="751,197,969,237"/>
+<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="679,107,704,121,720,136,729,153,737,168,752,183,761,189,759,193,749,187,733,172,724,155,716,140,701,125,677,112"/>
+<area shape="rect" id="Node000006" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="1017,5,1220,45"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="970,23,1004,23,1004,28,970,28"/>
+</map>

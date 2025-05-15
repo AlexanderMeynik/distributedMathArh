@@ -93,6 +93,7 @@ $(document).ready(function(){initNavTree('classrest_1_1v1_1_1ClusterConfigContro
   <div class="summary">
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classrest_1_1v1_1_1ClusterConfigController-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">rest::v1::ClusterConfigController Class Reference</div></div>
 </div><!--header-->
@@ -107,7 +108,7 @@ $(document).ready(function(){initNavTree('classrest_1_1v1_1_1ClusterConfigContro
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController__inherit__graph.png" border="0" usemap="#arest_1_1v1_1_1ClusterConfigController_inherit__map" alt="Inheritance graph"/></div>
 <map name="arest_1_1v1_1_1ClusterConfigController_inherit__map" id="arest_1_1v1_1_1ClusterConfigController_inherit__map">
-<area shape="rect" title="Drogon service for main node." alt="" coords="5,133,228,479"/>
+<area shape="rect" title="Drogon service for main node." alt="" coords="5,133,228,439"/>
 <area shape="rect" title=" " alt="" coords="19,5,214,85"/>
 <area shape="poly" title=" " alt="" coords="119,99,119,133,114,133,114,99"/>
 </map>
@@ -119,9 +120,30 @@ $(document).ready(function(){initNavTree('classrest_1_1v1_1_1ClusterConfigContro
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController__coll__graph.png" border="0" usemap="#arest_1_1v1_1_1ClusterConfigController_coll__map" alt="Collaboration graph"/></div>
 <map name="arest_1_1v1_1_1ClusterConfigController_coll__map" id="arest_1_1v1_1_1ClusterConfigController_coll__map">
-<area shape="rect" title="Drogon service for main node." alt="" coords="5,133,228,479"/>
-<area shape="rect" title=" " alt="" coords="19,5,214,85"/>
-<area shape="poly" title=" " alt="" coords="119,99,119,133,114,133,114,99"/>
+<area shape="rect" title="Drogon service for main node." alt="" coords="13,2147,235,2452"/>
+<area shape="rect" title=" " alt="" coords="5,1931,200,2011"/>
+<area shape="poly" title=" " alt="" coords="109,2025,117,2146,111,2147,103,2026"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html" title="Handles most of service side interactions for main Node." alt="" coords="225,1859,455,2084"/>
+<area shape="poly" title=" " alt="" coords="268,2086,236,2134,232,2131,264,2083"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html" title=" " alt="" coords="31,1559,222,1684"/>
+<area shape="poly" title=" " alt="" coords="145,1683,171,1758,188,1796,209,1833,217,1845,212,1848,204,1836,183,1799,166,1759,140,1685"/>
+<area shape="rect" href="classrest__utils_1_1BasicAuthHandler.html" title="Used for Basic auth." alt="" coords="30,508,229,633"/>
+<area shape="poly" title=" " alt="" coords="132,647,129,1558,124,1558,126,647"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="140,150,303,275"/>
+<area shape="poly" title=" " alt="" coords="205,289,148,508,143,507,199,288"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html" title="This service is used to perform http requests to a RabbiMQ management interface." alt="" coords="155,797,378,1437"/>
+<area shape="poly" title=" " alt="" coords="233,275,243,368,256,577,263,781,258,781,250,577,237,368,227,276"/>
+<area shape="poly" title=" " alt="" coords="261,1437,268,1609,275,1696,287,1781,300,1842,295,1843,281,1782,270,1696,262,1609,255,1438"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues." alt="" coords="391,1461,614,1781"/>
+<area shape="poly" title=" " alt="" coords="431,1783,402,1845,397,1843,426,1780"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="397,368,608,773"/>
+<area shape="poly" title=" " alt="" coords="505,787,505,1461,500,1461,500,787"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="405,120,600,305"/>
+<area shape="poly" title=" " alt="" coords="505,306,505,352,500,352,500,306"/>
+<area shape="rect" title=" " alt="" coords="405,5,601,71"/>
+<area shape="poly" title=" " alt="" coords="505,85,505,120,500,120,500,85"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html" title="Class for worker node enumeration and management." alt="" coords="638,1481,885,1761"/>
+<area shape="poly" title=" " alt="" coords="647,1763,627,1783,550,1846,470,1900,467,1895,547,1842,624,1779,644,1760"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -145,8 +167,6 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a5540d8df81a60f7e054894f2c8b6f0c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2154e98ae52c50bfc0137d32f61a663" id="r_ac2154e98ae52c50bfc0137d32f61a663"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#ac2154e98ae52c50bfc0137d32f61a663">ADD_METHOD_TO</a> (<a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087">Cont::DisconnectQ</a>, &quot;v1/disconnect_publisher&quot;, Post)</td></tr>
 <tr class="separator:ac2154e98ae52c50bfc0137d32f61a663"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14cd1d4ab78f6a1ec229e8197d84f509" id="r_a14cd1d4ab78f6a1ec229e8197d84f509"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a14cd1d4ab78f6a1ec229e8197d84f509">ADD_METHOD_TO</a> (<a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aefa1756c5cacad3ab7ae1537d568ac81">Cont::SentMessage</a>, &quot;v1/message?node={node}&quot;, Put)</td></tr>
-<tr class="separator:a14cd1d4ab78f6a1ec229e8197d84f509"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad064ff985cd742279ed1acbef162f943" id="r_ad064ff985cd742279ed1acbef162f943"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#ad064ff985cd742279ed1acbef162f943">ADD_METHOD_TO</a> (<a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c">Cont::SentToExecution</a>, &quot;v1/send_task&quot;, Put)</td></tr>
 <tr class="separator:ad064ff985cd742279ed1acbef162f943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a03e3883f4afb6b4745d95745a3318308" id="r_a03e3883f4afb6b4745d95745a3318308"><td class="memItemLeft" align="right" valign="top">METHOD_LIST_END void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308">GetStatus</a> (const HttpRequestPtr &amp;req, std::function&lt; void(const HttpResponsePtr &amp;)&gt; &amp;&amp;callback)</td></tr>
@@ -158,8 +178,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:af44c43e67cf11123a8b79826e37b4a29" id="r_af44c43e67cf11123a8b79826e37b4a29"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29">DisconnectNodeHandler</a> (const HttpRequestPtr &amp;req, std::function&lt; void(const HttpResponsePtr &amp;)&gt; &amp;&amp;callback, const std::string &amp;host_port)</td></tr>
 <tr class="memdesc:af44c43e67cf11123a8b79826e37b4a29"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects node to computational cluster.  <br /></td></tr>
 <tr class="separator:af44c43e67cf11123a8b79826e37b4a29"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefa1756c5cacad3ab7ae1537d568ac81" id="r_aefa1756c5cacad3ab7ae1537d568ac81"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aefa1756c5cacad3ab7ae1537d568ac81">SentMessage</a> (const HttpRequestPtr &amp;req, std::function&lt; void(const HttpResponsePtr &amp;)&gt; &amp;&amp;callback, const std::string &amp;node)</td></tr>
-<tr class="separator:aefa1756c5cacad3ab7ae1537d568ac81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7080212848a14fc5099fbf63feeafd2c" id="r_a7080212848a14fc5099fbf63feeafd2c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c">SentToExecution</a> (const HttpRequestPtr &amp;req, std::function&lt; void(const HttpResponsePtr &amp;)&gt; &amp;&amp;callback)</td></tr>
 <tr class="memdesc:a7080212848a14fc5099fbf63feeafd2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sends task to be sharded and published into queues for workers.  <br /></td></tr>
 <tr class="separator:a7080212848a14fc5099fbf63feeafd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -169,6 +187,11 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a53911d0b3f38f2a3627e8369285bf087" id="r_a53911d0b3f38f2a3627e8369285bf087"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087">DisconnectQ</a> (const HttpRequestPtr &amp;req, std::function&lt; void(const HttpResponsePtr &amp;)&gt; &amp;&amp;callback)</td></tr>
 <tr class="memdesc:a53911d0b3f38f2a3627e8369285bf087"><td class="mdescLeft">&#160;</td><td class="mdescRight">Disconnects main node from RabbitMQ.  <br /></td></tr>
 <tr class="separator:a53911d0b3f38f2a3627e8369285bf087"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aee59404f6a82f37386cc6f84b32c4641" id="r_aee59404f6a82f37386cc6f84b32c4641"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmain__services_1_1MainNodeService.html">MainNodeService</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a></td></tr>
+<tr class="separator:aee59404f6a82f37386cc6f84b32c4641"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Drogon service for main node. </p>
@@ -213,11 +236,13 @@ Public Member Functions</h2></td></tr>
 
 <p>Initializes MainNodeService with preconfigured credentials provider. </p>
 
+<p class="reference">References <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a>.</p>
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
 <a id="a495a9c1b65f2c61b2bed42710b4bfe9b" name="a495a9c1b65f2c61b2bed42710b4bfe9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a495a9c1b65f2c61b2bed42710b4bfe9b">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[1/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a495a9c1b65f2c61b2bed42710b4bfe9b">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[1/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -235,7 +260,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a5540d8df81a60f7e054894f2c8b6f0c3" name="a5540d8df81a60f7e054894f2c8b6f0c3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5540d8df81a60f7e054894f2c8b6f0c3">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[2/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a5540d8df81a60f7e054894f2c8b6f0c3">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[2/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -269,7 +294,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="ad505154a1aa6992af3aeebe2a06719e6" name="ad505154a1aa6992af3aeebe2a06719e6"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad505154a1aa6992af3aeebe2a06719e6">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[3/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad505154a1aa6992af3aeebe2a06719e6">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[3/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -287,7 +312,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="ac2154e98ae52c50bfc0137d32f61a663" name="ac2154e98ae52c50bfc0137d32f61a663"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac2154e98ae52c50bfc0137d32f61a663">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[4/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2154e98ae52c50bfc0137d32f61a663">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[4/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -321,7 +346,7 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <a id="a6a37a7e27568ac40974863e68ae4e16b" name="a6a37a7e27568ac40974863e68ae4e16b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6a37a7e27568ac40974863e68ae4e16b">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[5/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a37a7e27568ac40974863e68ae4e16b">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[5/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -354,26 +379,8 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a14cd1d4ab78f6a1ec229e8197d84f509" name="a14cd1d4ab78f6a1ec229e8197d84f509"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14cd1d4ab78f6a1ec229e8197d84f509">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[6/7]</span></h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">rest::v1::ClusterConfigController::ADD_METHOD_TO </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aefa1756c5cacad3ab7ae1537d568ac81">Cont::SentMessage</a>&#160;</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="ad064ff985cd742279ed1acbef162f943" name="ad064ff985cd742279ed1acbef162f943"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad064ff985cd742279ed1acbef162f943">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[7/7]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#ad064ff985cd742279ed1acbef162f943">&#9670;&#160;</a></span>ADD_METHOD_TO() <span class="overload">[6/6]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -449,6 +456,60 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
 
+<p class="reference">References <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">main_services::MainNodeService::ConnectNode()</a>, and <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController_af214a4d43f6ad4e6123246f4b013d190_cgraph.png" border="0" usemap="#aclassrest_1_1v1_1_1ClusterConfigController_af214a4d43f6ad4e6123246f4b013d190_cgraph" alt=""/></div>
+<map name="aclassrest_1_1v1_1_1ClusterConfigController_af214a4d43f6ad4e6123246f4b013d190_cgraph" id="aclassrest_1_1v1_1_1ClusterConfigController_af214a4d43f6ad4e6123246f4b013d190_cgraph">
+<area shape="rect" title="Connects node to computational cluster." alt="" coords="5,284,236,324"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,284,523,324"/>
+<area shape="poly" title=" " alt="" coords="236,301,271,301,271,307,236,307"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ab9d77e0c3170a27ea8d5b972fc3d1014" title="Upsets new node into node list This method doesn&#39;t perform connection operation, but is used to updat..." alt="" coords="571,5,825,45"/>
+<area shape="poly" title=" " alt="" coords="410,283,431,236,464,174,511,110,538,80,569,55,578,49,581,54,572,59,542,84,515,113,469,177,435,238,415,285"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170" title="Binds queue to exchange." alt="" coords="585,197,811,237"/>
+<area shape="poly" title=" " alt="" coords="464,281,570,248,604,238,606,244,571,253,465,287"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb" title="Connects node to computational cluster This method performs http request to connect worker and retrie..." alt="" coords="571,69,825,109"/>
+<area shape="poly" title=" " alt="" coords="415,282,439,247,474,203,518,157,569,119,581,113,584,117,572,124,522,161,478,206,443,250,419,286"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96" title="Creates queue with specified params." alt="" coords="586,133,810,173"/>
+<area shape="poly" title=" " alt="" coords="425,282,488,232,527,206,570,183,588,175,590,180,572,188,530,210,491,237,429,286"/>
+<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="617,262,779,287"/>
+<area shape="poly" title=" " alt="" coords="523,289,603,281,603,287,523,295"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#a60bf80a868e5259d7d2ef10af8126665" title=" " alt="" coords="583,312,813,352"/>
+<area shape="poly" title=" " alt="" coords="523,313,569,317,569,322,523,318"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="589,440,807,480"/>
+<area shape="poly" title=" " alt="" coords="428,322,490,374,529,402,572,426,589,433,587,438,569,430,527,406,486,378,424,326"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9" title="Lists all queues." alt="" coords="586,376,810,416"/>
+<area shape="poly" title=" " alt="" coords="457,322,571,361,601,370,599,375,570,367,455,327"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html#a5f20755ab7094301dcc578298a3799ff" title=" " alt="" coords="599,504,797,544"/>
+<area shape="poly" title=" " alt="" coords="419,323,443,359,478,405,522,451,572,490,587,498,585,502,569,494,518,455,474,408,439,363,415,326"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html#a1de67808e4a12918a61007e81c5fc0f2" title=" " alt="" coords="599,568,797,608"/>
+<area shape="poly" title=" " alt="" coords="414,323,435,371,468,433,514,499,542,528,572,554,588,563,585,568,569,558,538,532,510,502,463,436,430,373,409,325"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="889,197,1113,237"/>
+<area shape="poly" title=" " alt="" coords="811,215,875,215,875,220,811,220"/>
+<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="1176,205,1397,230"/>
+<area shape="poly" title=" " alt="" coords="1113,215,1162,215,1162,220,1113,220"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="1461,140,1632,180"/>
+<area shape="poly" title=" " alt="" coords="1345,202,1447,179,1448,184,1346,207"/>
+<area shape="rect" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="1445,205,1648,230"/>
+<area shape="poly" title=" " alt="" coords="1398,215,1432,215,1432,220,1398,220"/>
+<area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="1456,254,1637,279"/>
+<area shape="poly" title=" " alt="" coords="1355,227,1466,249,1465,254,1354,233"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="873,69,1128,109"/>
+<area shape="poly" title=" " alt="" coords="826,87,859,87,859,92,826,92"/>
+<area shape="poly" title=" " alt="" coords="794,171,893,192,892,197,793,176"/>
+<area shape="rect" href="structnetwork__types_1_1queue.html#ac3a1e75e5d17500ca2e6782387ac1740" title=" " alt="" coords="917,133,1084,173"/>
+<area shape="poly" title=" " alt="" coords="810,151,904,151,904,156,810,156"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="899,440,1102,480"/>
+<area shape="poly" title=" " alt="" coords="808,457,886,457,886,463,808,463"/>
+<area shape="poly" title=" " alt="" coords="796,373,824,362,867,336,907,305,970,246,973,250,910,309,870,340,827,366,798,378"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="889,376,1113,416"/>
+<area shape="poly" title=" " alt="" coords="810,393,875,393,875,399,810,399"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a499160df363c6944f4e4234417626ee6" name="a499160df363c6944f4e4234417626ee6"></a>
@@ -490,6 +551,66 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues.">amqp_common::AMQPPublisherService</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">main_services::MainNodeService::Connect()</a>, and <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController_a499160df363c6944f4e4234417626ee6_cgraph.png" border="0" usemap="#aclassrest_1_1v1_1_1ClusterConfigController_a499160df363c6944f4e4234417626ee6_cgraph" alt=""/></div>
+<map name="aclassrest_1_1v1_1_1ClusterConfigController_a499160df363c6944f4e4234417626ee6_cgraph" id="aclassrest_1_1v1_1_1ClusterConfigController_a499160df363c6944f4e4234417626ee6_cgraph">
+<area shape="rect" title="Connects main node to RabbitMQ." alt="" coords="5,331,236,371"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,331,523,371"/>
+<area shape="poly" title=" " alt="" coords="236,348,271,348,271,353,236,353"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="581,101,800,141"/>
+<area shape="poly" title=" " alt="" coords="414,329,437,291,472,243,517,193,569,151,580,145,583,149,572,156,521,197,477,246,442,294,418,332"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="861,5,1080,45"/>
+<area shape="poly" title=" " alt="" coords="408,330,428,279,460,213,482,177,507,144,536,113,569,87,601,69,636,54,708,32,780,21,847,17,848,22,781,26,709,38,637,59,604,73,572,92,540,117,511,147,486,180,465,215,433,281,413,331"/>
+<area shape="rect" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="571,166,811,191"/>
+<area shape="poly" title=" " alt="" coords="419,329,481,265,523,231,569,202,590,193,592,198,572,206,526,235,484,269,423,332"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="579,216,803,256"/>
+<area shape="poly" title=" " alt="" coords="439,328,499,297,570,266,592,258,594,263,572,270,501,301,441,333"/>
+<area shape="rect" href="classshared_1_1HttpError.html#a6dbaa62bdba6e4fe1831e6713d9a8301" title=" " alt="" coords="609,281,772,306"/>
+<area shape="poly" title=" " alt="" coords="504,328,612,306,613,311,505,333"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b" title=" " alt="" coords="581,331,800,371"/>
+<area shape="poly" title=" " alt="" coords="523,348,568,348,568,353,523,353"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#a60bf80a868e5259d7d2ef10af8126665" title=" " alt="" coords="575,395,806,435"/>
+<area shape="poly" title=" " alt="" coords="495,368,588,389,586,394,493,373"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f" title="Retrieves list of exhnages." alt="" coords="579,459,803,499"/>
+<area shape="poly" title=" " alt="" coords="435,369,497,407,572,444,592,452,590,457,570,449,494,411,433,373"/>
+<area shape="rect" href="classrest__utils_1_1JsonAuthHandler.html#a5f20755ab7094301dcc578298a3799ff" title=" " alt="" coords="591,523,790,563"/>
+<area shape="poly" title=" " alt="" coords="422,369,483,438,525,476,572,508,585,515,582,520,569,513,522,480,479,441,418,372"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#aff2a68e7717be0f1f5c25fc2fc4dcfc2" title=" " alt="" coords="575,587,806,627"/>
+<area shape="poly" title=" " alt="" coords="416,370,438,412,472,468,518,524,544,550,572,572,582,578,579,583,569,577,540,554,514,528,468,471,434,415,411,372"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0" title="Set&#39;s url and auth provider." alt="" coords="579,651,803,691"/>
+<area shape="poly" title=" " alt="" coords="413,370,431,424,464,496,485,535,510,572,539,607,572,637,580,642,577,646,569,641,535,610,506,575,480,537,459,499,426,426,408,372"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="861,69,1080,109"/>
+<area shape="poly" title=" " alt="" coords="800,106,848,101,848,106,800,112"/>
+<area shape="poly" title=" " alt="" coords="740,99,858,55,883,47,884,52,860,60,742,104"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ab0e168f45113842ca9e77bb5b1e6e405" title=" " alt="" coords="861,133,1080,173"/>
+<area shape="poly" title=" " alt="" coords="800,131,848,137,848,142,800,136"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ac2c728377055fee86a840c8295a1ab22" title=" " alt="" coords="861,197,1080,237"/>
+<area shape="poly" title=" " alt="" coords="780,139,812,151,836,167,860,183,877,190,875,195,857,188,833,171,809,156,778,144"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="1140,5,1343,45"/>
+<area shape="poly" title=" " alt="" coords="1080,23,1126,23,1126,28,1080,28"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="859,344,1083,384"/>
+<area shape="poly" title=" " alt="" coords="786,254,812,266,827,277,837,288,846,299,860,311,905,336,903,341,857,316,843,303,833,292,824,281,809,270,783,258"/>
+<area shape="rect" href="structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939" title=" " alt="" coords="876,261,1065,301"/>
+<area shape="poly" title=" " alt="" coords="803,251,863,261,862,266,802,257"/>
+<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="1131,351,1352,377"/>
+<area shape="poly" title=" " alt="" coords="1083,361,1117,361,1117,367,1083,367"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="1416,287,1587,327"/>
+<area shape="poly" title=" " alt="" coords="1299,349,1402,326,1403,331,1300,354"/>
+<area shape="rect" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="1400,351,1603,377"/>
+<area shape="poly" title=" " alt="" coords="1352,361,1387,361,1387,367,1352,367"/>
+<area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="1411,401,1592,426"/>
+<area shape="poly" title=" " alt="" coords="1309,374,1421,395,1420,401,1308,379"/>
+<area shape="poly" title=" " alt="" coords="775,456,810,444,869,417,923,389,925,393,872,422,812,449,777,461"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="859,459,1083,499"/>
+<area shape="poly" title=" " alt="" coords="803,476,845,476,845,481,803,481"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -536,6 +657,28 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
 
+<p class="reference">References <a class="el" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a">main_services::MainNodeService::DisconnectNode()</a>, and <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController_af44c43e67cf11123a8b79826e37b4a29_cgraph.png" border="0" usemap="#aclassrest_1_1v1_1_1ClusterConfigController_af44c43e67cf11123a8b79826e37b4a29_cgraph" alt=""/></div>
+<map name="aclassrest_1_1v1_1_1ClusterConfigController_af44c43e67cf11123a8b79826e37b4a29_cgraph" id="aclassrest_1_1v1_1_1ClusterConfigController_af44c43e67cf11123a8b79826e37b4a29_cgraph">
+<area shape="rect" title="Disconnects node to computational cluster." alt="" coords="5,37,236,77"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a" title=" " alt="" coords="284,37,523,77"/>
+<area shape="poly" title=" " alt="" coords="236,55,271,55,271,60,236,60"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77" title="Disconnects worker node from cluster This method calls disconnect http request." alt="" coords="571,5,825,45"/>
+<area shape="poly" title=" " alt="" coords="523,42,557,38,557,43,523,47"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="589,69,807,109"/>
+<area shape="poly" title=" " alt="" coords="523,68,575,73,575,79,523,73"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="873,5,1128,45"/>
+<area shape="poly" title=" " alt="" coords="826,23,859,23,859,28,826,28"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="899,69,1102,109"/>
+<area shape="poly" title=" " alt="" coords="808,87,886,87,886,92,808,92"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a53911d0b3f38f2a3627e8369285bf087" name="a53911d0b3f38f2a3627e8369285bf087"></a>
@@ -574,6 +717,26 @@ Public Member Functions</h2></td></tr>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
 
+<p class="reference">References <a class="el" href="classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc">main_services::MainNodeService::Disconnect()</a>, and <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController_a53911d0b3f38f2a3627e8369285bf087_cgraph.png" border="0" usemap="#aclassrest_1_1v1_1_1ClusterConfigController_a53911d0b3f38f2a3627e8369285bf087_cgraph" alt=""/></div>
+<map name="aclassrest_1_1v1_1_1ClusterConfigController_a53911d0b3f38f2a3627e8369285bf087_cgraph" id="aclassrest_1_1v1_1_1ClusterConfigController_a53911d0b3f38f2a3627e8369285bf087_cgraph">
+<area shape="rect" title="Disconnects main node from RabbitMQ." alt="" coords="5,37,236,77"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc" title="Disconnects the main node from a RabbitMQ instance." alt="" coords="284,37,523,77"/>
+<area shape="poly" title=" " alt="" coords="236,55,271,55,271,60,236,60"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="571,5,789,45"/>
+<area shape="poly" title=" " alt="" coords="523,41,557,37,557,42,523,46"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="571,69,789,109"/>
+<area shape="poly" title=" " alt="" coords="523,68,557,72,557,78,523,74"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="837,69,1040,109"/>
+<area shape="poly" title=" " alt="" coords="790,87,824,87,824,92,790,92"/>
+</map>
+</div>
+
 </div>
 </div>
 <a id="a03e3883f4afb6b4745d95745a3318308" name="a03e3883f4afb6b4745d95745a3318308"></a>
@@ -611,47 +774,29 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 
+<p class="reference">References <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa">main_services::MainNodeService::Status()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController_a03e3883f4afb6b4745d95745a3318308_cgraph.png" border="0" usemap="#aclassrest_1_1v1_1_1ClusterConfigController_a03e3883f4afb6b4745d95745a3318308_cgraph" alt=""/></div>
+<map name="aclassrest_1_1v1_1_1ClusterConfigController_a03e3883f4afb6b4745d95745a3318308_cgraph" id="aclassrest_1_1v1_1_1ClusterConfigController_a03e3883f4afb6b4745d95745a3318308_cgraph">
+<area shape="rect" title="Retrieves the status of whole cluster." alt="" coords="5,69,236,109"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,69,523,109"/>
+<area shape="poly" title=" " alt="" coords="236,87,271,87,271,92,236,92"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b" title=" " alt="" coords="589,5,807,45"/>
+<area shape="poly" title=" " alt="" coords="496,67,592,46,593,51,497,72"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5" title="returns list of lists with all nodes meta information" alt="" coords="571,69,825,109"/>
+<area shape="poly" title=" " alt="" coords="523,87,557,87,557,92,523,92"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="589,133,807,173"/>
+<area shape="poly" title=" " alt="" coords="497,107,593,128,592,133,496,112"/>
+<area shape="rect" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="873,77,1083,102"/>
+<area shape="poly" title=" " alt="" coords="825,87,860,87,860,92,825,92"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="877,133,1079,173"/>
+<area shape="poly" title=" " alt="" coords="807,151,863,151,863,156,807,156"/>
+</map>
 </div>
-<a id="aefa1756c5cacad3ab7ae1537d568ac81" name="aefa1756c5cacad3ab7ae1537d568ac81"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefa1756c5cacad3ab7ae1537d568ac81">&#9670;&#160;</a></span>SentMessage()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void rest::v1::ClusterConfigController::SentMessage </td>
-          <td>(</td>
-          <td class="paramtype">const HttpRequestPtr &amp;&#160;</td>
-          <td class="paramname"><em>req</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">std::function&lt; void(const HttpResponsePtr &amp;)&gt; &amp;&amp;&#160;</td>
-          <td class="paramname"><em>callback</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>node</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">req</td><td></td></tr>
-    <tr><td class="paramname">callback</td><td></td></tr>
-    <tr><td class="paramname">node</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -690,6 +835,65 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
+
+<p class="reference">References <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641">main_node_service_</a>, and <a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">main_services::MainNodeService::SendToExecution()</a>.</p>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classrest_1_1v1_1_1ClusterConfigController_a7080212848a14fc5099fbf63feeafd2c_cgraph.png" border="0" usemap="#aclassrest_1_1v1_1_1ClusterConfigController_a7080212848a14fc5099fbf63feeafd2c_cgraph" alt=""/></div>
+<map name="aclassrest_1_1v1_1_1ClusterConfigController_a7080212848a14fc5099fbf63feeafd2c_cgraph" id="aclassrest_1_1v1_1_1ClusterConfigController_a7080212848a14fc5099fbf63feeafd2c_cgraph">
+<area shape="rect" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,133,236,173"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,133,523,173"/>
+<area shape="poly" title=" " alt="" coords="236,151,271,151,271,156,236,156"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e" title=" " alt="" coords="571,5,825,45"/>
+<area shape="poly" title=" " alt="" coords="433,131,494,93,570,55,591,47,593,52,572,60,497,97,435,135"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a033361c3f1627d040e1f357342e794a0" title=" " alt="" coords="571,69,825,109"/>
+<area shape="poly" title=" " alt="" coords="496,131,592,110,593,115,497,136"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c" title=" " alt="" coords="571,133,825,173"/>
+<area shape="poly" title=" " alt="" coords="523,151,557,151,557,156,523,156"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e" title="Publishes message to queue with routingKey=node." alt="" coords="579,197,817,237"/>
+<area shape="poly" title=" " alt="" coords="497,171,593,192,592,197,496,176"/>
+<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d" title="Slices iter_count iterations from current range and creates." alt="" coords="604,261,792,301"/>
+<area shape="poly" title=" " alt="" coords="435,171,497,210,572,247,593,255,591,260,570,252,494,214,433,176"/>
+<area shape="rect" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="879,133,1098,173"/>
+<area shape="poly" title=" " alt="" coords="789,195,884,174,885,179,790,200"/>
+<area shape="rect" href="classamqp__common_1_1AMQPPublisherService.html#a385d87b5f00977708cecfbbba2e93121" title="publishe message to i&#39;s queue" alt="" coords="873,197,1104,237"/>
+<area shape="poly" title=" " alt="" coords="818,215,859,215,859,220,818,220"/>
+<area shape="rect" href="structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="895,261,1083,301"/>
+<area shape="poly" title=" " alt="" coords="790,235,885,256,884,261,789,240"/>
+<area shape="rect" href="classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="1157,133,1360,173"/>
+<area shape="poly" title=" " alt="" coords="1098,151,1143,151,1143,156,1098,156"/>
+<area shape="rect" href="namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="1152,269,1365,294"/>
+<area shape="poly" title=" " alt="" coords="1083,279,1138,279,1138,284,1083,284"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aee59404f6a82f37386cc6f84b32c4641" name="aee59404f6a82f37386cc6f84b32c4641"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee59404f6a82f37386cc6f84b32c4641">&#9670;&#160;</a></span>main_node_service_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmain__services_1_1MainNodeService.html">MainNodeService</a>* rest::v1::ClusterConfigController::main_node_service_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#aec6c8f3a1213d9480b2883a23559ff7f">ClusterConfigController()</a>, <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190">ConnectNodeHandler()</a>, <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6">ConnectQ()</a>, <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29">DisconnectNodeHandler()</a>, <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087">DisconnectQ()</a>, <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308">GetStatus()</a>, and <a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c">SentToExecution()</a>.</p>
 
 </div>
 </div>

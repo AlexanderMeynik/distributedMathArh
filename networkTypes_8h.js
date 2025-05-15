@@ -10,5 +10,7 @@ var networkTypes_8h =
     [ "network_types::message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
     [ "network_types::global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
     [ "JsonToVariant", "networkTypes_8h.html#a72a0d2ba616b55ebaf6e207bbac87331", null ],
-    [ "VariantToJson", "networkTypes_8h.html#a1b599061c22c72f511f1f26cb2a697ff", null ]
+    [ "VariantToJson", "networkTypes_8h.html#a1b599061c22c72f511f1f26cb2a697ff", null ],
+    [ "eTypeToStr", "networkTypes_8h.html#afdfa5a12102fcda9289d7884119912c5", null ],
+    [ "stringToExchangeType", "networkTypes_8h.html#aa4f31aa0e2e13d76520a0f0ac13ba97a", null ]
 ];

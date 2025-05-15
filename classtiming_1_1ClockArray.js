@@ -1,6 +1,7 @@
 var classtiming_1_1ClockArray =
 [
     [ "timeStore", "structtiming_1_1ClockArray_1_1timeStore.html", "structtiming_1_1ClockArray_1_1timeStore" ],
+    [ "GuardType", "classtiming_1_1ClockArray.html#aff015eddd32b666859edb5d6be09da94", null ],
     [ "advance", "classtiming_1_1ClockArray.html#a75d04e3e339c98ca0312e58780087ff8", null ],
     [ "begin", "classtiming_1_1ClockArray.html#a86f3cf0d6284a8f952bc88c2328c4db2", null ],
     [ "cbegin", "classtiming_1_1ClockArray.html#ad725ea1d5704cd887ea977ac766c013c", null ],
@@ -14,5 +15,9 @@ var classtiming_1_1ClockArray =
     [ "Tik", "classtiming_1_1ClockArray.html#a2fae0cc021766bbae6d5cb866e814a97", null ],
     [ "TikLoc", "classtiming_1_1ClockArray.html#ad1fae0a616e825cba239a1340721bf94", null ],
     [ "TikPair", "classtiming_1_1ClockArray.html#a2871677eb3a722f1db838dd3e23e7be9", null ],
-    [ "operator<<", "classtiming_1_1ClockArray.html#aa8ac616cb39bd8180dcaf6031ffe3d80", null ]
+    [ "operator<<", "classtiming_1_1ClockArray.html#aa8ac616cb39bd8180dcaf6031ffe3d80", null ],
+    [ "s_mutex_", "classtiming_1_1ClockArray.html#a2ba76293e616e257c6f799577716bb76", null ],
+    [ "start_ing_timers_", "classtiming_1_1ClockArray.html#a8708ff5c9a3bc0f688766c8d58af3c97", null ],
+    [ "timers_", "classtiming_1_1ClockArray.html#ac90a144411329ca3f924eaabb3a7dcfb", null ],
+    [ "to_tak_", "classtiming_1_1ClockArray.html#afa2818044eb7454084b3aa621f4468f1", null ]
 ];

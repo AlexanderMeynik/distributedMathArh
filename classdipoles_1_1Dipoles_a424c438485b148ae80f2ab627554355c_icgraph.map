@@ -1,9 +1,17 @@
 <map id="dipoles::Dipoles::GetMatrices" name="dipoles::Dipoles::GetMatrices">
-<area shape="rect" id="Node000001" title=" " alt="" coords="496,35,709,60"/>
-<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="237,35,448,60"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="482,50,448,50,448,45,482,45"/>
-<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,36,188,32,189,26,224,30"/>
-<area shape="rect" id="Node000004" href="$classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d" title="Function that allows to Reset dipole coordinates." alt="" coords="5,55,189,95"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="224,64,190,67,189,62,223,58"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="1593,35,1807,60"/>
+<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="1335,35,1545,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1580,50,1546,50,1546,45,1580,45"/>
+<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="1103,5,1286,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1321,36,1286,32,1286,26,1321,30"/>
+<area shape="rect" id="Node000004" href="$classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d" title="Function that allows to Reset dipole coordinates." alt="" coords="1103,55,1287,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="1321,64,1287,67,1287,62,1321,58"/>
+<area shape="rect" id="Node000005" href="$classcomp__services_1_1BenchmarkRunner.html#a3c37823cafe6654892a0f3beb4c10f5a" title="Runs the benchmark for a single pair of N and conf_num." alt="" coords="840,55,1055,95"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1089,78,1055,78,1055,73,1089,73"/>
+<area shape="rect" id="Node000006" href="$classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e" title="Runs the benchmark for all parameter pairs and returns the results." alt="" coords="591,55,792,95"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="826,78,792,78,792,73,826,73"/>
+<area shape="rect" id="Node000007" href="$classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2" title=" " alt="" coords="332,55,543,95"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="577,78,543,78,543,73,577,73"/>
+<area shape="rect" id="Node000008" href="$classcomp__services_1_1ComputationNodeService.html#a09f092800edf837ad2978fa641a847b0" title=" " alt="" coords="5,55,284,95"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="318,78,284,78,284,73,318,73"/>
 </map>

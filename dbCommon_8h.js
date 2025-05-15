@@ -20,5 +20,6 @@ var dbCommon_8h =
     [ "PaginateRequest", "dbCommon_8h.html#afe5a348fb22dd5f91214dd95a80b6973", null ],
     [ "ParseArray", "dbCommon_8h.html#acec6199e9f3a82271a9af92390122f7e", null ],
     [ "TerminateAllDbConnections", "dbCommon_8h.html#ae57400437000d615d8df1cfc6989fa5b", null ],
-    [ "TryConnect", "dbCommon_8h.html#a7b82b734e1b13bfc00b839a3de0c8c0c", null ]
+    [ "TryConnect", "dbCommon_8h.html#a7b82b734e1b13bfc00b839a3de0c8c0c", null ],
+    [ "SampleTempDb", "dbCommon_8h.html#a2d8fca39b7d78c9826b6661cc651ac02", null ]
 ];

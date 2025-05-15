@@ -1,0 +1,13 @@
+<map id="amqp_common::RabbitMQRestService::BindQueueToExchange" name="amqp_common::RabbitMQRestService::BindQueueToExchange">
+<area shape="rect" id="Node000001" title="Binds queue to exchange." alt="" coords="5,63,232,103"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="280,63,504,103"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,80,266,80,266,85,232,85"/>
+<area shape="rect" id="Node000003" href="$namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="552,70,773,95"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="504,80,538,80,538,85,504,85"/>
+<area shape="rect" id="Node000004" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="837,5,1008,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="721,67,823,44,824,50,722,73"/>
+<area shape="rect" id="Node000005" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="821,70,1024,95"/>
+<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="774,80,808,80,808,85,774,85"/>
+<area shape="rect" id="Node000006" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="832,119,1013,145"/>
+<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="731,93,842,114,841,119,730,98"/>
+</map>

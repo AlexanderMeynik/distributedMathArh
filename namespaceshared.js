@@ -10,7 +10,7 @@ var namespaceshared =
     [ "mismatchedSizes", "classshared_1_1mismatchedSizes.html", "classshared_1_1mismatchedSizes" ],
     [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
     [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
-    [ "params", "structshared_1_1params.html", null ],
+    [ "params", "structshared_1_1params.html", "structshared_1_1params" ],
     [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
     [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
     [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ],
@@ -41,5 +41,10 @@ var namespaceshared =
     ] ],
     [ "DefaultBench", "namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
     [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
+    [ "kNValues", "namespaceshared.html#affbf6044206ed501cbc764df749da33a", null ],
+    [ "kSevToStr", "namespaceshared.html#af3d0ef72a5c0a66a91f8f11233a72d80", null ],
+    [ "kStateTMappings", "namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd", null ],
+    [ "kStateToStr", "namespaceshared.html#a12bba4853ee52f4c77d00f91a3400853", null ],
+    [ "kStringToState", "namespaceshared.html#a4e1aa6d006edaa7a28c619cbd9c62943", null ],
     [ "kStrToSev", "namespaceshared.html#af570bd9365898d829147c73ee171e266", null ]
 ];

@@ -1,5 +1,15 @@
 <map id="amqp_common::AMQPService::GetCString" name="amqp_common::AMQPService::GetCString">
-<area shape="rect" id="Node000001" title=" " alt="" coords="264,5,483,45"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="5,5,216,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="251,28,216,28,216,23,251,23"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="571,69,789,109"/>
+<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="298,5,509,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="579,69,490,48,491,43,580,64"/>
+<area shape="rect" id="Node000004" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,69,523,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="557,92,523,92,523,87,557,87"/>
+<area shape="rect" id="Node000006" href="$classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,133,523,173"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="580,115,491,136,490,131,579,110"/>
+<area shape="rect" id="Node000003" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="45,5,196,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="284,28,196,28,196,23,284,23"/>
+<area shape="rect" id="Node000005" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,69,236,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="270,92,236,92,236,87,270,87"/>
+<area shape="rect" id="Node000007" href="$classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308" title="Retrieves the status of whole cluster." alt="" coords="5,133,236,173"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="270,156,236,156,236,151,270,151"/>
 </map>

@@ -197,9 +197,20 @@ Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
+<tr class="memitem:af3d0ef72a5c0a66a91f8f11233a72d80" id="r_af3d0ef72a5c0a66a91f8f11233a72d80"><td class="memItemLeft" align="right" valign="top">static constexpr std::array&lt; const char *, 4 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#af3d0ef72a5c0a66a91f8f11233a72d80">kSevToStr</a></td></tr>
+<tr class="memdesc:af3d0ef72a5c0a66a91f8f11233a72d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Severity text enum to str lookup.  <br /></td></tr>
+<tr class="separator:af3d0ef72a5c0a66a91f8f11233a72d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af570bd9365898d829147c73ee171e266" id="r_af570bd9365898d829147c73ee171e266"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, <a class="el" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#af570bd9365898d829147c73ee171e266">kStrToSev</a></td></tr>
 <tr class="memdesc:af570bd9365898d829147c73ee171e266"><td class="mdescLeft">&#160;</td><td class="mdescRight">String to severity lookup.  <br /></td></tr>
 <tr class="separator:af570bd9365898d829147c73ee171e266"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affbf6044206ed501cbc764df749da33a" id="r_affbf6044206ed501cbc764df749da33a"><td class="memItemLeft" align="right" valign="top">static const std::valarray&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#affbf6044206ed501cbc764df749da33a">kNValues</a></td></tr>
+<tr class="separator:affbf6044206ed501cbc764df749da33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad8a7c1420d0a420754b6df50604bd3fd" id="r_ad8a7c1420d0a420754b6df50604bd3fd"><td class="memItemLeft" align="right" valign="top">static const std::vector&lt; <a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a>&lt; <a class="el" href="namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866">StateT</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd">kStateTMappings</a></td></tr>
+<tr class="separator:ad8a7c1420d0a420754b6df50604bd3fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12bba4853ee52f4c77d00f91a3400853" id="r_a12bba4853ee52f4c77d00f91a3400853"><td class="memItemLeft" align="right" valign="top">static const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#a12bba4853ee52f4c77d00f91a3400853">kStateToStr</a> = <a class="el" href="namespaceenum__utils.html#add13783fa2441e8f2a665a6304c56996">CreateEnumToStrMap</a>(<a class="el" href="namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd">kStateTMappings</a>)</td></tr>
+<tr class="separator:a12bba4853ee52f4c77d00f91a3400853"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e1aa6d006edaa7a28c619cbd9c62943" id="r_a4e1aa6d006edaa7a28c619cbd9c62943"><td class="memItemLeft" align="right" valign="top">static const auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#a4e1aa6d006edaa7a28c619cbd9c62943">kStringToState</a> = <a class="el" href="namespaceenum__utils.html#accf3de571bd15912191c8f71e9b5e9db">CreateStrToEnumMap</a>(<a class="el" href="namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd">kStateTMappings</a>)</td></tr>
+<tr class="separator:a4e1aa6d006edaa7a28c619cbd9c62943"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>shared namespace </p>
@@ -373,6 +384,8 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
+<p class="reference">References <a class="el" href="namespaceshared.html#affbf6044206ed501cbc764df749da33a">kNValues</a>.</p>
+
 <p class="reference">Referenced by <a class="el" href="classmain__services_1_1WorkerManagementService.html#a5c470a2a0858114484256e7568faead3">main_services::WorkerManagementService::WorkerManagementService()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
@@ -415,7 +428,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88">enum_utils::EnumToStr()</a>.</p>
+<p class="reference">References <a class="el" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88">enum_utils::EnumToStr()</a>, and <a class="el" href="namespaceshared.html#a12bba4853ee52f4c77d00f91a3400853">kStateToStr</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -434,6 +447,142 @@ Variables</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Variable Documentation</h2>
+<a id="affbf6044206ed501cbc764df749da33a" name="affbf6044206ed501cbc764df749da33a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affbf6044206ed501cbc764df749da33a">&#9670;&#160;</a></span>kNValues</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::valarray&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&gt; shared::kNValues</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {1ul, 2ul, 4ul,</div>
+<div class="line">                                                      5ul, 8ul, 10ul,</div>
+<div class="line">                                                      20ul, 40ul, 50ul,</div>
+<div class="line">                                                      100ul, 200ul, 400ul,</div>
+<div class="line">                                                      500ul}</div>
+</div><!-- fragment -->
+<p class="reference">Referenced by <a class="el" href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2">DefaultBench()</a>.</p>
+
+</div>
+</div>
+<a id="af3d0ef72a5c0a66a91f8f11233a72d80" name="af3d0ef72a5c0a66a91f8f11233a72d80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af3d0ef72a5c0a66a91f8f11233a72d80">&#9670;&#160;</a></span>kSevToStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::array&lt;const char *, 4&gt; shared::kSevToStr</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">{</div>
+<div class="line">        <span class="stringliteral">&quot;info&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;warning&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;error&quot;</span>,</div>
+<div class="line">        <span class="stringliteral">&quot;fatal&quot;</span></div>
+<div class="line">    }</div>
+</div><!-- fragment -->
+<p>Severity text enum to str lookup. </p>
+
+<p class="reference">Referenced by <a class="el" href="classdb__service_1_1DbService.html#a6afe58635847c8836725ff9c0bcf362d">db_service::DbService::Log()</a>, and <a class="el" href="namespaceprint__utils.html#ae25dccefb25eb98a6f464a2ac7a091e5">print_utils::SerializeException()</a>.</p>
+
+</div>
+</div>
+<a id="ad8a7c1420d0a420754b6df50604bd3fd" name="ad8a7c1420d0a420754b6df50604bd3fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8a7c1420d0a420754b6df50604bd3fd">&#9670;&#160;</a></span>kStateTMappings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::vector&lt;<a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a>&lt;<a class="el" href="namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866">StateT</a>&gt; &gt; shared::kStateTMappings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    {StateT::NEW, <span class="stringliteral">&quot;openmp_new&quot;</span>},</div>
+<div class="line">    {StateT::OLD, <span class="stringliteral">&quot;new&quot;</span>},</div>
+<div class="line">    {StateT::OPENMP_NEW, <span class="stringliteral">&quot;openmp_old&quot;</span>},</div>
+<div class="line">    {StateT::OPENMP_OLD, <span class="stringliteral">&quot;old&quot;</span>},</div>
+<div class="line">    {StateT::PRINT, <span class="stringliteral">&quot;printImpl&quot;</span>}</div>
+<div class="line">}</div>
+</div><!-- fragment -->
+</div>
+</div>
+<a id="a12bba4853ee52f4c77d00f91a3400853" name="a12bba4853ee52f4c77d00f91a3400853"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12bba4853ee52f4c77d00f91a3400853">&#9670;&#160;</a></span>kStateToStr</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto shared::kStateToStr = <a class="el" href="namespaceenum__utils.html#add13783fa2441e8f2a665a6304c56996">CreateEnumToStrMap</a>(<a class="el" href="namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd">kStateTMappings</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b">operator&lt;&lt;()</a>.</p>
+
+</div>
+</div>
+<a id="a4e1aa6d006edaa7a28c619cbd9c62943" name="a4e1aa6d006edaa7a28c619cbd9c62943"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e1aa6d006edaa7a28c619cbd9c62943">&#9670;&#160;</a></span>kStringToState</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const auto shared::kStringToState = <a class="el" href="namespaceenum__utils.html#accf3de571bd15912191c8f71e9b5e9db">CreateStrToEnumMap</a>(<a class="el" href="namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd">kStateTMappings</a>)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="af570bd9365898d829147c73ee171e266" name="af570bd9365898d829147c73ee171e266"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af570bd9365898d829147c73ee171e266">&#9670;&#160;</a></span>kStrToSev</h2>
 

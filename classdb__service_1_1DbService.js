@@ -20,6 +20,7 @@ var classdb__service_1_1DbService =
     [ "GetExperiment", "classdb__service_1_1DbService.html#a3cb306dee5e21200b8347fb14a2e3757", null ],
     [ "GetIteration", "classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d", null ],
     [ "GetNode", "classdb__service_1_1DbService.html#a7477782eb3f2837dd055fcf4ace15410", null ],
+    [ "InnerLog", "classdb__service_1_1DbService.html#a285d98fb1ac9d4bd614f43dea27dccd8", null ],
     [ "IsConnected", "classdb__service_1_1DbService.html#a434be32fce31b5083a418e2b11235b19", null ],
     [ "ListExperiments", "classdb__service_1_1DbService.html#aca53a3d1a95c8d14b6e9878221eeabef", null ],
     [ "ListIterations", "classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7", null ],
@@ -28,11 +29,15 @@ var classdb__service_1_1DbService =
     [ "ListUsers", "classdb__service_1_1DbService.html#a7e75c54e7cc87a64a84edd283723c34e", null ],
     [ "Log", "classdb__service_1_1DbService.html#a6afe58635847c8836725ff9c0bcf362d", null ],
     [ "Log", "classdb__service_1_1DbService.html#ac860534db4dc24ded12dd13527513090", null ],
+    [ "Reconnect", "classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9", null ],
     [ "RegisterNode", "classdb__service_1_1DbService.html#a157c8a25492feeb7c59ecdd9d6b7b6c0", null ],
     [ "RegisterNode", "classdb__service_1_1DbService.html#a574ac0a565f490e1ce191df4deeae935", null ],
     [ "SetConnStr", "classdb__service_1_1DbService.html#add7f8151476d32d8a5fd6d0040b28a54", null ],
     [ "UnregisterNode", "classdb__service_1_1DbService.html#ab95a76cc6618e1458a7e650e7797f85b", null ],
     [ "UpdateExperimentStatus", "classdb__service_1_1DbService.html#a442450409b3a8845144b97fd8b46ce27", null ],
     [ "UpdateIterationStatus", "classdb__service_1_1DbService.html#af5f9fd1b6ec9dbdef174f18832179a6f", null ],
-    [ "UpdateNodeStatus", "classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4", null ]
+    [ "UpdateNodeStatus", "classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4", null ],
+    [ "conn_", "classdb__service_1_1DbService.html#ae9a65995c7175e11a8a1ce0dcbe96bdc", null ],
+    [ "conn_str_", "classdb__service_1_1DbService.html#ac76e77bdd8d76e854db3ea3f60112855", null ],
+    [ "service_name", "classdb__service_1_1DbService.html#a96368fa6e049e0913652b1d993b767e0", null ]
 ];

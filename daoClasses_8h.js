@@ -34,9 +34,19 @@ var daoClasses_8h =
       [ "USER", "daoClasses_8h.html#a16d3ed39748679fb4ae2410dc16f5f64a2e40ad879e955201df4dedbf8d479a12", null ],
       [ "ADMINISTRATOR", "daoClasses_8h.html#a16d3ed39748679fb4ae2410dc16f5f64a99fedb09f0f5da90e577784e5f9fdc23", null ]
     ] ],
+    [ "kExpStatusMappings", "daoClasses_8h.html#af6f3114ad5af3ebb8e68e59f6218a5af", null ],
     [ "kExpStatusToStr", "daoClasses_8h.html#ac2029439a3c5ac3130da0085bc9ec6ad", null ],
+    [ "kIterStatusMappings", "daoClasses_8h.html#a11280fc32e4b235bf990567c480d99d7", null ],
     [ "kIterStatusToStr", "daoClasses_8h.html#aa11cfbaca4499c1578b2f9c576088838", null ],
+    [ "kIterTypeMappings", "daoClasses_8h.html#ac4228d06ff528dfabb4a77e86ef804ec", null ],
     [ "kIterTypeToStr", "daoClasses_8h.html#a7006e9453d67a91a69a0efd481cffd4f", null ],
+    [ "kNodeStMappings", "daoClasses_8h.html#ad24b44ba292ea44d0855d50a563ea203", null ],
     [ "kNodeStToStr", "daoClasses_8h.html#a25c22514c74a6dbfc48264a53af642c4", null ],
+    [ "kStrToExpStatus", "daoClasses_8h.html#aec71b15a913b0014e49d93597d745413", null ],
+    [ "kStrToIterStatus", "daoClasses_8h.html#afcfc89a34607e427f91ea587b1a6b63d", null ],
+    [ "kStrToIterType", "daoClasses_8h.html#ac63a3ca0449d6175631dea21c720a95b", null ],
+    [ "kStrToNodeSt", "daoClasses_8h.html#a58d975b5db17b55c19dee5f6f4978281", null ],
+    [ "kStrToUserRole", "daoClasses_8h.html#a1c74cf928d6e27553059ea31c234444b", null ],
+    [ "kUserRoleMappings", "daoClasses_8h.html#ac24e87443137fcf7b53e61475a91944e", null ],
     [ "kUserRoleToStr", "daoClasses_8h.html#a8f7cab6b4069b37d7e8a47b15e7a3f3f", null ]
 ];

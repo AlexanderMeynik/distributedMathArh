@@ -1,0 +1,14 @@
+<map id="db_service::DbService::Reconnect" name="db_service::DbService::Reconnect">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,55,172,95"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="451,29,673,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,65,220,61,437,46,437,52,220,66,172,70"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="220,100,403,125"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="173,87,222,95,221,100,172,92"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="521,31,513,21,517,11,534,5,562,3,597,7,607,11,611,17,607,20,604,15,596,12,562,8,535,10,521,15,518,20,525,27"/>
+<area shape="poly" id="edge4_Node000003_Node000002" title=" " alt="" coords="357,97,502,56,504,61,358,102"/>
+<area shape="poly" id="edge7_Node000003_Node000003" title=" " alt="" coords="275,102,267,92,271,82,286,76,311,73,342,77,354,86,351,90,340,82,311,79,288,81,275,86,273,91,279,98"/>
+<area shape="rect" id="Node000004" href="$structdb__common_1_1myConnString.html#ae0181c09b017d0ff779c4fcee6beeaac" title=" " alt="" coords="461,87,663,127"/>
+<area shape="poly" id="edge5_Node000003_Node000004" title=" " alt="" coords="403,108,447,107,447,112,403,113"/>
+<area shape="rect" id="Node000005" href="$structdb__common_1_1myConnString.html#a44e994b2505b06d88edebfaa37a416a4" title=" " alt="" coords="461,151,663,191"/>
+<area shape="poly" id="edge6_Node000003_Node000005" title=" " alt="" coords="367,123,463,145,462,151,366,128"/>
+</map>

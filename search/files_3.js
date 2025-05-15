@@ -9,5 +9,6 @@ var searchData=
   ['dipoles_2ecpp_6',['Dipoles.cpp',['../Dipoles_8cpp.html',1,'']]],
   ['dipoles_2eh_7',['Dipoles.h',['../Dipoles_8h.html',1,'']]],
   ['dipolescommon_2ecpp_8',['dipolesCommon.cpp',['../dipolesCommon_8cpp.html',1,'']]],
-  ['dipolescommon_2eh_9',['dipolesCommon.h',['../dipolesCommon_8h.html',1,'']]]
+  ['dipolescommon_2eh_9',['dipolesCommon.h',['../dipolesCommon_8h.html',1,'']]],
+  ['doxygen_5fdummy_2eh_10',['doxygen_dummy.h',['../doxygen__dummy_8h.html',1,'']]]
 ];

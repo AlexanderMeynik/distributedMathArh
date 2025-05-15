@@ -92,6 +92,9 @@ $(document).ready(function(){initNavTree('classmain__services_1_1WorkerManagemen
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-types">Private Types</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classmain__services_1_1WorkerManagementService-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">main_services::WorkerManagementService Class Reference</div></div>
 </div><!--header-->
@@ -106,7 +109,7 @@ $(document).ready(function(){initNavTree('classmain__services_1_1WorkerManagemen
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1WorkerManagementService__coll__graph.png" border="0" usemap="#amain__services_1_1WorkerManagementService_coll__map" alt="Collaboration graph"/></div>
 <map name="amain__services_1_1WorkerManagementService_coll__map" id="amain__services_1_1WorkerManagementService_coll__map">
-<area shape="rect" title="Class for worker node enumeration and management." alt="" coords="5,5,252,225"/>
+<area shape="rect" title="Class for worker node enumeration and management." alt="" coords="5,5,252,285"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -132,11 +135,55 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a033361c3f1627d040e1f357342e794a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41ae1d1fdad373596caaad5e7b630e1c" id="r_a41ae1d1fdad373596caaad5e7b630e1c"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">BenchResVec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c">GetSum</a> () const</td></tr>
 <tr class="separator:a41ae1d1fdad373596caaad5e7b630e1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-types" name="pri-types"></a>
+Private Types</h2></td></tr>
+<tr class="memitem:a63b0e1446e41225ffb11fa6a399b426b" id="r_a63b0e1446e41225ffb11fa6a399b426b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a63b0e1446e41225ffb11fa6a399b426b">NodeStorageType</a> = std::unordered_map&lt; <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41">NodeStatus</a>, std::unordered_map&lt; std::string, <a class="el" href="classmain__services_1_1ComputationalNode.html">ComputationalNode</a> &gt; &gt;</td></tr>
+<tr class="separator:a63b0e1446e41225ffb11fa6a399b426b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a3bd743901e7aa5bfb0869361b4e0f0b1" id="r_a3bd743901e7aa5bfb0869361b4e0f0b1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1">MoveNode</a> (const std::string &amp;host_port, const <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41">NodeStatus</a> &amp;from, const <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41">NodeStatus</a> &amp;to)</td></tr>
+<tr class="separator:a3bd743901e7aa5bfb0869361b4e0f0b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-attribs" name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:ac2c90c90ca40ff77ab41d7b5b190a079" id="r_ac2c90c90ca40ff77ab41d7b5b190a079"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a63b0e1446e41225ffb11fa6a399b426b">NodeStorageType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a></td></tr>
+<tr class="memdesc:ac2c90c90ca40ff77ab41d7b5b190a079"><td class="mdescLeft">&#160;</td><td class="mdescRight">map of maps to manage worker nodes  <br /></td></tr>
+<tr class="separator:ac2c90c90ca40ff77ab41d7b5b190a079"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abf98af969ff70b041cdc8f94bedbe872" id="r_abf98af969ff70b041cdc8f94bedbe872"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#abf98af969ff70b041cdc8f94bedbe872">q_host_</a></td></tr>
+<tr class="memdesc:abf98af969ff70b041cdc8f94bedbe872"><td class="mdescLeft">&#160;</td><td class="mdescRight">queue host_  <br /></td></tr>
+<tr class="separator:abf98af969ff70b041cdc8f94bedbe872"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa10d5838e8f345887a52f0ce35d9ed31" id="r_aa10d5838e8f345887a52f0ce35d9ed31"><td class="memItemLeft" align="right" valign="top">std::valarray&lt; uint64_t &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmain__services_1_1WorkerManagementService.html#aa10d5838e8f345887a52f0ce35d9ed31">normalized_</a></td></tr>
+<tr class="separator:aa10d5838e8f345887a52f0ce35d9ed31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Class for worker node enumeration and management. </p>
 <p>This class is dedicated to store and manage worker nodes information. Currently only Active(connected and running) nodes are used for message processing. </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+</div><h2 class="groupheader">Member Typedef Documentation</h2>
+<a id="a63b0e1446e41225ffb11fa6a399b426b" name="a63b0e1446e41225ffb11fa6a399b426b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a63b0e1446e41225ffb11fa6a399b426b">&#9670;&#160;</a></span>NodeStorageType</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmain__services_1_1WorkerManagementService.html#a63b0e1446e41225ffb11fa6a399b426b">main_services::WorkerManagementService::NodeStorageType</a> =  std::unordered_map&lt;<a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41">NodeStatus</a>, std::unordered_map&lt;std::string, <a class="el" href="classmain__services_1_1ComputationalNode.html">ComputationalNode</a>&gt; &gt;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5c470a2a0858114484256e7568faead3" name="a5c470a2a0858114484256e7568faead3"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a5c470a2a0858114484256e7568faead3">&#9670;&#160;</a></span>WorkerManagementService()</h2>
 
@@ -160,7 +207,7 @@ Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">References <a class="el" href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2">shared::DefaultBench()</a>.</p>
+<p class="reference">References <a class="el" href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2">shared::DefaultBench()</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#aa10d5838e8f345887a52f0ce35d9ed31">normalized_</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -204,7 +251,23 @@ Public Member Functions</h2></td></tr>
 <dd>
 Json:: Value with "status"=409 - if node exists and is Active </dd></dl>
 
-<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, <a class="el" href="classmain__services_1_1ComputationalNode.html#a497f1d65569c61d8bf5fd8c5ca6d2536">main_services::ComputationalNode::http_client_</a>, <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>, and <a class="el" href="classmain__services_1_1ComputationalNode.html#a2e507217aa198f219632b1c7570c6781">main_services::ComputationalNode::st_</a>.</p>
+<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, <a class="el" href="classmain__services_1_1ComputationalNode.html#a497f1d65569c61d8bf5fd8c5ca6d2536">main_services::ComputationalNode::http_client_</a>, <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>, <a class="el" href="classmain__services_1_1ComputationalNode.html#a2e507217aa198f219632b1c7570c6781">main_services::ComputationalNode::st_</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">main_services::MainNodeService::ConnectNode()</a>.</p>
+<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_ab9d77e0c3170a27ea8d5b972fc3d1014_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_ab9d77e0c3170a27ea8d5b972fc3d1014_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_ab9d77e0c3170a27ea8d5b972fc3d1014_icgraph" id="aclassmain__services_1_1WorkerManagementService_ab9d77e0c3170a27ea8d5b972fc3d1014_icgraph">
+<area shape="rect" title="Upsets new node into node list This method doesn&#39;t perform connection operation, but is used to updat..." alt="" coords="571,5,825,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -233,7 +296,23 @@ Json:: Value with "status"=409 - if node exists and is Active </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>begin iterator to map of Active nodes </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115" title="Node is connected to cluster and is ready to receive it&#39;s tasks.">NodeStatus::ACTIVE</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>.</p>
+<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">main_services::MainNodeService::SendToExecution()</a>.</p>
+<div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-3-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-3-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_ab7de5b4e6677141e389caaa4acfc103e_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_ab7de5b4e6677141e389caaa4acfc103e_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_ab7de5b4e6677141e389caaa4acfc103e_icgraph" id="aclassmain__services_1_1WorkerManagementService_ab7de5b4e6677141e389caaa4acfc103e_icgraph">
+<area shape="rect" title=" " alt="" coords="571,5,825,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -277,7 +356,35 @@ Json:: Value with "status"=504 - if worker cannot be accessed for specified host
 <dd>
 Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd></dl>
 
-<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, and <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>.</p>
+<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1">MoveNode()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#aa10d5838e8f345887a52f0ce35d9ed31">normalized_</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">main_services::MainNodeService::ConnectNode()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_cgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_cgraph" id="aclassmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_cgraph">
+<area shape="rect" title="Connects node to computational cluster This method performs http request to connect worker and retrie..." alt="" coords="5,5,260,45"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="308,5,563,45"/>
+<area shape="poly" title=" " alt="" coords="260,23,294,23,294,28,260,28"/>
+</map>
+</div>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_icgraph" id="aclassmain__services_1_1WorkerManagementService_ac1855e26e463aedbd777306020f6eeeb_icgraph">
+<area shape="rect" title="Connects node to computational cluster This method performs http request to connect worker and retrie..." alt="" coords="571,5,825,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -312,7 +419,35 @@ Json:: Value with "status"=504 - if worker cannot be accessed for specified host
 <dd>
 Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd></dl>
 
-<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, and <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>.</p>
+<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1">MoveNode()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#aa10d5838e8f345887a52f0ce35d9ed31">normalized_</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a">main_services::MainNodeService::DisconnectNode()</a>.</p>
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_cgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_cgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_cgraph" id="aclassmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_cgraph">
+<area shape="rect" title="Disconnects worker node from cluster This method calls disconnect http request." alt="" coords="5,5,260,45"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="308,5,563,45"/>
+<area shape="poly" title=" " alt="" coords="260,23,294,23,294,28,260,28"/>
+</map>
+</div>
+<div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-7-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-7-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_icgraph" id="aclassmain__services_1_1WorkerManagementService_ab5130ead15b2bb67e535c9c1fb042e77_icgraph">
+<area shape="rect" title="Disconnects worker node from cluster This method calls disconnect http request." alt="" coords="571,5,825,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a" title=" " alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29" title="Disconnects node to computational cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -341,7 +476,23 @@ Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd>
 <dl class="section return"><dt>Returns</dt><dd>end iterator to map of Active nodes </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115" title="Node is connected to cluster and is ready to receive it&#39;s tasks.">NodeStatus::ACTIVE</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>.</p>
+<p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">main_services::MainNodeService::SendToExecution()</a>.</p>
+<div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-8-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-8-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_a033361c3f1627d040e1f357342e794a0_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_a033361c3f1627d040e1f357342e794a0_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_a033361c3f1627d040e1f357342e794a0_icgraph" id="aclassmain__services_1_1WorkerManagementService_a033361c3f1627d040e1f357342e794a0_icgraph">
+<area shape="rect" title=" " alt="" coords="571,5,825,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
 
 </div>
 </div>
@@ -363,17 +514,33 @@ Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd>
 <p>returns list of lists with all nodes meta information </p>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value </dd></dl>
 
-<p class="reference">References <a class="el" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson()</a>, and <a class="el" href="namespacemain__services.html#a2bce54d73da5d9bb873529b1fac0394b">main_services::kNodeStatusToStr</a>.</p>
-<div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-2-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson()</a>, <a class="el" href="namespacemain__services.html#a2bce54d73da5d9bb873529b1fac0394b">main_services::kNodeStatusToStr</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa">main_services::MainNodeService::Status()</a>.</p>
+<div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-9-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-2-content" class="dyncontent" style="display:none;">
+<div id="dynsection-9-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph" alt=""/></div>
 <map name="aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph" id="aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_cgraph">
 <area shape="rect" title="returns list of lists with all nodes meta information" alt="" coords="5,5,260,45"/>
 <area shape="rect" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="308,13,517,38"/>
 <area shape="poly" title=" " alt="" coords="260,23,294,23,294,28,260,28"/>
+</map>
+</div>
+<div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-10-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-10-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_icgraph" id="aclassmain__services_1_1WorkerManagementService_a0f1f101f84c7bbb7970e6d18a49ccef5_icgraph">
+<area shape="rect" title="returns list of lists with all nodes meta information" alt="" coords="571,5,825,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308" title="Retrieves the status of whole cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
 </map>
 </div>
 
@@ -394,6 +561,175 @@ Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd>
       </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>normalization coefficients for becnmark speed results </dd></dl>
+
+<p class="reference">References <a class="el" href="classmain__services_1_1WorkerManagementService.html#aa10d5838e8f345887a52f0ce35d9ed31">normalized_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050">main_services::MainNodeService::SendToExecution()</a>.</p>
+<div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-11-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-11-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_a41ae1d1fdad373596caaad5e7b630e1c_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_a41ae1d1fdad373596caaad5e7b630e1c_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_a41ae1d1fdad373596caaad5e7b630e1c_icgraph" id="aclassmain__services_1_1WorkerManagementService_a41ae1d1fdad373596caaad5e7b630e1c_icgraph">
+<area shape="rect" title=" " alt="" coords="571,5,825,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a7080212848a14fc5099fbf63feeafd2c" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a3bd743901e7aa5bfb0869361b4e0f0b1" name="a3bd743901e7aa5bfb0869361b4e0f0b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bd743901e7aa5bfb0869361b4e0f0b1">&#9670;&#160;</a></span>MoveNode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void main_services::WorkerManagementService::MoveNode </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>host_port</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41">NodeStatus</a> &amp;&#160;</td>
+          <td class="paramname"><em>from</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41">NodeStatus</a> &amp;&#160;</td>
+          <td class="paramname"><em>to</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Moves node between map entries </p><dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">host_port</td><td></td></tr>
+    <tr><td class="paramname">from</td><td></td></tr>
+    <tr><td class="paramname">to</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="reference">References <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac2c90c90ca40ff77ab41d7b5b190a079">worker_nodes_</a>.</p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb">ConnectNode()</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77">DisconnectNode()</a>.</p>
+<div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-12-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-12-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-12-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classmain__services_1_1WorkerManagementService_a3bd743901e7aa5bfb0869361b4e0f0b1_icgraph.png" border="0" usemap="#aclassmain__services_1_1WorkerManagementService_a3bd743901e7aa5bfb0869361b4e0f0b1_icgraph" alt=""/></div>
+<map name="aclassmain__services_1_1WorkerManagementService_a3bd743901e7aa5bfb0869361b4e0f0b1_icgraph" id="aclassmain__services_1_1WorkerManagementService_a3bd743901e7aa5bfb0869361b4e0f0b1_icgraph">
+<area shape="rect" title=" " alt="" coords="873,37,1128,77"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb" title="Connects node to computational cluster This method performs http request to connect worker and retrie..." alt="" coords="571,5,825,45"/>
+<area shape="poly" title=" " alt="" coords="859,45,825,41,826,36,860,40"/>
+<area shape="rect" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77" title="Disconnects worker node from cluster This method calls disconnect http request." alt="" coords="571,69,825,109"/>
+<area shape="poly" title=" " alt="" coords="860,75,826,79,825,73,859,70"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,5,523,45"/>
+<area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a" title=" " alt="" coords="284,69,523,109"/>
+<area shape="poly" title=" " alt="" coords="557,92,523,92,523,87,557,87"/>
+<area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29" title="Disconnects node to computational cluster." alt="" coords="5,69,236,109"/>
+<area shape="poly" title=" " alt="" coords="270,92,236,92,236,87,270,87"/>
+</map>
+</div>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="aa10d5838e8f345887a52f0ce35d9ed31" name="aa10d5838e8f345887a52f0ce35d9ed31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa10d5838e8f345887a52f0ce35d9ed31">&#9670;&#160;</a></span>normalized_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::valarray&lt;uint64_t&gt; main_services::WorkerManagementService::normalized_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb">ConnectNode()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77">DisconnectNode()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c">GetSum()</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#a5c470a2a0858114484256e7568faead3">WorkerManagementService()</a>.</p>
+
+</div>
+</div>
+<a id="abf98af969ff70b041cdc8f94bedbe872" name="abf98af969ff70b041cdc8f94bedbe872"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abf98af969ff70b041cdc8f94bedbe872">&#9670;&#160;</a></span>q_host_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string main_services::WorkerManagementService::q_host_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>queue host_ </p>
+
+</div>
+</div>
+<a id="ac2c90c90ca40ff77ab41d7b5b190a079" name="ac2c90c90ca40ff77ab41d7b5b190a079"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac2c90c90ca40ff77ab41d7b5b190a079">&#9670;&#160;</a></span>worker_nodes_</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmain__services_1_1WorkerManagementService.html#a63b0e1446e41225ffb11fa6a399b426b">NodeStorageType</a> main_services::WorkerManagementService::worker_nodes_</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>map of maps to manage worker nodes </p>
+
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab9d77e0c3170a27ea8d5b972fc3d1014">AddNewNode()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e">begin()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#ac1855e26e463aedbd777306020f6eeeb">ConnectNode()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77">DisconnectNode()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a033361c3f1627d040e1f357342e794a0">end()</a>, <a class="el" href="classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5">GetStatus()</a>, and <a class="el" href="classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1">MoveNode()</a>.</p>
 
 </div>
 </div>

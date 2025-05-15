@@ -1,5 +1,9 @@
 <map id="amqp_common::AMQPPublisherService" name="amqp_common::AMQPPublisherService">
-<area shape="rect" id="Node000001" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,479,228,719"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="11,5,222,431"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,445,119,478,114,478,114,445"/>
+<area shape="rect" id="Node000001" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,823,228,1143"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="11,368,222,773"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,787,119,822,114,822,114,787"/>
+<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="19,120,214,305"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="119,306,119,352,114,352,114,306"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="19,5,215,71"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="119,85,119,120,114,120,114,85"/>
 </map>

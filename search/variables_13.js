@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['value_0',['value',['../structnetwork__types_1_1global__param.html#a4689c8fd5c26152dba1da10eec6f39b1',1,'network_types::global_param::value'],['../namespaceenum__utils.html#a2811f7c550fdae9a27f8715eb5a7c11b',1,'enum_utils::EnumDoubleMapping::value']]],
-  ['vhost_1',['vhost',['../structnetwork__types_1_1channel.html#a820830ca2fccb6cf50174de292b54c8b',1,'network_types::channel']]]
+  ['user_0',['user',['../structdb__common_1_1myConnString.html#aef8d336e39573fd449d5720f525774c7',1,'db_common::myConnString::user'],['../structnetwork__types_1_1connection.html#a8108f8506cdb2822a3c94572c199c442',1,'network_types::connection::user'],['../structnetwork__types_1_1channel.html#ad9ae43d52eac660a7640550df3c39d15',1,'network_types::channel::user']]],
+  ['user_5f_1',['user_',['../classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b',1,'rest_utils::BasicAuthHandler']]],
+  ['user_5fid_2',['user_id',['../structdb__common_1_1User.html#a061ab6e39ca514046a3ac35d9b3ffe52',1,'db_common::User::user_id'],['../structdb__common_1_1Experiment.html#ac049da08c257c437bf6a6b1100aa4e4f',1,'db_common::Experiment::user_id']]]
 ];

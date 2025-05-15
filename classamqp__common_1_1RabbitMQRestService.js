@@ -22,9 +22,13 @@ var classamqp__common_1_1RabbitMQRestService =
     [ "ListQueues", "classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9", null ],
     [ "ListUsers", "classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073", null ],
     [ "operator=", "classamqp__common_1_1RabbitMQRestService.html#aafa4c3fa8af2591146db2e66db3543f3", null ],
+    [ "ParseJson", "classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2", null ],
+    [ "PerformRequest", "classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535", null ],
     [ "PublishMessage", "classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e", null ],
     [ "SetBaseUrl", "classamqp__common_1_1RabbitMQRestService.html#a28b729b43d0b0523be45ffe806de3e3d", null ],
     [ "SetParams", "classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0", null ],
     [ "UnbindQueueFromExchange", "classamqp__common_1_1RabbitMQRestService.html#a49522126ef10c56359863b6f8a7b2ef1", null ],
-    [ "Whoami", "classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5", null ]
+    [ "Whoami", "classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5", null ],
+    [ "auth_ptr_", "classamqp__common_1_1RabbitMQRestService.html#a75038ac018b318620bd035053cb01376", null ],
+    [ "base_url_", "classamqp__common_1_1RabbitMQRestService.html#a3ff0b4c8e653582cf87c7b30d5c96fe9", null ]
 ];

@@ -1,0 +1,13 @@
+<map id="rest::v1::CompNode::GetStatus" name="rest::v1::CompNode::GetStatus">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,63,156,103"/>
+<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a76a73721c93bdce971eac3029885d6a9" title=" " alt="" coords="204,63,415,103"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,80,190,80,190,85,156,85"/>
+<area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html#acbc5bd288c4fdfd50bfdb41461dbcaaf" title=" " alt="" coords="467,5,677,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="401,60,466,46,467,51,402,65"/>
+<area shape="rect" id="Node000004" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="467,70,677,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="415,80,454,80,454,85,415,85"/>
+<area shape="rect" id="Node000005" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="463,120,681,160"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="402,100,467,114,466,120,401,105"/>
+<area shape="rect" id="Node000006" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="729,120,932,160"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="682,137,716,137,716,143,682,143"/>
+</map>

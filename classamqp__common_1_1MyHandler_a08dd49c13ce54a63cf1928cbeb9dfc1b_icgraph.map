@@ -1,0 +1,7 @@
+<map id="amqp_common::MyHandler::ResetLoop" name="amqp_common::MyHandler::ResetLoop">
+<area shape="rect" id="Node000001" title="Resets work to stop event loop." alt="" coords="256,37,459,77"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1MyHandler.html#ac1f0eb02464d096c002228933212c1dd" title="Method that is called on connection close." alt="" coords="5,5,208,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,45,208,41,208,36,243,40"/>
+<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html#a8b33b5471f57c267a1eb4656f1fb1eb2" title="Method that is called on connection error." alt="" coords="5,69,208,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="243,75,208,79,208,74,242,69"/>
+</map>

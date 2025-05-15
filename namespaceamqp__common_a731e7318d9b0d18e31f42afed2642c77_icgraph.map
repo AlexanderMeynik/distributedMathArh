@@ -1,0 +1,5 @@
+<map id="amqp_common::DefaultMessageCallback" name="amqp_common::DefaultMessageCallback">
+<area shape="rect" id="Node000001" title="Default message processing callback." alt="" coords="289,5,527,45"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPConsumerService.html#af115aef189526d634e76f93c99ef635d" title="Reconnects to specified queue Restarts amqp connection and channel objects. Specifies message managem..." alt="" coords="5,5,241,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="276,28,242,28,242,23,276,23"/>
+</map>

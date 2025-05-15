@@ -13,6 +13,7 @@ var namespaces_dup =
     [ "dipoles", "namespacedipoles.html", "namespacedipoles" ],
     [ "enum_utils", "namespaceenum__utils.html", "namespaceenum__utils" ],
     [ "generators", "namespacegenerators.html", "namespacegenerators" ],
+    [ "gui_objects", "namespacegui__objects.html", "namespacegui__objects" ],
     [ "main_services", "namespacemain__services.html", "namespacemain__services" ],
     [ "mesh_storage", "namespacemesh__storage.html", "namespacemesh__storage" ],
     [ "my_concepts", "namespacemy__concepts.html", "namespacemy__concepts" ],

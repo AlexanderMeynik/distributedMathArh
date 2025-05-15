@@ -1,5 +1,5 @@
 <map id="amqp_common::MyHandler" name="amqp_common::MyHandler">
-<area shape="rect" id="Node000001" title="Custom handler for connection events logging." alt="" coords="6,119,201,264"/>
+<area shape="rect" id="Node000001" title="Custom handler for connection events logging." alt="" coords="6,119,201,304"/>
 <area shape="rect" id="Node000002" title=" " alt="" coords="5,5,201,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,84,106,118,101,118,101,84"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="106,85,106,119,101,119,101,85"/>
 </map>

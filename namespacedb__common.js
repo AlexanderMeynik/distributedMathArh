@@ -55,9 +55,20 @@ var namespacedb__common =
     [ "ParseArray", "namespacedb__common.html#acec6199e9f3a82271a9af92390122f7e", null ],
     [ "TerminateAllDbConnections", "namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b", null ],
     [ "TryConnect", "namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c", null ],
+    [ "kExpStatusMappings", "namespacedb__common.html#af6f3114ad5af3ebb8e68e59f6218a5af", null ],
     [ "kExpStatusToStr", "namespacedb__common.html#ac2029439a3c5ac3130da0085bc9ec6ad", null ],
+    [ "kIterStatusMappings", "namespacedb__common.html#a11280fc32e4b235bf990567c480d99d7", null ],
     [ "kIterStatusToStr", "namespacedb__common.html#aa11cfbaca4499c1578b2f9c576088838", null ],
+    [ "kIterTypeMappings", "namespacedb__common.html#ac4228d06ff528dfabb4a77e86ef804ec", null ],
     [ "kIterTypeToStr", "namespacedb__common.html#a7006e9453d67a91a69a0efd481cffd4f", null ],
+    [ "kNodeStMappings", "namespacedb__common.html#ad24b44ba292ea44d0855d50a563ea203", null ],
     [ "kNodeStToStr", "namespacedb__common.html#a25c22514c74a6dbfc48264a53af642c4", null ],
-    [ "kUserRoleToStr", "namespacedb__common.html#a8f7cab6b4069b37d7e8a47b15e7a3f3f", null ]
+    [ "kStrToExpStatus", "namespacedb__common.html#aec71b15a913b0014e49d93597d745413", null ],
+    [ "kStrToIterStatus", "namespacedb__common.html#afcfc89a34607e427f91ea587b1a6b63d", null ],
+    [ "kStrToIterType", "namespacedb__common.html#ac63a3ca0449d6175631dea21c720a95b", null ],
+    [ "kStrToNodeSt", "namespacedb__common.html#a58d975b5db17b55c19dee5f6f4978281", null ],
+    [ "kStrToUserRole", "namespacedb__common.html#a1c74cf928d6e27553059ea31c234444b", null ],
+    [ "kUserRoleMappings", "namespacedb__common.html#ac24e87443137fcf7b53e61475a91944e", null ],
+    [ "kUserRoleToStr", "namespacedb__common.html#a8f7cab6b4069b37d7e8a47b15e7a3f3f", null ],
+    [ "SampleTempDb", "namespacedb__common.html#a2d8fca39b7d78c9826b6661cc651ac02", null ]
 ];

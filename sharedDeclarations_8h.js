@@ -1,6 +1,6 @@
 var sharedDeclarations_8h =
 [
-    [ "shared::params", "structshared_1_1params.html", null ],
+    [ "shared::params", "structshared_1_1params.html", "structshared_1_1params" ],
     [ "BenchResultType", "sharedDeclarations_8h.html#a98a73a01c5c6c4ca3e1b3819ce638a98", null ],
     [ "BenchResVec", "sharedDeclarations_8h.html#aa5d7938a2acc14cba538e883c9be6f9f", null ],
     [ "FloatType", "sharedDeclarations_8h.html#af061895f5bfe2ffa0c4ba0215150d34b", null ],
@@ -21,5 +21,9 @@ var sharedDeclarations_8h =
       [ "PRINT", "sharedDeclarations_8h.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b", null ]
     ] ],
     [ "DefaultBench", "sharedDeclarations_8h.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
-    [ "operator<<", "sharedDeclarations_8h.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ]
+    [ "operator<<", "sharedDeclarations_8h.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
+    [ "kNValues", "sharedDeclarations_8h.html#affbf6044206ed501cbc764df749da33a", null ],
+    [ "kStateTMappings", "sharedDeclarations_8h.html#ad8a7c1420d0a420754b6df50604bd3fd", null ],
+    [ "kStateToStr", "sharedDeclarations_8h.html#a12bba4853ee52f4c77d00f91a3400853", null ],
+    [ "kStringToState", "sharedDeclarations_8h.html#a4e1aa6d006edaa7a28c619cbd9c62943", null ]
 ];

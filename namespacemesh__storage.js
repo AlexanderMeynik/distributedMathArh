@@ -12,5 +12,8 @@ var namespacemesh__storage =
     [ "MyMeshGrid", "namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9", null ],
     [ "PrintDec", "namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740", null ],
     [ "SphericalTransformation", "namespacemesh__storage.html#acb146bf6fbd19270ddd0140e836bff2a", null ],
-    [ "Unflatten", "namespacemesh__storage.html#aaf5ccc0e24b8812a7a2460b00aac704d", null ]
+    [ "Unflatten", "namespacemesh__storage.html#aaf5ccc0e24b8812a7a2460b00aac704d", null ],
+    [ "kDefaultDims", "namespacemesh__storage.html#a4af57fcf2d696904b51cfe3a2e908a94", null ],
+    [ "kDefaultLims", "namespacemesh__storage.html#a05b557c9660d197d5b63223539c8d105", null ],
+    [ "kRr", "namespacemesh__storage.html#aaa2c83f1383033579e2ad25e06ab8fc2", null ]
 ];

@@ -1,0 +1,11 @@
+<map id="amqp_common::AMQPPublisherService::GetDefaultExchange" name="amqp_common::AMQPPublisherService::GetDefaultExchange">
+<area shape="rect" id="Node000001" title=" " alt="" coords="571,37,801,77"/>
+<area shape="rect" id="Node000002" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="557,45,522,41,523,36,557,40"/>
+<area shape="rect" id="Node000004" href="$classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,69,523,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="557,75,523,78,522,73,557,69"/>
+<area shape="rect" id="Node000003" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+<area shape="rect" id="Node000005" href="$classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,69,236,109"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="270,92,236,92,236,87,270,87"/>
+</map>

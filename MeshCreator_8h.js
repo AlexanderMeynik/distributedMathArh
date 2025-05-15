@@ -11,5 +11,8 @@ var MeshCreator_8h =
     [ "MyLinspace", "MeshCreator_8h.html#a4f9aec90347196d3bba53c69e6dc4c76", null ],
     [ "MyMeshGrid", "MeshCreator_8h.html#af24503ecad79824c864b829950a77ea9", null ],
     [ "PrintDec", "MeshCreator_8h.html#a2089ad2b898da3c6ebfe30cce23fb740", null ],
-    [ "Unflatten", "MeshCreator_8h.html#aaf5ccc0e24b8812a7a2460b00aac704d", null ]
+    [ "Unflatten", "MeshCreator_8h.html#aaf5ccc0e24b8812a7a2460b00aac704d", null ],
+    [ "kDefaultDims", "MeshCreator_8h.html#a4af57fcf2d696904b51cfe3a2e908a94", null ],
+    [ "kDefaultLims", "MeshCreator_8h.html#a05b557c9660d197d5b63223539c8d105", null ],
+    [ "kRr", "MeshCreator_8h.html#aaa2c83f1383033579e2ad25e06ab8fc2", null ]
 ];

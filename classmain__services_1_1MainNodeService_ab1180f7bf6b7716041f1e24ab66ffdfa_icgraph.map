@@ -1,0 +1,5 @@
+<map id="main_services::MainNodeService::Status" name="main_services::MainNodeService::Status">
+<area shape="rect" id="Node000001" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,5,523,45"/>
+<area shape="rect" id="Node000002" href="$classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308" title="Retrieves the status of whole cluster." alt="" coords="5,5,236,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
+</map>

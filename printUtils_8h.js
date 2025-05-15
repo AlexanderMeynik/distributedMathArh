@@ -25,5 +25,11 @@ var printUtils_8h =
     [ "ParseDelim", "printUtils_8h.html#afb4c09c7ab41a3a6a8bc510290023ea5", null ],
     [ "PrintEnumToFormat", "printUtils_8h.html#a5c15394e792434eee87f79a2847b4a32", null ],
     [ "TupleToString", "printUtils_8h.html#ae4a7829e4fa46541e13b8b23db463823", null ],
-    [ "kEnumToEigenFormatMap", "printUtils_8h.html#a9910067bb1b8337b0bcc0bd062942281", null ]
+    [ "kDefaultPrec", "printUtils_8h.html#a1aade2743b5b315b7883a119f1e6caa6", null ],
+    [ "kEfEnToEigenFormatMappings", "printUtils_8h.html#a401218d6cba8091f9ee03c5ea6701042", null ],
+    [ "kEnumTo", "printUtils_8h.html#af403aaa3c3560b734ba84c916a1f42fb", null ],
+    [ "kEnumToEigenFormatMap", "printUtils_8h.html#a9910067bb1b8337b0bcc0bd062942281", null ],
+    [ "kIoFormatMappings", "printUtils_8h.html#a6976f4aebefffcbe7ce66ae8f291aa2f", null ],
+    [ "kIoToStr", "printUtils_8h.html#abe39f4c84222b80e25b068e237570f17", null ],
+    [ "kStringToIoFormat", "printUtils_8h.html#aeb8406d74a3678756ad420412ab3eb84", null ]
 ];

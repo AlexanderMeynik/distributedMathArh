@@ -13,5 +13,8 @@ var Generator_8h =
     [ "get_uniform_generator", "Generator_8h.html#a9d672a4eaf5e7b1a961a7050578ca8f2", null ],
     [ "ParseFunc", "Generator_8h.html#a06e29279648ea72ae3716766050740ac", null ],
     [ "ParseFunc", "Generator_8h.html#ac158ee3caf0a2574ece99b27b80724cb", null ],
-    [ "gen_mt19937", "Generator_8h.html#a15da8a2da1ef457952466cd4f380919e", null ]
+    [ "distribution_size", "Generator_8h.html#a6a791bc379c11de3fb47ffea8dc333e8", null ],
+    [ "distros", "Generator_8h.html#afbb237e5ca1c333ad75a8001de4e31f9", null ],
+    [ "gen_mt19937", "Generator_8h.html#a15da8a2da1ef457952466cd4f380919e", null ],
+    [ "stringToDistributionType", "Generator_8h.html#a9a963ec1b18ab5865128d1bd905ae165", null ]
 ];

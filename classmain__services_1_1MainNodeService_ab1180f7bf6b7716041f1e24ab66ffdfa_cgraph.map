@@ -1,0 +1,13 @@
+<map id="main_services::MainNodeService::Status" name="main_services::MainNodeService::Status">
+<area shape="rect" id="Node000001" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="5,69,244,109"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b" title=" " alt="" coords="310,5,529,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="217,67,313,46,314,51,218,72"/>
+<area shape="rect" id="Node000003" href="$classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5" title="returns list of lists with all nodes meta information" alt="" coords="292,69,547,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="244,87,278,87,278,92,244,92"/>
+<area shape="rect" id="Node000005" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="310,133,529,173"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="218,107,314,128,313,133,217,112"/>
+<area shape="rect" id="Node000004" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="595,77,804,102"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="547,87,581,87,581,92,547,92"/>
+<area shape="rect" id="Node000006" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="598,133,801,173"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="529,151,585,151,585,156,529,156"/>
+</map>
