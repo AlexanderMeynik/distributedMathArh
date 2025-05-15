@@ -162,14 +162,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   76</span>                                                                       :</div>
-<div class="line"><span class="lineno">   77</span>    ns_(nss),</div>
-<div class="line"><span class="lineno">   78</span>    iter_counts_(iter_counts) {</div>
-<div class="line"><span class="lineno">   79</span>  <span class="keywordflow">if</span> (ns_.size() != iter_counts_.size()) {</div>
-<div class="line"><span class="lineno">   80</span>    <span class="keywordflow">throw</span> std::invalid_argument(<span class="stringliteral">&quot;ns and iter_counts must have the same size&quot;</span>);</div>
-<div class="line"><span class="lineno">   81</span>  }</div>
-<div class="line"><span class="lineno">   82</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -207,28 +200,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   56</span>                                                                                                        {</div>
-<div class="line"><span class="lineno">   57</span>  std::cout &lt;&lt; omp_get_max_threads() &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   58</span>  <a class="code hl_typedef" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a> results(ns_.size());</div>
-<div class="line"><span class="lineno">   59</span>  <a class="code hl_typedef" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a> results2(ns_.size());</div>
-<div class="line"><span class="lineno">   60</span>  <span class="keywordflow">for</span> (<span class="keywordtype">size_t</span> j = 0; j &lt; ns_.size(); ++j) {</div>
-<div class="line"><span class="lineno">   61</span>    <span class="keyword">auto</span> loc = clk.TikLoc();</div>
-<div class="line"><span class="lineno">   62</span> </div>
-<div class="line"><span class="lineno">   63</span>    results[j] = RunSingleBenchmark(ns_[j], iter_counts_[j], use_omp_outer, eigen_threads);</div>
-<div class="line"><span class="lineno">   64</span>    clk.Tak();</div>
-<div class="line"><span class="lineno">   65</span>    <span class="keyword">auto</span> rr = clk[loc].time;</div>
-<div class="line"><span class="lineno">   66</span>    clk.ResetTimer(loc);</div>
-<div class="line"><span class="lineno">   67</span>    std::cout &lt;&lt; <a class="code hl_variable" href="namespacecomp__services.html#ab6fa34fc089ea2c7bc85222b710daee4">ns</a>[j] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span> &lt;&lt; iter_counts_[j] &lt;&lt; <span class="charliteral">&#39;\t&#39;</span>;</div>
-<div class="line"><span class="lineno">   68</span>    std::cout &lt;&lt; rr &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">   69</span>    results2[j] = rr;</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>  }</div>
-<div class="line"><span class="lineno">   72</span> </div>
-<div class="line"><span class="lineno">   73</span>  <span class="keywordflow">return</span> {results, results2};</div>
-<div class="line"><span class="lineno">   74</span>}</div>
-<div class="ttc" id="anamespacecomp__services_html_ab6fa34fc089ea2c7bc85222b710daee4"><div class="ttname"><a href="namespacecomp__services.html#ab6fa34fc089ea2c7bc85222b710daee4">comp_services::ns</a></div><div class="ttdeci">shared::BenchResVec ns</div><div class="ttdef"><b>Definition</b> BenchmarkRunnerService.cpp:7</div></div>
-<div class="ttc" id="anamespaceshared_html_aa5d7938a2acc14cba538e883c9be6f9f"><div class="ttname"><a href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">shared::BenchResVec</a></div><div class="ttdeci">std::valarray&lt; BenchResultType &gt; BenchResVec</div><div class="ttdef"><b>Definition</b> sharedDeclarations.h:16</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespacecomp__services.html#ab6fa34fc089ea2c7bc85222b710daee4">comp_services::ns</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2">comp_services::ComputationNodeService::RunBench()</a>.</p>

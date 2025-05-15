@@ -222,9 +222,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">    7</span>: <a class="code hl_function" href="classamqp__common_1_1AMQPService.html#ae1bc0dbb797f150e4e12367c4364101a">AMQPService</a>() {}</div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_ae1bc0dbb797f150e4e12367c4364101a"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#ae1bc0dbb797f150e4e12367c4364101a">amqp_common::AMQPService::AMQPService</a></div><div class="ttdeci">AMQPService()</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:122</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aca866812414a4c94071b60a3c1bbc417" name="aca866812414a4c94071b60a3c1bbc417"></a>
@@ -266,10 +264,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>    : <a class="code hl_function" href="classamqp__common_1_1AMQPService.html#ae1bc0dbb797f150e4e12367c4364101a">AMQPService</a>(connection_string),</div>
-<div class="line"><span class="lineno">   21</span>      queues_(queues),</div>
-<div class="line"><span class="lineno">   22</span>      default_exchange_(exchange) {}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aaf4ec517d781be1b15c9981661522b71" name="aaf4ec517d781be1b15c9981661522b71"></a>
@@ -289,12 +284,7 @@ Additional Inherited Members</h2></td></tr>
 
 <p>Calls Disconnect and frees used memory with smart pointers. </p>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues.">AMQPPublisherService</a> <a class="el" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect.">Disconnect</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   72</span>                                            {</div>
-<div class="line"><span class="lineno">   73</span>  <a class="code hl_function" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">Disconnect</a>();</div>
-<div class="line"><span class="lineno">   74</span>  queues_.clear();</div>
-<div class="line"><span class="lineno">   75</span>}</div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_a2a852047d6efc09be421c3dcd69af276"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">amqp_common::AMQPService::Disconnect</a></div><div class="ttdeci">void Disconnect()</div><div class="ttdoc">Ends connection and channel to rabbitMQ This is the variant of soft disconnect.</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:108</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">amqp_common::AMQPService::Disconnect()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -344,15 +334,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   65</span>                                                                       {</div>
-<div class="line"><span class="lineno">   66</span>  <span class="keywordflow">if</span> (create) {</div>
-<div class="line"><span class="lineno">   67</span>    <a class="code hl_function" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">DeclareQueue</a>(*<a class="code hl_variable" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">channel_</a>, queue, default_exchange_);</div>
-<div class="line"><span class="lineno">   68</span>  }</div>
-<div class="line"><span class="lineno">   69</span>  queues_.push_back(queue);</div>
-<div class="line"><span class="lineno">   70</span>}</div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_a2cb238ea25dc0710bbb4688b0d754d79"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">amqp_common::AMQPService::channel_</a></div><div class="ttdeci">std::unique_ptr&lt; AMQP::TcpChannel &gt; channel_</div><div class="ttdoc">AMQP::TcpChannel pointer.</div><div class="ttdef"><b>Definition</b> amqpCommon.h:191</div></div>
-<div class="ttc" id="anamespaceamqp__common_html_af451fa3751ba3e892a4b0042b2e27833"><div class="ttname"><a href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">amqp_common::DeclareQueue</a></div><div class="ttdeci">void DeclareQueue(AMQP::Channel &amp;channel, const std::string &amp;queue1, const std::string &amp;exchange1)</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:7</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">amqp_common::AMQPService::channel_</a>, and <a class="el" href="namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833">amqp_common::DeclareQueue()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -383,10 +365,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   90</span>                                                                {</div>
-<div class="line"><span class="lineno">   91</span>  <span class="keywordflow">return</span> default_exchange_;</div>
-<div class="line"><span class="lineno">   92</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a56009f7788336c779d4bef7f07f70b04" name="a56009f7788336c779d4bef7f07f70b04"></a>
@@ -423,11 +402,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   85</span>                                                                             {</div>
-<div class="line"><span class="lineno">   86</span>  message-&gt;setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());</div>
-<div class="line"><span class="lineno">   87</span>  <a class="code hl_variable" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">channel_</a>-&gt;publish(default_exchange_, qname, *message);</div>
-<div class="line"><span class="lineno">   88</span>}</div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">amqp_common::AMQPService::channel_</a>.</p>
 
 </div>
@@ -472,15 +447,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   77</span>                                                                {</div>
-<div class="line"><span class="lineno">   78</span>  <span class="keywordflow">if</span> (i &gt;= queues_.size()) {</div>
-<div class="line"><span class="lineno">   79</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1outOfRange.html">shared::outOfRange</a>(i, 0, queues_.size() - 1);</div>
-<div class="line"><span class="lineno">   80</span>  }</div>
-<div class="line"><span class="lineno">   81</span>  message-&gt;setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());</div>
-<div class="line"><span class="lineno">   82</span>  <a class="code hl_variable" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">channel_</a>-&gt;publish(default_exchange_, queues_[i], *message);</div>
-<div class="line"><span class="lineno">   83</span>}</div>
-<div class="ttc" id="aclassshared_1_1outOfRange_html"><div class="ttname"><a href="classshared_1_1outOfRange.html">shared::outOfRange</a></div><div class="ttdoc">outOfRange class</div><div class="ttdef"><b>Definition</b> errorHandling.h:105</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2cb238ea25dc0710bbb4688b0d754d79">amqp_common::AMQPService::channel_</a>.</p>
 
 </div>
@@ -514,13 +481,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   58</span>                                               {</div>
-<div class="line"><span class="lineno">   59</span>  <span class="keywordflow">if</span> (i &gt;= queues_.size()) {</div>
-<div class="line"><span class="lineno">   60</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1outOfRange.html">shared::outOfRange</a>(i, 0, queues_.size() - 1);</div>
-<div class="line"><span class="lineno">   61</span>  }</div>
-<div class="line"><span class="lineno">   62</span>  queues_.erase(queues_.begin() + i);</div>
-<div class="line"><span class="lineno">   63</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aff2a68e7717be0f1f5c25fc2fc4dcfc2" name="aff2a68e7717be0f1f5c25fc2fc4dcfc2"></a>
@@ -554,13 +515,7 @@ Additional Inherited Members</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   11</span>                                                                    {</div>
-<div class="line"><span class="lineno">   12</span>  <a class="code hl_variable" href="classamqp__common_1_1AMQPService.html#a6455603505f2b709a4f321dcbae9f2a5">c_string_</a> = connection_string;</div>
-<div class="line"><span class="lineno">   13</span>  queues_ = queues;</div>
-<div class="line"><span class="lineno">   14</span>  default_exchange_ = exchange;</div>
-<div class="line"><span class="lineno">   15</span>}</div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_a6455603505f2b709a4f321dcbae9f2a5"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#a6455603505f2b709a4f321dcbae9f2a5">amqp_common::AMQPService::c_string_</a></div><div class="ttdeci">std::string c_string_</div><div class="ttdoc">connection string</div><div class="ttdef"><b>Definition</b> amqpCommon.h:193</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a6455603505f2b709a4f321dcbae9f2a5">amqp_common::AMQPService::c_string_</a>.</p>
 
 </div>

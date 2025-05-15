@@ -212,12 +212,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Initializes MainNodeService with preconfigured credentials provider. </p>
-<div class="fragment"><div class="line"><span class="lineno">   26</span>                            {</div>
-<div class="line"><span class="lineno">   27</span>    <span class="comment">//todo pass args(create role for q creation/ message send)</span></div>
-<div class="line"><span class="lineno">   28</span>    main_node_service_ = std::make_unique&lt;MainNodeService&gt;(<span class="stringliteral">&quot;sysadmin&quot;</span>, <span class="stringliteral">&quot;syspassword&quot;</span>);</div>
-<div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>  }<span class="comment">//todo /rebalance</span></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -453,19 +448,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   23</span>                                                                             {</div>
-<div class="line"><span class="lineno">   24</span> </div>
-<div class="line"><span class="lineno">   25</span>  Json::Value res;</div>
-<div class="line"><span class="lineno">   26</span> </div>
-<div class="line"><span class="lineno">   27</span>  res = main_node_service_-&gt;ConnectNode(host_port, host_port);</div>
-<div class="line"><span class="lineno">   28</span> </div>
-<div class="line"><span class="lineno">   29</span>  <span class="keyword">auto</span> http_response = HttpResponse::newHttpJsonResponse(res);</div>
-<div class="line"><span class="lineno">   30</span>  http_response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(res[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>  callback(http_response);</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a499160df363c6944f4e4234417626ee6" name="a499160df363c6944f4e4234417626ee6"></a>
@@ -507,22 +490,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues.">amqp_common::AMQPPublisherService</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   73</span>                                                                                              {</div>
-<div class="line"><span class="lineno">   74</span> </div>
-<div class="line"><span class="lineno">   75</span>  <span class="keyword">auto</span> json = *req-&gt;getJsonObject();</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>  <span class="keyword">auto</span> qname = json[<span class="stringliteral">&quot;queue_host&quot;</span>].asString();</div>
-<div class="line"><span class="lineno">   78</span>  <span class="keyword">auto</span> szs = json[<span class="stringliteral">&quot;queues&quot;</span>].size();</div>
-<div class="line"><span class="lineno">   79</span>  <span class="keyword">auto</span> queues = print_utils::JsonToContinuous&lt;std::vector&lt;std::string&gt;&gt;(</div>
-<div class="line"><span class="lineno">   80</span>      json[<span class="stringliteral">&quot;queues&quot;</span>], szs, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   81</span> </div>
-<div class="line"><span class="lineno">   82</span>  <span class="keyword">auto</span> json_output = main_node_service_-&gt;Connect(qname, queues);</div>
-<div class="line"><span class="lineno">   83</span> </div>
-<div class="line"><span class="lineno">   84</span>  <span class="keyword">auto</span> http_response = HttpResponse::newHttpJsonResponse(json_output);</div>
-<div class="line"><span class="lineno">   85</span>  http_response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(json_output[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   86</span>  callback(http_response);</div>
-<div class="line"><span class="lineno">   87</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="af44c43e67cf11123a8b79826e37b4a29" name="af44c43e67cf11123a8b79826e37b4a29"></a>
@@ -567,19 +535,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   38</span>                                                                                {</div>
-<div class="line"><span class="lineno">   39</span> </div>
-<div class="line"><span class="lineno">   40</span>  Json::Value res;</div>
-<div class="line"><span class="lineno">   41</span> </div>
-<div class="line"><span class="lineno">   42</span>  res = main_node_service_-&gt;DisconnectNode(host_port);</div>
-<div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>  <span class="keyword">auto</span> http_response = HttpResponse::newHttpJsonResponse(res);</div>
-<div class="line"><span class="lineno">   45</span>  http_response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(res[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>  callback(http_response);</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a53911d0b3f38f2a3627e8369285bf087" name="a53911d0b3f38f2a3627e8369285bf087"></a>
@@ -617,16 +573,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   89</span>                                                                                                 {</div>
-<div class="line"><span class="lineno">   90</span> </div>
-<div class="line"><span class="lineno">   91</span>  <span class="keyword">auto</span> json_output = main_node_service_-&gt;Disconnect();</div>
-<div class="line"><span class="lineno">   92</span> </div>
-<div class="line"><span class="lineno">   93</span>  <span class="keyword">auto</span> http_response = HttpResponse::newHttpJsonResponse(json_output);</div>
-<div class="line"><span class="lineno">   94</span>  http_response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(json_output[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   95</span>  callback(http_response);</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a03e3883f4afb6b4745d95745a3318308" name="a03e3883f4afb6b4745d95745a3318308"></a>
@@ -663,17 +610,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   10</span>                                                                                          {</div>
-<div class="line"><span class="lineno">   11</span> </div>
-<div class="line"><span class="lineno">   12</span>  <span class="keyword">auto</span> json_output = main_node_service_-&gt;Status();</div>
-<div class="line"><span class="lineno">   13</span> </div>
-<div class="line"><span class="lineno">   14</span>  <span class="keyword">auto</span> res = HttpResponse::newHttpJsonResponse(json_output);</div>
-<div class="line"><span class="lineno">   15</span>  res-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(json_output[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   16</span> </div>
-<div class="line"><span class="lineno">   17</span>  callback(res);</div>
-<div class="line"><span class="lineno">   18</span> </div>
-<div class="line"><span class="lineno">   19</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aefa1756c5cacad3ab7ae1537d568ac81" name="aefa1756c5cacad3ab7ae1537d568ac81"></a>
@@ -715,18 +652,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   52</span>                                                                 {</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>  <a class="code hl_struct" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> ts(*req-&gt;getJsonObject());</div>
-<div class="line"><span class="lineno">   55</span>  <span class="keyword">auto</span> json_output = main_node_service_-&gt;Publish(ts, node);</div>
-<div class="line"><span class="lineno">   56</span> </div>
-<div class="line"><span class="lineno">   57</span>  <span class="keyword">auto</span> http_response = HttpResponse::newHttpJsonResponse(json_output);</div>
-<div class="line"><span class="lineno">   58</span>  http_response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(json_output[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   59</span>  callback(http_response);</div>
-<div class="line"><span class="lineno">   60</span> </div>
-<div class="line"><span class="lineno">   61</span>}</div>
-<div class="ttc" id="astructnetwork__types_1_1TestSolveParam_html"><div class="ttname"><a href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a></div><div class="ttdoc">Simple task sent structure.</div><div class="ttdef"><b>Definition</b> networkTypes.h:38</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a7080212848a14fc5099fbf63feeafd2c" name="a7080212848a14fc5099fbf63feeafd2c"></a>
@@ -764,15 +690,7 @@ Public Member Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ.">ClusterConfigController::ConnectQ</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   64</span>                                                                                                     {</div>
-<div class="line"><span class="lineno">   65</span>  <a class="code hl_struct" href="structnetwork__types_1_1TestSolveParam.html">network_types::TestSolveParam</a> ts(*req-&gt;getJsonObject());</div>
-<div class="line"><span class="lineno">   66</span>  <span class="keyword">auto</span> json_output = main_node_service_-&gt;SendToExecution(ts);</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>  <span class="keyword">auto</span> http_response = HttpResponse::newHttpJsonResponse(json_output);</div>
-<div class="line"><span class="lineno">   69</span>  http_response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(json_output[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   70</span>  callback(http_response);</div>
-<div class="line"><span class="lineno">   71</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

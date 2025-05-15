@@ -192,14 +192,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   92</span>                                                                                                :</div>
-<div class="line"><span class="lineno">   93</span>    <a class="code hl_function" href="classrest__utils_1_1AuthHandler.html#abded3b6d0da7cb2276b5be3e443fcd2e">AuthHandler</a>(active),</div>
-<div class="line"><span class="lineno">   94</span>    <a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">user_</a>(user),</div>
-<div class="line"><span class="lineno">   95</span>    <a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">password_</a>(password) {}</div>
-<div class="ttc" id="aclassrest__utils_1_1AuthHandler_html_abded3b6d0da7cb2276b5be3e443fcd2e"><div class="ttname"><a href="classrest__utils_1_1AuthHandler.html#abded3b6d0da7cb2276b5be3e443fcd2e">rest_utils::AuthHandler::AuthHandler</a></div><div class="ttdeci">AuthHandler(bool active=true)</div><div class="ttdef"><b>Definition</b> restUtils.cpp:84</div></div>
-<div class="ttc" id="aclassrest__utils_1_1BasicAuthHandler_html_a64576a6b73807edd59a62ce65f361d9b"><div class="ttname"><a href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">rest_utils::BasicAuthHandler::user_</a></div><div class="ttdeci">std::string user_</div><div class="ttdef"><b>Definition</b> restUtils.h:95</div></div>
-<div class="ttc" id="aclassrest__utils_1_1BasicAuthHandler_html_ae751749c16d3947235526b9447570b1d"><div class="ttname"><a href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">rest_utils::BasicAuthHandler::password_</a></div><div class="ttdeci">std::string password_</div><div class="ttdef"><b>Definition</b> restUtils.h:96</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a07f784dc23e3a6f5ec250a2104f9a136" name="a07f784dc23e3a6f5ec250a2104f9a136"></a>
@@ -254,19 +247,7 @@ Protected Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Implements <a class="el" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac">rest_utils::AuthHandler</a>.</p>
-<div class="fragment"><div class="line"><span class="lineno">   97</span>                                         {</div>
-<div class="line"><span class="lineno">   98</span>  <span class="keywordflow">if</span> (!curl) {</div>
-<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1CurlError.html">shared::CurlError</a>(<span class="stringliteral">&quot;Curl object in null&quot;</span>);</div>
-<div class="line"><span class="lineno">  100</span>  }</div>
-<div class="line"><span class="lineno">  101</span>  <span class="keywordflow">if</span> (<a class="code hl_variable" href="classrest__utils_1_1AuthHandler.html#a53c2e5583410fd914c2ecec1a587c9dd">active_</a>) {</div>
-<div class="line"><span class="lineno">  102</span>    curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);</div>
-<div class="line"><span class="lineno">  103</span>    curl_easy_setopt(curl, CURLOPT_USERNAME, <a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">user_</a>.c_str());</div>
-<div class="line"><span class="lineno">  104</span>    curl_easy_setopt(curl, CURLOPT_PASSWORD, <a class="code hl_variable" href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">password_</a>.c_str());</div>
-<div class="line"><span class="lineno">  105</span>  }</div>
-<div class="line"><span class="lineno">  106</span>}</div>
-<div class="ttc" id="aclassrest__utils_1_1AuthHandler_html_a53c2e5583410fd914c2ecec1a587c9dd"><div class="ttname"><a href="classrest__utils_1_1AuthHandler.html#a53c2e5583410fd914c2ecec1a587c9dd">rest_utils::AuthHandler::active_</a></div><div class="ttdeci">bool active_</div><div class="ttdoc">Can toggle off authorization.</div><div class="ttdef"><b>Definition</b> restUtils.h:77</div></div>
-<div class="ttc" id="aclassshared_1_1CurlError_html"><div class="ttname"><a href="classshared_1_1CurlError.html">shared::CurlError</a></div><div class="ttdoc">Curl class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:146</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classrest__utils_1_1AuthHandler.html#a53c2e5583410fd914c2ecec1a587c9dd">rest_utils::AuthHandler::active_</a>, <a class="el" href="classrest__utils_1_1BasicAuthHandler.html#ae751749c16d3947235526b9447570b1d">password_</a>, and <a class="el" href="classrest__utils_1_1BasicAuthHandler.html#a64576a6b73807edd59a62ce65f361d9b">user_</a>.</p>
 
 </div>

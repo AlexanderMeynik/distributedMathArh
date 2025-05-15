@@ -186,58 +186,7 @@ Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>response_body </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   20</span>                                          {</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>  <a class="code hl_class" href="classrest__utils_1_1CurlWrapper.html">CurlWrapper</a> curl_wrapper;</div>
-<div class="line"><span class="lineno">   23</span>  <span class="keywordflow">if</span> (!curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>()) {</div>
-<div class="line"><span class="lineno">   24</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1CurlError.html">shared::CurlError</a>(<span class="stringliteral">&quot;Failed to initialize CURL&quot;</span>);</div>
-<div class="line"><span class="lineno">   25</span>  }</div>
-<div class="line"><span class="lineno">   26</span> </div>
-<div class="line"><span class="lineno">   27</span>  std::string full_url = host + path;</div>
-<div class="line"><span class="lineno">   28</span>  curl_easy_setopt(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLOPT_URL, full_url.c_str());</div>
-<div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>  auth_handler-&gt;<a class="code hl_function" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d">AddAuthorization</a>(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>());</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>  curl_easy_setopt(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLOPT_CUSTOMREQUEST, method.c_str());</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>  <span class="keyword">struct </span>curl_slist *headers = <span class="keyword">nullptr</span>;</div>
-<div class="line"><span class="lineno">   35</span>  <span class="keywordflow">if</span> (!data.empty()) {</div>
-<div class="line"><span class="lineno">   36</span>    headers = curl_slist_append(headers, <span class="stringliteral">&quot;Content-Type: application/json&quot;</span>);</div>
-<div class="line"><span class="lineno">   37</span>    curl_easy_setopt(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLOPT_POSTFIELDS, data.c_str());</div>
-<div class="line"><span class="lineno">   38</span>    curl_easy_setopt(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLOPT_POSTFIELDSIZE, data.size());</div>
-<div class="line"><span class="lineno">   39</span>  }</div>
-<div class="line"><span class="lineno">   40</span> </div>
-<div class="line"><span class="lineno">   41</span>  curl_easy_setopt(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLOPT_HTTPHEADER, headers);</div>
-<div class="line"><span class="lineno">   42</span> </div>
-<div class="line"><span class="lineno">   43</span>  std::string response_body;</div>
-<div class="line"><span class="lineno">   44</span>  curl_easy_setopt(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLOPT_WRITEFUNCTION, WriteCallback);</div>
-<div class="line"><span class="lineno">   45</span>  curl_easy_setopt(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLOPT_WRITEDATA, &amp;response_body);</div>
-<div class="line"><span class="lineno">   46</span> </div>
-<div class="line"><span class="lineno">   47</span>  CURLcode res = curl_easy_perform(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>());</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>  <span class="keywordtype">long</span> http_code = 0;</div>
-<div class="line"><span class="lineno">   50</span>  <span class="keywordflow">if</span> (res == CURLE_OK) {</div>
-<div class="line"><span class="lineno">   51</span>    curl_easy_getinfo(curl_wrapper.<a class="code hl_function" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">Get</a>(), CURLINFO_RESPONSE_CODE, &amp;http_code);</div>
-<div class="line"><span class="lineno">   52</span>  }</div>
-<div class="line"><span class="lineno">   53</span> </div>
-<div class="line"><span class="lineno">   54</span>  curl_slist_free_all(headers);</div>
-<div class="line"><span class="lineno">   55</span> </div>
-<div class="line"><span class="lineno">   56</span>  <span class="keywordflow">if</span> (res != CURLE_OK) {</div>
-<div class="line"><span class="lineno">   57</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1CurlError.html">shared::CurlError</a>(std::string(curl_easy_strerror(res)));</div>
-<div class="line"><span class="lineno">   58</span>  }</div>
-<div class="line"><span class="lineno">   59</span> </div>
-<div class="line"><span class="lineno">   60</span>  <span class="keywordflow">if</span> (http_code &gt;= 400) {</div>
-<div class="line"><span class="lineno">   61</span>    <span class="keywordflow">throw</span> <a class="code hl_class" href="classshared_1_1HttpError.html">shared::HttpError</a>(http_code, response_body);</div>
-<div class="line"><span class="lineno">   62</span>  }</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>  <span class="keywordflow">return</span> response_body;</div>
-<div class="line"><span class="lineno">   65</span>}</div>
-<div class="ttc" id="aclassrest__utils_1_1AuthHandler_html_a01f2f91d8883119d6c033c0a6e028b0d"><div class="ttname"><a href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d">rest_utils::AuthHandler::AddAuthorization</a></div><div class="ttdeci">void AddAuthorization(CURL *curl)</div><div class="ttdef"><b>Definition</b> restUtils.cpp:86</div></div>
-<div class="ttc" id="aclassrest__utils_1_1CurlWrapper_html"><div class="ttname"><a href="classrest__utils_1_1CurlWrapper.html">rest_utils::CurlWrapper</a></div><div class="ttdoc">Lock like class to handler curl initialization and free.</div><div class="ttdef"><b>Definition</b> restUtils.h:47</div></div>
-<div class="ttc" id="aclassrest__utils_1_1CurlWrapper_html_a3aff6fcd40d180ad29a3a886a59527d3"><div class="ttname"><a href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">rest_utils::CurlWrapper::Get</a></div><div class="ttdeci">CURL * Get()</div><div class="ttdef"><b>Definition</b> restUtils.cpp:76</div></div>
-<div class="ttc" id="aclassshared_1_1CurlError_html"><div class="ttname"><a href="classshared_1_1CurlError.html">shared::CurlError</a></div><div class="ttdoc">Curl class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:146</div></div>
-<div class="ttc" id="aclassshared_1_1HttpError_html"><div class="ttname"><a href="classshared_1_1HttpError.html">shared::HttpError</a></div><div class="ttdoc">HttpError class.</div><div class="ttdef"><b>Definition</b> errorHandling.h:141</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d">rest_utils::AuthHandler::AddAuthorization()</a>, and <a class="el" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3">rest_utils::CurlWrapper::Get()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>

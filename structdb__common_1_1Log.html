@@ -178,27 +178,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   92</span>                           {</div>
-<div class="line"><span class="lineno">   93</span>  <a class="code hl_variable" href="structdb__common_1_1Log.html#aab3a0952f999a911a3eee6cc119dd63b">log_id</a> = row[<span class="stringliteral">&quot;log_id&quot;</span>].as&lt;<a class="code hl_typedef" href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">IndexType</a>&gt;();</div>
-<div class="line"><span class="lineno">   94</span>  <a class="code hl_variable" href="structdb__common_1_1Log.html#a77e102171fb7698a085f18e1b8f482c1">node_id</a> = std::move(GetOpt&lt;IndexType&gt;(row[<span class="stringliteral">&quot;node_id&quot;</span>]));</div>
-<div class="line"><span class="lineno">   95</span>  <a class="code hl_variable" href="structdb__common_1_1Log.html#a79353037754470f3e415735407e16995">experiment_id</a> = std::move(GetOpt&lt;IndexType&gt;(row[<span class="stringliteral">&quot;experiment_id&quot;</span>]));</div>
-<div class="line"><span class="lineno">   96</span> </div>
-<div class="line"><span class="lineno">   97</span>  <span class="keyword">auto</span> sev = row[<span class="stringliteral">&quot;severity&quot;</span>].as&lt;std::string&gt;();</div>
-<div class="line"><span class="lineno">   98</span>  <a class="code hl_variable" href="structdb__common_1_1Log.html#a20b305cdd195b28031c455e8c3495d1c">severity</a> = <a class="code hl_variable" href="namespaceshared.html#af570bd9365898d829147c73ee171e266">shared::kStrToSev</a>.at(sev);</div>
-<div class="line"><span class="lineno">   99</span>  <a class="code hl_variable" href="structdb__common_1_1Log.html#a829d1808d5ddf4ac7c84a84a00b2d767">message</a> = row[<span class="stringliteral">&quot;message&quot;</span>].as&lt;std::string&gt;();</div>
-<div class="line"><span class="lineno">  100</span> </div>
-<div class="line"><span class="lineno">  101</span>  <a class="code hl_variable" href="structdb__common_1_1Log.html#afafeed9c2dff50b730f00a627610e404">timestamp</a> = *<a class="code hl_function" href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">StrToTimepoint</a>(row[<span class="stringliteral">&quot;timestamp&quot;</span>].as&lt;std::string&gt;());</div>
-<div class="line"><span class="lineno">  102</span>}</div>
-<div class="ttc" id="anamespacedb__common_html_a0bf5bdeb7108eed0c8454cbcd5c39615"><div class="ttname"><a href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">db_common::IndexType</a></div><div class="ttdeci">uint64_t IndexType</div><div class="ttdef"><b>Definition</b> dbCommon.h:20</div></div>
-<div class="ttc" id="anamespaceshared_html_af570bd9365898d829147c73ee171e266"><div class="ttname"><a href="namespaceshared.html#af570bd9365898d829147c73ee171e266">shared::kStrToSev</a></div><div class="ttdeci">const std::unordered_map&lt; std::string, Severity &gt; kStrToSev</div><div class="ttdoc">String to severity lookup.</div><div class="ttdef"><b>Definition</b> errorHandling.h:69</div></div>
-<div class="ttc" id="anamespacetiming_html_ad625aa0dba4dadd42847e1d84c062d07"><div class="ttname"><a href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">timing::StrToTimepoint</a></div><div class="ttdeci">std::optional&lt; TimepointType &gt; StrToTimepoint(std::string_view ts)</div><div class="ttdoc">Retrives TimepointType from a given string.</div><div class="ttdef"><b>Definition</b> timingUtils.cpp:29</div></div>
-<div class="ttc" id="astructdb__common_1_1Log_html_a20b305cdd195b28031c455e8c3495d1c"><div class="ttname"><a href="structdb__common_1_1Log.html#a20b305cdd195b28031c455e8c3495d1c">db_common::Log::severity</a></div><div class="ttdeci">shared::Severity severity</div><div class="ttdef"><b>Definition</b> daoClasses.h:174</div></div>
-<div class="ttc" id="astructdb__common_1_1Log_html_a77e102171fb7698a085f18e1b8f482c1"><div class="ttname"><a href="structdb__common_1_1Log.html#a77e102171fb7698a085f18e1b8f482c1">db_common::Log::node_id</a></div><div class="ttdeci">std::optional&lt; IndexType &gt; node_id</div><div class="ttdef"><b>Definition</b> daoClasses.h:172</div></div>
-<div class="ttc" id="astructdb__common_1_1Log_html_a79353037754470f3e415735407e16995"><div class="ttname"><a href="structdb__common_1_1Log.html#a79353037754470f3e415735407e16995">db_common::Log::experiment_id</a></div><div class="ttdeci">std::optional&lt; IndexType &gt; experiment_id</div><div class="ttdef"><b>Definition</b> daoClasses.h:173</div></div>
-<div class="ttc" id="astructdb__common_1_1Log_html_a829d1808d5ddf4ac7c84a84a00b2d767"><div class="ttname"><a href="structdb__common_1_1Log.html#a829d1808d5ddf4ac7c84a84a00b2d767">db_common::Log::message</a></div><div class="ttdeci">std::string message</div><div class="ttdef"><b>Definition</b> daoClasses.h:175</div></div>
-<div class="ttc" id="astructdb__common_1_1Log_html_aab3a0952f999a911a3eee6cc119dd63b"><div class="ttname"><a href="structdb__common_1_1Log.html#aab3a0952f999a911a3eee6cc119dd63b">db_common::Log::log_id</a></div><div class="ttdeci">IndexType log_id</div><div class="ttdef"><b>Definition</b> daoClasses.h:171</div></div>
-<div class="ttc" id="astructdb__common_1_1Log_html_afafeed9c2dff50b730f00a627610e404"><div class="ttname"><a href="structdb__common_1_1Log.html#afafeed9c2dff50b730f00a627610e404">db_common::Log::timestamp</a></div><div class="ttdeci">TimepointType timestamp</div><div class="ttdef"><b>Definition</b> daoClasses.h:176</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="structdb__common_1_1Log.html#a79353037754470f3e415735407e16995">experiment_id</a>, <a class="el" href="namespaceshared.html#af570bd9365898d829147c73ee171e266">shared::kStrToSev</a>, <a class="el" href="structdb__common_1_1Log.html#aab3a0952f999a911a3eee6cc119dd63b">log_id</a>, <a class="el" href="structdb__common_1_1Log.html#a829d1808d5ddf4ac7c84a84a00b2d767">message</a>, <a class="el" href="structdb__common_1_1Log.html#a77e102171fb7698a085f18e1b8f482c1">node_id</a>, <a class="el" href="structdb__common_1_1Log.html#a20b305cdd195b28031c455e8c3495d1c">severity</a>, <a class="el" href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">timing::StrToTimepoint()</a>, and <a class="el" href="structdb__common_1_1Log.html#afafeed9c2dff50b730f00a627610e404">timestamp</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -231,10 +211,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  103</span>                                         {</div>
-<div class="line"><span class="lineno">  104</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="structdb__common_1_1Log.html#aab3a0952f999a911a3eee6cc119dd63b">log_id</a> == rhs.log_id;</div>
-<div class="line"><span class="lineno">  105</span>}</div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="structdb__common_1_1Log.html#aab3a0952f999a911a3eee6cc119dd63b">log_id</a>.</p>
 
 </div>

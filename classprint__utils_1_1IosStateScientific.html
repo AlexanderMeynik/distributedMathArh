@@ -191,21 +191,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  115</span>                                                                        :</div>
-<div class="line"><span class="lineno">  116</span>    <a class="code hl_function" href="classprint__utils_1_1IosStateScientific.html#af264584304c274dc73475607f6d317d8">IosStatePreserve</a>(out),</div>
-<div class="line"><span class="lineno">  117</span>    <a class="code hl_variable" href="classprint__utils_1_1IosStateScientific.html#a649b51c667bbe8dcccea89af540db3bd">old_precision_</a>(out.precision()) {</div>
-<div class="line"><span class="lineno">  118</span> </div>
-<div class="line"><span class="lineno">  119</span>  <span class="keywordflow">if</span> (precision &gt; 10 * kDefaultPrec) {</div>
-<div class="line"><span class="lineno">  120</span>    <span class="keywordflow">throw</span> outOfRange(precision, 0, 10 * kDefaultPrec);</div>
-<div class="line"><span class="lineno">  121</span>  }</div>
-<div class="line"><span class="lineno">  122</span> </div>
-<div class="line"><span class="lineno">  123</span>  out.precision(precision);</div>
-<div class="line"><span class="lineno">  124</span> </div>
-<div class="line"><span class="lineno">  125</span>  out &lt;&lt; std::fixed &lt;&lt; std::scientific;</div>
-<div class="line"><span class="lineno">  126</span>}</div>
-<div class="ttc" id="aclassprint__utils_1_1IosStateScientific_html_a649b51c667bbe8dcccea89af540db3bd"><div class="ttname"><a href="classprint__utils_1_1IosStateScientific.html#a649b51c667bbe8dcccea89af540db3bd">print_utils::IosStateScientific::old_precision_</a></div><div class="ttdeci">size_t old_precision_</div><div class="ttdef"><b>Definition</b> printUtils.h:232</div></div>
-<div class="ttc" id="aclassprint__utils_1_1IosStateScientific_html_af264584304c274dc73475607f6d317d8"><div class="ttname"><a href="classprint__utils_1_1IosStateScientific.html#af264584304c274dc73475607f6d317d8">print_utils::IosStateScientific::IosStatePreserve</a></div><div class="ttdeci">IosStatePreserve(std::ostream &amp;out)</div><div class="ttdef"><b>Definition</b> printUtils.cpp:103</div></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a2efc994c73dafb7a25c3c6e76da4e253" name="a2efc994c73dafb7a25c3c6e76da4e253"></a>
@@ -222,14 +208,7 @@ Protected Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  128</span>                                        {</div>
-<div class="line"><span class="lineno">  129</span> </div>
-<div class="line"><span class="lineno">  130</span>  <a class="code hl_variable" href="classprint__utils_1_1IosStatePreserve.html#a3e51c256c0cd8ab4aa3980c864b294e9">out_</a>.flags(<a class="code hl_variable" href="classprint__utils_1_1IosStatePreserve.html#af2f78012c01961997a8963e1d361ebed">flags_</a>);</div>
-<div class="line"><span class="lineno">  131</span>  <a class="code hl_variable" href="classprint__utils_1_1IosStatePreserve.html#a3e51c256c0cd8ab4aa3980c864b294e9">out_</a>.precision(<a class="code hl_variable" href="classprint__utils_1_1IosStateScientific.html#a649b51c667bbe8dcccea89af540db3bd">old_precision_</a>);</div>
-<div class="line"><span class="lineno">  132</span>}</div>
-<div class="ttc" id="aclassprint__utils_1_1IosStatePreserve_html_a3e51c256c0cd8ab4aa3980c864b294e9"><div class="ttname"><a href="classprint__utils_1_1IosStatePreserve.html#a3e51c256c0cd8ab4aa3980c864b294e9">print_utils::IosStatePreserve::out_</a></div><div class="ttdeci">std::ostream &amp; out_</div><div class="ttdef"><b>Definition</b> printUtils.h:217</div></div>
-<div class="ttc" id="aclassprint__utils_1_1IosStatePreserve_html_af2f78012c01961997a8963e1d361ebed"><div class="ttname"><a href="classprint__utils_1_1IosStatePreserve.html#af2f78012c01961997a8963e1d361ebed">print_utils::IosStatePreserve::flags_</a></div><div class="ttdeci">std::ios_base::fmtflags flags_</div><div class="ttdef"><b>Definition</b> printUtils.h:216</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classprint__utils_1_1IosStatePreserve.html#af2f78012c01961997a8963e1d361ebed">print_utils::IosStatePreserve::flags_</a>, <a class="el" href="classprint__utils_1_1IosStateScientific.html#a649b51c667bbe8dcccea89af540db3bd">old_precision_</a>, and <a class="el" href="classprint__utils_1_1IosStatePreserve.html#a3e51c256c0cd8ab4aa3980c864b294e9">print_utils::IosStatePreserve::out_</a>.</p>
 
 </div>
@@ -284,10 +263,7 @@ Protected Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">  103</span>                                                  : <a class="code hl_variable" href="classprint__utils_1_1IosStatePreserve.html#a3e51c256c0cd8ab4aa3980c864b294e9">out_</a>(out) {</div>
-<div class="line"><span class="lineno">  104</span>  <a class="code hl_variable" href="classprint__utils_1_1IosStatePreserve.html#af2f78012c01961997a8963e1d361ebed">flags_</a> = out.flags();</div>
-<div class="line"><span class="lineno">  105</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>

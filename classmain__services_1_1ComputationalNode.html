@@ -158,11 +158,7 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   48</span>                      {</div>
-<div class="line"><span class="lineno">   49</span>    <span class="keywordflow">return</span> <a class="code hl_variable" href="classmain__services_1_1ComputationalNode.html#a497f1d65569c61d8bf5fd8c5ca6d2536">http_client_</a>-&gt;getHost() + <span class="stringliteral">&quot;:&quot;</span> + std::to_string(<a class="code hl_variable" href="classmain__services_1_1ComputationalNode.html#a497f1d65569c61d8bf5fd8c5ca6d2536">http_client_</a>-&gt;getPort());</div>
-<div class="line"><span class="lineno">   50</span>  }</div>
-<div class="ttc" id="aclassmain__services_1_1ComputationalNode_html_a497f1d65569c61d8bf5fd8c5ca6d2536"><div class="ttname"><a href="classmain__services_1_1ComputationalNode.html#a497f1d65569c61d8bf5fd8c5ca6d2536">main_services::ComputationalNode::http_client_</a></div><div class="ttdeci">HttpClientPtr http_client_</div><div class="ttdoc">http client used to send requests</div><div class="ttdef"><b>Definition</b> WorkerManagementService.h:42</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classmain__services_1_1ComputationalNode.html#a497f1d65569c61d8bf5fd8c5ca6d2536">http_client_</a>.</p>
 
 </div>
@@ -198,15 +194,7 @@ Public Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   56</span>                                                   {</div>
-<div class="line"><span class="lineno">   57</span>    <a class="code hl_variable" href="classmain__services_1_1ComputationalNode.html#aeba0a42623f05f3143beaecef3ecd11c">bench_result_</a> = print_utils::JsonToContinuous&lt;BenchResVec&gt;(val, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">if</span> (<a class="code hl_variable" href="classmain__services_1_1ComputationalNode.html#a24da2f4eb439899dd8acb868c0448b66">node_speed_</a>.size() == 0) {</div>
-<div class="line"><span class="lineno">   59</span>      <a class="code hl_variable" href="classmain__services_1_1ComputationalNode.html#a24da2f4eb439899dd8acb868c0448b66">node_speed_</a> = kBenchInfinity / <a class="code hl_variable" href="classmain__services_1_1ComputationalNode.html#aeba0a42623f05f3143beaecef3ecd11c">bench_result_</a>;</div>
-<div class="line"><span class="lineno">   60</span>    }</div>
-<div class="line"><span class="lineno">   61</span>  }</div>
-<div class="ttc" id="aclassmain__services_1_1ComputationalNode_html_a24da2f4eb439899dd8acb868c0448b66"><div class="ttname"><a href="classmain__services_1_1ComputationalNode.html#a24da2f4eb439899dd8acb868c0448b66">main_services::ComputationalNode::node_speed_</a></div><div class="ttdeci">BenchResVec node_speed_</div><div class="ttdoc">weighed speed measure of node</div><div class="ttdef"><b>Definition</b> WorkerManagementService.h:46</div></div>
-<div class="ttc" id="aclassmain__services_1_1ComputationalNode_html_aeba0a42623f05f3143beaecef3ecd11c"><div class="ttname"><a href="classmain__services_1_1ComputationalNode.html#aeba0a42623f05f3143beaecef3ecd11c">main_services::ComputationalNode::bench_result_</a></div><div class="ttdeci">BenchResVec bench_result_</div><div class="ttdoc">time measurements of worker performance</div><div class="ttdef"><b>Definition</b> WorkerManagementService.h:45</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classmain__services_1_1ComputationalNode.html#aeba0a42623f05f3143beaecef3ecd11c">bench_result_</a>, and <a class="el" href="classmain__services_1_1ComputationalNode.html#a24da2f4eb439899dd8acb868c0448b66">node_speed_</a>.</p>
 
 </div>

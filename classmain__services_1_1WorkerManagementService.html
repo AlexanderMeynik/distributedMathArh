@@ -159,11 +159,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   85</span>                            {</div>
-<div class="line"><span class="lineno">   86</span>    normalized_ = <a class="code hl_function" href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2">DefaultBench</a>(0);</div>
-<div class="line"><span class="lineno">   87</span>  }</div>
-<div class="ttc" id="anamespaceshared_html_a2eee87ed81945fe1ee927edb93e2bdf2"><div class="ttname"><a href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2">shared::DefaultBench</a></div><div class="ttdeci">BenchResVec DefaultBench(BenchResultType init=1)</div><div class="ttdoc">Returns properly resized valarray for bench works.</div><div class="ttdef"><b>Definition</b> sharedDeclarations.cpp:10</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2">shared::DefaultBench()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -207,32 +203,7 @@ Public Member Functions</h2></td></tr>
 <dl class="section return"><dt>Returns</dt><dd>empty Json::Value </dd>
 <dd>
 Json:: Value with "status"=409 - if node exists and is Active </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   22</span>                                                                        {</div>
-<div class="line"><span class="lineno">   23</span>  <span class="keyword">using </span><a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">NodeStatus::ACTIVE</a>;</div>
-<div class="line"><span class="lineno">   24</span>  <span class="keyword">using </span><a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">NodeStatus::INACTIVE</a>;</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>  Json::Value res_JSON;</div>
-<div class="line"><span class="lineno">   27</span>  <span class="keywordflow">if</span> (</div>
-<div class="line"><span class="lineno">   28</span>      !worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>].count(host_port) &amp;&amp;</div>
-<div class="line"><span class="lineno">   29</span>          !worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>].count(host_port)</div>
-<div class="line"><span class="lineno">   30</span>      ) {</div>
-<div class="line"><span class="lineno">   31</span>    ComputationalNode cn;</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>    cn.http_client_ = HttpClient::newHttpClient(<span class="stringliteral">&quot;http://&quot;</span> + host_port);</div>
-<div class="line"><span class="lineno">   34</span>    cn.st_ = <a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>;</div>
-<div class="line"><span class="lineno">   35</span>    worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>][host_port] = std::move(cn);</div>
-<div class="line"><span class="lineno">   36</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><span class="lineno">   37</span>    <span class="keywordflow">if</span> (worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>].count(host_port)) {</div>
-<div class="line"><span class="lineno">   38</span>      res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
-<div class="line"><span class="lineno">   39</span>      res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Worker node {} is already connected to cluster!&quot;</span>, host_port);</div>
-<div class="line"><span class="lineno">   40</span>      <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   41</span>    }</div>
-<div class="line"><span class="lineno">   42</span>  }</div>
-<div class="line"><span class="lineno">   43</span>  <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   44</span>}</div>
-<div class="ttc" id="anamespacemain__services_html_a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115"><div class="ttname"><a href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::NodeStatus::ACTIVE</a></div><div class="ttdeci">@ ACTIVE</div><div class="ttdoc">Node is connected to cluster and is ready to receive it's tasks.</div></div>
-<div class="ttc" id="anamespacemain__services_html_a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2"><div class="ttname"><a href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::NodeStatus::INACTIVE</a></div><div class="ttdeci">@ INACTIVE</div><div class="ttdoc">Node is present in cluster but is not ready to recieve tasks.</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, <a class="el" href="classmain__services_1_1ComputationalNode.html#a497f1d65569c61d8bf5fd8c5ca6d2536">main_services::ComputationalNode::http_client_</a>, <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>, and <a class="el" href="classmain__services_1_1ComputationalNode.html#a2e507217aa198f219632b1c7570c6781">main_services::ComputationalNode::st_</a>.</p>
 
 </div>
@@ -261,10 +232,7 @@ Json:: Value with "status"=409 - if node exists and is Active </dd></dl>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>begin iterator to map of Active nodes </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115" title="Node is connected to cluster and is ready to receive it&#39;s tasks.">NodeStatus::ACTIVE</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  128</span>               {</div>
-<div class="line"><span class="lineno">  129</span>    <span class="keywordflow">return</span> worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">NodeStatus::ACTIVE</a>].begin();</div>
-<div class="line"><span class="lineno">  130</span>  }</div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>.</p>
 
 </div>
@@ -308,37 +276,7 @@ Json:: Value with "status"=409 - if node exists and is Active </dd></dl>
 Json:: Value with "status"=504 - if worker cannot be accessed for specified host_port </dd>
 <dd>
 Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   47</span>                                                                            {</div>
-<div class="line"><span class="lineno">   48</span>  <span class="keyword">using </span><a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">NodeStatus::ACTIVE</a>;</div>
-<div class="line"><span class="lineno">   49</span>  <span class="keyword">using </span><a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">NodeStatus::INACTIVE</a>;</div>
-<div class="line"><span class="lineno">   50</span> </div>
-<div class="line"><span class="lineno">   51</span>  Json::Value res_JSON;</div>
-<div class="line"><span class="lineno">   52</span>  <span class="keyword">auto</span> [code, resp] =</div>
-<div class="line"><span class="lineno">   53</span>      worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>][host_port].http_client_-&gt;sendRequest(req1);</div>
-<div class="line"><span class="lineno">   54</span> </div>
-<div class="line"><span class="lineno">   55</span>  <span class="keywordflow">if</span> (code == drogon::ReqResult::BadServerAddress) {</div>
-<div class="line"><span class="lineno">   56</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Unable to access worker on {}! Is working node running?&quot;</span>, host_port);</div>
-<div class="line"><span class="lineno">   57</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k504GatewayTimeout;</div>
-<div class="line"><span class="lineno">   58</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   59</span>  }</div>
-<div class="line"><span class="lineno">   60</span>  <span class="keywordflow">if</span> (resp-&gt;getStatusCode() &gt;= HttpStatusCode::k400BadRequest) {</div>
-<div class="line"><span class="lineno">   61</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Error occurred during worker {} connection!&quot;</span>, host_port);</div>
-<div class="line"><span class="lineno">   62</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = resp-&gt;getStatusCode();</div>
-<div class="line"><span class="lineno">   63</span>    res_JSON[<span class="stringliteral">&quot;node_output&quot;</span>] = resp-&gt;getJsonObject()-&gt;toStyledString();</div>
-<div class="line"><span class="lineno">   64</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   65</span>  }</div>
-<div class="line"><span class="lineno">   66</span> </div>
-<div class="line"><span class="lineno">   67</span>  <span class="keyword">auto</span> jsoncpp = resp-&gt;getJsonObject();</div>
-<div class="line"><span class="lineno">   68</span> </div>
-<div class="line"><span class="lineno">   69</span>  worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>][host_port].RecomputeCoefficients((*jsoncpp)[<span class="stringliteral">&quot;bench&quot;</span>]);</div>
-<div class="line"><span class="lineno">   70</span> </div>
-<div class="line"><span class="lineno">   71</span>  MoveNode(host_port, <a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>, <a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>);</div>
-<div class="line"><span class="lineno">   72</span>  normalized_ += worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>][host_port].node_speed_;</div>
-<div class="line"><span class="lineno">   73</span> </div>
-<div class="line"><span class="lineno">   74</span>  res_JSON = *jsoncpp;</div>
-<div class="line"><span class="lineno">   75</span>  <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   76</span>}</div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, and <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>.</p>
 
 </div>
@@ -373,45 +311,7 @@ Json:: Value with "status"=409 - if there is no Active node with specified host 
 Json:: Value with "status"=504 - if worker cannot be accessed for specified host_port </dd>
 <dd>
 Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   78</span>                                                                            {</div>
-<div class="line"><span class="lineno">   79</span>  <span class="keyword">using </span><a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">NodeStatus::ACTIVE</a>;</div>
-<div class="line"><span class="lineno">   80</span>  <span class="keyword">using </span><a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">NodeStatus::INACTIVE</a>;</div>
-<div class="line"><span class="lineno">   81</span>  Json::Value res_JSON;</div>
-<div class="line"><span class="lineno">   82</span> </div>
-<div class="line"><span class="lineno">   83</span>  <span class="keywordflow">if</span> (!worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>].count(host_port)) {</div>
-<div class="line"><span class="lineno">   84</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k409Conflict;</div>
-<div class="line"><span class="lineno">   85</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Worker node {} was not connected to cluster!&quot;</span>, host_port);</div>
-<div class="line"><span class="lineno">   86</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   87</span>  }</div>
-<div class="line"><span class="lineno">   88</span>  <span class="keyword">auto</span> req1 = HttpRequest::newHttpRequest();</div>
-<div class="line"><span class="lineno">   89</span> </div>
-<div class="line"><span class="lineno">   90</span>  req1-&gt;setPath(<span class="stringliteral">&quot;/v1/Disconnect&quot;</span>);</div>
-<div class="line"><span class="lineno">   91</span>  req1-&gt;setMethod(Post);</div>
-<div class="line"><span class="lineno">   92</span> </div>
-<div class="line"><span class="lineno">   93</span>  <span class="keyword">auto</span> <a class="code hl_namespace" href="namespacecommon__types.html">ct</a> = HttpClient::newHttpClient(host_port);</div>
-<div class="line"><span class="lineno">   94</span>  <span class="keyword">auto</span> [code, resp] = worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>][host_port].http_client_-&gt;sendRequest(req1);</div>
-<div class="line"><span class="lineno">   95</span> </div>
-<div class="line"><span class="lineno">   96</span>  <span class="keywordflow">if</span> (code == drogon::ReqResult::BadServerAddress) {</div>
-<div class="line"><span class="lineno">   97</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Unable to access worker on {}! Is working node running?&quot;</span>, host_port);</div>
-<div class="line"><span class="lineno">   98</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k504GatewayTimeout;</div>
-<div class="line"><span class="lineno">   99</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">  100</span>  }</div>
-<div class="line"><span class="lineno">  101</span> </div>
-<div class="line"><span class="lineno">  102</span>  <span class="keywordflow">if</span> (resp-&gt;getStatusCode() &gt;= HttpStatusCode::k400BadRequest) {</div>
-<div class="line"><span class="lineno">  103</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Unable to disconnect worker {} from cluster!&quot;</span>, host_port);</div>
-<div class="line"><span class="lineno">  104</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = resp-&gt;getStatusCode();</div>
-<div class="line"><span class="lineno">  105</span>    res_JSON[<span class="stringliteral">&quot;node_output&quot;</span>] = resp-&gt;getJsonObject()-&gt;toStyledString();</div>
-<div class="line"><span class="lineno">  106</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">  107</span>  }</div>
-<div class="line"><span class="lineno">  108</span>  res_JSON = *resp-&gt;getJsonObject();</div>
-<div class="line"><span class="lineno">  109</span> </div>
-<div class="line"><span class="lineno">  110</span>  MoveNode(host_port, <a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a>, <a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>);</div>
-<div class="line"><span class="lineno">  111</span>  normalized_ -= worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a>][host_port].node_speed_;</div>
-<div class="line"><span class="lineno">  112</span> </div>
-<div class="line"><span class="lineno">  113</span>  <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">  114</span>}</div>
-<div class="ttc" id="anamespacecommon__types_html"><div class="ttname"><a href="namespacecommon__types.html">common_types</a></div><div class="ttdoc">namespace for some common types used elsewhere</div><div class="ttdef"><b>Definition</b> commonTypes.h:13</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>, and <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2">main_services::INACTIVE</a>.</p>
 
 </div>
@@ -440,10 +340,7 @@ Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>end iterator to map of Active nodes </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115" title="Node is connected to cluster and is ready to receive it&#39;s tasks.">NodeStatus::ACTIVE</a> </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  137</span>             {</div>
-<div class="line"><span class="lineno">  138</span>    <span class="keywordflow">return</span> worker_nodes_[<a class="code hl_enumvalue" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">NodeStatus::ACTIVE</a>].end();</div>
-<div class="line"><span class="lineno">  139</span>  }</div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespacemain__services.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115">main_services::ACTIVE</a>.</p>
 
 </div>
@@ -465,25 +362,7 @@ Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd>
 
 <p>returns list of lists with all nodes meta information </p>
 <dl class="section return"><dt>Returns</dt><dd>Json::Value </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">    5</span>                                             {</div>
-<div class="line"><span class="lineno">    6</span>  Json::Value res;</div>
-<div class="line"><span class="lineno">    7</span>  <span class="keywordtype">int</span> j = 0;</div>
-<div class="line"><span class="lineno">    8</span>  <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;[status, map] : worker_nodes_) {</div>
-<div class="line"><span class="lineno">    9</span>    <span class="keywordtype">int</span> i = 0;</div>
-<div class="line"><span class="lineno">   10</span>    res[j][<span class="stringliteral">&quot;status&quot;</span>] = <a class="code hl_variable" href="namespacemain__services.html#a2bce54d73da5d9bb873529b1fac0394b">kNodeStatusToStr</a>.at(status);</div>
-<div class="line"><span class="lineno">   11</span>    <span class="keyword">auto</span> &amp;ss = res[j][<span class="stringliteral">&quot;data&quot;</span>];</div>
-<div class="line"><span class="lineno">   12</span>    <span class="keywordflow">for</span> (<span class="keyword">auto</span> &amp;[str, node] : map) {</div>
-<div class="line"><span class="lineno">   13</span>      ss[i][<span class="stringliteral">&quot;host&quot;</span>] = str;</div>
-<div class="line"><span class="lineno">   14</span>      ss[i][<span class="stringliteral">&quot;benchRes&quot;</span>] = <a class="code hl_function" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson</a>(node.bench_result_);</div>
-<div class="line"><span class="lineno">   15</span>      i++;</div>
-<div class="line"><span class="lineno">   16</span>    }</div>
-<div class="line"><span class="lineno">   17</span>    j++;</div>
-<div class="line"><span class="lineno">   18</span>  }</div>
-<div class="line"><span class="lineno">   19</span>  <span class="keywordflow">return</span> res;</div>
-<div class="line"><span class="lineno">   20</span>}</div>
-<div class="ttc" id="anamespacemain__services_html_a2bce54d73da5d9bb873529b1fac0394b"><div class="ttname"><a href="namespacemain__services.html#a2bce54d73da5d9bb873529b1fac0394b">main_services::kNodeStatusToStr</a></div><div class="ttdeci">const std::unordered_map&lt; const NodeStatus, std::string &gt; kNodeStatusToStr</div><div class="ttdoc">Look-up table to cast nodeStatus to string.</div><div class="ttdef"><b>Definition</b> WorkerManagementService.h:27</div></div>
-<div class="ttc" id="anamespaceprint__utils_html_a4c215113c5319155284729bedc2a4a21"><div class="ttname"><a href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson</a></div><div class="ttdeci">Json::Value ContinuousToJson(const Collection &amp;col, bool print_size=true, bool sizeless_format=false)</div><div class="ttdoc">Cast any one dimensional array to Json::value.</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson()</a>, and <a class="el" href="namespacemain__services.html#a2bce54d73da5d9bb873529b1fac0394b">main_services::kNodeStatusToStr</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -515,10 +394,7 @@ Json:: Value with "status"&gt;=400 - if any abnormal http code is received </dd>
       </table>
 </div><div class="memdoc">
 <dl class="section return"><dt>Returns</dt><dd>normalization coefficients for becnmark speed results </dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">  116</span>                                                        {</div>
-<div class="line"><span class="lineno">  117</span>  <span class="keywordflow">return</span> normalized_;</div>
-<div class="line"><span class="lineno">  118</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

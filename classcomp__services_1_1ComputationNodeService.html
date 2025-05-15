@@ -143,11 +143,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   18</span>                           {</div>
-<div class="line"><span class="lineno">   19</span>    <a class="code hl_function" href="classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2">RunBench</a>();</div>
-<div class="line"><span class="lineno">   20</span>  }</div>
-<div class="ttc" id="aclasscomp__services_1_1ComputationNodeService_html_aa64954e43d81cf885bad183fa7a3bdb2"><div class="ttname"><a href="classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2">comp_services::ComputationNodeService::RunBench</a></div><div class="ttdeci">void RunBench()</div><div class="ttdef"><b>Definition</b> CompNodeService.cpp:84</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2">RunBench()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -182,62 +178,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   32</span>                                                                   {</div>
-<div class="line"><span class="lineno">   33</span>  Json::Value res_JSON;</div>
-<div class="line"><span class="lineno">   34</span>  Json::Value val;</div>
-<div class="line"><span class="lineno">   35</span>  Json::Reader reader;</div>
-<div class="line"><span class="lineno">   36</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;connect&quot;</span>;</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>  <span class="keywordtype">bool</span> parsing_successful = reader.parse(req-&gt;bodyData(), val);</div>
-<div class="line"><span class="lineno">   39</span>  <span class="keywordflow">if</span> (!parsing_successful) {</div>
-<div class="line"><span class="lineno">   40</span>    val[<span class="stringliteral">&quot;status&quot;</span>] = HttpStatusCode::k415UnsupportedMediaType;</div>
-<div class="line"><span class="lineno">   41</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   42</span>  }</div>
-<div class="line"><span class="lineno">   43</span> </div>
-<div class="line"><span class="lineno">   44</span>  std::string ip = val[<span class="stringliteral">&quot;ip&quot;</span>].asString();</div>
-<div class="line"><span class="lineno">   45</span>  std::string name = val[<span class="stringliteral">&quot;name&quot;</span>].asString();</div>
-<div class="line"><span class="lineno">   46</span>  std::string user = val[<span class="stringliteral">&quot;user&quot;</span>].asString();</div>
-<div class="line"><span class="lineno">   47</span>  std::string pass = val[<span class="stringliteral">&quot;password&quot;</span>].asString();</div>
-<div class="line"><span class="lineno">   48</span> </div>
-<div class="line"><span class="lineno">   49</span>  res_JSON[<span class="stringliteral">&quot;input&quot;</span>] = ip;</div>
-<div class="line"><span class="lineno">   50</span>  res_JSON[<span class="stringliteral">&quot;name&quot;</span>] = name;</div>
-<div class="line"><span class="lineno">   51</span>  res_JSON[<span class="stringliteral">&quot;bench&quot;</span>] = <a class="code hl_function" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson</a>(bench_res_, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   52</span> </div>
-<div class="line"><span class="lineno">   53</span>  <span class="keywordflow">if</span> (consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">IsConnected</a>()) {</div>
-<div class="line"><span class="lineno">   54</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = HttpStatusCode::k409Conflict;</div>
-<div class="line"><span class="lineno">   55</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Node is already connected to RabbitMQ {}!&quot;</span>,</div>
-<div class="line"><span class="lineno">   56</span>                                      consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b">GetCString</a>());</div>
-<div class="line"><span class="lineno">   57</span>    <span class="comment">//todo remove user data</span></div>
-<div class="line"><span class="lineno">   58</span> </div>
-<div class="line"><span class="lineno">   59</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   60</span>  }</div>
-<div class="line"><span class="lineno">   61</span> </div>
-<div class="line"><span class="lineno">   62</span>  <span class="keyword">auto</span> c = <a class="code hl_function" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString</a>(ip, user, pass);</div>
-<div class="line"><span class="lineno">   63</span> </div>
-<div class="line"><span class="lineno">   64</span>  consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPConsumerService.html#a5dbefa27652bfd8061c4711cb19896dd">SetParameters</a>(c, name);</div>
-<div class="line"><span class="lineno">   65</span> </div>
-<div class="line"><span class="lineno">   66</span>  consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPConsumerService.html#ab74da76322394ebf90b8e20a5720b26f">SetMessageCallback</a>(n_message_callback);</div>
-<div class="line"><span class="lineno">   67</span> </div>
-<div class="line"><span class="lineno">   68</span>  <span class="keywordflow">try</span> {</div>
-<div class="line"><span class="lineno">   69</span>    consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c">Connect</a>();</div>
-<div class="line"><span class="lineno">   70</span>  }</div>
-<div class="line"><span class="lineno">   71</span>  <span class="keywordflow">catch</span> (std::runtime_error &amp;err) {</div>
-<div class="line"><span class="lineno">   72</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = HttpStatusCode::k409Conflict;</div>
-<div class="line"><span class="lineno">   73</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = fmt::format(<span class="stringliteral">&quot;Queue connection error msg :\&quot;{}\&quot;!&quot;</span>, err.what());</div>
-<div class="line"><span class="lineno">   74</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   75</span>  }</div>
-<div class="line"><span class="lineno">   76</span> </div>
-<div class="line"><span class="lineno">   77</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
-<div class="line"><span class="lineno">   78</span>  <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   79</span>}</div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPConsumerService_html_a5dbefa27652bfd8061c4711cb19896dd"><div class="ttname"><a href="classamqp__common_1_1AMQPConsumerService.html#a5dbefa27652bfd8061c4711cb19896dd">amqp_common::AMQPConsumerService::SetParameters</a></div><div class="ttdeci">void SetParameters(const std::string &amp;connection_string, const std::string &amp;queue_name)</div><div class="ttdef"><b>Definition</b> AMQPConsumerService.cpp:64</div></div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPConsumerService_html_ab74da76322394ebf90b8e20a5720b26f"><div class="ttname"><a href="classamqp__common_1_1AMQPConsumerService.html#ab74da76322394ebf90b8e20a5720b26f">amqp_common::AMQPConsumerService::SetMessageCallback</a></div><div class="ttdeci">void SetMessageCallback(MessageCallback callback)</div><div class="ttdoc">Sets message processing callback.</div><div class="ttdef"><b>Definition</b> AMQPConsumerService.cpp:68</div></div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_a32101b5272b54962ac6753c33ac9bd9c"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c">amqp_common::AMQPService::Connect</a></div><div class="ttdeci">void Connect()</div><div class="ttdoc">Starts event Loop for service.</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:85</div></div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_a713ae10fba89c84b0866758dd94d4f9b"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b">amqp_common::AMQPService::GetCString</a></div><div class="ttdeci">const std::string &amp; GetCString() const</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:82</div></div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_ae6dc569c0be707d2d8a49a11c6f7cb45"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected</a></div><div class="ttdeci">bool IsConnected() const</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:79</div></div>
-<div class="ttc" id="anamespaceamqp__common_html_aad6515e6ea0d240dc7fdaea72649f911"><div class="ttname"><a href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString</a></div><div class="ttdeci">std::string ConstructCString(const std::string &amp;host_port, const std::string &amp;user, const std::string &amp;password, bool secure=false)</div><div class="ttdoc">Constructs amqp connection string.</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:32</div></div>
-<div class="ttc" id="anamespaceprint__utils_html_a4c215113c5319155284729bedc2a4a21"><div class="ttname"><a href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson</a></div><div class="ttdeci">Json::Value ContinuousToJson(const Collection &amp;col, bool print_size=true, bool sizeless_format=false)</div><div class="ttdoc">Cast any one dimensional array to Json::value.</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c">amqp_common::AMQPService::Connect()</a>, <a class="el" href="namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911">amqp_common::ConstructCString()</a>, <a class="el" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b">amqp_common::AMQPService::GetCString()</a>, <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>, <a class="el" href="classamqp__common_1_1AMQPConsumerService.html#ab74da76322394ebf90b8e20a5720b26f">amqp_common::AMQPConsumerService::SetMessageCallback()</a>, and <a class="el" href="classamqp__common_1_1AMQPConsumerService.html#a5dbefa27652bfd8061c4711cb19896dd">amqp_common::AMQPConsumerService::SetParameters()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -287,24 +228,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   16</span>                                             {</div>
-<div class="line"><span class="lineno">   17</span>  Json::Value res_JSON;</div>
-<div class="line"><span class="lineno">   18</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;disconnect&quot;</span>;</div>
-<div class="line"><span class="lineno">   19</span>  <span class="keywordflow">if</span> (!consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">IsConnected</a>()) {</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>    res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = HttpStatusCode::k409Conflict;</div>
-<div class="line"><span class="lineno">   22</span>    res_JSON[<span class="stringliteral">&quot;message&quot;</span>] = <span class="stringliteral">&quot;This worker node is currently not connected to any cluster&quot;</span>;</div>
-<div class="line"><span class="lineno">   23</span>    <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   24</span>  }</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>  consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">Disconnect</a>();</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
-<div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>  <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   31</span>}</div>
-<div class="ttc" id="aclassamqp__common_1_1AMQPService_html_a2a852047d6efc09be421c3dcd69af276"><div class="ttname"><a href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">amqp_common::AMQPService::Disconnect</a></div><div class="ttdeci">void Disconnect()</div><div class="ttdoc">Ends connection and channel to rabbitMQ This is the variant of soft disconnect.</div><div class="ttdef"><b>Definition</b> amqpCommon.cpp:108</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276">amqp_common::AMQPService::Disconnect()</a>, and <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -337,16 +261,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">    6</span>                                            {</div>
-<div class="line"><span class="lineno">    7</span>  Json::Value res_JSON;</div>
-<div class="line"><span class="lineno">    8</span>  res_JSON[<span class="stringliteral">&quot;request&quot;</span>] = <span class="stringliteral">&quot;status&quot;</span>;</div>
-<div class="line"><span class="lineno">    9</span>  res_JSON[<span class="stringliteral">&quot;worker_status&quot;</span>] = consumer_service_.<a class="code hl_function" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">IsConnected</a>() ? <span class="stringliteral">&quot;running&quot;</span> : <span class="stringliteral">&quot;not running&quot;</span>;</div>
-<div class="line"><span class="lineno">   10</span>  <span class="keywordflow">if</span> (Computed())<span class="comment">//todo what will this thing impact</span></div>
-<div class="line"><span class="lineno">   11</span>    res_JSON[<span class="stringliteral">&quot;bench&quot;</span>] = <a class="code hl_function" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson</a>(bench_res_, <span class="keyword">true</span>, <span class="keyword">true</span>);</div>
-<div class="line"><span class="lineno">   12</span>  res_JSON[<span class="stringliteral">&quot;status&quot;</span>] = drogon::HttpStatusCode::k200OK;</div>
-<div class="line"><span class="lineno">   13</span>  <span class="keywordflow">return</span> res_JSON;</div>
-<div class="line"><span class="lineno">   14</span>}</div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21">print_utils::ContinuousToJson()</a>, and <a class="el" href="classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45">amqp_common::AMQPService::IsConnected()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -379,21 +294,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   84</span>                                      {</div>
-<div class="line"><span class="lineno">   85</span> </div>
-<div class="line"><span class="lineno">   86</span>  characteristic_computed_.store(<span class="keyword">false</span>, std::memory_order_release);</div>
-<div class="line"><span class="lineno">   87</span> </div>
-<div class="line"><span class="lineno">   88</span>  computation_thread_ = std::jthread([<span class="keyword">this</span>]() {</div>
-<div class="line"><span class="lineno">   89</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Job start\n&quot;</span>;</div>
-<div class="line"><span class="lineno">   90</span>    bench_res_ = <a class="code hl_variable" href="namespacecomp__services.html#a135d1ee5875f454fce4f49675c3da2da">benchmarkRunner</a>.<a class="code hl_function" href="classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e">Run</a>().first;</div>
-<div class="line"><span class="lineno">   91</span>    <span class="comment">//bench_res_ = DefaultBench();</span></div>
-<div class="line"><span class="lineno">   92</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Job done\n&quot;</span>;</div>
-<div class="line"><span class="lineno">   93</span>    characteristic_computed_.store(<span class="keyword">true</span>, std::memory_order_release);</div>
-<div class="line"><span class="lineno">   94</span>  });</div>
-<div class="line"><span class="lineno">   95</span>}</div>
-<div class="ttc" id="aclasscomp__services_1_1BenchmarkRunner_html_a7a076a748ec297773fd0cded063ddf4e"><div class="ttname"><a href="classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e">comp_services::BenchmarkRunner::Run</a></div><div class="ttdeci">std::pair&lt; shared::BenchResVec, shared::BenchResVec &gt; Run(bool use_omp_outer=true, int eigen_threads=0)</div><div class="ttdoc">Runs the benchmark for all parameter pairs and returns the results.</div><div class="ttdef"><b>Definition</b> BenchmarkRunnerService.cpp:56</div></div>
-<div class="ttc" id="anamespacecomp__services_html_a135d1ee5875f454fce4f49675c3da2da"><div class="ttname"><a href="namespacecomp__services.html#a135d1ee5875f454fce4f49675c3da2da">comp_services::benchmarkRunner</a></div><div class="ttdeci">BenchmarkRunner benchmarkRunner</div><div class="ttdef"><b>Definition</b> BenchmarkRunnerService.cpp:12</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="namespacecomp__services.html#a135d1ee5875f454fce4f49675c3da2da">comp_services::benchmarkRunner</a>, and <a class="el" href="classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e">comp_services::BenchmarkRunner::Run()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classcomp__services_1_1ComputationNodeService.html#a09f092800edf837ad2978fa641a847b0">ComputationNodeService()</a>.</p>

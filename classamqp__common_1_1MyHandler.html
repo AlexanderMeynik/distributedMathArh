@@ -169,11 +169,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   23</span>                                                                       :</div>
-<div class="line"><span class="lineno">   24</span>    AMQP::LibBoostAsioHandler(service),</div>
-<div class="line"><span class="lineno">   25</span>    m_work_(work_ref),</div>
-<div class="line"><span class="lineno">   26</span>    connected_(<span class="keyword">false</span>) {}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -193,10 +189,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Gets handler connection status. </p>
-<div class="fragment"><div class="line"><span class="lineno">   28</span>                                  {</div>
-<div class="line"><span class="lineno">   29</span>  <span class="keywordflow">return</span> connected_;</div>
-<div class="line"><span class="lineno">   30</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="ac1f0eb02464d096c002228933212c1dd" name="ac1f0eb02464d096c002228933212c1dd"></a>
@@ -230,12 +223,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">   92</span>                                                        {</div>
-<div class="line"><span class="lineno">   93</span>    ResetLoop();</div>
-<div class="line"><span class="lineno">   94</span> </div>
-<div class="line"><span class="lineno">   95</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connection closed.\n&quot;</span>;</div>
-<div class="line"><span class="lineno">   96</span>  }</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a0a8716a19cdbad1421839fc1f6f47287" name="a0a8716a19cdbad1421839fc1f6f47287"></a>
@@ -269,11 +257,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">  112</span>                                                           {</div>
-<div class="line"><span class="lineno">  113</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connection established successfully.&quot;</span> &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;</div>
-<div class="line"><span class="lineno">  114</span>    connected_ = <span class="keyword">true</span>;</div>
-<div class="line"><span class="lineno">  115</span>  }</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a8b33b5471f57c267a1eb4656f1fb1eb2" name="a8b33b5471f57c267a1eb4656f1fb1eb2"></a>
@@ -318,11 +302,7 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">  103</span>                                             {</div>
-<div class="line"><span class="lineno">  104</span>    std::cout &lt;&lt; <span class="stringliteral">&quot;Connection error: &quot;</span> &lt;&lt; message &lt;&lt; <span class="charliteral">&#39;\n&#39;</span>;<span class="comment">//todo log</span></div>
-<div class="line"><span class="lineno">  105</span>    ResetLoop();</div>
-<div class="line"><span class="lineno">  106</span>  }</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>

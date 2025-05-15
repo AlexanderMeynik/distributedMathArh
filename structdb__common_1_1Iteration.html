@@ -182,37 +182,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   19</span>                                       {</div>
-<div class="line"><span class="lineno">   20</span> </div>
-<div class="line"><span class="lineno">   21</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a45f7463a0c11670edc211d3c34f16266">iteration_id</a> = row[<span class="stringliteral">&quot;iteration_id&quot;</span>].as&lt;<a class="code hl_typedef" href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">IndexType</a>&gt;();</div>
-<div class="line"><span class="lineno">   22</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a3f9e8be91d95cb4ebd49b719fc5d0343">experiment_id</a> = row[<span class="stringliteral">&quot;experiment_id&quot;</span>].as&lt;<a class="code hl_typedef" href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">IndexType</a>&gt;();</div>
-<div class="line"><span class="lineno">   23</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a11c37d80b965d505e37f66614a92bc91">node_id</a> = row[<span class="stringliteral">&quot;node_id&quot;</span>].as&lt;<a class="code hl_typedef" href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">IndexType</a>&gt;();</div>
-<div class="line"><span class="lineno">   24</span> </div>
-<div class="line"><span class="lineno">   25</span>  <span class="keyword">auto</span> type = row[<span class="stringliteral">&quot;iter_t&quot;</span>].as&lt;std::string&gt;();</div>
-<div class="line"><span class="lineno">   26</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a1f4b30f60eaf8821012e9b93c7b3735a">iter_t</a> = <a class="code hl_function" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">StrToEnum</a>(type, kStrToIterType);</div>
-<div class="line"><span class="lineno">   27</span> </div>
-<div class="line"><span class="lineno">   28</span>  <span class="keyword">auto</span> st = row[<span class="stringliteral">&quot;status&quot;</span>].as&lt;std::string&gt;();</div>
-<div class="line"><span class="lineno">   29</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a0c276c462446e30955787738be5cf494">status</a> = <a class="code hl_function" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">StrToEnum</a>(st, kStrToIterStatus);</div>
-<div class="line"><span class="lineno">   30</span> </div>
-<div class="line"><span class="lineno">   31</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a1f42e45443d10fa36fa3e93062ff65a3">output_data</a> = Json::Value(row[<span class="stringliteral">&quot;output_data&quot;</span>].as&lt;std::string&gt;());</div>
-<div class="line"><span class="lineno">   32</span> </div>
-<div class="line"><span class="lineno">   33</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a35fffb220a64c92ad14f7af3f6ea0e2d">start_time</a> = *<a class="code hl_function" href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">StrToTimepoint</a>(row[<span class="stringliteral">&quot;start_time&quot;</span>].as&lt;std::string&gt;());</div>
-<div class="line"><span class="lineno">   34</span> </div>
-<div class="line"><span class="lineno">   35</span>  <a class="code hl_variable" href="structdb__common_1_1Iteration.html#aa1456bd2969eb763eb14eef382a8128e">end_time</a> = GetFunctionOpt&lt;TimepointType,StrToTimepoint&gt;(row[<span class="stringliteral">&quot;end_time&quot;</span>]);</div>
-<div class="line"><span class="lineno">   36</span> </div>
-<div class="line"><span class="lineno">   37</span>}</div>
-<div class="ttc" id="anamespacedb__common_html_a0bf5bdeb7108eed0c8454cbcd5c39615"><div class="ttname"><a href="namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615">db_common::IndexType</a></div><div class="ttdeci">uint64_t IndexType</div><div class="ttdef"><b>Definition</b> dbCommon.h:20</div></div>
-<div class="ttc" id="anamespaceenum__utils_html_a2ad2288929e574d72d18771f391b1601"><div class="ttname"><a href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">enum_utils::StrToEnum</a></div><div class="ttdeci">Enum StrToEnum(const std::string &amp;str, const std::unordered_map&lt; std::string, Enum &gt; &amp;map)</div><div class="ttdoc">Cast string to enum.</div><div class="ttdef"><b>Definition</b> enumUtils.h:123</div></div>
-<div class="ttc" id="anamespacetiming_html_ad625aa0dba4dadd42847e1d84c062d07"><div class="ttname"><a href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">timing::StrToTimepoint</a></div><div class="ttdeci">std::optional&lt; TimepointType &gt; StrToTimepoint(std::string_view ts)</div><div class="ttdoc">Retrives TimepointType from a given string.</div><div class="ttdef"><b>Definition</b> timingUtils.cpp:29</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_a0c276c462446e30955787738be5cf494"><div class="ttname"><a href="structdb__common_1_1Iteration.html#a0c276c462446e30955787738be5cf494">db_common::Iteration::status</a></div><div class="ttdeci">IterationStatus status</div><div class="ttdef"><b>Definition</b> daoClasses.h:142</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_a11c37d80b965d505e37f66614a92bc91"><div class="ttname"><a href="structdb__common_1_1Iteration.html#a11c37d80b965d505e37f66614a92bc91">db_common::Iteration::node_id</a></div><div class="ttdeci">IndexType node_id</div><div class="ttdef"><b>Definition</b> daoClasses.h:140</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_a1f42e45443d10fa36fa3e93062ff65a3"><div class="ttname"><a href="structdb__common_1_1Iteration.html#a1f42e45443d10fa36fa3e93062ff65a3">db_common::Iteration::output_data</a></div><div class="ttdeci">Json::Value output_data</div><div class="ttdef"><b>Definition</b> daoClasses.h:143</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_a1f4b30f60eaf8821012e9b93c7b3735a"><div class="ttname"><a href="structdb__common_1_1Iteration.html#a1f4b30f60eaf8821012e9b93c7b3735a">db_common::Iteration::iter_t</a></div><div class="ttdeci">IterationType iter_t</div><div class="ttdef"><b>Definition</b> daoClasses.h:141</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_a35fffb220a64c92ad14f7af3f6ea0e2d"><div class="ttname"><a href="structdb__common_1_1Iteration.html#a35fffb220a64c92ad14f7af3f6ea0e2d">db_common::Iteration::start_time</a></div><div class="ttdeci">TimepointType start_time</div><div class="ttdef"><b>Definition</b> daoClasses.h:144</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_a3f9e8be91d95cb4ebd49b719fc5d0343"><div class="ttname"><a href="structdb__common_1_1Iteration.html#a3f9e8be91d95cb4ebd49b719fc5d0343">db_common::Iteration::experiment_id</a></div><div class="ttdeci">IndexType experiment_id</div><div class="ttdef"><b>Definition</b> daoClasses.h:139</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_a45f7463a0c11670edc211d3c34f16266"><div class="ttname"><a href="structdb__common_1_1Iteration.html#a45f7463a0c11670edc211d3c34f16266">db_common::Iteration::iteration_id</a></div><div class="ttdeci">IndexType iteration_id</div><div class="ttdef"><b>Definition</b> daoClasses.h:138</div></div>
-<div class="ttc" id="astructdb__common_1_1Iteration_html_aa1456bd2969eb763eb14eef382a8128e"><div class="ttname"><a href="structdb__common_1_1Iteration.html#aa1456bd2969eb763eb14eef382a8128e">db_common::Iteration::end_time</a></div><div class="ttdeci">std::optional&lt; TimepointType &gt; end_time</div><div class="ttdef"><b>Definition</b> daoClasses.h:145</div></div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="structdb__common_1_1Iteration.html#aa1456bd2969eb763eb14eef382a8128e">end_time</a>, <a class="el" href="structdb__common_1_1Iteration.html#a3f9e8be91d95cb4ebd49b719fc5d0343">experiment_id</a>, <a class="el" href="structdb__common_1_1Iteration.html#a1f4b30f60eaf8821012e9b93c7b3735a">iter_t</a>, <a class="el" href="structdb__common_1_1Iteration.html#a45f7463a0c11670edc211d3c34f16266">iteration_id</a>, <a class="el" href="structdb__common_1_1Iteration.html#a11c37d80b965d505e37f66614a92bc91">node_id</a>, <a class="el" href="structdb__common_1_1Iteration.html#a1f42e45443d10fa36fa3e93062ff65a3">output_data</a>, <a class="el" href="structdb__common_1_1Iteration.html#a35fffb220a64c92ad14f7af3f6ea0e2d">start_time</a>, <a class="el" href="structdb__common_1_1Iteration.html#a0c276c462446e30955787738be5cf494">status</a>, <a class="el" href="namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601">enum_utils::StrToEnum()</a>, and <a class="el" href="namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07">timing::StrToTimepoint()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
@@ -249,10 +219,7 @@ Public Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   68</span>                                                     {</div>
-<div class="line"><span class="lineno">   69</span>  <span class="keywordflow">return</span> <a class="code hl_variable" href="structdb__common_1_1Iteration.html#a45f7463a0c11670edc211d3c34f16266">iteration_id</a> == rhs.iteration_id;</div>
-<div class="line"><span class="lineno">   70</span>}</div>
-</div><!-- fragment -->
+
 <p class="reference">References <a class="el" href="structdb__common_1_1Iteration.html#a45f7463a0c11670edc211d3c34f16266">iteration_id</a>.</p>
 
 </div>

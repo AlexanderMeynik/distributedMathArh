@@ -183,12 +183,7 @@ template&lt;typename to_dur  = std::milli, typename doubleType &gt; </div>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd></dd></dl>
-<div class="fragment"><div class="line"><span class="lineno">   37</span>                                                                      {</div>
-<div class="line"><span class="lineno">   38</span>  std::chrono::duration&lt;doubleType, to_dur&gt; ret =</div>
-<div class="line"><span class="lineno">   39</span>      std::chrono::duration_cast&lt;std::chrono::duration&lt;doubleType, to_dur&gt;&gt;(curr - prev);</div>
-<div class="line"><span class="lineno">   40</span>  <span class="keywordflow">return</span> ret.count();</div>
-<div class="line"><span class="lineno">   41</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a4d0cbbce4d34ecc0b454946cd8254908" name="a4d0cbbce4d34ecc0b454946cd8254908"></a>
@@ -212,21 +207,7 @@ template&lt;typename to_dur  = std::milli, typename doubleType &gt; </div>
   </table>
   </dd>
 </dl>
-<div class="fragment"><div class="line"><span class="lineno">    7</span>                                                       {</div>
-<div class="line"><span class="lineno">    8</span>  std::string name = location.function_name();</div>
-<div class="line"><span class="lineno">    9</span>  <span class="keyword">auto</span> <span class="keywordtype">id</span> = name.find(<span class="charliteral">&#39; &#39;</span>);</div>
-<div class="line"><span class="lineno">   10</span>  <span class="keyword">auto</span> id2 = name.find(<span class="charliteral">&#39;(&#39;</span>);</div>
-<div class="line"><span class="lineno">   11</span> </div>
-<div class="line"><span class="lineno">   12</span>  std::string fname = location.file_name();</div>
-<div class="line"><span class="lineno">   13</span>  std::stringstream ss;</div>
-<div class="line"><span class="lineno">   14</span>  ss &lt;&lt; std::this_thread::get_id();</div>
-<div class="line"><span class="lineno">   15</span>  <span class="keywordflow">return</span> {name.substr(<span class="keywordtype">id</span> + 1, id2 - <span class="keywordtype">id</span> - 1),</div>
-<div class="line"><span class="lineno">   16</span>          std::to_string(location.line()),</div>
-<div class="line"><span class="lineno">   17</span>          std::to_string(location.column()),</div>
-<div class="line"><span class="lineno">   18</span>          fname.substr(fname.rfind(<span class="charliteral">&#39;/&#39;</span>) + 1),</div>
-<div class="line"><span class="lineno">   19</span>          ss.str()};</div>
-<div class="line"><span class="lineno">   20</span>}<span class="comment">// namespace chronoClock</span></div>
-</div><!-- fragment -->
+
 </div>
 </div>
 </div><!-- contents -->

@@ -182,10 +182,7 @@ Public Member Functions</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   19</span>             {</div>
-<div class="line"><span class="lineno">   20</span>    handler_ = std::make_unique&lt;ComputationNodeService&gt;();</div>
-<div class="line"><span class="lineno">   21</span>  }</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -316,18 +313,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   16</span>                                                                                                              {</div>
-<div class="line"><span class="lineno">   17</span> </div>
-<div class="line"><span class="lineno">   18</span>  Json::Value res = handler_-&gt;Connect(req);</div>
-<div class="line"><span class="lineno">   19</span> </div>
-<div class="line"><span class="lineno">   20</span>  <span class="keyword">auto</span> response = HttpResponse::newHttpJsonResponse(res);</div>
-<div class="line"><span class="lineno">   21</span> </div>
-<div class="line"><span class="lineno">   22</span>  response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(res[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   23</span> </div>
-<div class="line"><span class="lineno">   24</span>  callback(response);</div>
-<div class="line"><span class="lineno">   25</span> </div>
-<div class="line"><span class="lineno">   26</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="aa979451705d584f5fdebc3b4eb0f66d8" name="aa979451705d584f5fdebc3b4eb0f66d8"></a>
@@ -355,18 +341,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">   28</span>                                                                                                                 {</div>
-<div class="line"><span class="lineno">   29</span> </div>
-<div class="line"><span class="lineno">   30</span>  Json::Value res = handler_-&gt;Disconnect();</div>
-<div class="line"><span class="lineno">   31</span> </div>
-<div class="line"><span class="lineno">   32</span>  <span class="keyword">auto</span> response = HttpResponse::newHttpJsonResponse(res);</div>
-<div class="line"><span class="lineno">   33</span> </div>
-<div class="line"><span class="lineno">   34</span>  response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(res[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   35</span> </div>
-<div class="line"><span class="lineno">   36</span>  callback(response);</div>
-<div class="line"><span class="lineno">   37</span> </div>
-<div class="line"><span class="lineno">   38</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <a id="a5daf37c187dbb51a0d94c3e2af2968db" name="a5daf37c187dbb51a0d94c3e2af2968db"></a>
@@ -394,17 +369,7 @@ Public Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<div class="fragment"><div class="line"><span class="lineno">    5</span>                                                                                                         {</div>
-<div class="line"><span class="lineno">    6</span> </div>
-<div class="line"><span class="lineno">    7</span>  Json::Value res = handler_-&gt;GetStatus();</div>
-<div class="line"><span class="lineno">    8</span>  <span class="keyword">auto</span> response = HttpResponse::newHttpJsonResponse(res);</div>
-<div class="line"><span class="lineno">    9</span> </div>
-<div class="line"><span class="lineno">   10</span>  response-&gt;setStatusCode(<span class="keyword">static_cast&lt;</span>HttpStatusCode<span class="keyword">&gt;</span>(res[<span class="stringliteral">&quot;status&quot;</span>].asUInt()));</div>
-<div class="line"><span class="lineno">   11</span> </div>
-<div class="line"><span class="lineno">   12</span>  callback(response);</div>
-<div class="line"><span class="lineno">   13</span> </div>
-<div class="line"><span class="lineno">   14</span>}</div>
-</div><!-- fragment -->
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following files:<ul>
