@@ -20,7 +20,7 @@ namespace amqp_common {
 
 using AMQP::Envelope;
 using EnvelopePtr = std::shared_ptr<Envelope>;
-using AMQP::MessageCallback;
+using AMQP::MessageCallback;///< message callback
 using WorkPtr = std::unique_ptr<boost::asio::io_service::work>;
 
 /**

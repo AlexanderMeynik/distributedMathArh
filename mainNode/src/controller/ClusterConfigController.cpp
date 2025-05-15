@@ -47,18 +47,7 @@ void ClusterConfigController::DisconnectNodeHandler(const HttpRequestPtr &req,
   callback(http_response);
 
 }
-void ClusterConfigController::SentMessage(const HttpRequestPtr &req,
-                                          std::function<void(const HttpResponsePtr &)> &&callback,
-                                          const std::string &node) {
 
-  network_types::TestSolveParam ts(*req->getJsonObject());
-  auto json_output = main_node_service_->Publish(ts, node);
-
-  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
-  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
-  callback(http_response);
-
-}
 
 void ClusterConfigController::SentToExecution(const HttpRequestPtr &req,
                                               std::function<void(const HttpResponsePtr &)> &&callback) {

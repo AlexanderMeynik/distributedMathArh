@@ -11,7 +11,7 @@ namespace rest::v1 {
 using comp_services::ComputationNodeService;
 
 class CompNode : public drogon::HttpController<CompNode> {
-  std::unordered_map<std::string, std::thread> threads_;
+  //std::unordered_map<std::string, std::thread> threads_;
   std::unique_ptr<ComputationNodeService> handler_;
 
  public:

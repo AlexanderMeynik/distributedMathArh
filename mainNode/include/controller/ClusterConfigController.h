@@ -38,7 +38,6 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
 
     ADD_METHOD_TO(Cont::ConnectQ, "v1/connect_publisher", Post);
     ADD_METHOD_TO(Cont::DisconnectQ, "v1/disconnect_publisher", Post);
-    ADD_METHOD_TO(Cont::SentMessage, "v1/message?node={node}", Put);
 
     ADD_METHOD_TO(Cont::SentToExecution, "v1/send_task", Put);
 
@@ -73,15 +72,7 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
   void DisconnectNodeHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback,
                              const std::string &host_port);
 
-  /**
-   *
-   * @param req
-   * @param callback
-   * @param node
-   */
-  [[deprecated("old interface for testing")]]void SentMessage(const HttpRequestPtr &req,
-                                                              std::function<void(const HttpResponsePtr &)> &&callback,
-                                                              const std::string &node);
+
 
   /**
    * @brief Sends task to be sharded and published into queues for workers

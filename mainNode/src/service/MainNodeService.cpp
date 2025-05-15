@@ -190,32 +190,9 @@ Json::Value MainNodeService::Disconnect() {
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
 }
-Json::Value MainNodeService::Publish(network_types::TestSolveParam &ts, std::string node) {
-  Json::Value res_JSON;
 
-  res_JSON["request"] = "message";
-  if (!publisher_service_->IsConnected()) {
-    res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
-    res_JSON["message"] = "Queue service is already shut down";
-    return res_JSON;
-  }
-  auto str = ts.ToJson().toStyledString();
 
-  auto envelope = std::make_shared<AMQP::Envelope>(str);
-
-  envelope->setPersistent(true);
-  AMQP::Table headers;
-  headers["messageNum"] = ts.experiment_id;
-  headers["time"] = std::chrono::steady_clock::now().time_since_epoch().count();
-  envelope->setHeaders(headers);
-
-  publisher_service_->Publish(envelope, node);
-
-  res_JSON["status"] = drogon::HttpStatusCode::k200OK;
-  return res_JSON;
-}
-
-Json::Value MainNodeService::Publish2(network_types::TestSolveParam &ts, std::string node) {
+Json::Value MainNodeService::PublishMessage(network_types::TestSolveParam &ts, std::string node) {
   Json::Value res_JSON;
 
   res_JSON["request"] = "message";
@@ -267,10 +244,10 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
     //todo use proper logic to find weight
     auto iterss = iters[2];
     ts_t = ts.SliceAway(iterss);
-    Publish2(ts_t, key);
+    PublishMessage(ts_t, key);
   }
 
-  Publish2(ts, it->first);
+  PublishMessage(ts, it->first);
 
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
 
