@@ -1,5 +1,5 @@
 <map id="dipoles::Dipoles::Dipoles" name="dipoles::Dipoles::Dipoles">
-<area shape="rect" id="Node000001" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="5,31,188,56"/>
+<area shape="rect" id="Node000001" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="5,31,188,56"/>
 <area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#af02a2a3f874d440c10ed437a24c3cce2" title="Intializes dimensions for system of equations matrices." alt="" coords="243,5,440,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="188,31,229,27,229,32,188,37"/>
 <area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="236,55,447,80"/>

@@ -1,6 +1,6 @@
 <map id="dipoles::Dipoles::InitArrays" name="dipoles::Dipoles::InitArrays">
 <area shape="rect" id="Node000001" title="Intializes dimensions for system of equations matrices." alt="" coords="252,63,449,88"/>
-<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="13,5,196,31"/>
+<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="13,5,196,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="282,62,159,33,160,28,283,57"/>
 <area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638" title="Loads system of equations matrix." alt="" coords="5,55,204,95"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="238,78,204,78,204,73,238,73"/>

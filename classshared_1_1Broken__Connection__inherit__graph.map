@@ -1,5 +1,5 @@
 <map id="shared::Broken_Connection" name="shared::Broken_Connection">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,272,196,377"/>
+<area shape="rect" id="Node000001" title="Broken connection error class." alt="" coords="5,272,196,377"/>
 <area shape="rect" id="Node000002" href="$classshared_1_1MyException.html" title="Default parent for user defined exception." alt="" coords="25,119,176,224"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="103,238,103,272,98,272,98,238"/>
 <area shape="rect" id="Node000003" title=" " alt="" coords="45,5,156,71"/>

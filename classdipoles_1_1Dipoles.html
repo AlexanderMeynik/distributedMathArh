@@ -121,7 +121,7 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4eb7fd7eb71b1608d54ad08fc360f34a" id="r_a4eb7fd7eb71b1608d54ad08fc360f34a"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; <br />
 requires HasSizeMethod&lt;Container&gt;</td></tr>
 <tr class="memitem:a4eb7fd7eb71b1608d54ad08fc360f34a"><td class="memTemplItemLeft" align="right" valign="top">&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a">Dipoles</a> (const Container &amp;xi)</td></tr>
-<tr class="memdesc:a4eb7fd7eb71b1608d54ad08fc360f34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor that acccepts dipole coordinates Container.  <br /></td></tr>
+<tr class="memdesc:a4eb7fd7eb71b1608d54ad08fc360f34a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Basic constructor that accepts dipole coordinates Container.  <br /></td></tr>
 <tr class="separator:a4eb7fd7eb71b1608d54ad08fc360f34a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae6fdaa2f9486ae9c02bbd58d4380504d" id="r_ae6fdaa2f9486ae9c02bbd58d4380504d"><td class="memTemplParams" colspan="2">template&lt;typename Container &gt; <br />
 requires HasSizeMethod&lt;Container&gt;</td></tr>
@@ -187,24 +187,32 @@ requires HasBracketOperator&lt;Container&gt;</td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-attribs" name="pro-attribs"></a>
 Protected Attributes</h2></td></tr>
 <tr class="memitem:a4cb246e7e2774933c400562a6be768ac" id="r_a4cb246e7e2774933c400562a6be768ac"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a70e007a3150342b6a8e92499d40461df">MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a4cb246e7e2774933c400562a6be768ac">m_1_</a></td></tr>
+<tr class="memdesc:a4cb246e7e2774933c400562a6be768ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">upper left block of matrix  <br /></td></tr>
 <tr class="separator:a4cb246e7e2774933c400562a6be768ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50942ec478b93db5dfa420deb0f28d3d" id="r_a50942ec478b93db5dfa420deb0f28d3d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a70e007a3150342b6a8e92499d40461df">MatrixType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a50942ec478b93db5dfa420deb0f28d3d">m_2_</a></td></tr>
+<tr class="memdesc:a50942ec478b93db5dfa420deb0f28d3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">down left block of matrix  <br /></td></tr>
 <tr class="separator:a50942ec478b93db5dfa420deb0f28d3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4bd2bd1bbb0f505ce7c83dfe501ec2fd" id="r_a4bd2bd1bbb0f505ce7c83dfe501ec2fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#adfdad3c56c13093b8a1be7e5b2604d29">IntegrableFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a4bd2bd1bbb0f505ce7c83dfe501ec2fd">ifunction_</a></td></tr>
-<tr class="separator:a4bd2bd1bbb0f505ce7c83dfe501ec2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c442dbcc121c94ab5c007fdded429a1" id="r_a1c442dbcc121c94ab5c007fdded429a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a4eb6267fe69b8d2006ee42f30eae0300">DirectionGraph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a1c442dbcc121c94ab5c007fdded429a1">i_2_function_</a></td></tr>
-<tr class="separator:a1c442dbcc121c94ab5c007fdded429a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54ad85e0252623761f810c53442da455" id="r_a54ad85e0252623761f810c53442da455"><td class="memItemLeft" align="right" valign="top">Eigen::Vector&lt; FloatType, Eigen::Dynamic &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a54ad85e0252623761f810c53442da455">f_</a></td></tr>
+<tr class="memdesc:a54ad85e0252623761f810c53442da455"><td class="mdescLeft">&#160;</td><td class="mdescRight">right part of system of equations  <br /></td></tr>
 <tr class="separator:a54ad85e0252623761f810c53442da455"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa686eb8cdfa02988df7a6e4516f19985" id="r_aa686eb8cdfa02988df7a6e4516f19985"><td class="memItemLeft" align="right" valign="top">FloatType&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#aa686eb8cdfa02988df7a6e4516f19985">an_</a> = <a class="el" href="structshared_1_1params.html#af2ae9da0dba12e72f334be4b7c6ccf5d">params::a</a></td></tr>
+<tr class="memdesc:aa686eb8cdfa02988df7a6e4516f19985"><td class="mdescLeft">&#160;</td><td class="mdescRight">a_n coefficient value  <br /></td></tr>
 <tr class="separator:aa686eb8cdfa02988df7a6e4516f19985"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac86a4bae9caee5921ee8fec7bf751d28" id="r_ac86a4bae9caee5921ee8fec7bf751d28"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a></td></tr>
 <tr class="separator:ac86a4bae9caee5921ee8fec7bf751d28"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bd2bd1bbb0f505ce7c83dfe501ec2fd" id="r_a4bd2bd1bbb0f505ce7c83dfe501ec2fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#adfdad3c56c13093b8a1be7e5b2604d29">IntegrableFunction</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a4bd2bd1bbb0f505ce7c83dfe501ec2fd">ifunction_</a></td></tr>
+<tr class="memdesc:a4bd2bd1bbb0f505ce7c83dfe501ec2fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">&lt; size of the system  <br /></td></tr>
+<tr class="separator:a4bd2bd1bbb0f505ce7c83dfe501ec2fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c442dbcc121c94ab5c007fdded429a1" id="r_a1c442dbcc121c94ab5c007fdded429a1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacecommon__types.html#a4eb6267fe69b8d2006ee42f30eae0300">DirectionGraph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classdipoles_1_1Dipoles.html#a1c442dbcc121c94ab5c007fdded429a1">i_2_function_</a></td></tr>
+<tr class="memdesc:a1c442dbcc121c94ab5c007fdded429a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">analytic representation of the target function  <br /></td></tr>
+<tr class="separator:a1c442dbcc121c94ab5c007fdded429a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Provides interface to Solve system of dipoles. </p>
 <p>Allows to construct and Solve system of equations for the selected mathematical model.</p>
 <p>Can accept various input formats for coordinates and solutions to crete system,</p>
+<p>This class implements more verbose solution algorithm. It uses quasi symmetricity of block matrix</p>
+<p>to cut computation i half.</p>
 <p>to Solve it, to Generate direction graph for magnetic field. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a971a189cd9cff9dcef6febed98a26f8d" name="a971a189cd9cff9dcef6febed98a26f8d"></a>
@@ -251,7 +259,7 @@ requires HasSizeMethod&lt;Container&gt;</div>
       </table>
 </div><div class="memdoc">
 
-<p>Basic constructor that acccepts dipole coordinates Container. </p>
+<p>Basic constructor that accepts dipole coordinates Container. </p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Container</td><td></td></tr>
@@ -273,7 +281,7 @@ requires HasSizeMethod&lt;Container&gt;</div>
 <div id="dynsection-1-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classdipoles_1_1Dipoles_a4eb7fd7eb71b1608d54ad08fc360f34a_cgraph.png" border="0" usemap="#aclassdipoles_1_1Dipoles_a4eb7fd7eb71b1608d54ad08fc360f34a_cgraph" alt=""/></div>
 <map name="aclassdipoles_1_1Dipoles_a4eb7fd7eb71b1608d54ad08fc360f34a_cgraph" id="aclassdipoles_1_1Dipoles_a4eb7fd7eb71b1608d54ad08fc360f34a_cgraph">
-<area shape="rect" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="5,31,188,56"/>
+<area shape="rect" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="5,31,188,56"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#af02a2a3f874d440c10ed437a24c3cce2" title="Intializes dimensions for system of equations matrices." alt="" coords="243,5,440,31"/>
 <area shape="poly" title=" " alt="" coords="188,31,229,27,229,32,188,37"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="236,55,447,80"/>
@@ -362,7 +370,7 @@ requires HasBracketOperator&lt;Container&gt;</div>
 <area shape="rect" title="Computes euclidean distacne for dipole coordinates." alt="" coords="496,35,711,60"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="237,35,448,60"/>
 <area shape="poly" title=" " alt="" coords="483,50,448,50,448,45,483,45"/>
-<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
+<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
 <area shape="poly" title=" " alt="" coords="223,36,188,32,189,26,224,30"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d" title="Function that allows to Reset dipole coordinates." alt="" coords="5,55,189,95"/>
 <area shape="poly" title=" " alt="" coords="224,64,190,67,189,62,223,58"/>
@@ -545,7 +553,7 @@ requires HasSizeMethod&lt;Container&gt; &amp;&amp; HasSizeMethod&lt;Container2&g
 <area shape="rect" title=" " alt="" coords="496,35,709,60"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="237,35,448,60"/>
 <area shape="poly" title=" " alt="" coords="482,50,448,50,448,45,482,45"/>
-<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
+<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
 <area shape="poly" title=" " alt="" coords="223,36,188,32,189,26,224,30"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d" title="Function that allows to Reset dipole coordinates." alt="" coords="5,55,189,95"/>
 <area shape="poly" title=" " alt="" coords="224,64,190,67,189,62,223,58"/>
@@ -632,7 +640,7 @@ requires HasSizeMethod&lt;Container&gt; &amp;&amp; HasSizeMethod&lt;Container2&g
 <div class="center"><img src="classdipoles_1_1Dipoles_af02a2a3f874d440c10ed437a24c3cce2_icgraph.png" border="0" usemap="#aclassdipoles_1_1Dipoles_af02a2a3f874d440c10ed437a24c3cce2_icgraph" alt=""/></div>
 <map name="aclassdipoles_1_1Dipoles_af02a2a3f874d440c10ed437a24c3cce2_icgraph" id="aclassdipoles_1_1Dipoles_af02a2a3f874d440c10ed437a24c3cce2_icgraph">
 <area shape="rect" title="Intializes dimensions for system of equations matrices." alt="" coords="252,63,449,88"/>
-<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="13,5,196,31"/>
+<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="13,5,196,31"/>
 <area shape="poly" title=" " alt="" coords="282,62,159,33,160,28,283,57"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638" title="Loads system of equations matrix." alt="" coords="5,55,204,95"/>
 <area shape="poly" title=" " alt="" coords="238,78,204,78,204,73,238,73"/>
@@ -750,7 +758,7 @@ template&lt;typename Container &gt; </div>
 <div class="center"><img src="classdipoles_1_1Dipoles_a5fcdcf8ef315b11e72d3fbe9bcfae6ba_icgraph.png" border="0" usemap="#aclassdipoles_1_1Dipoles_a5fcdcf8ef315b11e72d3fbe9bcfae6ba_icgraph" alt=""/></div>
 <map name="aclassdipoles_1_1Dipoles_a5fcdcf8ef315b11e72d3fbe9bcfae6ba_icgraph" id="aclassdipoles_1_1Dipoles_a5fcdcf8ef315b11e72d3fbe9bcfae6ba_icgraph">
 <area shape="rect" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="237,35,448,60"/>
-<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
+<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
 <area shape="poly" title=" " alt="" coords="223,36,188,32,189,26,224,30"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d" title="Function that allows to Reset dipole coordinates." alt="" coords="5,55,189,95"/>
 <area shape="poly" title=" " alt="" coords="224,64,190,67,189,62,223,58"/>
@@ -999,7 +1007,7 @@ requires HasBracketOperator&lt;Container&gt;</div>
 <area shape="rect" title="Computes vector difference for dipole coordinates." alt="" coords="496,27,688,67"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="237,35,448,60"/>
 <area shape="poly" title=" " alt="" coords="482,50,448,50,448,45,482,45"/>
-<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
+<area shape="rect" href="classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
 <area shape="poly" title=" " alt="" coords="223,36,188,32,189,26,224,30"/>
 <area shape="rect" href="classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d" title="Function that allows to Reset dipole coordinates." alt="" coords="5,55,189,95"/>
 <area shape="poly" title=" " alt="" coords="224,64,190,67,189,62,223,58"/>
@@ -1029,6 +1037,8 @@ requires HasBracketOperator&lt;Container&gt;</div>
 </table>
 </div><div class="memdoc">
 
+<p>a_n coefficient value </p>
+
 <p class="reference">Referenced by <a class="el" href="classdipoles_1_1Dipoles.html#af02a2a3f874d440c10ed437a24c3cce2">InitArrays()</a>, and <a class="el" href="classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba">SetMatrixes()</a>.</p>
 
 </div>
@@ -1052,6 +1062,8 @@ requires HasBracketOperator&lt;Container&gt;</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>right part of system of equations </p>
 
 <p class="reference">Referenced by <a class="el" href="classdipoles_1_1Dipoles.html#ad630e4412806b23c81e75e38beda2d60">GetRightPart()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#af02a2a3f874d440c10ed437a24c3cce2">InitArrays()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d">SetNewCoordinates()</a>, and <a class="el" href="classdipoles_1_1Dipoles.html#a4e8be9191531b830a88af951d66cd7f2">Solve()</a>.</p>
 
@@ -1077,6 +1089,8 @@ requires HasBracketOperator&lt;Container&gt;</div>
 </table>
 </div><div class="memdoc">
 
+<p>analytic representation of the target function </p>
+
 <p class="reference">Referenced by <a class="el" href="classdipoles_1_1Dipoles.html#a9f8e8a541da8c020246bc4264590aa98">GetFullFunction()</a>, and <a class="el" href="classdipoles_1_1Dipoles.html#aec583ec70c53ff533e99cf19eb339d9e">GetI2Function()</a>.</p>
 
 </div>
@@ -1100,6 +1114,9 @@ requires HasBracketOperator&lt;Container&gt;</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>&lt; size of the system </p>
+<p>numeric/analytic representation of the target function. </p>
 
 <p class="reference">Referenced by <a class="el" href="classdipoles_1_1Dipoles.html#a9f8e8a541da8c020246bc4264590aa98">GetFullFunction()</a>, and <a class="el" href="classdipoles_1_1Dipoles.html#a8ea20c08ce5092669bbd344c0c82f6f5">GetIfunction()</a>.</p>
 
@@ -1125,6 +1142,8 @@ requires HasBracketOperator&lt;Container&gt;</div>
 </table>
 </div><div class="memdoc">
 
+<p>upper left block of matrix </p>
+
 <p class="reference">Referenced by <a class="el" href="classdipoles_1_1Dipoles.html#a40920b5670429c8b8cb9000a46d87ed2">GetMatrixx()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#af02a2a3f874d440c10ed437a24c3cce2">InitArrays()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638">LoadFromMatrix()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba">SetMatrixes()</a>, and <a class="el" href="classdipoles_1_1Dipoles.html#a4e8be9191531b830a88af951d66cd7f2">Solve()</a>.</p>
 
 </div>
@@ -1148,6 +1167,8 @@ requires HasBracketOperator&lt;Container&gt;</div>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>down left block of matrix </p>
 
 <p class="reference">Referenced by <a class="el" href="classdipoles_1_1Dipoles.html#a40920b5670429c8b8cb9000a46d87ed2">GetMatrixx()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#af02a2a3f874d440c10ed437a24c3cce2">InitArrays()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#afa51ee0c7cc4ad3f9702d16c92641638">LoadFromMatrix()</a>, <a class="el" href="classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba">SetMatrixes()</a>, and <a class="el" href="classdipoles_1_1Dipoles.html#a4e8be9191531b830a88af951d66cd7f2">Solve()</a>.</p>
 

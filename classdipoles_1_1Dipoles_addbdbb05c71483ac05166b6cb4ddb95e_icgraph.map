@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Computes euclidean distacne for dipole coordinates." alt="" coords="496,35,711,60"/>
 <area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#a5fcdcf8ef315b11e72d3fbe9bcfae6ba" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="237,35,448,60"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="483,50,448,50,448,45,483,45"/>
-<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that acccepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
+<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#a4eb7fd7eb71b1608d54ad08fc360f34a" title="Basic constructor that accepts dipole coordinates Container." alt="" coords="6,5,189,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="223,36,188,32,189,26,224,30"/>
 <area shape="rect" id="Node000004" href="$classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d" title="Function that allows to Reset dipole coordinates." alt="" coords="5,55,189,95"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="224,64,190,67,189,62,223,58"/>
