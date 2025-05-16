@@ -100,7 +100,7 @@ static constexpr inline DimType kDefaultDims = {7, 25};
 static constexpr inline LimType kDefaultLims = {0, M_PI_2, 0, M_PI * 2};
 
 /**
- * @brief Class that  handles 3d mesh creation and parameters management
+ * @brief Class that handles 3d mesh creation and parameters management
  */
 class MeshCreator {
  public:
@@ -153,6 +153,7 @@ class MeshCreator {
    * @brief Calls provided callback to Plot this mesh
    * @param filename
    * @param plot_callback
+   * @todo remove deprecated callback
    */
   void PlotAndSave[[deprecated("remove mathplot support")]](const std::string &filename,
                                                             const std::function<void(const std::string &filename,

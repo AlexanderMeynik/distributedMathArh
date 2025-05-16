@@ -15,15 +15,12 @@ using shared::FloatType;
 namespace gui_objects {
 /**
  * @brief Surface Plot widget for mesh
+ * @todo add signal for single value changes?
  */
 class MeshPlot : public QWidget {
-
  Q_OBJECT
-
  public:
-
   MeshPlot();
-
   /**
    * @brief Constructs MeshPlot and the input mesh
    */
@@ -38,13 +35,10 @@ class MeshPlot : public QWidget {
    * @param fname
    */
   void SaveToFile(const QString &fname = QString::fromStdString("plotQt.png"));
-
  signals:
 
   void DataChanged(const MeshCreator &mesh);
-
  protected:
-
   /**
    * @brief Sets series data with the provided mesh data
    * @param rr
