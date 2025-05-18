@@ -208,7 +208,7 @@ auto nameGenerator4 =
 
 auto fifthBench = []
     (auto &clk, file_utils::fileHandler &handler,size_t &mul, size_t eigen_threads, size_t N) {
-  Eigen::setNbThreads(eigen_threads);
+  //Eigen::setNbThreads(eigen_threads);
   size_t conf_num = 10000;
   mul=1;
 
@@ -226,7 +226,7 @@ auto fifthBench = []
 
   common_types::StdValarr res = ms.data_[0];
 //todo ticloc with average for threads
-#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res)
+#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res) num_threads(eigen_threads)
   {
     thread_local auto functor = generators::get_normal_generator(0.0, kArange);
 #pragma for
@@ -301,6 +301,22 @@ int main() {
                               20ul, 40ul, 50ul}
 
   );
+
+  /*BenchmarkHandler bh6("benchSixth", {"benchSixth"});
+  bh6.RunBenchmark(nameGenerator6, sixthBench,
+                   std::array{1ul, 2ul, 3ul, 4ul, 5ul, 6ul, 7ul, 8ul, 9ul, 10ul, 11ul, 12ul, 13ul, 14ul, 15ul, 16ul},
+                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
+                              20ul, 40ul, 50ul}
+
+  );
+
+  BenchmarkHandler bh7("benchSeventh", {"benchSeventh"});
+  bh5.RunBenchmark(nameGenerator7, seventhBench,
+                   std::array{1ul, 2ul, 3ul, 4ul, 5ul, 6ul, 7ul, 8ul, 9ul, 10ul, 11ul, 12ul, 13ul, 14ul, 15ul, 16ul},
+                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
+                              20ul, 40ul, 50ul}
+
+  );*/
 
 
 
