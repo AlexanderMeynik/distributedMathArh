@@ -47,6 +47,7 @@ INPUT = ../../computationalNode/include \
         ../../computationalNode/src \
         ../../computationalLib/include \
         ../../computationalLib/lib \
+        ../../computationalLib/test \
         ../../mainNode/include \
         ../../mainNode/src \
         ../../utilLib/include \

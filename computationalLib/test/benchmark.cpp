@@ -265,13 +265,6 @@ int main() {
     std::cout << N << '\t' << rangeFinder(N) << '\n';
   }
 
-  BenchmarkHandler bh5("benchFifth", {"benchFifth"});
-  bh5.RunBenchmark(nameGenerator5, fifthBench,
-                   std::array{1ul, 2ul, 3ul, 4ul, 5ul, 6ul, 7ul, 8ul, 9ul, 10ul, 11ul, 12ul, 13ul, 14ul, 15ul, 16ul},
-                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
-                              20ul, 40ul, 50ul}
-
-  );
 
 
 
@@ -300,6 +293,15 @@ int main() {
                               20ul, 40ul, 50ul, 100ul, 200ul}
 
   );
+
+  BenchmarkHandler bh5("benchFifth", {"benchFifth"});
+  bh5.RunBenchmark(nameGenerator5, fifthBench,
+                   std::array{1ul, 2ul, 3ul, 4ul, 5ul, 6ul, 7ul, 8ul, 9ul, 10ul, 11ul, 12ul, 13ul, 14ul, 15ul, 16ul},
+                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
+                              20ul, 40ul, 50ul}
+
+  );
+
 
 
 }
