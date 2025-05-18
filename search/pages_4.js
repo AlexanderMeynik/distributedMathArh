@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['todo_20list_0',['Todo List',['../todo.html',1,'']]]
+  ['math_20architecture_0',['Distributed math architecture',['../index.html',1,'']]]
 ];

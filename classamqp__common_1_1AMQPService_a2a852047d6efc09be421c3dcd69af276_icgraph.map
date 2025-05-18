@@ -1,25 +1,27 @@
 <map id="amqp_common::AMQPService::Disconnect" name="amqp_common::AMQPService::Disconnect">
-<area shape="rect" id="Node000001" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="857,197,1076,237"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="581,69,799,109"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="925,192,871,157,808,124,776,112,778,107,810,119,874,152,928,187"/>
-<area shape="rect" id="Node000007" href="$classcomp__services_1_1ComputationNodeService.html#a6c1604b3b1351fa607ec848613903a79" title=" " alt="" coords="585,133,795,173"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="866,197,776,176,778,171,867,192"/>
-<area shape="rect" id="Node000009" href="$classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc" title="Disconnects the main node from a RabbitMQ instance." alt="" coords="571,197,809,237"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="843,220,810,220,810,215,843,215"/>
-<area shape="rect" id="Node000011" href="$classamqp__common_1_1AMQPPublisherService.html#aaf4ec517d781be1b15c9981661522b71" title="Calls Disconnect and frees used memory with smart pointers." alt="" coords="572,261,808,301"/>
-<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="867,243,778,264,776,259,866,238"/>
-<area shape="rect" id="Node000012" href="$classamqp__common_1_1AMQPService.html#a13069829565fe147402bd55c5eb765e5" title="Calls Disconnect and frees used memory with smart pointers." alt="" coords="581,325,799,365"/>
-<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="928,248,874,283,810,316,778,328,776,323,808,311,871,278,925,243"/>
+<area shape="rect" id="Node000001" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="857,248,1076,288"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="581,95,799,135"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="922,243,808,174,734,137,737,133,811,170,925,238"/>
+<area shape="rect" id="Node000008" href="$classcomp__services_1_1ComputationNodeService.html#a6c1604b3b1351fa607ec848613903a79" title=" " alt="" coords="585,184,795,224"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="866,247,776,227,778,221,867,242"/>
+<area shape="rect" id="Node000010" href="$classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc" title="Disconnects the main node from a RabbitMQ instance." alt="" coords="571,248,809,288"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="843,271,810,271,810,265,843,265"/>
+<area shape="rect" id="Node000012" href="$classamqp__common_1_1AMQPPublisherService.html#aaf4ec517d781be1b15c9981661522b71" title="Calls Disconnect and frees used memory with smart pointers." alt="" coords="572,312,808,352"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="867,294,778,315,776,309,866,289"/>
+<area shape="rect" id="Node000013" href="$classamqp__common_1_1AMQPService.html#a13069829565fe147402bd55c5eb765e5" title="Calls Disconnect and frees used memory with smart pointers." alt="" coords="581,376,799,416"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="928,298,874,333,810,366,778,378,776,373,808,362,871,329,925,294"/>
 <area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="298,5,509,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="586,69,493,48,494,43,587,64"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="620,93,522,60,481,48,482,43,523,55,622,88"/>
 <area shape="rect" id="Node000005" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,69,523,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="567,92,523,92,523,87,567,87"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="567,106,523,103,523,97,567,101"/>
+<area shape="rect" id="Node000007" href="$AMQPPublisherTests_8cpp.html#a9a9548c59335fe4929e31fd4cc212c68" title=" " alt="" coords="369,134,438,159"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="567,131,439,146,438,140,566,126"/>
 <area shape="rect" id="Node000004" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="45,5,196,45"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="284,28,196,28,196,23,284,23"/>
 <area shape="rect" id="Node000006" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,69,236,109"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="270,92,236,92,236,87,270,87"/>
-<area shape="rect" id="Node000008" href="$classrest_1_1v1_1_1CompNode.html#aa979451705d584f5fdebc3b4eb0f66d8" title=" " alt="" coords="327,133,480,173"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="571,156,480,156,480,151,571,151"/>
-<area shape="rect" id="Node000010" href="$classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087" title="Disconnects main node from RabbitMQ." alt="" coords="288,197,519,237"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="557,220,519,220,519,215,557,215"/>
+<area shape="rect" id="Node000009" href="$classrest_1_1v1_1_1CompNode.html#aa979451705d584f5fdebc3b4eb0f66d8" title=" " alt="" coords="327,184,480,224"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="571,207,480,207,480,201,571,201"/>
+<area shape="rect" id="Node000011" href="$classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087" title="Disconnects main node from RabbitMQ." alt="" coords="288,248,519,288"/>
+<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="557,271,519,271,519,265,557,265"/>
 </map>

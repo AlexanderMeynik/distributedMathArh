@@ -4,14 +4,19 @@ var hierarchy =
       [ "amqp_common::AMQPConsumerService", "classamqp__common_1_1AMQPConsumerService.html", null ],
       [ "amqp_common::AMQPPublisherService", "classamqp__common_1_1AMQPPublisherService.html", null ]
     ] ],
+    [ "test_common::arrayDoubleComparator< FType >", "structtest__common_1_1arrayDoubleComparator.html", null ],
+    [ "test_common::arrayEqualComparator< Type >", "structtest__common_1_1arrayEqualComparator.html", null ],
     [ "rest_utils::AuthHandler", "classrest__utils_1_1AuthHandler.html", [
       [ "rest_utils::BasicAuthHandler", "classrest__utils_1_1BasicAuthHandler.html", [
         [ "rest_utils::JsonAuthHandler", "classrest__utils_1_1JsonAuthHandler.html", null ]
       ] ]
     ] ],
+    [ "test_common::AuthParams", "namespacetest__common.html#structtest__common_1_1AuthParams", null ],
+    [ "bench_utils::BenchmarkHandler< range >", "classbench__utils_1_1BenchmarkHandler.html", null ],
     [ "comp_services::BenchmarkRunner", "classcomp__services_1_1BenchmarkRunner.html", null ],
     [ "network_types::channel", "structnetwork__types_1_1channel.html", null ],
     [ "timing::ClockArray< OutType, inType, timeGetter, sourceTypeConverter, timeConverter >", "classtiming_1_1ClockArray.html", null ],
+    [ "timing::ClockArray< std::micro >", "classtiming_1_1ClockArray.html", null ],
     [ "timing::ClockArray< std::milli >", "classtiming_1_1ClockArray.html", null ],
     [ "main_services::ComputationalNode", "classmain__services_1_1ComputationalNode.html", null ],
     [ "comp_services::ComputationNodeService", "classcomp__services_1_1ComputationNodeService.html", null ],
@@ -21,12 +26,18 @@ var hierarchy =
     [ "print_utils::Delimiter", "structprint__utils_1_1Delimiter.html", null ],
     [ "dipoles::Dipoles", "classdipoles_1_1Dipoles.html", null ],
     [ "enum_utils::EnumDoubleMapping< Enum, To >", "namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping", null ],
+    [ "testing::Environment", null, [
+      [ "DatabaseTestEnvironment", "classDatabaseTestEnvironment.html", null ]
+    ] ],
     [ "network_types::exchange", "structnetwork__types_1_1exchange.html", null ],
     [ "db_common::Experiment", "structdb__common_1_1Experiment.html", null ],
     [ "std::false_type", null, [
       [ "my_concepts::is_specialization_of< typename, class >", "structmy__concepts_1_1is__specialization__of.html", null ]
     ] ],
+    [ "file_utils::fileHandler", "classfile__utils_1_1fileHandler.html", null ],
     [ "generators::generator< randomDevice >", "structgenerators_1_1generator.html", null ],
+    [ "test_common::get_template<... >", "namespacetest__common.html#structtest__common_1_1get__template", null ],
+    [ "test_common::get_template< C< Args... > >", "namespacetest__common.html#structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4", null ],
     [ "network_types::global_param", "structnetwork__types_1_1global__param.html", null ],
     [ "drogon::HttpController", null, [
       [ "rest::v1::ClusterConfigController", "classrest_1_1v1_1_1ClusterConfigController.html", null ],
@@ -75,11 +86,24 @@ var hierarchy =
     [ "common_types::returnToDataTypeT< ReturnType::EIGEN_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1EIGEN__VECTOR_01_4", null ],
     [ "common_types::returnToDataTypeT< ReturnType::STD_VALARRAY >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VALARRAY_01_4", null ],
     [ "common_types::returnToDataTypeT< ReturnType::STD_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4", null ],
+    [ "testing::Test", null, [
+      [ "AMQPConsumerSeviceTS", "classAMQPConsumerSeviceTS.html", null ],
+      [ "AMQPPublisherServiceTS", "classAMQPPublisherServiceTS.html", null ],
+      [ "NetworkTypesConversionTests", "classNetworkTypesConversionTests.html", null ],
+      [ "RabbitMqRestServiceTest", "classRabbitMqRestServiceTest.html", null ],
+      [ "TestSolveParam_TS", "classTestSolveParam__TS.html", null ]
+    ] ],
     [ "network_types::TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", null ],
+    [ "testing::TestWithParam", null, [
+      [ "DipoleSolveMethodNevTests", "classDipoleSolveMethodNevTests.html", null ],
+      [ "DipolesVerificationTs", "classDipolesVerificationTs.html", null ],
+      [ "IsSymmetricTestSuite", "classIsSymmetricTestSuite.html", null ]
+    ] ],
     [ "timing::ClockArray< OutType, inType, timeGetter, sourceTypeConverter, timeConverter >::timeStore", "structtiming_1_1ClockArray_1_1timeStore.html", null ],
     [ "std::true_type", null, [
       [ "my_concepts::is_specialization_of< C< Args... >, C >", "structmy__concepts_1_1is__specialization__of_3_01C_3_01Args_8_8_8_01_4_00_01C_01_4.html", null ]
     ] ],
+    [ "test_common::twoDArrayDoubleComparator< FType >", "structtest__common_1_1twoDArrayDoubleComparator.html", null ],
     [ "db_common::User", "structdb__common_1_1User.html", null ],
     [ "main_services::WorkerManagementService", "classmain__services_1_1WorkerManagementService.html", null ]
 ];

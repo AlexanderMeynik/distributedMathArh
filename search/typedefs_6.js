@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['guardtype_0',['guardtype',['../classamqp__common_1_1AMQPService.html#a3981c91438be2812ac22010bb8e44663',1,'amqp_common::AMQPService::GuardType'],['../classtiming_1_1ClockArray.html#aff015eddd32b666859edb5d6be09da94',1,'timing::ClockArray::GuardType']]]
+  ['guardtype_0',['guardtype',['../classamqp__common_1_1AMQPService.html#a3981c91438be2812ac22010bb8e44663',1,'amqp_common::AMQPService::GuardType'],['../classAMQPConsumerSeviceTS.html#a8dd058b2c6331fe68b24d9198b9faf43',1,'AMQPConsumerSeviceTS::GuardType'],['../classtiming_1_1ClockArray.html#aff015eddd32b666859edb5d6be09da94',1,'timing::ClockArray::GuardType']]]
 ];

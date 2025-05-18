@@ -1,6 +1,7 @@
 var namespaces_dup =
 [
     [ "amqp_common", "namespaceamqp__common.html", "namespaceamqp__common" ],
+    [ "bench_utils", "namespacebench__utils.html", "namespacebench__utils" ],
     [ "chrono_clock", "namespacechrono__clock.html", [
       [ "ChronoClockTemplate", "namespacechrono__clock.html#ade1dd5104da34edddcf60f31e8c03c93", null ],
       [ "DoubleCastChrono", "namespacechrono__clock.html#a71ebb6c7290de62ac533153185d635e2", null ],
@@ -12,6 +13,7 @@ var namespaces_dup =
     [ "db_service", "namespacedb__service.html", "namespacedb__service" ],
     [ "dipoles", "namespacedipoles.html", "namespacedipoles" ],
     [ "enum_utils", "namespaceenum__utils.html", "namespaceenum__utils" ],
+    [ "file_utils", "namespacefile__utils.html", "namespacefile__utils" ],
     [ "generators", "namespacegenerators.html", "namespacegenerators" ],
     [ "gui_objects", "namespacegui__objects.html", "namespacegui__objects" ],
     [ "main_services", "namespacemain__services.html", "namespacemain__services" ],
@@ -22,5 +24,6 @@ var namespaces_dup =
     [ "rest", "namespacerest.html", "namespacerest" ],
     [ "rest_utils", "namespacerest__utils.html", "namespacerest__utils" ],
     [ "shared", "namespaceshared.html", "namespaceshared" ],
+    [ "test_common", "namespacetest__common.html", "namespacetest__common" ],
     [ "timing", "namespacetiming.html", "namespacetiming" ]
 ];

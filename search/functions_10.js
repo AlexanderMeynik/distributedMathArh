@@ -15,5 +15,6 @@ var searchData=
   ['rowdivisionerror_12',['RowDivisionError',['../classshared_1_1RowDivisionError.html#a5d33b396d705f3cd6ef653513174d0fe',1,'shared::RowDivisionError']]],
   ['run_13',['Run',['../classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e',1,'comp_services::BenchmarkRunner']]],
   ['runbench_14',['RunBench',['../classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2',1,'comp_services::ComputationNodeService']]],
-  ['runsinglebenchmark_15',['RunSingleBenchmark',['../classcomp__services_1_1BenchmarkRunner.html#a3c37823cafe6654892a0f3beb4c10f5a',1,'comp_services::BenchmarkRunner']]]
+  ['runbenchmark_15',['RunBenchmark',['../classbench__utils_1_1BenchmarkHandler.html#a45fcfbee28a73fd69d4abc59511a0562',1,'bench_utils::BenchmarkHandler']]],
+  ['runsinglebenchmark_16',['RunSingleBenchmark',['../classcomp__services_1_1BenchmarkRunner.html#a3c37823cafe6654892a0f3beb4c10f5a',1,'comp_services::BenchmarkRunner']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['zerosize_0',['zeroSize',['../classshared_1_1zeroSize.html',1,'shared']]]
+  ['workermanagementservice_0',['WorkerManagementService',['../classmain__services_1_1WorkerManagementService.html',1,'main_services']]]
 ];

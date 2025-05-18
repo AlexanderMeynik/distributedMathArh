@@ -7,6 +7,9 @@ var annotated_dup =
       [ "MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
       [ "RabbitMQRestService", "classamqp__common_1_1RabbitMQRestService.html", "classamqp__common_1_1RabbitMQRestService" ]
     ] ],
+    [ "bench_utils", "namespacebench__utils.html", [
+      [ "BenchmarkHandler", "classbench__utils_1_1BenchmarkHandler.html", "classbench__utils_1_1BenchmarkHandler" ]
+    ] ],
     [ "common_types", "namespacecommon__types.html", [
       [ "returnToDataTypeT", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT", null ],
       [ "returnToDataTypeT< ReturnType::ARRAY_EIGEN_VECTORS >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1ARRAY__EIGEN__VECTORS_01_4", "namespacecommon__types_structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1ARRAY__EIGEN__VECTORS_01_4_dup" ],
@@ -34,6 +37,9 @@ var annotated_dup =
     ] ],
     [ "enum_utils", "namespaceenum__utils.html", [
       [ "EnumDoubleMapping", "namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping", "namespaceenum__utils_structenum__utils_1_1EnumDoubleMapping_dup" ]
+    ] ],
+    [ "file_utils", "namespacefile__utils.html", [
+      [ "fileHandler", "classfile__utils_1_1fileHandler.html", "classfile__utils_1_1fileHandler" ]
     ] ],
     [ "generators", "namespacegenerators.html", [
       [ "generator", "structgenerators_1_1generator.html", "structgenerators_1_1generator" ]
@@ -97,8 +103,25 @@ var annotated_dup =
       [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
       [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
     ] ],
+    [ "test_common", "namespacetest__common.html", [
+      [ "arrayDoubleComparator", "structtest__common_1_1arrayDoubleComparator.html", "structtest__common_1_1arrayDoubleComparator" ],
+      [ "arrayEqualComparator", "structtest__common_1_1arrayEqualComparator.html", "structtest__common_1_1arrayEqualComparator" ],
+      [ "AuthParams", "namespacetest__common.html#structtest__common_1_1AuthParams", "namespacetest__common_structtest__common_1_1AuthParams_dup" ],
+      [ "get_template", "namespacetest__common.html#structtest__common_1_1get__template", null ],
+      [ "get_template< C< Args... > >", "namespacetest__common.html#structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4", "namespacetest__common_structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4_dup" ],
+      [ "twoDArrayDoubleComparator", "structtest__common_1_1twoDArrayDoubleComparator.html", "structtest__common_1_1twoDArrayDoubleComparator" ]
+    ] ],
     [ "timing", "namespacetiming.html", [
       [ "ClockArray", "classtiming_1_1ClockArray.html", "classtiming_1_1ClockArray" ],
       [ "LocationComparator", "structtiming_1_1LocationComparator.html", "structtiming_1_1LocationComparator" ]
-    ] ]
+    ] ],
+    [ "AMQPConsumerSeviceTS", "classAMQPConsumerSeviceTS.html", "classAMQPConsumerSeviceTS" ],
+    [ "AMQPPublisherServiceTS", "classAMQPPublisherServiceTS.html", "classAMQPPublisherServiceTS" ],
+    [ "DatabaseTestEnvironment", "classDatabaseTestEnvironment.html", "classDatabaseTestEnvironment" ],
+    [ "DipoleSolveMethodNevTests", "classDipoleSolveMethodNevTests.html", null ],
+    [ "DipolesVerificationTs", "classDipolesVerificationTs.html", null ],
+    [ "IsSymmetricTestSuite", "classIsSymmetricTestSuite.html", null ],
+    [ "NetworkTypesConversionTests", "classNetworkTypesConversionTests.html", null ],
+    [ "RabbitMqRestServiceTest", "classRabbitMqRestServiceTest.html", "classRabbitMqRestServiceTest" ],
+    [ "TestSolveParam_TS", "classTestSolveParam__TS.html", "classTestSolveParam__TS" ]
 ];

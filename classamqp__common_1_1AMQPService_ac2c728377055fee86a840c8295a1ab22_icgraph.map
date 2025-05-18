@@ -1,11 +1,13 @@
 <map id="amqp_common::AMQPService::ServiceName" name="amqp_common::AMQPService::ServiceName">
-<area shape="rect" id="Node000001" title=" " alt="" coords="837,37,1056,77"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="571,37,789,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="824,60,790,60,790,55,824,55"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="837,69,1056,109"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="571,69,789,109"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="824,92,790,92,790,87,824,87"/>
 <area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="298,5,509,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="557,46,509,40,509,35,557,40"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="579,69,490,48,491,43,580,64"/>
 <area shape="rect" id="Node000005" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,69,523,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="557,74,523,78,523,73,556,69"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="557,92,523,92,523,87,557,87"/>
+<area shape="rect" id="Node000007" href="$AMQPPublisherTests_8cpp.html#a9a9548c59335fe4929e31fd4cc212c68" title=" " alt="" coords="369,134,438,159"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="570,115,439,142,438,137,569,110"/>
 <area shape="rect" id="Node000004" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="45,5,196,45"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="284,28,196,28,196,23,284,23"/>
 <area shape="rect" id="Node000006" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,69,236,109"/>

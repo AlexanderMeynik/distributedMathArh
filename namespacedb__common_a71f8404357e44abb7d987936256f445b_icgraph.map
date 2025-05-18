@@ -1,4 +1,6 @@
 <map id="db_common::CreateDatabase" name="db_common::CreateDatabase">
-<area shape="rect" id="Node000001" title="Creates database with db_name." alt="" coords="5,29,220,55"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="151,20,140,11,113,8,90,10,78,15,75,20,82,28,78,31,70,21,74,11,89,5,113,3,142,6,154,15"/>
+<area shape="rect" id="Node000001" title="Creates database with db_name." alt="" coords="247,29,461,55"/>
+<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="399,20,396,15,388,12,354,8,327,10,313,15,310,20,317,27,313,31,305,21,309,11,326,5,354,3,389,7,399,11,403,17"/>
+<area shape="rect" id="Node000002" href="$classDatabaseTestEnvironment.html#a34f5b43aa29f374ec03041c47046d2e6" title=" " alt="" coords="5,22,199,62"/>
+<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="233,45,199,45,199,39,233,39"/>
 </map>

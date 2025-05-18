@@ -1,0 +1,6 @@
+<map id="TEST" name="TEST">
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,29,60,55"/>
+<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#a5a133e8ea931aa11e79ee9b1eed3f697" title="Extract host from the Full url." alt="" coords="108,29,315,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,39,94,39,94,45,60,45"/>
+<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="182,31,175,21,179,11,191,5,211,3,236,6,246,15,243,19,234,11,211,8,192,10,183,15,181,20,186,28"/>
+</map>

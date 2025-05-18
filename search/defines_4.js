@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['variable_5fname_0',['VARIABLE_NAME',['../errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa',1,'errorHandling.h']]]
+  ['sleep_0',['SLEEP',['../GoogleCommon_8h.html#af33e54947e2318ebca77291c8a06daaa',1,'GoogleCommon.h']]],
+  ['str_1',['STR',['../errorHandling_8h.html#a11b4065d88861b9e5622eaf8f2d56447',1,'errorHandling.h']]]
 ];
