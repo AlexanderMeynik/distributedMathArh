@@ -225,7 +225,7 @@ auto fifthBench = []
   common_types::EigenVec sol;
 
   common_types::StdValarr res = ms.data_[0];
-//todo ticloc with average for threads
+///@todo ticloc with average for threads
 #pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res) num_threads(eigen_threads)
   {
     thread_local auto functor = generators::get_normal_generator(0.0, kArange);

@@ -152,7 +152,7 @@ IndexType DbService::CreateIteration(IndexType experiment_id,
                                      IndexType node_id,
                                      std::string_view iter_type) {
   IndexType iteration_id;
-  //todo use stream api
+  ///@todo use stream api
   ExecuteTransaction([&](TransactionT &txn) {
     std::string qq = "INSERT INTO \"Iteration\" (experiment_id, node_id, iter_t)"
                      " VALUES ($1, $2, $3)"
@@ -188,7 +188,7 @@ void DbService::UpdateIterationStatus(IndexType iteration_id,
                        "WHERE iteration_id = $3";
       txn.exec(qq, pqxx::params{status, output_str, iteration_id});
     }
-    //todo think
+    ///@todo think about linner log proper usage
     InnerLog(txn,std::nullopt,std::nullopt, "info",
              fmt::format("Iteration {} status updated to {}",
                          iteration_id,

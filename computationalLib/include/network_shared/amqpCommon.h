@@ -101,7 +101,7 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
    */
   void onError(AMQP::TcpConnection *connection,
                const char *message) override {
-    std::cout << "Connection error: " << message << '\n';//todo log
+    std::cout << "Connection error: " << message << '\n';///@todo log
     ResetLoop();
   }
 

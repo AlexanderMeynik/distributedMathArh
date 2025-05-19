@@ -70,7 +70,7 @@ class AMQPPublisherService : public AMQPService {
 
   std::string ServiceName() override;
 
-  std::vector<std::string> queues_;///< list of used queues @todo remove
+  std::vector<std::string> queues_;///< list of used queues ///@todo remove
 
   std::thread service_thread_;///< thread to run boost service
 

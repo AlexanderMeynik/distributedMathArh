@@ -150,7 +150,7 @@ size_t RabbitMQRestService::GetMessageCount(const std::string &vhost, const std:
 
   Json::Value body;
   body["count"] = 1000;
-  body["ackmode"] = "ack_requeue_true";//todo if we need more modes create or find enum
+  body["ackmode"] = "ack_requeue_true";///@todoif we need more modes create or find enum
   body["encoding"] = "auto";
   body["truncate"] = 50000;
   std::string data = Json::writeString(Json::StreamWriterBuilder(), body);
@@ -250,7 +250,7 @@ std::vector<global_param> RabbitMQRestService::ListGlobalParams() {
 
   return out;
 }
-//todo enum for requets tyope(or copy drogon one)
+///@todo  use enum for requets tyope(or copy drogon one)
 bool RabbitMQRestService::GlobalParam(const global_param &param, const std::string &type) {
 
   std::string path = fmt::format("/api/global-parameters/{}", param.name);

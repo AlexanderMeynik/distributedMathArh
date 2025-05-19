@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
       port = std::stoi(argv[1]);
     }
     catch (std::invalid_argument &inv) {
-      //todo use logger
+      ///@todo use logger
       std::cout << fmt::format("Invalid argument  exception {} occurred \n argv[1] = {} ",
                                inv.what(), argv[1]);
       return -1;

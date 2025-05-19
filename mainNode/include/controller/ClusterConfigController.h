@@ -24,11 +24,11 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
    * @brief Initializes MainNodeService with preconfigured credentials provider
    */
   ClusterConfigController() {
-    //todo pass args(create role for q creation/ message send)
+    ///@todo pass args(create role for q creation/ message send)
     main_node_service_ = std::make_unique<MainNodeService>("sysadmin", "syspassword");
 
-  }//todo /rebalance
-  //todo ping(measures latencies)?
+  }///@todo /rebalance
+  ///@todo ping(measures latencies)?
   using Cont = ClusterConfigController;
 
   METHOD_LIST_BEGIN

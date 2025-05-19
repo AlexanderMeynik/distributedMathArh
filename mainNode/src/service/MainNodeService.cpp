@@ -241,7 +241,7 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
     BenchResVec iters = val.node_speed_ * (itercount);
     iters /= worker_management_service_->GetSum();
 
-    //todo use proper logic to find weight
+    ///@todo use proper logic to find weight
     auto iterss = iters[2];
     ts_t = ts.SliceAway(iterss);
     PublishMessage(ts_t, key);

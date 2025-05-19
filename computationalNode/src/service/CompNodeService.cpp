@@ -7,7 +7,7 @@ Json::Value ComputationNodeService::GetStatus() {
   Json::Value res_JSON;
   res_JSON["request"] = "status";
   res_JSON["worker_status"] = consumer_service_.IsConnected() ? "running" : "not running";
-  if (Computed())//todo what will this thing impact
+  if (Computed())///@todo what will this thing impact
     res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
@@ -54,7 +54,7 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
     res_JSON["status"] = HttpStatusCode::k409Conflict;
     res_JSON["message"] = fmt::format("Node is already connected to RabbitMQ {}!",
                                       consumer_service_.GetCString());
-    //todo remove user data
+    ///@todo remove user data
 
     return res_JSON;
   }
@@ -95,7 +95,7 @@ void ComputationNodeService::RunBench() {
 }
 ComputationNodeService::ComputationNodeService() {
 
-  //todo move to common
+  ///@todo move to common
   shared::BenchResVec
       ns = {1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul};//, 800ul, 1000ul ,2000ul};
   shared::BenchResVec iter_count =

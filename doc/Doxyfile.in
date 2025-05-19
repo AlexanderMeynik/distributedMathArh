@@ -47,13 +47,16 @@ INPUT = ../../computationalNode/include \
         ../../computationalNode/src \
         ../../computationalLib/include \
         ../../computationalLib/lib \
-        ../../computationalLib/test \
+        ../../computationalLib/test/BenchmarkHandler.h \
+        ../../computationalLib/test/fileHandler.h \
+        ../../computationalLib/test/benchmark.cpp \
         ../../mainNode/include \
         ../../mainNode/src \
         ../../utilLib/include \
         ../../utilLib/lib \
         ../../client/include \
-        md
+        md \
+        ../../metrics/source_report.dox
 
 
 INCLUDE_PATH = ../../computationalNode/include \

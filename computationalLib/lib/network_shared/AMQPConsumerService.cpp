@@ -33,7 +33,7 @@ void AMQPConsumerService::Reconnect() {
     }
   };
 
-  //todo find way to signal
+  ///@todo find way to signal
   auto error_cb = [](const char *message) {
     std::cout << "Consumption error: " << message << '\n';
   };
