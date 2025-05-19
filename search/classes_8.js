@@ -7,6 +7,5 @@ var searchData=
   ['iosstatescientific_4',['IosStateScientific',['../classprint__utils_1_1IosStateScientific.html',1,'print_utils']]],
   ['is_5fspecialization_5fof_5',['is_specialization_of',['../structmy__concepts_1_1is__specialization__of.html',1,'my_concepts']]],
   ['is_5fspecialization_5fof_3c_20c_3c_20args_2e_2e_2e_20_3e_2c_20c_20_3e_6',['is_specialization_of&lt; C&lt; Args... &gt;, C &gt;',['../structmy__concepts_1_1is__specialization__of_3_01C_3_01Args_8_8_8_01_4_00_01C_01_4.html',1,'my_concepts']]],
-  ['issymmetrictestsuite_7',['IsSymmetricTestSuite',['../classIsSymmetricTestSuite.html',1,'']]],
-  ['iteration_8',['Iteration',['../structdb__common_1_1Iteration.html',1,'db_common']]]
+  ['iteration_7',['Iteration',['../structdb__common_1_1Iteration.html',1,'db_common']]]
 ];

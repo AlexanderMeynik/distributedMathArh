@@ -103,25 +103,8 @@ var annotated_dup =
       [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
       [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
     ] ],
-    [ "test_common", "namespacetest__common.html", [
-      [ "arrayDoubleComparator", "structtest__common_1_1arrayDoubleComparator.html", "structtest__common_1_1arrayDoubleComparator" ],
-      [ "arrayEqualComparator", "structtest__common_1_1arrayEqualComparator.html", "structtest__common_1_1arrayEqualComparator" ],
-      [ "AuthParams", "namespacetest__common.html#structtest__common_1_1AuthParams", "namespacetest__common_structtest__common_1_1AuthParams_dup" ],
-      [ "get_template", "namespacetest__common.html#structtest__common_1_1get__template", null ],
-      [ "get_template< C< Args... > >", "namespacetest__common.html#structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4", "namespacetest__common_structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4_dup" ],
-      [ "twoDArrayDoubleComparator", "structtest__common_1_1twoDArrayDoubleComparator.html", "structtest__common_1_1twoDArrayDoubleComparator" ]
-    ] ],
     [ "timing", "namespacetiming.html", [
       [ "ClockArray", "classtiming_1_1ClockArray.html", "classtiming_1_1ClockArray" ],
       [ "LocationComparator", "structtiming_1_1LocationComparator.html", "structtiming_1_1LocationComparator" ]
-    ] ],
-    [ "AMQPConsumerSeviceTS", "classAMQPConsumerSeviceTS.html", "classAMQPConsumerSeviceTS" ],
-    [ "AMQPPublisherServiceTS", "classAMQPPublisherServiceTS.html", "classAMQPPublisherServiceTS" ],
-    [ "DatabaseTestEnvironment", "classDatabaseTestEnvironment.html", "classDatabaseTestEnvironment" ],
-    [ "DipoleSolveMethodNevTests", "classDipoleSolveMethodNevTests.html", null ],
-    [ "DipolesVerificationTs", "classDipolesVerificationTs.html", null ],
-    [ "IsSymmetricTestSuite", "classIsSymmetricTestSuite.html", null ],
-    [ "NetworkTypesConversionTests", "classNetworkTypesConversionTests.html", null ],
-    [ "RabbitMqRestServiceTest", "classRabbitMqRestServiceTest.html", "classRabbitMqRestServiceTest" ],
-    [ "TestSolveParam_TS", "classTestSolveParam__TS.html", "classTestSolveParam__TS" ]
+    ] ]
 ];

@@ -1,19 +1,5 @@
 <map id="network_types::JsonToVariant" name="network_types::JsonToVariant">
-<area shape="rect" id="Node000001" title="Casts Json::Value to JsonVariant." alt="" coords="241,179,455,204"/>
-<area shape="rect" id="Node000002" href="$networkTypesTests_8cpp.html#ab0144c2c530eda76c0681eaa12f2d3d0" title=" " alt="" coords="65,5,134,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="327,169,271,106,234,73,192,44,163,32,134,25,135,20,165,27,195,40,237,69,275,102,331,166"/>
-<area shape="rect" id="Node000003" href="$networkTypesTests_8cpp.html#a02ff63093dab6babc9e89575c739505b" title=" " alt="" coords="65,55,134,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="319,172,262,132,192,94,133,76,135,71,194,89,265,128,322,168"/>
-<area shape="rect" id="Node000004" href="$networkTypesTests_8cpp.html#a12f2aa6bd1506d50dc51ea5ed2dbfa89" title=" " alt="" coords="65,104,134,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="297,177,193,143,134,127,135,122,194,138,298,172"/>
-<area shape="rect" id="Node000005" href="$networkTypesTests_8cpp.html#a95ac14ccd238af61222cb3d0ed2f545d" title=" " alt="" coords="65,153,134,179"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="227,182,134,172,134,167,228,176"/>
-<area shape="rect" id="Node000006" href="$networkTypesTests_8cpp.html#aed239ae70672672a51faa5ca873f0523" title=" " alt="" coords="65,203,134,228"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="228,206,134,215,134,209,227,200"/>
-<area shape="rect" id="Node000007" href="$networkTypesTests_8cpp.html#af9e67c01dfa496f5361592efaad93047" title=" " alt="" coords="65,252,134,277"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="295,211,194,242,135,258,133,253,193,237,293,206"/>
-<area shape="rect" id="Node000008" href="$networkTypesTests_8cpp.html#a0dea9c2b46b4c80308bfbb28ef41d3b5" title=" " alt="" coords="65,301,134,327"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="321,214,264,253,194,291,135,310,133,305,192,286,262,249,318,210"/>
-<area shape="rect" id="Node000009" href="$structnetwork__types_1_1TestSolveParam.html#ab6b44d2104cef733184181dc9e3d5c3c" title="Deserialize from Json::Value." alt="" coords="5,351,193,391"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="330,217,273,277,236,311,195,340,168,354,166,349,192,336,232,307,269,274,326,213"/>
+<area shape="rect" id="Node000001" title="Casts Json::Value to JsonVariant." alt="" coords="241,13,455,38"/>
+<area shape="rect" id="Node000002" href="$structnetwork__types_1_1TestSolveParam.html#ab6b44d2104cef733184181dc9e3d5c3c" title="Deserialize from Json::Value." alt="" coords="5,5,193,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="228,28,193,28,193,23,228,23"/>
 </map>

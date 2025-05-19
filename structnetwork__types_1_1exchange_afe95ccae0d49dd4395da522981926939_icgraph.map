@@ -1,11 +1,7 @@
 <map id="network_types::exchange::ToJson" name="network_types::exchange::ToJson">
-<area shape="rect" id="Node000001" title=" " alt="" coords="843,63,1032,103"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="843,5,1032,45"/>
 <area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="571,5,795,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="834,62,771,48,773,43,835,57"/>
-<area shape="rect" id="Node000005" href="$networkTypesTests_8cpp.html#a97b5ab5e9d0282326b38d6f8b43d2357" title=" " alt="" coords="655,70,710,95"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="829,85,710,85,710,80,829,80"/>
-<area shape="rect" id="Node000006" href="$networkTypesTests_8cpp.html#ad8bbec7e6b9eeb3c9acce4d89f2182e0" title=" " alt="" coords="655,119,710,145"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="830,106,711,130,710,124,829,101"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="829,28,795,28,795,23,829,23"/>
 <area shape="rect" id="Node000003" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
 <area shape="rect" id="Node000004" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>

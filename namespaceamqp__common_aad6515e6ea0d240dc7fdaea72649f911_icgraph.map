@@ -1,32 +1,13 @@
 <map id="amqp_common::ConstructCString" name="amqp_common::ConstructCString">
-<area shape="rect" id="Node000001" title="Constructs amqp connection string." alt="" coords="587,325,827,350"/>
+<area shape="rect" id="Node000001" title="Constructs amqp connection string." alt="" coords="587,77,827,102"/>
 <area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="306,5,517,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="695,312,675,259,643,190,597,119,569,87,537,59,515,47,518,42,540,55,572,83,601,116,647,187,680,257,700,310"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="633,76,504,48,505,43,634,71"/>
 <area shape="rect" id="Node000004" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="292,69,531,109"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="691,313,667,271,633,220,589,167,537,124,515,112,517,107,540,119,593,164,637,216,672,268,695,310"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="573,92,531,92,531,87,573,87"/>
 <area shape="rect" id="Node000006" href="$namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109" title=" " alt="" coords="284,134,539,159"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="685,316,624,248,583,212,537,181,488,162,490,157,540,176,586,208,628,244,689,312"/>
-<area shape="rect" id="Node000007" href="$AMQPConsumerServiceTests_8cpp.html#afd5926ea19c2f87e2344252f1594baa8" title=" " alt="" coords="93,159,148,185"/>
-<area shape="poly" id="edge9_Node000001_Node000007" title=" " alt="" coords="680,318,619,269,579,245,538,225,484,208,428,195,316,179,218,173,148,174,148,168,218,168,317,174,429,189,485,203,540,220,582,240,622,265,684,314"/>
-<area shape="rect" id="Node000008" href="$classAMQPConsumerSeviceTS.html#ad34ca4ed21620c29eba1c2eb4e1b37fc" title=" " alt="" coords="318,235,505,275"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="650,323,538,291,489,277,490,272,539,285,652,318"/>
-<area shape="rect" id="Node000009" href="$AMQPConsumerServiceTests_8cpp.html#ae962b2d910fa60369e6a9f5c959e1b63" title=" " alt="" coords="384,299,439,325"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="573,329,439,317,439,312,573,323"/>
-<area shape="rect" id="Node000010" href="$AMQPPublisherTests_8cpp.html#a39e6c17005d630c6235884cdc4cb1438" title=" " alt="" coords="377,349,446,374"/>
-<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="573,351,446,361,446,356,572,346"/>
-<area shape="rect" id="Node000011" href="$AMQPPublisherTests_8cpp.html#ae192bd58369c6cfed489b301aeee11cc" title=" " alt="" coords="377,398,446,423"/>
-<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="654,357,539,389,447,408,445,403,538,384,653,352"/>
-<area shape="rect" id="Node000012" href="$AMQPPublisherTests_8cpp.html#a777c7d3f565c008dc0f8c52e8d8655d7" title=" " alt="" coords="377,447,446,473"/>
-<area shape="poly" id="edge12_Node000001_Node000012" title=" " alt="" coords="679,360,617,400,579,421,540,439,491,452,447,459,446,454,490,447,538,433,577,416,614,396,676,356"/>
-<area shape="rect" id="Node000013" href="$AMQPPublisherTests_8cpp.html#a9a9548c59335fe4929e31fd4cc212c68" title=" " alt="" coords="377,497,446,522"/>
-<area shape="poly" id="edge13_Node000001_Node000013" title=" " alt="" coords="688,363,627,426,586,460,540,488,492,504,447,510,446,505,491,498,538,483,583,455,624,422,685,359"/>
-<area shape="rect" id="Node000014" href="$AMQPPublisherTests_8cpp.html#a36e46f87acb810ba452b4011189b3030" title=" " alt="" coords="377,546,446,571"/>
-<area shape="poly" id="edge14_Node000001_Node000014" title=" " alt="" coords="695,363,671,402,636,450,592,498,540,537,517,548,492,555,447,561,446,556,491,549,515,543,537,532,588,494,632,446,666,399,690,360"/>
-<area shape="rect" id="Node000015" href="$AMQPPublisherTests_8cpp.html#aeab507f47f21707d7437e804e0e9e44e" title=" " alt="" coords="377,595,446,621"/>
-<area shape="poly" id="edge15_Node000001_Node000015" title=" " alt="" coords="698,364,677,412,644,473,598,535,571,563,540,586,517,598,493,605,447,611,446,606,492,600,515,593,537,582,567,559,594,531,639,470,672,410,694,362"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="627,107,478,137,477,131,626,102"/>
 <area shape="rect" id="Node000003" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="45,5,196,45"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="292,28,196,28,196,23,292,23"/>
 <area shape="rect" id="Node000005" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,69,236,109"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="278,92,236,92,236,87,278,87"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="270,162,148,172,148,167,270,156"/>
 </map>

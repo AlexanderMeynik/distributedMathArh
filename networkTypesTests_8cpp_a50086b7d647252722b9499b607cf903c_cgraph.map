@@ -1,7 +1,0 @@
-<map id="TEST_F" name="TEST_F">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,75,38"/>
-<area shape="rect" id="Node000002" href="$structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="123,5,311,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="75,23,109,23,109,28,75,28"/>
-<area shape="rect" id="Node000003" href="$namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="359,13,572,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="311,23,345,23,345,28,311,28"/>
-</map>

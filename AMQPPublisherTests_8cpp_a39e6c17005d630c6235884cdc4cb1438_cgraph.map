@@ -1,8 +1,0 @@
-<map id="TEST_F" name="TEST_F">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,43,75,68"/>
-<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="123,5,363,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="74,46,159,31,160,36,75,52"/>
-<area shape="rect" id="Node000003" href="$namespaceamqp__common.html#a5a133e8ea931aa11e79ee9b1eed3f697" title="Extract host from the Full url." alt="" coords="139,79,346,104"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="75,59,158,74,157,79,74,64"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="209,80,202,70,206,60,220,54,243,52,271,56,282,65,279,69,269,61,243,57,221,59,210,64,207,70,214,77"/>
-</map>

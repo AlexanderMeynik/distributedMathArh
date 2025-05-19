@@ -1,7 +1,0 @@
-<map id="dipoles::Dipoles::LoadFromMatrix" name="dipoles::Dipoles::LoadFromMatrix">
-<area shape="rect" id="Node000001" title="Loads system of equations matrix." alt="" coords="123,23,321,63"/>
-<area shape="rect" id="Node000002" href="$smokeTests_8cpp.html#a6398ee3a15a851458ea30ab1cefcc3bd" title=" " alt="" coords="5,5,75,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,30,75,25,75,20,109,25"/>
-<area shape="rect" id="Node000003" href="$smokeTests_8cpp.html#a6b26dd3705c38fae5226e1c74e554cde" title=" " alt="" coords="5,55,75,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="109,61,75,65,75,60,109,56"/>
-</map>

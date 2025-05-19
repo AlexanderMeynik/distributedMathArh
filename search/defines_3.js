@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['ft_5fmax_0',['FT_MAX',['../MeshPlot_8h.html#aed6f9396bd7fa8f70379447daba084ec',1,'MeshPlot.h']]],
-  ['ft_5fmin_1',['FT_MIN',['../MeshPlot_8h.html#a84720e7b93bf917912f9f275d93fd4d0',1,'MeshPlot.h']]]
+  ['str_0',['STR',['../errorHandling_8h.html#a11b4065d88861b9e5622eaf8f2d56447',1,'errorHandling.h']]]
 ];

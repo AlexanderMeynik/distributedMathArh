@@ -25,8 +25,12 @@
 var NAVTREE =
 [
   [ "Distributed math architecture", "index.html", [
-    [ "install", "md_computationalLib_2test_2install.html", null ],
+    [ "Metrix overview", "metrix_overview.html", [
+      [ "Metrix Warnings", "metrix_overview.html#metrix_sec", null ],
+      [ "metrix overview", "metrix_overview.html#autotoc_md0", null ]
+    ] ],
     [ "Todo List", "todo.html", null ],
+    [ "Metrix Warnings", "metrix_warnings.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -46,7 +50,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", "functions_vars" ],
+        [ "Variables", "functions_vars.html", null ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
@@ -66,16 +70,15 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"AMQPConsumerServiceTests_8cpp.html",
-"classDatabaseTestEnvironment.html#aa198555ed3412137d847407be240bced",
-"classcomp__services_1_1ComputationNodeService.html#a6c1604b3b1351fa607ec848613903a79",
-"classmain__services_1_1WorkerManagementService.html#a63b0e1446e41225ffb11fa6a399b426b",
-"classshared_1_1SQL__ERROR.html#a8b2009a1fcf11befadc6ad51f3580c13",
-"dir_4fb2b05784fa4b698178bf41a7896591.html",
-"namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a",
-"networkTypesTests_8cpp.html#a9988e617206bed3ebfb926f7be3c1cfb",
-"structdb__common_1_1myConnString.html#a35e7696c4e8c855a5a0593e40f65c086",
-"timingUtils_8h.html"
+"AMQPConsumerService_8cpp.html",
+"classamqp__common_1_1AMQPService.html#a713ae10fba89c84b0866758dd94d4f9b",
+"classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7",
+"classrest_1_1v1_1_1ClusterConfigController.html#aee59404f6a82f37386cc6f84b32c4641",
+"classtiming_1_1ClockArray.html#aa8ac616cb39bd8180dcaf6031ffe3d80",
+"functions_o.html",
+"namespaceprint__utils.html#a0daba847fb82e8ae5f2fe501a744ee86",
+"structdb__common_1_1Log.html#afafeed9c2dff50b730f00a627610e404",
+"structnetwork__types_1_1rabbitMQUser.html#ae021d6ec56f16df35b25de6117dac851"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

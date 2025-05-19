@@ -24,6 +24,5 @@ var namespaces_dup =
     [ "rest", "namespacerest.html", "namespacerest" ],
     [ "rest_utils", "namespacerest__utils.html", "namespacerest__utils" ],
     [ "shared", "namespaceshared.html", "namespaceshared" ],
-    [ "test_common", "namespacetest__common.html", "namespacetest__common" ],
     [ "timing", "namespacetiming.html", "namespacetiming" ]
 ];

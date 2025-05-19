@@ -1,9 +1,0 @@
-<map id="my_concepts::GetMatrElement" name="my_concepts::GetMatrElement">
-<area shape="rect" id="Node000001" title=" " alt="" coords="409,31,632,56"/>
-<area shape="rect" id="Node000002" href="$namespacetest__common.html#a69912e0bfc34430ad0769e5a94ae44d2" title="Compares 2d arrays." alt="" coords="123,31,361,56"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="395,46,362,46,362,41,395,41"/>
-<area shape="rect" id="Node000003" href="$smokeTests_8cpp.html#a7c4ef5918a0ce2b17d0f0ac7ace4b754" title=" " alt="" coords="5,5,75,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="127,32,75,25,75,20,127,26"/>
-<area shape="rect" id="Node000004" href="$smokeTests_8cpp.html#a0988a5fb208e5611c62f89d7bdd9d185" title=" " alt="" coords="5,55,75,80"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="122,60,75,66,75,61,121,55"/>
-</map>

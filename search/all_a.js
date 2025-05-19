@@ -37,7 +37,6 @@ var searchData=
   ['kstrtonodest_34',['kStrToNodeSt',['../namespacedb__common.html#a58d975b5db17b55c19dee5f6f4978281',1,'db_common']]],
   ['kstrtosev_35',['kStrToSev',['../namespaceshared.html#af570bd9365898d829147c73ee171e266',1,'shared']]],
   ['kstrtouserrole_36',['kStrToUserRole',['../namespacedb__common.html#a1c74cf928d6e27553059ea31c234444b',1,'db_common']]],
-  ['ktool_37',['kTool',['../namespacetest__common.html#a49b109e09944c3ca816965f895f4270b',1,'test_common']]],
-  ['kuserrolemappings_38',['kUserRoleMappings',['../namespacedb__common.html#ac24e87443137fcf7b53e61475a91944e',1,'db_common']]],
-  ['kuserroletostr_39',['kUserRoleToStr',['../namespacedb__common.html#a8f7cab6b4069b37d7e8a47b15e7a3f3f',1,'db_common']]]
+  ['kuserrolemappings_37',['kUserRoleMappings',['../namespacedb__common.html#ac24e87443137fcf7b53e61475a91944e',1,'db_common']]],
+  ['kuserroletostr_38',['kUserRoleToStr',['../namespacedb__common.html#a8f7cab6b4069b37d7e8a47b15e7a3f3f',1,'db_common']]]
 ];

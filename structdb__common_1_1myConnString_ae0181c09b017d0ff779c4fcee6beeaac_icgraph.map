@@ -1,24 +1,19 @@
 <map id="db_common::myConnString::CStr" name="db_common::myConnString::CStr">
-<area shape="rect" id="Node000001" title=" " alt="" coords="740,133,943,173"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="509,140,692,165"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="726,155,692,155,692,150,726,150"/>
-<area shape="poly" id="edge13_Node000002_Node000002" title=" " alt="" coords="644,131,632,122,601,119,575,121,561,126,559,131,566,138,562,142,553,132,558,122,574,116,601,113,634,117,647,127"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="247,29,461,55"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="571,134,521,100,460,68,426,57,428,52,462,64,524,96,574,129"/>
-<area shape="rect" id="Node000005" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="253,176,455,201"/>
-<area shape="poly" id="edge5_Node000002_Node000005" title=" " alt="" coords="500,170,442,179,441,173,500,165"/>
-<area shape="rect" id="Node000007" href="$namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="259,103,449,128"/>
-<area shape="poly" id="edge8_Node000002_Node000007" title=" " alt="" coords="502,141,438,131,439,125,503,135"/>
-<area shape="rect" id="Node000008" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="271,227,437,267"/>
-<area shape="poly" id="edge11_Node000002_Node000008" title=" " alt="" coords="562,174,462,216,424,230,422,225,460,212,560,169"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="398,20,395,15,387,12,354,8,328,10,314,15,311,20,318,27,314,31,306,21,310,11,327,5,354,3,389,7,399,11,402,17"/>
-<area shape="rect" id="Node000004" href="$classDatabaseTestEnvironment.html#a34f5b43aa29f374ec03041c47046d2e6" title=" " alt="" coords="5,59,199,99"/>
-<area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="255,59,199,68,199,62,254,54"/>
-<area shape="poly" id="edge6_Node000005_Node000005" title=" " alt="" coords="398,167,395,162,387,158,354,155,328,157,314,162,311,167,318,174,314,178,306,168,310,158,327,152,354,149,389,153,399,158,402,164"/>
-<area shape="rect" id="Node000006" href="$classDatabaseTestEnvironment.html#a78f365d75687ea4f4ec1ebf0f0a6c69b" title=" " alt="" coords="5,166,199,206"/>
-<area shape="poly" id="edge7_Node000005_Node000006" title=" " alt="" coords="239,190,199,190,199,184,239,185"/>
-<area shape="poly" id="edge10_Node000007_Node000004" title=" " alt="" coords="251,103,199,96,199,90,251,98"/>
-<area shape="poly" id="edge9_Node000007_Node000007" title=" " alt="" coords="398,93,395,89,387,85,354,81,328,83,314,88,311,94,318,101,314,104,306,94,310,84,327,78,354,76,389,80,399,85,402,90"/>
-<area shape="rect" id="Node000009" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="19,230,185,270"/>
-<area shape="poly" id="edge12_Node000008_Node000009" title=" " alt="" coords="257,251,186,252,186,246,257,246"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="713,133,916,173"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="483,140,665,165"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="700,155,666,155,666,150,700,150"/>
+<area shape="poly" id="edge10_Node000002_Node000002" title=" " alt="" coords="617,131,606,122,574,119,548,121,535,126,532,131,539,138,535,142,527,132,531,122,547,116,574,113,608,117,621,127"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="220,29,435,55"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="544,134,494,100,434,68,400,57,401,52,436,64,497,96,547,129"/>
+<area shape="rect" id="Node000004" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="226,103,429,128"/>
+<area shape="poly" id="edge4_Node000002_Node000004" title=" " alt="" coords="476,141,411,131,412,125,476,135"/>
+<area shape="rect" id="Node000005" href="$namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="232,176,423,201"/>
+<area shape="poly" id="edge6_Node000002_Node000005" title=" " alt="" coords="474,170,415,179,414,173,473,165"/>
+<area shape="rect" id="Node000006" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,226,411,266"/>
+<area shape="poly" id="edge8_Node000002_Node000006" title=" " alt="" coords="534,174,436,215,397,228,395,223,434,210,532,169"/>
+<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="370,20,359,11,327,8,302,10,288,15,286,20,293,27,289,31,280,21,285,11,301,5,327,3,361,7,373,16"/>
+<area shape="poly" id="edge5_Node000004_Node000004" title=" " alt="" coords="370,94,359,85,327,81,302,83,288,88,286,94,293,101,289,104,280,94,285,84,301,78,327,76,361,80,373,89"/>
+<area shape="poly" id="edge7_Node000005_Node000005" title=" " alt="" coords="370,167,359,158,327,155,302,157,288,162,286,167,293,174,289,178,280,168,285,158,301,152,327,149,361,153,373,163"/>
+<area shape="rect" id="Node000007" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="5,226,172,266"/>
+<area shape="poly" id="edge9_Node000006_Node000007" title=" " alt="" coords="230,249,172,249,172,243,230,243"/>
 </map>
