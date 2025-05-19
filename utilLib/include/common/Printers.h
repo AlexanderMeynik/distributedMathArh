@@ -85,7 +85,6 @@ void inline OneDimSerialize(std::ostream &out,
 /**
  * @brief Prints one dimensional Collection to string  using Eigen format
  * @tparam Collection
- * @param out
  * @param col
  * @param print_size
  * @param eigen_form

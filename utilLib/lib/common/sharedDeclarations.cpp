@@ -4,7 +4,7 @@
 namespace shared {
 
 std::ostream &operator<<(std::ostream &out, const StateT &st) {
-  out << enumToStr(st, kStateToStr);
+  out << EnumToStr(st, kStateToStr);
   return out;
 }
 std::valarray<uint64_t> DefaultBench(uint64_t init) {

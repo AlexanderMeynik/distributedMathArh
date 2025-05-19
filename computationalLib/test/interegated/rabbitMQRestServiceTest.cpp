@@ -89,7 +89,7 @@ TEST_F(RabbitMqRestServiceTest, ListQueues) {
                              [](const std::string &a, const std::string &a2, size_t i, double tol) {
                                return a == a2;
                              });
-  //todo more verbose operator
+  ///@todo more verbose operator
 }
 
 TEST_F(RabbitMqRestServiceTest, BindQueueToExchange) {

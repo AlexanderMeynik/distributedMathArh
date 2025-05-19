@@ -24,7 +24,7 @@ void PlotFunction(const std::string &filename, const ms::MeshCreator &mesh) {
   ax->surf(ms::Unflatten(data_arr[0], mesh.dimensions_),
            ms::Unflatten(data_arr[1], mesh.dimensions_),
            ms::Unflatten(data_arr[2], mesh.dimensions_))
-      ->lighting(true).primary(0.8f).specular(0.2f);//-> view(213,22)->xlim({-40,40})->ylim({-40,40});
+      ->lighting(true).primary(0.8f).specular(0.2f);
   ax->view(213, 22);
   ax->xlim({-40, 40});
   ax->ylim({-40, 40});

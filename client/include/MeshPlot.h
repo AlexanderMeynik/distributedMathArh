@@ -11,17 +11,16 @@ using shared::FloatType;
 #define FT_MAX std::numeric_limits<FloatType>::max()
 #define FT_MIN std::numeric_limits<FloatType>::lowest()
 
+///namespace for custom gui classes
+namespace gui_objects {
 /**
- * @b Surface Plot widget for mesh
+ * @brief Surface Plot widget for mesh
+ * @todo add signal for single value changes?
  */
 class MeshPlot : public QWidget {
-
  Q_OBJECT
-
  public:
-
   MeshPlot();
-
   /**
    * @brief Constructs MeshPlot and the input mesh
    */
@@ -36,13 +35,16 @@ class MeshPlot : public QWidget {
    * @param fname
    */
   void SaveToFile(const QString &fname = QString::fromStdString("plotQt.png"));
-
  signals:
 
   void DataChanged(const MeshCreator &mesh);
-
  protected:
-
+  /**
+   * @brief Sets series data with the provided mesh data
+   * @param rr
+   * @param dims
+   * @todo create method variant for const MeshCreator &
+   */
   void Plot(const MeshArr<3> &rr, const std::array<size_t, 2> &dims);
 
   /**
@@ -52,3 +54,4 @@ class MeshPlot : public QWidget {
 
   Q3DSurface *surface_;
 };
+}

@@ -2,6 +2,75 @@
 
 namespace db_common {
 
+
+myConnString::myConnString(std::string_view user,
+                           std::string_view password,
+                           std::string_view host,
+                           std::string_view dbname,
+                           unsigned int port)
+    : user(user), password(password),
+      host(host),
+      dbname(dbname),
+      port(port) {
+  UpdateFormat();
+}
+myConnString::operator std::string_view() {
+  return formatted_string;
+}
+const char *myConnString::CStr() const {
+  return formatted_string.c_str();
+}
+void myConnString::SetPassword(std::string_view new_password) {
+  password = new_password;
+  UpdateFormat();
+}
+void myConnString::SetHost(std::string_view new_host) {
+  host = new_host;
+  UpdateFormat();
+}
+void myConnString::SetPort(unsigned int new_port) {
+  port = new_port;
+  UpdateFormat();
+}
+void myConnString::SetDbname(std::string_view new_dbname) {
+  dbname = new_dbname;
+  UpdateFormat();
+}
+void myConnString::SetUser(std::string_view new_user) {
+  user = std::forward<std::string_view>(new_user);
+  UpdateFormat();
+}
+const std::string &myConnString::GetUser() const {
+  return user;
+}
+const std::string &myConnString::GetPassword() const {
+  return password;
+}
+const std::string &myConnString::GetHost() const {
+  return host;
+}
+const std::string &myConnString::GetDbname() const {
+  return dbname;
+}
+unsigned int myConnString::GetPort() const {
+  return port;
+}
+void myConnString::UpdateFormat() {
+  formatted_string = fmt::format("postgresql://{}:{}@{}:{}/{}",
+                                 user.c_str(), password.c_str(), host.c_str(), port, dbname.c_str());
+}
+std::string myConnString::GetVerboseName() const {
+  return fmt::format("{}:{} db:{}", host, port, dbname);
+}
+bool myConnString::operator==(const myConnString &rhs) const {
+  return user == rhs.user &&
+      password == rhs.password &&
+      host == rhs.host &&
+      dbname == rhs.dbname &&
+      port == rhs.port &&
+      formatted_string == rhs.formatted_string;
+}
+
 bool CheckConnection(const ConnPtr &conn_ptr) {
   return conn_ptr && conn_ptr->is_open();
 }
@@ -36,7 +105,7 @@ ResType TerminateAllDbConnections(NonTransType &no_trans_exec,
 
   return r;
 }
-ConnPtr CreateDatabase(network_types::myConnString c_string, std::string_view db_name) {
+ConnPtr CreateDatabase(myConnString c_string, std::string_view db_name) {
 
   ConnPtr conn;
   c_string.SetDbname(db_name);
@@ -74,7 +143,7 @@ ConnPtr CreateDatabase(network_types::myConnString c_string, std::string_view db
   Disconnect(temp_connection);
   return TryConnect(c_string, "Outer");
 }
-void DropDatabase(network_types::myConnString c_string, std::string_view db_name) {
+void DropDatabase(myConnString c_string, std::string_view db_name) {
   c_string.SetDbname(db_name);
   auto t_string = c_string;
   t_string.SetDbname(SampleTempDb);
@@ -141,7 +210,6 @@ ResType ExecuteTransaction(ConnPtr &ptr,
 ResType ExecuteSubTransaction(TransactionT &txn,
                               const std::function<ResType(Subtransaction &)> &func,
                               std::string_view sub_name) {
-
   ResType res;
   Subtransaction s(txn, sub_name);
   try {
@@ -158,98 +226,11 @@ ResType ExecuteSubTransaction(TransactionT &txn,
                                           e.what(), __FILE__, __LINE__), shared::Severity::info);
   }
 }
-
-Experiment::Experiment(pqxx::row &row) {
-  experiment_id = row["experiment_id"].as<IndexType>();
-  user_id = row["user_id"].as<IndexType>();
-
-  auto rr = row["status"].as<std::string>();
-  status = strToEnum(rr,kStrToExpStatus);
-  parameters = Json::Value(row["parameters"].as<std::string>());
-  created_at = *StrToTimepoint(row["created_at"].as<std::string>());
-  start_time = (!row["start_time"].is_null()) ?
-               std::optional<IndexType>{
-                   *StrToTimepoint(row["start_time"].as<std::string>())
-               } : std::nullopt;
-  end_time = (!row["end_time"].is_null()) ?
-               std::optional<IndexType>{
-                   *StrToTimepoint(row["end_time"].as<std::string>())
-               } : std::nullopt;
+std::string PaginateRequest(std::string_view initial_request, IndexType page_num, IndexType page_size) {
+  return fmt::format("{} LIMIT {} OFFSET {}",
+                     initial_request,
+                     page_size,
+                     (page_num - 1) * page_size);
 }
 
-Iteration::Iteration(pqxx::row &row) {
-
-  iteration_id = row["iteration_id"].as<IndexType>();
-  experiment_id = row["experiment_id"].as<IndexType>();
-  node_id = row["node_id"].as<IndexType>();
-
-  auto type=row["iter_t"].as<std::string>();
-  iter_t = strToEnum(type,kStrToIterType);
-
-  auto st=row["status"].as<std::string>();
-  status = strToEnum(st,kStrToIterStatus);
-
-  output_data = Json::Value(row["output_data"].as<std::string>());
-
-
-  start_time = *StrToTimepoint(row["start_time"].as<std::string>());
-
-  end_time = (!row["end_time"].is_null()) ?
-             std::optional<IndexType>{
-                 *StrToTimepoint(row["end_time"].as<std::string>())
-             } : std::nullopt;
-}
-
-
-User::User(pqxx::row &row) {
-  user_id = row["user_id"].as<IndexType>();
-  login = row["login"].as<std::string>();
-  hashed_password = row["hashed_password"].as<std::string>();
-  auto rr = row["role"].as<std::string>();
-  role = strToEnum(rr,kStrToUserRole);
-  user_id = row["user_id"].as<IndexType>();
-
-  created_at = *StrToTimepoint(row["created_at"].as<std::string>());
-  last_login = (!row["last_login"].is_null()) ?
-               std::optional<IndexType>{
-                   *StrToTimepoint(row["created_at"].as<std::string>())
-               } : std::nullopt;
-
-}
-
-bool User::operator==(const User &rhs) const {
-  return login == rhs.login &&
-      hashed_password == rhs.hashed_password &&
-      role == rhs.role;
-}
-
-bool Experiment::operator==(const Experiment &rhs) const {
-  return experiment_id == rhs.experiment_id;
-}
-
-bool Iteration::operator==(const Iteration &rhs) const {
-  return iteration_id==rhs.iteration_id;
-}
-
-bool Node::operator==(const Node &rhs) const {
-  return ip_address==rhs.ip_address;
-}
-Node::Node(pqxx::row &row) {
-
-  node_id = row["node_id"].as<IndexType>();
-  ip_address = row["ip_address"].as<std::string>();
-  auto sql_arr = row["benchmark_score"].as<std::string>();
-  auto arr = row["benchmark_score"].as_sql_array<shared::BenchResultType>();
-  using namespace print_utils;
-  benchmark_score =print_utils::ParseOneDimS<shared::BenchResVec>(sql_arr,
-                                                                  arr.size(),//todo use enum semntics
-                                                                  EIGENF(EigenPrintFormats::VECTOR_DB_FORMAT));
-  auto st=row["status"].as<std::string>();
-  status = strToEnum(st,kStrToNodeSt);
-
-  last_ping = (!row["last_ping"].is_null()) ?
-               std::optional<IndexType>{
-                   *StrToTimepoint(row["last_ping"].as<std::string>())
-               } : std::nullopt;
-}
 }

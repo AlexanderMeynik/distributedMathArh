@@ -20,7 +20,7 @@ namespace amqp_common {
 
 using AMQP::Envelope;
 using EnvelopePtr = std::shared_ptr<Envelope>;
-using AMQP::MessageCallback;
+using AMQP::MessageCallback;///< message callback
 using WorkPtr = std::unique_ptr<boost::asio::io_service::work>;
 
 /**
@@ -78,7 +78,7 @@ void consumeMessages(AMQP::Channel &channel,
                      std::string_view queueName);
 
 /**
- * @brief Custom for connection events logging
+ * @brief Custom handler for connection events logging
  */
 class MyHandler : public AMQP::LibBoostAsioHandler {
  public:
@@ -94,7 +94,6 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
 
     std::cout << "Connection closed.\n";
   }
-
   /**
    * @brief Method that is called on connection error
    * @param connection
@@ -102,7 +101,7 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
    */
   void onError(AMQP::TcpConnection *connection,
                const char *message) override {
-    std::cout << "Connection error: " << message << '\n';//todo log
+    std::cout << "Connection error: " << message << '\n';///@todo log
     ResetLoop();
   }
 
@@ -116,8 +115,7 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   }
 
   /**
-   * @brief Gets handles connectio status
-   *
+   * @brief Gets handler connection status
    */
   bool IsConnected() const;
 

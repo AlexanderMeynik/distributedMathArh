@@ -77,6 +77,8 @@ BenchmarkRunner::BenchmarkRunner(const shared::BenchResVec &nss,
     ns_(nss),
     iter_counts_(iter_counts) {
   if (ns_.size() != iter_counts_.size()) {
+
+    ///@tododo use myException
     throw std::invalid_argument("ns and iter_counts must have the same size");
   }
 }

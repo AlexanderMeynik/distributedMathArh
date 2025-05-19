@@ -15,9 +15,7 @@ namespace comp_services {
 using namespace shared;
 class ComputationNodeService {
  public:
-  ComputationNodeService() {
-    RunBench();
-  }
+  ComputationNodeService();
 
   Json::Value GetStatus();
 
@@ -36,6 +34,7 @@ class ComputationNodeService {
   BenchResVec bench_res_;
   std::jthread computation_thread_;
   std::atomic<bool> characteristic_computed_;
+  std::unique_ptr<BenchmarkRunner> benchmark_runner_;
 
 };
 

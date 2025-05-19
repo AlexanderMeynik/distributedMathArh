@@ -1,14 +1,8 @@
 
 
 #include "MeshPlot.h"
+namespace gui_objects {
 
-template<typename T>
-T NextPower2(T value) {
-  --value;
-  for (size_t i = 1; i < sizeof(T) * CHAR_BIT; i *= 2)
-    value |= value >> i;
-  return value + 1;
-}
 
 void MeshPlot::Plot(const MeshArr<3> &rr, const std::array<size_t, 2> &dims) {
   QSurfaceDataArray *data = new QSurfaceDataArray;
@@ -152,4 +146,5 @@ void MeshPlot::SetStyle() {
 
   surface_->setShadowQuality(QAbstract3DGraph::ShadowQualityNone);
 
+}
 }

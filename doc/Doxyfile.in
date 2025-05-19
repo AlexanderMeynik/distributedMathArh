@@ -34,15 +34,7 @@ INLINE_SIMPLE_STRUCTS  = YES
 NUM_PROC_THREADS = 0
 
 
-EXTRACT_LOCAL_CLASSES = NO
 
-
-EXTRACT_ALL = YES
-HAVE_DOT = YES
-
-CALL_GRAPH = YES
-CALLER_GRAPH = YES
-DIRECTORY_GRAPH =YES
 
 HIDE_IN_BODY_DOCS = YES
 
@@ -55,12 +47,16 @@ INPUT = ../../computationalNode/include \
         ../../computationalNode/src \
         ../../computationalLib/include \
         ../../computationalLib/lib \
+        ../../computationalLib/test/BenchmarkHandler.h \
+        ../../computationalLib/test/fileHandler.h \
+        ../../computationalLib/test/benchmark.cpp \
         ../../mainNode/include \
         ../../mainNode/src \
         ../../utilLib/include \
         ../../utilLib/lib \
         ../../client/include \
-        md
+        md \
+        ../../metrics/source_report.dox
 
 
 INCLUDE_PATH = ../../computationalNode/include \
@@ -94,40 +90,49 @@ INCLUDE_FILE_PATTERNS = *
 
 SKIP_FUNCTION_MACROS   = NO
 
-
-
 CLANG_ASSISTED_PARSING = NO
-
-
-
 CLANG_ADD_INC_PATHS = NO
-
-
-
 CLANG_OPTIONS = -O0 -std=c++23
 
-
-
 HTML_OUTPUT = doxygen-html
-
-
 HTML_COLORSTYLE_HUE = 200
-
-
-
 HTML_COLORSTYLE_SAT = 80
-
-
 HTML_COLORSTYLE_GAMMA = 80
-
-
-
 HTML_DYNAMIC_SECTIONS = YES
 
 
-GENERATE_TREEVIEW = YES
 
+GENERATE_TREEVIEW = YES
+INHERIT_DOCS = YES
 
 XML_OUTPUT = doxygen-xml
+
+DOT_GRAPH_MAX_NODES =100
+
+INPUT_FILTER = "sed -e \"s/std::unique_ptr<\([a-zA-Z0-9_]*\)> /\1* /g\" -e \"s/std::unique_ptr<\(.*\)> /\1* /g\""
+# BUILTIN_STL_SUPPORT = YES #
+
+EXTRACT_LOCAL_CLASSES = YES
+EXTRACT_ALL = YES
+EXTRACT_PRIVATE = YES
+EXTRACT_STATIC = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+HAVE_DOT = YES
+CLASS_GRAPH = YES
+CLASS_DIAGRAMS = YES
+
+CALL_GRAPH = YES
+CALLER_GRAPH = YES
+DIRECTORY_GRAPH =YES
+TEMPLATE_RELATIONS = YES
+# Show all functions that reference current function
+REFERENCED_BY_RELATION = YES
+
+REFERENCES_RELATION = YES
+
+DOT_NUM_THREADS = 4
+UML_LOOK = YES
+UML_LIMIT_NUM_FIELDS = 0
 
 

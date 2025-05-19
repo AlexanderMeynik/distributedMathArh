@@ -45,10 +45,9 @@ IndexType DbService::CreateUser(std::string_view login, std::string_view passwor
   ExecuteTransaction([&](TransactionT &txn) {
 
     std::string qq = "INSERT INTO \"User\" (login, hashed_password, role)"
-                     " VALUES ({}, {}, {})"
+                     " VALUES ($1, $2, $3)"
                      " RETURNING user_id";
-    user_id = txn.exec(
-        fmt::format(fmt::runtime(qq), txn.quote(login), txn.quote(password), txn.quote(role))
+    user_id = txn.exec(qq,pqxx::params{login, password, role}
     ).one_row()[0].as<IndexType>();
 
     return ResType();
@@ -60,12 +59,12 @@ bool DbService::AuthenticateUser(std::string_view login, std::string_view passwo
   bool authenticated = false;
   ExecuteTransaction([&](TransactionT &txn) {
 
-    std::string qq = "SELECT hashed_password FROM \"User\" WHERE login = {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq), txn.quote(login))).one_row();
+    std::string qq = "SELECT hashed_password FROM \"User\" WHERE login = $1";
+    auto result = txn.exec(qq, pqxx::params{login}).one_row();
     if (result[0].as<std::string>() == password) {
       authenticated = true;
-      std::string qq2 = "UPDATE \"User\" SET last_login = NOW() WHERE login = {}";
-      txn.exec(fmt::format(fmt::runtime(qq2), txn.quote(login)));
+      std::string qq2 = "UPDATE \"User\" SET last_login = NOW() WHERE login = $1";
+      txn.exec(qq2, pqxx::params{login});
     }
     return ResType();
   });
@@ -74,23 +73,19 @@ bool DbService::AuthenticateUser(std::string_view login, std::string_view passwo
 
 void DbService::DeleteUser(IndexType user_id) {
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "DELETE FROM \"User\" WHERE user_id = {}";
-    txn.exec(fmt::format(fmt::runtime(qq), user_id));
+    std::string qq = "DELETE FROM \"User\" WHERE user_id = $1";
+    txn.exec(qq, pqxx::params{user_id});
     return ResType();
   });
 }
-std::vector<User> DbService::GetUsers(IndexType page_num, IndexType page_size) {
-  std::vector<User> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"User\" LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq), page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+std::vector<User> DbService::ListUsers(IndexType page_num, IndexType page_size) {
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"User\"";
+    auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req);
   });
-  return res;
+  return ParseArray<std::vector,User>(result);
 }
 
 IndexType DbService::CreateExperiment(IndexType user_id, const Json::Value &parameters) {
@@ -99,14 +94,15 @@ IndexType DbService::CreateExperiment(IndexType user_id, const Json::Value &para
     Json::StreamWriterBuilder builder;
     std::string params_str = Json::writeString(builder, parameters);
 
-    std::string qq = "INSERT INTO \"Experiment\" (user_id, status, parameters)"
-                     " VALUES ({}, 'pending', {}::jsonb)"
+    std::string qq = "INSERT INTO \"Experiment\" (user_id, parameters)"
+                     " VALUES ($1, $2::jsonb)"
                      " RETURNING experiment_id";
-    experiment_id = txn.exec(
-        fmt::format(fmt::runtime(qq), user_id, txn.quote(params_str))
-    ).one_row()[0].as<IndexType>();
 
-    InnerLog(txn, 1, "info", fmt::format("User {} created experiment ", user_id, experiment_id));
+    experiment_id = txn.exec(qq,
+                             pqxx::params{ user_id, params_str}
+                             ).one_row()[0].as<IndexType>();
+
+    InnerLog(txn, std::nullopt,std::nullopt, "info", fmt::format("User {} created experiment ", user_id, experiment_id));
     return ResType();
   });
   return experiment_id;
@@ -117,29 +113,26 @@ IndexType DbService::CreateExperiment(Experiment exp) {
 }
 
 std::vector<Experiment> DbService::ListExperiments(IndexType user_id,IndexType page_num, IndexType page_size) {
-  std::vector<Experiment> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Experiment\" WHERE user_id ={} LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq),user_id, page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Experiment\" WHERE user_id =$1";
+    auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req, pqxx::params{user_id});
   });
-  return res;
+  return ParseArray<std::vector,Experiment>(result);
 }
 
 void DbService::UpdateExperimentStatus(IndexType experiment_id, std::string_view status) {
   ExecuteTransaction([&](TransactionT &txn) {
 
-    std::string qq = "UPDATE \"Experiment\" SET status = {}, start_time = CASE WHEN"
-                     " {} = 'running' THEN NOW() ELSE start_time END,"
-                     " end_time = CASE WHEN {} IN ('completed', 'failed')"
-                     " THEN NOW() ELSE end_time END WHERE experiment_id = {}";
-    txn.exec(fmt::format(fmt::runtime(qq), txn.quote(status), txn.quote(status), experiment_id));
+    std::string qq = "UPDATE \"Experiment\" SET status = $1, start_time = CASE WHEN"
+                     " $1 = 'running' THEN NOW() ELSE start_time END,"
+                     " end_time = CASE WHEN $1 IN ('succeeded', 'error')"
+                     " THEN NOW() ELSE end_time END WHERE experiment_id = $2";
+    txn.exec(qq,pqxx::params{status, experiment_id});
 
-    InnerLog(txn, 0, "info", fmt::format("Experiment {}  status updated to {}", experiment_id, status));
+    InnerLog(txn, std::nullopt,std::nullopt, "info", fmt::format("Experiment {}  status updated to {}", experiment_id, status));
     return ResType();
   });
 }
@@ -147,8 +140,8 @@ void DbService::UpdateExperimentStatus(IndexType experiment_id, std::string_view
 Experiment DbService::GetExperiment(IndexType experiment_id) {
   Experiment experiment;
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Experiment\" WHERE experiment_id = {}";
-    auto row = txn.exec(fmt::format(fmt::runtime(qq), experiment_id)).one_row();
+    std::string qq = "SELECT * FROM \"Experiment\" WHERE experiment_id = $1";
+    auto row = txn.exec(qq, pqxx::params{experiment_id}).one_row();
     experiment=std::move(Experiment(row));
     return ResType();
   });
@@ -159,16 +152,15 @@ IndexType DbService::CreateIteration(IndexType experiment_id,
                                      IndexType node_id,
                                      std::string_view iter_type) {
   IndexType iteration_id;
-  //todo use stream api
+  ///@todo use stream api
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "INSERT INTO \"Iteration\" (experiment_id, node_id, iter_t, status)"
-                     " VALUES ({}, {}, {}, 'pending')"
+    std::string qq = "INSERT INTO \"Iteration\" (experiment_id, node_id, iter_t)"
+                     " VALUES ($1, $2, $3)"
                      " RETURNING iteration_id";
-    iteration_id = txn.exec(
-        fmt::format(fmt::runtime(qq), experiment_id, node_id, txn.quote(iter_type))
-    ).one_row()[0].as<IndexType>();
+    iteration_id = txn.exec(qq,
+                            pqxx::params{experiment_id, node_id, iter_type}).one_row()[0].as<IndexType>();
 
-    InnerLog(txn, node_id, "info", fmt::format("Iteration {} created for experiment {}", iteration_id, experiment_id));
+    InnerLog(txn,experiment_id, node_id, "info", fmt::format("Iteration {} created for experiment {}", iteration_id, experiment_id));
     return ResType();
   });
   return iteration_id;
@@ -181,24 +173,27 @@ void DbService::UpdateIterationStatus(IndexType iteration_id,
 
     if (output_data.isNull()) {
 
-      std::string qq = "UPDATE \"Iteration\" SET status = {}, end_time = CASE WHEN {} IN ('completed', 'failed')"
+      std::string qq = "UPDATE \"Iteration\" SET status = $1::iteration_status, end_time = CASE WHEN $1 IN ('succeeded', 'error')"
                        " THEN NOW() ELSE end_time END "
-                       " WHERE iteration_id = { }";
+                       " WHERE iteration_id = $2";
 
-      txn.exec(fmt::format(fmt::runtime(qq), txn.quote(status), txn.quote(status), iteration_id));
+      txn.exec(qq, pqxx::params{status, iteration_id});
     } else {
       Json::StreamWriterBuilder builder;
       std::string output_str = Json::writeString(builder, output_data);
 
-      std::string qq = "UPDATE \"Iteration\" SET status = {}, output_data = {}::jsonb, end_time ="
-                       " CASE WHEN {} IN ('completed', 'failed') "
+      std::string qq = "UPDATE \"Iteration\" SET status = $1::iteration_status, output_data = $2::jsonb, end_time ="
+                       " CASE WHEN $1 IN ('succeeded', 'error') "
                        "THEN NOW() ELSE end_time END "
-                       "WHERE iteration_id = {}";
-
-      txn.exec(fmt::format(fmt::runtime(qq), txn.quote(status),
-                           txn.quote(output_str), txn.quote(status), iteration_id));
+                       "WHERE iteration_id = $3";
+      txn.exec(qq, pqxx::params{status, output_str, iteration_id});
     }
-    InnerLog(txn, 0, "info", fmt::format("Iteration {} status updated to {}", iteration_id, status));
+    ///@todo think about linner log proper usage
+    InnerLog(txn,std::nullopt,std::nullopt, "info",
+             fmt::format("Iteration {} status updated to {}",
+                         iteration_id,
+                         status)
+                         );
     return ResType();
   });
 }
@@ -206,30 +201,35 @@ void DbService::UpdateIterationStatus(IndexType iteration_id,
 Iteration DbService::GetIteration(IndexType iteration_id) {
   Iteration result;
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Iteration\" WHERE iteration_id = {}";
-    auto row = txn.exec(fmt::format(fmt::runtime(qq), iteration_id)).one_row();
+    std::string qq = "SELECT * FROM \"Iteration\" WHERE iteration_id = $1";
+
+
+    auto row = txn.exec(qq, pqxx::params{iteration_id}).one_row();
     result = std::move(Iteration(row));
     return ResType();
   });
+
   return result;
 }
 
-IndexType DbService::RegisterNode(std::string_view ip_address, const shared::BenchResVec &benchmark_score) {
+IndexType DbService::RegisterNode(std::string_view ip_address,
+                                  const shared::BenchResVec &benchmark_score) {
 
   IndexType node_id;
   ExecuteTransaction([&](TransactionT &txn) {
     using namespace print_utils;
 
     std::string qq = "INSERT INTO \"Node\" (ip_address, benchmark_score, status, last_ping)"
-                     " VALUES ({}, {}, 'active', NOW())"
+                     " VALUES ($1, $2, 'active', NOW())"
                      "RETURNING node_id";
     auto bench_vec = OneDimToString(benchmark_score, false,
                                     EIGENF(EigenPrintFormats::VECTOR_DB_FORMAT));
-    node_id = txn.exec(
-        fmt::format(fmt::runtime(qq), txn.quote(ip_address), txn.quote(bench_vec))
-    ).one_row()[0].as<IndexType>();
 
-    InnerLog(txn, node_id, "info", fmt::format("Node registered with IP {}", ip_address));
+    node_id =txn.exec(qq,
+                      pqxx::params{ip_address,bench_vec}
+                      ).one_row()[0].as<IndexType>();
+
+    InnerLog(txn, std::nullopt,node_id, "info", fmt::format("Node registered with IP {}", ip_address));
     return ResType();
   });
   return node_id;
@@ -237,57 +237,63 @@ IndexType DbService::RegisterNode(std::string_view ip_address, const shared::Ben
 
 void DbService::UpdateNodeStatus(IndexType node_id, std::string_view status) {
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "UPDATE \"Node\" SET status = {}, last_ping = NOW() WHERE node_id = {}";
-    txn.exec(fmt::format(fmt::runtime(qq), txn.quote(status), node_id));
-    InnerLog(txn, node_id, "info", fmt::format("Node status updated to {}", node_id));
+    std::string qq = "UPDATE \"Node\" SET status = $1::node_status, last_ping = NOW() WHERE node_id = $2";
+    txn.exec(qq, pqxx::params{status,node_id});
+    InnerLog(txn,std::nullopt, node_id, "info", fmt::format("Node status updated to {}", node_id));
     return ResType();
   });
 }
 
 void DbService::UnregisterNode(IndexType node_id) {
   ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "UPDATE \"Node\" SET status = 'inactive', last_ping = NOW() WHERE node_id = {}";
-    txn.exec(fmt::format(fmt::runtime(qq), node_id));
-
-    InnerLog(txn, node_id, "info", fmt::format("Node {} unregistered.", node_id));
+    std::string qq = "UPDATE \"Node\" SET status = 'inactive', last_ping = NOW() WHERE node_id = $1";
+    txn.exec(qq, pqxx::params{node_id});
+    InnerLog(txn,std::nullopt,node_id, "info", fmt::format("Node {} unregistered.", node_id));
     return ResType();
   });
 }
 
 Node DbService::GetNode(IndexType node_id) {
-  Node result;
-  ExecuteTransaction([&](TransactionT &txn) {
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
     using namespace print_utils;
-    auto row = txn.exec_params("SELECT * FROM \"Node\" WHERE node_id = $1", node_id).one_row();
-    result = std::move(Node(row));
-    return ResType();
+    auto qq="SELECT * FROM \"Node\" WHERE node_id = $1";
+    txn.exec(qq, pqxx::params{node_id});
+    auto res = txn.exec(qq, pqxx::params{node_id});
+    return res;
   });
-  return result;
+  return Node(result[0]);
 }
 
-void DbService::Log(IndexType node_id, std::string_view severity, std::string_view message) {
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "INSERT INTO \"Log\" (node_id, severity, message) VALUES ({}, {}, {})";
-    txn.exec(
-        fmt::format(fmt::runtime(qq), node_id, txn.quote(severity), txn.quote(message))
-    );
-    return ResType();
+IndexType DbService::Log(std::optional<IndexType> experiment_id,
+                    std::optional<IndexType> node_id,
+                    std::string_view severity,
+                    std::string_view message) {
+  auto res=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "INSERT INTO \"Log\" (node_id,experiment_id, severity, message)"
+                     " VALUES ($1,$2, $3::log_severity, $4)"
+                     " RETURNING log_id";
+    return txn.exec(qq, pqxx::params{node_id,experiment_id,severity,message});
   });
-
+  return res[0][0].as<IndexType>();
 }
 
-void DbService::InnerLog(TransactionT &txn,
-                         IndexType node_id,
+IndexType DbService::Log(const db_common::Log &log) {
+  return Log(log.experiment_id, log.node_id,
+             print_utils::kSevToStr[static_cast<unsigned long>(log.severity)],
+             log.message);
+}
+IndexType DbService::InnerLog(TransactionT &txn,
+                         std::optional<IndexType> experiment_id,
+                         std::optional<IndexType> node_id,
                          std::string_view severity,
                          std::string_view message) {
 
-  ExecuteSubTransaction(txn, [&](Subtransaction &s) {
-    std::string qq = "INSERT INTO \"Log\" (node_id, severity, message) VALUES ({}, {}, {})";
-    s.exec(
-        fmt::format(fmt::runtime(qq), node_id, txn.quote(severity), txn.quote(message))
-    );
-    return ResType();
-  }, "Log");
+  return ExecuteSubTransaction(txn, [&](Subtransaction &s) {
+    std::string qq = "INSERT INTO \"Log\" (node_id,experiment_id, severity, message)"
+                     " VALUES ($1,$2, $3::log_severity, $4)"
+                     " RETURNING log_id";
+    return s.exec(qq, pqxx::params{node_id,experiment_id,severity,message});
+  }, "Log")[0][0].as<IndexType>();
 }
 
 const myConnString &DbService::GetConnStr() const {
@@ -306,43 +312,46 @@ bool DbService::AuthenticateUser(const User &user) {
   return AuthenticateUser(user.login, user.hashed_password);
 }
 IndexType DbService::CreateUser(const User &user) {
-  return CreateUser(user.login, user.hashed_password, enumToStr(user.role,kUserRoleToStr));
+  return CreateUser(user.login, user.hashed_password, EnumToStr(user.role, kUserRoleToStr));
 }
 std::vector<Iteration> DbService::ListIterations(IndexType experiment_id,
                                                  IndexType page_num,
                                                  IndexType page_size) {
-  std::vector<Iteration> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Iteration\" WHERE experiment_id ={} LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq),experiment_id, page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Iteration\" WHERE experiment_id =$1";
+    auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req,pqxx::params{experiment_id});
   });
-  return res;
+  return ParseArray<std::vector,Iteration>(result);
 }
 std::vector<Node> DbService::ListNodes(IndexType page_num, IndexType page_size) {
-  std::vector<Node> res;
-  ExecuteTransaction([&](TransactionT &txn) {
-    std::string qq = "SELECT * FROM \"Node\" LIMIT {} OFFSET {}";
-    auto result = txn.exec(fmt::format(fmt::runtime(qq), page_size, (page_num - 1) * page_size));
-    res.reserve(result.size());
-    for (auto row : result) {
-      res.emplace_back(row);
-    }
-    return ResType();
+
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Node\"";
+        auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req);
   });
-  return res;
+  return ParseArray<std::vector,Node>(result);
 }
 IndexType DbService::CreateIteration(const Iteration &iter) {
   return CreateIteration(iter.experiment_id,
                          iter.node_id,
-                         enumToStr(iter.iter_t,kIterTypeToStr));
+                         EnumToStr(iter.iter_t, kIterTypeToStr));
 }
 IndexType DbService::RegisterNode(const Node &node) {
   return RegisterNode(node.ip_address,node.benchmark_score);
+}
+
+std::vector<db_common::Log> DbService::ListLogs(IndexType page_num, IndexType page_size) {
+  auto result=ExecuteTransaction([&](TransactionT &txn) {
+    std::string qq = "SELECT * FROM \"Log\"";
+    auto req=PaginateRequest(qq,
+                             page_num, page_size);
+    return txn.exec(req);
+  });
+  return ParseArray<std::vector,db_common::Log>(result);
 }
 
 } // namespace db_service

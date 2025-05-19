@@ -10,7 +10,16 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build and set logging directory
+      - name: Download metrics output
+        id: download-artifact
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          name: metrics
+          repo: AlexanderMeynik/distributedMathArh
+          workflow: collect_metrics.yml
+          path: ./metrics/
+          search_artifacts: true
+      - name: Build documentation
         run: |
           sudo apt-get install doxygen graphviz -y
           mkdir -p build/doc 

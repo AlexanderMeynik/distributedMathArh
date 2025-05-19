@@ -1,6 +1,6 @@
 #pragma once
 
-#define EIGENF(form) kEnumTo.at(static_cast<size_t>(form))
+#define EIGENF(form) kEnumToEigenFormatMap.at(form)
 
 #include <iosfwd>
 #include <limits>
@@ -100,6 +100,15 @@ enum class EigenPrintFormats {
   MATRIX_FORMAT_1,
   VECTOR_DB_FORMAT
 };
+static const std::vector<EnumDoubleMapping<EigenPrintFormats,EFormat>> kEfEnToEigenFormatMappings = {
+    {EigenPrintFormats::BASIC_ONE_DIMENSIONAL_VECTOR, kEnumTo[0]},
+    {EigenPrintFormats::VECTOR_FORMAT_1, kEnumTo[1]},
+    {EigenPrintFormats::MATRIX_FORMAT, kEnumTo[2]},
+    {EigenPrintFormats::MATRIX_FORMAT_1, kEnumTo[3]},
+    {EigenPrintFormats::VECTOR_DB_FORMAT, kEnumTo[4]},
+};
+
+const auto kEnumToEigenFormatMap= CreateEnumToTypeMap(kEfEnToEigenFormatMappings);
 
 /**
  * @brief Casts EigenFormat to Eformat
@@ -111,7 +120,6 @@ const EFormat &PrintEnumToFormat(EigenPrintFormats fmt);
  * @brief General IOformat
  */
 enum class IoFormat {
-
   SERIALIZABLE,///< Basic print format(look a lot alike json)
   HUMAN_READABLE///<Human-readable representation for printed struct
 };
@@ -123,10 +131,10 @@ static const std::vector<EnumMapping<IoFormat>> kIoFormatMappings = {
 
 /// String lookup map for ioformat
 static const auto kStringToIoFormat =
-    createStrToEnumMap(kIoFormatMappings);
+    CreateStrToEnumMap(kIoFormatMappings);
 
 static auto kIoToStr =
-    createEnumToStrMap(kIoFormatMappings);
+    CreateEnumToStrMap(kIoFormatMappings);
 
 /**
  * @brief Struct to parse and compare delimiters

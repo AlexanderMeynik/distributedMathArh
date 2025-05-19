@@ -48,6 +48,7 @@ find_package(Matplot++)
 find_package(amqpcpp)
 find_package(libpqxx)
 
+find_package(Boost REQUIRED)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(fmt REQUIRED)
 find_package(jsoncpp REQUIRED)

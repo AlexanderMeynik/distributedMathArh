@@ -16,7 +16,7 @@
 using common_types::EigenVec;
 using print_utils::PrintSolutionFormat1;
 
-void FetchData(int n, int ns, double a) {//todo values are not printed instantly
+void FetchData(int n, int ns, double a) {///@todo values are not printed instantly
   QNetworkAccessManager *manager = new QNetworkAccessManager();
 
   QUrl url(QString("http://localhost:18080/calculate/%1/%2/%3").arg(n).arg(ns).arg(a));

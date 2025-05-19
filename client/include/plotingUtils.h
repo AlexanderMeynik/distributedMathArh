@@ -13,14 +13,14 @@ class MeshCreator;
 }
 
 /**
- * @b Plots 3d mesh as surface using matplot++ callbacks
+ * @brief Plots 3d mesh as surface using matplot++ callbacks
  * @param filename
  * @param mesh
  */
 void PlotFunction(const std::string &filename, const ms::MeshCreator &mesh);
 
 /**
- * @b Plots 2d scatter Plot using matplot++ callbacks
+ * @brief Plots 2d scatter Plot using matplot++ callbacks
  * @param name
  * @param ar
  * @param xi
@@ -28,7 +28,7 @@ void PlotFunction(const std::string &filename, const ms::MeshCreator &mesh);
 void PlotCoordinates(const std::string &name, FloatType ar, std::array<std::vector<FloatType>, 2> &xi);
 
 /**
- * @b PlotCoordinates variant that uses 1d array for xy coordinates
+ * @brief PlotCoordinates variant that uses 1d array for xy coordinates
  * @param name
  * @param ar
  * @param xi

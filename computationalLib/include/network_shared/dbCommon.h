@@ -1,7 +1,6 @@
 #pragma once
 
 #include <pqxx/pqxx>
-#include "network_shared/networkTypes.h"
 #include "common/Printers.h"
 #include "common/Parsers.h"
 #include "parallelUtils/timingUtils.h"
@@ -10,7 +9,6 @@
 /// Namespace that contains database related utils
 namespace db_common {
 using namespace enum_utils;
-using network_types::myConnString;
 using namespace timing;
 
 using ConnPtr = std::shared_ptr<pqxx::connection>;
@@ -25,165 +23,111 @@ using shared::Already_Connected;
 using shared::Broken_Connection;
 static const char *const SampleTempDb = "template1";
 
-enum class UserRole {
-  USER,///< default user role
-  ADMINISTRATOR ///< administrator user role
-};
-
-static const std::vector<EnumMapping<UserRole>> kUserRoleMappings = {
-    {UserRole::USER, "user"},
-    {UserRole::ADMINISTRATOR, "admin"},
-
-};
-static const auto kStrToUserRole =
-    createStrToEnumMap(kUserRoleMappings);
-const auto kUserRoleToStr=
-    createEnumToStrMap(kUserRoleMappings);
-
-
-enum class ExperimentStatus {
-  PENDING,///< waiting to be executed
-  RUNNING, ///< currently executing
-  COMPLETED, ///< all iteration were computed
-  ERROR, ///< error occurred during execution
-  ARHIVED ///< experiment data is unloaded
-};
-
-static const std::vector<EnumMapping<ExperimentStatus>> kExpStatusMappings = {
-    {ExperimentStatus::PENDING, "pending"},
-    {ExperimentStatus::RUNNING, "running"},
-    {ExperimentStatus::COMPLETED, "completed"},
-    {ExperimentStatus::ERROR, "failed"},
-    {ExperimentStatus::ARHIVED, "archived"},
-};
-static const auto kStrToExpStatus =
-    createStrToEnumMap(kExpStatusMappings);
-const auto kExpStatusToStr=
-    createEnumToStrMap(kExpStatusMappings);
-
-
-enum class IterationStatus {
-  PENDING,///< waiting to be executed
-  COMPLETED, ///< all iteration were computed
-  ERROR, ///< error occurred during execution
-};
-
-static const std::vector<EnumMapping<IterationStatus>> kIterStatusMappings = {
-    {IterationStatus::PENDING, "pending"},
-    {IterationStatus::COMPLETED, "completed"},
-    {IterationStatus::ERROR, "failed"},
-};
-static const auto kStrToIterStatus =
-    createStrToEnumMap(kIterStatusMappings);
-const auto kIterStatusToStr=
-    createEnumToStrMap(kIterStatusMappings);
-
-enum class IterationType {
-  GENERATE,///< generate coordinates
-  SOLVE, ///< solve system of equations
-  MESH, ///< generate mesh
-};
-
-static const std::vector<EnumMapping<IterationType>> kIterTypeMappings = {
-    {IterationType::GENERATE, "generate"},
-    {IterationType::SOLVE, "solve"},
-    {IterationType::MESH, "mesh"},
-};
-static const auto kStrToIterType =
-    createStrToEnumMap(kIterTypeMappings);
-const auto kIterTypeToStr=
-    createEnumToStrMap(kIterTypeMappings);
-
-
-enum class NodeStatus {
-  ACTIVE,///< node is processing messages
-  BUSY, ///< node is busy
-  INACTIVE, ///< node is not listening to queue
-  ERROR, ///< error occurred in node
-};
-
-static const std::vector<EnumMapping<NodeStatus>> kNodeStMappings = {
-    {NodeStatus::ACTIVE, "active"},
-    {NodeStatus::BUSY, "busy"},
-    {NodeStatus::INACTIVE, "inactive"},
-    {NodeStatus::ERROR, "error"},
-};
-static const auto kStrToNodeSt =
-    createStrToEnumMap(kNodeStMappings);
-const auto kNodeStToStr=
-    createEnumToStrMap(kNodeStMappings);
 
 /**
- * @brief User DAO
- */
-struct User {
-  IndexType user_id;
-  std::string login;
-  std::string hashed_password;
-  UserRole role;
-  IndexType created_at;
-  std::optional<IndexType> last_login;
+* @brief  Structure to store and format connection string
+*/
+struct myConnString {
+  myConnString() : port(5432) {}
 
-  User() = default;
-  User(pqxx::row &row);
-  bool operator==(const User &rhs) const;
+  myConnString(std::string_view user,
+               std::string_view password,
+               std::string_view host,
+               std::string_view dbname, unsigned port);
+
+  explicit operator std::string() {
+    return formatted_string;
+  }
+
+  operator std::string_view();
+
+  [[nodiscard]] const char *CStr() const;
+
+  void SetUser(std::string_view new_user);
+
+  void SetPassword(std::string_view new_password);
+
+  void SetHost(std::string_view new_host);
+
+  void SetPort(unsigned new_port);
+
+  void SetDbname(std::string_view new_dbname);
+
+  [[nodiscard]] const std::string &GetUser() const;
+
+  [[nodiscard]] const std::string &GetPassword() const;
+
+  [[nodiscard]] const std::string &GetHost() const;
+
+  [[nodiscard]] const std::string &GetDbname() const;
+
+  [[nodiscard]] unsigned int GetPort() const;
+
+  [[nodiscard]] std::string GetVerboseName() const;
+  bool operator==(const myConnString &rhs) const;
+
+ private:
+  void UpdateFormat();
+
+  std::string user, password, host, dbname;
+  unsigned port;
+  std::string formatted_string;
 };
 
 /**
- * @brief Experiment DAO
+ * @brief Function to retrieve optional value
+ * @tparam T
+ * @param a
+ * @return T optional
  */
-struct Experiment {
-  IndexType experiment_id;
-  IndexType user_id;
-  ExperimentStatus status;
-  Json::Value parameters;
-  TimepointType created_at;
-  std::optional<TimepointType> start_time;
-  std::optional<TimepointType> end_time;
-
-  Experiment() = default;
-  Experiment(pqxx::row &row);
-  bool operator==(const Experiment &rhs) const;
-};
+template<typename T>
+std::optional<T> inline GetOpt(pqxx::field&&a)
+{
+  return (a.is_null())?std::nullopt:std::optional<T>{a.as<T>()};
+}
 
 /**
- * @brief Iteration DAO
+ * @brief Function to retrieve optional value while using func to cast it to T
+ * @tparam T
+ * @tparam func
+ * @param a
+ * @return T optinal
  */
-struct Iteration {
-  IndexType iteration_id;
-  IndexType experiment_id;
-  IndexType node_id;
-  IterationType iter_t;
-  IterationStatus status;
-  Json::Value output_data;
-  TimepointType start_time;
-  std::optional<TimepointType> end_time;
+template<typename T,std::optional<T>(*func)(std::string_view)>
+std::optional<T> inline GetFunctionOpt(pqxx::field&&a)
+{
+  return (a.is_null())?std::nullopt:std::optional<T>{*func(a.as<std::string>())};
+}
 
-  Iteration() = default;
-  Iteration(pqxx::row &row);
-  bool operator==(const Iteration &rhs) const;
-};
 
 /**
- * @brief Node DAO
+ * @brief Parses specified continuous struct from ResType
+ * @note Requires RetType to be constructible from pqxx::field
+ * @tparam VecT
+ * @tparam RetType
+ * @param result
+ * @return VecT<RetType>
  */
-struct Node {
-  IndexType node_id;
-  std::string ip_address;
-  shared::BenchResVec benchmark_score;
-  NodeStatus status;
-  std::optional<TimepointType> last_ping;
+template<template<typename ...> typename VecT ,typename RetType>
+VecT<RetType> ParseArray(const ResType&result);
 
-  Node() = default;
-  Node(pqxx::row &row);
-  bool operator==(const Node &rhs) const;
-};
+/**
+ * @brief formats request to add pagination
+ * @param initial_request
+ * @param page_num
+ * @param page_size
+ * @return
+ */
+std::string PaginateRequest(std::string_view initial_request,
+                            IndexType page_num,
+                            IndexType page_size);
+
 
 
 /**
  * @brief Checks connection
  * @param conn_ptr
- * @return conenction status
+ * @return connection status
  */
 bool CheckConnection(const ConnPtr &conn_ptr);
 
@@ -228,7 +172,7 @@ TerminateAllDbConnections(NonTransType &no_trans_exec,
  * @param c_string
  * @return connection string pointer for the created database
  */
-ConnPtr CreateDatabase(network_types::myConnString c_string, std::string_view db_name);
+ConnPtr CreateDatabase(myConnString c_string, std::string_view db_name);
 
 /**
  * @brief Drops specified database
@@ -272,4 +216,19 @@ ResType ExecuteSubTransaction(TransactionT &txn,
                               const std::function<ResType(Subtransaction &)> &func,
                               std::string_view sub_name = "");
 
+}
+
+
+namespace db_common
+{
+template<template<typename ...> typename VecT ,typename RetType>
+VecT<RetType> ParseArray(const ResType&result)
+{
+  VecT<RetType> res;
+  res.reserve(result.size());
+  for (auto row : result) {
+    res.emplace_back(row);
+  }
+  return res;
+}
 }

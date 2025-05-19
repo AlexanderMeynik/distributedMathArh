@@ -14,7 +14,7 @@ const std::string kDbName = "test_db_1";
 class DbServiceTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    conn_string_ = network_types::myConnString(g_serviceParams.username,
+    conn_string_ = myConnString(g_serviceParams.username,
                                                g_serviceParams.password,
                                                ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
 
@@ -22,7 +22,7 @@ class DbServiceTest : public ::testing::Test {
     service_->Connect();
   }
 
-  network_types::myConnString conn_string_;
+  myConnString conn_string_;
   std::unique_ptr<db_service::DbService> service_;
 
   static inline std::string tlogin="testuser";
@@ -30,7 +30,7 @@ class DbServiceTest : public ::testing::Test {
 };
 
 TEST_F(DbServiceTest, SetGetCstring) {
-  auto c_string = network_types::myConnString("a", "p", "localhost", "db", 5432);
+  auto c_string = myConnString("a", "p", "localhost", "db", 5432);
   service_->SetConnStr(c_string);
 
   ASSERT_EQ(c_string, service_->GetConnStr());
@@ -84,7 +84,7 @@ TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
 
   ASSERT_TRUE(service_->AuthenticateUser(user));
 
-  auto users = service_->GetUsers(1);
+  auto users = service_->ListUsers(1);
   ASSERT_TRUE(std::find(users.begin(), users.end(), user) != users.end());
 }
 TEST_F(DbServiceTest,DeleteUser)
@@ -99,7 +99,7 @@ TEST_F(DbServiceTest,DeleteUser)
 
   service_->DeleteUser(user2.user_id);
 
-  auto users = service_->GetUsers(1);
+  auto users = service_->ListUsers(1);
   ASSERT_FALSE(std::find(users.begin(), users.end(), user2) != users.end());
 
 }
@@ -149,7 +149,7 @@ TEST_F(DbServiceTest, CreateIterationAndUpdate) {
 
   Json::Value output;
   output["result"] = 42;
-  service_->UpdateIterationStatus(iterat.iteration_id, "completed", output);
+  service_->UpdateIterationStatus(iterat.iteration_id, "succeeded", output);
 
   auto iters=service_->ListIterations(exp.experiment_id,1);
   ASSERT_TRUE(std::find(iters.begin(),
@@ -194,9 +194,16 @@ TEST_F(DbServiceTest, DeleteNode) {
 
 
 TEST_F(DbServiceTest, LogMessage) {
-  auto node_id = service_->RegisterNode("192.168.1.3", shared::BenchResVec{300, 600});
-  service_->Log(node_id, "info", "Test Log message");
-  //todo Full log verification requires querying the Log table, omitted for brevity
+  db_common::Log lg;
+  lg.message="Test Log message";
+  lg.severity=print_utils::Severity::info;
+
+  lg.log_id=service_->Log(lg);
+
+  auto logs=service_->ListLogs(1);
+
+  ASSERT_TRUE(std::find(logs.begin(),
+                        logs.end(), lg) != logs.end());
 }
 
 }
@@ -205,7 +212,7 @@ class DatabaseTestEnvironment : public ::testing::Environment {
  public:
   void SetUp() override {
 
-    conn_string_ = network_types::myConnString(g_serviceParams.username,
+    conn_string_ = myConnString(g_serviceParams.username,
                                                g_serviceParams.password,
                                                ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
 
