@@ -14,7 +14,7 @@ jobs:
         id: download-artifact
         uses: dawidd6/action-download-artifact@v6
         with:
-          name: build
+          name: metrics
           repo: AlexanderMeynik/distributedMathArh
           workflow: collect_metrics.yml
           path: /__w/distributedMathArh/distributedMathArh/metrics/
