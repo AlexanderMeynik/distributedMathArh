@@ -6,7 +6,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: read-write
+      contents: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
