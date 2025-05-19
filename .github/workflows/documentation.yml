@@ -17,7 +17,7 @@ jobs:
           name: metrics
           repo: AlexanderMeynik/distributedMathArh
           workflow: collect_metrics.yml
-          path: /__w/distributedMathArh/distributedMathArh/metrics/
+          path: ./metrics/
           search_artifacts: true
       - name: Build documentation
         run: |
