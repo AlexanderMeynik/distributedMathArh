@@ -6,7 +6,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     permissions:
-      contents: write
+      contents: read-write
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -19,7 +19,7 @@ jobs:
           workflow: collect_metrics.yml
           path: /__w/distributedMathArh/distributedMathArh/metrics/
           search_artifacts: true
-      - name: Build and set logging directory
+      - name: Build documentation
         run: |
           sudo apt-get install doxygen graphviz -y
           mkdir -p build/doc 
