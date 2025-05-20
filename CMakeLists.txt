@@ -5,7 +5,6 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 include(utilities)
 
 set(CMAKE_CXX_STANDARD 23)
-
 SET(CMAKE_CXX_FLAGS "-std=gnu++2b")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -15,13 +14,13 @@ endif ()
 
 
 string(REGEX MATCH "^Debug" IS_DEBUG_BUILD "${CMAKE_BUILD_TYPE}")
-if(IS_DEBUG_BUILD)
+if (IS_DEBUG_BUILD)
     message("Configuring debug build: ${CMAKE_BUILD_TYPE}")
     string(APPEND CMAKE_CXX_FLAGS " -g -O0 ")
 endif ()
 
 string(REGEX MATCH "^Release" IS_RELEASE_BUILD "${CMAKE_BUILD_TYPE}")
-if(IS_RELEASE_BUILD)
+if (IS_RELEASE_BUILD)
     message(STATUS " Configuring release build: ${CMAKE_BUILD_TYPE}")
     string(APPEND CMAKE_CXX_FLAGS " -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize ")
 endif ()
@@ -36,7 +35,6 @@ endif (BUILD_TESTS)
 option(BUILD_DOC "Build documentation" OFF)
 
 
-
 if (BUILD_DOC)
     add_subdirectory(doc)
 endif (BUILD_DOC)
@@ -47,36 +45,32 @@ find_package(Qt6)
 find_package(Matplot++)
 find_package(amqpcpp)
 find_package(libpqxx)
+find_package(Boost)
+find_package(Eigen3 3.3 NO_MODULE)
+find_package(fmt)
+find_package(jsoncpp)
+find_package(OpenMP)
+find_package(CURL)
 
-find_package(Boost REQUIRED)
-find_package(Eigen3 3.3 REQUIRED NO_MODULE)
-find_package(fmt REQUIRED)
-find_package(jsoncpp REQUIRED)
-find_package(OpenMP REQUIRED)
-find_package(CURL REQUIRED)
-
-
-
-
-add_subdirectory(utilLib)
-add_subdirectory(computationalLib)
-
-if(Drogon_FOUND AND amqpcpp_FOUND AND libpqxx_FOUND)
-    add_subdirectory(computationalNode)
-else ()
-    message("Missing dependencies to build computationalNode.")
-endif()
+set(UTIL_LIB_DEPS Eigen3 jsoncpp fmt)
+set(COMPUTATIONAL_LIB_DEPS OpenMP amqpcpp CURL libpqxx)
+set(COMPUTATIONAL_NODE_DEPS Drogon)
+set(CLIENT_DEPS Qt6 Matplot++)
+set(MAIN_NODE_DEPS Drogon)
 
 
-if(Qt6_FOUND AND Matplot++_FOUND)
-    add_subdirectory(client)
-else ()
-    message("Missing dependencies to build client.")
-endif()
+set(UTIL_LIB_DIRS)
+set(COMPUTATIONAL_LIB_DIRS utilLib)
+set(COMPUTATIONAL_NODE_DIRS utilLib computationalLib)
+set(CLIENT_DIRS utilLib)
+set(MAIN_NODE_DIRS utilLib computationalLib)
 
 
-if(Drogon_FOUND AND amqpcpp_FOUND AND libpqxx_FOUND)
-    add_subdirectory(mainNode)
-else ()
-    message("Missing dependencies to build mainNode.")
-endif()
+add_subdirectory_with_deps(utilLib UTIL_LIB_DEPS UTIL_LIB_DIRS)
+add_subdirectory_with_deps(computationalLib COMPUTATIONAL_LIB_DEPS COMPUTATIONAL_LIB_DIRS)
+add_subdirectory_with_deps(computationalNode COMPUTATIONAL_NODE_DEPS COMPUTATIONAL_NODE_DIRS)
+add_subdirectory_with_deps(client CLIENT_DEPS CLIENT_DIRS)
+add_subdirectory_with_deps(mainNode MAIN_NODE_DEPS MAIN_NODE_DIRS)
+
+
+
