@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       host: http://rabbitmq:15672
-      pghost: http://postgres:15672
+      pghost: http://postgres:5432
       username: sysadmin
       password: syspassword
       coverageD: build-cov
