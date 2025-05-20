@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.22)
 project(distributed_math_arh)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
-include(Coverage)
+include(utilities)
 
 set(CMAKE_CXX_STANDARD 23)
 
@@ -10,7 +10,7 @@ SET(CMAKE_CXX_FLAGS "-std=gnu++2b")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 if (NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release-Coverage)
+    set(CMAKE_BUILD_TYPE Release)
 endif ()
 
 
@@ -26,7 +26,7 @@ if(IS_RELEASE_BUILD)
     string(APPEND CMAKE_CXX_FLAGS " -O2 -ffast-math -DNDEBUG -march=native -fpic -ftree-vectorize ")
 endif ()
 
-option(BUILD_TESTS "Build tests" ON)
+option(BUILD_TESTS "Build tests" OFF)
 
 if (BUILD_TESTS)
     enable_testing()

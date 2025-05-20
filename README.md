@@ -16,6 +16,54 @@
 
 ## Стек технологий
 
-
+- [ ] Заполнить 
 ## Описание проводимых мероприятий
+
+- [ ] Заполнить+ переместить
+## Сборка проекта
+
+- [ ] Добавить таблицу с зависимостями модулей
+
+На данный момент в проекте используются следующие опции сборки:
+
+| Опция           | Описание                  | Значение по умолчанию |
+|-----------------|---------------------------|-----------------------|
+| BUILD_TESTS     | Сборка тестовых сценариев | OFF                   |
+| BUILD_DOC       | Сборка документации       | OFF                   |
+| BUILD_TYPE [^1] | Тип сборки проекта        | Release               |
+[^1]: если BUILD_TYPE заканчивается на "-Coverage", то для всех файлов будут добавлены флаги для сбора покрытия
+
+В рамках некоторых тестовых сценариев применяется следующий перечень переменных окружения.
+
+| Переменная | Описание                  |
+| ---------- | ------------------------- |
+| host       | Хост для RabbitMQ брокера |
+| dbhost     | Хост для PostgreSQL БД    |
+| username   | Имя пользователя          |
+| password   | Парольпользователя        |
+
+Данные переменные являются опциональными и применяются для настройки тестовых сценариев для сервисов AMQP и libpqxx.
+Данные аргументы используются в составе следующих троек: host;username;password и dbhost;username;password.
+При отсутствии одного из элементов тройки, соответствующие ей тесты не будут собраны, что будет отражено в логе cmake.
+
+Минимальный скрипт для установки и сборки Release версии системы приведён ниже:
+```bash
+git clone https://github.com/AlexanderMeynik/distributedMathArh
+cd distributedMathArh
+mkdir build && cd build
+cmake  .. 
+```
+
+Скрипт для установки и полной сборки проекта приведён ниже:
+```bash
+export host = http://localhost:15672#
+export pghost = http://localhost:5432
+export username = sysadmin
+export password = syspassword
+git clone https://github.com/AlexanderMeynik/distributedMathArh
+cd distributedMathArh
+mkdir build && cd build
+cmake -DCMAKE_BUILD_TYPE=Release-Coverage \
+ -DBUILD_TESTS=ON -BUILD_DOC=ON .. 
+```
 

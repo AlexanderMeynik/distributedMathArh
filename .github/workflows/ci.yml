@@ -58,7 +58,7 @@ jobs:
           mkdir build && cd build
           
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release  \
-          ../src/
+          -DBUILD_TESTS=ON ../src/
           ninja
       - name: Save build
         uses: actions/upload-artifact@v4
@@ -74,7 +74,7 @@ jobs:
           
   
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release-Coverage  \
-          ../src/
+          -DBUILD_TESTS=ON ../src/
           ctest -T Build -T Test --output-on-failure
 
       - name: Collect coverage
