@@ -225,10 +225,12 @@ auto fifthBench = []
   common_types::EigenVec sol;
 
   common_types::StdValarr res = ms.data_[0];
-  if(eigen_threads==1)
+///@todo ticloc with average for threads
+#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res,conf_num) num_threads(eigen_threads)
   {
+    common_types::StdValarr local_res(0.0,res.size());
     thread_local auto functor = generators::get_normal_generator(0.0, kArange);
-
+#pragma omp for
     for (size_t i = 0; i < conf_num; ++i) {
 
       std::generate(std::begin(coordinates), std::end(coordinates), functor);
@@ -240,34 +242,12 @@ auto fifthBench = []
 
       ms.ApplyFunction(dipoles1.GetI2Function());
 
-      res += ms.data_[2];
+      local_res += ms.data_[2];
     }
-  }
-  else {
-///@todo ticloc with average for threads
-#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res, conf_num) num_threads(eigen_threads)
-    {
-      common_types::StdValarr local_res(0.0, res.size());
-      thread_local auto functor = generators::get_normal_generator(0.0, kArange);
-#pragma omp for
-      for (size_t i = 0; i < conf_num; ++i) {
 
-        std::generate(std::begin(coordinates), std::end(coordinates), functor);
-        dipoles1.SetNewCoordinates(coordinates);
+    #pragma omp critical
+    res += local_res;
 
-        sol = std::move(dipoles1.Solve());
-
-        dipoles1.GetFullFunction(coordinates, sol);
-
-        ms.ApplyFunction(dipoles1.GetI2Function());
-
-        local_res += ms.data_[2];
-      }
-
-#pragma omp critical
-      res += local_res;
-
-    }
   }
 
   clk.Tak();
@@ -290,7 +270,7 @@ int main() {
 
 
 
-  /*BenchmarkHandler bh("benchFirst", {"benchFirst"});
+  BenchmarkHandler bh("benchFirst", {"benchFirst"});
   bh.RunBenchmark(nameGenerator1, firstBench, std::array{StateT::NEW, StateT::OLD},
                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul}
   );
@@ -314,7 +294,7 @@ int main() {
                    std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
                               20ul, 40ul, 50ul, 100ul, 200ul}
 
-  );*/
+  );
 
   BenchmarkHandler bh5("benchFifth", {"benchFifth"});
   bh5.RunBenchmark(nameGenerator5, fifthBench,
