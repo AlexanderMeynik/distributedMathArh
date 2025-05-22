@@ -290,7 +290,7 @@ int main() {
 
 
 
-  /*BenchmarkHandler bh("benchFirst", {"benchFirst"});
+  BenchmarkHandler bh("benchFirst", {"benchFirst"});
   bh.RunBenchmark(nameGenerator1, firstBench, std::array{StateT::NEW, StateT::OLD},
                   std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul}
   );
@@ -314,7 +314,7 @@ int main() {
                    std::array{1ul, 2ul, 4ul, 5ul, 8ul, 10ul,
                               20ul, 40ul, 50ul, 100ul, 200ul}
 
-  );*/
+  );
 
   BenchmarkHandler bh5("benchFifth", {"benchFifth"});
   bh5.RunBenchmark(nameGenerator5, fifthBench,
