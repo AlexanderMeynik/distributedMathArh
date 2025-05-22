@@ -115,10 +115,12 @@ void BenchmarkHandler<range>::SnapshotTimers(Clk1 &clk, const std::string &prepr
   for (auto &kVal : clk) {
 
     std::string name = ddpath_ / (kVal.first[3] + "_" + kVal.first[1]);
-    fh_.Upsert(name);
+    fh_.Upsert(name,std::ios_base::app);
     fh_.output(name, preprint);
     fh_.output(name, kVal.second.time * (unsigned long long int) (multiplier));
     fh_.output(name, delim);
+    fh_.Close(name);
+
   }
 }
 

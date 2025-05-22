@@ -226,10 +226,11 @@ auto fifthBench = []
 
   common_types::StdValarr res = ms.data_[0];
 ///@todo ticloc with average for threads
-#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res) num_threads(eigen_threads)
+#pragma omp parallel firstprivate(coordinates, dipoles1, ms) private(sol)  shared(res,conf_num) num_threads(eigen_threads)
   {
+    common_types::StdValarr local_res(0.0,res.size());
     thread_local auto functor = generators::get_normal_generator(0.0, kArange);
-#pragma for
+#pragma omp for
     for (size_t i = 0; i < conf_num; ++i) {
 
       std::generate(std::begin(coordinates), std::end(coordinates), functor);
@@ -240,11 +241,12 @@ auto fifthBench = []
       dipoles1.GetFullFunction(coordinates, sol);
 
       ms.ApplyFunction(dipoles1.GetI2Function());
-#pragma  omp critical
-      {
-        res += ms.data_[2];
-      }
+
+      local_res += ms.data_[2];
     }
+
+    #pragma omp critical
+    res += local_res;
 
   }
 
