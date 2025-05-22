@@ -49,10 +49,10 @@ enum class StateT {
 };
 
 static const std::vector<EnumMapping<StateT>> kStateTMappings = {
-    {StateT::NEW, "openmp_new"},
-    {StateT::OLD, "new"},
-    {StateT::OPENMP_NEW, "openmp_old"},
-    {StateT::OPENMP_OLD, "old"},
+    {StateT::NEW, "new"},
+    {StateT::OLD, "old"},
+    {StateT::OPENMP_NEW, "openmp_new"},
+    {StateT::OPENMP_OLD, "openmp_old"},
     {StateT::PRINT, "printImpl"}
 };
 const static auto kStateToStr = CreateEnumToStrMap(kStateTMappings);
