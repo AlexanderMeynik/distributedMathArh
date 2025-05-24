@@ -2,7 +2,7 @@
 #include "common/MeshCreator.h"
 
 namespace comp_services {
-
+///@todo move to global constants
 shared::BenchResVec
     ns = {1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul};//, 800ul, 1000ul ,2000ul};
 shared::BenchResVec iter_count =
