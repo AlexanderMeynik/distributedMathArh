@@ -14,7 +14,7 @@ CI/CD методология содержит набор процессов не
 Перечень автоматизированных практик описан ниже:
 
 <div align="center">
-<img src="images/ciSchemev2.drawio.png" height="270">
+<img src="images/ciSchemev2.png" height="270">
 </div>
 
 Рассмотрим описание и назначение данных сценариев:
