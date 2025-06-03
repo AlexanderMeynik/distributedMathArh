@@ -100,15 +100,15 @@ enum class HttpMethod {
 };
 
 static const std::vector<EnumMapping<HttpMethod>> kHttpMethodMappings = {
-    {HttpMethod::GET, "get"},
-    {HttpMethod::POST, "post"},
-    {HttpMethod::PUT, "put"},
-    {HttpMethod::DELETE, "delete"},
-    {HttpMethod::HEAD, "head"},
-    {HttpMethod::OPTIONS, "options"},
-    {HttpMethod::PATCH, "patch"},
-    {HttpMethod::CONNECT, "connect"},
-    {HttpMethod::TRACE, "trace"}
+    {HttpMethod::GET, "GET"},
+    {HttpMethod::POST, "POST"},
+    {HttpMethod::PUT, "PUT"},
+    {HttpMethod::DELETE, "DELETE"},
+    {HttpMethod::HEAD, "HEAD"},
+    {HttpMethod::OPTIONS, "OPTIONS"},
+    {HttpMethod::PATCH, "PATCH"},
+    {HttpMethod::CONNECT, "CONNECT"},
+    {HttpMethod::TRACE, "TRACE"}
 };
 
 static const auto kStrToHttpMethod =

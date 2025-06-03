@@ -91,10 +91,10 @@ cmake  ..
 
 Скрипт для установки и полной сборки проекта приведён ниже:
 ```bash
-export host = http://localhost:15672#
-export pghost = http://localhost:5432
-export username = sysadmin
-export password = syspassword
+export host=http://localhost:15672
+export pghost=http://localhost:5432
+export username=sysadmin
+export password=syspassword
 git clone https://github.com/AlexanderMeynik/distributedMathArh
 cd distributedMathArh
 mkdir build && cd build
