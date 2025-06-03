@@ -1,4 +1,5 @@
 #include "service/BenchmarkRunnerService.h"
+#include "network_shared/sharedConstants.h"
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -6,7 +7,8 @@
 #include <Eigen/Core>
 
 int main() {
-
+  using shared::ns;
+  using shared::iter_count;
   struct Config {
     std::string description;
     bool use_omp_outer;
@@ -25,7 +27,7 @@ int main() {
     return 1;
   }
 
-  comp_services::BenchmarkRunner benchmarkRunner(comp_services::ns, comp_services::iter_count);
+  comp_services::BenchmarkRunner benchmarkRunner(ns, iter_count);
 
   for (const auto &config : configs) {
     out << "Configuration: " << config.description << "\n";
@@ -33,8 +35,8 @@ int main() {
 
     auto [results, results2] = benchmarkRunner.Run(config.use_omp_outer, config.eigen_threads);
 
-    for (size_t j = 0; j < comp_services::ns.size(); ++j) {
-      out << comp_services::ns[j] << "\t" << comp_services::iter_count[j] << "\t" << results[j]
+    for (size_t j = 0; j < ns.size(); ++j) {
+      out << ns[j] << "\t" << iter_count[j] << "\t" << results[j]
           << "\t" << results2[j] << "\n";
     }
     out << "\n";
