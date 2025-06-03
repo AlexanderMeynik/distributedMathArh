@@ -59,10 +59,8 @@ class MainNodeService {
   /**
    * @brief Connects the main node to a RabbiMQ instance at qip
    * @param qip
-   * @param names
    */
-  Json::Value Connect(const std::string &qip,
-                      const std::vector<std::string> &names);
+  Json::Value Connect(const std::string &qip);
 
   /**
    * @brief Disconnects the main node from a RabbitMQ instance

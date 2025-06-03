@@ -188,7 +188,6 @@ void DbService::UpdateIterationStatus(IndexType iteration_id,
                        "WHERE iteration_id = $3";
       txn.exec(qq, pqxx::params{status, output_str, iteration_id});
     }
-    ///@todo think about linner log proper usage
     InnerLog(txn,std::nullopt,std::nullopt, "info",
              fmt::format("Iteration {} status updated to {}",
                          iteration_id,

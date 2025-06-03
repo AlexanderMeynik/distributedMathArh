@@ -12,6 +12,9 @@
 namespace rest_utils {
 class AuthHandler;
 
+///@brief return_code,response_body pair
+using HttpResult=std::pair<long, std::string>;
+
 /**
  * @brief Default curl write callback
  * @param contents
@@ -33,9 +36,9 @@ static size_t WriteCallback(void *contents,
  * @param data
  * @throws shared::CurlError -  if curl error occurs
  * @throws shared::HttpError - if curl results in return code >=400
- * @return response_body
+ * @return HttpResult
  */
-std::string PerformCurlRequest(const std::string &path,
+HttpResult PerformCurlRequest(const std::string &path,
                                const std::string &method,
                                const std::string &host,
                                AuthHandler *auth_handler,

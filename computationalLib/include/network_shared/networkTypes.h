@@ -6,6 +6,7 @@
 
 #include "common/commonTypes.h"
 #include "common/errorHandling.h"
+#include "common/enumUtils.h"
 
 #include <json/json.h>
 #include <amqpcpp/exchangetype.h>
@@ -14,6 +15,7 @@
 namespace network_types {
 
 using common_types::JsonVariant;
+using  namespace enum_utils;
 
 /**
  * @brief Casts JsonVariant to Json::Value
@@ -68,27 +70,60 @@ struct TestSolveParam {
   TestSolveParam(Json::Value &val);
 };
 
-/// std::string to AMQP::ExchangeType
-static inline std::unordered_map<std::string, AMQP::ExchangeType> stringToExchangeType
-    {
-        {"fanout", AMQP::fanout},
-        {"direct", AMQP::direct},
-        {"topic", AMQP::topic},
-        {"headers", AMQP::headers},
-        {"consistent_hash", AMQP::consistent_hash},
-        {"message_deduplication", AMQP::message_deduplication}
-    };
 
-/// AMQP::ExchangeType to c-string look-up
-static inline std::array<const char *, 6> eTypeToStr
-    {
-        "fanout",
-        "direct",
-        "topic",
-        "headers",
-        "consistent_hash",
-        "message_deduplication"
-    };
+static const std::vector<EnumMapping<AMQP::ExchangeType>> kExchangeTypeMappings = {
+    {AMQP::fanout,"fanout"},
+    {AMQP::direct,"direct"},
+    {AMQP::topic,"topic"},
+    {AMQP::headers,"headers"},
+    {AMQP::consistent_hash,"consistent_hash"},
+    {AMQP::message_deduplication,"message_deduplication"}
+
+};
+
+static const auto kStrToExchangeType =
+    CreateStrToEnumMap(kExchangeTypeMappings);
+const auto kExchangeTypeToStr=
+    CreateEnumToStrMap(kExchangeTypeMappings);
+
+
+enum class HttpMethod {
+  GET,
+  POST,
+  PUT,
+  DELETE,
+  HEAD,
+  OPTIONS,
+  PATCH,
+  CONNECT,
+  TRACE
+};
+
+static const std::vector<EnumMapping<HttpMethod>> kHttpMethodMappings = {
+    {HttpMethod::GET, "get"},
+    {HttpMethod::POST, "post"},
+    {HttpMethod::PUT, "put"},
+    {HttpMethod::DELETE, "delete"},
+    {HttpMethod::HEAD, "head"},
+    {HttpMethod::OPTIONS, "options"},
+    {HttpMethod::PATCH, "patch"},
+    {HttpMethod::CONNECT, "connect"},
+    {HttpMethod::TRACE, "trace"}
+};
+
+static const auto kStrToHttpMethod =
+    CreateStrToEnumMap(kHttpMethodMappings);
+static const auto kHttpMethodToStr =
+    CreateEnumToStrMap(kHttpMethodMappings);
+
+
+inline std::string ToString(HttpMethod method) {
+  return EnumToStr(method, kHttpMethodToStr);
+}
+
+inline HttpMethod FromString(const std::string& str) {
+  return StrToEnum(str, kStrToHttpMethod);
+}
 
 /**
  * @brief queueBinding struct

@@ -97,7 +97,7 @@ queueBinding::queueBinding(const std::string &exch,
 exchange::exchange(Json::Value &val) :
     name(val["name"].asString()),
     creator(val["user_who_performed_action"].asString()),
-    type(static_cast<AMQP::ExchangeType>(stringToExchangeType.at(val["type"].asString()))),
+    type(static_cast<AMQP::ExchangeType>(StrToEnum(val["type"].asString(),kStrToExchangeType))),
     autoDelete(val["auto_delete"].asBool()),
     durable(val["durable"].asBool()),
     internal(val["internal"].asBool()) {}
@@ -119,7 +119,7 @@ Json::Value exchange::ToJson() const {
   Json::Value val;
   val["name"] = name;
   val["user_who_performed_action"] = creator;
-  val["type"] = eTypeToStr[static_cast<size_t>(type)];
+  val["type"] = EnumToStr(type,kExchangeTypeToStr);
   val["auto_delete"] = autoDelete;
   val["durable"] = durable;
   val["internal"] = internal;

@@ -52,8 +52,6 @@ class BenchmarkRunner {
    */
   shared::BenchResultType RunSingleBenchmark(size_t N, size_t conf_num, bool use_omp_outer, int eigen_threads);
 };
-extern shared::BenchResVec ns;
-extern shared::BenchResVec iter_count;
 
 extern BenchmarkRunner benchmarkRunner;
 

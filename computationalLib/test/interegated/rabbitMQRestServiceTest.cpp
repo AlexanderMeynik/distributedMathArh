@@ -232,7 +232,7 @@ TEST_F(RabbitMqRestServiceTest, TestCreateGlobalParam) {
 
   global_param param("value", Json::objectValue);
 
-  m_service_ptr_->GlobalParam(param, "PUT");
+  m_service_ptr_->GlobalParam(param, HttpMethod::PUT);
 
   auto list = m_service_ptr_->ListGlobalParams();
 
@@ -245,7 +245,7 @@ TEST_F(RabbitMqRestServiceTest, TestDeleteGlobalParam) {
 
   global_param param("value", Json::objectValue);
 
-  m_service_ptr_->GlobalParam(param, "DELETE");
+  m_service_ptr_->GlobalParam(param, HttpMethod::DELETE);
 
   auto list = m_service_ptr_->ListGlobalParams();
 

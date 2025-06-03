@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
 
       envelope->setHeaders(headers);
 
-      service.Publish(envelope, i);
+      service.Publish(envelope, q);
     }
   }
 

@@ -1,14 +1,10 @@
 #include "service/BenchmarkRunnerService.h"
 #include "common/MeshCreator.h"
-
+#include "network_shared/sharedConstants.h"
 namespace comp_services {
-///@todo move to global constants
-shared::BenchResVec
-    ns = {1ul, 2ul, 4ul, 5ul, 8ul, 10ul, 20ul, 40ul, 50ul, 100ul, 200ul, 400ul, 500ul};//, 800ul, 1000ul ,2000ul};
-shared::BenchResVec iter_count =
-    {1000ul, 1000ul, 1000ul, 1000ul, 1000ul, 1000ul, 100ul, 100ul, 100ul, 25ul, 25ul, 5ul, 5ul};//, 25ul, 10ul, 2ul};
 
-
+using shared::ns;
+using shared::iter_count;
 BenchmarkRunner benchmarkRunner{ns, iter_count};
 
 shared::BenchResultType BenchmarkRunner::RunSingleBenchmark(size_t N,

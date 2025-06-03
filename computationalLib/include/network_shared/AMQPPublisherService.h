@@ -14,7 +14,6 @@ class AMQPPublisherService : public AMQPService {
   AMQPPublisherService();
 
   void SetParameters(const std::string &connection_string,
-                     const std::vector<std::string> &queues,
                      const std::string &exchange = "testexch");
 
   /**
@@ -24,35 +23,21 @@ class AMQPPublisherService : public AMQPService {
    * @param exchange
    */
   AMQPPublisherService(const std::string &connection_string,
-                       const std::vector<std::string> &queues = {},
                        const std::string &exchange = "testexch");
 
   const std::string &GetDefaultExchange() const;
 
-  /**
-   * @brief delted i's queue
-   * @param i
-   * @throws shared::outOfRange
-   */
-  void RemoveQueue(size_t i);
 
   /**
-   * Adds new queue
-   * @param queue
-   * @param create
-   */
+    * @brief Adds new queue
+    * @param queue
+    * @param create
+  */
   void AddQueue(const std::string &queue,
-                bool create);
+                bool create= true);
 
   /**
-   * @brief publishe message to i's queue
-   * @param message
-   * @param i
-   * @throws shared::outOfRange
-   */
-  void Publish(EnvelopePtr message, size_t i);
-  /**
-    * @brief publishe message to i's queue
+    * @brief publish a message to qname
     * @param message
     * @param qname
     * */
@@ -70,7 +55,6 @@ class AMQPPublisherService : public AMQPService {
 
   std::string ServiceName() override;
 
-  std::vector<std::string> queues_;///< list of used queues ///@todo remove
 
   std::thread service_thread_;///< thread to run boost service
 

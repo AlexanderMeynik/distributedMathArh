@@ -262,7 +262,6 @@ void Dipoles::GetFullFunction(const Container &xi, const Container2 &sol) {
     FloatType res;
     Eigen::Vector<FloatType, 2> resxy = {0.0, 0.0};
     FloatType resz = 0.0;
-    FloatType o3dco3dc = pow(omega0, 3) / params::c;///@todo why is this here?
     FloatType o2 = pow(omega0, 2);
     FloatType sinth2 = pow(sin(theta), 2);
     Eigen::Vector<FloatType, 2> s = {cos(phi),

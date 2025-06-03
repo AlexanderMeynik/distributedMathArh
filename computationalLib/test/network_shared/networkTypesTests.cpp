@@ -284,7 +284,7 @@ TEST(NetworkTypesExchangeTests, JsonConstructorAndToJson) {
   exchange exch(json_val);
   EXPECT_EQ(exch.name, "exch1");
   EXPECT_EQ(exch.creator, "creator1");
-  EXPECT_EQ(exch.type, stringToExchangeType.at("direct"));
+  EXPECT_EQ(exch.type, StrToEnum("direct",kStrToExchangeType));
   EXPECT_EQ(exch.autoDelete, false);
   EXPECT_EQ(exch.durable, true);
   EXPECT_EQ(exch.internal, false);
@@ -301,10 +301,11 @@ TEST(NetworkTypesExchangeTests, JsonConstructorAndToJson) {
 
 TEST(NetworkTypesExchangeTests, ParameterizedConstructor) {
 
-  exchange exch("exch2", "creator2", stringToExchangeType.at("topic"), true, false, true);
+
+  exchange exch("exch2", "creator2", StrToEnum("topic",kStrToExchangeType), true, false, true);
   EXPECT_EQ(exch.name, "exch2");
   EXPECT_EQ(exch.creator, "creator2");
-  EXPECT_EQ(exch.type, stringToExchangeType.at("topic"));
+  EXPECT_EQ(exch.type, StrToEnum("topic",kStrToExchangeType));
   EXPECT_EQ(exch.autoDelete, true);
   EXPECT_EQ(exch.durable, false);
   EXPECT_EQ(exch.internal, true);

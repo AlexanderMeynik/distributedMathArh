@@ -11,8 +11,8 @@ size_t WriteCallback(void *contents,
   return realsize;
 }
 
-///@todo return code body pair
-std::string
+
+HttpResult
 PerformCurlRequest(const std::string &path,
                    const std::string &method,
                    const std::string &host,
@@ -61,7 +61,7 @@ PerformCurlRequest(const std::string &path,
     throw shared::HttpError(http_code, response_body);
   }
 
-  return response_body;
+  return {http_code,std::move(response_body)};
 }
 
 CurlWrapper::CurlWrapper() : curl_(curl_easy_init(), &curl_easy_cleanup) {

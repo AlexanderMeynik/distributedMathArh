@@ -7,18 +7,14 @@ namespace amqp_common {
 AMQPPublisherService::AMQPPublisherService() : AMQPService() {}
 
 void AMQPPublisherService::SetParameters(const std::string &connection_string,
-                                         const std::vector<std::string> &queues,
                                          const std::string &exchange) {
   c_string_ = connection_string;
-  queues_ = queues;
   default_exchange_ = exchange;
 }
 
 AMQPPublisherService::AMQPPublisherService(const std::string &connection_string,
-                                           const std::vector<std::string> &queues,
                                            const std::string &exchange)
     : AMQPService(connection_string),
-      queues_(queues),
       default_exchange_(exchange) {}
 
 void AMQPPublisherService::Reconnect() {
@@ -55,31 +51,14 @@ void AMQPPublisherService::Reconnect() {
 
 }
 
-void AMQPPublisherService::RemoveQueue(size_t i) {
-  if (i >= queues_.size()) {
-    throw shared::outOfRange(i, 0, queues_.size() - 1);
-  }
-  queues_.erase(queues_.begin() + i);
-}
-
 void AMQPPublisherService::AddQueue(const std::string &queue, bool create) {
   if (create) {
     DeclareQueue(*channel_, queue, default_exchange_);
   }
-  queues_.push_back(queue);
 }
 
 AMQPPublisherService::~AMQPPublisherService() {
   Disconnect();
-  queues_.clear();
-}
-
-void AMQPPublisherService::Publish(EnvelopePtr message, size_t i) {
-  if (i >= queues_.size()) {
-    throw shared::outOfRange(i, 0, queues_.size() - 1);
-  }
-  message->setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());
-  channel_->publish(default_exchange_, queues_[i], *message);
 }
 
 void AMQPPublisherService::Publish(EnvelopePtr message, const std::string qname) {

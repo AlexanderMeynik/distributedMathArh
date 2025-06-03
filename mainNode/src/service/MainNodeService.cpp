@@ -1,5 +1,5 @@
 #include "service/MainNodeService.h"
-
+#include "network_shared/sharedConstants.h"
 
 /// Namespace for services used in main node
 namespace main_services {
@@ -108,7 +108,7 @@ Json::Value MainNodeService::DisconnectNode(const std::string &host_port) {
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
 }
-Json::Value MainNodeService::Connect(const std::string &qip, const std::vector<std::string> &names) {
+Json::Value MainNodeService::Connect(const std::string &qip) {
 
   Json::Value res_JSON;
 
@@ -128,8 +128,7 @@ Json::Value MainNodeService::Connect(const std::string &qip, const std::vector<s
   auto r = auth_->Retrive();
   publisher_service_->SetParameters(amqp_common::ConstructCString(q_host_,
                                                                   r.first,
-                                                                  r.second),
-                                    names);
+                                                                  r.second));
 
   try {
     auto exchanges = rest_service_->GetExchanges(vhost_);
@@ -230,6 +229,8 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
   auto itercount = ts.range.second - ts.range.first + 1;
   network_types::TestSolveParam ts_t;
 
+  auto  n=ts.N_;
+
   auto it = worker_management_service_->begin();
 
   auto it2 = worker_management_service_->begin();
@@ -241,9 +242,9 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
     BenchResVec iters = val.node_speed_ * (itercount);
     iters /= worker_management_service_->GetSum();
 
-    ///@todo use proper logic to find weight
-    auto iterss = iters[2];
-    ts_t = ts.SliceAway(iterss);
+    auto iters_to_slice = iters[shared::NIndex(n)];
+
+    ts_t = ts.SliceAway(iters_to_slice);
     PublishMessage(ts_t, key);
   }
 

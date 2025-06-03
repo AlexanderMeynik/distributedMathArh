@@ -140,7 +140,7 @@ class RabbitMQRestService {
    * @param type
    * @return status
    */
-  bool GlobalParam(const global_param &param, const std::string &type);
+  bool GlobalParam(const global_param &param, const HttpMethod &type);
 
   /**
    * @brief Lists all global params from RabbimMQ
@@ -243,11 +243,14 @@ class RabbitMQRestService {
    * @param path
    * @param method
    * @param data
-   * @return resulting body
+   * @return HttpResult
    */
-  std::string PerformRequest(const std::string &path,
+  HttpResult PerformRequest(const std::string &path,
                              const std::string &method,
                              const std::string &data = "");
+  HttpResult PerformRequest(const std::string &path,
+                            const HttpMethod &method,
+                            const std::string &data = "");
 
   static Json::Value ParseJson(const std::string &json_str);
 };

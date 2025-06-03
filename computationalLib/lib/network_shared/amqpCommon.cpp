@@ -84,7 +84,6 @@ const std::string &AMQPService::GetCString() const {
 }
 void AMQPService::Connect() {
   if (IsConnected()) {
-    ///@todo make subset to connect
     throw shared::Already_Connected(ServiceName(), c_string_);
   }
   service_.reset();
