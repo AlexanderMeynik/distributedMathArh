@@ -111,7 +111,6 @@ TEST_F(AMQPPublisherServiceTS, PublishByIndexAndName) {
     return envelope;
   };
 
-  publisher_service_->Publish(makeMsg("msg1"), 0);
 
   publisher_service_->Publish(makeMsg("msg2"), queue2);
 

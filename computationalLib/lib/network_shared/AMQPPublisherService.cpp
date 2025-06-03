@@ -61,7 +61,7 @@ AMQPPublisherService::~AMQPPublisherService() {
   Disconnect();
 }
 
-void AMQPPublisherService::Publish(EnvelopePtr message, const std::string qname) {
+void AMQPPublisherService::Publish(EnvelopePtr message, std::string_view qname) {
   message->setTimestamp(std::chrono::steady_clock::now().time_since_epoch().count());
   channel_->publish(default_exchange_, qname, *message);
 }

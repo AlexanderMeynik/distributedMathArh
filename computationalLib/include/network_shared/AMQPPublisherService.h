@@ -41,7 +41,7 @@ class AMQPPublisherService : public AMQPService {
     * @param message
     * @param qname
     * */
-  void Publish(EnvelopePtr message, const std::string qname);
+  void Publish(EnvelopePtr message, std::string_view qname);
 
   /**
    * @brief Calls Disconnect and frees used memory with smart pointers
