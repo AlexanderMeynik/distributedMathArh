@@ -12,7 +12,7 @@
 <area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="928,248,874,283,810,316,778,328,776,323,808,311,871,278,925,243"/>
 <area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="298,5,509,45"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="586,69,493,48,494,43,587,64"/>
-<area shape="rect" id="Node000005" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,69,523,109"/>
+<area shape="rect" id="Node000005" href="$classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,69,523,109"/>
 <area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="567,92,523,92,523,87,567,87"/>
 <area shape="rect" id="Node000004" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="45,5,196,45"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="284,28,196,28,196,23,284,23"/>

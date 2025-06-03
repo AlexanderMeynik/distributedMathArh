@@ -22,7 +22,7 @@
 <area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="941,379,919,423,887,475,846,527,796,571,775,584,772,579,793,567,842,523,882,472,914,420,937,377"/>
 <area shape="rect" id="Node000016" href="$classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5" title="Requests user information from a RabbitMQ." alt="" coords="571,645,795,685"/>
 <area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="947,380,928,435,897,504,854,575,827,607,796,635,777,648,774,643,793,631,823,604,849,572,892,502,923,433,942,378"/>
-<area shape="rect" id="Node000003" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="rect" id="Node000003" href="$classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
 <area shape="rect" id="Node000004" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
 <area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['jsonvariant_0',['JsonVariant',['../namespacecommon__types.html#ae52d0f2262ef71d75c6c8a2f050852ef',1,'common_types']]]
+  ['indextype_0',['IndexType',['../namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615',1,'db_common']]],
+  ['integrablefunction_1',['IntegrableFunction',['../namespacecommon__types.html#adfdad3c56c13093b8a1be7e5b2604d29',1,'common_types']]]
 ];

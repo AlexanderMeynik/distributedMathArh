@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['queued_0',['queued',['../namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127a9df29ce7ca629ff1d47bca1149d9faae',1,'db_common::QUEUED'],['../namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aa9df29ce7ca629ff1d47bca1149d9faae',1,'db_common::QUEUED']]]
+  ['patch_0',['PATCH',['../namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3a63bc9a3997d66d835d9f3ec29451407d',1,'network_types']]],
+  ['post_1',['POST',['../namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3aa02439ec229d8be0e74b0c1602392310',1,'network_types']]],
+  ['print_2',['PRINT',['../namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b',1,'shared']]],
+  ['put_3',['PUT',['../namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3a3e75383a5992a6d15fb81e872e46e256',1,'network_types']]]
 ];

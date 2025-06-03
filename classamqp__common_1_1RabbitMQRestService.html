@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('classamqp__common_1_1RabbitMQRestServi
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService__coll__graph.png" border="0" usemap="#aamqp__common_1_1RabbitMQRestService_coll__map" alt="Collaboration graph"/></div>
 <map name="aamqp__common_1_1RabbitMQRestService_coll__map" id="aamqp__common_1_1RabbitMQRestService_coll__map">
-<area shape="rect" title="This service is used to perform http requests to a RabbiMQ management interface." alt="" coords="5,193,228,833"/>
+<area shape="rect" title="This service is used to perform http requests to a RabbiMQ management interface." alt="" coords="5,193,228,853"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="35,5,198,131"/>
 <area shape="poly" title=" " alt="" coords="119,131,119,177,114,177,114,131"/>
 </map>
@@ -159,9 +159,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ab8d1d11f2dde32874b0b202484af3cc4" id="r_ab8d1d11f2dde32874b0b202484af3cc4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab8d1d11f2dde32874b0b202484af3cc4">GetMessageCount</a> (const std::string &amp;vhost, const std::string &amp;queue_name)</td></tr>
 <tr class="memdesc:ab8d1d11f2dde32874b0b202484af3cc4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves number of messages for the selected queue.  <br /></td></tr>
 <tr class="separator:ab8d1d11f2dde32874b0b202484af3cc4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4cbab0537361da482e4b9e728adff11b" id="r_a4cbab0537361da482e4b9e728adff11b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a4cbab0537361da482e4b9e728adff11b">GlobalParam</a> (const <a class="el" href="structnetwork__types_1_1global__param.html">global_param</a> &amp;param, const std::string &amp;type)</td></tr>
-<tr class="memdesc:a4cbab0537361da482e4b9e728adff11b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses global-parameters api to interact with them.  <br /></td></tr>
-<tr class="separator:a4cbab0537361da482e4b9e728adff11b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3285b15d2426b8ed13e6a85dc0f01cc0" id="r_a3285b15d2426b8ed13e6a85dc0f01cc0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a3285b15d2426b8ed13e6a85dc0f01cc0">GlobalParam</a> (const <a class="el" href="structnetwork__types_1_1global__param.html">global_param</a> &amp;param, const <a class="el" href="namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3">HttpMethod</a> &amp;type)</td></tr>
+<tr class="memdesc:a3285b15d2426b8ed13e6a85dc0f01cc0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Uses global-parameters api to interact with them.  <br /></td></tr>
+<tr class="separator:a3285b15d2426b8ed13e6a85dc0f01cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43a397a9fefca04da17b6b25f3a96ec2" id="r_a43a397a9fefca04da17b6b25f3a96ec2"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="structnetwork__types_1_1global__param.html">global_param</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2">ListGlobalParams</a> ()</td></tr>
 <tr class="memdesc:a43a397a9fefca04da17b6b25f3a96ec2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Lists all global params from RabbimMQ.  <br /></td></tr>
 <tr class="separator:a43a397a9fefca04da17b6b25f3a96ec2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -197,9 +197,11 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-methods" name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:aeb9cc1e91ffa70bdd87e476f19c82535" id="r_aeb9cc1e91ffa70bdd87e476f19c82535"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest</a> (const std::string &amp;path, const std::string &amp;method, const std::string &amp;data=&quot;&quot;)</td></tr>
-<tr class="memdesc:aeb9cc1e91ffa70bdd87e476f19c82535"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper to perform curl request.  <br /></td></tr>
-<tr class="separator:aeb9cc1e91ffa70bdd87e476f19c82535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54851b223b5aa069d5f7b55b46de740c" id="r_a54851b223b5aa069d5f7b55b46de740c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacerest__utils.html#a6f052a3b5274a03cb19ed50250eb49f3">HttpResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest</a> (const std::string &amp;path, const std::string &amp;method, const std::string &amp;data=&quot;&quot;)</td></tr>
+<tr class="memdesc:a54851b223b5aa069d5f7b55b46de740c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Wrapper to perform curl request.  <br /></td></tr>
+<tr class="separator:a54851b223b5aa069d5f7b55b46de740c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9af21127aece78d673082356c399cf81" id="r_a9af21127aece78d673082356c399cf81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacerest__utils.html#a6f052a3b5274a03cb19ed50250eb49f3">HttpResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81">PerformRequest</a> (const std::string &amp;path, const <a class="el" href="namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3">HttpMethod</a> &amp;method, const std::string &amp;data=&quot;&quot;)</td></tr>
+<tr class="separator:a9af21127aece78d673082356c399cf81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pri-static-methods" name="pri-static-methods"></a>
 Static Private Member Functions</h2></td></tr>
@@ -216,7 +218,7 @@ Private Attributes</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This service is used to perform http requests to a RabbiMQ management interface. </p>
-<p>Since this class initializes curl only one may exist per programm. This class uses libcurl to perform requests. Most of the methods use <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request.">RabbitMQRestService::PerformRequest()</a> to get the results </p>
+<p>Since this class initializes curl only one may exist per programm. This class uses libcurl to perform requests. Most of the methods use <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request.">RabbitMQRestService::PerformRequest()</a> to get the results </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a42851f6f33843c2583fb13bbd00ce5f4" name="a42851f6f33843c2583fb13bbd00ce5f4"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a42851f6f33843c2583fb13bbd00ce5f4">&#9670;&#160;</a></span>RabbitMQRestService() <span class="overload">[1/3]</span></h2>
@@ -369,7 +371,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">main_services::MainNodeService::ConnectNode()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -380,9 +382,9 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a2812c32bfddffbb470e948f24f5ff170_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a2812c32bfddffbb470e948f24f5ff170_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a2812c32bfddffbb470e948f24f5ff170_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a2812c32bfddffbb470e948f24f5ff170_cgraph">
 <area shape="rect" title="Binds queue to exchange." alt="" coords="5,63,232,103"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="280,63,504,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="280,63,504,103"/>
 <area shape="poly" title=" " alt="" coords="232,80,266,80,266,85,232,85"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="552,70,773,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="552,70,773,95"/>
 <area shape="poly" title=" " alt="" coords="504,80,538,80,538,85,504,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="837,5,1008,45"/>
 <area shape="poly" title=" " alt="" coords="721,67,823,44,824,50,722,73"/>
@@ -390,6 +392,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="774,80,808,80,808,85,774,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="832,119,1013,145"/>
 <area shape="poly" title=" " alt="" coords="731,93,842,114,841,119,730,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1072,5,1243,45"/>
+<area shape="poly" title=" " alt="" coords="1008,23,1058,23,1058,28,1008,28"/>
 </map>
 </div>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -452,9 +456,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="structnetwork__types_1_1exchange.html#a6bb6f73a9ef74da4fb7d15901ec1b0ec">network_types::exchange::name</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939">network_types::exchange::ToJson()</a>.</p>
+<p class="reference">References <a class="el" href="structnetwork__types_1_1exchange.html#a6bb6f73a9ef74da4fb7d15901ec1b0ec">network_types::exchange::name</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939">network_types::exchange::ToJson()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">main_services::MainNodeService::Connect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a">main_services::MainNodeService::Connect()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -462,19 +466,25 @@ Private Attributes</h2></td></tr>
 <div id="dynsection-3-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_cgraph">
-<area shape="rect" title="Creates exchange with specified params." alt="" coords="5,95,229,135"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
-<area shape="poly" title=" " alt="" coords="229,99,264,95,264,100,230,104"/>
-<area shape="rect" href="structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939" title=" " alt="" coords="295,127,484,167"/>
-<area shape="poly" title=" " alt="" coords="230,125,281,131,281,137,229,130"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
-<area shape="poly" title=" " alt="" coords="502,80,535,80,535,85,502,85"/>
+<area shape="rect" title="Creates exchange with specified params." alt="" coords="5,104,229,144"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,68,501,108"/>
+<area shape="poly" title=" " alt="" coords="229,107,263,102,264,107,230,112"/>
+<area shape="rect" href="structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939" title=" " alt="" coords="295,136,484,176"/>
+<area shape="poly" title=" " alt="" coords="230,135,281,141,281,146,229,140"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,73,771,98"/>
+<area shape="poly" title=" " alt="" coords="502,84,535,84,535,89,502,90"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
-<area shape="poly" title=" " alt="" coords="718,67,821,44,822,50,719,73"/>
+<area shape="poly" title=" " alt="" coords="715,70,820,46,821,51,717,75"/>
 <area shape="rect" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="819,70,1021,95"/>
-<area shape="poly" title=" " alt="" coords="771,80,805,80,805,85,771,85"/>
+<area shape="poly" title=" " alt="" coords="771,82,805,81,805,87,771,87"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
-<area shape="poly" title=" " alt="" coords="728,93,839,114,838,119,727,98"/>
+<area shape="poly" title=" " alt="" coords="732,95,836,114,835,120,731,101"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
+<area shape="rect" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88" title="Casts enum value to string." alt="" coords="575,151,745,177"/>
+<area shape="poly" title=" " alt="" coords="484,156,561,158,561,164,484,161"/>
+<area shape="rect" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003" title="Casts Enum Value To typed value." alt="" coords="829,169,1011,194"/>
+<area shape="poly" title=" " alt="" coords="746,167,815,172,815,177,745,172"/>
 </map>
 </div>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -485,7 +495,7 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_icgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_icgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_icgraph" id="aclassamqp__common_1_1RabbitMQRestService_a80097c177254c339eaede0c5d6f5c3c5_icgraph">
 <area shape="rect" title="Creates exchange with specified params." alt="" coords="571,5,795,45"/>
-<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
 <area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
 <area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
 <area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
@@ -537,7 +547,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="structnetwork__types_1_1queue.html#a48580c9ea2893193deeb1ab075cabf2c">network_types::queue::name</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1queue.html#ac3a1e75e5d17500ca2e6782387ac1740">network_types::queue::ToJson()</a>.</p>
+<p class="reference">References <a class="el" href="structnetwork__types_1_1queue.html#a48580c9ea2893193deeb1ab075cabf2c">network_types::queue::name</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1queue.html#ac3a1e75e5d17500ca2e6782387ac1740">network_types::queue::ToJson()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">main_services::MainNodeService::ConnectNode()</a>.</p>
 <div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -548,11 +558,11 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a9b714b1aa690ffd54bcb2f3200103a96_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a9b714b1aa690ffd54bcb2f3200103a96_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a9b714b1aa690ffd54bcb2f3200103a96_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a9b714b1aa690ffd54bcb2f3200103a96_cgraph">
 <area shape="rect" title="Creates queue with specified params." alt="" coords="5,95,229,135"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
 <area shape="poly" title=" " alt="" coords="229,99,264,95,264,100,230,104"/>
 <area shape="rect" href="structnetwork__types_1_1queue.html#ac3a1e75e5d17500ca2e6782387ac1740" title=" " alt="" coords="306,127,473,167"/>
 <area shape="poly" title=" " alt="" coords="230,125,292,133,292,138,229,130"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
 <area shape="poly" title=" " alt="" coords="502,80,535,80,535,85,502,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
 <area shape="poly" title=" " alt="" coords="718,67,821,44,822,50,719,73"/>
@@ -560,6 +570,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,80,805,80,805,85,771,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
 <area shape="poly" title=" " alt="" coords="728,93,839,114,838,119,727,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
 </map>
 </div>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -615,7 +627,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-7-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
@@ -624,9 +636,9 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a5e860706d253929a517dc523507e9365_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a5e860706d253929a517dc523507e9365_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a5e860706d253929a517dc523507e9365_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a5e860706d253929a517dc523507e9365_cgraph">
 <area shape="rect" title="Creates new auth user data." alt="" coords="5,63,229,103"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
 <area shape="poly" title=" " alt="" coords="229,80,264,80,264,85,229,85"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
 <area shape="poly" title=" " alt="" coords="502,80,535,80,535,85,502,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
 <area shape="poly" title=" " alt="" coords="718,67,821,44,822,50,719,73"/>
@@ -634,6 +646,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,80,805,80,805,85,771,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
 <area shape="poly" title=" " alt="" coords="728,93,839,114,838,119,727,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
 </map>
 </div>
 
@@ -675,7 +689,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
@@ -684,9 +698,9 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a94cca4d41236a8057b45bb709f0bd434_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a94cca4d41236a8057b45bb709f0bd434_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a94cca4d41236a8057b45bb709f0bd434_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a94cca4d41236a8057b45bb709f0bd434_cgraph">
 <area shape="rect" title="Remove exchange." alt="" coords="5,63,229,103"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
 <area shape="poly" title=" " alt="" coords="229,80,264,80,264,85,229,85"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
 <area shape="poly" title=" " alt="" coords="502,80,535,80,535,85,502,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
 <area shape="poly" title=" " alt="" coords="718,67,821,44,822,50,719,73"/>
@@ -694,6 +708,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,80,805,80,805,85,771,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
 <area shape="poly" title=" " alt="" coords="728,93,839,114,838,119,727,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
 </map>
 </div>
 
@@ -735,7 +751,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-9" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-9-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-9-summary" class="dynsummary" style="display:block;">
@@ -744,9 +760,9 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a31e34eaa6693e36f578ceb9b6b65c61e_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a31e34eaa6693e36f578ceb9b6b65c61e_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a31e34eaa6693e36f578ceb9b6b65c61e_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a31e34eaa6693e36f578ceb9b6b65c61e_cgraph">
 <area shape="rect" title="Remove queue." alt="" coords="5,63,229,103"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
 <area shape="poly" title=" " alt="" coords="229,80,264,80,264,85,229,85"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
 <area shape="poly" title=" " alt="" coords="502,80,535,80,535,85,502,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
 <area shape="poly" title=" " alt="" coords="718,67,821,44,822,50,719,73"/>
@@ -754,6 +770,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,80,805,80,805,85,771,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
 <area shape="poly" title=" " alt="" coords="728,93,839,114,838,119,727,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
 </map>
 </div>
 
@@ -784,7 +802,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
@@ -793,9 +811,9 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a1a2773432512363a1b9234fd110469c8_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a1a2773432512363a1b9234fd110469c8_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a1a2773432512363a1b9234fd110469c8_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a1a2773432512363a1b9234fd110469c8_cgraph">
 <area shape="rect" title="Deletes user data." alt="" coords="5,63,229,103"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
 <area shape="poly" title=" " alt="" coords="229,80,264,80,264,85,229,85"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
 <area shape="poly" title=" " alt="" coords="502,80,535,80,535,85,502,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
 <area shape="poly" title=" " alt="" coords="718,67,821,44,822,50,719,73"/>
@@ -803,6 +821,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,80,805,80,805,85,771,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
 <area shape="poly" title=" " alt="" coords="728,93,839,114,838,119,727,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
 </map>
 </div>
 
@@ -833,9 +853,9 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;exchange&gt; </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">main_services::MainNodeService::Connect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a">main_services::MainNodeService::Connect()</a>.</p>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
@@ -846,9 +866,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="Retrieves list of exhnages." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -856,6 +876,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -866,7 +888,7 @@ Private Attributes</h2></td></tr>
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_acbcd4a702a189b7c855578f81d36eb5f_icgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_acbcd4a702a189b7c855578f81d36eb5f_icgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_acbcd4a702a189b7c855578f81d36eb5f_icgraph" id="aclassamqp__common_1_1RabbitMQRestService_acbcd4a702a189b7c855578f81d36eb5f_icgraph">
 <area shape="rect" title="Retrieves list of exhnages." alt="" coords="571,5,795,45"/>
-<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
 <area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
 <area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
 <area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
@@ -911,7 +933,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>number of messages </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-13" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-13-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-13-summary" class="dynsummary" style="display:block;">
@@ -922,9 +944,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="Retrieves number of messages for the selected queue." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -932,6 +954,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -973,7 +997,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;queueBinding&gt; </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-14" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-14-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-14-summary" class="dynsummary" style="display:block;">
@@ -984,9 +1008,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="Lists all queue bindings for the specified queue." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -994,6 +1018,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -1034,7 +1060,7 @@ Private Attributes</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-15" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-15-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-15-summary" class="dynsummary" style="display:block;">
@@ -1045,9 +1071,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="Retrieves Json::Value from queue/stats." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1055,13 +1081,15 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a4cbab0537361da482e4b9e728adff11b" name="a4cbab0537361da482e4b9e728adff11b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cbab0537361da482e4b9e728adff11b">&#9670;&#160;</a></span>GlobalParam()</h2>
+<a id="a3285b15d2426b8ed13e6a85dc0f01cc0" name="a3285b15d2426b8ed13e6a85dc0f01cc0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3285b15d2426b8ed13e6a85dc0f01cc0">&#9670;&#160;</a></span>GlobalParam()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1075,7 +1103,7 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3">HttpMethod</a> &amp;&#160;</td>
           <td class="paramname"><em>type</em>&#160;</td>
         </tr>
         <tr>
@@ -1094,23 +1122,22 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>status</dd></dl>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">Todo:</a></b></dt><dd>use enum for requets tyope(or copy drogon one) </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>status </dd></dl>
 
-<p class="reference">References <a class="el" href="structnetwork__types_1_1global__param.html#ad2764c60a780e23fab1cfb3837b4a390">network_types::global_param::name</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1global__param.html#aaf4fc904fd62e1d3e2154b22b5413a16">network_types::global_param::ToJson()</a>.</p>
+<p class="reference">References <a class="el" href="structnetwork__types_1_1global__param.html#ad2764c60a780e23fab1cfb3837b4a390">network_types::global_param::name</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1global__param.html#aaf4fc904fd62e1d3e2154b22b5413a16">network_types::global_param::ToJson()</a>.</p>
 <div id="dynsection-16" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-16-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-16-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-16-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph" alt=""/></div>
-<map name="aclassamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a4cbab0537361da482e4b9e728adff11b_cgraph">
+<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a3285b15d2426b8ed13e6a85dc0f01cc0_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a3285b15d2426b8ed13e6a85dc0f01cc0_cgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1RabbitMQRestService_a3285b15d2426b8ed13e6a85dc0f01cc0_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a3285b15d2426b8ed13e6a85dc0f01cc0_cgraph">
 <area shape="rect" title="Uses global&#45;parameters api to interact with them." alt="" coords="5,95,229,135"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,63,501,103"/>
 <area shape="poly" title=" " alt="" coords="229,99,264,95,264,100,230,104"/>
 <area shape="rect" href="structnetwork__types_1_1global__param.html#aaf4fc904fd62e1d3e2154b22b5413a16" title=" " alt="" coords="306,127,473,167"/>
 <area shape="poly" title=" " alt="" coords="230,125,292,133,292,138,229,130"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,70,771,95"/>
 <area shape="poly" title=" " alt="" coords="502,80,535,80,535,85,502,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
 <area shape="poly" title=" " alt="" coords="718,67,821,44,822,50,719,73"/>
@@ -1118,6 +1145,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,80,805,80,805,85,771,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
 <area shape="poly" title=" " alt="" coords="728,93,839,114,838,119,727,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
 </map>
 </div>
 
@@ -1141,7 +1170,7 @@ Private Attributes</h2></td></tr>
 <p>retrieve all channels </p>
 <dl class="section return"><dt>Returns</dt><dd>std::vector of channel </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-17" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-17-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-17-summary" class="dynsummary" style="display:block;">
@@ -1152,9 +1181,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="retrieve all channels" alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1162,6 +1191,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -1185,7 +1216,7 @@ Private Attributes</h2></td></tr>
 <p>retrieve all connection </p>
 <dl class="section return"><dt>Returns</dt><dd>std::vector of connection </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-18" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-18-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-18-summary" class="dynsummary" style="display:block;">
@@ -1196,9 +1227,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="retrieve all connection" alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1206,6 +1237,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -1229,7 +1262,7 @@ Private Attributes</h2></td></tr>
 <p>Lists all global params from RabbimMQ. </p>
 <dl class="section return"><dt>Returns</dt><dd>std::vector of global parameters </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-19" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-19-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-19-summary" class="dynsummary" style="display:block;">
@@ -1240,9 +1273,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="Lists all global params from RabbimMQ." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1250,6 +1283,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -1280,7 +1315,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector of queue names </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 
 <p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8">main_services::MainNodeService::ConnectNode()</a>.</p>
 <div id="dynsection-20" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -1293,9 +1328,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="Lists all queues." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1303,6 +1338,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 <div id="dynsection-21" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -1347,7 +1384,7 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>std::vector&lt;rabbitMQUser&gt; </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
 <div id="dynsection-22" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-22-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-22-summary" class="dynsummary" style="display:block;">
@@ -1358,9 +1395,9 @@ Private Attributes</h2></td></tr>
 <area shape="rect" title="List all users with their roles and tags." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1368,6 +1405,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -1454,7 +1493,7 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="941,379,919,423,887,475,846,527,796,571,775,584,772,579,793,567,842,523,882,472,914,420,937,377"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5" title="Requests user information from a RabbitMQ." alt="" coords="571,645,795,685"/>
 <area shape="poly" title=" " alt="" coords="947,380,928,435,897,504,854,575,827,607,796,635,777,648,774,643,793,631,823,604,849,572,892,502,923,433,942,378"/>
-<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
 <area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
 <area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
 <area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
@@ -1467,8 +1506,8 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a id="aeb9cc1e91ffa70bdd87e476f19c82535" name="aeb9cc1e91ffa70bdd87e476f19c82535"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb9cc1e91ffa70bdd87e476f19c82535">&#9670;&#160;</a></span>PerformRequest()</h2>
+<a id="a9af21127aece78d673082356c399cf81" name="a9af21127aece78d673082356c399cf81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9af21127aece78d673082356c399cf81">&#9670;&#160;</a></span>PerformRequest() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1477,7 +1516,79 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::string amqp_common::RabbitMQRestService::PerformRequest </td>
+          <td class="memname"><a class="el" href="namespacerest__utils.html#a6f052a3b5274a03cb19ed50250eb49f3">HttpResult</a> amqp_common::RabbitMQRestService::PerformRequest </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>path</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3">HttpMethod</a> &amp;&#160;</td>
+          <td class="paramname"><em>method</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>data</em> = <code>&quot;&quot;</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>, and <a class="el" href="namespacenetwork__types.html#a3db573599c2e218543d557f8bd7f6196">network_types::ToString()</a>.</p>
+<div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-24-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-24-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a9af21127aece78d673082356c399cf81_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a9af21127aece78d673082356c399cf81_cgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1RabbitMQRestService_a9af21127aece78d673082356c399cf81_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a9af21127aece78d673082356c399cf81_cgraph">
+<area shape="rect" title=" " alt="" coords="5,103,229,143"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,68,501,108"/>
+<area shape="poly" title=" " alt="" coords="229,106,264,101,264,107,230,111"/>
+<area shape="rect" href="namespacenetwork__types.html#a3db573599c2e218543d557f8bd7f6196" title=" " alt="" coords="300,138,479,163"/>
+<area shape="poly" title=" " alt="" coords="230,132,287,137,286,143,229,137"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,73,771,98"/>
+<area shape="poly" title=" " alt="" coords="502,84,535,84,535,89,502,90"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
+<area shape="poly" title=" " alt="" coords="715,70,820,46,821,51,717,75"/>
+<area shape="rect" href="classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="819,70,1021,95"/>
+<area shape="poly" title=" " alt="" coords="771,82,805,81,805,87,771,87"/>
+<area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
+<area shape="poly" title=" " alt="" coords="732,95,836,114,835,120,731,101"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
+<area shape="poly" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
+<area shape="rect" href="namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88" title="Casts enum value to string." alt="" coords="575,149,745,174"/>
+<area shape="poly" title=" " alt="" coords="479,152,561,155,561,160,479,157"/>
+<area shape="rect" href="namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003" title="Casts Enum Value To typed value." alt="" coords="829,169,1011,194"/>
+<area shape="poly" title=" " alt="" coords="746,165,815,171,815,176,745,171"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a54851b223b5aa069d5f7b55b46de740c" name="a54851b223b5aa069d5f7b55b46de740c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54851b223b5aa069d5f7b55b46de740c">&#9670;&#160;</a></span>PerformRequest() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacerest__utils.html#a6f052a3b5274a03cb19ed50250eb49f3">HttpResult</a> amqp_common::RabbitMQRestService::PerformRequest </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
           <td class="paramname"><em>path</em>, </td>
@@ -1508,7 +1619,7 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Wrapper to perform curl request. </p>
-<p>Wraps around <a class="el" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl.">rest_utils::PerformCurlRequest()</a> Thrown anything this function throws. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Wraps around <a class="el" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl.">rest_utils::PerformCurlRequest()</a> Thrown anything this function throws. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">path</td><td></td></tr>
     <tr><td class="paramname">method</td><td></td></tr>
@@ -1516,20 +1627,20 @@ Private Attributes</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>resulting body </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>HttpResult </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a75038ac018b318620bd035053cb01376">auth_ptr_</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a3ff0b4c8e653582cf87c7b30d5c96fe9">base_url_</a>, and <a class="el" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533">rest_utils::PerformCurlRequest()</a>.</p>
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a75038ac018b318620bd035053cb01376">auth_ptr_</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a3ff0b4c8e653582cf87c7b30d5c96fe9">base_url_</a>, and <a class="el" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3">rest_utils::PerformCurlRequest()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170">BindQueueToExchange()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5">CreateExchange()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96">CreateQueue()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a5e860706d253929a517dc523507e9365">CreateUser()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a94cca4d41236a8057b45bb709f0bd434">DeleteExchange()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a31e34eaa6693e36f578ceb9b6b65c61e">DeleteQueue()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a1a2773432512363a1b9234fd110469c8">DeleteUser()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f">GetExchanges()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab8d1d11f2dde32874b0b202484af3cc4">GetMessageCount()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a7c99dbcd2fd516adf13e60b1100609ea">GetQueueBindings()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a03c14e043b1b09ab62c254ef2eba23d0">GetQueueStats()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a4cbab0537361da482e4b9e728adff11b">GlobalParam()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a0459c6595cd03c5bf150d70f421c9b9b">ListChannels()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a741bd45363fe3ae9bd1de0b5bd5e7297">ListConnections()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2">ListGlobalParams()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9">ListQueues()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073">ListUsers()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e">PublishMessage()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a49522126ef10c56359863b6f8a7b2ef1">UnbindQueueFromExchange()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5">Whoami()</a>.</p>
-<div id="dynsection-24" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-24-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-24-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170">BindQueueToExchange()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5">CreateExchange()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96">CreateQueue()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a5e860706d253929a517dc523507e9365">CreateUser()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a94cca4d41236a8057b45bb709f0bd434">DeleteExchange()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a31e34eaa6693e36f578ceb9b6b65c61e">DeleteQueue()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a1a2773432512363a1b9234fd110469c8">DeleteUser()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f">GetExchanges()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab8d1d11f2dde32874b0b202484af3cc4">GetMessageCount()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a7c99dbcd2fd516adf13e60b1100609ea">GetQueueBindings()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a03c14e043b1b09ab62c254ef2eba23d0">GetQueueStats()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a3285b15d2426b8ed13e6a85dc0f01cc0">GlobalParam()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a0459c6595cd03c5bf150d70f421c9b9b">ListChannels()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a741bd45363fe3ae9bd1de0b5bd5e7297">ListConnections()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2">ListGlobalParams()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9">ListQueues()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073">ListUsers()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81">PerformRequest()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e">PublishMessage()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a49522126ef10c56359863b6f8a7b2ef1">UnbindQueueFromExchange()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5">Whoami()</a>.</p>
+<div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-25-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-24-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_cgraph" alt=""/></div>
-<map name="aclassamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_cgraph">
+<div id="dynsection-25-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_cgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_cgraph">
 <area shape="rect" title="Wrapper to perform curl request." alt="" coords="5,63,229,103"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="277,70,499,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="277,70,499,95"/>
 <area shape="poly" title=" " alt="" coords="230,80,263,80,263,85,230,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="563,5,733,45"/>
 <area shape="poly" title=" " alt="" coords="446,67,549,44,550,50,447,73"/>
@@ -1537,67 +1648,71 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="499,80,533,80,533,85,499,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="557,119,739,145"/>
 <area shape="poly" title=" " alt="" coords="456,93,567,114,566,119,455,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="797,5,968,45"/>
+<area shape="poly" title=" " alt="" coords="734,23,783,23,783,28,734,28"/>
 </map>
 </div>
-<div id="dynsection-25" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-25-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-25-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-26" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-26-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-25-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_icgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_icgraph" alt=""/></div>
-<map name="aclassamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_icgraph" id="aclassamqp__common_1_1RabbitMQRestService_aeb9cc1e91ffa70bdd87e476f19c82535_icgraph">
-<area shape="rect" title="Wrapper to perform curl request." alt="" coords="881,613,1105,653"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170" title="Binds queue to exchange." alt="" coords="589,133,815,173"/>
-<area shape="poly" title=" " alt="" coords="988,600,978,516,969,462,954,404,934,345,907,287,874,234,832,187,814,175,817,171,835,183,878,231,912,285,939,343,959,403,974,461,984,515,993,599"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="590,965,814,1005"/>
-<area shape="poly" title=" " alt="" coords="988,667,971,729,941,807,921,848,897,887,868,924,835,955,816,968,813,963,832,951,864,920,893,884,917,845,937,805,966,728,983,666"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96" title="Creates queue with specified params." alt="" coords="590,5,814,45"/>
-<area shape="poly" title=" " alt="" coords="985,600,965,479,931,316,910,234,886,160,860,100,831,59,813,46,816,41,835,55,865,97,891,158,915,233,937,315,970,478,990,599"/>
+<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_icgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_icgraph" alt=""/></div>
+<map name="aclassamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_icgraph" id="aclassamqp__common_1_1RabbitMQRestService_a54851b223b5aa069d5f7b55b46de740c_icgraph">
+<area shape="rect" title="Wrapper to perform curl request." alt="" coords="881,645,1105,685"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170" title="Binds queue to exchange." alt="" coords="589,5,815,45"/>
+<area shape="poly" title=" " alt="" coords="985,632,966,506,934,333,913,246,888,167,861,102,847,78,831,59,814,46,817,42,835,55,851,75,866,100,893,165,918,244,939,332,972,505,990,632"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="590,453,814,493"/>
+<area shape="poly" title=" " alt="" coords="968,636,911,570,873,536,832,508,806,496,809,491,835,503,877,532,915,566,972,632"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96" title="Creates queue with specified params." alt="" coords="590,69,814,109"/>
+<area shape="poly" title=" " alt="" coords="990,631,986,531,979,466,966,394,947,321,919,249,881,182,858,151,832,123,813,110,816,105,835,119,862,148,885,179,923,246,952,319,972,393,984,465,992,531,996,631"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a5e860706d253929a517dc523507e9365" title="Creates new auth user data." alt="" coords="590,197,814,237"/>
-<area shape="poly" title=" " alt="" coords="986,600,972,527,945,432,925,383,900,334,869,290,832,251,813,239,816,234,835,247,873,287,904,332,930,380,950,431,978,526,991,599"/>
+<area shape="poly" title=" " alt="" coords="987,632,976,554,950,451,930,396,904,343,871,294,832,251,813,239,816,234,835,247,875,291,908,340,935,394,955,449,981,553,992,632"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a94cca4d41236a8057b45bb709f0bd434" title="Remove exchange." alt="" coords="590,261,814,301"/>
-<area shape="poly" title=" " alt="" coords="983,601,966,539,937,462,917,421,893,382,864,346,832,315,813,304,816,299,835,311,868,343,897,379,921,419,941,459,971,537,988,599"/>
+<area shape="poly" title=" " alt="" coords="984,632,969,565,941,479,921,434,896,390,867,350,832,315,813,303,816,299,835,311,871,347,901,387,926,432,946,477,974,564,989,631"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a31e34eaa6693e36f578ceb9b6b65c61e" title="Remove queue." alt="" coords="590,325,814,365"/>
-<area shape="poly" title=" " alt="" coords="978,601,958,551,927,491,885,430,860,403,832,380,812,368,815,363,835,375,863,399,889,427,932,488,963,549,983,599"/>
+<area shape="poly" title=" " alt="" coords="981,633,962,577,932,508,889,438,862,407,832,379,813,368,816,363,835,375,866,403,893,435,937,506,967,575,986,631"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a1a2773432512363a1b9234fd110469c8" title="Deletes user data." alt="" coords="590,389,814,429"/>
-<area shape="poly" title=" " alt="" coords="972,603,948,565,917,522,877,479,832,444,809,432,811,427,835,439,881,475,921,519,953,562,977,600"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f" title="Retrieves list of exhnages." alt="" coords="590,453,814,493"/>
-<area shape="poly" title=" " alt="" coords="962,606,904,555,869,529,832,508,803,496,805,491,835,503,872,525,908,551,965,602"/>
+<area shape="poly" title=" " alt="" coords="976,634,954,590,922,538,881,487,832,444,810,432,813,427,835,439,885,483,926,535,958,587,980,631"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f" title="Retrieves list of exhnages." alt="" coords="590,965,814,1005"/>
+<area shape="poly" title=" " alt="" coords="986,699,967,756,937,825,893,896,866,928,835,955,816,967,813,963,832,951,862,924,889,892,932,823,962,754,981,698"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#ab8d1d11f2dde32874b0b202484af3cc4" title="Retrieves number of messages for the selected queue." alt="" coords="590,517,814,557"/>
-<area shape="poly" title=" " alt="" coords="934,610,832,572,791,560,793,555,834,567,936,605"/>
+<area shape="poly" title=" " alt="" coords="952,640,897,604,832,572,798,560,800,555,834,567,899,600,955,635"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a7c99dbcd2fd516adf13e60b1100609ea" title="Lists all queue bindings for the specified queue." alt="" coords="590,581,814,621"/>
-<area shape="poly" title=" " alt="" coords="867,622,814,616,815,611,868,617"/>
+<area shape="poly" title=" " alt="" coords="888,645,793,624,794,619,889,640"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a03c14e043b1b09ab62c254ef2eba23d0" title="Retrieves Json::Value from queue/stats." alt="" coords="590,645,814,685"/>
-<area shape="poly" title=" " alt="" coords="868,650,815,656,814,650,867,644"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a4cbab0537361da482e4b9e728adff11b" title="Uses global&#45;parameters api to interact with them." alt="" coords="590,709,814,749"/>
-<area shape="poly" title=" " alt="" coords="936,661,834,700,793,712,791,707,832,695,934,656"/>
+<area shape="poly" title=" " alt="" coords="868,668,814,668,814,663,868,663"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a3285b15d2426b8ed13e6a85dc0f01cc0" title="Uses global&#45;parameters api to interact with them." alt="" coords="590,709,814,749"/>
+<area shape="poly" title=" " alt="" coords="889,691,794,712,793,707,888,686"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a0459c6595cd03c5bf150d70f421c9b9b" title="retrieve all channels" alt="" coords="590,773,814,813"/>
-<area shape="poly" title=" " alt="" coords="965,665,908,716,872,742,835,764,805,776,803,771,832,759,869,737,904,712,962,661"/>
+<area shape="poly" title=" " alt="" coords="955,695,899,731,834,764,800,776,798,771,832,759,897,726,952,691"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a741bd45363fe3ae9bd1de0b5bd5e7297" title="retrieve all connection" alt="" coords="590,837,814,877"/>
-<area shape="poly" title=" " alt="" coords="977,667,953,705,921,748,881,791,835,828,811,840,809,835,832,823,877,787,917,745,948,702,972,664"/>
+<area shape="poly" title=" " alt="" coords="972,698,915,764,877,799,835,828,809,840,806,835,832,823,873,794,911,760,968,695"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2" title="Lists all global params from RabbimMQ." alt="" coords="590,901,814,941"/>
-<area shape="poly" title=" " alt="" coords="983,667,963,718,932,778,889,840,863,867,835,892,815,903,812,899,832,887,860,864,885,836,927,776,958,715,978,665"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9" title="Lists all queues." alt="" coords="590,69,814,109"/>
-<area shape="poly" title=" " alt="" coords="990,600,984,505,976,443,962,376,942,308,915,240,878,178,832,123,813,110,816,105,835,119,883,175,920,238,947,306,968,375,981,442,989,504,995,599"/>
+<area shape="poly" title=" " alt="" coords="980,699,958,743,926,795,885,848,835,892,813,904,810,899,832,887,881,844,922,792,954,741,976,697"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9" title="Lists all queues." alt="" coords="590,133,814,173"/>
+<area shape="poly" title=" " alt="" coords="989,632,981,543,972,485,958,422,938,358,911,296,876,238,832,187,813,174,816,170,835,183,880,235,916,293,943,357,963,421,977,484,987,542,994,631"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073" title="List all users with their roles and tags." alt="" coords="590,1029,814,1069"/>
-<area shape="poly" title=" " alt="" coords="991,668,978,741,950,836,930,886,904,935,873,980,835,1019,816,1032,813,1028,832,1015,869,977,900,932,925,884,945,834,972,740,986,667"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e" title="Publishes message to the specified exchange and routing key." alt="" coords="590,1093,814,1133"/>
-<area shape="poly" title=" " alt="" coords="993,667,984,751,974,806,959,864,939,924,912,982,878,1036,835,1083,816,1097,813,1092,832,1079,874,1033,907,979,934,922,954,862,969,804,978,751,988,667"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a49522126ef10c56359863b6f8a7b2ef1" title=" " alt="" coords="571,1157,833,1197"/>
-<area shape="poly" title=" " alt="" coords="995,667,989,762,981,824,968,892,947,961,920,1029,883,1092,835,1147,819,1159,816,1155,832,1143,878,1089,915,1026,942,959,962,890,976,823,984,762,990,667"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5" title="Requests user information from a RabbitMQ." alt="" coords="590,1221,814,1261"/>
-<area shape="poly" title=" " alt="" coords="990,668,970,788,937,952,915,1034,891,1108,865,1170,835,1211,816,1225,813,1221,831,1207,860,1167,886,1107,910,1032,931,950,965,787,985,667"/>
+<area shape="poly" title=" " alt="" coords="989,699,974,767,946,854,926,899,901,943,871,984,835,1019,816,1032,813,1027,832,1015,867,980,896,940,921,897,941,852,969,766,984,698"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81" title=" " alt="" coords="590,1093,814,1133"/>
+<area shape="poly" title=" " alt="" coords="992,699,981,778,955,882,935,937,908,990,875,1040,835,1083,816,1097,813,1092,832,1079,871,1037,904,988,930,935,950,880,976,777,987,698"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e" title="Publishes message to the specified exchange and routing key." alt="" coords="590,1157,814,1197"/>
+<area shape="poly" title=" " alt="" coords="994,699,987,789,977,847,963,910,943,974,916,1037,880,1096,835,1147,816,1161,813,1156,832,1143,876,1093,911,1035,938,972,958,908,972,846,981,788,989,699"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a49522126ef10c56359863b6f8a7b2ef1" title=" " alt="" coords="571,1221,833,1261"/>
+<area shape="poly" title=" " alt="" coords="996,700,992,800,984,866,972,937,952,1012,923,1084,885,1152,862,1183,835,1211,819,1223,816,1219,832,1207,858,1180,881,1149,919,1082,947,1010,966,936,979,865,986,799,990,699"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5" title="Requests user information from a RabbitMQ." alt="" coords="590,1285,814,1325"/>
+<area shape="poly" title=" " alt="" coords="990,699,972,826,939,999,918,1086,893,1166,866,1231,851,1256,835,1275,816,1290,813,1285,831,1271,847,1253,861,1228,888,1164,913,1085,934,998,966,825,985,698"/>
 <area shape="rect" href="classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,69,523,109"/>
-<area shape="poly" title=" " alt="" coords="594,133,497,112,498,107,595,128"/>
+<area shape="poly" title=" " alt="" coords="595,51,498,72,497,67,594,46"/>
 <area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,69,236,109"/>
 <area shape="poly" title=" " alt="" coords="270,92,236,92,236,87,270,87"/>
-<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,709,523,749"/>
-<area shape="poly" title=" " alt="" coords="579,962,569,956,540,933,513,907,468,849,433,794,411,751,416,748,438,791,472,846,517,903,543,929,572,951,582,957"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,709,523,749"/>
+<area shape="poly" title=" " alt="" coords="582,502,572,508,543,530,517,555,472,612,438,668,416,710,411,708,433,665,468,609,513,552,540,526,569,503,579,497"/>
 <area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,709,236,749"/>
 <area shape="poly" title=" " alt="" coords="270,732,236,732,236,727,270,727"/>
-<area shape="poly" title=" " alt="" coords="595,51,498,72,497,67,594,46"/>
-<area shape="poly" title=" " alt="" coords="582,502,572,508,543,530,517,555,472,612,438,668,416,710,411,708,433,665,468,609,513,552,540,526,569,503,579,497"/>
 <area shape="poly" title=" " alt="" coords="576,92,523,92,523,87,576,87"/>
+<area shape="poly" title=" " alt="" coords="579,962,569,956,540,933,513,907,468,849,433,794,411,751,416,748,438,791,472,846,517,903,543,929,572,951,582,957"/>
+<area shape="poly" title=" " alt="" coords="594,133,497,112,498,107,595,128"/>
 </map>
 </div>
 
@@ -1646,22 +1761,22 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>is_routed </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1message.html#a99b0313c4197da4aea06e1463e01347d">network_types::message::ToJson()</a>.</p>
-<div id="dynsection-26" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-26-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-26-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>, and <a class="el" href="structnetwork__types_1_1message.html#a99b0313c4197da4aea06e1463e01347d">network_types::message::ToJson()</a>.</p>
+<div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-27-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-26-content" class="dyncontent" style="display:none;">
+<div id="dynsection-27-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a1f741db3d430f5c03afc12907cb4068e_cgraph">
 <area shape="rect" title="Publishes message to the specified exchange and routing key." alt="" coords="5,69,229,109"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="203,67,290,46,291,51,204,72"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="229,87,264,87,264,92,229,92"/>
 <area shape="rect" href="structnetwork__types_1_1message.html#a99b0313c4197da4aea06e1463e01347d" title=" " alt="" coords="297,133,482,173"/>
 <area shape="poly" title=" " alt="" coords="204,107,291,128,290,133,203,112"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1669,6 +1784,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -1739,16 +1856,16 @@ Private Attributes</h2></td></tr>
 
 <p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a75038ac018b318620bd035053cb01376">auth_ptr_</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a3ff0b4c8e653582cf87c7b30d5c96fe9">base_url_</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9">main_services::MainNodeService::Connect()</a>.</p>
-<div id="dynsection-27" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-27-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
-<div id="dynsection-27-summary" class="dynsummary" style="display:block;">
+<p class="reference">Referenced by <a class="el" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a">main_services::MainNodeService::Connect()</a>.</p>
+<div id="dynsection-28" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-28-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-28-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-27-content" class="dyncontent" style="display:none;">
+<div id="dynsection-28-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a5c38eca6295a35f5ebfa412e6b8989c0_icgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a5c38eca6295a35f5ebfa412e6b8989c0_icgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a5c38eca6295a35f5ebfa412e6b8989c0_icgraph" id="aclassamqp__common_1_1RabbitMQRestService_a5c38eca6295a35f5ebfa412e6b8989c0_icgraph">
 <area shape="rect" title="Set&#39;s url and auth provider." alt="" coords="571,5,795,45"/>
-<area shape="rect" href="classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
+<area shape="rect" href="classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,5,523,45"/>
 <area shape="poly" title=" " alt="" coords="557,28,523,28,523,23,557,23"/>
 <area shape="rect" href="classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,5,236,45"/>
 <area shape="poly" title=" " alt="" coords="270,28,236,28,236,23,270,23"/>
@@ -1805,18 +1922,18 @@ Private Attributes</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true - if succeeds </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
-<div id="dynsection-28" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-28-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-28-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
+<div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-29-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-29-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-28-content" class="dyncontent" style="display:none;">
+<div id="dynsection-29-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a49522126ef10c56359863b6f8a7b2ef1_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a49522126ef10c56359863b6f8a7b2ef1_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a49522126ef10c56359863b6f8a7b2ef1_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a49522126ef10c56359863b6f8a7b2ef1_cgraph">
 <area shape="rect" title=" " alt="" coords="5,63,268,103"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="316,63,540,103"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="316,63,540,103"/>
 <area shape="poly" title=" " alt="" coords="268,80,302,80,302,85,268,85"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="588,70,809,95"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="588,70,809,95"/>
 <area shape="poly" title=" " alt="" coords="540,80,574,80,574,85,540,85"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="873,5,1044,45"/>
 <area shape="poly" title=" " alt="" coords="757,67,859,44,860,50,758,73"/>
@@ -1824,6 +1941,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="810,80,844,80,844,85,810,85"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="868,119,1049,145"/>
 <area shape="poly" title=" " alt="" coords="767,93,878,114,877,119,766,98"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1108,5,1279,45"/>
+<area shape="poly" title=" " alt="" coords="1044,23,1094,23,1094,28,1044,28"/>
 </map>
 </div>
 
@@ -1845,22 +1964,22 @@ Private Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Requests user information from a RabbitMQ. </p>
-<dl class="section return"><dt>Returns</dt><dd>Json::Value from <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request.">RabbitMQRestService::PerformRequest</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>Json::Value from <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request.">RabbitMQRestService::PerformRequest</a> </dd></dl>
 
-<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>.</p>
-<div id="dynsection-29" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-29-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-29-summary" class="dynsummary" style="display:block;">
+<p class="reference">References <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2">ParseJson()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>.</p>
+<div id="dynsection-30" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-30-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-30-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-29-content" class="dyncontent" style="display:none;">
+<div id="dynsection-30-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="classamqp__common_1_1RabbitMQRestService_a00f09f5a2a09bd47563f96fb237a11c5_cgraph.png" border="0" usemap="#aclassamqp__common_1_1RabbitMQRestService_a00f09f5a2a09bd47563f96fb237a11c5_cgraph" alt=""/></div>
 <map name="aclassamqp__common_1_1RabbitMQRestService_a00f09f5a2a09bd47563f96fb237a11c5_cgraph" id="aclassamqp__common_1_1RabbitMQRestService_a00f09f5a2a09bd47563f96fb237a11c5_cgraph">
 <area shape="rect" title="Requests user information from a RabbitMQ." alt="" coords="5,37,229,77"/>
 <area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
 <area shape="poly" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
+<area shape="rect" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
 <area shape="poly" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
+<area shape="rect" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
 <area shape="poly" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
 <area shape="rect" href="classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
 <area shape="poly" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
@@ -1868,6 +1987,8 @@ Private Attributes</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
 <area shape="rect" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
 <area shape="poly" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
+<area shape="rect" href="classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
+<area shape="poly" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
 </map>
 </div>
 
@@ -1894,7 +2015,7 @@ Private Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0">SetParams()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0">SetParams()</a>.</p>
 
 </div>
 </div>
@@ -1920,7 +2041,7 @@ Private Attributes</h2></td></tr>
 
 <p>url to perform request </p>
 
-<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535">PerformRequest()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a28b729b43d0b0523be45ffe806de3e3d">SetBaseUrl()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0">SetParams()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c">PerformRequest()</a>, <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a28b729b43d0b0523be45ffe806de3e3d">SetBaseUrl()</a>, and <a class="el" href="classamqp__common_1_1RabbitMQRestService.html#a5c38eca6295a35f5ebfa412e6b8989c0">SetParams()</a>.</p>
 
 </div>
 </div>

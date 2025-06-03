@@ -1,0 +1,62 @@
+<map id="rest_utils::AuthHandler::AddAuth" name="rest_utils::AuthHandler::AddAuth">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1641,645,1812,685"/>
+<area shape="rect" id="Node000002" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="1423,645,1593,685"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1628,668,1594,668,1594,663,1628,663"/>
+<area shape="rect" id="Node000003" href="$namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="1153,653,1375,678"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="1409,668,1375,668,1375,663,1409,663"/>
+<area shape="rect" id="Node000004" href="$classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="881,645,1105,685"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="1140,668,1105,668,1105,663,1140,663"/>
+<area shape="rect" id="Node000005" href="$classamqp__common_1_1RabbitMQRestService.html#a2812c32bfddffbb470e948f24f5ff170" title="Binds queue to exchange." alt="" coords="589,5,815,45"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="985,632,966,506,934,333,913,246,888,167,861,102,847,78,831,59,814,46,817,42,835,55,851,75,866,100,893,165,918,244,939,332,972,505,990,632"/>
+<area shape="rect" id="Node000008" href="$classamqp__common_1_1RabbitMQRestService.html#a80097c177254c339eaede0c5d6f5c3c5" title="Creates exchange with specified params." alt="" coords="590,453,814,493"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="968,636,911,570,873,536,832,508,806,496,809,491,835,503,877,532,915,566,972,632"/>
+<area shape="rect" id="Node000011" href="$classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96" title="Creates queue with specified params." alt="" coords="590,69,814,109"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="990,631,986,531,979,466,966,394,947,321,919,249,881,182,858,151,832,123,813,110,816,105,835,119,862,148,885,179,923,246,952,319,972,393,984,465,992,531,996,631"/>
+<area shape="rect" id="Node000012" href="$classamqp__common_1_1RabbitMQRestService.html#a5e860706d253929a517dc523507e9365" title="Creates new auth user data." alt="" coords="590,197,814,237"/>
+<area shape="poly" id="edge12_Node000004_Node000012" title=" " alt="" coords="987,632,976,554,950,451,930,396,904,343,871,294,832,251,813,239,816,234,835,247,875,291,908,340,935,394,955,449,981,553,992,632"/>
+<area shape="rect" id="Node000013" href="$classamqp__common_1_1RabbitMQRestService.html#a94cca4d41236a8057b45bb709f0bd434" title="Remove exchange." alt="" coords="590,261,814,301"/>
+<area shape="poly" id="edge13_Node000004_Node000013" title=" " alt="" coords="984,632,969,565,941,479,921,434,896,390,867,350,832,315,813,303,816,299,835,311,871,347,901,387,926,432,946,477,974,564,989,631"/>
+<area shape="rect" id="Node000014" href="$classamqp__common_1_1RabbitMQRestService.html#a31e34eaa6693e36f578ceb9b6b65c61e" title="Remove queue." alt="" coords="590,325,814,365"/>
+<area shape="poly" id="edge14_Node000004_Node000014" title=" " alt="" coords="981,633,962,577,932,508,889,438,862,407,832,379,813,368,816,363,835,375,866,403,893,435,937,506,967,575,986,631"/>
+<area shape="rect" id="Node000015" href="$classamqp__common_1_1RabbitMQRestService.html#a1a2773432512363a1b9234fd110469c8" title="Deletes user data." alt="" coords="590,389,814,429"/>
+<area shape="poly" id="edge15_Node000004_Node000015" title=" " alt="" coords="976,634,954,590,922,538,881,487,832,444,810,432,813,427,835,439,885,483,926,535,958,587,980,631"/>
+<area shape="rect" id="Node000016" href="$classamqp__common_1_1RabbitMQRestService.html#acbcd4a702a189b7c855578f81d36eb5f" title="Retrieves list of exhnages." alt="" coords="590,965,814,1005"/>
+<area shape="poly" id="edge16_Node000004_Node000016" title=" " alt="" coords="986,699,967,756,937,825,893,896,866,928,835,955,816,967,813,963,832,951,862,924,889,892,932,823,962,754,981,698"/>
+<area shape="rect" id="Node000017" href="$classamqp__common_1_1RabbitMQRestService.html#ab8d1d11f2dde32874b0b202484af3cc4" title="Retrieves number of messages for the selected queue." alt="" coords="590,517,814,557"/>
+<area shape="poly" id="edge18_Node000004_Node000017" title=" " alt="" coords="952,640,897,604,832,572,798,560,800,555,834,567,899,600,955,635"/>
+<area shape="rect" id="Node000018" href="$classamqp__common_1_1RabbitMQRestService.html#a7c99dbcd2fd516adf13e60b1100609ea" title="Lists all queue bindings for the specified queue." alt="" coords="590,581,814,621"/>
+<area shape="poly" id="edge19_Node000004_Node000018" title=" " alt="" coords="888,645,793,624,794,619,889,640"/>
+<area shape="rect" id="Node000019" href="$classamqp__common_1_1RabbitMQRestService.html#a03c14e043b1b09ab62c254ef2eba23d0" title="Retrieves Json::Value from queue/stats." alt="" coords="590,645,814,685"/>
+<area shape="poly" id="edge20_Node000004_Node000019" title=" " alt="" coords="868,668,814,668,814,663,868,663"/>
+<area shape="rect" id="Node000020" href="$classamqp__common_1_1RabbitMQRestService.html#a3285b15d2426b8ed13e6a85dc0f01cc0" title="Uses global&#45;parameters api to interact with them." alt="" coords="590,709,814,749"/>
+<area shape="poly" id="edge21_Node000004_Node000020" title=" " alt="" coords="889,691,794,712,793,707,888,686"/>
+<area shape="rect" id="Node000021" href="$classamqp__common_1_1RabbitMQRestService.html#a0459c6595cd03c5bf150d70f421c9b9b" title="retrieve all channels" alt="" coords="590,773,814,813"/>
+<area shape="poly" id="edge22_Node000004_Node000021" title=" " alt="" coords="955,695,899,731,834,764,800,776,798,771,832,759,897,726,952,691"/>
+<area shape="rect" id="Node000022" href="$classamqp__common_1_1RabbitMQRestService.html#a741bd45363fe3ae9bd1de0b5bd5e7297" title="retrieve all connection" alt="" coords="590,837,814,877"/>
+<area shape="poly" id="edge23_Node000004_Node000022" title=" " alt="" coords="972,698,915,764,877,799,835,828,809,840,806,835,832,823,873,794,911,760,968,695"/>
+<area shape="rect" id="Node000023" href="$classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2" title="Lists all global params from RabbimMQ." alt="" coords="590,901,814,941"/>
+<area shape="poly" id="edge24_Node000004_Node000023" title=" " alt="" coords="980,699,958,743,926,795,885,848,835,892,813,904,810,899,832,887,881,844,922,792,954,741,976,697"/>
+<area shape="rect" id="Node000024" href="$classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9" title="Lists all queues." alt="" coords="590,133,814,173"/>
+<area shape="poly" id="edge25_Node000004_Node000024" title=" " alt="" coords="989,632,981,543,972,485,958,422,938,358,911,296,876,238,832,187,813,174,816,170,835,183,880,235,916,293,943,357,963,421,977,484,987,542,994,631"/>
+<area shape="rect" id="Node000025" href="$classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073" title="List all users with their roles and tags." alt="" coords="590,1029,814,1069"/>
+<area shape="poly" id="edge27_Node000004_Node000025" title=" " alt="" coords="989,699,974,767,946,854,926,899,901,943,871,984,835,1019,816,1032,813,1027,832,1015,867,980,896,940,921,897,941,852,969,766,984,698"/>
+<area shape="rect" id="Node000026" href="$classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81" title=" " alt="" coords="590,1093,814,1133"/>
+<area shape="poly" id="edge28_Node000004_Node000026" title=" " alt="" coords="992,699,981,778,955,882,935,937,908,990,875,1040,835,1083,816,1097,813,1092,832,1079,871,1037,904,988,930,935,950,880,976,777,987,698"/>
+<area shape="rect" id="Node000027" href="$classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e" title="Publishes message to the specified exchange and routing key." alt="" coords="590,1157,814,1197"/>
+<area shape="poly" id="edge29_Node000004_Node000027" title=" " alt="" coords="994,699,987,789,977,847,963,910,943,974,916,1037,880,1096,835,1147,816,1161,813,1156,832,1143,876,1093,911,1035,938,972,958,908,972,846,981,788,989,699"/>
+<area shape="rect" id="Node000028" href="$classamqp__common_1_1RabbitMQRestService.html#a49522126ef10c56359863b6f8a7b2ef1" title=" " alt="" coords="571,1221,833,1261"/>
+<area shape="poly" id="edge30_Node000004_Node000028" title=" " alt="" coords="996,700,992,800,984,866,972,937,952,1012,923,1084,885,1152,862,1183,835,1211,819,1223,816,1219,832,1207,858,1180,881,1149,919,1082,947,1010,966,936,979,865,986,799,990,699"/>
+<area shape="rect" id="Node000029" href="$classamqp__common_1_1RabbitMQRestService.html#a00f09f5a2a09bd47563f96fb237a11c5" title="Requests user information from a RabbitMQ." alt="" coords="590,1285,814,1325"/>
+<area shape="poly" id="edge31_Node000004_Node000029" title=" " alt="" coords="990,699,972,826,939,999,918,1086,893,1166,866,1231,851,1256,835,1275,816,1290,813,1285,831,1271,847,1253,861,1228,888,1164,913,1085,934,998,966,825,985,698"/>
+<area shape="rect" id="Node000006" href="$classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8" title="Connects the node to the computational cluster." alt="" coords="284,69,523,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="595,51,498,72,497,67,594,46"/>
+<area shape="rect" id="Node000007" href="$classrest_1_1v1_1_1ClusterConfigController.html#af214a4d43f6ad4e6123246f4b013d190" title="Connects node to computational cluster." alt="" coords="5,69,236,109"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="270,92,236,92,236,87,270,87"/>
+<area shape="rect" id="Node000009" href="$classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="284,709,523,749"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="582,502,572,508,543,530,517,555,472,612,438,668,416,710,411,708,433,665,468,609,513,552,540,526,569,503,579,497"/>
+<area shape="rect" id="Node000010" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,709,236,749"/>
+<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="270,732,236,732,236,727,270,727"/>
+<area shape="poly" id="edge11_Node000011_Node000006" title=" " alt="" coords="576,92,523,92,523,87,576,87"/>
+<area shape="poly" id="edge17_Node000016_Node000009" title=" " alt="" coords="579,962,569,956,540,933,513,907,468,849,433,794,411,751,416,748,438,791,472,846,517,903,543,929,572,951,582,957"/>
+<area shape="poly" id="edge26_Node000024_Node000006" title=" " alt="" coords="594,133,497,112,498,107,595,128"/>
+</map>

@@ -40,11 +40,14 @@ var namespaceshared =
       [ "PRINT", "namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866af96eee4e48ee90430f17fb3a8388507b", null ]
     ] ],
     [ "DefaultBench", "namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
+    [ "NIndex", "namespaceshared.html#ac7511258976ece006064667eb8c6f171", null ],
     [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
+    [ "iter_count", "namespaceshared.html#a7611ccfc121da69b66a3b5ef9c8f42bf", null ],
     [ "kNValues", "namespaceshared.html#affbf6044206ed501cbc764df749da33a", null ],
     [ "kSevToStr", "namespaceshared.html#af3d0ef72a5c0a66a91f8f11233a72d80", null ],
     [ "kStateTMappings", "namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd", null ],
     [ "kStateToStr", "namespaceshared.html#a12bba4853ee52f4c77d00f91a3400853", null ],
     [ "kStringToState", "namespaceshared.html#a4e1aa6d006edaa7a28c619cbd9c62943", null ],
-    [ "kStrToSev", "namespaceshared.html#af570bd9365898d829147c73ee171e266", null ]
+    [ "kStrToSev", "namespaceshared.html#af570bd9365898d829147c73ee171e266", null ],
+    [ "ns", "namespaceshared.html#a40f6e7550864b14a7d627e49db6a1d79", null ]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['limtype_0',['LimType',['../namespacemesh__storage.html#a8f91f5676835d70266c8f8f990a0e53e',1,'mesh_storage']]],
-  ['locationtype_1',['LocationType',['../namespacetiming.html#acd0b30707d239c1ffc1268c286cd37e7',1,'timing']]]
+  ['jsonvariant_0',['JsonVariant',['../namespacecommon__types.html#ae52d0f2262ef71d75c6c8a2f050852ef',1,'common_types']]]
 ];

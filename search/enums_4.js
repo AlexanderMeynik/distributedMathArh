@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['paramtype_0',['ParamType',['../namespaceshared.html#a9624128c37558187e9088247c8299fd0',1,'shared']]]
+  ['nodestatus_0',['nodestatus',['../namespacedb__common.html#a5dc66f4066b6c13f08d26162d4d955eb',1,'db_common::NodeStatus'],['../namespacemain__services.html#a2fadec975591f46253b38185db954f41',1,'main_services::NodeStatus']]]
 ];

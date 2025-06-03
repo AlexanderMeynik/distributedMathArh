@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Constructs amqp connection string." alt="" coords="587,77,827,102"/>
 <area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="306,5,517,45"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="633,76,504,48,505,43,634,71"/>
-<area shape="rect" id="Node000004" href="$classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="292,69,531,109"/>
+<area shape="rect" id="Node000004" href="$classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="292,69,531,109"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="573,92,531,92,531,87,573,87"/>
 <area shape="rect" id="Node000006" href="$namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109" title=" " alt="" coords="284,134,539,159"/>
 <area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="627,107,478,137,477,131,626,102"/>

@@ -11,8 +11,8 @@ var searchData=
   ['parseonedim_8',['ParseOneDim',['../namespaceprint__utils.html#acaa872f5e746f7c4dba3e35bd364fe4d',1,'print_utils']]],
   ['parseonedims_9',['ParseOneDimS',['../namespaceprint__utils.html#a295195f7820532219d8a81f7c0905bed',1,'print_utils']]],
   ['parsesolution_10',['ParseSolution',['../namespaceprint__utils.html#ab9fc78426b3e43196bc33a54b00fb055',1,'print_utils']]],
-  ['performcurlrequest_11',['PerformCurlRequest',['../namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533',1,'rest_utils']]],
-  ['performrequest_12',['PerformRequest',['../classamqp__common_1_1RabbitMQRestService.html#aeb9cc1e91ffa70bdd87e476f19c82535',1,'amqp_common::RabbitMQRestService']]],
+  ['performcurlrequest_11',['PerformCurlRequest',['../namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3',1,'rest_utils']]],
+  ['performrequest_12',['performrequest',['../classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c',1,'amqp_common::RabbitMQRestService::PerformRequest(const std::string &amp;path, const std::string &amp;method, const std::string &amp;data=&quot;&quot;)'],['../classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81',1,'amqp_common::RabbitMQRestService::PerformRequest(const std::string &amp;path, const HttpMethod &amp;method, const std::string &amp;data=&quot;&quot;)']]],
   ['plot_13',['Plot',['../classgui__objects_1_1MeshPlot.html#a25543b242b17e700a15952e25e8b67f7',1,'gui_objects::MeshPlot']]],
   ['plotandsave_14',['PlotAndSave',['../classmesh__storage_1_1MeshCreator.html#a8fa86e6faa2afc183f3abf2d22378630',1,'mesh_storage::MeshCreator']]],
   ['plotcoordinates_15',['plotcoordinates',['../plotingUtils_8h.html#af52caca953c5e1cd9c6dc26cd54bdff1',1,'PlotCoordinates(const std::string &amp;name, FloatType ar, std::array&lt; std::vector&lt; FloatType &gt;, 2 &gt; &amp;xi):&#160;plotingUtils.h'],['../plotingUtils_8h.html#a1688a8ba05cfcf00aaf4f309447851c4',1,'PlotCoordinates(const std::string &amp;name, FloatType ar, const std::vector&lt; FloatType &gt; &amp;xi):&#160;plotingUtils.h']]],
@@ -26,6 +26,6 @@ var searchData=
   ['printmesh_23',['PrintMesh',['../namespaceprint__utils.html#af1ca94a3088ef150af6898e284b34b07',1,'print_utils']]],
   ['printsolution_24',['PrintSolution',['../namespaceprint__utils.html#a6094b54cb763a8703807f9b06e1ba364',1,'print_utils']]],
   ['printsolutionformat1_25',['PrintSolutionFormat1',['../namespaceprint__utils.html#a6fe732efc4e70906cb78bdd1d65f9b38',1,'print_utils']]],
-  ['publish_26',['publish',['../classamqp__common_1_1AMQPPublisherService.html#a385d87b5f00977708cecfbbba2e93121',1,'amqp_common::AMQPPublisherService::Publish(EnvelopePtr message, size_t i)'],['../classamqp__common_1_1AMQPPublisherService.html#a56009f7788336c779d4bef7f07f70b04',1,'amqp_common::AMQPPublisherService::Publish(EnvelopePtr message, const std::string qname)']]],
+  ['publish_26',['Publish',['../classamqp__common_1_1AMQPPublisherService.html#ad7c96d5337da2e7bdeef267e1a17ca74',1,'amqp_common::AMQPPublisherService']]],
   ['publishmessage_27',['publishmessage',['../classamqp__common_1_1RabbitMQRestService.html#a1f741db3d430f5c03afc12907cb4068e',1,'amqp_common::RabbitMQRestService::PublishMessage()'],['../classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e',1,'main_services::MainNodeService::PublishMessage()']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['returncodes_0',['ReturnCodes',['../namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45e',1,'shared']]],
-  ['returntype_1',['ReturnType',['../namespacecommon__types.html#ab9aa026e1d8b3d5d25734c3842dcb185',1,'common_types']]]
+  ['paramtype_0',['ParamType',['../namespaceshared.html#a9624128c37558187e9088247c8299fd0',1,'shared']]]
 ];

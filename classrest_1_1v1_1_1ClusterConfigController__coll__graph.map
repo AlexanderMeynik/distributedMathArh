@@ -1,26 +1,26 @@
 <map id="rest::v1::ClusterConfigController" name="rest::v1::ClusterConfigController">
-<area shape="rect" id="Node000001" title="Drogon service for main node." alt="" coords="13,2147,235,2452"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,1931,200,2011"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,2025,117,2146,111,2147,103,2026"/>
-<area shape="rect" id="Node000003" href="$classmain__services_1_1MainNodeService.html" title="Handles most of service side interactions for main Node." alt="" coords="225,1859,455,2084"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,2086,236,2134,232,2131,264,2083"/>
+<area shape="rect" id="Node000001" title="Drogon service for main node." alt="" coords="13,2127,235,2432"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,1911,200,1991"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,2005,117,2126,111,2127,103,2006"/>
+<area shape="rect" id="Node000003" href="$classmain__services_1_1MainNodeService.html" title="Handles most of service side interactions for main Node." alt="" coords="225,1839,455,2064"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="268,2066,236,2114,232,2111,264,2063"/>
 <area shape="rect" id="Node000004" href="$classrest__utils_1_1JsonAuthHandler.html" title=" " alt="" coords="31,1559,222,1684"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="145,1683,171,1758,188,1796,209,1833,217,1845,212,1848,204,1836,183,1799,166,1759,140,1685"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="148,1683,174,1748,209,1813,217,1825,213,1828,204,1816,169,1750,143,1685"/>
 <area shape="rect" id="Node000005" href="$classrest__utils_1_1BasicAuthHandler.html" title="Used for Basic auth." alt="" coords="30,508,229,633"/>
 <area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="132,647,129,1558,124,1558,126,647"/>
 <area shape="rect" id="Node000006" href="$classrest__utils_1_1AuthHandler.html" title="Common interface for handling authentication." alt="" coords="140,150,303,275"/>
 <area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="205,289,148,508,143,507,199,288"/>
-<area shape="rect" id="Node000007" href="$classamqp__common_1_1RabbitMQRestService.html" title="This service is used to perform http requests to a RabbiMQ management interface." alt="" coords="155,797,378,1437"/>
-<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="233,275,243,368,256,577,263,781,258,781,250,577,237,368,227,276"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="261,1437,268,1609,275,1696,287,1781,300,1842,295,1843,281,1782,270,1696,262,1609,255,1438"/>
-<area shape="rect" id="Node000008" href="$classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues." alt="" coords="391,1461,614,1781"/>
-<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="431,1783,402,1845,397,1843,426,1780"/>
+<area shape="rect" id="Node000007" href="$classamqp__common_1_1RabbitMQRestService.html" title="This service is used to perform http requests to a RabbiMQ management interface." alt="" coords="155,797,378,1457"/>
+<area shape="poly" id="edge7_Node000007_Node000006" title=" " alt="" coords="233,275,243,368,256,576,263,781,258,781,250,577,237,368,227,276"/>
+<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="262,1458,269,1609,287,1761,300,1822,295,1823,281,1762,264,1610,257,1458"/>
+<area shape="rect" id="Node000008" href="$classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues." alt="" coords="391,1491,614,1751"/>
+<area shape="poly" id="edge8_Node000003_Node000008" title=" " alt="" coords="441,1753,405,1825,400,1822,436,1750"/>
 <area shape="rect" id="Node000009" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="397,368,608,773"/>
-<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="505,787,505,1461,500,1461,500,787"/>
+<area shape="poly" id="edge9_Node000008_Node000009" title=" " alt="" coords="505,787,505,1491,500,1491,500,787"/>
 <area shape="rect" id="Node000010" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="405,120,600,305"/>
 <area shape="poly" id="edge10_Node000009_Node000010" title=" " alt="" coords="505,306,505,352,500,352,500,306"/>
 <area shape="rect" id="Node000011" title=" " alt="" coords="405,5,601,71"/>
 <area shape="poly" id="edge11_Node000010_Node000011" title=" " alt="" coords="505,85,505,120,500,120,500,85"/>
 <area shape="rect" id="Node000012" href="$classmain__services_1_1WorkerManagementService.html" title="Class for worker node enumeration and management." alt="" coords="638,1481,885,1761"/>
-<area shape="poly" id="edge12_Node000003_Node000012" title=" " alt="" coords="647,1763,627,1783,550,1846,470,1900,467,1895,547,1842,624,1779,644,1760"/>
+<area shape="poly" id="edge12_Node000003_Node000012" title=" " alt="" coords="640,1752,627,1763,551,1824,471,1878,468,1873,547,1820,624,1759,636,1748"/>
 </map>

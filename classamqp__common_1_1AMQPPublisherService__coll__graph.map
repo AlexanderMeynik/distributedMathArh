@@ -1,5 +1,5 @@
 <map id="amqp_common::AMQPPublisherService" name="amqp_common::AMQPPublisherService">
-<area shape="rect" id="Node000001" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,823,228,1143"/>
+<area shape="rect" id="Node000001" title="Service that allow to Publish messages to multiple queues." alt="" coords="5,823,228,1083"/>
 <area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="11,368,222,773"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,787,119,822,114,822,114,787"/>
 <area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="19,120,214,305"/>

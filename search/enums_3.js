@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['nodestatus_0',['nodestatus',['../namespacedb__common.html#a5dc66f4066b6c13f08d26162d4d955eb',1,'db_common::NodeStatus'],['../namespacemain__services.html#a2fadec975591f46253b38185db954f41',1,'main_services::NodeStatus']]]
+  ['ioformat_0',['IoFormat',['../namespaceprint__utils.html#aaeed027fe3c321b388af4670383dcef4',1,'print_utils']]],
+  ['iterationstatus_1',['IterationStatus',['../namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99a',1,'db_common']]],
+  ['iterationtype_2',['IterationType',['../namespacedb__common.html#ae5e31fbbef011ef85d0c5717b136003a',1,'db_common']]]
 ];

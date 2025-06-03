@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['size_5ft_0',['size_t',['../myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f',1,'myConcepts.h']]],
-  ['stdvalarr_1',['StdValarr',['../namespacecommon__types.html#a2fe0d8a38ec60d14e733f273fddcb393',1,'common_types']]],
-  ['stdvec_2',['StdVec',['../namespacecommon__types.html#afe619fb0a20486137ed82d75e4feca90',1,'common_types']]],
-  ['subtransaction_3',['Subtransaction',['../namespacedb__common.html#a82a32b7604217a1d8895b397e145c04e',1,'db_common']]]
+  ['restype_0',['ResType',['../namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9',1,'db_common']]],
+  ['returntodatatype_1',['ReturnToDataType',['../namespacecommon__types.html#a91e64613994068f65586b24fe746856a',1,'common_types']]]
 ];

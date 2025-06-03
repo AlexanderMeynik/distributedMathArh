@@ -1,9 +1,0 @@
-<map id="rest_utils::PerformCurlRequest" name="rest_utils::PerformCurlRequest">
-<area shape="rect" id="Node000001" title="Common function to perform http request uning curl." alt="" coords="5,70,227,95"/>
-<area shape="rect" id="Node000002" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="291,5,461,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,67,277,44,278,50,175,73"/>
-<area shape="rect" id="Node000003" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="275,70,477,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="227,80,261,80,261,85,227,85"/>
-<area shape="rect" id="Node000004" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="285,119,467,145"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,93,295,114,294,119,183,98"/>
-</map>

@@ -1,7 +1,7 @@
 var classmain__services_1_1MainNodeService =
 [
     [ "MainNodeService", "classmain__services_1_1MainNodeService.html#ad9b211248ded7903bc762bbd25254225", null ],
-    [ "Connect", "classmain__services_1_1MainNodeService.html#af7df0ca5b8758b765b28f5b8e3185bd9", null ],
+    [ "Connect", "classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a", null ],
     [ "ConnectNode", "classmain__services_1_1MainNodeService.html#ad1dbdf72e1963c5a01797dafd18c02c8", null ],
     [ "Disconnect", "classmain__services_1_1MainNodeService.html#a3eb84f0590beddc543f0bd979e7ae6dc", null ],
     [ "DisconnectNode", "classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a", null ],

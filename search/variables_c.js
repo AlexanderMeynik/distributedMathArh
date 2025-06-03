@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['n_5f_0',['n_',['../structnetwork__types_1_1TestSolveParam.html#a07fdc209b71bfcf10efef4f774fcced8',1,'network_types::TestSolveParam::N_'],['../classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28',1,'dipoles::Dipoles::n_']]],
+  ['n_5f_0',['n_',['../classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28',1,'dipoles::Dipoles::n_'],['../structnetwork__types_1_1TestSolveParam.html#a07fdc209b71bfcf10efef4f774fcced8',1,'network_types::TestSolveParam::N_']]],
   ['n_5fmessage_5fcallback_1',['n_message_callback',['../namespacecomp__services.html#aa05c4fc0a4da97f57c143004ab64106e',1,'comp_services']]],
   ['name_2',['name',['../structnetwork__types_1_1rabbitMQUser.html#abe7e54913d417e2722464099876e3411',1,'network_types::rabbitMQUser::name'],['../structnetwork__types_1_1exchange.html#a6bb6f73a9ef74da4fb7d15901ec1b0ec',1,'network_types::exchange::name'],['../structnetwork__types_1_1queue.html#a48580c9ea2893193deeb1ab075cabf2c',1,'network_types::queue::name'],['../structnetwork__types_1_1connection.html#aa269f04335685a068515fb3e469d88e9',1,'network_types::connection::name'],['../structnetwork__types_1_1channel.html#a0f8aa9f63926afc86c3c63e95548db86',1,'network_types::channel::name'],['../structnetwork__types_1_1global__param.html#ad2764c60a780e23fab1cfb3837b4a390',1,'network_types::global_param::name']]],
   ['namegenerator1_3',['nameGenerator1',['../benchmark_8cpp.html#ae3b8dabe0bf789636041bbf90a788d82',1,'benchmark.cpp']]],
@@ -12,6 +12,6 @@ var searchData=
   ['node_5fspeed_5f_9',['node_speed_',['../classmain__services_1_1ComputationalNode.html#a24da2f4eb439899dd8acb868c0448b66',1,'main_services::ComputationalNode']]],
   ['normal_5fgen_10',['normal_gen',['../benchmark_8cpp.html#ab0c4c4b157d727618363aeb515408f87',1,'benchmark.cpp']]],
   ['normalized_5f_11',['normalized_',['../classmain__services_1_1WorkerManagementService.html#aa10d5838e8f345887a52f0ce35d9ed31',1,'main_services::WorkerManagementService']]],
-  ['ns_12',['ns',['../namespacecomp__services.html#ab6fa34fc089ea2c7bc85222b710daee4',1,'comp_services']]],
+  ['ns_12',['ns',['../namespaceshared.html#a40f6e7550864b14a7d627e49db6a1d79',1,'shared']]],
   ['ns_5f_13',['ns_',['../classcomp__services_1_1BenchmarkRunner.html#aa39b87ad5470d71d44ac15f196c27292',1,'comp_services::BenchmarkRunner']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['vector_5fdb_5fformat_0',['VECTOR_DB_FORMAT',['../namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6ad9c117a995aa71218b765f2e83859f38',1,'print_utils']]],
-  ['vector_5fformat_5f1_1',['VECTOR_FORMAT_1',['../namespaceprint__utils.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6aabdcc07a1a3adf779c27627302f03adb',1,'print_utils']]]
+  ['trace_0',['TRACE',['../namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3a2d3e4144aa384b18849ab9a8abad74d6',1,'network_types']]]
 ];

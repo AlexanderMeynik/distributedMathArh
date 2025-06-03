@@ -311,133 +311,132 @@ $(document).ready(function(){initNavTree('Dipoles_8h_source.html',''); initResiz
 <div class="line"><a id="l00262" name="l00262"></a><span class="lineno">  262</span>    FloatType res;</div>
 <div class="line"><a id="l00263" name="l00263"></a><span class="lineno">  263</span>    Eigen::Vector&lt;FloatType, 2&gt; resxy = {0.0, 0.0};</div>
 <div class="line"><a id="l00264" name="l00264"></a><span class="lineno">  264</span>    FloatType resz = 0.0;</div>
-<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    FloatType o3dco3dc = pow(omega0, 3) / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>;</div>
-<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    FloatType o2 = pow(omega0, 2);</div>
-<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    FloatType sinth2 = pow(sin(theta), 2);</div>
-<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>    Eigen::Vector&lt;FloatType, 2&gt; s = {cos(phi),</div>
-<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>                                     sin(phi)};</div>
-<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
-<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>      FloatType ri[2] = {<a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 0, i, n), <a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 1, i, n)};</div>
-<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      FloatType ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);</div>
-<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      Eigen::Vector&lt;FloatType, 2&gt; Ai = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i + 1)};</div>
-<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span>      Eigen::Vector&lt;FloatType, 2&gt; bi = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i + 2 * n), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i + 1 + 2 * n)};</div>
-<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span> </div>
-<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      FloatType argument = omega0 * ys / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>;</div>
-<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      FloatType ais = Ai.dot(s);</div>
-<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      FloatType bis = bi.dot(s);</div>
-<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>      Eigen::Vector&lt;FloatType, 2&gt; a_bis = Ai * bis;</div>
-<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span>      Eigen::Vector&lt;FloatType, 2&gt; b_ais = bi * ais;</div>
-<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span> </div>
-<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>      Eigen::Vector&lt;FloatType, 2&gt; pc_1_i = ((s * ais * sinth2 - Ai) * cos(argument) -</div>
-<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>          (s * bis * sinth2 - bi) * sin(argument));</div>
-<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>      Eigen::Vector&lt;FloatType, 2&gt; ps_1_i = ((s * ais * sinth2 - Ai) * sin(argument) +</div>
-<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>          (s * bis * sinth2 - bi) * cos(argument));</div>
-<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>      Eigen::Vector&lt;FloatType, 2&gt; pcomi = -(omega0 / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>) * (sin(theta)) * (a_bis - b_ais);</div>
-<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
-<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      FloatType pci = (ais * cos(argument) - bis * sin(argument));</div>
-<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span>      FloatType psi = (ais * sin(argument) + bis * cos(argument));</div>
-<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span> </div>
-<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      Eigen::Vector&lt;FloatType, 2&gt; rj;</div>
-<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      FloatType ysj;</div>
-<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      Eigen::Vector&lt;FloatType, 2&gt; aj;</div>
-<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      Eigen::Vector&lt;FloatType, 2&gt; bj;</div>
-<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>      FloatType argumentj;</div>
-<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
-<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      FloatType ajs;</div>
-<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span>      FloatType bjs;</div>
-<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span> </div>
-<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>      FloatType pcj;</div>
-<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span>      FloatType psj;</div>
-<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span> </div>
-<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      Eigen::Vector&lt;FloatType, 2&gt; pc_1_j;</div>
-<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      Eigen::Vector&lt;FloatType, 2&gt; ps_1_j;</div>
-<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>      Eigen::Vector&lt;FloatType, 2&gt; pcomj;</div>
-<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
-<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      Eigen::Vector&lt;FloatType, 2&gt; a_bjs;</div>
-<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      Eigen::Vector&lt;FloatType, 2&gt; b_ajs;</div>
-<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; i; ++j) {</div>
-<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        rj = {<a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 0, j, n), <a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 1, j, n)};</div>
-<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span>        ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);</div>
-<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span> </div>
-<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        aj = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * j), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * j + 1)};</div>
-<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>        bj = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * j + 2 * n), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, j + 1 + 2 * n)};</div>
-<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
-<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        argumentj = omega0 * ysj / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>;</div>
-<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        ajs = aj.dot(s);</div>
-<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span>        bjs = bj.dot(s);</div>
-<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span> </div>
-<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        a_bjs = aj * bjs;</div>
-<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span>        b_ajs = bi * ajs;</div>
-<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span> </div>
-<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        pcj = (ajs * cos(argumentj) - bjs * sin(argumentj));</div>
-<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span>        psj = (ajs * sin(argumentj) + bjs * cos(argumentj));</div>
-<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span> </div>
-<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>        pc_1_j = ((s * ajs * sinth2 - aj) * cos(argumentj) -</div>
-<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>            (s * bjs * sinth2 - bj) * sin(argumentj));</div>
-<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>        ps_1_j = ((s * ajs * sinth2 - aj) * sin(argumentj) +</div>
-<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>            (s * bjs * sinth2 - bj) * cos(argumentj));</div>
-<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span>        pcomj = -(omega0 / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>) * (sin(theta)) * (a_bjs - b_ajs);</div>
-<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span> </div>
-<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>        Eigen::Vector&lt;FloatType, 2&gt; rij_xy =</div>
-<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>            pc_1_i.cwiseProduct(pc_1_j) + ps_1_i.cwiseProduct(ps_1_j)</div>
-<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span>                + 2 * pcomi.cwiseProduct(pcomj);</div>
-<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span> </div>
-<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        FloatType rij_z = (pci * pcj + psi * psj);</div>
-<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>        resz += rij_z;</div>
-<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>        resxy += rij_xy;</div>
-<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      }</div>
-<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>      Eigen::Vector&lt;FloatType, 2&gt; ri_xy =</div>
-<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>          (pc_1_i.cwiseProduct(pc_1_i) + ps_1_i.cwiseProduct(ps_1_i)</div>
-<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>              + 2 * pcomi.cwiseProduct(pcomi)) / 2.0;</div>
-<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span>      resxy += ri_xy;</div>
-<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span> </div>
-<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      FloatType ri_xz = (pci * pci + psi * psi) / 2;</div>
-<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>      resz += ri_xz;</div>
-<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    }</div>
-<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    resxy = resxy * t_0 * o2 * o2;</div>
-<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    resz = resz * t_0 * (o2 * o2 * pow(sin(theta) * cos(theta), 2));</div>
-<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    res = resxy.sum() + resz;</div>
-<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span>    <span class="keywordflow">return</span> res;</div>
-<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span> </div>
-<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span>  };</div>
-<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span> </div>
-<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span>}</div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>    FloatType o2 = pow(omega0, 2);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span>    FloatType sinth2 = pow(sin(theta), 2);</div>
+<div class="line"><a id="l00267" name="l00267"></a><span class="lineno">  267</span>    Eigen::Vector&lt;FloatType, 2&gt; s = {cos(phi),</div>
+<div class="line"><a id="l00268" name="l00268"></a><span class="lineno">  268</span>                                     sin(phi)};</div>
+<div class="line"><a id="l00269" name="l00269"></a><span class="lineno">  269</span>    <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; n; ++i) {</div>
+<div class="line"><a id="l00270" name="l00270"></a><span class="lineno">  270</span>      FloatType ri[2] = {<a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 0, i, n), <a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 1, i, n)};</div>
+<div class="line"><a id="l00271" name="l00271"></a><span class="lineno">  271</span>      FloatType ys = (ri[1] * cos(phi) - ri[0] * sin(phi)) * sin(theta);</div>
+<div class="line"><a id="l00272" name="l00272"></a><span class="lineno">  272</span>      Eigen::Vector&lt;FloatType, 2&gt; Ai = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i + 1)};</div>
+<div class="line"><a id="l00273" name="l00273"></a><span class="lineno">  273</span>      Eigen::Vector&lt;FloatType, 2&gt; bi = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i + 2 * n), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * i + 1 + 2 * n)};</div>
+<div class="line"><a id="l00274" name="l00274"></a><span class="lineno">  274</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>      FloatType argument = omega0 * ys / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span>      FloatType ais = Ai.dot(s);</div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>      FloatType bis = bi.dot(s);</div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span>      Eigen::Vector&lt;FloatType, 2&gt; a_bis = Ai * bis;</div>
+<div class="line"><a id="l00279" name="l00279"></a><span class="lineno">  279</span>      Eigen::Vector&lt;FloatType, 2&gt; b_ais = bi * ais;</div>
+<div class="line"><a id="l00280" name="l00280"></a><span class="lineno">  280</span> </div>
+<div class="line"><a id="l00281" name="l00281"></a><span class="lineno">  281</span>      Eigen::Vector&lt;FloatType, 2&gt; pc_1_i = ((s * ais * sinth2 - Ai) * cos(argument) -</div>
+<div class="line"><a id="l00282" name="l00282"></a><span class="lineno">  282</span>          (s * bis * sinth2 - bi) * sin(argument));</div>
+<div class="line"><a id="l00283" name="l00283"></a><span class="lineno">  283</span>      Eigen::Vector&lt;FloatType, 2&gt; ps_1_i = ((s * ais * sinth2 - Ai) * sin(argument) +</div>
+<div class="line"><a id="l00284" name="l00284"></a><span class="lineno">  284</span>          (s * bis * sinth2 - bi) * cos(argument));</div>
+<div class="line"><a id="l00285" name="l00285"></a><span class="lineno">  285</span>      Eigen::Vector&lt;FloatType, 2&gt; pcomi = -(omega0 / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>) * (sin(theta)) * (a_bis - b_ais);</div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span> </div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span>      FloatType pci = (ais * cos(argument) - bis * sin(argument));</div>
+<div class="line"><a id="l00288" name="l00288"></a><span class="lineno">  288</span>      FloatType psi = (ais * sin(argument) + bis * cos(argument));</div>
+<div class="line"><a id="l00289" name="l00289"></a><span class="lineno">  289</span> </div>
+<div class="line"><a id="l00290" name="l00290"></a><span class="lineno">  290</span>      Eigen::Vector&lt;FloatType, 2&gt; rj;</div>
+<div class="line"><a id="l00291" name="l00291"></a><span class="lineno">  291</span>      FloatType ysj;</div>
+<div class="line"><a id="l00292" name="l00292"></a><span class="lineno">  292</span>      Eigen::Vector&lt;FloatType, 2&gt; aj;</div>
+<div class="line"><a id="l00293" name="l00293"></a><span class="lineno">  293</span>      Eigen::Vector&lt;FloatType, 2&gt; bj;</div>
+<div class="line"><a id="l00294" name="l00294"></a><span class="lineno">  294</span>      FloatType argumentj;</div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span> </div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span>      FloatType ajs;</div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>      FloatType bjs;</div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00299" name="l00299"></a><span class="lineno">  299</span>      FloatType pcj;</div>
+<div class="line"><a id="l00300" name="l00300"></a><span class="lineno">  300</span>      FloatType psj;</div>
+<div class="line"><a id="l00301" name="l00301"></a><span class="lineno">  301</span> </div>
+<div class="line"><a id="l00302" name="l00302"></a><span class="lineno">  302</span>      Eigen::Vector&lt;FloatType, 2&gt; pc_1_j;</div>
+<div class="line"><a id="l00303" name="l00303"></a><span class="lineno">  303</span>      Eigen::Vector&lt;FloatType, 2&gt; ps_1_j;</div>
+<div class="line"><a id="l00304" name="l00304"></a><span class="lineno">  304</span>      Eigen::Vector&lt;FloatType, 2&gt; pcomj;</div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span> </div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span>      Eigen::Vector&lt;FloatType, 2&gt; a_bjs;</div>
+<div class="line"><a id="l00307" name="l00307"></a><span class="lineno">  307</span>      Eigen::Vector&lt;FloatType, 2&gt; b_ajs;</div>
+<div class="line"><a id="l00308" name="l00308"></a><span class="lineno">  308</span>      <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; i; ++j) {</div>
+<div class="line"><a id="l00309" name="l00309"></a><span class="lineno">  309</span>        rj = {<a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 0, j, n), <a class="code hl_function" href="namespacemy__concepts.html#ac5f15110f601dbc6570ce9a1948163b3">GetElement</a>(xi, 1, j, n)};</div>
+<div class="line"><a id="l00310" name="l00310"></a><span class="lineno">  310</span>        ysj = (rj[1] * cos(phi) - rj[0] * sin(phi)) * sin(theta);</div>
+<div class="line"><a id="l00311" name="l00311"></a><span class="lineno">  311</span> </div>
+<div class="line"><a id="l00312" name="l00312"></a><span class="lineno">  312</span>        aj = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * j), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * j + 1)};</div>
+<div class="line"><a id="l00313" name="l00313"></a><span class="lineno">  313</span>        bj = {<a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, 2 * j + 2 * n), <a class="code hl_function" href="namespacemy__concepts.html#af0c88efc193b2a3cedf12817ac8371fe">GetValue</a>(sol, j + 1 + 2 * n)};</div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span> </div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span>        argumentj = omega0 * ysj / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>;</div>
+<div class="line"><a id="l00316" name="l00316"></a><span class="lineno">  316</span>        ajs = aj.dot(s);</div>
+<div class="line"><a id="l00317" name="l00317"></a><span class="lineno">  317</span>        bjs = bj.dot(s);</div>
+<div class="line"><a id="l00318" name="l00318"></a><span class="lineno">  318</span> </div>
+<div class="line"><a id="l00319" name="l00319"></a><span class="lineno">  319</span>        a_bjs = aj * bjs;</div>
+<div class="line"><a id="l00320" name="l00320"></a><span class="lineno">  320</span>        b_ajs = bi * ajs;</div>
+<div class="line"><a id="l00321" name="l00321"></a><span class="lineno">  321</span> </div>
+<div class="line"><a id="l00322" name="l00322"></a><span class="lineno">  322</span>        pcj = (ajs * cos(argumentj) - bjs * sin(argumentj));</div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>        psj = (ajs * sin(argumentj) + bjs * cos(argumentj));</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00325" name="l00325"></a><span class="lineno">  325</span>        pc_1_j = ((s * ajs * sinth2 - aj) * cos(argumentj) -</div>
+<div class="line"><a id="l00326" name="l00326"></a><span class="lineno">  326</span>            (s * bjs * sinth2 - bj) * sin(argumentj));</div>
+<div class="line"><a id="l00327" name="l00327"></a><span class="lineno">  327</span>        ps_1_j = ((s * ajs * sinth2 - aj) * sin(argumentj) +</div>
+<div class="line"><a id="l00328" name="l00328"></a><span class="lineno">  328</span>            (s * bjs * sinth2 - bj) * cos(argumentj));</div>
+<div class="line"><a id="l00329" name="l00329"></a><span class="lineno">  329</span>        pcomj = -(omega0 / <a class="code hl_variable" href="structshared_1_1params.html#a89da83f72a5a4e1a771aa51257fcdecd">params::c</a>) * (sin(theta)) * (a_bjs - b_ajs);</div>
+<div class="line"><a id="l00330" name="l00330"></a><span class="lineno">  330</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>        Eigen::Vector&lt;FloatType, 2&gt; rij_xy =</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span>            pc_1_i.cwiseProduct(pc_1_j) + ps_1_i.cwiseProduct(ps_1_j)</div>
+<div class="line"><a id="l00333" name="l00333"></a><span class="lineno">  333</span>                + 2 * pcomi.cwiseProduct(pcomj);</div>
+<div class="line"><a id="l00334" name="l00334"></a><span class="lineno">  334</span> </div>
+<div class="line"><a id="l00335" name="l00335"></a><span class="lineno">  335</span>        FloatType rij_z = (pci * pcj + psi * psj);</div>
+<div class="line"><a id="l00336" name="l00336"></a><span class="lineno">  336</span>        resz += rij_z;</div>
+<div class="line"><a id="l00337" name="l00337"></a><span class="lineno">  337</span>        resxy += rij_xy;</div>
+<div class="line"><a id="l00338" name="l00338"></a><span class="lineno">  338</span>      }</div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>      Eigen::Vector&lt;FloatType, 2&gt; ri_xy =</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span>          (pc_1_i.cwiseProduct(pc_1_i) + ps_1_i.cwiseProduct(ps_1_i)</div>
+<div class="line"><a id="l00341" name="l00341"></a><span class="lineno">  341</span>              + 2 * pcomi.cwiseProduct(pcomi)) / 2.0;</div>
+<div class="line"><a id="l00342" name="l00342"></a><span class="lineno">  342</span>      resxy += ri_xy;</div>
+<div class="line"><a id="l00343" name="l00343"></a><span class="lineno">  343</span> </div>
+<div class="line"><a id="l00344" name="l00344"></a><span class="lineno">  344</span>      FloatType ri_xz = (pci * pci + psi * psi) / 2;</div>
+<div class="line"><a id="l00345" name="l00345"></a><span class="lineno">  345</span>      resz += ri_xz;</div>
+<div class="line"><a id="l00346" name="l00346"></a><span class="lineno">  346</span>    }</div>
+<div class="line"><a id="l00347" name="l00347"></a><span class="lineno">  347</span>    resxy = resxy * t_0 * o2 * o2;</div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>    resz = resz * t_0 * (o2 * o2 * pow(sin(theta) * cos(theta), 2));</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span>    res = resxy.sum() + resz;</div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>    <span class="keywordflow">return</span> res;</div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00352" name="l00352"></a><span class="lineno">  352</span>  };</div>
+<div class="line"><a id="l00353" name="l00353"></a><span class="lineno">  353</span> </div>
+<div class="line"><a id="l00354" name="l00354"></a><span class="lineno">  354</span>}</div>
 </div>
-<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span> </div>
-<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container&gt;</div>
-<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span><span class="keyword">requires</span> HasBracketOperator&lt;Container&gt;</div>
-<div class="foldopen" id="foldopen00359" data-start="{" data-end="}">
-<div class="line"><a id="l00359" name="l00359"></a><span class="lineno"><a class="line" href="classdipoles_1_1Dipoles.html#addbdbb05c71483ac05166b6cb4ddb95e">  359</a></span>FloatType <a class="code hl_function" href="classdipoles_1_1Dipoles.html#addbdbb05c71483ac05166b6cb4ddb95e">Dipoles::GetDistance</a>(<span class="keywordtype">size_t</span> i1, <span class="keywordtype">size_t</span> i2, Container &amp;xi) {</div>
-<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>  FloatType d1;</div>
-<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>  FloatType d2;</div>
-<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptmy__concepts_1_1HasBracketsNested.html">my_concepts::HasBracketsNested&lt;Container&gt;</a>) {</div>
-<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    d1 = xi[0][i1] - xi[0][i2];</div>
-<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>    d2 = xi[1][i1] - xi[1][i2];</div>
-<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    d1 = xi[i1] - xi[i2];</div>
-<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>    d2 = xi[i1 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>] - xi[i2 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>];</div>
-<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>  }</div>
-<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>  <span class="keywordflow">return</span> std::sqrt(d1 * d1 + d2 * d2);</div>
-<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span>}</div>
+<div class="line"><a id="l00355" name="l00355"></a><span class="lineno">  355</span> </div>
+<div class="line"><a id="l00356" name="l00356"></a><span class="lineno">  356</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container&gt;</div>
+<div class="line"><a id="l00357" name="l00357"></a><span class="lineno">  357</span><span class="keyword">requires</span> HasBracketOperator&lt;Container&gt;</div>
+<div class="foldopen" id="foldopen00358" data-start="{" data-end="}">
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno"><a class="line" href="classdipoles_1_1Dipoles.html#addbdbb05c71483ac05166b6cb4ddb95e">  358</a></span>FloatType <a class="code hl_function" href="classdipoles_1_1Dipoles.html#addbdbb05c71483ac05166b6cb4ddb95e">Dipoles::GetDistance</a>(<span class="keywordtype">size_t</span> i1, <span class="keywordtype">size_t</span> i2, Container &amp;xi) {</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span>  FloatType d1;</div>
+<div class="line"><a id="l00360" name="l00360"></a><span class="lineno">  360</span>  FloatType d2;</div>
+<div class="line"><a id="l00361" name="l00361"></a><span class="lineno">  361</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptmy__concepts_1_1HasBracketsNested.html">my_concepts::HasBracketsNested&lt;Container&gt;</a>) {</div>
+<div class="line"><a id="l00362" name="l00362"></a><span class="lineno">  362</span>    d1 = xi[0][i1] - xi[0][i2];</div>
+<div class="line"><a id="l00363" name="l00363"></a><span class="lineno">  363</span>    d2 = xi[1][i1] - xi[1][i2];</div>
+<div class="line"><a id="l00364" name="l00364"></a><span class="lineno">  364</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00365" name="l00365"></a><span class="lineno">  365</span>    d1 = xi[i1] - xi[i2];</div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>    d2 = xi[i1 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>] - xi[i2 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>];</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span>  }</div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>  <span class="keywordflow">return</span> std::sqrt(d1 * d1 + d2 * d2);</div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span>}</div>
 </div>
-<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span> </div>
-<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container&gt;</div>
-<div class="line"><a id="l00373" name="l00373"></a><span class="lineno">  373</span><span class="keyword">requires</span> HasBracketOperator&lt;Container&gt;</div>
-<div class="foldopen" id="foldopen00374" data-start="{" data-end="}">
-<div class="line"><a id="l00374" name="l00374"></a><span class="lineno"><a class="line" href="classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1">  374</a></span>Eigen::Vector&lt;FloatType, 2&gt; <a class="code hl_function" href="classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1">Dipoles::TwoDVecDifference</a>(<span class="keywordtype">size_t</span> i1, <span class="keywordtype">size_t</span> i2, Container &amp;xi) {</div>
-<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  FloatType d1;</div>
-<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  FloatType d2;</div>
-<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptmy__concepts_1_1HasBracketsNested.html">my_concepts::HasBracketsNested&lt;Container&gt;</a>) {</div>
-<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    d1 = xi[0][i1] - xi[0][i2];</div>
-<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>    d2 = xi[1][i1] - xi[1][i2];</div>
-<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>  } <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    d1 = xi[i1] - xi[i2];</div>
-<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>    d2 = xi[i1 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>] - xi[i2 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>];</div>
-<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>  }</div>
-<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>  <span class="keywordflow">return</span> {d1, d2};</div>
+<div class="line"><a id="l00370" name="l00370"></a><span class="lineno">  370</span> </div>
+<div class="line"><a id="l00371" name="l00371"></a><span class="lineno">  371</span><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Container&gt;</div>
+<div class="line"><a id="l00372" name="l00372"></a><span class="lineno">  372</span><span class="keyword">requires</span> HasBracketOperator&lt;Container&gt;</div>
+<div class="foldopen" id="foldopen00373" data-start="{" data-end="}">
+<div class="line"><a id="l00373" name="l00373"></a><span class="lineno"><a class="line" href="classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1">  373</a></span>Eigen::Vector&lt;FloatType, 2&gt; <a class="code hl_function" href="classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1">Dipoles::TwoDVecDifference</a>(<span class="keywordtype">size_t</span> i1, <span class="keywordtype">size_t</span> i2, Container &amp;xi) {</div>
+<div class="line"><a id="l00374" name="l00374"></a><span class="lineno">  374</span>  FloatType d1;</div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  FloatType d2;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span>  <span class="keywordflow">if</span> <span class="keyword">constexpr</span> (<a class="code hl_concept" href="conceptmy__concepts_1_1HasBracketsNested.html">my_concepts::HasBracketsNested&lt;Container&gt;</a>) {</div>
+<div class="line"><a id="l00377" name="l00377"></a><span class="lineno">  377</span>    d1 = xi[0][i1] - xi[0][i2];</div>
+<div class="line"><a id="l00378" name="l00378"></a><span class="lineno">  378</span>    d2 = xi[1][i1] - xi[1][i2];</div>
+<div class="line"><a id="l00379" name="l00379"></a><span class="lineno">  379</span>  } <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00380" name="l00380"></a><span class="lineno">  380</span>    d1 = xi[i1] - xi[i2];</div>
+<div class="line"><a id="l00381" name="l00381"></a><span class="lineno">  381</span>    d2 = xi[i1 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>] - xi[i2 + <a class="code hl_variable" href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">n_</a>];</div>
+<div class="line"><a id="l00382" name="l00382"></a><span class="lineno">  382</span>  }</div>
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno">  383</span>  <span class="keywordflow">return</span> {d1, d2};</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>}</div>
+</div>
 <div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>}</div>
-</div>
-<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span>}</div>
 </div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html"><div class="ttname"><a href="classdipoles_1_1Dipoles.html">dipoles::Dipoles</a></div><div class="ttdoc">Provides interface to Solve system of dipoles.</div><div class="ttdef"><b>Definition</b> Dipoles.h:19</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_a1c442dbcc121c94ab5c007fdded429a1"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#a1c442dbcc121c94ab5c007fdded429a1">dipoles::Dipoles::i_2_function_</a></div><div class="ttdeci">DirectionGraph i_2_function_</div><div class="ttdoc">analytic representation of the target function</div><div class="ttdef"><b>Definition</b> Dipoles.h:137</div></div>
@@ -452,10 +451,10 @@ $(document).ready(function(){initNavTree('Dipoles_8h_source.html',''); initResiz
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_a971a189cd9cff9dcef6febed98a26f8d"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#a971a189cd9cff9dcef6febed98a26f8d">dipoles::Dipoles::Dipoles</a></div><div class="ttdeci">Dipoles()=default</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_a9f8e8a541da8c020246bc4264590aa98"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#a9f8e8a541da8c020246bc4264590aa98">dipoles::Dipoles::GetFullFunction</a></div><div class="ttdeci">void GetFullFunction(const Container &amp;xi, const Container2 &amp;sol)</div><div class="ttdef"><b>Definition</b> Dipoles.h:216</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_aa686eb8cdfa02988df7a6e4516f19985"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#aa686eb8cdfa02988df7a6e4516f19985">dipoles::Dipoles::an_</a></div><div class="ttdeci">FloatType an_</div><div class="ttdoc">a_n coefficient value</div><div class="ttdef"><b>Definition</b> Dipoles.h:134</div></div>
-<div class="ttc" id="aclassdipoles_1_1Dipoles_html_ac6f8a623a5e59158df733b39dc3aa2d1"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1">dipoles::Dipoles::TwoDVecDifference</a></div><div class="ttdeci">Eigen::Vector&lt; FloatType, 2 &gt; TwoDVecDifference(size_t i1, size_t i2, Container &amp;xi)</div><div class="ttdoc">Computes vector difference for dipole coordinates.</div><div class="ttdef"><b>Definition</b> Dipoles.h:374</div></div>
+<div class="ttc" id="aclassdipoles_1_1Dipoles_html_ac6f8a623a5e59158df733b39dc3aa2d1"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1">dipoles::Dipoles::TwoDVecDifference</a></div><div class="ttdeci">Eigen::Vector&lt; FloatType, 2 &gt; TwoDVecDifference(size_t i1, size_t i2, Container &amp;xi)</div><div class="ttdoc">Computes vector difference for dipole coordinates.</div><div class="ttdef"><b>Definition</b> Dipoles.h:373</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_ac86a4bae9caee5921ee8fec7bf751d28"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#ac86a4bae9caee5921ee8fec7bf751d28">dipoles::Dipoles::n_</a></div><div class="ttdeci">int n_</div><div class="ttdef"><b>Definition</b> Dipoles.h:135</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_ad630e4412806b23c81e75e38beda2d60"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#ad630e4412806b23c81e75e38beda2d60">dipoles::Dipoles::GetRightPart</a></div><div class="ttdeci">const EigenVec &amp; GetRightPart()</div><div class="ttdoc">Returns reference to the right part for system of equations.</div><div class="ttdef"><b>Definition</b> Dipoles.cpp:37</div></div>
-<div class="ttc" id="aclassdipoles_1_1Dipoles_html_addbdbb05c71483ac05166b6cb4ddb95e"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#addbdbb05c71483ac05166b6cb4ddb95e">dipoles::Dipoles::GetDistance</a></div><div class="ttdeci">FloatType GetDistance(size_t i1, size_t i2, Container &amp;xi)</div><div class="ttdoc">Computes euclidean distacne for dipole coordinates.</div><div class="ttdef"><b>Definition</b> Dipoles.h:359</div></div>
+<div class="ttc" id="aclassdipoles_1_1Dipoles_html_addbdbb05c71483ac05166b6cb4ddb95e"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#addbdbb05c71483ac05166b6cb4ddb95e">dipoles::Dipoles::GetDistance</a></div><div class="ttdeci">FloatType GetDistance(size_t i1, size_t i2, Container &amp;xi)</div><div class="ttdoc">Computes euclidean distacne for dipole coordinates.</div><div class="ttdef"><b>Definition</b> Dipoles.h:358</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_ae331f492766087cced1653dc56eb4f56"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#ae331f492766087cced1653dc56eb4f56">dipoles::Dipoles::Solve</a></div><div class="ttdeci">Container Solve()</div><div class="ttdoc">Computes solution vector for dipole parameters and returns it in available format.</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_ae6fdaa2f9486ae9c02bbd58d4380504d"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#ae6fdaa2f9486ae9c02bbd58d4380504d">dipoles::Dipoles::SetNewCoordinates</a></div><div class="ttdeci">void SetNewCoordinates(const Container &amp;xi)</div><div class="ttdoc">Function that allows to Reset dipole coordinates.</div><div class="ttdef"><b>Definition</b> Dipoles.h:206</div></div>
 <div class="ttc" id="aclassdipoles_1_1Dipoles_html_aec583ec70c53ff533e99cf19eb339d9e"><div class="ttname"><a href="classdipoles_1_1Dipoles.html#aec583ec70c53ff533e99cf19eb339d9e">dipoles::Dipoles::GetI2Function</a></div><div class="ttdeci">const DirectionGraph &amp; GetI2Function() const</div><div class="ttdef"><b>Definition</b> Dipoles.h:71</div></div>

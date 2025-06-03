@@ -14,6 +14,5 @@ var searchData=
   ['status_11',['status',['../structdb__common_1_1Experiment.html#a5af3f8796e2cd13890d0fa535dd6c2fc',1,'db_common::Experiment::status'],['../structdb__common_1_1Iteration.html#a0c276c462446e30955787738be5cf494',1,'db_common::Iteration::status'],['../structdb__common_1_1Node.html#a072ab0decda326935db90f0cbfdd5c5e',1,'db_common::Node::status']]],
   ['str_12',['str',['../structprint__utils_1_1Delimiter.html#ad85c5aedf3f602156ab51ee72387ee2d',1,'print_utils::Delimiter']]],
   ['stringtodistributiontype_13',['stringToDistributionType',['../namespacegenerators.html#a9a963ec1b18ab5865128d1bd905ae165',1,'generators']]],
-  ['stringtoexchangetype_14',['stringToExchangeType',['../namespacenetwork__types.html#aa4f31aa0e2e13d76520a0f0ac13ba97a',1,'network_types']]],
-  ['surface_5f_15',['surface_',['../classgui__objects_1_1MeshPlot.html#aadfad96e0e089796e762849c871b7913',1,'gui_objects::MeshPlot']]]
+  ['surface_5f_14',['surface_',['../classgui__objects_1_1MeshPlot.html#aadfad96e0e089796e762849c871b7913',1,'gui_objects::MeshPlot']]]
 ];

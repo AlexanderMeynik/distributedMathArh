@@ -93,6 +93,7 @@ $(document).ready(function(){initNavTree('restUtils_8h.html',''); initResizable(
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">restUtils.h File Reference</div></div>
 </div><!--header-->
@@ -198,14 +199,20 @@ Namespaces</h2></td></tr>
 <tr class="memdesc:namespacerest__utils"><td class="mdescLeft">&#160;</td><td class="mdescRight">Namespace for httpr rest utilities. <br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a6f052a3b5274a03cb19ed50250eb49f3" id="r_a6f052a3b5274a03cb19ed50250eb49f3"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerest__utils.html#a6f052a3b5274a03cb19ed50250eb49f3">rest_utils::HttpResult</a> = std::pair&lt; long, std::string &gt;</td></tr>
+<tr class="memdesc:a6f052a3b5274a03cb19ed50250eb49f3"><td class="mdescLeft">&#160;</td><td class="mdescRight">return_code,response_body pair  <br /></td></tr>
+<tr class="separator:a6f052a3b5274a03cb19ed50250eb49f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a29a16a9a892696a06504105024ab2fe3" id="r_a29a16a9a892696a06504105024ab2fe3"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3">rest_utils::WriteCallback</a> (void *contents, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> size, <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> nmemb, void *userp)</td></tr>
 <tr class="memdesc:a29a16a9a892696a06504105024ab2fe3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default curl write callback.  <br /></td></tr>
 <tr class="separator:a29a16a9a892696a06504105024ab2fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a13d42dab8d7d47e83ca99acc39ed4533" id="r_a13d42dab8d7d47e83ca99acc39ed4533"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerest__utils.html#a13d42dab8d7d47e83ca99acc39ed4533">rest_utils::PerformCurlRequest</a> (const std::string &amp;path, const std::string &amp;method, const std::string &amp;host, <a class="el" href="classrest__utils_1_1AuthHandler.html">AuthHandler</a> *auth_handler, const std::string &amp;data=&quot;&quot;)</td></tr>
-<tr class="memdesc:a13d42dab8d7d47e83ca99acc39ed4533"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common function to perform http request uning curl.  <br /></td></tr>
-<tr class="separator:a13d42dab8d7d47e83ca99acc39ed4533"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a502122f2290af8110846bc93d7803ee3" id="r_a502122f2290af8110846bc93d7803ee3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacerest__utils.html#a6f052a3b5274a03cb19ed50250eb49f3">HttpResult</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3">rest_utils::PerformCurlRequest</a> (const std::string &amp;path, const std::string &amp;method, const std::string &amp;host, <a class="el" href="classrest__utils_1_1AuthHandler.html">AuthHandler</a> *auth_handler, const std::string &amp;data=&quot;&quot;)</td></tr>
+<tr class="memdesc:a502122f2290af8110846bc93d7803ee3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Common function to perform http request uning curl.  <br /></td></tr>
+<tr class="separator:a502122f2290af8110846bc93d7803ee3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><h1><a class="anchor" id="autotoc_md23"></a>
@@ -214,7 +221,7 @@ metrix</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadRight">warnings   </th><th class="markdownTableHeadRight">std.code.filelines.code   </th><th class="markdownTableHeadRight">std.code.filelines.preprocessor   </th><th class="markdownTableHeadRight">std.code.filelines.comments   </th><th class="markdownTableHeadRight">std.code.filelines.total   </th><th class="markdownTableHeadRight">std.general.proctime   </th><th class="markdownTableHeadRight">std.general.size    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">53   </td><td class="markdownTableBodyRight">7   </td><td class="markdownTableBodyRight">32   </td><td class="markdownTableBodyRight">92   </td><td class="markdownTableBodyRight">0.0033693313598632812   </td><td class="markdownTableBodyRight">2459   </td></tr>
+<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">54   </td><td class="markdownTableBodyRight">7   </td><td class="markdownTableBodyRight">33   </td><td class="markdownTableBodyRight">94   </td><td class="markdownTableBodyRight">0.003240823745727539   </td><td class="markdownTableBodyRight">2544   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md24"></a>
 region metrix</h1>
@@ -224,7 +231,7 @@ region metrix</h1>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone"><b>global</b>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">124   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">6   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">6   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.000   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="namespacerest__utils.html">rest_utils</a>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1001   </td><td class="markdownTableBodyRight">16   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">19   </td><td class="markdownTableBodyRight">36   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.542   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="namespacerest__utils.html">rest_utils</a>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1086   </td><td class="markdownTableBodyRight">17   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">20   </td><td class="markdownTableBodyRight">38   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.540   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">4   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">CurlWrapper   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">244   </td><td class="markdownTableBodyRight">8   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">3   </td><td class="markdownTableBodyRight">11   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.272   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowEven">

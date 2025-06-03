@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['inactive_0',['inactive',['../namespacedb__common.html#a5dc66f4066b6c13f08d26162d4d955eba6b273343c454f9c53dcfc9c4ccf171d2',1,'db_common::INACTIVE'],['../namespacemain__services.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2',1,'main_services::INACTIVE']]],
-  ['info_1',['info',['../namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c',1,'shared']]]
+  ['head_0',['HEAD',['../namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3ae15e216fc1c639f787b1231ecdfa1bf8',1,'network_types']]],
+  ['human_5freadable_1',['HUMAN_READABLE',['../namespaceprint__utils.html#aaeed027fe3c321b388af4670383dcef4a9c1e5abb68a03ce10b611431a7b987d1',1,'print_utils']]]
 ];
