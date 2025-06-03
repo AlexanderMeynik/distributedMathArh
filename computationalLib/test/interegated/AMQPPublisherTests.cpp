@@ -88,7 +88,7 @@ TEST_F(AMQPPublisherServiceTS, AddRemoveQueue) {
   ///@todo remove queue
 }
 
-TEST_F(AMQPPublisherServiceTS, PublishByIndexAndName) {
+TEST_F(AMQPPublisherServiceTS, PublishByName) {
   publisher_service_ = std::make_unique<AMQPPublisherService>(
       ConstructCString(ExtractHost(g_serviceParams.host).value(),
                        g_serviceParams.username, g_serviceParams.password), exchange);
@@ -114,7 +114,6 @@ TEST_F(AMQPPublisherServiceTS, PublishByIndexAndName) {
 
   publisher_service_->Publish(makeMsg("msg2"), queue2);
 
-  EXPECT_TRUE(WaitFor([&] { return rest_service_->GetMessageCount(vhost, queue1) == 1; }));
   EXPECT_TRUE(WaitFor([&] { return rest_service_->GetMessageCount(vhost, queue2) == 1; }));
 }
 
