@@ -8,24 +8,51 @@ namespace network_types {
 ///@todo create common interface for c string
 /// use it in queue
 /// us it for verbose names
+
 /**
-* @brief  Structure to store and format connection string
-*/
-struct myConnString {
-  myConnString() : port(5432) {}
+ * @brief Default interfacer for the connection strings
+ */
+class AbstractConnectionString
+{
+ public:
 
-  myConnString(std::string_view user,
-               std::string_view password,
-               std::string_view host,
-               std::string_view dbname, unsigned port);
+  /**
+   * @brief explicit std::string type cast
+   */
+  explicit operator std::string();
 
-  explicit operator std::string() {
-    return formatted_string;
-  }
-
+  /**
+   * @brief implicit std::string_view cast
+   */
   operator std::string_view();
 
-  [[nodiscard]] const char *CStr() const;
+  /**
+   * @brief Retrieves cString contents for verbose logging
+   */
+  virtual std::string GetVerboseName() const;
+
+  /**
+   * @brief Retrieves const char * representation
+   */
+  const char *CStr() const;
+
+  bool operator==(const AbstractConnectionString &rhs) const;
+ protected:
+  std::string formatted_string_; ///< formatted string for c string
+};
+
+/**
+* @brief  Structure to store and format PostgreSQL connection string
+*/
+class PostgreSQLCStr: public AbstractConnectionString{
+ public:
+  PostgreSQLCStr() : port_(5432) {}
+
+  PostgreSQLCStr(std::string_view user,
+                 std::string_view password,
+                 std::string_view host,
+                 std::string_view dbname, unsigned port);
+
 
   void SetUser(std::string_view new_user);
 
@@ -48,13 +75,13 @@ struct myConnString {
   [[nodiscard]] unsigned int GetPort() const;
 
   [[nodiscard]] std::string GetVerboseName() const;
-  bool operator==(const myConnString &rhs) const;
+
 
  private:
   void UpdateFormat();
 
-  std::string user, password, host, dbname;
-  unsigned port;
-  std::string formatted_string;
+  std::string user_, password_, host_, dbname_;
+  unsigned port_;
+
 };
 }

@@ -14,15 +14,15 @@ const std::string kDbName = "test_db_1";
 class DbServiceTest : public ::testing::Test {
  protected:
   void SetUp() override {
-    conn_string_ = myConnString(g_serviceParams.username,
-                                               g_serviceParams.password,
-                                               ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
+    conn_string_ = PostgreSQLCStr(g_serviceParams.username,
+                                  g_serviceParams.password,
+                                  ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
 
     service_ = std::make_unique<db_service::DbService>(conn_string_);
     service_->Connect();
   }
 
-  myConnString conn_string_;
+  PostgreSQLCStr conn_string_;
   std::unique_ptr<db_service::DbService> service_;
 
   static inline std::string tlogin="testuser";
@@ -30,7 +30,7 @@ class DbServiceTest : public ::testing::Test {
 };
 
 TEST_F(DbServiceTest, SetGetCstring) {
-  auto c_string = myConnString("a", "p", "localhost", "db", 5432);
+  auto c_string = PostgreSQLCStr("a", "p", "localhost", "db", 5432);
   service_->SetConnStr(c_string);
 
   ASSERT_EQ(c_string, service_->GetConnStr());
@@ -212,9 +212,9 @@ class DatabaseTestEnvironment : public ::testing::Environment {
  public:
   void SetUp() override {
 
-    conn_string_ = myConnString(g_serviceParams.username,
-                                               g_serviceParams.password,
-                                               ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
+    conn_string_ = PostgreSQLCStr(g_serviceParams.username,
+                                  g_serviceParams.password,
+                                  ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
 
     CreateDatabase(conn_string_, kDbName);
 
@@ -233,7 +233,7 @@ class DatabaseTestEnvironment : public ::testing::Environment {
 
  private:
   ConnPtr conn_ptr_;
-  myConnString conn_string_;
+  PostgreSQLCStr conn_string_;
 };
 
 int main(int argc, char **argv) {

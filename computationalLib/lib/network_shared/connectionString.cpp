@@ -3,73 +3,75 @@
 
 namespace network_types {
 
-myConnString::myConnString(std::string_view user,
-                           std::string_view password,
-                           std::string_view host,
-                           std::string_view dbname,
-                           unsigned int port)
-    : user(user), password(password),
-      host(host),
-      dbname(dbname),
-      port(port) {
+PostgreSQLCStr::PostgreSQLCStr(std::string_view user,
+                               std::string_view password,
+                               std::string_view host,
+                               std::string_view dbname,
+                               unsigned int port)
+    : user_(user), password_(password),
+      host_(host),
+      dbname_(dbname),
+      port_(port) {
   UpdateFormat();
 }
-myConnString::operator std::string_view() {
-  return formatted_string;
-}
-const char *myConnString::CStr() const {
-  return formatted_string.c_str();
-}
-void myConnString::SetPassword(std::string_view new_password) {
-  password = new_password;
+
+void PostgreSQLCStr::SetPassword(std::string_view new_password) {
+  password_ = new_password;
   UpdateFormat();
 }
-void myConnString::SetHost(std::string_view new_host) {
-  host = new_host;
+void PostgreSQLCStr::SetHost(std::string_view new_host) {
+  host_ = new_host;
   UpdateFormat();
 }
-void myConnString::SetPort(unsigned int new_port) {
-  port = new_port;
+void PostgreSQLCStr::SetPort(unsigned int new_port) {
+  port_ = new_port;
   UpdateFormat();
 }
-void myConnString::SetDbname(std::string_view new_dbname) {
-  dbname = new_dbname;
+void PostgreSQLCStr::SetDbname(std::string_view new_dbname) {
+  dbname_ = new_dbname;
   UpdateFormat();
 }
-void myConnString::SetUser(std::string_view new_user) {
-  user = std::forward<std::string_view>(new_user);
+void PostgreSQLCStr::SetUser(std::string_view new_user) {
+  user_ = std::forward<std::string_view>(new_user);
   UpdateFormat();
 }
-const std::string &myConnString::GetUser() const {
-  return user;
+const std::string &PostgreSQLCStr::GetUser() const {
+  return user_;
 }
-const std::string &myConnString::GetPassword() const {
-  return password;
+const std::string &PostgreSQLCStr::GetPassword() const {
+  return password_;
 }
-const std::string &myConnString::GetHost() const {
-  return host;
+const std::string &PostgreSQLCStr::GetHost() const {
+  return host_;
 }
-const std::string &myConnString::GetDbname() const {
-  return dbname;
+const std::string &PostgreSQLCStr::GetDbname() const {
+  return dbname_;
 }
-unsigned int myConnString::GetPort() const {
-  return port;
+unsigned int PostgreSQLCStr::GetPort() const {
+  return port_;
 }
-void myConnString::UpdateFormat() {
-  formatted_string = fmt::format("postgresql://{}:{}@{}:{}/{}",
-                                 user.c_str(), password.c_str(), host.c_str(), port, dbname.c_str());
+void PostgreSQLCStr::UpdateFormat() {
+  formatted_string_ = fmt::format("postgresql://{}:{}@{}:{}/{}",
+                                  user_.c_str(), password_.c_str(), host_.c_str(), port_, dbname_.c_str());
 }
-std::string myConnString::GetVerboseName() const {
-  return fmt::format("{}:{} db:{}", host, port, dbname);
-}
-bool myConnString::operator==(const myConnString &rhs) const {
-  return user == rhs.user &&
-      password == rhs.password &&
-      host == rhs.host &&
-      dbname == rhs.dbname &&
-      port == rhs.port &&
-      formatted_string == rhs.formatted_string;
+std::string PostgreSQLCStr::GetVerboseName() const {
+  return fmt::format("{}:{} db:{}", host_, port_, dbname_);
 }
 
 
+AbstractConnectionString::operator std::string() {
+  return formatted_string_;
+}
+AbstractConnectionString::operator std::string_view() {
+  return formatted_string_;
+}
+std::string AbstractConnectionString::GetVerboseName() const {
+  return "";
+}
+const char *AbstractConnectionString::CStr() const {
+  return formatted_string_.c_str();
+}
+bool AbstractConnectionString::operator==(const AbstractConnectionString &rhs) const {
+  return formatted_string_==rhs.formatted_string_;
+}
 }

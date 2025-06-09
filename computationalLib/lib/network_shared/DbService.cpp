@@ -9,7 +9,7 @@ DbService::DbService() : conn_str_(), conn_(nullptr) {
 
 }
 
-DbService::DbService(const myConnString &conn_str) : conn_str_(conn_str), conn_(nullptr) {
+DbService::DbService(const PostgreSQLCStr &conn_str) : conn_str_(conn_str), conn_(nullptr) {
 
 }
 
@@ -295,10 +295,10 @@ IndexType DbService::InnerLog(TransactionT &txn,
   }, "Log")[0][0].as<IndexType>();
 }
 
-const myConnString &DbService::GetConnStr() const {
+const PostgreSQLCStr &DbService::GetConnStr() const {
   return conn_str_;
 }
-void DbService::SetConnStr(const myConnString &conn_str) {
+void DbService::SetConnStr(const PostgreSQLCStr &conn_str) {
   conn_str_ = conn_str;
 }
 void DbService::Reconnect() {

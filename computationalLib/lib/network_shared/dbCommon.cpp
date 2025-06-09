@@ -14,7 +14,7 @@ void Disconnect(ConnPtr &conn_ptr) {
   }
 }
 
-ConnPtr TryConnect(const myConnString &conn_str, const std::string service_name) {
+ConnPtr TryConnect(const PostgreSQLCStr &conn_str, const std::string service_name) {
   ConnPtr conn;
 
   try {
@@ -39,7 +39,7 @@ ResType TerminateAllDbConnections(NonTransType &no_trans_exec,
 
   return r;
 }
-ConnPtr CreateDatabase(myConnString c_string, std::string_view db_name) {
+ConnPtr CreateDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
 
   ConnPtr conn;
   c_string.SetDbname(db_name);
@@ -77,7 +77,7 @@ ConnPtr CreateDatabase(myConnString c_string, std::string_view db_name) {
   Disconnect(temp_connection);
   return TryConnect(c_string, "Outer");
 }
-void DropDatabase(myConnString c_string, std::string_view db_name) {
+void DropDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
   c_string.SetDbname(db_name);
   auto t_string = c_string;
   t_string.SetDbname(SampleTempDb);
@@ -113,7 +113,7 @@ size_t CheckDatabaseExistence(NonTransType &non_trans, std::string_view db_name)
   std::string qq = fmt::format("SELECT 1 FROM pg_database WHERE datname = \'{}\';", db_name.data());
   return non_trans.exec(qq).size();
 }
-void FillDatabase(myConnString c_string, std::string_view script) {
+void FillDatabase(PostgreSQLCStr c_string, std::string_view script) {
   auto conn = TryConnect(c_string, "Outer");
   ExecuteTransaction(conn, [&](TransactionT &txn) {
     auto r = txn.exec(script);
@@ -123,7 +123,7 @@ void FillDatabase(myConnString c_string, std::string_view script) {
 ResType ExecuteTransaction(ConnPtr &ptr,
                            const std::function<ResType(TransactionT &)> &func,
                            std::string_view service_name,
-                           const myConnString &conn_str) {
+                           const PostgreSQLCStr &conn_str) {
   if (!CheckConnection(ptr)) {
     throw Broken_Connection(service_name, conn_str.GetVerboseName());
   }

@@ -24,7 +24,7 @@ using shared::Broken_Connection;
 static const char *const SampleTempDb = "template1";
 
 
-using network_types::myConnString;
+using network_types::PostgreSQLCStr;
 
 /**
  * @brief Function to retrieve optional value
@@ -96,7 +96,7 @@ void Disconnect(ConnPtr &conn_ptr);
  * @return connection pointer
  * @throws Broken_Connection - if connection cannot be established
  */
-ConnPtr TryConnect(const myConnString &conn_str,
+ConnPtr TryConnect(const PostgreSQLCStr &conn_str,
                    const std::string service_name);
 
 /**
@@ -124,7 +124,7 @@ TerminateAllDbConnections(NonTransType &no_trans_exec,
  * @param c_string
  * @return connection string pointer for the created database
  */
-ConnPtr CreateDatabase(myConnString c_string, std::string_view db_name);
+ConnPtr CreateDatabase(PostgreSQLCStr c_string, std::string_view db_name);
 
 /**
  * @brief Drops specified database
@@ -132,14 +132,14 @@ ConnPtr CreateDatabase(myConnString c_string, std::string_view db_name);
  * @param db_name
  * @param c_string
  */
-void DropDatabase(myConnString c_string, std::string_view db_name);
+void DropDatabase(PostgreSQLCStr c_string, std::string_view db_name);
 
 /**
  * @brief Executes the script ot inidb
  * @param c_string
  * @param script
  */
-void FillDatabase(myConnString c_string, std::string_view script);
+void FillDatabase(PostgreSQLCStr c_string, std::string_view script);
 
 /**
  * @brief Executes function in the form of transaction
@@ -154,7 +154,7 @@ void FillDatabase(myConnString c_string, std::string_view script);
 ResType ExecuteTransaction(ConnPtr &ptr,
                            const std::function<ResType(TransactionT &)> &func,
                            std::string_view service_name,
-                           const myConnString &conn_str);
+                           const PostgreSQLCStr &conn_str);
 
 /**
  * @brief Executes function inside subtransaction of txn

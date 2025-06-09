@@ -13,7 +13,7 @@ using namespace db_common;
 class DbService {
  public:
   DbService();
-  DbService(const myConnString &conn_str);
+  DbService(const PostgreSQLCStr &conn_str);
   ~DbService();
 
   bool Connect();
@@ -172,8 +172,8 @@ class DbService {
 
 
 
-  [[nodiscard]] const myConnString &GetConnStr() const;
-  void SetConnStr(const myConnString &conn_str);
+  [[nodiscard]] const PostgreSQLCStr &GetConnStr() const;
+  void SetConnStr(const PostgreSQLCStr &conn_str);
 
   ResType ExecuteTransaction(const std::function<ResType(TransactionT &)> &func);
 
@@ -182,7 +182,7 @@ class DbService {
                                 std::string_view sub_name = "");
 
  private:
-  myConnString conn_str_;
+  PostgreSQLCStr conn_str_;
 
   void Reconnect();
 
