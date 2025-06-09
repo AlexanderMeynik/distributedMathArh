@@ -1,6 +1,5 @@
 #include "network_shared/amqpCommon.h"
-
-#include <fmt/format.h>
+#include "network_shared/connectionString.h"
 
 namespace amqp_common {
 
@@ -33,7 +32,8 @@ std::string ConstructCString(const std::string &host_port,
                              const std::string &user,
                              const std::string &password,
                              bool secure) {
-  auto res = fmt::format("amqp{}://{}:{}@{}/", (secure ? "s" : ""), user, password, host_port);
+
+  auto res =(std::string)network_types::AMQPSQLCStr(host_port,user,password,secure);
   return res;
 }
 

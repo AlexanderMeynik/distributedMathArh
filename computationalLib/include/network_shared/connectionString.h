@@ -5,17 +5,15 @@
 
 /// Namespace for network related types
 namespace network_types {
-///@todo create common interface for c string
-/// use it in queue
 /// us it for verbose names
 
 /**
  * @brief Default interfacer for the connection strings
  */
-class AbstractConnectionString
-{
+class AbstractConnectionString {
  public:
 
+  AbstractConnectionString() = default;
   /**
    * @brief explicit std::string type cast
    */
@@ -38,13 +36,15 @@ class AbstractConnectionString
 
   bool operator==(const AbstractConnectionString &rhs) const;
  protected:
+  virtual void UpdateFormat() = 0;
+
   std::string formatted_string_; ///< formatted string for c string
 };
 
 /**
 * @brief  Structure to store and format PostgreSQL connection string
 */
-class PostgreSQLCStr: public AbstractConnectionString{
+class PostgreSQLCStr : public AbstractConnectionString {
  public:
   PostgreSQLCStr() : port_(5432) {}
 
@@ -52,7 +52,6 @@ class PostgreSQLCStr: public AbstractConnectionString{
                  std::string_view password,
                  std::string_view host,
                  std::string_view dbname, unsigned port);
-
 
   void SetUser(std::string_view new_user);
 
@@ -76,12 +75,47 @@ class PostgreSQLCStr: public AbstractConnectionString{
 
   [[nodiscard]] std::string GetVerboseName() const;
 
-
- private:
+ protected:
   void UpdateFormat();
 
   std::string user_, password_, host_, dbname_;
   unsigned port_;
-
 };
+
+/**
+* @brief  Structure to store and format AMQP connection string
+*/
+class AMQPSQLCStr : public AbstractConnectionString {
+ public:
+  AMQPSQLCStr(const std::string &host_port,
+              const std::string &user,
+              const std::string &password,
+              bool secure);
+
+  [[nodiscard]] std::string GetVerboseName() const;
+
+  const std::string &GetHostPort() const;
+
+  void SetHostPort(const std::string &host_port);
+
+  const std::string &GetUser() const;
+
+  void SetUser(const std::string &user);
+
+  const std::string &GetPassword() const;
+
+  void SetPassword(const std::string &password);
+
+  bool IsSecure() const;
+
+  void SetSecure(bool secure);
+
+ protected:
+  void UpdateFormat();
+
+ private:
+  std::string host_port_, user_, password_;
+  bool secure_;
+};
+
 }
