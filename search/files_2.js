@@ -10,5 +10,7 @@ var searchData=
   ['compnode_2ecpp_7',['CompNode.cpp',['../CompNode_8cpp.html',1,'']]],
   ['compnode_2eh_8',['CompNode.h',['../CompNode_8h.html',1,'']]],
   ['compnodeservice_2ecpp_9',['CompNodeService.cpp',['../CompNodeService_8cpp.html',1,'']]],
-  ['compnodeservice_2eh_10',['CompNodeService.h',['../CompNodeService_8h.html',1,'']]]
+  ['compnodeservice_2eh_10',['CompNodeService.h',['../CompNodeService_8h.html',1,'']]],
+  ['connectionstring_2ecpp_11',['connectionString.cpp',['../connectionString_8cpp.html',1,'']]],
+  ['connectionstring_2eh_12',['connectionString.h',['../connectionString_8h.html',1,'']]]
 ];

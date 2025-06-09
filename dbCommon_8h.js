@@ -1,6 +1,5 @@
 var dbCommon_8h =
 [
-    [ "db_common::myConnString", "structdb__common_1_1myConnString.html", "structdb__common_1_1myConnString" ],
     [ "ConnPtr", "dbCommon_8h.html#a4fb01057ea1b45a07833c815721fe69d", null ],
     [ "IndexType", "dbCommon_8h.html#a0bf5bdeb7108eed0c8454cbcd5c39615", null ],
     [ "NonTransType", "dbCommon_8h.html#a328a16b225cb6beb4726da339347ec0b", null ],

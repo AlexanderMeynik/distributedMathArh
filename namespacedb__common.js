@@ -3,7 +3,6 @@ var namespacedb__common =
     [ "Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
     [ "Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
     [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
-    [ "myConnString", "structdb__common_1_1myConnString.html", "structdb__common_1_1myConnString" ],
     [ "Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
     [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ],
     [ "ConnPtr", "namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d", null ],

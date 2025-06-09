@@ -1,27 +1,21 @@
 <map id="db_common::DropDatabase" name="db_common::DropDatabase">
-<area shape="rect" id="Node000001" title="Drops specified database." alt="" coords="5,207,208,233"/>
-<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="66,209,57,199,61,189,78,183,107,181,142,185,153,189,156,195,152,198,149,193,141,190,107,186,79,188,65,193,62,198,70,205"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="256,29,468,69"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="116,205,171,145,210,110,255,79,267,72,270,77,257,84,214,114,175,149,120,209"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="271,118,453,143"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="133,205,188,179,255,153,286,144,288,149,257,159,190,184,135,210"/>
-<area shape="rect" id="Node000004" href="$structdb__common_1_1myConnString.html#aaadd9be3bc46f578698a369e5c471353" title=" " alt="" coords="261,168,463,208"/>
-<area shape="poly" id="edge6_Node000001_Node000004" title=" " alt="" coords="208,205,247,200,247,205,209,210"/>
-<area shape="rect" id="Node000005" href="$structdb__common_1_1myConnString.html#a53a0789186b8f7fd3567830b83f1b8f0" title=" " alt="" coords="261,232,463,272"/>
-<area shape="poly" id="edge7_Node000001_Node000005" title=" " alt="" coords="209,230,247,235,247,240,208,235"/>
-<area shape="rect" id="Node000006" href="$namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b" title="terminates all connections for the specified database" alt="" coords="257,320,467,360"/>
-<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="136,230,307,312,305,317,134,235"/>
-<area shape="rect" id="Node000007" href="$namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="271,409,453,434"/>
-<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="120,231,175,295,214,334,257,370,315,401,312,406,255,374,211,338,171,299,116,235"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="315,30,312,20,320,10,336,5,362,3,391,6,407,13,405,18,390,11,362,8,337,10,323,15,317,21,320,28"/>
-<area shape="poly" id="edge4_Node000003_Node000003" title=" " alt="" coords="321,120,312,110,317,100,334,94,362,91,398,95,408,100,412,106,407,109,404,104,396,100,362,97,335,99,320,104,317,109,325,116"/>
-<area shape="poly" id="edge9_Node000006_Node000006" title=" " alt="" coords="315,320,312,310,320,301,336,295,362,293,391,296,407,303,405,308,390,301,362,299,337,301,323,305,317,311,320,319"/>
-<area shape="poly" id="edge15_Node000007_Node000007" title=" " alt="" coords="321,410,312,400,317,390,334,384,362,382,398,386,408,391,412,396,407,399,404,395,396,391,362,387,335,389,320,394,317,400,325,407"/>
-<area shape="rect" id="Node000008" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="516,351,739,377"/>
-<area shape="poly" id="edge11_Node000007_Node000008" title=" " alt="" coords="421,406,554,377,555,382,422,411"/>
-<area shape="rect" id="Node000009" href="$structdb__common_1_1myConnString.html#ae0181c09b017d0ff779c4fcee6beeaac" title=" " alt="" coords="526,401,729,441"/>
-<area shape="poly" id="edge13_Node000007_Node000009" title=" " alt="" coords="453,419,512,419,512,424,453,424"/>
-<area shape="rect" id="Node000010" href="$structdb__common_1_1myConnString.html#a44e994b2505b06d88edebfaa37a416a4" title=" " alt="" coords="526,465,729,505"/>
-<area shape="poly" id="edge14_Node000007_Node000010" title=" " alt="" coords="416,432,531,459,529,465,415,437"/>
-<area shape="poly" id="edge12_Node000008_Node000008" title=" " alt="" coords="585,353,575,343,580,333,598,327,627,325,665,329,676,334,679,340,675,342,672,338,664,334,627,330,599,332,584,337,581,342,589,349"/>
+<area shape="rect" id="Node000001" title="Drops specified database." alt="" coords="5,159,208,185"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="259,5,471,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="119,157,175,108,214,80,255,55,270,48,272,53,257,60,217,84,179,112,123,161"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="274,70,457,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,157,188,131,255,105,287,96,289,101,257,111,190,136,135,162"/>
+<area shape="rect" id="Node000004" href="$structnetwork__types_1_1myConnString.html#a7115f3774c58d522dbb78de836826a89" title=" " alt="" coords="256,120,475,160"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="208,157,242,153,243,158,208,162"/>
+<area shape="rect" id="Node000005" href="$structnetwork__types_1_1myConnString.html#a68c3f75b6c3f41b1742216b027d3537a" title=" " alt="" coords="256,184,475,224"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="208,182,243,186,242,191,208,187"/>
+<area shape="rect" id="Node000006" href="$namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b" title="terminates all connections for the specified database" alt="" coords="260,248,471,288"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="136,182,257,234,279,241,278,246,255,238,134,187"/>
+<area shape="rect" id="Node000007" href="$namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="274,313,457,338"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="121,183,175,239,214,271,257,298,277,306,274,311,255,302,211,275,172,243,117,187"/>
+<area shape="rect" id="Node000008" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="523,255,745,281"/>
+<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="425,310,560,281,561,286,426,315"/>
+<area shape="rect" id="Node000009" href="$structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="525,305,743,345"/>
+<area shape="poly" id="edge8_Node000007_Node000009" title=" " alt="" coords="457,323,511,323,511,328,457,328"/>
+<area shape="rect" id="Node000010" href="$structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="525,369,743,409"/>
+<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="420,336,537,364,535,369,419,341"/>
 </map>

@@ -8,7 +8,7 @@ var searchData=
   ['db_5fservice_5',['db_service',['../namespacedb__service.html',1,'']]],
   ['dbcommon_2ecpp_6',['dbCommon.cpp',['../dbCommon_8cpp.html',1,'']]],
   ['dbcommon_2eh_7',['dbCommon.h',['../dbCommon_8h.html',1,'']]],
-  ['dbname_8',['dbname',['../structdb__common_1_1myConnString.html#a558d2b86e880421be0f5a546bb68f283',1,'db_common::myConnString']]],
+  ['dbname_8',['dbname',['../structnetwork__types_1_1myConnString.html#a57b92a6ddebe62a7c7291447c50ad4f4',1,'network_types::myConnString']]],
   ['dbservice_9',['dbservice',['../classdb__service_1_1DbService.html',1,'db_service::DbService'],['../classdb__service_1_1DbService.html#ad61bb95162c82c65717495fb1c746e7b',1,'db_service::DbService::DbService(const myConnString &amp;conn_str)'],['../classdb__service_1_1DbService.html#abd4786489ea327046eea77470dd95e76',1,'db_service::DbService::DbService()']]],
   ['dbservice_2ecpp_10',['DbService.cpp',['../DbService_8cpp.html',1,'']]],
   ['dbservice_2eh_11',['DbService.h',['../DbService_8h.html',1,'']]],

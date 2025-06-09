@@ -25,7 +25,6 @@ var annotated_dup =
       [ "Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
       [ "Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
       [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
-      [ "myConnString", "structdb__common_1_1myConnString.html", "structdb__common_1_1myConnString" ],
       [ "Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
       [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ]
     ] ],
@@ -65,6 +64,7 @@ var annotated_dup =
       [ "exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
       [ "global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
       [ "message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
+      [ "myConnString", "structnetwork__types_1_1myConnString.html", "structnetwork__types_1_1myConnString" ],
       [ "queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
       [ "queueBinding", "structnetwork__types_1_1queueBinding.html", "structnetwork__types_1_1queueBinding" ],
       [ "rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],

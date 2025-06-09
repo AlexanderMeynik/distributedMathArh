@@ -1,6 +1,5 @@
 <map id="db_service::DbService::Disconnect" name="db_service::DbService::Disconnect">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,22,172,62"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="220,29,403,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,39,207,39,207,45,173,45"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="275,31,267,21,271,11,286,5,311,3,342,6,354,15,351,20,340,11,311,8,288,10,275,15,273,20,279,28"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,172,45"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="220,13,403,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,23,207,23,207,28,173,28"/>
 </map>

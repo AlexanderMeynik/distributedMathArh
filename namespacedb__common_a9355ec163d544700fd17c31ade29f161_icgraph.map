@@ -1,10 +1,7 @@
 <map id="db_common::CheckDatabaseExistence" name="db_common::CheckDatabaseExistence">
-<area shape="rect" id="Node000001" title="Checks db_name database existence." alt="" coords="268,59,480,99"/>
-<area shape="poly" id="edge1_Node000001_Node000001" title=" " alt="" coords="419,48,403,41,374,38,349,40,333,45,328,51,331,58,326,60,323,50,330,40,348,35,374,33,404,36,421,43"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="5,29,220,55"/>
-<area shape="poly" id="edge2_Node000001_Node000002" title=" " alt="" coords="254,65,202,57,202,52,255,60"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,103,214,128"/>
-<area shape="poly" id="edge4_Node000001_Node000003" title=" " alt="" coords="255,98,206,105,205,100,254,93"/>
-<area shape="poly" id="edge3_Node000002_Node000002" title=" " alt="" coords="159,20,157,16,149,12,113,8,85,10,70,15,67,20,74,27,70,31,61,21,66,11,83,5,113,3,150,7,160,12,164,18"/>
-<area shape="poly" id="edge5_Node000003_Node000003" title=" " alt="" coords="159,94,157,89,149,85,113,81,85,83,70,88,67,94,74,101,70,104,61,94,66,84,83,78,113,76,150,80,160,85,164,91"/>
+<area shape="rect" id="Node000001" title="Checks db_name database existence." alt="" coords="268,23,480,63"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="5,5,220,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,34,220,31,221,26,255,29"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,55,214,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,57,215,61,214,55,254,52"/>
 </map>

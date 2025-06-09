@@ -1,8 +1,7 @@
 <map id="db_service::DbService::~DbService" name="db_service::DbService::~DbService">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,22,172,62"/>
-<area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#ab036b334ad3f3d632d0d639703f5f1a7" title=" " alt="" coords="220,22,387,62"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,39,206,39,206,45,173,45"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="435,29,617,55"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,39,421,39,421,45,387,45"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="490,31,482,21,486,11,501,5,526,3,557,6,569,15,566,20,555,11,526,8,502,10,490,15,487,20,494,28"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,172,45"/>
+<area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#ab036b334ad3f3d632d0d639703f5f1a7" title=" " alt="" coords="220,5,387,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,23,206,23,206,28,173,28"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="435,13,617,38"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,23,421,23,421,28,387,28"/>
 </map>

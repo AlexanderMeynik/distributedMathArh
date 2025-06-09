@@ -1,11 +1,9 @@
 <map id="db_service::DbService::GetNode" name="db_service::DbService::GetNode">
-<area shape="rect" id="Node000001" title="Retrieves node record for id." alt="" coords="5,51,172,91"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546" title="Executes function in the form of transaction." alt="" coords="220,59,455,84"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,69,206,69,206,74,172,74"/>
-<area shape="poly" id="edge4_Node000002_Node000002" title=" " alt="" coords="297,60,288,50,293,40,310,34,337,32,372,36,382,41,386,46,382,49,379,45,371,41,337,37,311,39,297,44,294,50,301,57"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="503,29,725,55"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,56,489,53,489,58,455,62"/>
-<area shape="rect" id="Node000004" href="$structdb__common_1_1myConnString.html#a44e994b2505b06d88edebfaa37a416a4" title=" " alt="" coords="513,79,715,119"/>
-<area shape="poly" id="edge5_Node000002_Node000004" title=" " alt="" coords="455,81,499,85,499,90,455,86"/>
-<area shape="poly" id="edge3_Node000003_Node000003" title=" " alt="" coords="570,31,560,21,565,11,583,5,614,3,653,7,664,12,668,18,663,20,661,16,652,12,614,8,584,10,569,15,565,20,574,27"/>
+<area shape="rect" id="Node000001" title="Retrieves node record for id." alt="" coords="5,27,172,67"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546" title="Executes function in the form of transaction." alt="" coords="220,35,455,60"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,45,206,45,206,50,172,50"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="503,5,725,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,32,489,29,489,34,455,38"/>
+<area shape="rect" id="Node000004" href="$structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="505,55,723,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="455,57,491,60,491,66,455,62"/>
 </map>

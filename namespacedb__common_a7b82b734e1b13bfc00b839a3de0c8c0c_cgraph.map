@@ -1,11 +1,9 @@
 <map id="db_common::TryConnect" name="db_common::TryConnect">
-<area shape="rect" id="Node000001" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="5,87,188,112"/>
-<area shape="poly" id="edge5_Node000001_Node000001" title=" " alt="" coords="56,88,47,78,52,68,69,62,97,60,132,64,142,69,146,74,141,77,139,73,131,69,97,65,70,67,55,72,53,78,60,85"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="236,29,459,55"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,84,235,65,277,55,278,60,237,70,154,89"/>
-<area shape="rect" id="Node000003" href="$structdb__common_1_1myConnString.html#ae0181c09b017d0ff779c4fcee6beeaac" title=" " alt="" coords="246,79,449,119"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="188,97,232,97,232,102,188,102"/>
-<area shape="rect" id="Node000004" href="$structdb__common_1_1myConnString.html#a44e994b2505b06d88edebfaa37a416a4" title=" " alt="" coords="246,143,449,183"/>
-<area shape="poly" id="edge4_Node000001_Node000004" title=" " alt="" coords="148,110,256,137,254,142,147,115"/>
-<area shape="poly" id="edge2_Node000002_Node000002" title=" " alt="" coords="307,31,298,21,302,11,319,5,347,3,383,7,393,11,397,17,392,20,389,15,381,12,347,8,320,10,306,15,303,20,311,27"/>
+<area shape="rect" id="Node000001" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="5,63,188,88"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="236,5,459,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="152,60,235,41,277,31,278,36,237,46,154,65"/>
+<area shape="rect" id="Node000003" href="$structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="238,55,457,95"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="188,73,224,73,224,78,188,78"/>
+<area shape="rect" id="Node000004" href="$structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="238,119,457,159"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="148,86,256,113,254,118,147,91"/>
 </map>
