@@ -1,0 +1,5 @@
+<map id="network_types::PostgreSQLCStr" name="network_types::PostgreSQLCStr">
+<area shape="rect" id="Node000001" title="Structure to store and format PostgreSQL connection string." alt="" coords="19,268,237,673"/>
+<area shape="rect" id="Node000002" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="5,5,251,220"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,234,131,267,125,267,125,234"/>
+</map>

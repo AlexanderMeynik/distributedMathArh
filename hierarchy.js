@@ -1,5 +1,9 @@
 var hierarchy =
 [
+    [ "network_types::AbstractConnectionString", "classnetwork__types_1_1AbstractConnectionString.html", [
+      [ "network_types::AMQPSQLCStr", "classnetwork__types_1_1AMQPSQLCStr.html", null ],
+      [ "network_types::PostgreSQLCStr", "classnetwork__types_1_1PostgreSQLCStr.html", null ]
+    ] ],
     [ "amqp_common::AMQPService", "classamqp__common_1_1AMQPService.html", [
       [ "amqp_common::AMQPConsumerService", "classamqp__common_1_1AMQPConsumerService.html", null ],
       [ "amqp_common::AMQPPublisherService", "classamqp__common_1_1AMQPPublisherService.html", null ]
@@ -63,7 +67,6 @@ var hierarchy =
     [ "main_services::MainNodeService", "classmain__services_1_1MainNodeService.html", null ],
     [ "mesh_storage::MeshCreator", "classmesh__storage_1_1MeshCreator.html", null ],
     [ "network_types::message", "structnetwork__types_1_1message.html", null ],
-    [ "network_types::myConnString", "structnetwork__types_1_1myConnString.html", null ],
     [ "db_common::Node", "structdb__common_1_1Node.html", null ],
     [ "shared::params", "structshared_1_1params.html", null ],
     [ "network_types::queue", "structnetwork__types_1_1queue.html", null ],

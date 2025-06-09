@@ -1,7 +1,7 @@
 var searchData=
 [
   ['datachanged_0',['DataChanged',['../classgui__objects_1_1MeshPlot.html#a61e0694df1e666ed8277e59a67957898',1,'gui_objects::MeshPlot']]],
-  ['dbservice_1',['dbservice',['../classdb__service_1_1DbService.html#abd4786489ea327046eea77470dd95e76',1,'db_service::DbService::DbService()'],['../classdb__service_1_1DbService.html#ad61bb95162c82c65717495fb1c746e7b',1,'db_service::DbService::DbService(const myConnString &amp;conn_str)']]],
+  ['dbservice_1',['dbservice',['../classdb__service_1_1DbService.html#abd4786489ea327046eea77470dd95e76',1,'db_service::DbService::DbService()'],['../classdb__service_1_1DbService.html#a6d1252398a3e782c058df112503d793c',1,'db_service::DbService::DbService(const PostgreSQLCStr &amp;conn_str)']]],
   ['declarequeue_2',['DeclareQueue',['../namespaceamqp__common.html#af451fa3751ba3e892a4b0042b2e27833',1,'amqp_common']]],
   ['defaultbench_3',['DefaultBench',['../namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2',1,'shared']]],
   ['defaultmessagecallback_4',['DefaultMessageCallback',['../namespaceamqp__common.html#a731e7318d9b0d18e31f42afed2642c77',1,'amqp_common']]],
@@ -16,5 +16,5 @@ var searchData=
   ['disconnectnodehandler_13',['DisconnectNodeHandler',['../classrest_1_1v1_1_1ClusterConfigController.html#af44c43e67cf11123a8b79826e37b4a29',1,'rest::v1::ClusterConfigController']]],
   ['disconnectq_14',['DisconnectQ',['../classrest_1_1v1_1_1ClusterConfigController.html#a53911d0b3f38f2a3627e8369285bf087',1,'rest::v1::ClusterConfigController']]],
   ['doublecastchrono_15',['DoubleCastChrono',['../namespacechrono__clock.html#a71ebb6c7290de62ac533153185d635e2',1,'chrono_clock']]],
-  ['dropdatabase_16',['DropDatabase',['../namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a',1,'db_common']]]
+  ['dropdatabase_16',['DropDatabase',['../namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c',1,'db_common']]]
 ];

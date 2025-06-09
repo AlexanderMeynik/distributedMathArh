@@ -1,7 +1,7 @@
 <map id="db_common::CheckDatabaseExistence" name="db_common::CheckDatabaseExistence">
 <area shape="rect" id="Node000001" title="Checks db_name database existence." alt="" coords="268,23,480,63"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="5,5,220,31"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="5,5,220,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="254,34,220,31,221,26,255,29"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,55,214,80"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="11,55,214,80"/>
 <area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="255,57,215,61,214,55,254,52"/>
 </map>

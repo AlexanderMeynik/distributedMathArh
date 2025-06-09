@@ -1,9 +1,9 @@
 <map id="db_service::DbService::Log" name="db_service::DbService::Log">
 <area shape="rect" id="Node000001" title="Logs with specified message." alt="" coords="5,35,203,60"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546" title="Executes function in the form of transaction." alt="" coords="251,35,485,60"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="251,35,485,60"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="203,45,237,45,237,50,203,50"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="533,5,756,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="485,32,519,29,520,34,486,38"/>
-<area shape="rect" id="Node000004" href="$structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="535,55,754,95"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="486,57,522,60,521,66,485,62"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="535,5,758,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="485,32,521,29,522,34,486,38"/>
+<area shape="rect" id="Node000004" href="$classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="533,55,760,95"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="486,56,520,60,520,65,485,62"/>
 </map>

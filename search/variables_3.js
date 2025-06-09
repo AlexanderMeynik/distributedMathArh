@@ -1,7 +1,7 @@
 var searchData=
 [
   ['data_5f_0',['data_',['../classmesh__storage_1_1MeshCreator.html#a4cb86d887a78d2ebfb47e0802657cc87',1,'mesh_storage::MeshCreator']]],
-  ['dbname_1',['dbname',['../structnetwork__types_1_1myConnString.html#a57b92a6ddebe62a7c7291447c50ad4f4',1,'network_types::myConnString']]],
+  ['dbname_5f_1',['dbname_',['../classnetwork__types_1_1PostgreSQLCStr.html#aa1fb051138f0476c18d22590ba524c27',1,'network_types::PostgreSQLCStr']]],
   ['ddpath_5f_2',['ddpath_',['../classbench__utils_1_1BenchmarkHandler.html#af991bbc9f9e14aabd3b43287e5398daa',1,'bench_utils::BenchmarkHandler']]],
   ['default_5fexchange_5f_3',['default_exchange_',['../classamqp__common_1_1AMQPPublisherService.html#abaf131a660b9cb7fd05a781976b368c7',1,'amqp_common::AMQPPublisherService']]],
   ['device_4',['device',['../structgenerators_1_1generator.html#a8ed1ef965c2bd89e5f7e841e9f225718',1,'generators::generator']]],

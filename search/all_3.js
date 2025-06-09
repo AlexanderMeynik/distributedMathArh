@@ -8,8 +8,8 @@ var searchData=
   ['db_5fservice_5',['db_service',['../namespacedb__service.html',1,'']]],
   ['dbcommon_2ecpp_6',['dbCommon.cpp',['../dbCommon_8cpp.html',1,'']]],
   ['dbcommon_2eh_7',['dbCommon.h',['../dbCommon_8h.html',1,'']]],
-  ['dbname_8',['dbname',['../structnetwork__types_1_1myConnString.html#a57b92a6ddebe62a7c7291447c50ad4f4',1,'network_types::myConnString']]],
-  ['dbservice_9',['dbservice',['../classdb__service_1_1DbService.html',1,'db_service::DbService'],['../classdb__service_1_1DbService.html#ad61bb95162c82c65717495fb1c746e7b',1,'db_service::DbService::DbService(const myConnString &amp;conn_str)'],['../classdb__service_1_1DbService.html#abd4786489ea327046eea77470dd95e76',1,'db_service::DbService::DbService()']]],
+  ['dbname_5f_8',['dbname_',['../classnetwork__types_1_1PostgreSQLCStr.html#aa1fb051138f0476c18d22590ba524c27',1,'network_types::PostgreSQLCStr']]],
+  ['dbservice_9',['dbservice',['../classdb__service_1_1DbService.html',1,'db_service::DbService'],['../classdb__service_1_1DbService.html#a6d1252398a3e782c058df112503d793c',1,'db_service::DbService::DbService(const PostgreSQLCStr &amp;conn_str)'],['../classdb__service_1_1DbService.html#abd4786489ea327046eea77470dd95e76',1,'db_service::DbService::DbService()']]],
   ['dbservice_2ecpp_10',['DbService.cpp',['../DbService_8cpp.html',1,'']]],
   ['dbservice_2eh_11',['DbService.h',['../DbService_8h.html',1,'']]],
   ['ddpath_5f_12',['ddpath_',['../classbench__utils_1_1BenchmarkHandler.html#af991bbc9f9e14aabd3b43287e5398daa',1,'bench_utils::BenchmarkHandler']]],
@@ -48,6 +48,6 @@ var searchData=
   ['distros_45',['distros',['../namespacegenerators.html#afbb237e5ca1c333ad75a8001de4e31f9',1,'generators']]],
   ['doublecastchrono_46',['DoubleCastChrono',['../namespacechrono__clock.html#a71ebb6c7290de62ac533153185d635e2',1,'chrono_clock']]],
   ['doxygen_5fdummy_2eh_47',['doxygen_dummy.h',['../doxygen__dummy_8h.html',1,'']]],
-  ['dropdatabase_48',['DropDatabase',['../namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a',1,'db_common']]],
+  ['dropdatabase_48',['DropDatabase',['../namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c',1,'db_common']]],
   ['durable_49',['durable',['../structnetwork__types_1_1exchange.html#a20bcc3b3630d8036f0e8235184f0c146',1,'network_types::exchange::durable'],['../structnetwork__types_1_1queue.html#a6fcea50b3e01653dfc1da3a371c12dd7',1,'network_types::queue::durable']]]
 ];

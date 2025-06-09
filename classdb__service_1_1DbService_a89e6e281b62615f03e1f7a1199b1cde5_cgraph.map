@@ -2,13 +2,13 @@
 <area shape="rect" id="Node000001" title=" " alt="" coords="5,27,172,67"/>
 <area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="220,27,387,67"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,45,206,45,206,50,173,50"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="665,5,888,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,40,651,23,651,28,387,45"/>
-<area shape="rect" id="Node000004" href="$namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="435,60,617,85"/>
+<area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="681,5,903,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,40,666,23,667,28,387,45"/>
+<area shape="rect" id="Node000004" href="$namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="435,60,617,85"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="388,54,422,58,421,63,387,59"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="584,57,704,31,705,36,585,63"/>
-<area shape="rect" id="Node000005" href="$structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="667,55,886,95"/>
-<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="618,71,653,71,653,77,618,76"/>
-<area shape="rect" id="Node000006" href="$structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="667,119,886,159"/>
-<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="575,83,688,113,687,118,574,88"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="586,57,665,41,713,31,714,36,666,46,587,63"/>
+<area shape="rect" id="Node000005" href="$classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="665,55,919,95"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="618,71,652,71,652,77,618,76"/>
+<area shape="rect" id="Node000006" href="$classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="679,119,905,159"/>
+<area shape="poly" id="edge6_Node000004_Node000006" title=" " alt="" coords="578,83,699,113,698,119,577,88"/>
 </map>

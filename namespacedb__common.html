@@ -194,27 +194,27 @@ Functions</h2></td></tr>
 <tr class="memitem:a6792c7d97a64b6a7c3c1dd6a91822b94" id="r_a6792c7d97a64b6a7c3c1dd6a91822b94"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94">Disconnect</a> (<a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a> &amp;conn_ptr)</td></tr>
 <tr class="memdesc:a6792c7d97a64b6a7c3c1dd6a91822b94"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes connection and reset conn_ptr.  <br /></td></tr>
 <tr class="separator:a6792c7d97a64b6a7c3c1dd6a91822b94"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b82b734e1b13bfc00b839a3de0c8c0c" id="r_a7b82b734e1b13bfc00b839a3de0c8c0c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c">TryConnect</a> (const <a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a> &amp;conn_str, const std::string service_name)</td></tr>
-<tr class="memdesc:a7b82b734e1b13bfc00b839a3de0c8c0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to connect to PostgrSQL with conn_str.  <br /></td></tr>
-<tr class="separator:a7b82b734e1b13bfc00b839a3de0c8c0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6559f5b5a1af005a0cb696df5e4dc63b" id="r_a6559f5b5a1af005a0cb696df5e4dc63b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b">TryConnect</a> (const <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a> &amp;conn_str, const std::string service_name)</td></tr>
+<tr class="memdesc:a6559f5b5a1af005a0cb696df5e4dc63b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Attempt to connect to PostgrSQL with conn_str.  <br /></td></tr>
+<tr class="separator:a6559f5b5a1af005a0cb696df5e4dc63b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9355ec163d544700fd17c31ade29f161" id="r_a9355ec163d544700fd17c31ade29f161"><td class="memItemLeft" align="right" valign="top"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161">CheckDatabaseExistence</a> (<a class="el" href="namespacedb__common.html#a328a16b225cb6beb4726da339347ec0b">NonTransType</a> &amp;non_trans, std::string_view db_name)</td></tr>
 <tr class="memdesc:a9355ec163d544700fd17c31ade29f161"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks db_name database existence.  <br /></td></tr>
 <tr class="separator:a9355ec163d544700fd17c31ade29f161"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae57400437000d615d8df1cfc6989fa5b" id="r_ae57400437000d615d8df1cfc6989fa5b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9">ResType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b">TerminateAllDbConnections</a> (<a class="el" href="namespacedb__common.html#a328a16b225cb6beb4726da339347ec0b">NonTransType</a> &amp;no_trans_exec, std::string_view db_name)</td></tr>
 <tr class="memdesc:ae57400437000d615d8df1cfc6989fa5b"><td class="mdescLeft">&#160;</td><td class="mdescRight">terminates all connections for the specified database  <br /></td></tr>
 <tr class="separator:ae57400437000d615d8df1cfc6989fa5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71f8404357e44abb7d987936256f445b" id="r_a71f8404357e44abb7d987936256f445b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b">CreateDatabase</a> (<a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a> c_string, std::string_view db_name)</td></tr>
-<tr class="memdesc:a71f8404357e44abb7d987936256f445b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates database with db_name.  <br /></td></tr>
-<tr class="separator:a71f8404357e44abb7d987936256f445b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa2bb2083a8b193bfce7213152dfab03a" id="r_aa2bb2083a8b193bfce7213152dfab03a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a">DropDatabase</a> (<a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a> c_string, std::string_view db_name)</td></tr>
-<tr class="memdesc:aa2bb2083a8b193bfce7213152dfab03a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops specified database.  <br /></td></tr>
-<tr class="separator:aa2bb2083a8b193bfce7213152dfab03a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7af436a14081b629f40efa532dc32e22" id="r_a7af436a14081b629f40efa532dc32e22"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a7af436a14081b629f40efa532dc32e22">FillDatabase</a> (<a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a> c_string, std::string_view script)</td></tr>
-<tr class="memdesc:a7af436a14081b629f40efa532dc32e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the script ot inidb.  <br /></td></tr>
-<tr class="separator:a7af436a14081b629f40efa532dc32e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a63997f364a5d2ceaa86be606eadfa546" id="r_a63997f364a5d2ceaa86be606eadfa546"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9">ResType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546">ExecuteTransaction</a> (<a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a> &amp;ptr, const std::function&lt; <a class="el" href="namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9">ResType</a>(<a class="el" href="namespacedb__common.html#ae879f5fb9e426f5e75e92cae51316d72">TransactionT</a> &amp;)&gt; &amp;func, std::string_view service_name, const <a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a> &amp;conn_str)</td></tr>
-<tr class="memdesc:a63997f364a5d2ceaa86be606eadfa546"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes function in the form of transaction.  <br /></td></tr>
-<tr class="separator:a63997f364a5d2ceaa86be606eadfa546"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae2d12264a8c82efbeda1a40a03366396" id="r_ae2d12264a8c82efbeda1a40a03366396"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396">CreateDatabase</a> (<a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a> c_string, std::string_view db_name)</td></tr>
+<tr class="memdesc:ae2d12264a8c82efbeda1a40a03366396"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates database with db_name.  <br /></td></tr>
+<tr class="separator:ae2d12264a8c82efbeda1a40a03366396"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af8bd865a001ad0acf214bd6dd887214c" id="r_af8bd865a001ad0acf214bd6dd887214c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c">DropDatabase</a> (<a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a> c_string, std::string_view db_name)</td></tr>
+<tr class="memdesc:af8bd865a001ad0acf214bd6dd887214c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drops specified database.  <br /></td></tr>
+<tr class="separator:af8bd865a001ad0acf214bd6dd887214c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a21f6a1e7b045cb777dd2373e8cb0dcf8" id="r_a21f6a1e7b045cb777dd2373e8cb0dcf8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8">FillDatabase</a> (<a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a> c_string, std::string_view script)</td></tr>
+<tr class="memdesc:a21f6a1e7b045cb777dd2373e8cb0dcf8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the script ot inidb.  <br /></td></tr>
+<tr class="separator:a21f6a1e7b045cb777dd2373e8cb0dcf8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa9e2ff021387a58a03679addf6a31073" id="r_aa9e2ff021387a58a03679addf6a31073"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9">ResType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073">ExecuteTransaction</a> (<a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a> &amp;ptr, const std::function&lt; <a class="el" href="namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9">ResType</a>(<a class="el" href="namespacedb__common.html#ae879f5fb9e426f5e75e92cae51316d72">TransactionT</a> &amp;)&gt; &amp;func, std::string_view service_name, const <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a> &amp;conn_str)</td></tr>
+<tr class="memdesc:aa9e2ff021387a58a03679addf6a31073"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes function in the form of transaction.  <br /></td></tr>
+<tr class="separator:aa9e2ff021387a58a03679addf6a31073"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ade4a0e64d613a70412fa41a5008b1d35" id="r_ade4a0e64d613a70412fa41a5008b1d35"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9">ResType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacedb__common.html#ade4a0e64d613a70412fa41a5008b1d35">ExecuteSubTransaction</a> (<a class="el" href="namespacedb__common.html#ae879f5fb9e426f5e75e92cae51316d72">TransactionT</a> &amp;txn, const std::function&lt; <a class="el" href="namespacedb__common.html#a3a05b224620018e5c3d1470db5fa8ce9">ResType</a>(<a class="el" href="namespacedb__common.html#a82a32b7604217a1d8895b397e145c04e">Subtransaction</a> &amp;)&gt; &amp;func, std::string_view sub_name=&quot;&quot;)</td></tr>
 <tr class="memdesc:ade4a0e64d613a70412fa41a5008b1d35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes function inside subtransaction of txn.  <br /></td></tr>
 <tr class="separator:ade4a0e64d613a70412fa41a5008b1d35"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -526,7 +526,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>connection status </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546">ExecuteTransaction()</a>, <a class="el" href="classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9">db_service::DbService::Reconnect()</a>, and <a class="el" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c">TryConnect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073">ExecuteTransaction()</a>, <a class="el" href="classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9">db_service::DbService::Reconnect()</a>, and <a class="el" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b">TryConnect()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -535,13 +535,13 @@ Variables</h2></td></tr>
 <div class="center"><img src="namespacedb__common_a4da7b18820b3b9076b7e590a3fb69cbc_icgraph.png" border="0" usemap="#anamespacedb__common_a4da7b18820b3b9076b7e590a3fb69cbc_icgraph" alt=""/></div>
 <map name="anamespacedb__common_a4da7b18820b3b9076b7e590a3fb69cbc_icgraph" id="anamespacedb__common_a4da7b18820b3b9076b7e590a3fb69cbc_icgraph">
 <area shape="rect" title="Checks connection." alt="" coords="765,106,988,131"/>
-<area shape="rect" href="namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546" title="Executes function in the form of transaction." alt="" coords="483,418,717,443"/>
+<area shape="rect" href="namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="483,418,717,443"/>
 <area shape="poly" title=" " alt="" coords="857,144,615,420,611,416,853,140"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,5,411,45"/>
 <area shape="poly" title=" " alt="" coords="787,106,410,42,411,37,788,101"/>
-<area shape="rect" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="509,106,691,131"/>
+<area shape="rect" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="509,106,691,131"/>
 <area shape="poly" title=" " alt="" coords="751,121,692,121,692,116,751,116"/>
-<area shape="rect" href="namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="232,169,423,194"/>
+<area shape="rect" href="namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="232,169,423,194"/>
 <area shape="poly" title=" " alt="" coords="585,407,563,363,530,309,486,255,461,230,433,209,408,197,411,192,436,204,464,226,490,251,534,306,567,360,590,404"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d" title="Gets iteration using its id." alt="" coords="244,219,411,259"/>
 <area shape="poly" title=" " alt="" coords="579,409,519,342,478,305,433,273,409,261,411,256,436,268,482,301,523,338,583,405"/>
@@ -565,9 +565,9 @@ Variables</h2></td></tr>
 <area shape="poly" title=" " alt="" coords="230,28,172,28,172,23,230,23"/>
 <area shape="poly" title=" " alt="" coords="533,137,435,160,386,171,385,166,434,155,531,132"/>
 <area shape="poly" title=" " alt="" coords="551,103,434,61,394,48,395,43,436,56,553,98"/>
-<area shape="rect" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="220,70,435,95"/>
+<area shape="rect" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,70,435,95"/>
 <area shape="poly" title=" " alt="" coords="494,107,424,98,424,93,495,102"/>
-<area shape="rect" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="226,119,429,145"/>
+<area shape="rect" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,119,429,145"/>
 <area shape="poly" title=" " alt="" coords="495,126,429,130,429,124,494,121"/>
 </map>
 </div>
@@ -610,7 +610,7 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>Number of databases with name db_name </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b">CreateDatabase()</a>, and <a class="el" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a">DropDatabase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396">CreateDatabase()</a>, and <a class="el" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c">DropDatabase()</a>.</p>
 <div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-1-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-1-summary" class="dynsummary" style="display:block;">
@@ -619,17 +619,17 @@ Variables</h2></td></tr>
 <div class="center"><img src="namespacedb__common_a9355ec163d544700fd17c31ade29f161_icgraph.png" border="0" usemap="#anamespacedb__common_a9355ec163d544700fd17c31ade29f161_icgraph" alt=""/></div>
 <map name="anamespacedb__common_a9355ec163d544700fd17c31ade29f161_icgraph" id="anamespacedb__common_a9355ec163d544700fd17c31ade29f161_icgraph">
 <area shape="rect" title="Checks db_name database existence." alt="" coords="268,23,480,63"/>
-<area shape="rect" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="5,5,220,31"/>
+<area shape="rect" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="5,5,220,31"/>
 <area shape="poly" title=" " alt="" coords="254,34,220,31,221,26,255,29"/>
-<area shape="rect" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="11,55,214,80"/>
+<area shape="rect" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="11,55,214,80"/>
 <area shape="poly" title=" " alt="" coords="255,57,215,61,214,55,254,52"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a71f8404357e44abb7d987936256f445b" name="a71f8404357e44abb7d987936256f445b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71f8404357e44abb7d987936256f445b">&#9670;&#160;</a></span>CreateDatabase()</h2>
+<a id="ae2d12264a8c82efbeda1a40a03366396" name="ae2d12264a8c82efbeda1a40a03366396"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2d12264a8c82efbeda1a40a03366396">&#9670;&#160;</a></span>CreateDatabase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -637,7 +637,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a> db_common::CreateDatabase </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a>&#160;</td>
           <td class="paramname"><em>c_string</em>, </td>
         </tr>
         <tr>
@@ -664,33 +664,33 @@ Variables</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>connection string pointer for the created database </dd></dl>
 
-<p class="reference">References <a class="el" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161">CheckDatabaseExistence()</a>, <a class="el" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94">Disconnect()</a>, <a class="el" href="structnetwork__types_1_1myConnString.html#a7115f3774c58d522dbb78de836826a89">network_types::myConnString::GetDbname()</a>, <a class="el" href="structnetwork__types_1_1myConnString.html#acc94b3a07763b11144f794d39844c24b">network_types::myConnString::GetUser()</a>, <a class="el" href="namespacedb__common.html#a2d8fca39b7d78c9826b6661cc651ac02">SampleTempDb</a>, <a class="el" href="structnetwork__types_1_1myConnString.html#a68c3f75b6c3f41b1742216b027d3537a">network_types::myConnString::SetDbname()</a>, and <a class="el" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c">TryConnect()</a>.</p>
+<p class="reference">References <a class="el" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161">CheckDatabaseExistence()</a>, <a class="el" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94">Disconnect()</a>, <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html#a81f148b32f22daeb2a810267c733c593">network_types::PostgreSQLCStr::GetDbname()</a>, <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html#a12f58c2a23e86212d3c6e749156c0b93">network_types::PostgreSQLCStr::GetUser()</a>, <a class="el" href="namespacedb__common.html#a2d8fca39b7d78c9826b6661cc651ac02">SampleTempDb</a>, <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2">network_types::PostgreSQLCStr::SetDbname()</a>, and <a class="el" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b">TryConnect()</a>.</p>
 <div id="dynsection-2" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-2-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-2-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-2-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespacedb__common_a71f8404357e44abb7d987936256f445b_cgraph.png" border="0" usemap="#anamespacedb__common_a71f8404357e44abb7d987936256f445b_cgraph" alt=""/></div>
-<map name="anamespacedb__common_a71f8404357e44abb7d987936256f445b_cgraph" id="anamespacedb__common_a71f8404357e44abb7d987936256f445b_cgraph">
+<div class="center"><img src="namespacedb__common_ae2d12264a8c82efbeda1a40a03366396_cgraph.png" border="0" usemap="#anamespacedb__common_ae2d12264a8c82efbeda1a40a03366396_cgraph" alt=""/></div>
+<map name="anamespacedb__common_ae2d12264a8c82efbeda1a40a03366396_cgraph" id="anamespacedb__common_ae2d12264a8c82efbeda1a40a03366396_cgraph">
 <area shape="rect" title="Creates database with db_name." alt="" coords="5,159,220,185"/>
-<area shape="rect" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="271,5,483,45"/>
+<area shape="rect" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="275,5,487,45"/>
 <area shape="poly" title=" " alt="" coords="126,157,184,108,224,80,267,55,283,48,285,53,269,60,227,84,188,112,129,161"/>
-<area shape="rect" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="286,70,469,95"/>
-<area shape="poly" title=" " alt="" coords="140,157,198,131,267,105,300,96,301,101,269,111,200,136,142,162"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a7115f3774c58d522dbb78de836826a89" title=" " alt="" coords="268,120,487,160"/>
-<area shape="poly" title=" " alt="" coords="218,157,254,152,255,157,218,162"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#acc94b3a07763b11144f794d39844c24b" title=" " alt="" coords="268,184,487,224"/>
-<area shape="poly" title=" " alt="" coords="218,182,255,187,254,192,218,187"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a68c3f75b6c3f41b1742216b027d3537a" title=" " alt="" coords="268,248,487,288"/>
-<area shape="poly" title=" " alt="" coords="143,182,269,234,292,241,290,246,267,238,141,187"/>
-<area shape="rect" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="286,313,469,338"/>
-<area shape="poly" title=" " alt="" coords="127,183,184,239,225,271,269,298,289,306,287,311,267,302,222,275,181,243,123,187"/>
-<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="535,255,757,281"/>
-<area shape="poly" title=" " alt="" coords="437,310,572,281,573,286,438,315"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="537,305,755,345"/>
-<area shape="poly" title=" " alt="" coords="469,323,523,323,523,328,469,328"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="537,369,755,409"/>
-<area shape="poly" title=" " alt="" coords="432,336,549,364,547,369,431,341"/>
+<area shape="rect" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="290,70,473,95"/>
+<area shape="poly" title=" " alt="" coords="140,157,198,131,267,105,301,96,302,101,269,111,200,136,142,162"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#a81f148b32f22daeb2a810267c733c593" title=" " alt="" coords="268,120,495,160"/>
+<area shape="poly" title=" " alt="" coords="219,157,254,152,254,158,220,162"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#a12f58c2a23e86212d3c6e749156c0b93" title=" " alt="" coords="268,184,495,224"/>
+<area shape="poly" title=" " alt="" coords="220,182,254,186,254,192,219,187"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2" title=" " alt="" coords="268,248,495,288"/>
+<area shape="poly" title=" " alt="" coords="143,182,269,233,293,241,291,246,267,239,141,187"/>
+<area shape="rect" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="290,313,473,338"/>
+<area shape="poly" title=" " alt="" coords="127,183,184,239,225,271,269,298,290,306,288,311,267,302,222,275,181,243,123,187"/>
+<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="558,255,781,281"/>
+<area shape="poly" title=" " alt="" coords="445,310,591,281,592,286,447,315"/>
+<area shape="rect" href="classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="543,305,796,345"/>
+<area shape="poly" title=" " alt="" coords="473,323,529,323,529,328,473,328"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="556,369,783,409"/>
+<area shape="poly" title=" " alt="" coords="440,335,566,364,565,369,439,341"/>
 </map>
 </div>
 
@@ -720,7 +720,7 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b">CreateDatabase()</a>, <a class="el" href="classdb__service_1_1DbService.html#ab036b334ad3f3d632d0d639703f5f1a7">db_service::DbService::Disconnect()</a>, and <a class="el" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a">DropDatabase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396">CreateDatabase()</a>, <a class="el" href="classdb__service_1_1DbService.html#ab036b334ad3f3d632d0d639703f5f1a7">db_service::DbService::Disconnect()</a>, and <a class="el" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c">DropDatabase()</a>.</p>
 <div id="dynsection-3" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-3-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-3-summary" class="dynsummary" style="display:block;">
@@ -729,11 +729,11 @@ Variables</h2></td></tr>
 <div class="center"><img src="namespacedb__common_a6792c7d97a64b6a7c3c1dd6a91822b94_icgraph.png" border="0" usemap="#anamespacedb__common_a6792c7d97a64b6a7c3c1dd6a91822b94_icgraph" alt=""/></div>
 <map name="anamespacedb__common_a6792c7d97a64b6a7c3c1dd6a91822b94_icgraph" id="anamespacedb__common_a6792c7d97a64b6a7c3c1dd6a91822b94_icgraph">
 <area shape="rect" title="Closes connection and reset conn_ptr." alt="" coords="483,63,665,88"/>
-<area shape="rect" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="220,5,435,31"/>
+<area shape="rect" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,5,435,31"/>
 <area shape="poly" title=" " alt="" coords="505,62,382,33,383,28,506,57"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#ab036b334ad3f3d632d0d639703f5f1a7" title=" " alt="" coords="244,55,411,95"/>
 <area shape="poly" title=" " alt="" coords="469,78,411,78,411,73,469,73"/>
-<area shape="rect" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="226,120,429,145"/>
+<area shape="rect" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,120,429,145"/>
 <area shape="poly" title=" " alt="" coords="506,94,383,123,382,117,505,89"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#ab7d77a75118ed06b69484369a27eaf7d" title=" " alt="" coords="5,55,172,95"/>
 <area shape="poly" title=" " alt="" coords="230,78,172,78,172,73,230,73"/>
@@ -742,8 +742,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aa2bb2083a8b193bfce7213152dfab03a" name="aa2bb2083a8b193bfce7213152dfab03a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa2bb2083a8b193bfce7213152dfab03a">&#9670;&#160;</a></span>DropDatabase()</h2>
+<a id="af8bd865a001ad0acf214bd6dd887214c" name="af8bd865a001ad0acf214bd6dd887214c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af8bd865a001ad0acf214bd6dd887214c">&#9670;&#160;</a></span>DropDatabase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -751,7 +751,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void db_common::DropDatabase </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a>&#160;</td>
           <td class="paramname"><em>c_string</em>, </td>
         </tr>
         <tr>
@@ -777,33 +777,33 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161">CheckDatabaseExistence()</a>, <a class="el" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94">Disconnect()</a>, <a class="el" href="structnetwork__types_1_1myConnString.html#a7115f3774c58d522dbb78de836826a89">network_types::myConnString::GetDbname()</a>, <a class="el" href="namespacedb__common.html#a2d8fca39b7d78c9826b6661cc651ac02">SampleTempDb</a>, <a class="el" href="structnetwork__types_1_1myConnString.html#a68c3f75b6c3f41b1742216b027d3537a">network_types::myConnString::SetDbname()</a>, <a class="el" href="namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b">TerminateAllDbConnections()</a>, and <a class="el" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c">TryConnect()</a>.</p>
+<p class="reference">References <a class="el" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161">CheckDatabaseExistence()</a>, <a class="el" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94">Disconnect()</a>, <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html#a81f148b32f22daeb2a810267c733c593">network_types::PostgreSQLCStr::GetDbname()</a>, <a class="el" href="namespacedb__common.html#a2d8fca39b7d78c9826b6661cc651ac02">SampleTempDb</a>, <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2">network_types::PostgreSQLCStr::SetDbname()</a>, <a class="el" href="namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b">TerminateAllDbConnections()</a>, and <a class="el" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b">TryConnect()</a>.</p>
 <div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-4-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-4-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespacedb__common_aa2bb2083a8b193bfce7213152dfab03a_cgraph.png" border="0" usemap="#anamespacedb__common_aa2bb2083a8b193bfce7213152dfab03a_cgraph" alt=""/></div>
-<map name="anamespacedb__common_aa2bb2083a8b193bfce7213152dfab03a_cgraph" id="anamespacedb__common_aa2bb2083a8b193bfce7213152dfab03a_cgraph">
+<div class="center"><img src="namespacedb__common_af8bd865a001ad0acf214bd6dd887214c_cgraph.png" border="0" usemap="#anamespacedb__common_af8bd865a001ad0acf214bd6dd887214c_cgraph" alt=""/></div>
+<map name="anamespacedb__common_af8bd865a001ad0acf214bd6dd887214c_cgraph" id="anamespacedb__common_af8bd865a001ad0acf214bd6dd887214c_cgraph">
 <area shape="rect" title="Drops specified database." alt="" coords="5,159,208,185"/>
-<area shape="rect" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="259,5,471,45"/>
-<area shape="poly" title=" " alt="" coords="119,157,175,108,214,80,255,55,270,48,272,53,257,60,217,84,179,112,123,161"/>
-<area shape="rect" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="274,70,457,95"/>
-<area shape="poly" title=" " alt="" coords="133,157,188,131,255,105,287,96,289,101,257,111,190,136,135,162"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a7115f3774c58d522dbb78de836826a89" title=" " alt="" coords="256,120,475,160"/>
+<area shape="rect" href="namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="263,5,475,45"/>
+<area shape="poly" title=" " alt="" coords="119,157,175,108,214,80,255,55,270,48,273,53,257,60,216,84,179,112,123,161"/>
+<area shape="rect" href="namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="278,70,461,95"/>
+<area shape="poly" title=" " alt="" coords="133,157,188,131,255,105,288,96,290,101,257,111,190,136,135,162"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#a81f148b32f22daeb2a810267c733c593" title=" " alt="" coords="256,120,483,160"/>
 <area shape="poly" title=" " alt="" coords="208,157,242,153,243,158,208,162"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a68c3f75b6c3f41b1742216b027d3537a" title=" " alt="" coords="256,184,475,224"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2" title=" " alt="" coords="256,184,483,224"/>
 <area shape="poly" title=" " alt="" coords="208,182,243,186,242,191,208,187"/>
-<area shape="rect" href="namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b" title="terminates all connections for the specified database" alt="" coords="260,248,471,288"/>
-<area shape="poly" title=" " alt="" coords="136,182,257,234,279,241,278,246,255,238,134,187"/>
-<area shape="rect" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="274,313,457,338"/>
+<area shape="rect" href="namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b" title="terminates all connections for the specified database" alt="" coords="264,248,475,288"/>
+<area shape="poly" title=" " alt="" coords="136,182,257,234,281,242,279,247,255,238,134,187"/>
+<area shape="rect" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="278,313,461,338"/>
 <area shape="poly" title=" " alt="" coords="121,183,175,239,214,271,257,298,277,306,274,311,255,302,211,275,172,243,117,187"/>
-<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="523,255,745,281"/>
-<area shape="poly" title=" " alt="" coords="425,310,560,281,561,286,426,315"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="525,305,743,345"/>
-<area shape="poly" title=" " alt="" coords="457,323,511,323,511,328,457,328"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="525,369,743,409"/>
-<area shape="poly" title=" " alt="" coords="420,336,537,364,535,369,419,341"/>
+<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="546,255,769,281"/>
+<area shape="poly" title=" " alt="" coords="433,310,579,281,580,286,435,315"/>
+<area shape="rect" href="classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="531,305,784,345"/>
+<area shape="poly" title=" " alt="" coords="461,323,517,323,517,328,461,328"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="544,369,771,409"/>
+<area shape="poly" title=" " alt="" coords="428,335,554,364,553,369,427,341"/>
 </map>
 </div>
 
@@ -886,8 +886,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a63997f364a5d2ceaa86be606eadfa546" name="a63997f364a5d2ceaa86be606eadfa546"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a63997f364a5d2ceaa86be606eadfa546">&#9670;&#160;</a></span>ExecuteTransaction()</h2>
+<a id="aa9e2ff021387a58a03679addf6a31073" name="aa9e2ff021387a58a03679addf6a31073"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa9e2ff021387a58a03679addf6a31073">&#9670;&#160;</a></span>ExecuteTransaction()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -913,7 +913,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const <a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a> &amp;&#160;</td>
           <td class="paramname"><em>conn_str</em>&#160;</td>
         </tr>
         <tr>
@@ -942,21 +942,21 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc">CheckConnection()</a>, <a class="el" href="structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931">network_types::myConnString::GetVerboseName()</a>, and <a class="el" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c">shared::info</a>.</p>
+<p class="reference">References <a class="el" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc">CheckConnection()</a>, <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c">network_types::PostgreSQLCStr::GetVerboseName()</a>, and <a class="el" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c">shared::info</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#a7af436a14081b629f40efa532dc32e22">FillDatabase()</a>, <a class="el" href="classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d">db_service::DbService::GetIteration()</a>, <a class="el" href="classdb__service_1_1DbService.html#a7477782eb3f2837dd055fcf4ace15410">db_service::DbService::GetNode()</a>, <a class="el" href="classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7">db_service::DbService::ListIterations()</a>, <a class="el" href="classdb__service_1_1DbService.html#a48a8ee09a064d463d4eb2a6f711ec1d9">db_service::DbService::ListLogs()</a>, <a class="el" href="classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64">db_service::DbService::ListNodes()</a>, <a class="el" href="classdb__service_1_1DbService.html#ac860534db4dc24ded12dd13527513090">db_service::DbService::Log()</a>, <a class="el" href="classdb__service_1_1DbService.html#a574ac0a565f490e1ce191df4deeae935">db_service::DbService::RegisterNode()</a>, <a class="el" href="classdb__service_1_1DbService.html#ab95a76cc6618e1458a7e650e7797f85b">db_service::DbService::UnregisterNode()</a>, and <a class="el" href="classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4">db_service::DbService::UpdateNodeStatus()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8">FillDatabase()</a>, <a class="el" href="classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d">db_service::DbService::GetIteration()</a>, <a class="el" href="classdb__service_1_1DbService.html#a7477782eb3f2837dd055fcf4ace15410">db_service::DbService::GetNode()</a>, <a class="el" href="classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7">db_service::DbService::ListIterations()</a>, <a class="el" href="classdb__service_1_1DbService.html#a48a8ee09a064d463d4eb2a6f711ec1d9">db_service::DbService::ListLogs()</a>, <a class="el" href="classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64">db_service::DbService::ListNodes()</a>, <a class="el" href="classdb__service_1_1DbService.html#ac860534db4dc24ded12dd13527513090">db_service::DbService::Log()</a>, <a class="el" href="classdb__service_1_1DbService.html#a574ac0a565f490e1ce191df4deeae935">db_service::DbService::RegisterNode()</a>, <a class="el" href="classdb__service_1_1DbService.html#ab95a76cc6618e1458a7e650e7797f85b">db_service::DbService::UnregisterNode()</a>, and <a class="el" href="classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4">db_service::DbService::UpdateNodeStatus()</a>.</p>
 <div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-6-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespacedb__common_a63997f364a5d2ceaa86be606eadfa546_cgraph.png" border="0" usemap="#anamespacedb__common_a63997f364a5d2ceaa86be606eadfa546_cgraph" alt=""/></div>
-<map name="anamespacedb__common_a63997f364a5d2ceaa86be606eadfa546_cgraph" id="anamespacedb__common_a63997f364a5d2ceaa86be606eadfa546_cgraph">
+<div class="center"><img src="namespacedb__common_aa9e2ff021387a58a03679addf6a31073_cgraph.png" border="0" usemap="#anamespacedb__common_aa9e2ff021387a58a03679addf6a31073_cgraph" alt=""/></div>
+<map name="anamespacedb__common_aa9e2ff021387a58a03679addf6a31073_cgraph" id="anamespacedb__common_aa9e2ff021387a58a03679addf6a31073_cgraph">
 <area shape="rect" title="Executes function in the form of transaction." alt="" coords="5,35,240,60"/>
-<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="288,5,511,31"/>
-<area shape="poly" title=" " alt="" coords="240,32,274,29,275,34,240,38"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="290,55,509,95"/>
-<area shape="poly" title=" " alt="" coords="240,57,277,60,276,66,240,62"/>
+<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="290,5,513,31"/>
+<area shape="poly" title=" " alt="" coords="240,32,276,29,276,34,241,38"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="288,55,515,95"/>
+<area shape="poly" title=" " alt="" coords="241,56,275,60,274,65,240,62"/>
 </map>
 </div>
 <div id="dynsection-7" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -964,10 +964,10 @@ Variables</h2></td></tr>
 <div id="dynsection-7-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-7-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespacedb__common_a63997f364a5d2ceaa86be606eadfa546_icgraph.png" border="0" usemap="#anamespacedb__common_a63997f364a5d2ceaa86be606eadfa546_icgraph" alt=""/></div>
-<map name="anamespacedb__common_a63997f364a5d2ceaa86be606eadfa546_icgraph" id="anamespacedb__common_a63997f364a5d2ceaa86be606eadfa546_icgraph">
+<div class="center"><img src="namespacedb__common_aa9e2ff021387a58a03679addf6a31073_icgraph.png" border="0" usemap="#anamespacedb__common_aa9e2ff021387a58a03679addf6a31073_icgraph" alt=""/></div>
+<map name="anamespacedb__common_aa9e2ff021387a58a03679addf6a31073_icgraph" id="anamespacedb__common_aa9e2ff021387a58a03679addf6a31073_icgraph">
 <area shape="rect" title="Executes function in the form of transaction." alt="" coords="251,287,485,312"/>
-<area shape="rect" href="namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="9,5,199,31"/>
+<area shape="rect" href="namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="9,5,199,31"/>
 <area shape="poly" title=" " alt="" coords="355,274,334,225,302,163,257,99,231,70,201,46,178,33,181,28,204,41,234,67,261,96,306,160,339,223,360,272"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d" title="Gets iteration using its id." alt="" coords="21,55,187,95"/>
 <area shape="poly" title=" " alt="" coords="350,276,325,239,291,195,249,149,201,110,179,98,182,93,204,105,253,145,295,191,330,236,354,273"/>
@@ -992,8 +992,8 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a7af436a14081b629f40efa532dc32e22" name="a7af436a14081b629f40efa532dc32e22"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7af436a14081b629f40efa532dc32e22">&#9670;&#160;</a></span>FillDatabase()</h2>
+<a id="a21f6a1e7b045cb777dd2373e8cb0dcf8" name="a21f6a1e7b045cb777dd2373e8cb0dcf8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a21f6a1e7b045cb777dd2373e8cb0dcf8">&#9670;&#160;</a></span>FillDatabase()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1001,7 +1001,7 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void db_common::FillDatabase </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a>&#160;</td>
+          <td class="paramtype"><a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a>&#160;</td>
           <td class="paramname"><em>c_string</em>, </td>
         </tr>
         <tr>
@@ -1027,27 +1027,27 @@ Variables</h2></td></tr>
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546">ExecuteTransaction()</a>, and <a class="el" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c">TryConnect()</a>.</p>
+<p class="reference">References <a class="el" href="namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073">ExecuteTransaction()</a>, and <a class="el" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b">TryConnect()</a>.</p>
 <div id="dynsection-8" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-8-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-8-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-8-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespacedb__common_a7af436a14081b629f40efa532dc32e22_cgraph.png" border="0" usemap="#anamespacedb__common_a7af436a14081b629f40efa532dc32e22_cgraph" alt=""/></div>
-<map name="anamespacedb__common_a7af436a14081b629f40efa532dc32e22_cgraph" id="anamespacedb__common_a7af436a14081b629f40efa532dc32e22_cgraph">
+<div class="center"><img src="namespacedb__common_a21f6a1e7b045cb777dd2373e8cb0dcf8_cgraph.png" border="0" usemap="#anamespacedb__common_a21f6a1e7b045cb777dd2373e8cb0dcf8_cgraph" alt=""/></div>
+<map name="anamespacedb__common_a21f6a1e7b045cb777dd2373e8cb0dcf8_cgraph" id="anamespacedb__common_a21f6a1e7b045cb777dd2373e8cb0dcf8_cgraph">
 <area shape="rect" title="Executes the script ot inidb." alt="" coords="5,46,196,71"/>
-<area shape="rect" href="namespacedb__common.html#a63997f364a5d2ceaa86be606eadfa546" title="Executes function in the form of transaction." alt="" coords="244,21,479,46"/>
+<area shape="rect" href="namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="244,21,479,46"/>
 <area shape="poly" title=" " alt="" coords="196,47,230,43,230,49,196,52"/>
-<area shape="rect" href="namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="270,70,453,95"/>
+<area shape="rect" href="namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="270,70,453,95"/>
 <area shape="poly" title=" " alt="" coords="196,65,257,70,256,76,196,70"/>
-<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="527,70,749,95"/>
-<area shape="poly" title=" " alt="" coords="434,43,553,65,552,70,433,49"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="529,5,747,45"/>
-<area shape="poly" title=" " alt="" coords="479,27,515,26,515,32,479,33"/>
-<area shape="poly" title=" " alt="" coords="453,80,513,80,513,85,453,85"/>
-<area shape="poly" title=" " alt="" coords="423,67,527,46,528,51,424,73"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="529,120,747,160"/>
-<area shape="poly" title=" " alt="" coords="424,93,528,115,527,120,423,98"/>
+<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="542,70,765,95"/>
+<area shape="poly" title=" " alt="" coords="438,43,564,65,563,70,437,49"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="540,5,767,45"/>
+<area shape="poly" title=" " alt="" coords="479,27,526,26,526,31,479,33"/>
+<area shape="poly" title=" " alt="" coords="453,80,528,80,528,85,453,85"/>
+<area shape="poly" title=" " alt="" coords="426,67,537,45,538,51,427,73"/>
+<area shape="rect" href="classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="527,120,780,160"/>
+<area shape="poly" title=" " alt="" coords="427,93,538,115,537,120,426,98"/>
 </map>
 </div>
 
@@ -1280,7 +1280,7 @@ template&lt;template&lt; typename ... &gt; typename VecT, typename RetType &gt; 
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>ResType for the specified terminate requests </dd></dl>
 
-<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a">DropDatabase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c">DropDatabase()</a>.</p>
 <div id="dynsection-10" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-10-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-10-summary" class="dynsummary" style="display:block;">
@@ -1289,15 +1289,15 @@ template&lt;template&lt; typename ... &gt; typename VecT, typename RetType &gt; 
 <div class="center"><img src="namespacedb__common_ae57400437000d615d8df1cfc6989fa5b_icgraph.png" border="0" usemap="#anamespacedb__common_ae57400437000d615d8df1cfc6989fa5b_icgraph" alt=""/></div>
 <map name="anamespacedb__common_ae57400437000d615d8df1cfc6989fa5b_icgraph" id="anamespacedb__common_ae57400437000d615d8df1cfc6989fa5b_icgraph">
 <area shape="rect" title="terminates all connections for the specified database" alt="" coords="256,5,467,45"/>
-<area shape="rect" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="5,13,208,38"/>
+<area shape="rect" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="5,13,208,38"/>
 <area shape="poly" title=" " alt="" coords="242,28,208,28,208,23,242,23"/>
 </map>
 </div>
 
 </div>
 </div>
-<a id="a7b82b734e1b13bfc00b839a3de0c8c0c" name="a7b82b734e1b13bfc00b839a3de0c8c0c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b82b734e1b13bfc00b839a3de0c8c0c">&#9670;&#160;</a></span>TryConnect()</h2>
+<a id="a6559f5b5a1af005a0cb696df5e4dc63b" name="a6559f5b5a1af005a0cb696df5e4dc63b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6559f5b5a1af005a0cb696df5e4dc63b">&#9670;&#160;</a></span>TryConnect()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1305,7 +1305,7 @@ template&lt;template&lt; typename ... &gt; typename VecT, typename RetType &gt; 
         <tr>
           <td class="memname"><a class="el" href="namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d">ConnPtr</a> db_common::TryConnect </td>
           <td>(</td>
-          <td class="paramtype">const <a class="el" href="structnetwork__types_1_1myConnString.html">myConnString</a> &amp;&#160;</td>
+          <td class="paramtype">const <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html">PostgreSQLCStr</a> &amp;&#160;</td>
           <td class="paramname"><em>conn_str</em>, </td>
         </tr>
         <tr>
@@ -1338,23 +1338,23 @@ template&lt;template&lt; typename ... &gt; typename VecT, typename RetType &gt; 
   </dd>
 </dl>
 
-<p class="reference">References <a class="el" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc">CheckConnection()</a>, <a class="el" href="structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2">network_types::myConnString::CStr()</a>, and <a class="el" href="structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931">network_types::myConnString::GetVerboseName()</a>.</p>
+<p class="reference">References <a class="el" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc">CheckConnection()</a>, <a class="el" href="classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8">network_types::AbstractConnectionString::CStr()</a>, and <a class="el" href="classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c">network_types::PostgreSQLCStr::GetVerboseName()</a>.</p>
 
-<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b">CreateDatabase()</a>, <a class="el" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a">DropDatabase()</a>, <a class="el" href="namespacedb__common.html#a7af436a14081b629f40efa532dc32e22">FillDatabase()</a>, and <a class="el" href="classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9">db_service::DbService::Reconnect()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396">CreateDatabase()</a>, <a class="el" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c">DropDatabase()</a>, <a class="el" href="namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8">FillDatabase()</a>, and <a class="el" href="classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9">db_service::DbService::Reconnect()</a>.</p>
 <div id="dynsection-11" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-11-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
 <div id="dynsection-11-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-11-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_cgraph.png" border="0" usemap="#anamespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_cgraph" alt=""/></div>
-<map name="anamespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_cgraph" id="anamespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_cgraph">
+<div class="center"><img src="namespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_cgraph.png" border="0" usemap="#anamespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_cgraph" alt=""/></div>
+<map name="anamespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_cgraph" id="anamespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_cgraph">
 <area shape="rect" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="5,63,188,88"/>
-<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="236,5,459,31"/>
-<area shape="poly" title=" " alt="" coords="152,60,235,41,277,31,278,36,237,46,154,65"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2" title=" " alt="" coords="238,55,457,95"/>
-<area shape="poly" title=" " alt="" coords="188,73,224,73,224,78,188,78"/>
-<area shape="rect" href="structnetwork__types_1_1myConnString.html#a487d42550b503cf8ec897973c41fc931" title=" " alt="" coords="238,119,457,159"/>
-<area shape="poly" title=" " alt="" coords="148,86,256,113,254,118,147,91"/>
+<area shape="rect" href="namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="251,5,474,31"/>
+<area shape="poly" title=" " alt="" coords="151,60,235,41,283,31,284,36,237,46,152,65"/>
+<area shape="rect" href="classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="236,55,489,95"/>
+<area shape="poly" title=" " alt="" coords="188,73,222,73,222,78,188,78"/>
+<area shape="rect" href="classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="249,119,476,159"/>
+<area shape="poly" title=" " alt="" coords="151,86,266,114,265,119,150,91"/>
 </map>
 </div>
 <div id="dynsection-12" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -1362,14 +1362,14 @@ template&lt;template&lt; typename ... &gt; typename VecT, typename RetType &gt; 
 <div id="dynsection-12-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-12-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="namespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_icgraph.png" border="0" usemap="#anamespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_icgraph" alt=""/></div>
-<map name="anamespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_icgraph" id="anamespacedb__common_a7b82b734e1b13bfc00b839a3de0c8c0c_icgraph">
+<div class="center"><img src="namespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_icgraph.png" border="0" usemap="#anamespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_icgraph" alt=""/></div>
+<map name="anamespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_icgraph" id="anamespacedb__common_a6559f5b5a1af005a0cb696df5e4dc63b_icgraph">
 <area shape="rect" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="483,80,665,105"/>
-<area shape="rect" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b" title="Creates database with db_name." alt="" coords="220,5,435,31"/>
+<area shape="rect" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,5,435,31"/>
 <area shape="poly" title=" " alt="" coords="528,77,434,45,391,33,392,28,435,39,530,72"/>
-<area shape="rect" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a" title="Drops specified database." alt="" coords="226,55,429,80"/>
+<area shape="rect" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,55,429,80"/>
 <area shape="poly" title=" " alt="" coords="469,85,428,80,429,75,469,79"/>
-<area shape="rect" href="namespacedb__common.html#a7af436a14081b629f40efa532dc32e22" title="Executes the script ot inidb." alt="" coords="232,104,423,129"/>
+<area shape="rect" href="namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="232,104,423,129"/>
 <area shape="poly" title=" " alt="" coords="469,106,423,110,423,105,469,100"/>
 <area shape="rect" href="classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,154,411,194"/>
 <area shape="poly" title=" " alt="" coords="525,112,436,143,395,156,393,151,434,138,523,107"/>
@@ -1757,7 +1757,7 @@ template&lt;template&lt; typename ... &gt; typename VecT, typename RetType &gt; 
 </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#a71f8404357e44abb7d987936256f445b">CreateDatabase()</a>, and <a class="el" href="namespacedb__common.html#aa2bb2083a8b193bfce7213152dfab03a">DropDatabase()</a>.</p>
+<p class="reference">Referenced by <a class="el" href="namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396">CreateDatabase()</a>, and <a class="el" href="namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c">DropDatabase()</a>.</p>
 
 </div>
 </div>

@@ -25,7 +25,7 @@ var searchData=
   ['consumemessages_22',['consumeMessages',['../namespaceamqp__common.html#a188c2b1c35d101739fabab009affee71',1,'amqp_common']]],
   ['contains_23',['contains',['../classtiming_1_1ClockArray.html#a7f60b4fb167478c3837c8e07502d8e6e',1,'timing::ClockArray::contains()'],['../classfile__utils_1_1fileHandler.html#af4843e3c2e96a428f9c92b3aa1feb0bd',1,'file_utils::fileHandler::Contains()']]],
   ['continuoustojson_24',['continuoustojson',['../namespaceprint__utils.html#a2277232e6ddf475b576f77cd15d1b1e2',1,'print_utils::ContinuousToJson(const Struct &amp;col, bool print_size, bool sizeless_format)'],['../namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21',1,'print_utils::ContinuousToJson(const Collection &amp;col, bool print_size=true, bool sizeless_format=false)']]],
-  ['createdatabase_25',['CreateDatabase',['../namespacedb__common.html#a71f8404357e44abb7d987936256f445b',1,'db_common']]],
+  ['createdatabase_25',['CreateDatabase',['../namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396',1,'db_common']]],
   ['createdirifnotpresent_26',['CreateDirIfNotPresent',['../namespacefile__utils.html#a3873018bf321fc08c54a705588e19962',1,'file_utils']]],
   ['createenumtostrmap_27',['CreateEnumToStrMap',['../namespaceenum__utils.html#add13783fa2441e8f2a665a6304c56996',1,'enum_utils']]],
   ['createenumtotypemap_28',['CreateEnumToTypeMap',['../namespaceenum__utils.html#ace0938be66f4dafd66ac1a6e0610e023',1,'enum_utils']]],
@@ -36,7 +36,7 @@ var searchData=
   ['createqueue_33',['CreateQueue',['../classamqp__common_1_1RabbitMQRestService.html#a9b714b1aa690ffd54bcb2f3200103a96',1,'amqp_common::RabbitMQRestService']]],
   ['createstrtoenummap_34',['CreateStrToEnumMap',['../namespaceenum__utils.html#accf3de571bd15912191c8f71e9b5e9db',1,'enum_utils']]],
   ['createuser_35',['createuser',['../classdb__service_1_1DbService.html#acbdd41dae291528c683bb701f057cbda',1,'db_service::DbService::CreateUser(const User &amp;user)'],['../classdb__service_1_1DbService.html#a576eecc67963fdbc8839724aee1aecb3',1,'db_service::DbService::CreateUser(std::string_view login, std::string_view password, std::string_view role=&quot;user&quot;)'],['../classamqp__common_1_1RabbitMQRestService.html#a5e860706d253929a517dc523507e9365',1,'amqp_common::RabbitMQRestService::CreateUser()']]],
-  ['cstr_36',['CStr',['../structnetwork__types_1_1myConnString.html#a2fc670b41f47ccf1e41bbfe65e22cbc2',1,'network_types::myConnString']]],
+  ['cstr_36',['CStr',['../classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8',1,'network_types::AbstractConnectionString']]],
   ['curlerror_37',['CurlError',['../classshared_1_1CurlError.html#a52a51c07950449ccaa7ced57ccdf09b2',1,'shared::CurlError']]],
   ['curlwrapper_38',['CurlWrapper',['../classrest__utils_1_1CurlWrapper.html#af3838348605721787cc0ca3fbb4bfe72',1,'rest_utils::CurlWrapper']]]
 ];

@@ -59,12 +59,14 @@ var annotated_dup =
       [ "is_specialization_of< C< Args... >, C >", "structmy__concepts_1_1is__specialization__of_3_01C_3_01Args_8_8_8_01_4_00_01C_01_4.html", null ]
     ] ],
     [ "network_types", "namespacenetwork__types.html", [
+      [ "AbstractConnectionString", "classnetwork__types_1_1AbstractConnectionString.html", "classnetwork__types_1_1AbstractConnectionString" ],
+      [ "AMQPSQLCStr", "classnetwork__types_1_1AMQPSQLCStr.html", "classnetwork__types_1_1AMQPSQLCStr" ],
       [ "channel", "structnetwork__types_1_1channel.html", "structnetwork__types_1_1channel" ],
       [ "connection", "structnetwork__types_1_1connection.html", "structnetwork__types_1_1connection" ],
       [ "exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
       [ "global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
       [ "message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
-      [ "myConnString", "structnetwork__types_1_1myConnString.html", "structnetwork__types_1_1myConnString" ],
+      [ "PostgreSQLCStr", "classnetwork__types_1_1PostgreSQLCStr.html", "classnetwork__types_1_1PostgreSQLCStr" ],
       [ "queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
       [ "queueBinding", "structnetwork__types_1_1queueBinding.html", "structnetwork__types_1_1queueBinding" ],
       [ "rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],

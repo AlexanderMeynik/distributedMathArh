@@ -28,7 +28,7 @@ var searchData=
   ['tptostring_25',['TpToString',['../namespacetiming.html#a0d7753adba6505b56d14db0e424a01d5',1,'timing']]],
   ['trace_26',['TRACE',['../namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3a2d3e4144aa384b18849ab9a8abad74d6',1,'network_types']]],
   ['transactiont_27',['TransactionT',['../namespacedb__common.html#ae879f5fb9e426f5e75e92cae51316d72',1,'db_common']]],
-  ['tryconnect_28',['TryConnect',['../namespacedb__common.html#a7b82b734e1b13bfc00b839a3de0c8c0c',1,'db_common']]],
+  ['tryconnect_28',['TryConnect',['../namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b',1,'db_common']]],
   ['tupletostring_29',['TupleToString',['../namespaceprint__utils.html#ae4a7829e4fa46541e13b8b23db463823',1,'print_utils']]],
   ['twodvecdifference_30',['TwoDVecDifference',['../classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1',1,'dipoles::Dipoles']]],
   ['type_31',['type',['../namespacecommon__types.html#a0b82b15b67fc52453b02dfb14d181eec',1,'common_types::returnToDataTypeT&lt; ReturnType::STD_VECTOR &gt;::Type'],['../structnetwork__types_1_1exchange.html#aff226f84376759425fef19a3319374d0',1,'network_types::exchange::type'],['../namespacecommon__types.html#a04a4aa105b8e99fc8ac7db0eb4f45b5b',1,'common_types::returnToDataTypeT&lt; ReturnType::ARRAY_EIGEN_VECTORS &gt;::Type'],['../namespacecommon__types.html#ae1406dd858ef66935e3c37229015745b',1,'common_types::returnToDataTypeT&lt; ReturnType::STD_VALARRAY &gt;::Type'],['../namespacecommon__types.html#a48772a96b625061df69cdb0bc39b43a7',1,'common_types::returnToDataTypeT&lt; ReturnType::EIGEN_VECTOR &gt;::Type']]],

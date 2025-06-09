@@ -1,0 +1,5 @@
+<map id="network_types::PostgreSQLCStr::GetUser" name="network_types::PostgreSQLCStr::GetUser">
+<area shape="rect" id="Node000001" title=" " alt="" coords="268,5,495,45"/>
+<area shape="rect" id="Node000002" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="5,13,220,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="255,28,220,28,220,23,255,23"/>
+</map>
