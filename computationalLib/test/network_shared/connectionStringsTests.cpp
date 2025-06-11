@@ -5,19 +5,13 @@
 
 using namespace network_types;
 
-/*
-using Ptype=std::tuple<PostgreSQLCStr>;
-class PostgreSQLCStrTests : public ::testing::TestWithParam<Ptype> {
+
+class ParsingTests : public ::testing::Test {
  public:
 
 };
 
-INSTANTIATE_TEST_SUITE_P(
-    ValidatePrintParse, PostgreSQLCStrTests,
-    ::testing::Values({PostgreSQLCStr("user","pass","host",5432)}),
-    TupleToString<PostgreSQLCStrTests>));*/
-
-TEST(PostgreSQLCStrTests,TestPrintParse)
+TEST_F(ParsingTests,PostgreSQLCStrTest)
 {
   PostgreSQLCStr tt("user","pass","host","dbname",5433);
 
@@ -26,16 +20,16 @@ TEST(PostgreSQLCStrTests,TestPrintParse)
   PostgreSQLCStr tt2;
   tt2.FromString(str);
 
+
   ASSERT_EQ(tt,tt2)<<fmt::format("PostgrSQL strings are different s1="
                                  "\"{}\", s2= \"{}\"",
                                  tt.CStr(),
                                  tt2.CStr());
 }
 
-
-TEST(AMQPSQLCStrTest,TestPrintParse)
+TEST_F(ParsingTests,AMQPSQLCStrTest)
 {
-  AMQPSQLCStr tt("user","pass","host:12", true);
+  AMQPSQLCStr tt("host:12","user","pass", true);
 
   auto str=tt.CStr();
 

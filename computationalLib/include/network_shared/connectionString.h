@@ -8,6 +8,13 @@
 /// Namespace for network related types
 namespace network_types {
 
+/**
+ * @brief Replaces all url delimiters with spaces for scanf parsing
+ * @param url
+ * @see  PostgreSQLCStr::FromString
+ * @see  AMQPSQLCStr::FromString
+ */
+std::string UrlDecode(std::string_view url);
 
 /// us it for verbose names
 /**

@@ -173,6 +173,7 @@ DEFINE_EXCEPTION_IN(Broken_Connection, "Service {} is unable to connect to {}!",
 
 using ScanErrorCode = decltype(scn::scan_error::code::value_negative_overflow);
 
+
 static inline const char* ScanErrorCodeToString(ScanErrorCode c) {
   switch (c) {
     case scn::scan_error::end_of_input: return "end_of_input";
@@ -192,11 +193,6 @@ static inline const char* ScanErrorCodeToString(ScanErrorCode c) {
 }
 
 
-
-/*auto format_as(ScanErrorCode c)
-{
-  return fmt::format_to(ctx.out(), "{}", ScanErrorCodeToString(c));
-}*/
 
 /**
  * @brief ScanningError error class

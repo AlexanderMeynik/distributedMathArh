@@ -61,7 +61,10 @@ std::string PostgreSQLCStr::GetVerboseName() const {
 
 
 void PostgreSQLCStr::FromString(std::string_view s) {
-  auto res=scn::scan<std::string, std::string,std::string,uint,std::string>(s, "postgresql://{}:{}@{}:{}/{}");
+  auto tt= UrlDecode(s);
+  auto res=scn::scan
+      <std::string, std::string,std::string,uint,std::string>
+      (tt, "postgresql   {} {} {} {} {}");
 
   if(!res.has_value()) {
     throw shared::ScanningError(res.error().code(),res.error().msg());
@@ -136,16 +139,28 @@ std::string AMQPSQLCStr::GetVerboseName() const {
 }
 
 void AMQPSQLCStr::FromString(std::string_view s) {
-  char c;
-  auto res=scn::scan<char, std::string,std::string,std::string>(s, "amqp{}://{}:{}@{}/");
+  std::string c,port;
+  auto tt= UrlDecode(s);
+  auto res=scn::scan<std::string, std::string,std::string,std::string,std::string>(tt, "{}   {} {} {} {} ");
   if(!res.has_value()) {
     throw shared::ScanningError(res.error().code(),res.error().msg());
   }
-  std::tie(c,user_, password_, host_port_) =res->values();
-
-  secure_==(c=='s');
+  std::tie(c,user_, password_,host_port_,port) =res->values();
+  host_port_.append(":").append(port);
+  secure_==(c=="amqps");
 
   UpdateFormat();
 
+}
+std::string UrlDecode(std::string_view url) {
+  constexpr const char *kDelimiters = "/@:?&=#";
+  std::string result(url);
+  std::replace_if(result.begin(), result.end(),
+                  [](char c) {
+                    return std::find(kDelimiters, kDelimiters + strlen(kDelimiters), c)
+                        != kDelimiters + strlen(kDelimiters);
+                  },
+                  ' ');
+  return result;
 }
 }
