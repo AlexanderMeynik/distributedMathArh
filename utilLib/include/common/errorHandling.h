@@ -36,6 +36,8 @@ private: \
 #include <tuple>
 
 #include <fmt/format.h>
+
+#include <scn/scan.h>
 #include "parallelUtils/timingUtils.h"
 
 /**
@@ -167,5 +169,56 @@ DEFINE_EXCEPTION_IN(Already_Connected, "Service {} is already connected to {}!",
  * @details Use case: some thing cannot connect to some other thing
  */
 DEFINE_EXCEPTION_IN(Broken_Connection, "Service {} is unable to connect to {}!", std::string, std::string)
+
+
+using ScanErrorCode = decltype(scn::scan_error::code::value_negative_overflow);
+
+static inline const char* ScanErrorCodeToString(ScanErrorCode c) {
+  switch (c) {
+    case scn::scan_error::end_of_input: return "end_of_input";
+    case scn::scan_error::invalid_format_string: return "invalid_format_string";
+    case scn::scan_error::invalid_scanned_value: return "invalid_scanned_value";
+    case scn::scan_error::invalid_literal: return "invalid_literal";
+    case scn::scan_error::invalid_fill: return "invalid_fill";
+    case scn::scan_error::length_too_short: return "length_too_short";
+    case scn::scan_error::invalid_source_state: return "invalid_source_state";
+    case scn::scan_error::value_positive_overflow: return "value_positive_overflow";
+    case scn::scan_error::value_negative_overflow: return "value_negative_overflow";
+    case scn::scan_error::value_positive_underflow: return "value_positive_underflow";
+    case scn::scan_error::value_negative_underflow: return "value_negative_underflow";
+    case scn::scan_error::max_error: return "max_error";
+    default: return "unknown_error";
+  }
+}
+
+
+
+/*auto format_as(ScanErrorCode c)
+{
+  return fmt::format_to(ctx.out(), "{}", ScanErrorCodeToString(c));
+}*/
+
+/**
+ * @brief ScanningError error class
+ * @details Use case: something went bad when using scn::scan
+ */
+DEFINE_EXCEPTION_IN(ScanningError, "Scanning error! Reason = \"{}\" Message = \"{}\"!",
+                    ScanErrorCode, std::string)
+
+
+}
+
+namespace fmt {
+using shared::ScanErrorCode;
+using shared::ScanErrorCodeToString;
+template<>
+struct formatter<ScanErrorCode> : formatter<string_view> {
+  // parse is inherited from formatter<string_view>.
+
+  auto format(ScanErrorCode c, format_context &ctx) const
+  -> format_context::iterator {
+    return formatter<string_view>::format(ScanErrorCodeToString(c), ctx);
+  }
+};
 }
 

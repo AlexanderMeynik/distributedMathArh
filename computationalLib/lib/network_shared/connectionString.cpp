@@ -1,7 +1,8 @@
 #include "network_shared/connectionString.h"
-#include <fmt/format.h>
 
 namespace network_types {
+
+PostgreSQLCStr::PostgreSQLCStr() : port_(5432) {}
 
 PostgreSQLCStr::PostgreSQLCStr(std::string_view user,
                                std::string_view password,
@@ -58,6 +59,19 @@ std::string PostgreSQLCStr::GetVerboseName() const {
   return fmt::format("{}:{} db:{}", host_, port_, dbname_);
 }
 
+
+void PostgreSQLCStr::FromString(std::string_view s) {
+  auto res=scn::scan<std::string, std::string,std::string,uint,std::string>(s, "postgresql://{}:{}@{}:{}/{}");
+
+  if(!res.has_value()) {
+    throw shared::ScanningError(res.error().code(),res.error().msg());
+  }
+  std::tie(user_, password_, host_, port_, dbname_) =
+      res->values();
+
+  UpdateFormat();
+}
+
 AbstractConnectionString::operator std::string() {
   return formatted_string_;
 }
@@ -74,12 +88,7 @@ bool AbstractConnectionString::operator==(const AbstractConnectionString &rhs) c
   return formatted_string_ == rhs.formatted_string_;
 }
 
-void AMQPSQLCStr::UpdateFormat() {
-  formatted_string_ = fmt::format("amqp{}://{}:{}@{}/", (secure_ ? "s" : ""), user_, password_, host_port_);
-}
-std::string AMQPSQLCStr::GetVerboseName() const {
-  return fmt::format("{} secure:{}", host_port_, std::to_string(secure_));
-}
+
 AMQPSQLCStr::AMQPSQLCStr(const std::string &host_port,
                          const std::string &user,
                          const std::string &password,
@@ -118,5 +127,25 @@ bool AMQPSQLCStr::IsSecure() const {
 void AMQPSQLCStr::SetSecure(bool secure) {
   secure_ = secure;
   UpdateFormat();
+}
+void AMQPSQLCStr::UpdateFormat() {
+  formatted_string_ = fmt::format("amqp{}://{}:{}@{}/", (secure_ ? "s" : ""), user_, password_, host_port_);
+}
+std::string AMQPSQLCStr::GetVerboseName() const {
+  return fmt::format("{} secure:{}", host_port_, std::to_string(secure_));
+}
+
+void AMQPSQLCStr::FromString(std::string_view s) {
+  char c;
+  auto res=scn::scan<char, std::string,std::string,std::string>(s, "amqp{}://{}:{}@{}/");
+  if(!res.has_value()) {
+    throw shared::ScanningError(res.error().code(),res.error().msg());
+  }
+  std::tie(c,user_, password_, host_port_) =res->values();
+
+  secure_==(c=='s');
+
+  UpdateFormat();
+
 }
 }

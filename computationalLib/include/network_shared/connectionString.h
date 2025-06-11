@@ -2,11 +2,14 @@
 
 #include <string_view>
 #include <string>
+#include "common/errorHandling.h"
+
 
 /// Namespace for network related types
 namespace network_types {
-/// us it for verbose names
 
+
+/// us it for verbose names
 /**
  * @brief Default interfacer for the connection strings
  */
@@ -14,6 +17,12 @@ class AbstractConnectionString {
  public:
 
   AbstractConnectionString() = default;
+
+  /**
+   * @brief Parses fields from std::string_view
+   * @param s
+   */
+  virtual void FromString(std::string_view s)=0;
   /**
    * @brief explicit std::string type cast
    */
@@ -46,7 +55,9 @@ class AbstractConnectionString {
 */
 class PostgreSQLCStr : public AbstractConnectionString {
  public:
-  PostgreSQLCStr() : port_(5432) {}
+  PostgreSQLCStr();
+
+  void FromString(std::string_view s) override;
 
   PostgreSQLCStr(std::string_view user,
                  std::string_view password,
@@ -87,10 +98,14 @@ class PostgreSQLCStr : public AbstractConnectionString {
 */
 class AMQPSQLCStr : public AbstractConnectionString {
  public:
+  AMQPSQLCStr()=default;
+
   AMQPSQLCStr(const std::string &host_port,
               const std::string &user,
               const std::string &password,
               bool secure);
+
+  void FromString(std::string_view s) override;
 
   [[nodiscard]] std::string GetVerboseName() const;
 
