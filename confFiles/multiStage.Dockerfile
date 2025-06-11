@@ -71,6 +71,13 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
+RUN git clone https://github.com/eliaskosunen/scnlib && \
+    cd scnlib/ && \
+    git reset --hard e937be1a52588621b406d58ce8614f96bb5de747 && \
+    cmake -DBUILD_TESTING=OFF -G Ninja .. && \
+    cmake --build . && \
+    ninja install
+
 FROM ubuntu:22.04 as base_env
 COPY --from=build /usr /usr
 COPY --from=build /etc /etc
