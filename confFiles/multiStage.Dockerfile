@@ -71,9 +71,11 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
-RUN git clone https://github.com/eliaskosunen/scnlib && \
+RUN cd /home/deps && \
+    git clone https://github.com/eliaskosunen/scnlib && \
     cd scnlib/ && \
     git reset --hard e937be1a52588621b406d58ce8614f96bb5de747 && \
+    mkdir build&&cd build && \
     cmake -DBUILD_TESTING=OFF -G Ninja .. && \
     cmake --build . && \
     ninja install
