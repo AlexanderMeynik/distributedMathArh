@@ -1,10 +1,5 @@
-
-
 #include <iomanip>
 #include "network_shared/AMQPPublisherService.h"
-
-#include <fmt/format.h>
-#include <json/json.h>
 
 ///amqpCommon namespace
 using namespace amqp_common;

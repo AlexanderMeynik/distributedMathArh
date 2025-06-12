@@ -1,13 +1,12 @@
 #pragma once
 
-#include <string>
 #include <memory>
+
+#include "common/errorHandling.h"
 
 #include <json/json.h>
 #include <curl/curl.h>
-#include <unordered_map>
 
-#include "common/errorHandling.h"
 /// Namespace for httpr rest utilities
 namespace rest_utils {
 class AuthHandler;

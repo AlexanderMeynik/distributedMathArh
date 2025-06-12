@@ -4,10 +4,8 @@
 #include <map>
 #include <stack>
 #include <mutex>
-#include <thread>
 
 #include "parallelUtils/timingUtils.h"
-
 
 /// timing namespace
 namespace timing {
@@ -50,14 +48,7 @@ class ClockArray {
   /**
    * @brief resets timer value for one timer
    */
-  void ResetTimer(const LocationType &location) {
-    const GuardType kGuard{s_mutex_};
-    //auto id = sourceTypeConverter(location);
-
-    if (timers_.contains(location)) {
-      timers_.erase(location);
-    }
-  }
+  void ResetTimer(const LocationType &location);
 
   /**
    * This function starts new calculation section
@@ -136,25 +127,13 @@ class ClockArray {
     return timers_[loc];
   }
 
-  [[nodiscard]] bool contains(const LocationType &loc) const {
-    return timers_.contains(loc);
-  }
+  [[nodiscard]] bool contains(const LocationType &loc) const;
 
   /**
    * @brief adds up all timers from other timer current timer
    * @param other
    */
-  void advance(ClockArray &other) {
-
-    for (auto &otherclk : other) {
-      if (this->contains(otherclk.first)) {
-        this->timers_[otherclk.first].time += otherclk.second.time;
-        this->timers_[otherclk.first].count += otherclk.second.count;
-      } else {
-        this->timers_[otherclk.first] = otherclk.second;
-      }
-    }
-  }
+  void advance(ClockArray &other);
 
  private:
   std::map<LocationType, timeStore, LocationComparator> timers_;
@@ -211,11 +190,58 @@ template<typename OutType, typename inType, inType (*timeGetter)(), LocationType
     std::source_location), OutType (*timeConverter)(inType, inType)>
 requires std::is_floating_point_v<OutType> or std::is_integral_v<OutType>void
 ClockArray<OutType, inType, timeGetter, sourceTypeConverter, timeConverter>::Reset() {
-  GuardType kGuard{s_mutex_};
+  GuardType k_guard{s_mutex_};
   if (!to_tak_.empty()) {
     throw std::logic_error("Missing Tak statements for Tik ones");
   }
   this->timers_.clear();
   this->start_ing_timers_.clear();
 }
+
+template<typename OutType, typename inType, inType (*timeGetter)(), LocationType (*sourceTypeConverter)(std::source_location), OutType (*timeConverter)(
+    inType,
+    inType)>
+requires std::is_floating_point_v<OutType>
+    or std::is_integral_v<OutType>void ClockArray<OutType,
+                                                  inType,
+                                                  timeGetter,
+                                                  sourceTypeConverter,
+                                                  timeConverter>::ResetTimer(const LocationType &location) {
+  const GuardType kGuard{s_mutex_};
+
+  if (timers_.contains(location)) {
+    timers_.erase(location);
+  }
+}
+template<typename OutType, typename inType, inType (*timeGetter)(), LocationType (*sourceTypeConverter)(std::source_location), OutType (*timeConverter)(
+    inType,
+    inType)>
+requires std::is_floating_point_v<OutType>
+    or std::is_integral_v<OutType>bool ClockArray<OutType,
+                                                  inType,
+                                                  timeGetter,
+                                                  sourceTypeConverter,
+                                                  timeConverter>::contains(const LocationType &loc) const {
+  return timers_.contains(loc);
+}
+template<typename OutType, typename inType, inType (*timeGetter)(), LocationType (*sourceTypeConverter)(std::source_location), OutType (*timeConverter)(
+    inType,
+    inType)>
+requires std::is_floating_point_v<OutType>
+    or std::is_integral_v<OutType>void ClockArray<OutType,
+                                                  inType,
+                                                  timeGetter,
+                                                  sourceTypeConverter,
+                                                  timeConverter>::advance(ClockArray &other) {
+
+  for (auto &other_clk : other) {
+    if (this->contains(other_clk.first)) {
+      this->timers_[other_clk.first].time += other_clk.second.time;
+      this->timers_[other_clk.first].count += other_clk.second.count;
+    } else {
+      this->timers_[other_clk.first] = other_clk.second;
+    }
+  }
+}
+
 }

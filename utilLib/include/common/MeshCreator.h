@@ -1,12 +1,9 @@
 #pragma once
 
-#include <iosfwd>
-#include <optional>
-
-#include <boost/math/quadrature/gauss_kronrod.hpp>
-
 #include "common/commonTypes.h"
 #include "common/printUtils.h"
+
+#include <boost/math/quadrature/gauss_kronrod.hpp>
 
 namespace mesh_storage {
 namespace co = common_types;

@@ -1,9 +1,9 @@
 #pragma once
+
 #include <chrono>
 #include <string>
 #include <optional>
 #include <source_location>
-#include <array>
 
 #include "common/myConcepts.h"
 

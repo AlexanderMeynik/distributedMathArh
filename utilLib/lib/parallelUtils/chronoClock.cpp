@@ -1,6 +1,7 @@
 #include "parallelUtils/chronoClock.h"
-
+#include <thread>
 #include <sstream>
+
 /// chrono_clock namespace
 namespace chrono_clock {
 

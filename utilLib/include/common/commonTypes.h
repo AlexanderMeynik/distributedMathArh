@@ -1,8 +1,5 @@
 #pragma once
 
-#include <vector>
-#include <array>
-#include <valarray>
 #include <variant>
 
 #include <eigen3/Eigen/Dense>

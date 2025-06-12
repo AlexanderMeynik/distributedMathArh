@@ -1,13 +1,10 @@
 #pragma once
 
-#include <algorithm>
+#include "common/Parsers.h"
+#include "common/Printers.h"
 
 #include <drogon/HttpClient.h>
 #include <drogon/HttpRequest.h>
-
-#include "common/sharedDeclarations.h"
-#include "common/Parsers.h"
-#include "common/Printers.h"
 
 /// Namespace for services used in main node
 namespace main_services {

@@ -1,6 +1,5 @@
 #pragma once
 #include "network_shared/dbCommon.h"
-#include <pqxx/pqxx>
 
 namespace db_common
 {

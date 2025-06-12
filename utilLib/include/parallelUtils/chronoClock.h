@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ClockArray.h"
-#include <chrono>
+
 /// chronoClock namespace
 namespace chrono_clock {
 

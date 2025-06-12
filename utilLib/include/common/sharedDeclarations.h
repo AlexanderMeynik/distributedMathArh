@@ -1,6 +1,7 @@
 #pragma once
 
 #include <valarray>
+
 #include "enumUtils.h"
 
 /**

@@ -1,10 +1,7 @@
 #pragma once
 
 #include "daoClasses.h"
-#include <string>
 #include <memory>
-#include <vector>
-#include <json/json.h>
 
 /// Namespace that contains database services
 namespace db_service {

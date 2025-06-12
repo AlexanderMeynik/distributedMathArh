@@ -1,4 +1,3 @@
-#include <drogon/drogon.h>
 #include <controller/CompNode.h>
 
 using namespace drogon;

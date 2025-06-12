@@ -6,12 +6,10 @@
 #include <numeric>
 #include <fstream>
 #include <iomanip>
-#include <optional>
 
 #include <json/json.h>
 
 #include "common/MeshCreator.h"
-#include "common/myConcepts.h"
 
 /// printUtils namespace
 namespace print_utils {

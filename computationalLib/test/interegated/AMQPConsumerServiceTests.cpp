@@ -1,7 +1,4 @@
-#include <gtest/gtest.h>
-
 #include "network_shared/AMQPConsumerService.h"
-#include "network_shared/AMQPPublisherService.h"
 #include "network_shared/amqpRestService.h"
 #include "../GoogleCommon.h"
 

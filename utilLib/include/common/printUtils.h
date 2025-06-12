@@ -2,14 +2,11 @@
 
 #define EIGENF(form) kEnumToEigenFormatMap.at(form)
 
-#include <iosfwd>
 #include <limits>
 #include <string_view>
 
 #include <eigen3/Eigen/Dense>
 #include "common/sharedDeclarations.h"
-#include "common/errorHandling.h"
-#include "common/enumUtils.h"
 
 /// printUtils namespace
 namespace print_utils {

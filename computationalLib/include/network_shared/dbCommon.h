@@ -1,10 +1,10 @@
 #pragma once
 
-#include <pqxx/pqxx>
 #include "common/Printers.h"
 #include "common/Parsers.h"
-#include "parallelUtils/timingUtils.h"
 #include "network_shared/connectionString.h"
+
+#include <pqxx/pqxx>
 
 /// Namespace that contains database related utils
 namespace db_common {

@@ -1,6 +1,4 @@
-
 #include "network_shared/AMQPConsumerService.h"
-#include <thread>
 
 static volatile std::sig_atomic_t signalReceived = 0;
 

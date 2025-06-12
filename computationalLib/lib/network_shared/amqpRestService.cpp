@@ -1,7 +1,5 @@
 #include "network_shared/amqpRestService.h"
 #include <sstream>
-#include "common/errorHandling.h"
-
 
 ///amqpCommon namespace
 namespace amqp_common {

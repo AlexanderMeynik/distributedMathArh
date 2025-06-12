@@ -1,5 +1,15 @@
 #pragma once
 
+#include <stdexcept>
+#include <unordered_map>
+#include <tuple>
+
+#include <fmt/format.h>
+#include <scn/scan.h>
+
+#include "parallelUtils/timingUtils.h"//< todo for source location
+
+
 #define DEFINE_EXCEPTION(Name, fmt_str, severity, ...) \
 class Name : public MyException { \
 public: \
@@ -29,15 +39,6 @@ private: \
 #define STR(cc) std::string{cc}
 
 #define VARIABLE_NAME(Variable) (#Variable)
-
-#include <stdexcept>
-#include <unordered_map>
-#include <tuple>
-
-#include <fmt/format.h>
-#include <scn/scan.h>
-
-#include "parallelUtils/timingUtils.h"//< todo for source location
 
 /**
  * @brief shared namespace

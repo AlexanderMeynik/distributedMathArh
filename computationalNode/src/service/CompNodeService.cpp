@@ -1,5 +1,4 @@
 #include "service/CompNodeService.h"
-#include "common/Printers.h"
 
 namespace comp_services {
 

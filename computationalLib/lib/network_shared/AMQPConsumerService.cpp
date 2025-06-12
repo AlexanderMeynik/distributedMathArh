@@ -1,5 +1,4 @@
 #include "network_shared/AMQPConsumerService.h"
-#include <fmt/format.h>
 
 namespace amqp_common {
 

@@ -1,8 +1,3 @@
-#include <memory>
-
-#include <gtest/gtest.h>
-
-#include "common/errorHandling.h"
 #include "network_shared/amqpRestService.h"
 #include "../GoogleCommon.h"
 

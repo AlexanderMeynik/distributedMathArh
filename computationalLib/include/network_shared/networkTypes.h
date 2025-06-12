@@ -1,8 +1,6 @@
 #pragma once
 
 #include "common/commonTypes.h"
-#include "common/errorHandling.h"
-#include "common/enumUtils.h"
 
 #include <json/json.h>
 #include <amqpcpp/exchangetype.h>

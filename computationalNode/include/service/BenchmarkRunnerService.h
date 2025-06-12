@@ -2,7 +2,6 @@
 
 #include <amqpcpp/message.h>
 #include "parallelUtils/chronoClock.h"
-#include "common/sharedDeclarations.h"
 #include "network_shared/networkTypes.h"
 #include "common/Generator.h"
 #include "math_core/Dipoles.h"

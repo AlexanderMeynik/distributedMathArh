@@ -1,9 +1,6 @@
-
 #include <chrono>
 
-#include "common/sharedDeclarations.h"
 #include "math_core/Dipoles.h"
-#include "common/commonTypes.h"
 #include "common/Parsers.h"
 #include "common/Printers.h"
 #include "../GoogleCommon.h"

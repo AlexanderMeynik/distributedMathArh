@@ -1,8 +1,5 @@
 #include "network_shared/DbService.h"
 
-#include <stdexcept>
-#include <iomanip>
-
 namespace db_service {
 
 DbService::DbService() : conn_str_(), conn_(nullptr) {

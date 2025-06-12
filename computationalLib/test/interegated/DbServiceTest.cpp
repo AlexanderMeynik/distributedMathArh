@@ -1,9 +1,8 @@
-#include <gtest/gtest.h>
 #include <fstream>
 #include "network_shared/DbService.h"
-#include "network_shared/networkTypes.h"
 #include "network_shared/amqpCommon.h"
 #include "../GoogleCommon.h"
+
 namespace {
 using test_common::AuthParams;
 using test_common::WaitFor;

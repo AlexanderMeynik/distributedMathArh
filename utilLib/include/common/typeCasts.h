@@ -3,8 +3,6 @@
 #include <map>
 
 #include "commonTypes.h"
-#include "myConcepts.h"
-#include "errorHandling.h"
 
 using my_concepts::isOneDimensionalContinuous;
 using shared::zeroSize;

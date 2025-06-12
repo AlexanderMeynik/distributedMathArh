@@ -1,7 +1,6 @@
 #pragma once
 
 #include "amqpCommon.h"
-#include <future>
 
 namespace amqp_common {
 

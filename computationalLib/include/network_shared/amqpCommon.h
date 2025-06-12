@@ -23,12 +23,13 @@ using WorkPtr = std::unique_ptr<boost::asio::io_service::work>;
 
 /**
  * @brief Constructs amqp connection string
+ * @details Uses AMQPSQLCStr to construct and retrieve AMQP cString
  * @param host_port
  * @param user
  * @param password
  * @param secure sets with amqps protocol
  */
-std::string [[deprecated("Use AMQPSQLCStr to handle strings")]] ConstructCString
+std::string ConstructCString
 (const std::string &host_port,
                              const std::string &user,
                              const std::string &password,

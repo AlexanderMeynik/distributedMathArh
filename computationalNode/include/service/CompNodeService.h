@@ -1,12 +1,9 @@
 #pragma once
 
-#include <future>
+#include "network_shared/AMQPConsumerService.h"
+#include "service/BenchmarkRunnerService.h"
 
 #include <drogon/HttpSimpleController.h>
-#include "common/sharedDeclarations.h"
-#include "network_shared/AMQPConsumerService.h"
-
-#include "service/BenchmarkRunnerService.h"
 
 using namespace drogon;
 

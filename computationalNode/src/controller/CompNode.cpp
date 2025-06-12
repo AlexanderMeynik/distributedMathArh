@@ -1,5 +1,4 @@
 #include "controller/CompNode.h"
-#include "common/Printers.h"
 
 namespace rest::v1 {
 void CompNode::GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {

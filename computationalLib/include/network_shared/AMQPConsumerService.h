@@ -2,8 +2,6 @@
 
 #include "amqpCommon.h"
 
-#include <future>
-
 namespace amqp_common {
 /**
  * @brief Service that allow to start and end reading event Loop from specified queue

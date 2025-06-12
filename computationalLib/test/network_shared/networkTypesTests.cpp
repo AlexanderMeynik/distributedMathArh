@@ -1,7 +1,3 @@
-
-
-#include <gtest/gtest.h>
-
 #include "../GoogleCommon.h"
 #include "network_shared/networkTypes.h"
 

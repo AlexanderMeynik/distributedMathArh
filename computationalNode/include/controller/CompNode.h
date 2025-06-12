@@ -2,7 +2,6 @@
 
 #include <drogon/HttpController.h>
 #include "service/CompNodeService.h"
-#include "common/sharedDeclarations.h"
 
 using namespace drogon;
 using namespace shared;
