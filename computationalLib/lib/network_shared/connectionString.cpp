@@ -2,6 +2,18 @@
 
 namespace network_types {
 
+std::string UrlDecode(std::string_view url) {
+  constexpr const char *kDelimiters = "/@:?&=#";
+  std::string result(url);
+  std::replace_if(result.begin(), result.end(),
+                  [](char c) {
+                    return std::find(kDelimiters, kDelimiters + strlen(kDelimiters), c)
+                        != kDelimiters + strlen(kDelimiters);
+                  },
+                  ' ');
+  return result;
+}
+
 PostgreSQLCStr::PostgreSQLCStr() : port_(5432) {}
 
 PostgreSQLCStr::PostgreSQLCStr(std::string_view user,
@@ -36,16 +48,16 @@ void PostgreSQLCStr::SetUser(std::string_view new_user) {
   user_ = std::forward<std::string_view>(new_user);
   UpdateFormat();
 }
-const std::string &PostgreSQLCStr::GetUser() const {
+std::string_view PostgreSQLCStr::GetUser() const {
   return user_;
 }
-const std::string &PostgreSQLCStr::GetPassword() const {
+std::string_view PostgreSQLCStr::GetPassword() const {
   return password_;
 }
-const std::string &PostgreSQLCStr::GetHost() const {
+std::string_view PostgreSQLCStr::GetHost() const {
   return host_;
 }
-const std::string &PostgreSQLCStr::GetDbname() const {
+std::string_view PostgreSQLCStr::GetDbname() const {
   return dbname_;
 }
 unsigned int PostgreSQLCStr::GetPort() const {
@@ -75,9 +87,7 @@ void PostgreSQLCStr::FromString(std::string_view s) {
   UpdateFormat();
 }
 
-AbstractConnectionString::operator std::string() {
-  return formatted_string_;
-}
+
 AbstractConnectionString::operator std::string_view() {
   return formatted_string_;
 }
@@ -90,11 +100,15 @@ const char *AbstractConnectionString::CStr() const {
 bool AbstractConnectionString::operator==(const AbstractConnectionString &rhs) const {
   return formatted_string_ == rhs.formatted_string_;
 }
+std::string AbstractConnectionString::to_string() const {
+  return formatted_string_;
+}
 
+AMQPSQLCStr::AMQPSQLCStr() :secure_(false){}
 
-AMQPSQLCStr::AMQPSQLCStr(const std::string &host_port,
-                         const std::string &user,
-                         const std::string &password,
+AMQPSQLCStr::AMQPSQLCStr(std::string_view host_port,
+                         std::string_view user,
+                         std::string_view password,
                          bool secure)
     :
     host_port_(host_port),
@@ -103,24 +117,24 @@ AMQPSQLCStr::AMQPSQLCStr(const std::string &host_port,
     secure_(secure) {
   UpdateFormat();
 }
-const std::string &AMQPSQLCStr::GetHostPort() const {
+std::string_view AMQPSQLCStr::GetHostPort() const {
   return host_port_;
 }
-void AMQPSQLCStr::SetHostPort(const std::string &host_port) {
+void AMQPSQLCStr::SetHostPort(std::string_view host_port) {
   host_port_ = host_port;
   UpdateFormat();
 }
-const std::string &AMQPSQLCStr::GetUser() const {
+std::string_view AMQPSQLCStr::GetUser() const {
   return user_;
 }
-void AMQPSQLCStr::SetUser(const std::string &user) {
+void AMQPSQLCStr::SetUser(std::string_view user) {
   user_ = user;
   UpdateFormat();
 }
-const std::string &AMQPSQLCStr::GetPassword() const {
+std::string_view AMQPSQLCStr::GetPassword() const {
   return password_;
 }
-void AMQPSQLCStr::SetPassword(const std::string &password) {
+void AMQPSQLCStr::SetPassword(std::string_view password) {
   password_ = password;
   UpdateFormat();
 }
@@ -139,6 +153,7 @@ std::string AMQPSQLCStr::GetVerboseName() const {
 }
 
 void AMQPSQLCStr::FromString(std::string_view s) {
+
   std::string c,port;
   auto tt= UrlDecode(s);
   auto res=scn::scan<std::string, std::string,std::string,std::string,std::string>(tt, "{}   {} {} {} {} ");
@@ -147,20 +162,10 @@ void AMQPSQLCStr::FromString(std::string_view s) {
   }
   std::tie(c,user_, password_,host_port_,port) =res->values();
   host_port_.append(":").append(port);
-  secure_==(c=="amqps");
+  secure_=(c.back()=='s');
 
   UpdateFormat();
 
 }
-std::string UrlDecode(std::string_view url) {
-  constexpr const char *kDelimiters = "/@:?&=#";
-  std::string result(url);
-  std::replace_if(result.begin(), result.end(),
-                  [](char c) {
-                    return std::find(kDelimiters, kDelimiters + strlen(kDelimiters), c)
-                        != kDelimiters + strlen(kDelimiters);
-                  },
-                  ' ');
-  return result;
-}
+
 }

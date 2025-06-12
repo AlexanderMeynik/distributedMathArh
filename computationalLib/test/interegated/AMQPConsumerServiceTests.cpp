@@ -32,7 +32,7 @@ class AMQPConsumerSeviceTS : public testing::Test {
     rest_service_->BindQueueToExchange(vhost_, qq_, exch_, qq_);
 
     consumer_service_ =
-        std::make_unique<AMQPConsumerService>(ConstructCString(ExtractHost(g_serviceParams.host).value(),
+        std::make_unique<AMQPConsumerService>(AMQPSQLCStr(ExtractHost(g_serviceParams.host).value(),
                                                                g_serviceParams.username,
                                                                g_serviceParams.password), qq_);
 
@@ -72,23 +72,23 @@ TEST(AMQP_COMMON_TS, ExtractHost_InvalidURL) {
   EXPECT_FALSE(host.has_value());
 }
 
-TEST(AMQP_COMMON_TS, ConstructCString_SecureAndNonSecure) {
+TEST(AMQP_COMMON_TS, AMQPSQLCStr_SecureAndNonSecure) {
   std::string h = "rabbit:5672";
-  auto nonSecure = ConstructCString(h, "u", "p", false);
-  EXPECT_EQ(nonSecure, "amqp://u:p@rabbit:5672/");
+  auto nonSecure = AMQPSQLCStr(h, "u", "p", false);
+  EXPECT_EQ(nonSecure.to_string(), "amqp://u:p@rabbit:5672/");
 
-  auto secure = ConstructCString(h, "u", "p", true);
-  EXPECT_EQ(secure, "amqps://u:p@rabbit:5672/");
+  auto secure = AMQPSQLCStr(h, "u", "p", true);
+  EXPECT_EQ(secure.to_string(), "amqps://u:p@rabbit:5672/");
 }
 
 TEST(AMQP_COMMON_TS, testConstructCaderss) {
-  auto a1 = ConstructCString(ExtractHost(g_serviceParams.host).value(),
+  auto a1 = AMQPSQLCStr(ExtractHost(g_serviceParams.host).value(),
                              g_serviceParams.username,
                              g_serviceParams.password);
   auto a2 = ConstructCAddress(ExtractHost(g_serviceParams.host).value(),
                               g_serviceParams.username,
                               g_serviceParams.password);
-  EXPECT_EQ(a1, a2.operator std::string());
+  EXPECT_EQ(a1.operator std::string_view(), a2.operator std::string());
 }
 
 TEST_F(AMQPConsumerSeviceTS, TestConnect) {
@@ -183,7 +183,7 @@ TEST_F(AMQPConsumerSeviceTS, TestReconnectAfterDisconnect) {
 }
 
 TEST_F(AMQPConsumerSeviceTS, TestConnectFailureEarlyExit) {
-  consumer_service_->SetParameters("localhost30", qq_);
+  consumer_service_->SetParameters(AMQPSQLCStr("localhost30","",""), qq_);
   EXPECT_THROW(consumer_service_->Connect(), std::runtime_error);
 
   const bool kFoundConnection = WaitFor([this]() {

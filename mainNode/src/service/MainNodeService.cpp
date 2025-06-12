@@ -19,7 +19,7 @@ Json::Value MainNodeService::Status() {
 
   if (publisher_service_->IsConnected()) {
     res_JSON["rabbitmq_service"]["status"] = "Connected";
-    res_JSON["rabbitmq_service"]["c_string"] = publisher_service_->GetCString();
+    res_JSON["rabbitmq_service"]["c_string"] = publisher_service_->GetCString().to_string();
   } else {
     res_JSON["RabbitmqService"]["status"] = "Not Connected";
   }
@@ -118,7 +118,7 @@ Json::Value MainNodeService::Connect(const std::string &qip) {
     res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
 
     res_JSON["message"] =
-        fmt::format("Queue service is currently working {}", publisher_service_->GetCString());
+        fmt::format("Queue service is currently working {}", publisher_service_->GetCString().to_string());
     return res_JSON;
   }
 
@@ -126,7 +126,7 @@ Json::Value MainNodeService::Connect(const std::string &qip) {
 
   rest_service_->SetParams(fmt::format("http://{}:15672", q_host_), auth_.get());
   auto r = auth_->Retrive();
-  publisher_service_->SetParameters(amqp_common::ConstructCString(q_host_,
+  publisher_service_->SetParameters(network_types::AMQPSQLCStr(q_host_,
                                                                   r.first,
                                                                   r.second));
 

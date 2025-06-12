@@ -50,16 +50,17 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
   res_JSON["name"] = name;
   res_JSON["bench"] = print_utils::ContinuousToJson(bench_res_, true, true);
 
+  auto c = network_types::AMQPSQLCStr(ip, user, pass);
+
   if (consumer_service_.IsConnected()) {
     res_JSON["status"] = HttpStatusCode::k409Conflict;
     res_JSON["message"] = fmt::format("Node is already connected to RabbitMQ {}!",
-                                      consumer_service_.GetCString());
-    ///@todo remove user data
+                                      consumer_service_.GetCString().GetVerboseName());
 
     return res_JSON;
   }
 
-  auto c = amqp_common::ConstructCString(ip, user, pass);
+
 
   consumer_service_.SetParameters(c, name);
 

@@ -25,7 +25,9 @@ int main(int argc, char *argv[]) {
   std::signal(SIGINT, SignalHandler);
   using namespace amqp_common;
 
-  AMQPConsumerService listener(cString, qname);
+  AMQPSQLCStr s;
+  s.FromString(cString);
+  AMQPConsumerService listener(s, qname);
   listener.SetMessageCallback(a);
   listener.Connect();
 

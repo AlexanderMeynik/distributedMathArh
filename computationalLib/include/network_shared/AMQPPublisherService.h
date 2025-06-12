@@ -13,7 +13,7 @@ class AMQPPublisherService : public AMQPService {
 
   AMQPPublisherService();
 
-  void SetParameters(const std::string &connection_string,
+  void SetParameters(const AMQPSQLCStr &connection_string,
                      const std::string &exchange = "testexch");
 
   /**
@@ -22,7 +22,7 @@ class AMQPPublisherService : public AMQPService {
    * @param queues
    * @param exchange
    */
-  AMQPPublisherService(const std::string &connection_string,
+  AMQPPublisherService(const AMQPSQLCStr &connection_string,
                        const std::string &exchange = "testexch");
 
   const std::string &GetDefaultExchange() const;

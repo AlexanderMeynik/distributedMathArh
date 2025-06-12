@@ -27,14 +27,30 @@ MyHandler::MyHandler(boost::asio::io_service &service,
 bool MyHandler::IsConnected() const {
   return connected_;
 }
+void MyHandler::onClosed(AMQP::TcpConnection *connection) {
+  ResetLoop();
+
+  std::cout << "Connection closed.\n";
+}
+void MyHandler::onError(AMQP::TcpConnection *connection, const char *message) {
+  std::cout << "Connection error: " << message << '\n';///@todo log
+  ResetLoop();
+}
+void MyHandler::onConnected(AMQP::TcpConnection *connection) {
+  std::cout << "Connection established successfully." << '\n';
+  connected_ = true;
+}
+void MyHandler::ResetLoop() {
+  m_work_.reset();
+  connected_ = false;
+}
 
 std::string ConstructCString(const std::string &host_port,
                              const std::string &user,
                              const std::string &password,
                              bool secure) {
 
-  auto res =(std::string)network_types::AMQPSQLCStr(host_port,user,password,secure);
-  return res;
+  return network_types::AMQPSQLCStr(host_port,user,password,secure).to_string();
 }
 
 AMQP::Address ConstructCAddress(const std::string &host_port,
@@ -79,12 +95,12 @@ std::optional<std::string> ExtractHost(std::string_view url) {
 bool AMQPService::IsConnected() const {
   return handler_ && handler_->IsConnected();
 }
-const std::string &AMQPService::GetCString() const {
+const AMQPSQLCStr &AMQPService::GetCString() const {
   return c_string_;
 }
 void AMQPService::Connect() {
   if (IsConnected()) {
-    throw shared::Already_Connected(ServiceName(), c_string_);
+    throw shared::Already_Connected(ServiceName(), c_string_.to_string());
   }
   service_.reset();
   work_ = std::make_unique<boost::asio::io_service::work>(service_);
@@ -121,16 +137,20 @@ void AMQPService::Disconnect() {
 AMQPService::AMQPService() : service_(1),
                              handler_(std::make_unique<MyHandler>(service_, work_)) {
 }
-AMQPService::AMQPService(const std::string &connection_string) :
+AMQPService::AMQPService(const AMQPSQLCStr &connection_string) :
     service_(1),
     handler_(std::make_unique<MyHandler>(service_, work_)),
     c_string_(connection_string) {
 
 }
-void AMQPService::SetParameters(const std::string &connection_string) {
+
+
+
+void AMQPService::SetParameters(const AMQPSQLCStr &connection_string) {
   c_string_ = connection_string;
 }
 AMQPService::~AMQPService() {
   Disconnect();
 }
+
 }

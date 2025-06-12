@@ -6,13 +6,13 @@ namespace amqp_common {
 
 AMQPPublisherService::AMQPPublisherService() : AMQPService() {}
 
-void AMQPPublisherService::SetParameters(const std::string &connection_string,
+void AMQPPublisherService::SetParameters(const AMQPSQLCStr &connection_string,
                                          const std::string &exchange) {
   c_string_ = connection_string;
   default_exchange_ = exchange;
 }
 
-AMQPPublisherService::AMQPPublisherService(const std::string &connection_string,
+AMQPPublisherService::AMQPPublisherService(const AMQPSQLCStr &connection_string,
                                            const std::string &exchange)
     : AMQPService(connection_string),
       default_exchange_(exchange) {}
@@ -23,10 +23,10 @@ void AMQPPublisherService::Reconnect() {
     return;
   }
   if (!connection_ || !connection_->ready()) {
-    if (c_string_.empty()) {
+    if (c_string_.operator std::string_view().empty()) {
       throw shared::zeroSize(VARIABLE_NAME(c_string_));
     }
-    connection_ = std::make_unique<AMQP::TcpConnection>(handler_.get(), AMQP::Address(c_string_));
+    connection_ = std::make_unique<AMQP::TcpConnection>(handler_.get(), AMQP::Address(c_string_.to_string()));
     channel_ = std::make_unique<AMQP::TcpChannel>(connection_.get());
   }
 

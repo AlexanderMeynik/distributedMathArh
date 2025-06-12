@@ -19,7 +19,7 @@ class AMQPConsumerService : public AMQPService {
    * @param connection_string
    * @param queue_name
    */
-  AMQPConsumerService(const std::string &connection_string,
+  AMQPConsumerService(const AMQPSQLCStr &connection_string,
                       const std::string &queue_name);
 
   /**
@@ -27,7 +27,7 @@ class AMQPConsumerService : public AMQPService {
    * @param connection_string
    * @param queue_name
    */
-  void SetParameters(const std::string &connection_string,
+  void SetParameters(const AMQPSQLCStr &connection_string,
                      const std::string &queue_name);
 
   /**

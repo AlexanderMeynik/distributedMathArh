@@ -1,13 +1,10 @@
 #pragma once
 
-#include <string>
-#include <vector>
 #include <thread>
 #include <memory>
 #include <future>
-#include <optional>
 
-#include "common/errorHandling.h"
+#include "network_shared/connectionString.h"
 #include "network_shared/networkTypes.h"
 
 #include <amqpcpp.h>
@@ -18,6 +15,7 @@
 
 namespace amqp_common {
 
+using network_types::AMQPSQLCStr;
 using AMQP::Envelope;
 using EnvelopePtr = std::shared_ptr<Envelope>;
 using AMQP::MessageCallback;///< message callback
@@ -30,7 +28,8 @@ using WorkPtr = std::unique_ptr<boost::asio::io_service::work>;
  * @param password
  * @param secure sets with amqps protocol
  */
-std::string ConstructCString(const std::string &host_port,
+std::string [[deprecated("Use AMQPSQLCStr to handle strings")]] ConstructCString
+(const std::string &host_port,
                              const std::string &user,
                              const std::string &password,
                              bool secure = false);
@@ -89,30 +88,20 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
    * @brief Method that is called on connection close
    * @param connection
    */
-  void onClosed(AMQP::TcpConnection *connection) override {
-    ResetLoop();
-
-    std::cout << "Connection closed.\n";
-  }
+  void onClosed(AMQP::TcpConnection *connection) override;
   /**
    * @brief Method that is called on connection error
    * @param connection
    * @param message
    */
   void onError(AMQP::TcpConnection *connection,
-               const char *message) override {
-    std::cout << "Connection error: " << message << '\n';///@todo log
-    ResetLoop();
-  }
+               const char *message) override;
 
   /**
    * @brief Method that is called when connection is established
    * @param connection
    */
-  void onConnected(AMQP::TcpConnection *connection) override {
-    std::cout << "Connection established successfully." << '\n';
-    connected_ = true;
-  }
+  void onConnected(AMQP::TcpConnection *connection) override;
 
   /**
    * @brief Gets handler connection status
@@ -123,10 +112,8 @@ class MyHandler : public AMQP::LibBoostAsioHandler {
   /**
    * @brief Resets work to stop event loop
    */
-  void ResetLoop() {
-    m_work_.reset();
-    connected_ = false;
-  }
+  void ResetLoop();
+
   WorkPtr &m_work_; /// < work pointer to handle event loop
   bool connected_;
 };
@@ -144,13 +131,13 @@ class AMQPService {
    */
   AMQPService();
 
-  AMQPService(const std::string &connection_string);
+  AMQPService(const AMQPSQLCStr &connection_string);
 
   /**
    * @brief Sets most connection parameter
    * @param connection_string
    */
-  void SetParameters(const std::string &connection_string);
+  void SetParameters(const AMQPSQLCStr &connection_string);
 
   /**
    * @return connection status
@@ -160,7 +147,7 @@ class AMQPService {
   /**
    * @return connection string
    */
-  const std::string &GetCString() const;
+  const AMQPSQLCStr &GetCString() const;
   /**
    * @brief Starts event Loop for service
    */
@@ -190,7 +177,7 @@ class AMQPService {
   std::unique_ptr<AMQP::TcpConnection> connection_; ///< AMQP::TcpConnection pointer
   std::unique_ptr<AMQP::TcpChannel> channel_; ///< AMQP::TcpChannel pointer
 
-  std::string c_string_;///< connection string
+  AMQPSQLCStr c_string_;///< connection string
 
   std::thread service_thread_;///< thread to run boost service
 

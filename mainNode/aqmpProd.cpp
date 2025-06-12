@@ -45,7 +45,10 @@ int main(int argc, char *argv[]) {
 
   std::signal(SIGINT, SignalHandler);
 
-  AMQPPublisherService service(c_string);
+  AMQPSQLCStr s;
+  s.FromString(c_string);
+
+  AMQPPublisherService service(s);
 
   service.Connect();
 

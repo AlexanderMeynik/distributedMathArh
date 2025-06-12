@@ -60,11 +60,11 @@ ConnPtr CreateDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
     }
 
     no_trans_exec.exec(fmt::format("CREATE DATABASE \"{}\";",
-                                   c_string.GetDbname().c_str()));
+                                   c_string.GetDbname()));
 
     no_trans_exec.exec(fmt::format("GRANT ALL ON DATABASE \"{}\" TO {};",
-                                   c_string.GetDbname().c_str(),
-                                   c_string.GetUser().c_str()));
+                                   c_string.GetDbname(),
+                                   c_string.GetUser()));
     no_trans_exec.commit();
 
   } catch (const pqxx::sql_error &e) {

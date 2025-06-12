@@ -31,14 +31,13 @@ private: \
 #define VARIABLE_NAME(Variable) (#Variable)
 
 #include <stdexcept>
-#include <array>
 #include <unordered_map>
 #include <tuple>
 
 #include <fmt/format.h>
-
 #include <scn/scan.h>
-#include "parallelUtils/timingUtils.h"
+
+#include "parallelUtils/timingUtils.h"//< todo for source location
 
 /**
  * @brief shared namespace
@@ -173,23 +172,24 @@ DEFINE_EXCEPTION_IN(Broken_Connection, "Service {} is unable to connect to {}!",
 
 using ScanErrorCode = decltype(scn::scan_error::code::value_negative_overflow);
 
+constexpr std::array<const char*, static_cast<size_t>(ScanErrorCode::max_error) + 1> ScanErrorStrings = {
+    "end_of_input",
+    "invalid_format_string",
+    "invalid_scanned_value",
+    "invalid_literal",
+    "invalid_fill",
+    "length_too_short",
+    "invalid_source_state",
+    "value_positive_overflow",
+    "value_negative_overflow",
+    "value_positive_underflow",
+    "value_negative_underflow",
+    "max_error"
+};
 
 static inline const char* ScanErrorCodeToString(ScanErrorCode c) {
-  switch (c) {
-    case scn::scan_error::end_of_input: return "end_of_input";
-    case scn::scan_error::invalid_format_string: return "invalid_format_string";
-    case scn::scan_error::invalid_scanned_value: return "invalid_scanned_value";
-    case scn::scan_error::invalid_literal: return "invalid_literal";
-    case scn::scan_error::invalid_fill: return "invalid_fill";
-    case scn::scan_error::length_too_short: return "length_too_short";
-    case scn::scan_error::invalid_source_state: return "invalid_source_state";
-    case scn::scan_error::value_positive_overflow: return "value_positive_overflow";
-    case scn::scan_error::value_negative_overflow: return "value_negative_overflow";
-    case scn::scan_error::value_positive_underflow: return "value_positive_underflow";
-    case scn::scan_error::value_negative_underflow: return "value_negative_underflow";
-    case scn::scan_error::max_error: return "max_error";
-    default: return "unknown_error";
-  }
+  size_t index = static_cast<size_t>(c);
+  return (index <= ScanErrorStrings.size()) ? ScanErrorStrings[index] : "unknown_error";
 }
 
 
@@ -209,8 +209,6 @@ using shared::ScanErrorCode;
 using shared::ScanErrorCodeToString;
 template<>
 struct formatter<ScanErrorCode> : formatter<string_view> {
-  // parse is inherited from formatter<string_view>.
-
   auto format(ScanErrorCode c, format_context &ctx) const
   -> format_context::iterator {
     return formatter<string_view>::format(ScanErrorCodeToString(c), ctx);

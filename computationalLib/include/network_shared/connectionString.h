@@ -2,14 +2,16 @@
 
 #include <string_view>
 #include <string>
-#include "common/errorHandling.h"
 
+#include "common/errorHandling.h"
 
 /// Namespace for network related types
 namespace network_types {
 
 /**
  * @brief Replaces all url delimiters with spaces for scanf parsing
+ * @details Since scn::scan parses strings as words, there exist a need to manually
+ * @details separate them with whitespaces [see](https://www.scnlib.dev/group__format-string.html#type-string)
  * @param url
  * @see  PostgreSQLCStr::FromString
  * @see  AMQPSQLCStr::FromString
@@ -30,10 +32,15 @@ class AbstractConnectionString {
    * @param s
    */
   virtual void FromString(std::string_view s)=0;
+
   /**
    * @brief explicit std::string type cast
-   */
-  explicit operator std::string();
+   *//*
+  explicit operator std::string();*/
+   /**
+    * @brief Cast to std::string
+    */
+   std::string to_string() const;
 
   /**
    * @brief implicit std::string_view cast
@@ -81,20 +88,20 @@ class PostgreSQLCStr : public AbstractConnectionString {
 
   void SetDbname(std::string_view new_dbname);
 
-  [[nodiscard]] const std::string &GetUser() const;
+  [[nodiscard]] std::string_view GetUser() const;
 
-  [[nodiscard]] const std::string &GetPassword() const;
+  [[nodiscard]] std::string_view GetPassword() const;
 
-  [[nodiscard]] const std::string &GetHost() const;
+  [[nodiscard]] std::string_view GetHost() const;
 
-  [[nodiscard]] const std::string &GetDbname() const;
+  [[nodiscard]] std::string_view GetDbname() const;
 
   [[nodiscard]] unsigned int GetPort() const;
 
-  [[nodiscard]] std::string GetVerboseName() const;
+  [[nodiscard]] std::string GetVerboseName() const override;
 
  protected:
-  void UpdateFormat();
+  void UpdateFormat() override;
 
   std::string user_, password_, host_, dbname_;
   unsigned port_;
@@ -105,35 +112,35 @@ class PostgreSQLCStr : public AbstractConnectionString {
 */
 class AMQPSQLCStr : public AbstractConnectionString {
  public:
-  AMQPSQLCStr()=default;
+  AMQPSQLCStr();
 
-  AMQPSQLCStr(const std::string &host_port,
-              const std::string &user,
-              const std::string &password,
-              bool secure);
+  AMQPSQLCStr(std::string_view host_port,
+              std::string_view user,
+              std::string_view password,
+              bool secure = false);
 
   void FromString(std::string_view s) override;
 
-  [[nodiscard]] std::string GetVerboseName() const;
+  [[nodiscard]] std::string GetVerboseName() const override;
 
-  const std::string &GetHostPort() const;
+  std::string_view GetHostPort() const;
 
-  void SetHostPort(const std::string &host_port);
+  void SetHostPort(std::string_view host_port);
 
-  const std::string &GetUser() const;
+  std::string_view GetUser() const;
 
-  void SetUser(const std::string &user);
+  void SetUser(std::string_view user);
 
-  const std::string &GetPassword() const;
+  std::string_view GetPassword() const;
 
-  void SetPassword(const std::string &password);
+  void SetPassword(std::string_view password);
 
   bool IsSecure() const;
 
   void SetSecure(bool secure);
 
  protected:
-  void UpdateFormat();
+  void UpdateFormat() override;
 
  private:
   std::string host_port_, user_, password_;

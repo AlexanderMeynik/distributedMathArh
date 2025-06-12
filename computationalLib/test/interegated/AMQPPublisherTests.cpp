@@ -49,7 +49,7 @@ TEST_F(AMQPPublisherServiceTS, DefaultConstructorAndSetParameters) {
 
   EXPECT_FALSE(publisher_service_->IsConnected());
   publisher_service_->SetParameters(
-      ConstructCString(ExtractHost(g_serviceParams.host).value(),
+      AMQPSQLCStr(ExtractHost(g_serviceParams.host).value(),
                        g_serviceParams.username, g_serviceParams.password),
        exchange);
   EXPECT_EQ(publisher_service_->GetDefaultExchange(), exchange);
@@ -57,7 +57,7 @@ TEST_F(AMQPPublisherServiceTS, DefaultConstructorAndSetParameters) {
 
 TEST_F(AMQPPublisherServiceTS, ConstructorWithParams) {
   publisher_service_ = std::make_unique<AMQPPublisherService>(
-      ConstructCString(ExtractHost(g_serviceParams.host).value(),
+      AMQPSQLCStr(ExtractHost(g_serviceParams.host).value(),
                        g_serviceParams.username, g_serviceParams.password),
                        exchange);
   EXPECT_EQ(publisher_service_->GetDefaultExchange(), exchange);
@@ -65,7 +65,7 @@ TEST_F(AMQPPublisherServiceTS, ConstructorWithParams) {
 
 TEST_F(AMQPPublisherServiceTS, AddRemoveQueue) {
   publisher_service_->SetParameters(
-      ConstructCString(ExtractHost(g_serviceParams.host).value(),
+      AMQPSQLCStr(ExtractHost(g_serviceParams.host).value(),
                        g_serviceParams.username, g_serviceParams.password),exchange);
 
   publisher_service_->Connect();
@@ -90,7 +90,7 @@ TEST_F(AMQPPublisherServiceTS, AddRemoveQueue) {
 
 TEST_F(AMQPPublisherServiceTS, PublishByName) {
   publisher_service_ = std::make_unique<AMQPPublisherService>(
-      ConstructCString(ExtractHost(g_serviceParams.host).value(),
+      AMQPSQLCStr(ExtractHost(g_serviceParams.host).value(),
                        g_serviceParams.username, g_serviceParams.password), exchange);
   publisher_service_->Connect();
   EXPECT_TRUE(publisher_service_->IsConnected());
@@ -121,7 +121,7 @@ TEST_F(AMQPPublisherServiceTS, PublishByName) {
 TEST_F(AMQPPublisherServiceTS, DisconnectCleanup) {
   {
     AMQPPublisherService tempPub(
-        ConstructCString(ExtractHost(g_serviceParams.host).value(),
+        AMQPSQLCStr(ExtractHost(g_serviceParams.host).value(),
                          g_serviceParams.username, g_serviceParams.password)
                          , exchange);
     tempPub.Connect();
@@ -136,7 +136,7 @@ TEST_F(AMQPPublisherServiceTS, DisconnectCleanup) {
 
 TEST_F(AMQPPublisherServiceTS, ConnectFailureThrows) {
   publisher_service_ = std::make_unique<AMQPPublisherService>();
-  publisher_service_->SetParameters("bad_host:9999", exchange);
+  publisher_service_->SetParameters(AMQPSQLCStr("bad_host:9999","",""), exchange);
   EXPECT_THROW(publisher_service_->Connect(), std::runtime_error);
 }
 

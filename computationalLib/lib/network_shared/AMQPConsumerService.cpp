@@ -8,10 +8,11 @@ void AMQPConsumerService::Reconnect() {
     return;
   }
   if (!connection_ || !connection_->ready()) {
-    if (c_string_.empty()) {
+    if (c_string_.operator std::string_view().empty()) {
       throw shared::zeroSize(VARIABLE_NAME(c_string_));
     }
-    connection_ = std::make_unique<AMQP::TcpConnection>(handler_.get(), AMQP::Address(c_string_));
+    connection_ = std::make_unique<AMQP::TcpConnection>(handler_.get(),
+                                                        AMQP::Address(c_string_.to_string()));
     channel_ = std::make_unique<AMQP::TcpChannel>(connection_.get());
   }
 
@@ -56,12 +57,12 @@ AMQPConsumerService::AMQPConsumerService() : AMQPService() {
 
 }
 
-AMQPConsumerService::AMQPConsumerService(const std::string &connection_string,
+AMQPConsumerService::AMQPConsumerService(const AMQPSQLCStr &connection_string,
                                          const std::string &queue_name) :
     AMQPService(connection_string),
     queue_(queue_name) {}
 
-void AMQPConsumerService::SetParameters(const std::string &connection_string, const std::string &queue_name) {
+void AMQPConsumerService::SetParameters(const AMQPSQLCStr &connection_string, const std::string &queue_name) {
   c_string_ = connection_string;
   queue_ = queue_name;
 }
