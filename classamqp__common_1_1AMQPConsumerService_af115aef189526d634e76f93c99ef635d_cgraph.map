@@ -1,9 +1,11 @@
 <map id="amqp_common::AMQPConsumerService::Reconnect" name="amqp_common::AMQPConsumerService::Reconnect">
-<area shape="rect" id="Node000001" title="Reconnects to specified queue Restarts amqp connection and channel objects. Specifies message managem..." alt="" coords="5,37,241,77"/>
-<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#a731e7318d9b0d18e31f42afed2642c77" title="Default message processing callback." alt="" coords="289,5,527,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="241,41,275,38,276,43,242,47"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="299,69,517,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="242,68,286,73,285,78,241,73"/>
-<area shape="rect" id="Node000004" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="575,69,777,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="518,87,561,87,561,92,518,92"/>
+<area shape="rect" id="Node000001" title="Reconnects to specified queue Restarts amqp connection and channel objects. Specifies message managem..." alt="" coords="5,69,241,109"/>
+<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#a731e7318d9b0d18e31f42afed2642c77" title="Default message processing callback." alt="" coords="297,5,535,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,67,310,46,311,51,216,72"/>
+<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="307,69,525,109"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,87,293,87,293,92,241,92"/>
+<area shape="rect" id="Node000005" href="$classnetwork__types_1_1AbstractConnectionString.html#a740c4fb2574d6b23b352f0514dc2a649" title="explicit std::string type cast" alt="" coords="289,133,543,173"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="216,107,311,128,310,133,215,112"/>
+<area shape="rect" id="Node000004" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="591,69,793,109"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="525,87,577,87,577,92,525,92"/>
 </map>

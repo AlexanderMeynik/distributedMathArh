@@ -13,6 +13,8 @@ var errorHandling_8h =
     [ "shared::SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
     [ "shared::Already_Connected", "classshared_1_1Already__Connected.html", "classshared_1_1Already__Connected" ],
     [ "shared::Broken_Connection", "classshared_1_1Broken__Connection.html", "classshared_1_1Broken__Connection" ],
+    [ "shared::ScanningError", "classshared_1_1ScanningError.html", "classshared_1_1ScanningError" ],
+    [ "fmt::formatter< ScanErrorCode >", "structfmt_1_1formatter_3_01ScanErrorCode_01_4.html", "structfmt_1_1formatter_3_01ScanErrorCode_01_4" ],
     [ "DEFINE_EXCEPTION", "errorHandling_8h.html#a1e63d9ae8e1012eb38b8139965ca4655", null ],
     [ "DEFINE_EXCEPTION_ER", "errorHandling_8h.html#a9ce440309d36897b05f81199731d53f3", null ],
     [ "DEFINE_EXCEPTION_Fa", "errorHandling_8h.html#adde73f5429a144966ba92f85ac0a3dea", null ],
@@ -21,12 +23,15 @@ var errorHandling_8h =
     [ "EXC_TO_STR", "errorHandling_8h.html#a87e5f89e8bcc6cc80be4cc1deae5c0cb", null ],
     [ "STR", "errorHandling_8h.html#a11b4065d88861b9e5622eaf8f2d56447", null ],
     [ "VARIABLE_NAME", "errorHandling_8h.html#a42b70123b8a8ad2a5a0f653944ef67fa", null ],
+    [ "ScanErrorCode", "errorHandling_8h.html#aac9d30069c889732a6c5d02100ceea54", null ],
     [ "Severity", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1", [
       [ "info", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1acaf9b6b99962bf5c2264824231d7a40c", null ],
       [ "warning", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1a7b83d3f08fa392b79e3f553b585971cd", null ],
       [ "error", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282", null ],
       [ "fatal", "errorHandling_8h.html#af59e2e45adcd32ca8a71c3bf467c35c1adf6402fd9ecc60f5a2159fdf45711cd4", null ]
     ] ],
+    [ "ScanErrorCodeToString", "errorHandling_8h.html#ade902bed0ac892777ff9951b23c0e23d", null ],
     [ "kSevToStr", "errorHandling_8h.html#af3d0ef72a5c0a66a91f8f11233a72d80", null ],
-    [ "kStrToSev", "errorHandling_8h.html#af570bd9365898d829147c73ee171e266", null ]
+    [ "kStrToSev", "errorHandling_8h.html#af570bd9365898d829147c73ee171e266", null ],
+    [ "ScanErrorStrings", "errorHandling_8h.html#a4aabd5918eda690837299a6159b73164", null ]
 ];

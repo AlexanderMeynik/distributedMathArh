@@ -141,6 +141,9 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classshared_1_1RowDivisionError.html">RowDivisionError</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exception thrown when the number of rows does not divide the total collection size.  <a href="classshared_1_1RowDivisionError.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classshared_1_1ScanningError.html">ScanningError</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight"><a class="el" href="classshared_1_1ScanningError.html" title="ScanningError error class.">ScanningError</a> error class.  <a href="classshared_1_1ScanningError.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classshared_1_1SQL__ERROR.html">SQL_ERROR</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SQL error class.  <a href="classshared_1_1SQL__ERROR.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +153,8 @@ Classes</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
+<tr class="memitem:aac9d30069c889732a6c5d02100ceea54" id="r_aac9d30069c889732a6c5d02100ceea54"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#aac9d30069c889732a6c5d02100ceea54">ScanErrorCode</a> = decltype(scn::scan_error::code::value_negative_overflow)</td></tr>
+<tr class="separator:aac9d30069c889732a6c5d02100ceea54"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af061895f5bfe2ffa0c4ba0215150d34b" id="r_af061895f5bfe2ffa0c4ba0215150d34b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b">FloatType</a> = double</td></tr>
 <tr class="separator:af061895f5bfe2ffa0c4ba0215150d34b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98a73a01c5c6c4ca3e1b3819ce638a98" id="r_a98a73a01c5c6c4ca3e1b3819ce638a98"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#a98a73a01c5c6c4ca3e1b3819ce638a98">BenchResultType</a> = uint64_t</td></tr>
@@ -191,6 +196,8 @@ Enumerations</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:ac7511258976ece006064667eb8c6f171" id="r_ac7511258976ece006064667eb8c6f171"><td class="memItemLeft" align="right" valign="top"><a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#ac7511258976ece006064667eb8c6f171">NIndex</a> (const <a class="el" href="namespaceshared.html#a98a73a01c5c6c4ca3e1b3819ce638a98">shared::BenchResultType</a> &amp;result_type)</td></tr>
 <tr class="separator:ac7511258976ece006064667eb8c6f171"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ade902bed0ac892777ff9951b23c0e23d" id="r_ade902bed0ac892777ff9951b23c0e23d"><td class="memItemLeft" align="right" valign="top">static const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#ade902bed0ac892777ff9951b23c0e23d">ScanErrorCodeToString</a> (<a class="el" href="namespaceshared.html#aac9d30069c889732a6c5d02100ceea54">ScanErrorCode</a> c)</td></tr>
+<tr class="separator:ade902bed0ac892777ff9951b23c0e23d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2eee87ed81945fe1ee927edb93e2bdf2" id="r_a2eee87ed81945fe1ee927edb93e2bdf2"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f">BenchResVec</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2">DefaultBench</a> (<a class="el" href="namespaceshared.html#a98a73a01c5c6c4ca3e1b3819ce638a98">BenchResultType</a> init=1)</td></tr>
 <tr class="memdesc:a2eee87ed81945fe1ee927edb93e2bdf2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Returns properly resized valarray for bench works.  <br /></td></tr>
 <tr class="separator:a2eee87ed81945fe1ee927edb93e2bdf2"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -209,6 +216,8 @@ Variables</h2></td></tr>
 <tr class="memitem:af570bd9365898d829147c73ee171e266" id="r_af570bd9365898d829147c73ee171e266"><td class="memItemLeft" align="right" valign="top">const std::unordered_map&lt; std::string, <a class="el" href="namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1">Severity</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#af570bd9365898d829147c73ee171e266">kStrToSev</a></td></tr>
 <tr class="memdesc:af570bd9365898d829147c73ee171e266"><td class="mdescLeft">&#160;</td><td class="mdescRight">String to severity lookup.  <br /></td></tr>
 <tr class="separator:af570bd9365898d829147c73ee171e266"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4aabd5918eda690837299a6159b73164" id="r_a4aabd5918eda690837299a6159b73164"><td class="memItemLeft" align="right" valign="top">constexpr std::array&lt; const char *, static_cast&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> &gt;(ScanErrorCode::max_error)+1 &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#a4aabd5918eda690837299a6159b73164">ScanErrorStrings</a></td></tr>
+<tr class="separator:a4aabd5918eda690837299a6159b73164"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:affbf6044206ed501cbc764df749da33a" id="r_affbf6044206ed501cbc764df749da33a"><td class="memItemLeft" align="right" valign="top">static const std::valarray&lt; <a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#affbf6044206ed501cbc764df749da33a">kNValues</a></td></tr>
 <tr class="separator:affbf6044206ed501cbc764df749da33a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad8a7c1420d0a420754b6df50604bd3fd" id="r_ad8a7c1420d0a420754b6df50604bd3fd"><td class="memItemLeft" align="right" valign="top">static const std::vector&lt; <a class="el" href="namespaceenum__utils.html#af12382e7a085f43fd7e5df140a8d485c">EnumMapping</a>&lt; <a class="el" href="namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866">StateT</a> &gt; &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceshared.html#ad8a7c1420d0a420754b6df50604bd3fd">kStateTMappings</a></td></tr>
@@ -258,6 +267,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b">shared::FloatType</a> = typedef double</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aac9d30069c889732a6c5d02100ceea54" name="aac9d30069c889732a6c5d02100ceea54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac9d30069c889732a6c5d02100ceea54">&#9670;&#160;</a></span>ScanErrorCode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="namespaceshared.html#aac9d30069c889732a6c5d02100ceea54">shared::ScanErrorCode</a> = typedef decltype(scn::scan_error::code::value_negative_overflow)</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -496,6 +519,32 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="ade902bed0ac892777ff9951b23c0e23d" name="ade902bed0ac892777ff9951b23c0e23d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ade902bed0ac892777ff9951b23c0e23d">&#9670;&#160;</a></span>ScanErrorCodeToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static const char * shared::ScanErrorCodeToString </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceshared.html#aac9d30069c889732a6c5d02100ceea54">ScanErrorCode</a>&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a id="a7611ccfc121da69b66a3b5ef9c8f42bf" name="a7611ccfc121da69b66a3b5ef9c8f42bf"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7611ccfc121da69b66a3b5ef9c8f42bf">&#9670;&#160;</a></span>iter_count</h2>
@@ -703,6 +752,42 @@ Variables</h2></td></tr>
 
 <p class="reference">Referenced by <a class="el" href="namespaceshared.html#ac7511258976ece006064667eb8c6f171">NIndex()</a>.</p>
 
+</div>
+</div>
+<a id="a4aabd5918eda690837299a6159b73164" name="a4aabd5918eda690837299a6159b73164"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4aabd5918eda690837299a6159b73164">&#9670;&#160;</a></span>ScanErrorStrings</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr std::array&lt;const char*, static_cast&lt;<a class="el" href="myConcepts_8h.html#a35b4f8d9e86b515a4425ca8f4c86e12f">size_t</a>&gt;(ScanErrorCode::max_error) + 1&gt; shared::ScanErrorStrings</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div>
+<div class="line">    <span class="stringliteral">&quot;end_of_input&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;invalid_format_string&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;invalid_scanned_value&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;invalid_literal&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;invalid_fill&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;length_too_short&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;invalid_source_state&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;value_positive_overflow&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;value_negative_overflow&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;value_positive_underflow&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;value_negative_underflow&quot;</span>,</div>
+<div class="line">    <span class="stringliteral">&quot;max_error&quot;</span></div>
+<div class="line">}</div>
+</div><!-- fragment -->
 </div>
 </div>
 </div><!-- contents -->

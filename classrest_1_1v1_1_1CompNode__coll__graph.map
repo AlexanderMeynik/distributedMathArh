@@ -1,23 +1,27 @@
 <map id="rest::v1::CompNode" name="rest::v1::CompNode">
-<area shape="rect" id="Node000001" title=" " alt="" coords="130,1611,291,1796"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="110,1388,269,1468"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="196,1482,206,1610,201,1611,191,1482"/>
-<area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html" title=" " alt="" coords="293,1308,499,1548"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="317,1550,284,1599,280,1596,313,1547"/>
-<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPConsumerService.html" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="157,1055,385,1235"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="299,1235,317,1283,321,1292,316,1294,312,1285,294,1237"/>
-<area shape="rect" id="Node000005" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="5,577,216,983"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="207,994,234,1054,229,1056,203,996"/>
-<area shape="rect" id="Node000006" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="13,225,208,410"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="113,410,113,561,108,561,108,410"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="13,5,209,71"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="113,85,113,224,108,224,108,85"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="240,747,368,813"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="304,813,283,1039,278,1039,298,813"/>
-<area shape="rect" id="Node000009" href="$classcomp__services_1_1BenchmarkRunner.html" title="A class to run performance benchmarks for dipole and mesh computations." alt="" coords="409,1045,602,1245"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="469,1246,451,1294,446,1292,464,1244"/>
-<area shape="rect" id="Node000010" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="435,590,576,970"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="508,970,508,1029,503,1029,503,970"/>
-<area shape="rect" id="Node000011" href="$classtiming_1_1ClockArray.html" title="Clock array template class." alt="" coords="369,120,641,515"/>
-<area shape="poly" id="edge10_Node000010_Node000011" title=" " alt="" coords="508,528,508,590,503,590,503,528"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="283,1760,444,1945"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="263,1537,421,1617"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="349,1631,359,1760,354,1760,343,1632"/>
+<area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html" title=" " alt="" coords="446,1457,651,1697"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="470,1699,437,1748,432,1745,466,1696"/>
+<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPConsumerService.html" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="309,1205,537,1385"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="451,1384,470,1432,474,1441,469,1444,465,1434,446,1386"/>
+<area shape="rect" id="Node000005" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="158,747,369,1132"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="358,1144,385,1203,381,1205,354,1146"/>
+<area shape="rect" id="Node000006" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="11,394,206,579"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="143,579,195,730,190,732,138,580"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="5,90,201,155"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="107,169,110,394,105,394,101,169"/>
+<area shape="rect" id="Node000008" href="$classnetwork__types_1_1AMQPSQLCStr.html" title="Structure to store and format AMQP connection string." alt="" coords="240,304,449,669"/>
+<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="314,670,304,731,298,730,309,669"/>
+<area shape="rect" id="Node000009" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="226,5,471,240"/>
+<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="350,254,349,303,344,303,345,254"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="393,907,521,972"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="456,973,436,1188,431,1188,451,972"/>
+<area shape="rect" id="Node000011" href="$classcomp__services_1_1BenchmarkRunner.html" title="A class to run performance benchmarks for dipole and mesh computations." alt="" coords="561,1195,755,1395"/>
+<area shape="poly" id="edge10_Node000003_Node000011" title=" " alt="" coords="622,1396,604,1443,599,1441,617,1394"/>
+<area shape="rect" id="Node000012" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="587,749,729,1129"/>
+<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="661,1129,661,1178,655,1178,655,1129"/>
+<area shape="rect" id="Node000013" href="$classtiming_1_1ClockArray.html" title="Clock array template class." alt="" coords="522,289,794,684"/>
+<area shape="poly" id="edge12_Node000012_Node000013" title=" " alt="" coords="661,698,661,749,655,749,655,698"/>
 </map>

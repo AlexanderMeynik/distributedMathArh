@@ -1,7 +1,7 @@
 <map id="network_types::AbstractConnectionString" name="network_types::AbstractConnectionString">
-<area shape="rect" id="Node000001" title="us it for verbose names" alt="" coords="106,5,351,220"/>
-<area shape="rect" id="Node000002" href="$classnetwork__types_1_1AMQPSQLCStr.html" title="Structure to store and format AMQP connection string." alt="" coords="5,308,215,633"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,234,166,309,161,307,186,232"/>
-<area shape="rect" id="Node000003" href="$classnetwork__types_1_1PostgreSQLCStr.html" title="Structure to store and format PostgreSQL connection string." alt="" coords="239,268,458,673"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="271,232,283,267,278,268,266,234"/>
+<area shape="rect" id="Node000001" title="us it for verbose names" alt="" coords="106,5,351,240"/>
+<area shape="rect" id="Node000002" href="$classnetwork__types_1_1AMQPSQLCStr.html" title="Structure to store and format AMQP connection string." alt="" coords="5,318,215,683"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="190,254,170,319,165,317,185,252"/>
+<area shape="rect" id="Node000003" href="$classnetwork__types_1_1PostgreSQLCStr.html" title="Structure to store and format PostgreSQL connection string." alt="" coords="239,288,458,713"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="273,252,284,287,278,289,267,254"/>
 </map>

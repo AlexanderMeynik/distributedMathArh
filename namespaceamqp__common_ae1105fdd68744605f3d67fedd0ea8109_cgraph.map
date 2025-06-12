@@ -1,5 +1,7 @@
 <map id="amqp_common::ConstructCAddress" name="amqp_common::ConstructCAddress">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,260,31"/>
-<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="308,5,548,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,15,294,15,294,21,260,21"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,13,260,38"/>
+<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="308,13,548,38"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,23,294,23,294,28,260,28"/>
+<area shape="rect" id="Node000003" href="$classnetwork__types_1_1AbstractConnectionString.html#a740c4fb2574d6b23b352f0514dc2a649" title="explicit std::string type cast" alt="" coords="596,5,849,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="548,23,582,23,582,28,548,28"/>
 </map>

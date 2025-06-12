@@ -7,6 +7,6 @@
 <area shape="poly" id="edge3_Node000003_Node000002" title=" " alt="" coords="371,57,450,41,498,31,500,36,451,46,372,63"/>
 <area shape="rect" id="Node000004" href="$classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="451,55,704,95"/>
 <area shape="poly" id="edge4_Node000003_Node000004" title=" " alt="" coords="403,71,437,71,437,77,403,76"/>
-<area shape="rect" id="Node000005" href="$classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="464,119,691,159"/>
+<area shape="rect" id="Node000005" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="464,119,691,159"/>
 <area shape="poly" id="edge5_Node000003_Node000005" title=" " alt="" coords="363,83,484,113,483,119,362,88"/>
 </map>

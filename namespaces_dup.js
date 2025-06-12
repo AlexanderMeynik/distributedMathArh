@@ -14,6 +14,7 @@ var namespaces_dup =
     [ "dipoles", "namespacedipoles.html", "namespacedipoles" ],
     [ "enum_utils", "namespaceenum__utils.html", "namespaceenum__utils" ],
     [ "file_utils", "namespacefile__utils.html", "namespacefile__utils" ],
+    [ "fmt", "namespacefmt.html", "namespacefmt" ],
     [ "generators", "namespacegenerators.html", "namespacegenerators" ],
     [ "gui_objects", "namespacegui__objects.html", "namespacegui__objects" ],
     [ "main_services", "namespacemain__services.html", "namespacemain__services" ],

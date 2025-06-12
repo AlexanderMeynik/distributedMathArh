@@ -33,6 +33,9 @@ var hierarchy =
       [ "my_concepts::is_specialization_of< typename, class >", "structmy__concepts_1_1is__specialization__of.html", null ]
     ] ],
     [ "file_utils::fileHandler", "classfile__utils_1_1fileHandler.html", null ],
+    [ "formatter", null, [
+      [ "fmt::formatter< ScanErrorCode >", "structfmt_1_1formatter_3_01ScanErrorCode_01_4.html", null ]
+    ] ],
     [ "generators::generator< randomDevice >", "structgenerators_1_1generator.html", null ],
     [ "network_types::global_param", "structnetwork__types_1_1global__param.html", null ],
     [ "drogon::HttpController", null, [
@@ -57,6 +60,7 @@ var hierarchy =
         [ "shared::InvalidOption", "classshared_1_1InvalidOption.html", null ],
         [ "shared::RowDivisionError", "classshared_1_1RowDivisionError.html", null ],
         [ "shared::SQL_ERROR", "classshared_1_1SQL__ERROR.html", null ],
+        [ "shared::ScanningError", "classshared_1_1ScanningError.html", null ],
         [ "shared::invalidSizes2", "classshared_1_1invalidSizes2.html", null ],
         [ "shared::ioError", "classshared_1_1ioError.html", null ],
         [ "shared::mismatchedSizes", "classshared_1_1mismatchedSizes.html", null ],

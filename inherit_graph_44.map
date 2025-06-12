@@ -1,5 +1,31 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" title=" " alt="" coords="5,13,117,38"/>
-<area shape="rect" id="Node000001" href="$structmy__concepts_1_1is__specialization__of_3_01C_3_01Args_8_8_8_01_4_00_01C_01_4.html" title="Is type a specialization of." alt="" coords="165,5,389,45"/>
-<area shape="poly" id="edge26_Node000000_Node000001" title=" " alt="" coords="131,23,165,23,165,28,131,28"/>
+<area shape="rect" id="Node000000" title=" " alt="" coords="5,301,124,327"/>
+<area shape="rect" id="Node000001" href="$classshared_1_1MyException.html" title="Default parent for user defined exception." alt="" coords="172,301,331,327"/>
+<area shape="poly" id="edge14_Node000000_Node000001" title=" " alt="" coords="138,311,172,311,172,317,138,317"/>
+<area shape="rect" id="Node000002" href="$classshared_1_1Already__Connected.html" title="Already conencted error class." alt="" coords="379,5,579,31"/>
+<area shape="poly" id="edge15_Node000001_Node000002" title=" " alt="" coords="254,287,267,235,290,168,325,99,349,67,377,40,395,29,398,33,380,44,353,71,330,102,295,170,272,236,260,288"/>
+<area shape="rect" id="Node000003" href="$classshared_1_1Broken__Connection.html" title="Broken connection error class." alt="" coords="379,55,578,80"/>
+<area shape="poly" id="edge16_Node000001_Node000003" title=" " alt="" coords="257,287,273,243,297,190,332,135,353,111,377,89,397,78,400,82,380,94,357,114,336,138,302,192,278,245,262,289"/>
+<area shape="rect" id="Node000004" href="$classshared_1_1CurlError.html" title="Curl error class." alt="" coords="413,104,544,129"/>
+<area shape="poly" id="edge17_Node000001_Node000004" title=" " alt="" coords="262,288,279,253,305,213,338,173,377,138,412,123,414,128,380,143,341,176,309,216,284,256,266,290"/>
+<area shape="rect" id="Node000005" href="$classshared_1_1HttpError.html" title="HttpError class." alt="" coords="412,153,545,179"/>
+<area shape="poly" id="edge18_Node000001_Node000005" title=" " alt="" coords="268,289,314,237,344,210,377,188,411,174,413,179,380,192,347,215,317,241,272,292"/>
+<area shape="rect" id="Node000006" href="$classshared_1_1InvalidOption.html" title="InvalidOption class." alt="" coords="398,203,559,228"/>
+<area shape="poly" id="edge19_Node000001_Node000006" title=" " alt="" coords="280,291,325,263,378,237,412,226,414,231,380,242,328,268,283,296"/>
+<area shape="rect" id="Node000007" href="$classshared_1_1RowDivisionError.html" title="Exception thrown when the number of rows does not divide the total collection size." alt="" coords="385,252,572,277"/>
+<area shape="poly" id="edge20_Node000001_Node000007" title=" " alt="" coords="323,296,419,275,420,280,324,301"/>
+<area shape="rect" id="Node000008" href="$classshared_1_1SQL__ERROR.html" title="SQL error class." alt="" coords="403,301,554,327"/>
+<area shape="poly" id="edge21_Node000001_Node000008" title=" " alt="" coords="345,311,403,311,403,317,345,317"/>
+<area shape="rect" id="Node000009" href="$classshared_1_1ScanningError.html" title="ScanningError error class." alt="" coords="397,351,561,376"/>
+<area shape="poly" id="edge22_Node000001_Node000009" title=" " alt="" coords="324,327,420,348,419,353,323,332"/>
+<area shape="rect" id="Node000010" href="$classshared_1_1invalidSizes2.html" title="Error template that captures several size values." alt="" coords="399,400,559,425"/>
+<area shape="poly" id="edge23_Node000001_Node000010" title=" " alt="" coords="284,332,328,359,380,385,418,397,416,403,378,390,325,364,281,337"/>
+<area shape="rect" id="Node000011" href="$classshared_1_1ioError.html" title="ioError class" alt="" coords="420,449,537,475"/>
+<area shape="poly" id="edge24_Node000001_Node000011" title=" " alt="" coords="273,336,318,386,347,412,380,434,421,450,419,455,377,439,344,417,314,390,269,340"/>
+<area shape="rect" id="Node000012" href="$classshared_1_1mismatchedSizes.html" title="mismatchedSizes error" alt="" coords="384,499,573,524"/>
+<area shape="poly" id="edge25_Node000001_Node000012" title=" " alt="" coords="266,338,284,371,309,411,342,451,380,484,405,496,403,501,377,488,338,454,305,414,280,374,262,340"/>
+<area shape="rect" id="Node000013" href="$classshared_1_1outOfRange.html" title="outOfRange class" alt="" coords="403,548,554,573"/>
+<area shape="poly" id="edge26_Node000001_Node000013" title=" " alt="" coords="263,339,278,382,302,435,336,488,357,512,380,533,404,546,402,551,377,538,353,516,332,491,297,437,273,384,258,341"/>
+<area shape="rect" id="Node000014" href="$classshared_1_1zeroSize.html" title="zeroSize class" alt="" coords="414,597,543,623"/>
+<area shape="poly" id="edge27_Node000001_Node000014" title=" " alt="" coords="260,340,272,392,295,458,330,525,353,556,380,583,397,593,415,600,413,605,394,598,377,587,349,559,326,528,290,460,267,393,255,341"/>
 </map>

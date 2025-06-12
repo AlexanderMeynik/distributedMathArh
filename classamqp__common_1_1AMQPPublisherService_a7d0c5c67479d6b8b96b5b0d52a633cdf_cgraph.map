@@ -1,7 +1,9 @@
 <map id="amqp_common::AMQPPublisherService::Reconnect" name="amqp_common::AMQPPublisherService::Reconnect">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,236,45"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="284,5,503,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,23,271,23,271,28,236,28"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="551,5,753,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="503,23,537,23,537,28,503,28"/>
+<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,236,77"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="301,5,520,45"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,42,287,36,288,42,237,47"/>
+<area shape="rect" id="Node000004" href="$classnetwork__types_1_1AbstractConnectionString.html#a740c4fb2574d6b23b352f0514dc2a649" title="explicit std::string type cast" alt="" coords="284,69,537,109"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="237,67,271,71,270,76,236,73"/>
+<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="585,5,788,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="520,23,572,23,572,28,520,28"/>
 </map>

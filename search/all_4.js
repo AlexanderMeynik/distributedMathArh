@@ -16,7 +16,7 @@ var searchData=
   ['enumutils_2eh_13',['enumUtils.h',['../enumUtils_8h.html',1,'']]],
   ['envelopeptr_14',['EnvelopePtr',['../namespaceamqp__common.html#a220e5994f3f6fd563a28ee820411bab2',1,'amqp_common']]],
   ['eps_15',['eps',['../structshared_1_1params.html#ac12d7fe0a32e85960e54cd27d40a4124',1,'shared::params']]],
-  ['error_16',['error',['../namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127abb1ca97ec761fc37101737ba0aa2e7c5',1,'db_common::ERROR'],['../namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282',1,'shared::error'],['../namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aabb1ca97ec761fc37101737ba0aa2e7c5',1,'db_common::ERROR'],['../namespacedb__common.html#a5dc66f4066b6c13f08d26162d4d955ebabb1ca97ec761fc37101737ba0aa2e7c5',1,'db_common::ERROR']]],
+  ['error_16',['error',['../namespacedb__common.html#a6066f3f70e89e614d74aad7554faa99aabb1ca97ec761fc37101737ba0aa2e7c5',1,'db_common::ERROR'],['../namespacedb__common.html#a8b04a185ba3a0a5ae3a02c3703b83127abb1ca97ec761fc37101737ba0aa2e7c5',1,'db_common::ERROR'],['../namespacedb__common.html#a5dc66f4066b6c13f08d26162d4d955ebabb1ca97ec761fc37101737ba0aa2e7c5',1,'db_common::ERROR'],['../namespaceshared.html#af59e2e45adcd32ca8a71c3bf467c35c1acb5e100e5a9a3e7f6d1fd97512215282',1,'shared::error']]],
   ['error_5foccured_17',['ERROR_OCCURED',['../namespaceshared.html#a98aeb248445ad3c22ffdca4db4dfa45eabddd5475985c502c688194d03bce7d8c',1,'shared']]],
   ['errorhandling_2ecpp_18',['errorHandling.cpp',['../errorHandling_8cpp.html',1,'']]],
   ['errorhandling_2eh_19',['errorHandling.h',['../errorHandling_8h.html',1,'']]],

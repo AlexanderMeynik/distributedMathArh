@@ -26,6 +26,7 @@ var namespacenetwork__types =
     [ "FromString", "namespacenetwork__types.html#ae3cc7c9769c5afc3f522d0e645099676", null ],
     [ "JsonToVariant", "namespacenetwork__types.html#a72a0d2ba616b55ebaf6e207bbac87331", null ],
     [ "ToString", "namespacenetwork__types.html#a3db573599c2e218543d557f8bd7f6196", null ],
+    [ "UrlDecode", "namespacenetwork__types.html#af174f45f5f393316865d089b898ff9b3", null ],
     [ "VariantToJson", "namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff", null ],
     [ "kExchangeTypeMappings", "namespacenetwork__types.html#a977bcc28c9a0c50fd22b3ff69febe004", null ],
     [ "kExchangeTypeToStr", "namespacenetwork__types.html#af759d4c17b964fc9ccbd01916d2f3793", null ],

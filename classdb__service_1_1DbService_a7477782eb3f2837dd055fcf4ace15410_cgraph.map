@@ -4,6 +4,6 @@
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,45,206,45,206,50,172,50"/>
 <area shape="rect" id="Node000003" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="505,5,727,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="455,32,491,29,491,34,455,38"/>
-<area shape="rect" id="Node000004" href="$classnetwork__types_1_1PostgreSQLCStr.html#acaf3f417f7897af61e8cce0a5919780c" title="Retrieves cString contents for verbose logging." alt="" coords="503,55,729,95"/>
+<area shape="rect" id="Node000004" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="503,55,729,95"/>
 <area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="455,56,489,60,489,65,455,62"/>
 </map>

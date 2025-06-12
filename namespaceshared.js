@@ -12,11 +12,13 @@ var namespaceshared =
     [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
     [ "params", "structshared_1_1params.html", "structshared_1_1params" ],
     [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
+    [ "ScanningError", "classshared_1_1ScanningError.html", "classshared_1_1ScanningError" ],
     [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
     [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ],
     [ "BenchResultType", "namespaceshared.html#a98a73a01c5c6c4ca3e1b3819ce638a98", null ],
     [ "BenchResVec", "namespaceshared.html#aa5d7938a2acc14cba538e883c9be6f9f", null ],
     [ "FloatType", "namespaceshared.html#af061895f5bfe2ffa0c4ba0215150d34b", null ],
+    [ "ScanErrorCode", "namespaceshared.html#aac9d30069c889732a6c5d02100ceea54", null ],
     [ "ParamType", "namespaceshared.html#a9624128c37558187e9088247c8299fd0", [
       [ "EMPTY_PARAMETER_VALUE", "namespaceshared.html#a9624128c37558187e9088247c8299fd0a50dc00ee3e54a0317073f751bbb470a0", null ]
     ] ],
@@ -42,6 +44,7 @@ var namespaceshared =
     [ "DefaultBench", "namespaceshared.html#a2eee87ed81945fe1ee927edb93e2bdf2", null ],
     [ "NIndex", "namespaceshared.html#ac7511258976ece006064667eb8c6f171", null ],
     [ "operator<<", "namespaceshared.html#a7ae339fc4a45fbfc6cbc46fdd3d2863b", null ],
+    [ "ScanErrorCodeToString", "namespaceshared.html#ade902bed0ac892777ff9951b23c0e23d", null ],
     [ "iter_count", "namespaceshared.html#a7611ccfc121da69b66a3b5ef9c8f42bf", null ],
     [ "kNValues", "namespaceshared.html#affbf6044206ed501cbc764df749da33a", null ],
     [ "kSevToStr", "namespaceshared.html#af3d0ef72a5c0a66a91f8f11233a72d80", null ],
@@ -49,5 +52,6 @@ var namespaceshared =
     [ "kStateToStr", "namespaceshared.html#a12bba4853ee52f4c77d00f91a3400853", null ],
     [ "kStringToState", "namespaceshared.html#a4e1aa6d006edaa7a28c619cbd9c62943", null ],
     [ "kStrToSev", "namespaceshared.html#af570bd9365898d829147c73ee171e266", null ],
-    [ "ns", "namespaceshared.html#a40f6e7550864b14a7d627e49db6a1d79", null ]
+    [ "ns", "namespaceshared.html#a40f6e7550864b14a7d627e49db6a1d79", null ],
+    [ "ScanErrorStrings", "namespaceshared.html#a4aabd5918eda690837299a6159b73164", null ]
 ];

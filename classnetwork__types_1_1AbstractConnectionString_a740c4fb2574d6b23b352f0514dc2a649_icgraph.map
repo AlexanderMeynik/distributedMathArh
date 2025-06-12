@@ -1,0 +1,26 @@
+<map id="network_types::AbstractConnectionString::to_string" name="network_types::AbstractConnectionString::to_string">
+<area shape="rect" id="Node000001" title="explicit std::string type cast" alt="" coords="875,152,1128,192"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="597,15,816,55"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="956,147,895,111,826,76,777,57,779,52,828,71,898,106,959,142"/>
+<area shape="rect" id="Node000005" href="$classmain__services_1_1MainNodeService.html#a27958ee74ce9a0b93d4f64ae13f1087a" title="Connects the main node to a RabbiMQ instance at qip." alt="" coords="292,69,531,109"/>
+<area shape="poly" id="edge6_Node000001_Node000005" title=" " alt="" coords="934,150,882,133,826,120,750,108,673,100,531,93,531,87,673,95,751,103,827,115,883,128,936,145"/>
+<area shape="rect" id="Node000007" href="$namespaceamqp__common.html#aad6515e6ea0d240dc7fdaea72649f911" title="Constructs amqp connection string." alt="" coords="587,130,827,155"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="861,161,827,157,827,152,861,155"/>
+<area shape="rect" id="Node000009" href="$classamqp__common_1_1AMQPConsumerService.html#af115aef189526d634e76f93c99ef635d" title="Reconnects to specified queue Restarts amqp connection and channel objects. Specifies message managem..." alt="" coords="589,180,825,220"/>
+<area shape="poly" id="edge9_Node000001_Node000009" title=" " alt="" coords="861,188,825,191,825,186,861,183"/>
+<area shape="rect" id="Node000010" href="$classamqp__common_1_1AMQPPublisherService.html#a7d0c5c67479d6b8b96b5b0d52a633cdf" title=" " alt="" coords="591,244,822,284"/>
+<area shape="poly" id="edge10_Node000001_Node000010" title=" " alt="" coords="933,199,827,235,786,247,785,241,826,229,932,194"/>
+<area shape="rect" id="Node000011" href="$classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="587,308,826,348"/>
+<area shape="poly" id="edge11_Node000001_Node000011" title=" " alt="" coords="969,203,906,252,868,277,828,298,798,310,796,305,826,294,865,272,903,247,965,199"/>
+<area shape="rect" id="Node000003" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="306,5,517,45"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="583,33,517,31,517,26,584,28"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="585,60,520,72,519,67,584,55"/>
+<area shape="rect" id="Node000004" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="45,5,196,45"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="292,28,196,28,196,23,292,23"/>
+<area shape="rect" id="Node000006" href="$classrest_1_1v1_1_1ClusterConfigController.html#a499160df363c6944f4e4234417626ee6" title="Connects main node to RabbitMQ." alt="" coords="5,69,236,109"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="278,92,236,92,236,87,278,87"/>
+<area shape="rect" id="Node000008" href="$namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109" title=" " alt="" coords="284,134,539,159"/>
+<area shape="poly" id="edge8_Node000007_Node000008" title=" " alt="" coords="573,147,539,148,539,142,573,142"/>
+<area shape="rect" id="Node000012" href="$classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308" title="Retrieves the status of whole cluster." alt="" coords="296,308,527,348"/>
+<area shape="poly" id="edge12_Node000011_Node000012" title=" " alt="" coords="574,331,527,331,527,325,574,325"/>
+</map>

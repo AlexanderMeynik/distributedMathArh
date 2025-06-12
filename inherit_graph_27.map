@@ -1,3 +1,7 @@
 <map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="Node000000" href="$structnetwork__types_1_1channel.html" title="channel struct" alt="" coords="5,5,183,31"/>
+<area shape="rect" id="Node000000" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="5,23,259,63"/>
+<area shape="rect" id="Node000001" href="$classnetwork__types_1_1AMQPSQLCStr.html" title="Structure to store and format AMQP connection string." alt="" coords="311,5,529,31"/>
+<area shape="poly" id="edge7_Node000000_Node000001" title=" " alt="" coords="272,28,311,25,311,30,273,34"/>
+<area shape="rect" id="Node000002" href="$classnetwork__types_1_1PostgreSQLCStr.html" title="Structure to store and format PostgreSQL connection string." alt="" coords="307,55,533,80"/>
+<area shape="poly" id="edge8_Node000000_Node000002" title=" " alt="" coords="273,52,307,55,306,61,272,58"/>
 </map>

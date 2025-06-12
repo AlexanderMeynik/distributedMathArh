@@ -40,6 +40,9 @@ var annotated_dup =
     [ "file_utils", "namespacefile__utils.html", [
       [ "fileHandler", "classfile__utils_1_1fileHandler.html", "classfile__utils_1_1fileHandler" ]
     ] ],
+    [ "fmt", "namespacefmt.html", [
+      [ "formatter< ScanErrorCode >", "structfmt_1_1formatter_3_01ScanErrorCode_01_4.html", "structfmt_1_1formatter_3_01ScanErrorCode_01_4" ]
+    ] ],
     [ "generators", "namespacegenerators.html", [
       [ "generator", "structgenerators_1_1generator.html", "structgenerators_1_1generator" ]
     ] ],
@@ -102,6 +105,7 @@ var annotated_dup =
       [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
       [ "params", "structshared_1_1params.html", "structshared_1_1params" ],
       [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
+      [ "ScanningError", "classshared_1_1ScanningError.html", "classshared_1_1ScanningError" ],
       [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
       [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
     ] ],

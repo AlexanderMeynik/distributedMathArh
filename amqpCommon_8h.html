@@ -98,13 +98,10 @@ $(document).ready(function(){initNavTree('amqpCommon_8h.html',''); initResizable
   <div class="headertitle"><div class="title">amqpCommon.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string&gt;</code><br />
-<code>#include &lt;vector&gt;</code><br />
-<code>#include &lt;thread&gt;</code><br />
+<div class="textblock"><code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;memory&gt;</code><br />
 <code>#include &lt;future&gt;</code><br />
-<code>#include &lt;optional&gt;</code><br />
-<code>#include &quot;<a class="el" href="errorHandling_8h_source.html">common/errorHandling.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="connectionString_8h_source.html">network_shared/connectionString.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="networkTypes_8h_source.html">network_shared/networkTypes.h</a>&quot;</code><br />
 <code>#include &lt;amqpcpp.h&gt;</code><br />
 <code>#include &lt;amqpcpp/linux_tcp.h&gt;</code><br />
@@ -117,88 +114,87 @@ $(document).ready(function(){initNavTree('amqpCommon_8h.html',''); initResizable
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="amqpCommon_8h__incl.png" border="0" usemap="#acomputationalLib_2include_2network__shared_2amqpCommon_8h" alt=""/></div>
 <map name="acomputationalLib_2include_2network__shared_2amqpCommon_8h" id="acomputationalLib_2include_2network__shared_2amqpCommon_8h">
-<area shape="rect" title=" " alt="" coords="681,5,924,45"/>
-<area shape="rect" title=" " alt="" coords="595,533,653,559"/>
-<area shape="poly" title=" " alt="" coords="681,37,606,46,531,58,468,74,443,84,426,95,409,113,401,131,399,178,399,400,403,429,415,448,434,465,459,483,512,507,582,530,581,535,510,512,456,488,430,469,411,452,398,430,393,401,393,178,396,130,405,110,422,91,441,79,466,69,530,52,606,40,681,32"/>
-<area shape="rect" title=" " alt="" coords="1322,387,1385,412"/>
-<area shape="poly" title=" " alt="" coords="869,43,1009,91,1035,105,1061,116,1132,131,1194,135,1251,132,1304,126,1356,122,1411,125,1471,137,1538,164,1564,178,1582,193,1596,213,1608,239,1615,270,1610,295,1595,319,1571,341,1530,367,1484,384,1439,394,1399,399,1398,394,1438,389,1483,379,1528,362,1568,337,1590,315,1605,293,1609,270,1603,241,1591,215,1578,197,1561,183,1536,169,1470,142,1411,130,1357,128,1304,132,1251,137,1194,140,1131,136,1059,121,1032,109,1007,96,867,48"/>
-<area shape="rect" title=" " alt="" coords="436,93,500,119"/>
-<area shape="poly" title=" " alt="" coords="719,48,514,96,513,90,717,43"/>
-<area shape="rect" title=" " alt="" coords="524,93,601,119"/>
-<area shape="poly" title=" " alt="" coords="746,48,612,92,610,87,744,43"/>
-<area shape="rect" title=" " alt="" coords="625,93,687,119"/>
-<area shape="poly" title=" " alt="" coords="769,48,691,89,688,84,766,43"/>
-<area shape="rect" title=" " alt="" coords="5,533,80,559"/>
-<area shape="poly" title=" " alt="" coords="681,32,512,42,419,52,330,67,250,86,185,111,160,125,142,141,131,159,127,178,127,401,121,437,105,472,86,501,66,525,62,522,82,498,101,469,115,436,121,400,121,178,126,157,138,138,157,121,182,106,248,81,329,61,419,47,511,37,681,26"/>
-<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="524,387,708,412"/>
-<area shape="poly" title=" " alt="" coords="789,47,751,85,726,104,700,121,671,132,643,136,593,135,569,134,548,138,527,148,506,168,492,190,484,211,483,232,487,252,507,293,539,337,562,359,586,377,583,381,558,363,535,340,502,296,481,254,478,232,479,210,487,188,502,165,524,144,546,133,569,129,593,129,643,131,669,127,697,116,723,100,747,81,785,44"/>
-<area shape="rect" href="networkTypes_8h.html" title=" " alt="" coords="764,93,996,119"/>
-<area shape="poly" title=" " alt="" coords="823,44,861,82,857,85,819,47"/>
-<area shape="rect" title=" " alt="" coords="1071,93,1166,119"/>
-<area shape="poly" title=" " alt="" coords="879,43,1060,87,1059,93,878,48"/>
-<area shape="rect" title=" " alt="" coords="1191,93,1348,119"/>
-<area shape="poly" title=" " alt="" coords="915,43,1189,88,1188,94,914,48"/>
-<area shape="rect" title=" " alt="" coords="1372,93,1559,119"/>
-<area shape="poly" title=" " alt="" coords="925,38,1359,89,1358,95,924,44"/>
-<area shape="rect" title=" " alt="" coords="1583,93,1761,119"/>
-<area shape="poly" title=" " alt="" coords="925,34,1570,91,1569,96,924,39"/>
-<area shape="rect" title=" " alt="" coords="693,460,779,485"/>
-<area shape="poly" title=" " alt="" coords="637,410,706,450,703,455,634,414"/>
-<area shape="rect" title=" " alt="" coords="659,607,715,632"/>
-<area shape="poly" title=" " alt="" coords="709,407,756,425,777,440,794,459,803,478,804,498,797,519,785,538,753,573,718,601,715,597,749,569,781,535,792,516,798,498,798,479,790,461,773,444,753,430,707,412"/>
-<area shape="rect" title=" " alt="" coords="855,460,979,485"/>
-<area shape="poly" title=" " alt="" coords="665,409,856,454,855,459,664,415"/>
-<area shape="rect" title=" " alt="" coords="485,460,539,485"/>
-<area shape="poly" title=" " alt="" coords="601,414,542,454,539,450,598,410"/>
-<area shape="rect" title=" " alt="" coords="563,460,669,485"/>
-<area shape="poly" title=" " alt="" coords="619,412,619,446,613,446,613,412"/>
-<area shape="rect" href="timingUtils_8h.html" title=" " alt="" coords="169,460,359,485"/>
-<area shape="poly" title=" " alt="" coords="560,415,335,460,334,455,559,409"/>
-<area shape="poly" title=" " alt="" coords="329,483,577,531,582,532,581,537,575,536,328,488"/>
-<area shape="poly" title=" " alt="" coords="229,488,92,532,90,527,228,483"/>
-<area shape="poly" title=" " alt="" coords="343,483,435,502,533,531,656,597,653,602,531,536,434,507,342,488"/>
-<area shape="rect" title=" " alt="" coords="304,533,371,559"/>
-<area shape="poly" title=" " alt="" coords="278,484,317,522,314,526,274,488"/>
-<area shape="rect" title=" " alt="" coords="395,533,519,559"/>
-<area shape="poly" title=" " alt="" coords="296,483,414,526,412,531,294,488"/>
-<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="104,533,280,559"/>
-<area shape="poly" title=" " alt="" coords="254,488,215,526,212,522,250,484"/>
-<area shape="poly" title=" " alt="" coords="272,556,645,609,645,615,271,561"/>
-<area shape="rect" title=" " alt="" coords="202,607,294,632"/>
-<area shape="poly" title=" " alt="" coords="203,557,233,594,228,597,199,561"/>
-<area shape="rect" title=" " alt="" coords="97,607,177,632"/>
-<area shape="poly" title=" " alt="" coords="185,561,157,597,152,594,181,557"/>
-<area shape="poly" title=" " alt="" coords="892,117,940,179,969,225,996,276,1017,331,1026,386,1026,413,1020,439,1010,464,994,487,971,504,937,517,847,535,749,544,667,547,667,542,749,539,847,530,935,512,968,499,990,483,1005,461,1015,437,1020,412,1021,386,1012,332,992,278,965,227,936,182,888,120"/>
-<area shape="poly" title=" " alt="" coords="997,115,1306,144,1494,164,1526,177,1550,191,1569,210,1586,239,1593,270,1585,297,1565,321,1537,341,1503,358,1466,372,1399,391,1397,386,1465,367,1501,353,1534,337,1561,317,1580,295,1588,270,1582,241,1565,213,1547,195,1523,182,1493,169,1306,149,996,120"/>
-<area shape="poly" title=" " alt="" coords="769,121,616,142,556,155,536,162,526,168,512,193,509,221,514,249,525,278,560,333,596,375,592,378,556,336,521,281,509,251,503,221,507,192,522,165,534,157,554,150,615,137,768,116"/>
-<area shape="poly" title=" " alt="" coords="878,120,867,157,856,211,850,274,851,307,856,338,878,398,905,447,900,450,873,401,851,339,846,307,845,274,851,210,862,155,873,118"/>
-<area shape="rect" title=" " alt="" coords="1405,313,1481,339"/>
-<area shape="poly" title=" " alt="" coords="997,114,1258,139,1372,152,1437,164,1490,180,1539,199,1558,211,1569,227,1572,245,1564,267,1550,284,1533,297,1495,315,1492,310,1530,292,1546,280,1559,264,1567,244,1564,229,1554,215,1537,204,1488,185,1435,169,1371,158,1257,144,996,120"/>
-<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="1235,167,1424,192"/>
-<area shape="poly" title=" " alt="" coords="953,116,1244,162,1243,167,952,121"/>
-<area shape="rect" href="enumUtils_8h.html" title=" " alt="" coords="865,313,967,339"/>
-<area shape="poly" title=" " alt="" coords="887,118,901,166,912,239,917,300,912,300,907,239,896,167,882,120"/>
-<area shape="rect" title=" " alt="" coords="535,167,627,192"/>
-<area shape="poly" title=" " alt="" coords="833,121,642,166,640,161,831,116"/>
-<area shape="rect" title=" " alt="" coords="651,167,842,192"/>
-<area shape="poly" title=" " alt="" coords="860,121,782,162,779,158,857,116"/>
-<area shape="poly" title=" " alt="" coords="1235,191,1129,210,1086,224,1059,242,1055,252,1060,264,1083,293,1112,318,1145,338,1179,355,1249,378,1309,390,1307,395,1247,383,1177,360,1142,343,1109,322,1079,297,1055,267,1050,252,1055,238,1083,219,1128,205,1234,186"/>
-<area shape="poly" title=" " alt="" coords="1391,189,1481,210,1578,240,1622,258,1657,278,1681,300,1688,312,1691,324,1691,474,1688,484,1681,494,1656,510,1617,526,1565,539,1435,563,1280,582,959,608,729,619,729,614,959,602,1279,577,1434,558,1564,534,1615,521,1653,506,1677,490,1683,482,1685,474,1685,325,1683,314,1677,303,1654,282,1620,263,1577,245,1479,215,1390,195"/>
-<area shape="poly" title=" " alt="" coords="1357,190,1389,210,1419,238,1435,269,1442,299,1437,300,1430,271,1415,242,1386,214,1354,194"/>
-<area shape="rect" title=" " alt="" coords="1481,240,1549,265"/>
-<area shape="poly" title=" " alt="" coords="1360,190,1473,233,1471,237,1358,195"/>
-<area shape="rect" title=" " alt="" coords="1254,240,1405,265"/>
-<area shape="poly" title=" " alt="" coords="1332,192,1332,226,1327,226,1327,192"/>
-<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="1069,240,1229,265"/>
-<area shape="poly" title=" " alt="" coords="1301,195,1192,237,1190,232,1299,190"/>
-<area shape="poly" title=" " alt="" coords="1197,263,1392,310,1391,315,1196,268"/>
-<area shape="poly" title=" " alt="" coords="1113,268,967,312,966,307,1111,263"/>
-<area shape="poly" title=" " alt="" coords="865,332,778,337,674,347,578,364,540,375,513,389,488,410,471,433,465,457,468,470,475,484,491,497,518,510,582,531,581,536,516,515,489,501,471,487,463,472,460,457,466,430,484,406,511,384,538,371,577,359,673,342,777,332,865,326"/>
-<area shape="poly" title=" " alt="" coords="967,333,1309,388,1308,393,967,338"/>
-<area shape="poly" title=" " alt="" coords="868,341,678,386,677,381,867,336"/>
-<area shape="poly" title=" " alt="" coords="915,339,908,372,907,412,913,446,908,447,901,412,903,371,910,338"/>
-<area shape="rect" title=" " alt="" coords="916,387,980,412"/>
-<area shape="poly" title=" " alt="" coords="924,338,940,373,935,375,919,340"/>
+<area shape="rect" title=" " alt="" coords="921,5,1164,45"/>
+<area shape="rect" title=" " alt="" coords="499,93,563,119"/>
+<area shape="poly" title=" " alt="" coords="922,43,761,64,576,96,576,91,761,59,921,38"/>
+<area shape="rect" title=" " alt="" coords="587,93,664,119"/>
+<area shape="poly" title=" " alt="" coords="934,48,678,96,677,91,933,43"/>
+<area shape="rect" title=" " alt="" coords="688,93,749,119"/>
+<area shape="poly" title=" " alt="" coords="962,48,763,96,762,91,961,43"/>
+<area shape="rect" href="connectionString_8h.html" title=" " alt="" coords="853,313,1054,353"/>
+<area shape="poly" title=" " alt="" coords="1044,46,1037,111,1020,193,997,252,973,302,968,300,993,250,1015,191,1032,111,1039,45"/>
+<area shape="rect" href="networkTypes_8h.html" title=" " alt="" coords="773,93,1005,119"/>
+<area shape="poly" title=" " alt="" coords="1007,48,925,89,923,85,1005,43"/>
+<area shape="rect" title=" " alt="" coords="1081,93,1175,119"/>
+<area shape="poly" title=" " alt="" coords="1065,44,1107,82,1103,86,1062,48"/>
+<area shape="rect" title=" " alt="" coords="1200,93,1357,119"/>
+<area shape="poly" title=" " alt="" coords="1100,43,1232,87,1231,92,1098,48"/>
+<area shape="rect" title=" " alt="" coords="1381,93,1568,119"/>
+<area shape="poly" title=" " alt="" coords="1147,43,1398,88,1397,93,1146,48"/>
+<area shape="rect" title=" " alt="" coords="1593,93,1770,119"/>
+<area shape="poly" title=" " alt="" coords="1165,39,1579,90,1579,95,1164,44"/>
+<area shape="rect" title=" " alt="" coords="861,401,958,427"/>
+<area shape="poly" title=" " alt="" coords="945,355,925,391,920,388,940,352"/>
+<area shape="rect" title=" " alt="" coords="665,548,724,573"/>
+<area shape="poly" title=" " alt="" coords="966,352,978,384,988,423,989,464,983,484,973,502,957,515,933,526,870,542,800,553,738,559,737,554,799,548,869,537,931,521,954,510,969,498,978,482,984,463,983,424,973,385,961,354"/>
+<area shape="rect" href="errorHandling_8h.html" title=" " alt="" coords="568,401,752,427"/>
+<area shape="poly" title=" " alt="" coords="884,356,717,400,716,395,882,351"/>
+<area shape="rect" title=" " alt="" coords="549,475,635,500"/>
+<area shape="poly" title=" " alt="" coords="651,429,615,466,611,463,647,425"/>
+<area shape="rect" title=" " alt="" coords="135,475,259,500"/>
+<area shape="poly" title=" " alt="" coords="586,429,273,477,273,472,585,424"/>
+<area shape="rect" title=" " alt="" coords="659,475,714,500"/>
+<area shape="poly" title=" " alt="" coords="667,426,680,461,675,463,662,428"/>
+<area shape="rect" title=" " alt="" coords="738,475,843,500"/>
+<area shape="poly" title=" " alt="" coords="682,424,759,466,756,470,680,429"/>
+<area shape="rect" title=" " alt="" coords="868,475,959,500"/>
+<area shape="poly" title=" " alt="" coords="701,424,860,468,858,473,700,429"/>
+<area shape="rect" href="timingUtils_8h.html" title=" " alt="" coords="284,475,473,500"/>
+<area shape="poly" title=" " alt="" coords="615,429,438,474,437,469,614,424"/>
+<area shape="poly" title=" " alt="" coords="436,497,652,545,651,550,435,503"/>
+<area shape="rect" title=" " alt="" coords="127,548,193,573"/>
+<area shape="poly" title=" " alt="" coords="344,503,208,547,206,542,343,497"/>
+<area shape="rect" title=" " alt="" coords="217,548,292,573"/>
+<area shape="poly" title=" " alt="" coords="360,502,288,543,285,539,357,498"/>
+<area shape="rect" title=" " alt="" coords="317,548,441,573"/>
+<area shape="poly" title=" " alt="" coords="381,500,381,534,376,534,376,500"/>
+<area shape="rect" title=" " alt="" coords="61,621,117,647"/>
+<area shape="poly" title=" " alt="" coords="284,502,185,521,143,535,116,550,107,562,100,577,93,608,88,607,95,575,102,560,113,546,141,530,183,516,283,497"/>
+<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="465,548,641,573"/>
+<area shape="poly" title=" " alt="" coords="408,498,513,540,511,545,406,502"/>
+<area shape="poly" title=" " alt="" coords="479,576,132,629,131,624,478,571"/>
+<area shape="rect" title=" " alt="" coords="562,621,654,647"/>
+<area shape="poly" title=" " alt="" coords="564,572,593,609,589,612,560,575"/>
+<area shape="rect" title=" " alt="" coords="457,621,537,647"/>
+<area shape="poly" title=" " alt="" coords="546,575,517,612,513,609,542,572"/>
+<area shape="poly" title=" " alt="" coords="774,120,727,138,706,151,689,168,672,194,660,222,653,252,650,283,651,341,657,387,652,388,646,342,644,283,648,251,655,220,667,191,685,165,703,147,725,133,772,115"/>
+<area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="167,167,356,192"/>
+<area shape="poly" title=" " alt="" coords="789,121,370,168,369,163,788,116"/>
+<area shape="rect" href="enumUtils_8h.html" title=" " alt="" coords="441,321,543,346"/>
+<area shape="poly" title=" " alt="" coords="814,121,715,142,672,155,643,169,622,191,613,214,604,239,586,267,556,294,526,316,523,311,553,290,582,264,599,237,608,212,618,188,640,165,670,150,714,137,813,116"/>
+<area shape="rect" title=" " alt="" coords="698,167,790,192"/>
+<area shape="poly" title=" " alt="" coords="867,121,781,163,779,158,865,116"/>
+<area shape="rect" title=" " alt="" coords="814,167,1005,192"/>
+<area shape="poly" title=" " alt="" coords="895,118,905,153,900,154,890,120"/>
+<area shape="poly" title=" " alt="" coords="188,195,128,211,69,238,45,257,25,278,13,303,8,332,8,488,14,524,29,558,49,587,70,610,65,613,45,590,25,560,9,526,3,489,3,332,8,301,21,275,41,253,67,234,126,206,187,190"/>
+<area shape="rect" title=" " alt="" coords="115,401,178,427"/>
+<area shape="poly" title=" " alt="" coords="168,192,121,210,100,224,84,242,75,260,72,279,75,299,82,320,104,358,128,390,124,393,99,361,77,322,70,301,67,279,69,258,79,238,97,220,118,205,166,187"/>
+<area shape="rect" title=" " alt="" coords="338,321,414,346"/>
+<area shape="poly" title=" " alt="" coords="288,190,320,210,350,238,367,272,376,306,370,307,362,274,346,242,317,214,285,194"/>
+<area shape="rect" title=" " alt="" coords="94,240,162,265"/>
+<area shape="poly" title=" " alt="" coords="241,194,163,236,161,231,239,190"/>
+<area shape="rect" title=" " alt="" coords="186,240,337,265"/>
+<area shape="poly" title=" " alt="" coords="264,192,264,226,259,226,259,192"/>
+<area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="412,240,572,265"/>
+<area shape="poly" title=" " alt="" coords="299,189,443,233,441,239,298,195"/>
+<area shape="poly" title=" " alt="" coords="476,268,406,315,403,311,473,263"/>
+<area shape="poly" title=" " alt="" coords="495,266,495,307,489,307,489,266"/>
+<area shape="poly" title=" " alt="" coords="494,346,496,376,502,417,515,460,526,480,539,498,582,518,653,543,651,548,580,523,536,502,521,483,510,462,497,418,491,377,489,346"/>
+<area shape="poly" title=" " alt="" coords="518,344,625,393,622,398,515,348"/>
+<area shape="poly" title=" " alt="" coords="471,348,233,471,231,466,469,344"/>
+<area shape="poly" title=" " alt="" coords="454,349,426,356,192,407,191,401,425,351,452,343"/>
+<area shape="rect" title=" " alt="" coords="409,401,473,427"/>
+<area shape="poly" title=" " alt="" coords="487,348,459,391,454,388,482,345"/>
 </map>
 </div>
 </div><div class="textblock"><div id="dynsection-1" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
@@ -290,29 +286,21 @@ metrix</h1>
 <tr class="markdownTableHead">
 <th class="markdownTableHeadRight">warnings   </th><th class="markdownTableHeadRight">std.code.filelines.code   </th><th class="markdownTableHeadRight">std.code.filelines.preprocessor   </th><th class="markdownTableHeadRight">std.code.filelines.comments   </th><th class="markdownTableHeadRight">std.code.filelines.total   </th><th class="markdownTableHeadRight">std.general.proctime   </th><th class="markdownTableHeadRight">std.general.size    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">79   </td><td class="markdownTableBodyRight">13   </td><td class="markdownTableBodyRight">99   </td><td class="markdownTableBodyRight">181   </td><td class="markdownTableBodyRight">0.00504755973815918   </td><td class="markdownTableBodyRight">5251   </td></tr>
+<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">69   </td><td class="markdownTableBodyRight">10   </td><td class="markdownTableBodyRight">98   </td><td class="markdownTableBodyRight">168   </td><td class="markdownTableBodyRight">0.003953695297241211   </td><td class="markdownTableBodyRight">4995   </td></tr>
 </table>
 <h1><a class="anchor" id="autotoc_md14"></a>
 region metrix</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
-<th class="markdownTableHeadNone">region   </th><th class="markdownTableHeadRight">warnings   </th><th class="markdownTableHeadRight">std.code.length.total   </th><th class="markdownTableHeadRight">std.code.lines.code   </th><th class="markdownTableHeadRight">std.code.lines.preprocessor   </th><th class="markdownTableHeadRight">std.code.lines.comments   </th><th class="markdownTableHeadRight">std.code.lines.total   </th><th class="markdownTableHeadRight">std.code.mi.simple   </th><th class="markdownTableHeadRight">std.code.ratio.comments   </th><th class="markdownTableHeadNone">std.code.member.classes   </th><th class="markdownTableHeadNone">std.code.member.types   </th><th class="markdownTableHeadNone">std.code.complexity.cyclomatic   </th><th class="markdownTableHeadNone">std.code.complexity.cyclomatic_switch_case_once   </th><th class="markdownTableHeadNone">std.code.complexity.maxindent   </th><th class="markdownTableHeadNone">std.code.todo.comments    </th></tr>
+<th class="markdownTableHeadNone">region   </th><th class="markdownTableHeadRight">warnings   </th><th class="markdownTableHeadRight">std.code.length.total   </th><th class="markdownTableHeadRight">std.code.lines.code   </th><th class="markdownTableHeadRight">std.code.lines.preprocessor   </th><th class="markdownTableHeadRight">std.code.lines.comments   </th><th class="markdownTableHeadRight">std.code.lines.total   </th><th class="markdownTableHeadRight">std.code.mi.simple   </th><th class="markdownTableHeadRight">std.code.ratio.comments   </th><th class="markdownTableHeadNone">std.code.member.classes   </th><th class="markdownTableHeadNone">std.code.member.types    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>global</b>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">330   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">13   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">13   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.000   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
+<td class="markdownTableBodyNone"><b>global</b>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">285   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">10   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">10   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.000   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="namespaceamqp__common.html">amqp_common</a>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1920   </td><td class="markdownTableBodyRight">30   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">38   </td><td class="markdownTableBodyRight">67   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.558   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="namespaceamqp__common.html">amqp_common</a>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">2007   </td><td class="markdownTableBodyRight">32   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">38   </td><td class="markdownTableBodyRight">69   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.542   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">2    </td></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">MyHandler   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">420   </td><td class="markdownTableBodyRight">8   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">7   </td><td class="markdownTableBodyRight">14   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.466   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
+<td class="markdownTableBodyNone">MyHandler   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1008   </td><td class="markdownTableBodyRight">14   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">23   </td><td class="markdownTableBodyRight">36   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.621   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">onClosed   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">209   </td><td class="markdownTableBodyRight">4   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">4   </td><td class="markdownTableBodyRight">8   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.500   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">-    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">onError   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">292   </td><td class="markdownTableBodyRight">5   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">6   </td><td class="markdownTableBodyRight">10   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.545   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">1    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">onConnected   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">252   </td><td class="markdownTableBodyRight">4   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">4   </td><td class="markdownTableBodyRight">8   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.500   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">-    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">ResetLoop   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">133   </td><td class="markdownTableBodyRight">5   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">3   </td><td class="markdownTableBodyRight">8   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.375   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">-    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">AMQPService   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1695   </td><td class="markdownTableBodyRight">25   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">37   </td><td class="markdownTableBodyRight">55   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.596   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td></tr>
+<td class="markdownTableBodyNone">AMQPService   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1695   </td><td class="markdownTableBodyRight">25   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">37   </td><td class="markdownTableBodyRight">55   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.596   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td></tr>
 </table>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

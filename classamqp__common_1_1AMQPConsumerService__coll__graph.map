@@ -1,11 +1,15 @@
 <map id="amqp_common::AMQPConsumerService" name="amqp_common::AMQPConsumerService">
-<area shape="rect" id="Node000001" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="141,836,369,1016"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="5,368,216,773"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="201,785,221,835,216,837,196,787"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="13,120,208,305"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="113,306,113,352,108,352,108,306"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="13,5,209,71"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="113,85,113,120,108,120,108,85"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="240,538,368,603"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="302,604,272,820,267,820,297,604"/>
+<area shape="rect" id="Node000001" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="203,1165,431,1345"/>
+<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="115,717,326,1103"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="281,1115,294,1165,289,1166,275,1117"/>
+<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="11,379,206,565"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="135,564,170,701,165,702,130,566"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="5,90,201,155"/>
+<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="107,169,110,379,105,379,101,169"/>
+<area shape="rect" id="Node000005" href="$classnetwork__types_1_1AMQPSQLCStr.html" title="Structure to store and format AMQP connection string." alt="" coords="240,289,449,655"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="296,656,282,702,277,701,290,654"/>
+<area shape="rect" id="Node000006" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="226,5,471,240"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="350,254,349,289,344,289,345,254"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="350,877,478,943"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="408,944,349,1150,344,1149,402,942"/>
 </map>
