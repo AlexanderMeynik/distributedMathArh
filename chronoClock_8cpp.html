@@ -97,6 +97,7 @@ $(document).ready(function(){initNavTree('chronoClock_8cpp.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="chronoClock_8h_source.html">parallelUtils/chronoClock.h</a>&quot;</code><br />
+<code>#include &lt;thread&gt;</code><br />
 <code>#include &lt;sstream&gt;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for chronoClock.cpp:</div>
@@ -105,43 +106,41 @@ $(document).ready(function(){initNavTree('chronoClock_8cpp.html',''); initResiza
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="chronoClock_8cpp__incl.png" border="0" usemap="#autilLib_2lib_2parallelUtils_2chronoClock_8cpp" alt=""/></div>
 <map name="autilLib_2lib_2parallelUtils_2chronoClock_8cpp" id="autilLib_2lib_2parallelUtils_2chronoClock_8cpp">
-<area shape="rect" title=" " alt="" coords="541,5,707,45"/>
-<area shape="rect" href="chronoClock_8h.html" title=" " alt="" coords="445,93,643,119"/>
-<area shape="poly" title=" " alt="" coords="606,47,568,85,564,82,603,44"/>
-<area shape="rect" title=" " alt="" coords="667,93,741,119"/>
-<area shape="poly" title=" " alt="" coords="645,44,684,82,680,85,642,47"/>
-<area shape="rect" href="ClockArray_8h.html" title=" " alt="" coords="231,167,334,192"/>
-<area shape="poly" title=" " alt="" coords="503,121,339,166,338,160,501,116"/>
-<area shape="rect" title=" " alt="" coords="772,313,839,339"/>
-<area shape="poly" title=" " alt="" coords="559,117,783,302,779,306,556,121"/>
-<area shape="rect" title=" " alt="" coords="339,240,415,265"/>
-<area shape="poly" title=" " alt="" coords="299,190,352,229,349,234,296,194"/>
-<area shape="rect" title=" " alt="" coords="5,240,56,265"/>
-<area shape="poly" title=" " alt="" coords="241,195,70,242,69,237,240,189"/>
-<area shape="rect" title=" " alt="" coords="81,240,138,265"/>
-<area shape="poly" title=" " alt="" coords="256,194,151,237,149,232,254,190"/>
-<area shape="rect" title=" " alt="" coords="163,240,227,265"/>
-<area shape="poly" title=" " alt="" coords="270,194,221,233,218,229,267,190"/>
-<area shape="rect" title=" " alt="" coords="251,240,315,265"/>
-<area shape="poly" title=" " alt="" coords="285,192,285,226,280,226,280,192"/>
-<area shape="rect" href="timingUtils_8h.html" title=" " alt="" coords="440,240,629,265"/>
-<area shape="poly" title=" " alt="" coords="324,189,481,234,480,239,322,195"/>
-<area shape="poly" title=" " alt="" coords="579,263,759,310,758,315,577,268"/>
-<area shape="rect" title=" " alt="" coords="191,313,249,339"/>
-<area shape="poly" title=" " alt="" coords="479,268,263,316,262,310,477,263"/>
-<area shape="rect" title=" " alt="" coords="273,313,348,339"/>
-<area shape="poly" title=" " alt="" coords="499,268,361,312,359,307,498,263"/>
-<area shape="rect" title=" " alt="" coords="373,313,497,339"/>
-<area shape="poly" title=" " alt="" coords="520,268,464,307,461,303,517,263"/>
-<area shape="rect" title=" " alt="" coords="523,387,579,412"/>
-<area shape="poly" title=" " alt="" coords="539,265,551,373,545,373,533,266"/>
-<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="572,313,748,339"/>
-<area shape="poly" title=" " alt="" coords="556,263,629,304,626,309,553,268"/>
-<area shape="poly" title=" " alt="" coords="644,341,582,381,579,377,641,336"/>
-<area shape="rect" title=" " alt="" coords="715,387,807,412"/>
-<area shape="poly" title=" " alt="" coords="678,336,735,376,732,381,675,341"/>
-<area shape="rect" title=" " alt="" coords="611,387,691,412"/>
-<area shape="poly" title=" " alt="" coords="661,339,657,374,651,373,656,339"/>
+<area shape="rect" title=" " alt="" coords="282,5,447,45"/>
+<area shape="rect" href="chronoClock_8h.html" title=" " alt="" coords="111,93,309,119"/>
+<area shape="poly" title=" " alt="" coords="329,48,246,89,244,85,326,43"/>
+<area shape="rect" title=" " alt="" coords="333,93,397,119"/>
+<area shape="poly" title=" " alt="" coords="367,46,367,79,362,79,362,46"/>
+<area shape="rect" title=" " alt="" coords="421,93,495,119"/>
+<area shape="poly" title=" " alt="" coords="389,44,435,82,432,86,386,48"/>
+<area shape="rect" href="ClockArray_8h.html" title=" " alt="" coords="159,167,261,192"/>
+<area shape="poly" title=" " alt="" coords="213,119,213,153,207,153,207,119"/>
+<area shape="rect" title=" " alt="" coords="5,240,81,265"/>
+<area shape="poly" title=" " alt="" coords="184,194,84,237,82,232,182,190"/>
+<area shape="rect" title=" " alt="" coords="106,240,157,265"/>
+<area shape="poly" title=" " alt="" coords="199,194,156,233,152,229,196,190"/>
+<area shape="rect" title=" " alt="" coords="181,240,239,265"/>
+<area shape="poly" title=" " alt="" coords="213,192,213,226,207,226,207,192"/>
+<area shape="rect" title=" " alt="" coords="263,240,327,265"/>
+<area shape="poly" title=" " alt="" coords="225,190,273,229,269,233,222,194"/>
+<area shape="rect" href="timingUtils_8h.html" title=" " alt="" coords="351,240,541,265"/>
+<area shape="poly" title=" " alt="" coords="249,189,395,233,394,239,247,195"/>
+<area shape="rect" title=" " alt="" coords="235,313,302,339"/>
+<area shape="poly" title=" " alt="" coords="418,268,311,311,309,306,417,263"/>
+<area shape="rect" title=" " alt="" coords="326,313,385,339"/>
+<area shape="poly" title=" " alt="" coords="433,267,383,307,379,302,430,263"/>
+<area shape="rect" title=" " alt="" coords="409,313,483,339"/>
+<area shape="poly" title=" " alt="" coords="449,266,449,300,443,300,443,266"/>
+<area shape="rect" title=" " alt="" coords="508,313,632,339"/>
+<area shape="poly" title=" " alt="" coords="467,263,539,304,537,309,465,268"/>
+<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="657,313,833,339"/>
+<area shape="poly" title=" " alt="" coords="495,263,684,307,682,313,493,268"/>
+<area shape="rect" title=" " alt="" coords="588,387,680,412"/>
+<area shape="poly" title=" " alt="" coords="728,341,665,381,662,377,725,336"/>
+<area shape="rect" title=" " alt="" coords="705,387,785,412"/>
+<area shape="poly" title=" " alt="" coords="747,339,747,373,742,373,742,339"/>
+<area shape="rect" title=" " alt="" coords="809,387,865,412"/>
+<area shape="poly" title=" " alt="" coords="761,337,813,376,809,380,758,341"/>
 </map>
 </div>
 </div><table class="memberdecls">
@@ -157,23 +156,23 @@ Functions</h2></td></tr>
 <tr class="separator:a4d0cbbce4d34ecc0b454946cd8254908"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h1><a class="anchor" id="autotoc_md127"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md129"></a>
 metrix</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadRight">warnings   </th><th class="markdownTableHeadRight">std.code.filelines.code   </th><th class="markdownTableHeadRight">std.code.filelines.preprocessor   </th><th class="markdownTableHeadRight">std.code.filelines.comments   </th><th class="markdownTableHeadRight">std.code.filelines.total   </th><th class="markdownTableHeadRight">std.general.proctime   </th><th class="markdownTableHeadRight">std.general.size    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">15   </td><td class="markdownTableBodyRight">2   </td><td class="markdownTableBodyRight">2   </td><td class="markdownTableBodyRight">18   </td><td class="markdownTableBodyRight">0.0013744831085205078   </td><td class="markdownTableBodyRight">608   </td></tr>
+<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">15   </td><td class="markdownTableBodyRight">3   </td><td class="markdownTableBodyRight">2   </td><td class="markdownTableBodyRight">19   </td><td class="markdownTableBodyRight">0.0013930797576904297   </td><td class="markdownTableBodyRight">626   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md128"></a>
+<h1><a class="anchor" id="autotoc_md130"></a>
 region metrix</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">region   </th><th class="markdownTableHeadRight">warnings   </th><th class="markdownTableHeadRight">std.code.length.total   </th><th class="markdownTableHeadRight">std.code.lines.code   </th><th class="markdownTableHeadRight">std.code.lines.preprocessor   </th><th class="markdownTableHeadRight">std.code.lines.comments   </th><th class="markdownTableHeadRight">std.code.lines.total   </th><th class="markdownTableHeadRight">std.code.mi.simple   </th><th class="markdownTableHeadRight">std.code.ratio.comments   </th><th class="markdownTableHeadNone">std.code.complexity.cyclomatic   </th><th class="markdownTableHeadNone">std.code.complexity.cyclomatic_switch_case_once   </th><th class="markdownTableHeadNone">std.code.complexity.maxindent   </th><th class="markdownTableHeadNone">std.code.magic.numbers    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><b>global</b>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">40   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.0   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
+<td class="markdownTableBodyNone"><b>global</b>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">77   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">3   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">3   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.0   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone"><a class="el" href="namespacechrono__clock.html">chrono_clock</a>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">99   </td><td class="markdownTableBodyRight">2   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">2   </td><td class="markdownTableBodyRight">5   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.5   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
+<td class="markdownTableBodyNone"><a class="el" href="namespacechrono__clock.html">chrono_clock</a>   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">80   </td><td class="markdownTableBodyRight">2   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">2   </td><td class="markdownTableBodyRight">4   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.5   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-   </td><td class="markdownTableBodyNone">-    </td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">GetFileState   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">469   </td><td class="markdownTableBodyRight">13   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">13   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.0   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">3   </td></tr>
 </table>

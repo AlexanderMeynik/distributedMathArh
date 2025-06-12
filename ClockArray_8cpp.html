@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Distributed math architecture: utilLib/lib/parallelUtils/clockArray.cpp File Reference</title>
+<title>Distributed math architecture: utilLib/lib/parallelUtils/ClockArray.cpp File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('clockArray_8cpp.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('ClockArray_8cpp.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -90,61 +90,58 @@ $(document).ready(function(){initNavTree('clockArray_8cpp.html',''); initResizab
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">clockArray.cpp File Reference</div></div>
+  <div class="headertitle"><div class="title">ClockArray.cpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><code>#include &quot;<a class="el" href="ClockArray_8h_source.html">parallelUtils/ClockArray.h</a>&quot;</code><br />
 </div><div class="textblock"><div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for clockArray.cpp:</div>
+  <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Include dependency graph for ClockArray.cpp:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
 </div>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
-<div class="center"><img src="clockArray_8cpp__incl.png" border="0" usemap="#autilLib_2lib_2parallelUtils_2clockArray_8cpp" alt=""/></div>
-<map name="autilLib_2lib_2parallelUtils_2clockArray_8cpp" id="autilLib_2lib_2parallelUtils_2clockArray_8cpp">
-<area shape="rect" title=" " alt="" coords="170,5,335,45"/>
-<area shape="rect" href="ClockArray_8h.html" title=" " alt="" coords="159,93,346,119"/>
-<area shape="poly" title=" " alt="" coords="255,46,255,79,250,79,250,46"/>
+<div class="center"><img src="ClockArray_8cpp__incl.png" border="0" usemap="#autilLib_2lib_2parallelUtils_2ClockArray_8cpp" alt=""/></div>
+<map name="autilLib_2lib_2parallelUtils_2ClockArray_8cpp" id="autilLib_2lib_2parallelUtils_2ClockArray_8cpp">
+<area shape="rect" title=" " alt="" coords="127,5,293,45"/>
+<area shape="rect" href="ClockArray_8h.html" title=" " alt="" coords="117,93,303,119"/>
+<area shape="poly" title=" " alt="" coords="213,46,213,79,207,79,207,46"/>
 <area shape="rect" title=" " alt="" coords="5,167,81,192"/>
-<area shape="poly" title=" " alt="" coords="220,121,91,165,90,160,218,116"/>
+<area shape="poly" title=" " alt="" coords="184,121,84,164,82,159,182,116"/>
 <area shape="rect" title=" " alt="" coords="106,167,157,192"/>
-<area shape="poly" title=" " alt="" coords="235,121,164,162,161,157,232,116"/>
+<area shape="poly" title=" " alt="" coords="199,121,156,159,152,156,196,117"/>
 <area shape="rect" title=" " alt="" coords="181,167,239,192"/>
-<area shape="poly" title=" " alt="" coords="248,120,226,156,222,154,243,118"/>
+<area shape="poly" title=" " alt="" coords="213,119,213,153,207,153,207,119"/>
 <area shape="rect" title=" " alt="" coords="263,167,327,192"/>
-<area shape="poly" title=" " alt="" coords="262,118,284,154,279,156,257,120"/>
-<area shape="rect" title=" " alt="" coords="351,167,415,192"/>
-<area shape="poly" title=" " alt="" coords="275,116,351,158,349,162,272,121"/>
-<area shape="rect" href="timingUtils_8h.html" title=" " alt="" coords="439,167,629,192"/>
-<area shape="poly" title=" " alt="" coords="299,116,476,161,475,166,297,121"/>
-<area shape="rect" title=" " alt="" coords="262,240,329,265"/>
-<area shape="poly" title=" " alt="" coords="496,195,343,240,341,235,495,189"/>
-<area shape="rect" title=" " alt="" coords="353,240,411,265"/>
-<area shape="poly" title=" " alt="" coords="511,194,420,237,418,232,508,190"/>
-<area shape="rect" title=" " alt="" coords="435,240,510,265"/>
-<area shape="poly" title=" " alt="" coords="526,194,494,231,490,228,522,191"/>
-<area shape="rect" title=" " alt="" coords="535,240,659,265"/>
-<area shape="poly" title=" " alt="" coords="546,191,579,228,575,231,542,194"/>
-<area shape="rect" title=" " alt="" coords="682,313,738,339"/>
-<area shape="poly" title=" " alt="" coords="582,190,628,208,651,222,672,238,693,268,706,299,701,301,689,271,668,242,648,226,626,213,580,195"/>
-<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="734,240,910,265"/>
-<area shape="poly" title=" " alt="" coords="581,189,763,234,762,239,580,195"/>
-<area shape="poly" title=" " alt="" coords="805,268,742,308,739,303,803,263"/>
-<area shape="rect" title=" " alt="" coords="769,313,861,339"/>
-<area shape="poly" title=" " alt="" coords="824,266,820,300,815,300,818,265"/>
-<area shape="rect" title=" " alt="" coords="886,313,966,339"/>
-<area shape="poly" title=" " alt="" coords="840,263,899,303,896,307,837,268"/>
+<area shape="poly" title=" " alt="" coords="225,117,273,156,269,160,222,121"/>
+<area shape="rect" href="timingUtils_8h.html" title=" " alt="" coords="351,167,541,192"/>
+<area shape="poly" title=" " alt="" coords="249,116,395,160,394,165,247,121"/>
+<area shape="rect" title=" " alt="" coords="235,240,302,265"/>
+<area shape="poly" title=" " alt="" coords="418,194,311,237,309,232,417,190"/>
+<area shape="rect" title=" " alt="" coords="326,240,385,265"/>
+<area shape="poly" title=" " alt="" coords="433,194,383,233,379,229,430,190"/>
+<area shape="rect" title=" " alt="" coords="409,240,483,265"/>
+<area shape="poly" title=" " alt="" coords="449,192,449,226,443,226,443,192"/>
+<area shape="rect" title=" " alt="" coords="508,240,632,265"/>
+<area shape="poly" title=" " alt="" coords="467,190,539,231,537,235,465,194"/>
+<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="657,240,833,265"/>
+<area shape="poly" title=" " alt="" coords="495,189,684,234,682,239,493,195"/>
+<area shape="rect" title=" " alt="" coords="588,313,680,339"/>
+<area shape="poly" title=" " alt="" coords="728,268,665,308,662,303,725,263"/>
+<area shape="rect" title=" " alt="" coords="705,313,785,339"/>
+<area shape="poly" title=" " alt="" coords="747,266,747,300,742,300,742,266"/>
+<area shape="rect" title=" " alt="" coords="809,313,865,339"/>
+<area shape="poly" title=" " alt="" coords="761,263,813,303,809,307,758,267"/>
 </map>
 </div>
 </div><a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><h1><a class="anchor" id="autotoc_md129"></a>
+<div class="textblock"><h1><a class="anchor" id="autotoc_md127"></a>
 metrix</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
 <th class="markdownTableHeadRight">warnings   </th><th class="markdownTableHeadRight">std.code.filelines.code   </th><th class="markdownTableHeadRight">std.code.filelines.preprocessor   </th><th class="markdownTableHeadRight">std.code.filelines.comments   </th><th class="markdownTableHeadRight">std.code.filelines.total   </th><th class="markdownTableHeadRight">std.general.proctime   </th><th class="markdownTableHeadRight">std.general.size    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.0004913806915283203   </td><td class="markdownTableBodyRight">40   </td></tr>
+<td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0   </td><td class="markdownTableBodyRight">1   </td><td class="markdownTableBodyRight">0.0005292892456054688   </td><td class="markdownTableBodyRight">40   </td></tr>
 </table>
-<h1><a class="anchor" id="autotoc_md130"></a>
+<h1><a class="anchor" id="autotoc_md128"></a>
 region metrix</h1>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -157,7 +154,7 @@ region metrix</h1>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_c1e9ad1dd36132d3988884018ffa8754.html">utilLib</a></li><li class="navelem"><a class="el" href="dir_2486395593a46916b54c381cf5f0f9a7.html">lib</a></li><li class="navelem"><a class="el" href="dir_7c7f28cc9be63c08d9aed8f32250758b.html">parallelUtils</a></li><li class="navelem"><a class="el" href="clockArray_8cpp.html">clockArray.cpp</a></li>
+    <li class="navelem"><a class="el" href="dir_c1e9ad1dd36132d3988884018ffa8754.html">utilLib</a></li><li class="navelem"><a class="el" href="dir_2486395593a46916b54c381cf5f0f9a7.html">lib</a></li><li class="navelem"><a class="el" href="dir_7c7f28cc9be63c08d9aed8f32250758b.html">parallelUtils</a></li><li class="navelem"><a class="el" href="ClockArray_8cpp.html">ClockArray.cpp</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8 </li>
   </ul>
 </div>
