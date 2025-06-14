@@ -3,7 +3,7 @@
 /// file_utils namespace
 namespace file_utils {
 
-fs::path inline GetNormalAbs(const fs::path &path) {
+fs::path GetNormalAbs(const fs::path &path) {
   return fs::absolute(path).lexically_normal();
 }
 
