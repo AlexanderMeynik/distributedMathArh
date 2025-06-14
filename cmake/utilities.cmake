@@ -62,7 +62,7 @@ macro(add_env_test TARGET_NAME SOURCE_FILE ARGN)
         separate_arguments(_args_list NATIVE_COMMAND "${_args}")
 
         add_executable(${TARGET_NAME} ${SOURCE_FILE})
-        target_link_libraries(${TARGET_NAME} PUBLIC network_shared_lib gtest gmock)
+        target_link_libraries(${TARGET_NAME} PUBLIC network_shared_lib testingUtilsLib gtest gmock)
         enable_coverage_for_target(${TARGET_NAME})
 
         gtest_add_tests(

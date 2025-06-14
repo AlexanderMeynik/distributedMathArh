@@ -123,7 +123,7 @@ void MatrixPrint2D(std::ostream &out,
                    const EFormat &eigen_form = EIGENF(EigenPrintFormats::MATRIX_FORMAT_1));
 
 /**
- * @brief Human readable way to print solution vector
+ * @brief Human readable way to Print solution vector
  * @tparam Collection
  * @param out
  * @param solution
@@ -136,7 +136,7 @@ int PrintSolutionFormat1(std::ostream &out,
                          const Collection &solution);
 
 /**
- * @brief Human readable way to print coordinates vector
+ * @brief Human readable way to Print coordinates vector
  * @tparam Collection
  * @param out
  * @param col

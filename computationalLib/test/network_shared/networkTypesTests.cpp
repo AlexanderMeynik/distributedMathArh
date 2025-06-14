@@ -1,4 +1,4 @@
-#include "../GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 #include "network_shared/networkTypes.h"
 
 using namespace network_types;

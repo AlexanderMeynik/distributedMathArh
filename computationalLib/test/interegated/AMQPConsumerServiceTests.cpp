@@ -1,6 +1,6 @@
 #include "network_shared/AMQPConsumerService.h"
 #include "network_shared/amqpRestService.h"
-#include "../GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 
 using test_common::AuthParams;
 using test_common::WaitFor;

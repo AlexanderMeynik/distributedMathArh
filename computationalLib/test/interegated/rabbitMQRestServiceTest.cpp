@@ -1,5 +1,5 @@
 #include "network_shared/amqpRestService.h"
-#include "../GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 
 using namespace amqp_common;
 

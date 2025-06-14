@@ -41,6 +41,6 @@ target_link_libraries(httpClientTest PUBLIC allUtils plotLib)
 target_include_directories(httpClientTest PUBLIC include)
 
 
-add_executable(averageGetter src/avgsTest.cpp ../computationalLib/test/fileHandler.cpp)
+add_executable(averageGetter src/avgsTest.cpp ../utilLib/lib/testingUtils/FileHandler.cpp)
 target_link_libraries(averageGetter PUBLIC allUtils network_shared_lib math_core_lib plotLib)
 target_include_directories(averageGetter PUBLIC include)

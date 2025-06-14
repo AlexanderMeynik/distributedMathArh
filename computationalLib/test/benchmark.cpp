@@ -11,7 +11,7 @@
 #include "common/MeshCreator.h"
 #include "common/sharedDeclarations.h"
 
-using file_utils::fileHandler;
+using file_utils::FileHandler;
 using namespace shared;
 using bench_utils::BenchmarkHandler;
 
@@ -53,7 +53,7 @@ Loop(const std::valarray<FloatType> &coordinates, auto &clk, dipoles::Dipoles &d
 }
 
 auto firstBench = []
-    (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
+    (auto &clk, file_utils::FileHandler &handler, size_t &mul, StateT st, size_t N) {
   auto conf_num = 1000;
 
   std::valarray<FloatType> coordinates(2 * N);
@@ -85,7 +85,7 @@ auto rangeFinder = [](size_t N) -> size_t {
 };
 
 auto secondBench = []
-    (auto &clk, file_utils::fileHandler &handler, size_t &mul, size_t N) {
+    (auto &clk, file_utils::FileHandler &handler, size_t &mul, size_t N) {
   auto div = rangeFinder(N);
   mul = div;
   auto confNum = 10000 / div;
@@ -124,7 +124,7 @@ std::function<std::string(size_t)> nameGenerator2 =
       return std::to_string(N) + "_";
     };
 auto thirdBench = []
-    (auto &clk, file_utils::fileHandler &handler, size_t &mul, StateT st, size_t N) {
+    (auto &clk, file_utils::FileHandler &handler, size_t &mul, StateT st, size_t N) {
   auto conf_num = 1000;
   std::valarray<FloatType> coordinates(2 * N);
   std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
@@ -168,7 +168,7 @@ auto nameGenerator3 =
     };
 
 auto fourthBench = []
-    (auto &clk, file_utils::fileHandler &handler, size_t &mul, size_t confNum, size_t N) {
+    (auto &clk, file_utils::FileHandler &handler, size_t &mul, size_t confNum, size_t N) {
   std::valarray<FloatType> coordinates(2 * N);
   std::generate(std::begin(coordinates), std::end(coordinates), normal_gen);
 
@@ -205,7 +205,7 @@ auto nameGenerator4 =
     };
 
 auto fifthBench = []
-    (auto &clk, file_utils::fileHandler &handler,size_t &mul, size_t eigen_threads, size_t N) {
+    (auto &clk, file_utils::FileHandler &handler, size_t &mul, size_t eigen_threads, size_t N) {
   //Eigen::setNbThreads(eigen_threads);
   size_t conf_num = 10000;
   mul=1;

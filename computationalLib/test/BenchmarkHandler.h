@@ -3,7 +3,7 @@
 #include <functional>
 
 #include "common/printUtils.h"
-#include "fileHandler.h"
+#include "testingUtils/FileHandler.h"
 #include "parallelUtils/chronoClock.h"
 
 /// bench_utils namespace
@@ -70,7 +70,7 @@ class BenchmarkHandler {
   template<typename...ARRAYS>
   constexpr void
   RunBenchmark(const std::function<std::string(typename ARRAYS::value_type ...)> &bench_name_generator,
-               const std::function<void(Clk1 &, fu::fileHandler &, size_t &,
+               const std::function<void(Clk1 &, fu::FileHandler &, size_t &,
                                         typename ARRAYS::value_type ...)> &bench_function,
                ARRAYS...arrays);
 
@@ -90,7 +90,7 @@ class BenchmarkHandler {
   void PrintClocks() {
     auto kName = "benchTimers.txt";
     fh_.Upsert(kName);
-    fh_.output(kName, clk_arr_);
+    fh_.Output(kName, clk_arr_);
   }
 
   ~BenchmarkHandler() {
@@ -99,7 +99,7 @@ class BenchmarkHandler {
   }
 
  private:
-  fu::fileHandler fh_;
+  fu::FileHandler fh_;
   std::string benchmark_name_;
   Clk1 clk_arr_;
   size_t mul_;
@@ -112,9 +112,9 @@ void BenchmarkHandler<range>::SnapshotTimers(Clk1 &clk, const std::string &prepr
 
     std::string name = ddpath_ / (kVal.first[3] + "_" + kVal.first[1]);
     fh_.Upsert(name,std::ios_base::app);
-    fh_.output(name, preprint);
-    fh_.output(name, kVal.second.time * (unsigned long long int) (multiplier));
-    fh_.output(name, delim);
+    fh_.Output(name, preprint);
+    fh_.Output(name, kVal.second.time * (unsigned long long int) (multiplier));
+    fh_.Output(name, delim);
     fh_.Close(name);
 
   }
@@ -134,7 +134,7 @@ template<typename... ARRAYS>
 constexpr void
 BenchmarkHandler<range>::RunBenchmark(
     const std::function<std::string(typename ARRAYS::value_type ...)> &bench_name_generator,
-    const std::function<void(Clk1 &, fu::fileHandler &, size_t &,
+    const std::function<void(Clk1 &, fu::FileHandler &, size_t &,
                              typename ARRAYS::value_type ...)> &bench_function,
     ARRAYS...arrays) {
   Clk1 clkdc = this->clk_arr_;

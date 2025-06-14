@@ -117,7 +117,7 @@ const EFormat &PrintEnumToFormat(EigenPrintFormats fmt);
  * @brief General IOformat
  */
 enum class IoFormat {
-  SERIALIZABLE,///< Basic print format(look a lot alike json)
+  SERIALIZABLE,///< Basic Print format(look a lot alike json)
   HUMAN_READABLE///<Human-readable representation for printed struct
 };
 

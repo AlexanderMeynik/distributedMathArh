@@ -48,8 +48,6 @@ INPUT = ../../computationalNode/include \
         ../../computationalLib/include \
         ../../computationalLib/lib \
         ../../computationalLib/test/BenchmarkHandler.h \
-        ../../computationalLib/test/fileHandler.h \
-        ../../computationalLib/test/benchmark.cpp \
         ../../mainNode/include \
         ../../mainNode/src \
         ../../utilLib/include \

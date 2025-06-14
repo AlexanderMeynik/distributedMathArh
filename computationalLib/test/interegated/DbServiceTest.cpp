@@ -1,7 +1,7 @@
 #include <fstream>
 #include "network_shared/DbService.h"
 #include "network_shared/amqpCommon.h"
-#include "../GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 
 namespace {
 using test_common::AuthParams;

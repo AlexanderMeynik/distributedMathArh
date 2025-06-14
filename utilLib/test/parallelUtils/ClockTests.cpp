@@ -1,5 +1,5 @@
 #include "parallelUtils/chronoClock.h"
-#include "../../computationalLib/test/GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 #include <gtest/gtest.h>
 
 using chrono_clock::ChronoClockTemplate;

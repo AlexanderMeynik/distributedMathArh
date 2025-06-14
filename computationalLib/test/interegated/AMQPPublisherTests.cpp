@@ -3,7 +3,7 @@
 #include "network_shared/AMQPPublisherService.h"
 #include "network_shared/amqpRestService.h"
 #include "network_shared/amqpCommon.h"
-#include "../GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 
 using test_common::AuthParams;
 using test_common::WaitFor;

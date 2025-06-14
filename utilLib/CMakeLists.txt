@@ -31,6 +31,14 @@ target_include_directories(parallelLib PUBLIC include)
 enable_coverage_for_target(parallelLib)
 
 
+file(GLOB_RECURSE testingUtils CONFIGURE_DEPENDS
+        "lib/testingUtils/*.cpp"
+)
+add_library(testingUtilsLib ${testingUtils})
+target_include_directories(testingUtilsLib PUBLIC include)
+enable_coverage_for_target(testingUtilsLib)
+
+
 add_library(allUtils ${parallelUtils})
 target_link_libraries(allUtils PUBLIC commonLib)
 enable_coverage_for_target(allUtils)

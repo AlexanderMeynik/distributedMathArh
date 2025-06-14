@@ -3,7 +3,7 @@
 #include "math_core/Dipoles.h"
 #include "common/Parsers.h"
 #include "common/Printers.h"
-#include "../GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 
 using namespace pu;
 using namespace test_common;

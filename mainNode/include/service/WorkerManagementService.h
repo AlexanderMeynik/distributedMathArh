@@ -110,7 +110,7 @@ class WorkerManagementService {
    * @brief Disconnects worker node from cluster
    * This method calls disconnect http request
    * @param host_port
-   * @return Json::Value with node output
+   * @return Json::Value with node Output
    * @return Json:: Value with "status"=409 - if there is no Active node with specified host and port
    * @return Json:: Value with "status"=504 - if worker cannot be accessed for specified host_port
    * @return Json:: Value with "status">=400 - if any abnormal http code is received

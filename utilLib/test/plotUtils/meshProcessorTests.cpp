@@ -3,7 +3,7 @@
 
 #include "common/MeshCreator.h"
 #include "common/commonTypes.h"
-#include "../../computationalLib/test/GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 
 #include <gtest/gtest.h>
 

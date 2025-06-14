@@ -1,4 +1,4 @@
-#include "../GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 
 #include "math_core/Dipoles.h"
 #include "common/Generator.h"

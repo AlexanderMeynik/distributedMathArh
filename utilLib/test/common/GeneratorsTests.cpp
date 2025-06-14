@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 #include <gmock/gmock.h>
 #include "common/Generator.h"
-#include "../../computationalLib/test/GoogleCommon.h"
+#include "testingUtils/GoogleCommon.h"
 #include <set>
 
 using namespace generators;
