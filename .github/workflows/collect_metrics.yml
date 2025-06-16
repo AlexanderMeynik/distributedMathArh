@@ -2,6 +2,14 @@ name: Collect metrics
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/ci.yml
+      - computationalLib/**
+      - utilLib/**
+      - computationalNode/**
+      - mainNode/**
+      - CMakeLists.txt
 jobs:
   collect-metrics:
     runs-on: ubuntu-latest

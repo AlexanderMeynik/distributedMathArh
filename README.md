@@ -1,7 +1,7 @@
 # Разработка и применение распределённой модели вычислений для моделирования системы диполей
-[![Build and Test](https://github.com/alexandermey/distributedMathArh/actions/workflows/ci.yml/badge.svg)](https://github.com/alexandermey/distributedMathArh/actions/workflows/ci.yml)
+[![Build and Test](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/ci.yml)
 ![Coverage](https://img.shields.io/badge/coverage-84%25-green)
-
+[![Collect metrics](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/collect_metrics.yml/badge.svg?branch=master)](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/collect_metrics.yml)
 
 ## Описание проекта
 Данный репозиторий содержит проект архитектуры из ВКР "Разработка и применение распределённой модели
