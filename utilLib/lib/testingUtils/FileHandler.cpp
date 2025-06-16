@@ -20,7 +20,6 @@ bool DirectoryExists(const fs::path &path) {
   return fs::exists(path) && fs::is_directory(path);
 }
 std::string ReadFileToString(const fs::path &path) {
-
   std::ifstream file(path);
   if (!file.is_open()) {
     throw std::runtime_error("Could not open file: " + path.string());
