@@ -15,7 +15,7 @@ namespace fs = std::filesystem;
  * @param path
  * @return
  */
-fs::path inline GetNormalAbs(const fs::path &path);
+fs::path GetNormalAbs(const fs::path &path);
 
 /**
  * @brief Idempotent operation for directory creation
