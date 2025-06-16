@@ -1,5 +1,6 @@
 # Разработка и применение распределённой модели вычислений для моделирования системы диполей
-
+[![Build and Test](https://github.com/alexandermey/distributedMathArh/actions/workflows/ci.yml/badge.svg)](https://github.com/alexandermey/distributedMathArh/actions/workflows/ci.yml)
+![Coverage](https://img.shields.io/badge/coverage-84%25-green)
 
 
 ## Описание проекта
