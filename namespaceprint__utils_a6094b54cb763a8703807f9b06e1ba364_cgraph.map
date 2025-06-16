@@ -2,7 +2,7 @@
 <area shape="rect" id="Node000001" title="Basic interface for printing solution." alt="" coords="5,35,184,60"/>
 <area shape="rect" id="Node000002" href="$namespaceprint__utils.html#a180b49c0627b496c6d8d86a724d6e37d" title="Prints one dimensional Collection using Eigen format." alt="" coords="232,5,436,31"/>
 <area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,34,218,30,219,35,184,39"/>
-<area shape="rect" id="Node000004" href="$namespaceprint__utils.html#a6fe732efc4e70906cb78bdd1d65f9b38" title="Human readable way to print solution vector." alt="" coords="245,55,423,95"/>
+<area shape="rect" id="Node000004" href="$namespaceprint__utils.html#a6fe732efc4e70906cb78bdd1d65f9b38" title="Human readable way to Print solution vector." alt="" coords="245,55,423,95"/>
 <area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="184,55,231,61,231,66,184,60"/>
 <area shape="rect" id="Node000003" href="$typeCasts_8h.html#adc37818e5d0af157a49992d0927c8dfc" title="Casts one dimensional collection to eigen RowVector." alt="" coords="484,5,625,31"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="436,15,470,15,470,21,436,21"/>

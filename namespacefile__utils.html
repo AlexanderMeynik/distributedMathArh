@@ -103,34 +103,45 @@ $(document).ready(function(){initNavTree('namespacefile__utils.html',''); initRe
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfile__utils_1_1fileHandler.html">fileHandler</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sample class that handles dynmic file opening and output.  <a href="classfile__utils_1_1fileHandler.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classfile__utils_1_1FileHandler.html">FileHandler</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sample class that handles dynamic file opening and Output.  <a href="classfile__utils_1_1FileHandler.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
-<tr class="memitem:a125ec5fb3f10d7487b6ae5f04dbc3b00" id="r_a125ec5fb3f10d7487b6ae5f04dbc3b00"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefile__utils.html#a125ec5fb3f10d7487b6ae5f04dbc3b00">osPtr</a> = std::shared_ptr&lt; std::ofstream &gt;</td></tr>
-<tr class="separator:a125ec5fb3f10d7487b6ae5f04dbc3b00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a50c823b0cf82a36fb0aec56d3886b2" id="r_a2a50c823b0cf82a36fb0aec56d3886b2"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefile__utils.html#a2a50c823b0cf82a36fb0aec56d3886b2">OstreamPtr</a> = std::shared_ptr&lt; std::ofstream &gt;</td></tr>
+<tr class="separator:a2a50c823b0cf82a36fb0aec56d3886b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:a3777df48e11ac8241c91b9db0df61686" id="r_a3777df48e11ac8241c91b9db0df61686"><td class="memItemLeft" align="right" valign="top">fs::path&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefile__utils.html#a3777df48e11ac8241c91b9db0df61686">GetNormalAbs</a> (const fs::path &amp;path)</td></tr>
+<tr class="memdesc:a3777df48e11ac8241c91b9db0df61686"><td class="mdescLeft">&#160;</td><td class="mdescRight">Shorthand for absolute lexically normal path.  <br /></td></tr>
 <tr class="separator:a3777df48e11ac8241c91b9db0df61686"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3873018bf321fc08c54a705588e19962" id="r_a3873018bf321fc08c54a705588e19962"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefile__utils.html#a3873018bf321fc08c54a705588e19962">CreateDirIfNotPresent</a> (const std::string &amp;path)</td></tr>
+<tr class="memdesc:a3873018bf321fc08c54a705588e19962"><td class="mdescLeft">&#160;</td><td class="mdescRight">Idempotent operation for directory creation.  <br /></td></tr>
 <tr class="separator:a3873018bf321fc08c54a705588e19962"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a674362e3729ee834d7340b77b1580974" id="r_a674362e3729ee834d7340b77b1580974"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefile__utils.html#a674362e3729ee834d7340b77b1580974">FileExists</a> (const fs::path &amp;path)</td></tr>
+<tr class="memdesc:a674362e3729ee834d7340b77b1580974"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does files exist.  <br /></td></tr>
+<tr class="separator:a674362e3729ee834d7340b77b1580974"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28c9bfddef815029a9f8c1fdb758b206" id="r_a28c9bfddef815029a9f8c1fdb758b206"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefile__utils.html#a28c9bfddef815029a9f8c1fdb758b206">DirectoryExists</a> (const fs::path &amp;path)</td></tr>
+<tr class="memdesc:a28c9bfddef815029a9f8c1fdb758b206"><td class="mdescLeft">&#160;</td><td class="mdescRight">Does directory exist.  <br /></td></tr>
+<tr class="separator:a28c9bfddef815029a9f8c1fdb758b206"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d4ee1e7ef712227328c957e619d3e65" id="r_a3d4ee1e7ef712227328c957e619d3e65"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacefile__utils.html#a3d4ee1e7ef712227328c957e619d3e65">ReadFileToString</a> (const fs::path &amp;path)</td></tr>
+<tr class="memdesc:a3d4ee1e7ef712227328c957e619d3e65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves file contents in form of string.  <br /></td></tr>
+<tr class="separator:a3d4ee1e7ef712227328c957e619d3e65"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>fileUtils namespace </p>
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">Todo:</a></b></dt><dd>move to lib </dd></dl>
+<p><a class="el" href="namespacefile__utils.html" title="fileUtils namespace">file_utils</a> namespace </p>
 </div><h2 class="groupheader">Typedef Documentation</h2>
-<a id="a125ec5fb3f10d7487b6ae5f04dbc3b00" name="a125ec5fb3f10d7487b6ae5f04dbc3b00"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a125ec5fb3f10d7487b6ae5f04dbc3b00">&#9670;&#160;</a></span>osPtr</h2>
+<a id="a2a50c823b0cf82a36fb0aec56d3886b2" name="a2a50c823b0cf82a36fb0aec56d3886b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a50c823b0cf82a36fb0aec56d3886b2">&#9670;&#160;</a></span>OstreamPtr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">using <a class="el" href="namespacefile__utils.html#a125ec5fb3f10d7487b6ae5f04dbc3b00">file_utils::osPtr</a> = typedef std::shared_ptr&lt;std::ofstream&gt;</td>
+          <td class="memname">using <a class="el" href="namespacefile__utils.html#a2a50c823b0cf82a36fb0aec56d3886b2">file_utils::OstreamPtr</a> = typedef std::shared_ptr&lt;std::ofstream&gt;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -154,7 +165,16 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="reference">Referenced by <a class="el" href="classbench__utils_1_1BenchmarkHandler.html#a45fcfbee28a73fd69d4abc59511a0562">bench_utils::BenchmarkHandler&lt; range &gt;::RunBenchmark()</a>.</p>
+<p>Idempotent operation for directory creation. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>is directory created </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="classfile__utils_1_1FileHandler.html#a48df46b2fbddc22c88effacaef2ab2ed">file_utils::FileHandler::FileHandler()</a>, and <a class="el" href="classbench__utils_1_1BenchmarkHandler.html#ae100f5d0baecb5751bc5c33ada3d66ac">bench_utils::BenchmarkHandler&lt; range &gt;::RunBenchmark()</a>.</p>
 <div id="dynsection-0" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
   <img id="dynsection-0-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
 <div id="dynsection-0-summary" class="dynsummary" style="display:block;">
@@ -162,13 +182,67 @@ Functions</h2></td></tr>
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespacefile__utils_a3873018bf321fc08c54a705588e19962_icgraph.png" border="0" usemap="#anamespacefile__utils_a3873018bf321fc08c54a705588e19962_icgraph" alt=""/></div>
 <map name="anamespacefile__utils_a3873018bf321fc08c54a705588e19962_icgraph" id="anamespacefile__utils_a3873018bf321fc08c54a705588e19962_icgraph">
-<area shape="rect" title=" " alt="" coords="385,5,564,45"/>
-<area shape="rect" href="classbench__utils_1_1BenchmarkHandler.html#a45fcfbee28a73fd69d4abc59511a0562" title=" " alt="" coords="108,5,337,45"/>
-<area shape="poly" title=" " alt="" coords="372,28,337,28,337,23,372,23"/>
-<area shape="rect" href="benchmark_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4" title=" " alt="" coords="5,13,60,38"/>
-<area shape="poly" title=" " alt="" coords="94,28,60,28,60,23,94,23"/>
+<area shape="rect" title="Idempotent operation for directory creation." alt="" coords="283,37,461,77"/>
+<area shape="rect" href="classfile__utils_1_1FileHandler.html#a48df46b2fbddc22c88effacaef2ab2ed" title=" " alt="" coords="41,5,199,45"/>
+<area shape="poly" title=" " alt="" coords="269,47,199,38,200,33,269,42"/>
+<area shape="rect" href="classbench__utils_1_1BenchmarkHandler.html#ae100f5d0baecb5751bc5c33ada3d66ac" title=" " alt="" coords="5,69,235,109"/>
+<area shape="poly" title=" " alt="" coords="269,73,235,77,234,72,269,68"/>
 </map>
 </div>
+
+</div>
+</div>
+<a id="a28c9bfddef815029a9f8c1fdb758b206" name="a28c9bfddef815029a9f8c1fdb758b206"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a28c9bfddef815029a9f8c1fdb758b206">&#9670;&#160;</a></span>DirectoryExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool file_utils::DirectoryExists </td>
+          <td>(</td>
+          <td class="paramtype">const fs::path &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Does directory exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a674362e3729ee834d7340b77b1580974" name="a674362e3729ee834d7340b77b1580974"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a674362e3729ee834d7340b77b1580974">&#9670;&#160;</a></span>FileExists()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool file_utils::FileExists </td>
+          <td>(</td>
+          <td class="paramtype">const fs::path &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Does files exist. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -187,6 +261,48 @@ Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Shorthand for absolute lexically normal path. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+</div>
+</div>
+<a id="a3d4ee1e7ef712227328c957e619d3e65" name="a3d4ee1e7ef712227328c957e619d3e65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d4ee1e7ef712227328c957e619d3e65">&#9670;&#160;</a></span>ReadFileToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string file_utils::ReadFileToString </td>
+          <td>(</td>
+          <td class="paramtype">const fs::path &amp;&#160;</td>
+          <td class="paramname"><em>path</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Retrieves file contents in form of string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">path</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>files contents </dd></dl>
+<dl class="exception"><dt>Exceptions</dt><dd>
+  <table class="exception">
+    <tr><td class="paramname">runtime_error</td><td>- file cannot be opened </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

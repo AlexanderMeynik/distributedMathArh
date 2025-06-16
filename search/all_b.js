@@ -20,6 +20,5 @@ var searchData=
   ['locationtype_17',['LocationType',['../namespacetiming.html#acd0b30707d239c1ffc1268c286cd37e7',1,'timing']]],
   ['log_18',['log',['../structdb__common_1_1Log.html#a43abc1a62a334f4d6deaef0bbd3730d2',1,'db_common::Log::Log()=default'],['../structdb__common_1_1Log.html#a9738e6b0c17fe8c28702ebdac49394e5',1,'db_common::Log::Log(const pqxx::row &amp;row)'],['../classdb__service_1_1DbService.html#ac860534db4dc24ded12dd13527513090',1,'db_service::DbService::Log(std::optional&lt; IndexType &gt; experiment_id, std::optional&lt; IndexType &gt; node_id, std::string_view severity, std::string_view message)'],['../classdb__service_1_1DbService.html#a6afe58635847c8836725ff9c0bcf362d',1,'db_service::DbService::Log(const db_common::Log &amp;log)'],['../structdb__common_1_1Log.html',1,'db_common::Log']]],
   ['log_5fid_19',['log_id',['../structdb__common_1_1Log.html#aab3a0952f999a911a3eee6cc119dd63b',1,'db_common::Log']]],
-  ['login_20',['login',['../structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314',1,'db_common::User']]],
-  ['loop_21',['Loop',['../benchmark_8cpp.html#a382570672350b4f9d4c1d5959a952d4d',1,'benchmark.cpp']]]
+  ['login_20',['login',['../structdb__common_1_1User.html#aa7e6f7e10a3b4b362fd1dfd45c543314',1,'db_common::User']]]
 ];

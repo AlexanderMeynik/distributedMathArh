@@ -50,7 +50,7 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", "functions_func" ],
-        [ "Variables", "functions_vars.html", null ],
+        [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Related Symbols", "functions_rela.html", null ]
       ] ]
@@ -60,7 +60,6 @@ var NAVTREE =
       [ "File Members", "globals.html", [
         [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
-        [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
@@ -71,14 +70,14 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AMQPConsumerService_8cpp.html",
-"classamqp__common_1_1AMQPService.html#a9f5a084260cbf97b8c829fa9a0715639",
-"classdb__service_1_1DbService.html#afc2577c4a823f1decda807ef99bbdb22",
-"classnetwork__types_1_1AbstractConnectionString.html#afcb39dad518b406ed29ad38b4758b931",
-"classshared_1_1SQL__ERROR.html",
-"dir_095671de393c09b8c0eab5cc2ede2f23.html",
-"namespacedb__common.html#ae5e31fbbef011ef85d0c5717b136003aabf61c5b43708f01f5a198843f93e521a",
-"networkTypes_8h.html#a72a0d2ba616b55ebaf6e207bbac87331",
-"structnetwork__types_1_1channel.html#acea336b1e4830c46211c8a64194ae7af"
+"classamqp__common_1_1AMQPService.html#a69aa82cad4ddc8644993f4b0b079b2a8",
+"classdb__service_1_1DbService.html#ae9a65995c7175e11a8a1ce0dcbe96bdc",
+"classnetwork__types_1_1AbstractConnectionString.html#a78a7545c88b8a95a66d53fbcb7566900",
+"classshared_1_1RowDivisionError.html#a5d33b396d705f3cd6ef653513174d0fe",
+"dipolesCommon_8cpp.html",
+"namespacedb__common.html#a82a32b7604217a1d8895b397e145c04e",
+"namespacetest__common.html",
+"structgenerators_1_1generator.html#acbb87ed70a7d0c9c4118494b3a0f9e4d"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

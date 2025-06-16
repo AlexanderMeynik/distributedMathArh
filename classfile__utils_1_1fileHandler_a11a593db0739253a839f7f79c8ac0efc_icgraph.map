@@ -1,7 +1,0 @@
-<map id="file_utils::fileHandler::CloseFiles" name="file_utils::fileHandler::CloseFiles">
-<area shape="rect" id="Node000001" title="Closes all files from this instance of fileHandler." alt="" coords="283,37,439,77"/>
-<area shape="rect" id="Node000002" href="$classbench__utils_1_1BenchmarkHandler.html#a36e54d7d500538d60a81f93a5a1561d1" title=" " alt="" coords="5,5,235,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="268,48,235,43,235,38,269,43"/>
-<area shape="rect" id="Node000003" href="$classfile__utils_1_1fileHandler.html#accb3e8504e52bb320a4532d9992df649" title=" " alt="" coords="42,69,198,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="269,72,199,82,198,76,268,67"/>
-</map>

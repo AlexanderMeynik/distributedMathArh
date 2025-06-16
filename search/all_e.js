@@ -9,7 +9,7 @@ var searchData=
   ['onedimserialize_6',['OneDimSerialize',['../namespaceprint__utils.html#a180b49c0627b496c6d8d86a724d6e37d',1,'print_utils']]],
   ['onedimtostring_7',['OneDimToString',['../namespaceprint__utils.html#a914b474f2a424f9c36280f3bef711421',1,'print_utils']]],
   ['onerror_8',['onError',['../classamqp__common_1_1MyHandler.html#a8b33b5471f57c267a1eb4656f1fb1eb2',1,'amqp_common::MyHandler']]],
-  ['open_9',['Open',['../classfile__utils_1_1fileHandler.html#a602c032a44e595535fd6206ea7f6f781',1,'file_utils::fileHandler']]],
+  ['open_9',['Open',['../classfile__utils_1_1FileHandler.html#a3729a10db82cb8e6dd4a91a734912dd9',1,'file_utils::FileHandler']]],
   ['openmp_5fnew_10',['OPENMP_NEW',['../namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866a1859f21f706104fd3ec16ae03e3944f1',1,'shared']]],
   ['openmp_5fold_11',['OPENMP_OLD',['../namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866ad500d6041e206f6cbfdff0c1bda10d91',1,'shared']]],
   ['operator_20bool_12',['operator bool',['../classrest__utils_1_1CurlWrapper.html#a2020290041ecd6cc25735c71aa0365e5',1,'rest_utils::CurlWrapper']]],
@@ -21,10 +21,10 @@ var searchData=
   ['operator_3e_3e_18',['operator&gt;&gt;',['../namespaceprint__utils.html#a6c64e6bf1cdaef9f04f37da4ca8533af',1,'print_utils::operator&gt;&gt;(std::istream &amp;in, IoFormat &amp;form)'],['../namespaceprint__utils.html#afd4b485906d7923acf216cdc9087d194',1,'print_utils::operator&gt;&gt;(std::istream &amp;is, EFormat &amp;fmt)'],['../namespaceprint__utils.html#a4ef835f275fd014a43e3a0d96b6cb85e',1,'print_utils::operator&gt;&gt;(std::istream &amp;is, const Delimiter &amp;delim)']]],
   ['operator_5b_5d_19',['operator[]',['../classtiming_1_1ClockArray.html#af4637d48baf541390f42af78af9188ef',1,'timing::ClockArray']]],
   ['options_20',['OPTIONS',['../namespacenetwork__types.html#a6ad29c03ec2859d779faf9f68cb6f3d3a164dd62adb30ca051b5289672a572f9b',1,'network_types']]],
-  ['osptr_21',['osPtr',['../namespacefile__utils.html#a125ec5fb3f10d7487b6ae5f04dbc3b00',1,'file_utils']]],
+  ['ostreamptr_21',['OstreamPtr',['../namespacefile__utils.html#a2a50c823b0cf82a36fb0aec56d3886b2',1,'file_utils']]],
   ['out_5f_22',['out_',['../classprint__utils_1_1IosStatePreserve.html#a3e51c256c0cd8ab4aa3980c864b294e9',1,'print_utils::IosStatePreserve']]],
   ['outofrange_23',['outofrange',['../classshared_1_1outOfRange.html#a0660afe220316ac709e6ef6ff9f8e734',1,'shared::outOfRange::outOfRange()'],['../classshared_1_1outOfRange.html',1,'shared::outOfRange']]],
-  ['output_24',['output',['../classfile__utils_1_1fileHandler.html#afa436ee4d8a5dfbe1c5da18641b48760',1,'file_utils::fileHandler']]],
+  ['output_24',['Output',['../classfile__utils_1_1FileHandler.html#a881f522f1e3b1eb0d127ffcdd307554e',1,'file_utils::FileHandler']]],
   ['output_5fdata_25',['output_data',['../structdb__common_1_1Iteration.html#a1f42e45443d10fa36fa3e93062ff65a3',1,'db_common::Iteration']]],
   ['overview_26',['overview',['../metrix_overview.html',1,'Metrix overview'],['../metrix_overview.html#autotoc_md0',1,'metrix overview']]]
 ];

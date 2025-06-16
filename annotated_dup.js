@@ -38,7 +38,7 @@ var annotated_dup =
       [ "EnumDoubleMapping", "namespaceenum__utils.html#structenum__utils_1_1EnumDoubleMapping", "namespaceenum__utils_structenum__utils_1_1EnumDoubleMapping_dup" ]
     ] ],
     [ "file_utils", "namespacefile__utils.html", [
-      [ "fileHandler", "classfile__utils_1_1fileHandler.html", "classfile__utils_1_1fileHandler" ]
+      [ "FileHandler", "classfile__utils_1_1FileHandler.html", "classfile__utils_1_1FileHandler" ]
     ] ],
     [ "fmt", "namespacefmt.html", [
       [ "formatter< ScanErrorCode >", "structfmt_1_1formatter_3_01ScanErrorCode_01_4.html", "structfmt_1_1formatter_3_01ScanErrorCode_01_4" ]
@@ -108,6 +108,14 @@ var annotated_dup =
       [ "ScanningError", "classshared_1_1ScanningError.html", "classshared_1_1ScanningError" ],
       [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
       [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
+    ] ],
+    [ "test_common", "namespacetest__common.html", [
+      [ "arrayDoubleComparator", "structtest__common_1_1arrayDoubleComparator.html", "structtest__common_1_1arrayDoubleComparator" ],
+      [ "arrayEqualComparator", "structtest__common_1_1arrayEqualComparator.html", "structtest__common_1_1arrayEqualComparator" ],
+      [ "AuthParams", "namespacetest__common.html#structtest__common_1_1AuthParams", "namespacetest__common_structtest__common_1_1AuthParams_dup" ],
+      [ "get_template", "namespacetest__common.html#structtest__common_1_1get__template", null ],
+      [ "get_template< C< Args... > >", "namespacetest__common.html#structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4", "namespacetest__common_structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4_dup" ],
+      [ "twoDArrayDoubleComparator", "structtest__common_1_1twoDArrayDoubleComparator.html", "structtest__common_1_1twoDArrayDoubleComparator" ]
     ] ],
     [ "timing", "namespacetiming.html", [
       [ "ClockArray", "classtiming_1_1ClockArray.html", "classtiming_1_1ClockArray" ],

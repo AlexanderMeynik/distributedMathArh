@@ -8,11 +8,14 @@ var hierarchy =
       [ "amqp_common::AMQPConsumerService", "classamqp__common_1_1AMQPConsumerService.html", null ],
       [ "amqp_common::AMQPPublisherService", "classamqp__common_1_1AMQPPublisherService.html", null ]
     ] ],
+    [ "test_common::arrayDoubleComparator< FType >", "structtest__common_1_1arrayDoubleComparator.html", null ],
+    [ "test_common::arrayEqualComparator< Type >", "structtest__common_1_1arrayEqualComparator.html", null ],
     [ "rest_utils::AuthHandler", "classrest__utils_1_1AuthHandler.html", [
       [ "rest_utils::BasicAuthHandler", "classrest__utils_1_1BasicAuthHandler.html", [
         [ "rest_utils::JsonAuthHandler", "classrest__utils_1_1JsonAuthHandler.html", null ]
       ] ]
     ] ],
+    [ "test_common::AuthParams", "namespacetest__common.html#structtest__common_1_1AuthParams", null ],
     [ "bench_utils::BenchmarkHandler< range >", "classbench__utils_1_1BenchmarkHandler.html", null ],
     [ "comp_services::BenchmarkRunner", "classcomp__services_1_1BenchmarkRunner.html", null ],
     [ "network_types::channel", "structnetwork__types_1_1channel.html", null ],
@@ -32,11 +35,13 @@ var hierarchy =
     [ "std::false_type", null, [
       [ "my_concepts::is_specialization_of< typename, class >", "structmy__concepts_1_1is__specialization__of.html", null ]
     ] ],
-    [ "file_utils::fileHandler", "classfile__utils_1_1fileHandler.html", null ],
+    [ "file_utils::FileHandler", "classfile__utils_1_1FileHandler.html", null ],
     [ "formatter", null, [
       [ "fmt::formatter< ScanErrorCode >", "structfmt_1_1formatter_3_01ScanErrorCode_01_4.html", null ]
     ] ],
     [ "generators::generator< randomDevice >", "structgenerators_1_1generator.html", null ],
+    [ "test_common::get_template<... >", "namespacetest__common.html#structtest__common_1_1get__template", null ],
+    [ "test_common::get_template< C< Args... > >", "namespacetest__common.html#structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4", null ],
     [ "network_types::global_param", "structnetwork__types_1_1global__param.html", null ],
     [ "drogon::HttpController", null, [
       [ "rest::v1::ClusterConfigController", "classrest_1_1v1_1_1ClusterConfigController.html", null ],
@@ -90,6 +95,7 @@ var hierarchy =
     [ "std::true_type", null, [
       [ "my_concepts::is_specialization_of< C< Args... >, C >", "structmy__concepts_1_1is__specialization__of_3_01C_3_01Args_8_8_8_01_4_00_01C_01_4.html", null ]
     ] ],
+    [ "test_common::twoDArrayDoubleComparator< FType >", "structtest__common_1_1twoDArrayDoubleComparator.html", null ],
     [ "db_common::User", "structdb__common_1_1User.html", null ],
     [ "main_services::WorkerManagementService", "classmain__services_1_1WorkerManagementService.html", null ]
 ];
