@@ -31,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: doc
-          path: home/runner/work/distributedMathArh/distributedMathArh
+          path: /home/runner/work/distributedMathArh/distributedMathArh
           if-no-files-found: warn
           include-hidden-files: true
       - name: Update coverage badge
