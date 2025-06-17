@@ -10,6 +10,7 @@ on:
       - computationalNode/**
       - mainNode/**
       - CMakeLists.txt
+      - scripts/collect_metrics.sh
 jobs:
   collect-metrics:
     runs-on: ubuntu-latest

@@ -10,6 +10,7 @@ on:
       - computationalNode/**
       - mainNode/**
       - CMakeLists.txt
+      - scripts/collect_coverage.sh
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
@@ -79,6 +80,7 @@ jobs:
 
       - name: Collect coverage
         if: success() || failure()
+        working-directory: ./src
         run: bash scripts/collect_coverage.sh
 
       - name: Save coverage report
