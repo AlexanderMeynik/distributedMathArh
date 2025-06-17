@@ -104,7 +104,7 @@ GENERATE_TREEVIEW = YES
 INHERIT_DOCS = YES
 
 XML_OUTPUT = doxygen-xml
-
+GENERATE_XML = YES
 DOT_GRAPH_MAX_NODES =100
 
 INPUT_FILTER = "sed -e \"s/std::unique_ptr<\([a-zA-Z0-9_]*\)> /\1* /g\" -e \"s/std::unique_ptr<\(.*\)> /\1* /g\""

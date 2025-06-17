@@ -19,13 +19,27 @@ jobs:
           workflow: collect_metrics.yml
           path: ./metrics/
           search_artifacts: true
-      - name: Build documentation
+      - name: Install deps
         run: |
+          sudo apt-get update
+          pip3 install coverxygen
           sudo apt-get install doxygen graphviz -y
-          mkdir -p build/doc 
-          cp -r doc/. build/doc 
-          cd build/doc
-          doxygen Doxyfile.in
+      - name: Build documentation
+        run: bash scripts/build_doc.sh
+      - name: Update coverage badge
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.BADGES_GIST_ID }}
+          filename: doc_coverage.json
+          label: Doc coverage
+
+
+          message: ${{ env.DOC_COVERAGE_LABEL }}
+          valColorRange: ${{ env.DOC_COVERAGE_VALUE }}
+          minColorRange: 50
+          maxColorRange: 90
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@v4
         with:
