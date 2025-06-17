@@ -82,6 +82,20 @@ jobs:
         if: success() || failure()
         working-directory: ./src
         run: bash scripts/collect_coverage.sh
+      - name: Update doxygen coverage badge (Main Branch Only)
+        if: ${{ github.ref == 'refs/heads/main' }}
+        uses: schneegans/dynamic-badges-action@v1.7.0
+        with:
+          auth: ${{ secrets.GIST_SECRET }}
+          gistID: ${{ secrets.BADGES_GIST_ID }}
+          filename: coverage.json
+          label: Test coverage
+
+
+          message: ${{ env.COVERAGE_LABEL }}
+          valColorRange: ${{ env.COVERAGE_VALUE }}
+          minColorRange: 50
+          maxColorRange: 90
 
       - name: Save coverage report
         if: success() || failure()
