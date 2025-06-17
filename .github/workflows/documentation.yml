@@ -23,7 +23,7 @@ jobs:
         run: |
           sudo apt-get update
           pip3 install coverxygen
-          sudo apt-get install doxygen graphviz -y
+          sudo apt-get install doxygen=1.9.1-2ubuntu2 graphviz -y
       - name: Build documentation
         run: bash scripts/build_doc.sh
       - name: Update coverage badge
