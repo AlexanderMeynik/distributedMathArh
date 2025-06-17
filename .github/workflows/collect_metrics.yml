@@ -22,8 +22,8 @@ jobs:
           path: ./src
       - name: Collect metrics
         shell: bash -e {0}
+        working-directory: ./src
         run: bash scripts/collect_metrics.sh
-
       - name: Download build
         id: download-artifact
         uses: dawidd6/action-download-artifact@v6
