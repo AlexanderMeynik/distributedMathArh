@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     permissions:
       contents: write
     steps:
@@ -23,16 +23,7 @@ jobs:
         run: |
           sudo apt-get update
           pip3 install coverxygen
-          sudo apt-get install graphviz -y
-          
-      - name: Install Doxygen 1.9.1
-        run: |
-          sudo apt-get remove --purge doxygen -y
-          wget https://github.com/doxygen/doxygen/releases/download/Release_1_9_1/doxygen-1.9.1.linux.bin.tar.gz
-          tar -xzf doxygen-1.9.1.linux.bin.tar.gz
-          cd doxygen-1.9.1
-          sudo make
-          sudo make install
+          sudo apt-get install doxygen graphviz -y
           doxygen --version
       - name: Build documentation
         run: bash scripts/build_doc.sh
