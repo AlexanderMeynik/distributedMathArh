@@ -27,7 +27,7 @@ jobs:
       - name: Build documentation
         run: bash scripts/build_doc.sh
       - name: Update coverage badge
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master'&&(success() || failure())}}
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
@@ -41,6 +41,7 @@ jobs:
           minColorRange: 50
           maxColorRange: 90
       - name: Deploy
+        if: success() || failure()
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
