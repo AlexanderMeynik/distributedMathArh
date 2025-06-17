@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['architecture_0',['Distributed math architecture',['../index.html',1,'']]]
+  ['distributed_20math_20architecture_1632',['Distributed math architecture',['../index.html',1,'']]]
 ];

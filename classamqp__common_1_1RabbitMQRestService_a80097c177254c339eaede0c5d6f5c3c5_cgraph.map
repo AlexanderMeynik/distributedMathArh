@@ -1,21 +1,12 @@
 <map id="amqp_common::RabbitMQRestService::CreateExchange" name="amqp_common::RabbitMQRestService::CreateExchange">
-<area shape="rect" id="Node000001" title="Creates exchange with specified params." alt="" coords="5,104,229,144"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,68,501,108"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,107,263,102,264,107,230,112"/>
-<area shape="rect" id="Node000008" href="$structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939" title=" " alt="" coords="295,136,484,176"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="230,135,281,141,281,146,229,140"/>
-<area shape="rect" id="Node000003" href="$namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,73,771,98"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="502,84,535,84,535,89,502,90"/>
-<area shape="rect" id="Node000004" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,45"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="715,70,820,46,821,51,717,75"/>
-<area shape="rect" id="Node000006" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="819,70,1021,95"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="771,82,805,81,805,87,771,87"/>
-<area shape="rect" id="Node000007" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,119,1011,145"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="732,95,836,114,835,120,731,101"/>
-<area shape="rect" id="Node000005" href="$classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,45"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="1006,23,1055,23,1055,28,1006,28"/>
-<area shape="rect" id="Node000009" href="$namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88" title="Casts enum value to string." alt="" coords="575,151,745,177"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="484,156,561,158,561,164,484,161"/>
-<area shape="rect" id="Node000010" href="$namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003" title="Casts Enum Value To typed value." alt="" coords="829,169,1011,194"/>
-<area shape="poly" id="edge9_Node000009_Node000010" title=" " alt="" coords="746,167,815,172,815,177,745,172"/>
+<area shape="rect" id="node1" title="Creates exchange with specified params." alt="" coords="5,107,229,148"/>
+<area shape="rect" id="node2" href="$classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,111"/>
+<area shape="rect" id="node8" href="$structnetwork__types_1_1exchange.html#afe95ccae0d49dd4395da522981926939" title=" " alt="" coords="295,139,484,180"/>
+<area shape="rect" id="node3" href="$namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,74,771,101"/>
+<area shape="rect" id="node4" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,5,1005,47"/>
+<area shape="rect" id="node6" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="819,71,1021,98"/>
+<area shape="rect" id="node7" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,122,1011,149"/>
+<area shape="rect" id="node5" href="$classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,5,1240,47"/>
+<area shape="rect" id="node9" href="$namespaceenum__utils.html#a961bbb7bae74a9633ce47d76c133d5ce" title="Casts enum value to string." alt="" coords="575,155,745,182"/>
+<area shape="rect" id="node10" href="$namespaceenum__utils.html#a90fbf7a7a2efeb51c66c03eba0e11e90" title="Casts Enum Value To typed value." alt="" coords="829,173,1011,199"/>
 </map>

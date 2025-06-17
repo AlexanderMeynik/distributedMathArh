@@ -1,7 +1,5 @@
 <map id="db_common::ExecuteTransaction" name="db_common::ExecuteTransaction">
-<area shape="rect" id="Node000001" title="Executes function in the form of transaction." alt="" coords="5,35,240,60"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="290,5,513,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="240,32,276,29,276,34,241,38"/>
-<area shape="rect" id="Node000003" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="288,55,515,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="241,56,275,60,274,65,240,62"/>
+<area shape="rect" id="node1" title="Executes function in the form of transaction." alt="" coords="5,35,240,61"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="290,5,513,32"/>
+<area shape="rect" id="node3" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="288,57,515,98"/>
 </map>

@@ -1,19 +1,11 @@
 <map id="print_utils::ContinuousToJson" name="print_utils::ContinuousToJson">
-<area shape="rect" id="Node000001" title="Cast any one dimensional array to Json::value." alt="" coords="873,109,1083,134"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="593,5,803,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="936,105,824,60,785,48,786,43,826,55,938,100"/>
-<area shape="rect" id="Node000004" href="$classcomp__services_1_1ComputationNodeService.html#a76a73721c93bdce971eac3029885d6a9" title=" " alt="" coords="593,69,803,109"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="859,110,803,104,804,99,860,105"/>
-<area shape="rect" id="Node000006" href="$classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5" title="returns list of lists with all nodes meta information" alt="" coords="571,133,825,173"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="860,138,826,141,825,136,859,132"/>
-<area shape="rect" id="Node000009" href="$namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a" title="Transforms MeshCreator to json." alt="" coords="630,198,766,223"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="940,142,887,166,826,188,767,202,765,197,825,183,885,161,937,138"/>
-<area shape="rect" id="Node000003" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="328,5,479,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="579,28,479,28,479,23,579,23"/>
-<area shape="rect" id="Node000005" href="$classrest_1_1v1_1_1CompNode.html#a5daf37c187dbb51a0d94c3e2af2968db" title=" " alt="" coords="328,69,479,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="579,92,479,92,479,87,579,87"/>
-<area shape="rect" id="Node000007" href="$classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,133,523,173"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="557,156,523,156,523,151,557,151"/>
-<area shape="rect" id="Node000008" href="$classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308" title="Retrieves the status of whole cluster." alt="" coords="5,133,236,173"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="270,156,236,156,236,151,270,151"/>
+<area shape="rect" id="node1" title="Cast any one dimensional array to Json::value." alt="" coords="873,111,1083,138"/>
+<area shape="rect" id="node2" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="593,5,803,47"/>
+<area shape="rect" id="node4" href="$classcomp__services_1_1ComputationNodeService.html#a76a73721c93bdce971eac3029885d6a9" title=" " alt="" coords="593,71,803,112"/>
+<area shape="rect" id="node6" href="$classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5" title="returns list of lists with all nodes meta information" alt="" coords="571,136,825,177"/>
+<area shape="rect" id="node9" href="$namespaceprint__utils.html#a8d995d401c5c9bf53c6eaaa56ee4d99a" title="Transforms MeshCreator to json." alt="" coords="630,202,766,229"/>
+<area shape="rect" id="node3" href="$classrest_1_1v1_1_1CompNode.html#a4dc96a206e48c370dd04e76f449a6a43" title=" " alt="" coords="328,5,479,47"/>
+<area shape="rect" id="node5" href="$classrest_1_1v1_1_1CompNode.html#a5daf37c187dbb51a0d94c3e2af2968db" title=" " alt="" coords="328,71,479,112"/>
+<area shape="rect" id="node7" href="$classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,136,523,177"/>
+<area shape="rect" id="node8" href="$classrest_1_1v1_1_1ClusterConfigController.html#a03e3883f4afb6b4745d95745a3318308" title="Retrieves the status of whole cluster." alt="" coords="5,136,236,177"/>
 </map>

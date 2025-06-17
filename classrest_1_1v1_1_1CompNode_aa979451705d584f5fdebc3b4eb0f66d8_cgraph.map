@@ -1,11 +1,7 @@
 <map id="rest::v1::CompNode::DisconnectHandler" name="rest::v1::CompNode::DisconnectHandler">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,159,77"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a6c1604b3b1351fa607ec848613903a79" title=" " alt="" coords="207,37,417,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="159,55,193,55,193,60,159,60"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="465,5,684,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="417,42,452,38,452,43,418,47"/>
-<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="465,69,684,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="418,68,452,72,452,77,417,73"/>
-<area shape="rect" id="Node000005" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="732,69,935,109"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="684,87,718,87,718,92,684,92"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,159,80"/>
+<area shape="rect" id="node2" href="$classcomp__services_1_1ComputationNodeService.html#a6c1604b3b1351fa607ec848613903a79" title=" " alt="" coords="207,39,417,80"/>
+<area shape="rect" id="node3" href="$classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="465,5,684,47"/>
+<area shape="rect" id="node4" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="465,71,684,112"/>
+<area shape="rect" id="node5" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="732,71,935,112"/>
 </map>

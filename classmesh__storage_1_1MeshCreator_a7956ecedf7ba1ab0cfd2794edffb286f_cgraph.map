@@ -1,7 +1,5 @@
 <map id="mesh_storage::MeshCreator::ConstructMeshes" name="mesh_storage::MeshCreator::ConstructMeshes">
-<area shape="rect" id="Node000001" title="Will substitute any null&#45;opt with default values." alt="" coords="5,5,211,45"/>
-<area shape="rect" id="Node000002" href="$classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84" title="Computes 2d meshgrid using dims,lims." alt="" coords="259,5,464,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,23,245,23,245,28,211,28"/>
-<area shape="rect" id="Node000003" href="$namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9" title="Computes meshes using 2 double arrays." alt="" coords="512,13,716,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="464,23,498,23,498,28,464,28"/>
+<area shape="rect" id="node1" title="Will substitute any null&#45;opt with default values." alt="" coords="5,5,211,47"/>
+<area shape="rect" id="node2" href="$classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84" title="Computes 2d meshgrid using dims,lims." alt="" coords="259,5,464,47"/>
+<area shape="rect" id="node3" href="$namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9" title="Computes meshes using 2 double arrays." alt="" coords="512,13,716,39"/>
 </map>

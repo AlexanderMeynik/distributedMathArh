@@ -1,5 +1,4 @@
 <map id="shared::MyException" name="shared::MyException">
-<area shape="rect" id="Node000001" title="Default parent for user defined exception." alt="" coords="5,119,156,224"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="25,5,136,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="83,85,83,118,78,118,78,85"/>
+<area shape="rect" id="node1" title="Default parent for user defined exception." alt="" coords="5,131,164,237"/>
+<area shape="rect" id="node2" title=" " alt="" coords="25,5,144,83"/>
 </map>

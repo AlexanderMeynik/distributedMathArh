@@ -1,13 +1,8 @@
 <map id="main_services::MainNodeService::PublishMessage" name="main_services::MainNodeService::PublishMessage">
-<area shape="rect" id="Node000001" title="Publishes message to queue with routingKey=node." alt="" coords="5,69,244,109"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="298,5,517,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="213,67,305,46,306,51,214,72"/>
-<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPPublisherService.html#ad7c96d5337da2e7bdeef267e1a17ca74" title="publish a message to qname" alt="" coords="292,69,523,109"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="244,87,278,87,278,92,244,92"/>
-<area shape="rect" id="Node000005" href="$structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="313,133,501,173"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="214,107,306,128,305,133,213,112"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="576,5,779,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="517,23,562,23,562,28,517,28"/>
-<area shape="rect" id="Node000006" href="$namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="571,141,784,166"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="501,151,557,151,557,156,501,156"/>
+<area shape="rect" id="node1" title="Publishes message to queue with routingKey=node." alt="" coords="5,71,244,112"/>
+<area shape="rect" id="node2" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="298,5,517,47"/>
+<area shape="rect" id="node4" href="$classamqp__common_1_1AMQPPublisherService.html#ad7c96d5337da2e7bdeef267e1a17ca74" title="publish a message to qname" alt="" coords="292,71,523,112"/>
+<area shape="rect" id="node5" href="$structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="313,136,501,177"/>
+<area shape="rect" id="node3" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="576,5,779,47"/>
+<area shape="rect" id="node6" href="$namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="571,143,784,170"/>
 </map>

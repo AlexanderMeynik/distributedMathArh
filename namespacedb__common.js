@@ -1,10 +1,10 @@
 var namespacedb__common =
 [
+    [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ],
     [ "Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
     [ "Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
-    [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
     [ "Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
-    [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ],
+    [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
     [ "ConnPtr", "namespacedb__common.html#a4fb01057ea1b45a07833c815721fe69d", null ],
     [ "IndexType", "namespacedb__common.html#a0bf5bdeb7108eed0c8454cbcd5c39615", null ],
     [ "NonTransType", "namespacedb__common.html#a328a16b225cb6beb4726da339347ec0b", null ],
@@ -48,8 +48,8 @@ var namespacedb__common =
     [ "ExecuteSubTransaction", "namespacedb__common.html#ade4a0e64d613a70412fa41a5008b1d35", null ],
     [ "ExecuteTransaction", "namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073", null ],
     [ "FillDatabase", "namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8", null ],
-    [ "GetFunctionOpt", "namespacedb__common.html#aa5788b5bace94e5daf2f54f99948f164", null ],
-    [ "GetOpt", "namespacedb__common.html#af2ffdabf4e11ffa2056f4313fe2594ab", null ],
+    [ "GetFunctionOpt", "namespacedb__common.html#a02f534d3d64b4b315c5fcd74cad80fc0", null ],
+    [ "GetOpt", "namespacedb__common.html#a5bf4560146a0c68a47da31cf68a7a023", null ],
     [ "PaginateRequest", "namespacedb__common.html#afe5a348fb22dd5f91214dd95a80b6973", null ],
     [ "ParseArray", "namespacedb__common.html#acec6199e9f3a82271a9af92390122f7e", null ],
     [ "TerminateAllDbConnections", "namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b", null ],

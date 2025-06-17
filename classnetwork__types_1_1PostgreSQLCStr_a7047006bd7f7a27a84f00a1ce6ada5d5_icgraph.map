@@ -1,19 +1,11 @@
 <map id="network_types::PostgreSQLCStr::UpdateFormat" name="network_types::PostgreSQLCStr::UpdateFormat">
-<area shape="rect" id="Node000001" title=" " alt="" coords="543,165,769,205"/>
-<area shape="rect" id="Node000002" href="$classnetwork__types_1_1PostgreSQLCStr.html#a452d7fe2fec389d7ae8519e5da1d88f1" title="Parses fields from std::string_view." alt="" coords="268,5,495,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="623,157,566,107,531,82,493,60,466,48,468,43,496,55,533,77,569,103,627,153"/>
-<area shape="rect" id="Node000003" href="$classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2" title=" " alt="" coords="268,69,495,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="595,163,494,124,456,112,458,107,496,119,597,158"/>
-<area shape="rect" id="Node000006" href="$classnetwork__types_1_1PostgreSQLCStr.html#a814ca02c2e79a416c46d659d4d21b33e" title=" " alt="" coords="268,133,495,173"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="529,173,495,169,495,164,529,168"/>
-<area shape="rect" id="Node000007" href="$classnetwork__types_1_1PostgreSQLCStr.html#a8de3b6daaf3db96b395c000f75fddd28" title=" " alt="" coords="268,197,495,237"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="529,203,495,207,495,201,529,197"/>
-<area shape="rect" id="Node000008" href="$classnetwork__types_1_1PostgreSQLCStr.html#a324f9b34afcd2a05294983ab51ab27bb" title=" " alt="" coords="268,261,495,301"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="597,213,496,252,458,264,456,259,494,247,595,208"/>
-<area shape="rect" id="Node000009" href="$classnetwork__types_1_1PostgreSQLCStr.html#ad2662a7ee82e6fd94ce384cd0743f257" title=" " alt="" coords="268,325,495,365"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="627,217,569,267,533,293,496,316,468,328,466,323,493,311,531,289,566,263,623,213"/>
-<area shape="rect" id="Node000004" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="5,53,220,78"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="254,81,220,78,221,72,255,75"/>
-<area shape="rect" id="Node000005" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="11,102,214,127"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="255,104,214,108,214,102,254,99"/>
+<area shape="rect" id="node1" title=" " alt="" coords="543,169,769,211"/>
+<area shape="rect" id="node2" href="$classnetwork__types_1_1PostgreSQLCStr.html#a452d7fe2fec389d7ae8519e5da1d88f1" title="Parses fields from std::string_view." alt="" coords="268,5,495,47"/>
+<area shape="rect" id="node3" href="$classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2" title=" " alt="" coords="268,71,495,112"/>
+<area shape="rect" id="node6" href="$classnetwork__types_1_1PostgreSQLCStr.html#a814ca02c2e79a416c46d659d4d21b33e" title=" " alt="" coords="268,136,495,177"/>
+<area shape="rect" id="node7" href="$classnetwork__types_1_1PostgreSQLCStr.html#a8de3b6daaf3db96b395c000f75fddd28" title=" " alt="" coords="268,201,495,243"/>
+<area shape="rect" id="node8" href="$classnetwork__types_1_1PostgreSQLCStr.html#a324f9b34afcd2a05294983ab51ab27bb" title=" " alt="" coords="268,267,495,308"/>
+<area shape="rect" id="node9" href="$classnetwork__types_1_1PostgreSQLCStr.html#ad2662a7ee82e6fd94ce384cd0743f257" title=" " alt="" coords="268,332,495,373"/>
+<area shape="rect" id="node4" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="5,53,220,79"/>
+<area shape="rect" id="node5" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="11,103,214,130"/>
 </map>

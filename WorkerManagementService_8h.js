@@ -1,7 +1,7 @@
 var WorkerManagementService_8h =
 [
-    [ "main_services::ComputationalNode", "classmain__services_1_1ComputationalNode.html", "classmain__services_1_1ComputationalNode" ],
-    [ "main_services::WorkerManagementService", "classmain__services_1_1WorkerManagementService.html", "classmain__services_1_1WorkerManagementService" ],
+    [ "ComputationalNode", "classmain__services_1_1ComputationalNode.html", "classmain__services_1_1ComputationalNode" ],
+    [ "WorkerManagementService", "classmain__services_1_1WorkerManagementService.html", "classmain__services_1_1WorkerManagementService" ],
     [ "NodeStatus", "WorkerManagementService_8h.html#a2fadec975591f46253b38185db954f41", [
       [ "ACTIVE", "WorkerManagementService_8h.html#a2fadec975591f46253b38185db954f41a18ff74f43da410c5529f7d6fca84f115", null ],
       [ "INACTIVE", "WorkerManagementService_8h.html#a2fadec975591f46253b38185db954f41a6b273343c454f9c53dcfc9c4ccf171d2", null ],

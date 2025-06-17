@@ -1,11 +1,7 @@
 <map id="dipoles::Dipoles::Solve" name="dipoles::Dipoles::Solve">
-<area shape="rect" id="Node000001" title="Computes solution vector for dipole parameters and returns it in available format." alt="" coords="1103,13,1273,38"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1BenchmarkRunner.html#a3c37823cafe6654892a0f3beb4c10f5a" title="Runs the benchmark for a single pair of N and conf_num." alt="" coords="840,5,1055,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1089,28,1055,28,1055,23,1089,23"/>
-<area shape="rect" id="Node000003" href="$classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e" title="Runs the benchmark for all parameter pairs and returns the results." alt="" coords="591,5,792,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="826,28,792,28,792,23,826,23"/>
-<area shape="rect" id="Node000004" href="$classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2" title=" " alt="" coords="332,5,543,45"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="577,28,543,28,543,23,577,23"/>
-<area shape="rect" id="Node000005" href="$classcomp__services_1_1ComputationNodeService.html#a09f092800edf837ad2978fa641a847b0" title=" " alt="" coords="5,5,284,45"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="318,28,284,28,284,23,318,23"/>
+<area shape="rect" id="node1" title="Computes solution vector for dipole parameters and returns it in available format." alt="" coords="1103,13,1273,39"/>
+<area shape="rect" id="node2" href="$classcomp__services_1_1BenchmarkRunner.html#a3c37823cafe6654892a0f3beb4c10f5a" title="Runs the benchmark for a single pair of N and conf_num." alt="" coords="840,5,1055,47"/>
+<area shape="rect" id="node3" href="$classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e" title="Runs the benchmark for all parameter pairs and returns the results." alt="" coords="591,5,792,47"/>
+<area shape="rect" id="node4" href="$classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2" title=" " alt="" coords="332,5,543,47"/>
+<area shape="rect" id="node5" href="$classcomp__services_1_1ComputationNodeService.html#a09f092800edf837ad2978fa641a847b0" title=" " alt="" coords="5,5,284,47"/>
 </map>

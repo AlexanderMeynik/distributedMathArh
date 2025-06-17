@@ -1,19 +1,11 @@
 <map id="computationalLib/include/math_core/Dipoles.h" name="computationalLib/include/math_core/Dipoles.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="211,5,397,45"/>
-<area shape="rect" id="Node000002" href="$math__core_8h.html" title=" " alt="" coords="5,93,192,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="247,53,145,96,143,91,245,48"/>
-<area shape="rect" id="Node000003" href="$Dipoles_8cpp.html" title=" " alt="" coords="217,93,391,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="307,59,307,93,301,93,301,59"/>
-<area shape="rect" id="Node000004" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="415,93,673,133"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="370,47,492,91,491,96,368,52"/>
-<area shape="rect" id="Node000005" href="$CompNodeService_8h.html" title=" " alt="" coords="306,181,515,221"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="504,143,442,183,439,179,502,139"/>
-<area shape="rect" id="Node000009" href="$BenchmarkRunnerService_8cpp.html" title=" " alt="" coords="540,181,812,221"/>
-<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="586,139,648,179,645,183,583,143"/>
-<area shape="rect" id="Node000006" href="$CompNode_8h.html" title=" " alt="" coords="191,269,393,309"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="375,232,320,271,317,267,372,227"/>
-<area shape="rect" id="Node000008" href="$CompNodeService_8cpp.html" title=" " alt="" coords="417,269,641,309"/>
-<area shape="poly" id="edge7_Node000005_Node000008" title=" " alt="" coords="450,227,505,267,502,271,447,232"/>
-<area shape="rect" id="Node000007" href="$CompNode_8cpp.html" title=" " alt="" coords="197,357,387,397"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="295,323,295,357,289,357,289,323"/>
+<area shape="rect" id="node1" title=" " alt="" coords="510,5,697,47"/>
+<area shape="rect" id="node2" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="228,95,485,136"/>
+<area shape="rect" id="node8" href="$math__core_8h.html" title=" " alt="" coords="510,95,697,136"/>
+<area shape="rect" id="node9" href="$Dipoles_8cpp.html" title=" " alt="" coords="721,95,896,136"/>
+<area shape="rect" id="node3" href="$CompNodeService_8h.html" title=" " alt="" coords="120,184,329,225"/>
+<area shape="rect" id="node7" href="$BenchmarkRunnerService_8cpp.html" title=" " alt="" coords="354,184,626,225"/>
+<area shape="rect" id="node4" href="$CompNode_8h.html" title=" " alt="" coords="5,273,207,315"/>
+<area shape="rect" id="node6" href="$CompNodeService_8cpp.html" title=" " alt="" coords="231,273,455,315"/>
+<area shape="rect" id="node5" href="$CompNode_8cpp.html" title=" " alt="" coords="11,363,201,404"/>
 </map>

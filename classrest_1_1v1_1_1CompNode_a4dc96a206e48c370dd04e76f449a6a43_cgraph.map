@@ -1,30 +1,16 @@
 <map id="rest::v1::CompNode::ConnectHandler" name="rest::v1::CompNode::ConnectHandler">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,216,156,256"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="204,216,415,256"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="156,233,190,233,190,239,156,239"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="471,101,690,141"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="342,213,397,183,462,152,486,143,488,148,464,157,400,187,345,218"/>
-<area shape="rect" id="Node000005" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="764,5,983,45"/>
-<area shape="poly" id="edge12_Node000002_Node000005" title=" " alt="" coords="323,214,378,150,417,115,461,87,533,59,608,40,682,28,750,23,751,28,683,34,609,45,534,64,464,92,420,119,382,154,327,218"/>
-<area shape="rect" id="Node000010" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="476,166,685,191"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="404,213,506,192,507,197,405,219"/>
-<area shape="rect" id="Node000011" href="$classamqp__common_1_1AMQPService.html#a262f9f06b98d262cf4f6f29fb1855d9e" title=" " alt="" coords="471,216,690,256"/>
-<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="415,233,458,233,458,239,415,239"/>
-<area shape="rect" id="Node000012" href="$classnetwork__types_1_1AMQPSQLCStr.html#a6366c03f3db9c3cb892b965399df6073" title="Retrieves cString contents for verbose logging." alt="" coords="472,280,689,320"/>
-<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="396,253,483,274,481,279,394,259"/>
-<area shape="rect" id="Node000013" href="$classamqp__common_1_1AMQPConsumerService.html#ab74da76322394ebf90b8e20a5720b26f" title="Sets message processing callback." alt="" coords="463,344,699,384"/>
-<area shape="poly" id="edge13_Node000002_Node000013" title=" " alt="" coords="339,254,395,292,464,330,482,337,480,342,462,334,392,297,336,258"/>
-<area shape="rect" id="Node000014" href="$classamqp__common_1_1AMQPConsumerService.html#a2b4e6f55af3333ba578af71437e0ca9b" title=" " alt="" coords="463,408,699,448"/>
-<area shape="poly" id="edge14_Node000002_Node000014" title=" " alt="" coords="326,254,381,323,420,361,464,394,476,400,473,405,461,398,417,365,377,327,322,258"/>
-<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="764,69,983,109"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="690,107,750,100,750,105,691,112"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="628,99,746,55,774,46,775,51,748,60,630,104"/>
-<area shape="rect" id="Node000007" href="$classamqp__common_1_1AMQPService.html#ab0e168f45113842ca9e77bb5b1e6e405" title=" " alt="" coords="764,133,983,173"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="691,131,750,137,750,143,690,136"/>
-<area shape="rect" id="Node000008" href="$classamqp__common_1_1AMQPService.html#ac2c728377055fee86a840c8295a1ab22" title=" " alt="" coords="764,197,983,237"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="665,139,700,152,724,168,748,183,767,191,765,195,745,188,721,172,697,157,663,144"/>
-<area shape="rect" id="Node000009" href="$classnetwork__types_1_1AbstractConnectionString.html#a740c4fb2574d6b23b352f0514dc2a649" title="explicit std::string type cast" alt="" coords="747,261,1000,301"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="680,139,700,153,712,165,719,177,725,202,731,225,738,236,748,247,755,252,752,256,745,251,733,240,726,227,720,203,714,179,708,168,697,157,677,144"/>
-<area shape="rect" id="Node000006" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="1048,5,1251,45"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="983,23,1034,23,1034,28,983,28"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,220,156,261"/>
+<area shape="rect" id="node2" href="$classcomp__services_1_1ComputationNodeService.html#a965b8c1320119c5d027f74686f986a24" title=" " alt="" coords="204,220,415,261"/>
+<area shape="rect" id="node3" href="$classamqp__common_1_1AMQPService.html#a32101b5272b54962ac6753c33ac9bd9c" title="Starts event Loop for service." alt="" coords="471,103,690,144"/>
+<area shape="rect" id="node5" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="764,5,983,47"/>
+<area shape="rect" id="node10" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="476,169,685,195"/>
+<area shape="rect" id="node11" href="$classamqp__common_1_1AMQPService.html#a262f9f06b98d262cf4f6f29fb1855d9e" title=" " alt="" coords="471,220,690,261"/>
+<area shape="rect" id="node12" href="$classnetwork__types_1_1AMQPSQLCStr.html#a6366c03f3db9c3cb892b965399df6073" title="Retrieves cString contents for verbose logging." alt="" coords="472,285,689,327"/>
+<area shape="rect" id="node13" href="$classamqp__common_1_1AMQPConsumerService.html#ab74da76322394ebf90b8e20a5720b26f" title="Sets message processing callback." alt="" coords="463,351,699,392"/>
+<area shape="rect" id="node14" href="$classamqp__common_1_1AMQPConsumerService.html#a2b4e6f55af3333ba578af71437e0ca9b" title=" " alt="" coords="463,416,699,457"/>
+<area shape="rect" id="node4" href="$classamqp__common_1_1AMQPService.html#a2a852047d6efc09be421c3dcd69af276" title="Ends connection and channel to rabbitMQ This is the variant of soft disconnect." alt="" coords="764,71,983,112"/>
+<area shape="rect" id="node7" href="$classamqp__common_1_1AMQPService.html#ab0e168f45113842ca9e77bb5b1e6e405" title=" " alt="" coords="764,136,983,177"/>
+<area shape="rect" id="node8" href="$classamqp__common_1_1AMQPService.html#ac2c728377055fee86a840c8295a1ab22" title=" " alt="" coords="764,201,983,243"/>
+<area shape="rect" id="node9" href="$classnetwork__types_1_1AbstractConnectionString.html#a740c4fb2574d6b23b352f0514dc2a649" title="explicit std::string type cast" alt="" coords="747,267,1000,308"/>
+<area shape="rect" id="node6" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="1048,5,1251,47"/>
 </map>

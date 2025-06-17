@@ -1,9 +1,0 @@
-<map id="generators::generator::GetGenFunction" name="generators::generator::GetGenFunction">
-<area shape="rect" id="Node000001" title=" " alt="" coords="655,5,817,45"/>
-<area shape="rect" id="Node000002" href="$namespacegenerators.html#a82e4967c168a113f525f118fae6387d5" title="Shorthand generator getter for normal distribution." alt="" coords="432,5,607,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="641,28,607,28,607,23,641,23"/>
-<area shape="rect" id="Node000003" href="$namespacegenerators.html#a06e29279648ea72ae3716766050740ac" title=" " alt="" coords="219,13,384,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="418,28,384,28,384,23,418,23"/>
-<area shape="rect" id="Node000004" href="$namespacegenerators.html#ac158ee3caf0a2574ece99b27b80724cb" title=" " alt="" coords="5,13,171,38"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="205,28,171,28,171,23,205,23"/>
-</map>

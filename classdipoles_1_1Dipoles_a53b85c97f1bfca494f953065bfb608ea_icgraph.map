@@ -1,0 +1,7 @@
+<map id="dipoles::Dipoles::SetNewCoordinates" name="dipoles::Dipoles::SetNewCoordinates">
+<area shape="rect" id="node1" title="Function that allows to Reset dipole coordinates." alt="" coords="1103,5,1287,47"/>
+<area shape="rect" id="node2" href="$classcomp__services_1_1BenchmarkRunner.html#a3c37823cafe6654892a0f3beb4c10f5a" title="Runs the benchmark for a single pair of N and conf_num." alt="" coords="840,5,1055,47"/>
+<area shape="rect" id="node3" href="$classcomp__services_1_1BenchmarkRunner.html#a7a076a748ec297773fd0cded063ddf4e" title="Runs the benchmark for all parameter pairs and returns the results." alt="" coords="591,5,792,47"/>
+<area shape="rect" id="node4" href="$classcomp__services_1_1ComputationNodeService.html#aa64954e43d81cf885bad183fa7a3bdb2" title=" " alt="" coords="332,5,543,47"/>
+<area shape="rect" id="node5" href="$classcomp__services_1_1ComputationNodeService.html#a09f092800edf837ad2978fa641a847b0" title=" " alt="" coords="5,5,284,47"/>
+</map>

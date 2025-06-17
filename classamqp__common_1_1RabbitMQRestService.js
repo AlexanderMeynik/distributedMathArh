@@ -21,7 +21,7 @@ var classamqp__common_1_1RabbitMQRestService =
     [ "ListGlobalParams", "classamqp__common_1_1RabbitMQRestService.html#a43a397a9fefca04da17b6b25f3a96ec2", null ],
     [ "ListQueues", "classamqp__common_1_1RabbitMQRestService.html#ab7067af56b42247a06b94c09bd2b94c9", null ],
     [ "ListUsers", "classamqp__common_1_1RabbitMQRestService.html#acb8f8c0e547abf3dc057eec6197d0073", null ],
-    [ "operator=", "classamqp__common_1_1RabbitMQRestService.html#aafa4c3fa8af2591146db2e66db3543f3", null ],
+    [ "operator=", "classamqp__common_1_1RabbitMQRestService.html#ae2b90f3877f86948aec2c804ba570f68", null ],
     [ "ParseJson", "classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2", null ],
     [ "PerformRequest", "classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81", null ],
     [ "PerformRequest", "classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c", null ],

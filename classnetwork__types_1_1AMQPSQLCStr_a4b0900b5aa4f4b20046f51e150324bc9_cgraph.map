@@ -1,7 +1,5 @@
 <map id="network_types::AMQPSQLCStr::FromString" name="network_types::AMQPSQLCStr::FromString">
-<area shape="rect" id="Node000001" title="Parses fields from std::string_view." alt="" coords="5,35,223,75"/>
-<area shape="rect" id="Node000002" href="$classnetwork__types_1_1AMQPSQLCStr.html#a8ad5a994b53d33635a0d48211480147e" title=" " alt="" coords="271,5,488,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,40,257,36,258,41,223,45"/>
-<area shape="rect" id="Node000003" href="$namespacenetwork__types.html#af174f45f5f393316865d089b898ff9b3" title="Replaces all url delimiters with spaces for scanf parsing." alt="" coords="282,70,477,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="223,63,269,68,268,74,223,69"/>
+<area shape="rect" id="node1" title="Parses fields from std::string_view." alt="" coords="5,35,223,76"/>
+<area shape="rect" id="node2" href="$classnetwork__types_1_1AMQPSQLCStr.html#a8ad5a994b53d33635a0d48211480147e" title=" " alt="" coords="271,5,488,47"/>
+<area shape="rect" id="node3" href="$namespacenetwork__types.html#af174f45f5f393316865d089b898ff9b3" title="Replaces all url delimiters with spaces for scanf parsing." alt="" coords="282,71,477,98"/>
 </map>

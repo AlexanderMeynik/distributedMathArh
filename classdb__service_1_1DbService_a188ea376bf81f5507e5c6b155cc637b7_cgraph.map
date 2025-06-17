@@ -1,0 +1,6 @@
+<map id="db_service::DbService::ExecuteTransaction" name="db_service::DbService::ExecuteTransaction">
+<area shape="rect" id="node1" title=" " alt="" coords="5,27,172,69"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="220,35,455,61"/>
+<area shape="rect" id="node3" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="505,5,727,32"/>
+<area shape="rect" id="node4" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="503,57,729,98"/>
+</map>

@@ -1,10 +1,10 @@
 var daoClasses_8h =
 [
-    [ "db_common::User", "structdb__common_1_1User.html", "structdb__common_1_1User" ],
-    [ "db_common::Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
-    [ "db_common::Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
-    [ "db_common::Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
-    [ "db_common::Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
+    [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ],
+    [ "Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
+    [ "Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
+    [ "Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
+    [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
     [ "ExperimentStatus", "daoClasses_8h.html#a8b04a185ba3a0a5ae3a02c3703b83127", [
       [ "CREATED", "daoClasses_8h.html#a8b04a185ba3a0a5ae3a02c3703b83127a98690bf632c29c17c9e4c5a64069903c", null ],
       [ "QUEUED", "daoClasses_8h.html#a8b04a185ba3a0a5ae3a02c3703b83127a9df29ce7ca629ff1d47bca1149d9faae", null ],

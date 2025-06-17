@@ -1,5 +1,4 @@
 <map id="mesh_storage::MeshCreator::ApplyFunction" name="mesh_storage::MeshCreator::ApplyFunction">
-<area shape="rect" id="Node000001" title="Computes data[2] using provided Func function." alt="" coords="5,5,211,45"/>
-<area shape="rect" id="Node000002" href="$namespacemesh__storage.html#aa880df7d2ee0d964e30be20ea5bc3379" title="Computes functional mesh for 2 coordinates." alt="" coords="259,13,495,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="211,23,245,23,245,28,211,28"/>
+<area shape="rect" id="node1" title="Computes data[2] using provided Func function." alt="" coords="5,5,211,47"/>
+<area shape="rect" id="node2" href="$namespacemesh__storage.html#aa880df7d2ee0d964e30be20ea5bc3379" title="Computes functional mesh for 2 coordinates." alt="" coords="259,13,495,39"/>
 </map>

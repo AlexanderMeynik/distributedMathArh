@@ -1,7 +1,5 @@
 <map id="timing::ClockArray&lt; OutType, inType, timeGetter, sourceTypeConverter, timeConverter &gt;" name="timing::ClockArray&lt; OutType, inType, timeGetter, sourceTypeConverter, timeConverter &gt;">
-<area shape="rect" id="Node000001" title="Clock array template class." alt="" coords="23,5,295,400"/>
-<area shape="rect" id="Node000002" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="5,463,147,843"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,414,115,424,108,463,102,462,109,424,111,413"/>
-<area shape="rect" id="Node000003" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="171,463,312,843"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="213,413,215,424,221,462,216,463,209,424,207,414"/>
+<area shape="rect" id="node1" title="Clock array template class." alt="" coords="21,5,301,332"/>
+<area shape="rect" id="node2" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="5,395,149,707"/>
+<area shape="rect" id="node3" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="173,395,317,707"/>
 </map>

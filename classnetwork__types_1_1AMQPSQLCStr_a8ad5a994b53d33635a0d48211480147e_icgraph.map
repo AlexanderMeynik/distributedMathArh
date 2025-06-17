@@ -1,15 +1,9 @@
 <map id="network_types::AMQPSQLCStr::UpdateFormat" name="network_types::AMQPSQLCStr::UpdateFormat">
-<area shape="rect" id="Node000001" title=" " alt="" coords="271,165,488,205"/>
-<area shape="rect" id="Node000002" href="$classnetwork__types_1_1AMQPSQLCStr.html#a24065dd1dd2d18a2c80c045e4b011a0a" title=" " alt="" coords="5,5,223,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="347,157,292,107,258,82,221,60,195,48,197,43,224,55,261,77,295,103,351,154"/>
-<area shape="rect" id="Node000003" href="$classnetwork__types_1_1AMQPSQLCStr.html#a4b0900b5aa4f4b20046f51e150324bc9" title="Parses fields from std::string_view." alt="" coords="5,69,223,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="319,162,222,124,186,112,188,107,224,119,321,157"/>
-<area shape="rect" id="Node000004" href="$classnetwork__types_1_1AMQPSQLCStr.html#aa55dc64260c3947a3f0c5e43a30c4646" title=" " alt="" coords="5,133,223,173"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="257,173,222,169,223,164,257,168"/>
-<area shape="rect" id="Node000005" href="$classnetwork__types_1_1AMQPSQLCStr.html#af2a24675ec931ee7d1300de51ff01630" title=" " alt="" coords="5,197,223,237"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="257,203,223,207,222,202,257,197"/>
-<area shape="rect" id="Node000006" href="$classnetwork__types_1_1AMQPSQLCStr.html#ae7a744992919575040451838eee669a7" title=" " alt="" coords="5,261,223,301"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="321,213,224,252,188,264,186,259,222,247,319,208"/>
-<area shape="rect" id="Node000007" href="$classnetwork__types_1_1AMQPSQLCStr.html#a7912358db4aad2ea42669ef4a8d4e9aa" title=" " alt="" coords="5,325,223,365"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="351,217,295,267,261,293,224,316,197,328,195,323,221,311,258,289,292,263,347,213"/>
+<area shape="rect" id="node1" title=" " alt="" coords="271,169,488,211"/>
+<area shape="rect" id="node2" href="$classnetwork__types_1_1AMQPSQLCStr.html#a24065dd1dd2d18a2c80c045e4b011a0a" title=" " alt="" coords="5,5,223,47"/>
+<area shape="rect" id="node3" href="$classnetwork__types_1_1AMQPSQLCStr.html#a4b0900b5aa4f4b20046f51e150324bc9" title="Parses fields from std::string_view." alt="" coords="5,71,223,112"/>
+<area shape="rect" id="node4" href="$classnetwork__types_1_1AMQPSQLCStr.html#aa55dc64260c3947a3f0c5e43a30c4646" title=" " alt="" coords="5,136,223,177"/>
+<area shape="rect" id="node5" href="$classnetwork__types_1_1AMQPSQLCStr.html#af2a24675ec931ee7d1300de51ff01630" title=" " alt="" coords="5,201,223,243"/>
+<area shape="rect" id="node6" href="$classnetwork__types_1_1AMQPSQLCStr.html#ae7a744992919575040451838eee669a7" title=" " alt="" coords="5,267,223,308"/>
+<area shape="rect" id="node7" href="$classnetwork__types_1_1AMQPSQLCStr.html#a7912358db4aad2ea42669ef4a8d4e9aa" title=" " alt="" coords="5,332,223,373"/>
 </map>

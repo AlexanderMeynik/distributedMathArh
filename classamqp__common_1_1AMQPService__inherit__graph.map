@@ -1,7 +1,5 @@
 <map id="amqp_common::AMQPService" name="amqp_common::AMQPService">
-<area shape="rect" id="Node000001" title="This class connection/disconnection semantics." alt="" coords="138,5,349,431"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPConsumerService.html" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="5,509,233,709"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="174,445,154,509,148,508,169,443"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues." alt="" coords="257,479,480,739"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="318,443,330,478,324,479,313,445"/>
+<area shape="rect" id="node1" title="This class connection/disconnection semantics." alt="" coords="142,5,361,347"/>
+<area shape="rect" id="node2" href="$classamqp__common_1_1AMQPConsumerService.html" title="Service that allow to start and end reading event Loop from specified queue." alt="" coords="5,417,241,597"/>
+<area shape="rect" id="node3" href="$classamqp__common_1_1AMQPPublisherService.html" title="Service that allow to Publish messages to multiple queues." alt="" coords="265,395,496,619"/>
 </map>

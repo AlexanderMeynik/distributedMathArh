@@ -1,14 +1,14 @@
 var networkTypes_8h =
 [
-    [ "network_types::TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", "structnetwork__types_1_1TestSolveParam" ],
-    [ "network_types::queueBinding", "structnetwork__types_1_1queueBinding.html", "structnetwork__types_1_1queueBinding" ],
-    [ "network_types::rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],
-    [ "network_types::exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
-    [ "network_types::queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
-    [ "network_types::connection", "structnetwork__types_1_1connection.html", "structnetwork__types_1_1connection" ],
-    [ "network_types::channel", "structnetwork__types_1_1channel.html", "structnetwork__types_1_1channel" ],
-    [ "network_types::message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
-    [ "network_types::global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
+    [ "TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", "structnetwork__types_1_1TestSolveParam" ],
+    [ "queueBinding", "structnetwork__types_1_1queueBinding.html", "structnetwork__types_1_1queueBinding" ],
+    [ "rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],
+    [ "exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
+    [ "queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
+    [ "connection", "structnetwork__types_1_1connection.html", "structnetwork__types_1_1connection" ],
+    [ "channel", "structnetwork__types_1_1channel.html", "structnetwork__types_1_1channel" ],
+    [ "message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
+    [ "global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
     [ "HttpMethod", "networkTypes_8h.html#a6ad29c03ec2859d779faf9f68cb6f3d3", [
       [ "GET", "networkTypes_8h.html#a6ad29c03ec2859d779faf9f68cb6f3d3a7528035a93ee69cedb1dbddb2f0bfcc8", null ],
       [ "POST", "networkTypes_8h.html#a6ad29c03ec2859d779faf9f68cb6f3d3aa02439ec229d8be0e74b0c1602392310", null ],

@@ -1,0 +1,4 @@
+<map id="timing::ClockArray::advance" name="timing::ClockArray::advance">
+<area shape="rect" id="node1" title="adds up all timers from other timer current timer" alt="" coords="283,5,425,47"/>
+<area shape="rect" id="node2" href="$classbench__utils_1_1BenchmarkHandler.html#ae100f5d0baecb5751bc5c33ada3d66ac" title=" " alt="" coords="5,5,235,47"/>
+</map>

@@ -1,5 +1,4 @@
 <map id="network_types::ToString" name="network_types::ToString">
-<area shape="rect" id="Node000001" title=" " alt="" coords="277,13,456,38"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81" title=" " alt="" coords="5,5,229,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,28,229,28,229,23,264,23"/>
+<area shape="rect" id="node1" title=" " alt="" coords="277,13,456,39"/>
+<area shape="rect" id="node2" href="$classamqp__common_1_1RabbitMQRestService.html#a9af21127aece78d673082356c399cf81" title=" " alt="" coords="5,5,229,47"/>
 </map>

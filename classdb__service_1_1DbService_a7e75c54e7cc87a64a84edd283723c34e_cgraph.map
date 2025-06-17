@@ -1,7 +1,8 @@
 <map id="db_service::DbService::ListUsers" name="db_service::DbService::ListUsers">
-<area shape="rect" id="Node000001" title="Retrieves user list in paginated form." alt="" coords="5,35,172,75"/>
-<area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="246,5,413,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="172,42,232,34,233,40,173,47"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#afe5a348fb22dd5f91214dd95a80b6973" title="formats request to add pagination" alt="" coords="220,70,439,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="173,62,207,66,206,71,172,67"/>
+<area shape="rect" id="node1" title="Retrieves user list in paginated form." alt="" coords="5,57,172,98"/>
+<area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="246,27,413,69"/>
+<area shape="rect" id="node6" href="$namespacedb__common.html#afe5a348fb22dd5f91214dd95a80b6973" title="formats request to add pagination" alt="" coords="220,93,439,120"/>
+<area shape="rect" id="node3" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="487,35,721,61"/>
+<area shape="rect" id="node4" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="771,5,994,32"/>
+<area shape="rect" id="node5" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="769,57,996,98"/>
 </map>

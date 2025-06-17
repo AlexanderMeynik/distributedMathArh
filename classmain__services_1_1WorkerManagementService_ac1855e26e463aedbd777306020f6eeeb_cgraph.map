@@ -1,5 +1,4 @@
 <map id="main_services::WorkerManagementService::ConnectNode" name="main_services::WorkerManagementService::ConnectNode">
-<area shape="rect" id="Node000001" title="Connects node to computational cluster This method performs http request to connect worker and retrie..." alt="" coords="5,5,260,45"/>
-<area shape="rect" id="Node000002" href="$classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="308,5,563,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="260,23,294,23,294,28,260,28"/>
+<area shape="rect" id="node1" title="Connects node to computational cluster This method performs http request to connect worker and retrie..." alt="" coords="5,5,260,47"/>
+<area shape="rect" id="node2" href="$classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="308,5,563,47"/>
 </map>

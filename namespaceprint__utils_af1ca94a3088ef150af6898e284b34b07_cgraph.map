@@ -1,7 +1,5 @@
 <map id="print_utils::PrintMesh" name="print_utils::PrintMesh">
-<area shape="rect" id="Node000001" title="Print mesh to supplied std::ostream." alt="" coords="5,31,165,56"/>
-<area shape="rect" id="Node000002" href="$namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740" title="Prints mesh in human readable way." alt="" coords="213,5,391,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="165,31,200,27,200,33,166,37"/>
-<area shape="rect" id="Node000003" href="$typeCasts_8h.html#adc37818e5d0af157a49992d0927c8dfc" title="Casts one dimensional collection to eigen RowVector." alt="" coords="231,55,373,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="166,50,218,55,217,61,165,55"/>
+<area shape="rect" id="node1" title="Print mesh to supplied std::ostream." alt="" coords="5,31,165,57"/>
+<area shape="rect" id="node2" href="$namespacemesh__storage.html#a2089ad2b898da3c6ebfe30cce23fb740" title="Prints mesh in human readable way." alt="" coords="213,5,391,32"/>
+<area shape="rect" id="node3" href="$typeCasts_8h.html#ad865334804a35137461fc7fbbe0c6b76" title="Casts one dimensional collection to eigen RowVector." alt="" coords="231,56,373,83"/>
 </map>

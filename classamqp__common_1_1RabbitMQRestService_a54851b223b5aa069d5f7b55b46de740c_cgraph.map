@@ -1,13 +1,8 @@
 <map id="amqp_common::RabbitMQRestService::PerformRequest" name="amqp_common::RabbitMQRestService::PerformRequest">
-<area shape="rect" id="Node000001" title="Wrapper to perform curl request." alt="" coords="5,63,229,103"/>
-<area shape="rect" id="Node000002" href="$namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="277,70,499,95"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="230,80,263,80,263,85,230,85"/>
-<area shape="rect" id="Node000003" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="563,5,733,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="446,67,549,44,550,50,447,73"/>
-<area shape="rect" id="Node000005" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="547,70,749,95"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="499,80,533,80,533,85,499,85"/>
-<area shape="rect" id="Node000006" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="557,119,739,145"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="456,93,567,114,566,119,455,98"/>
-<area shape="rect" id="Node000004" href="$classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="797,5,968,45"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="734,23,783,23,783,28,734,28"/>
+<area shape="rect" id="node1" title="Wrapper to perform curl request." alt="" coords="5,64,229,105"/>
+<area shape="rect" id="node2" href="$namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="277,71,499,98"/>
+<area shape="rect" id="node3" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="563,5,733,47"/>
+<area shape="rect" id="node5" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="547,71,749,98"/>
+<area shape="rect" id="node6" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="557,122,739,149"/>
+<area shape="rect" id="node4" href="$classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="797,5,968,47"/>
 </map>

@@ -1,9 +1,6 @@
 <map id="db_common::Experiment::Experiment" name="db_common::Experiment::Experiment">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,23,191,63"/>
-<area shape="rect" id="Node000002" href="$namespaceenum__utils.html#a2ad2288929e574d72d18771f391b1601" title="Cast string to enum." alt="" coords="239,5,409,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="191,30,225,26,226,32,191,36"/>
-<area shape="rect" id="Node000004" href="$namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07" title="Retrives TimepointType from a given string." alt="" coords="239,55,409,80"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="191,51,226,54,225,60,191,56"/>
-<area shape="rect" id="Node000003" href="$namespaceenum__utils.html#ac38e21f8f9955c8a8fa96b34df32db2c" title="Casts From type value to enum." alt="" coords="457,5,644,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="409,15,444,15,444,21,409,21"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,23,191,65"/>
+<area shape="rect" id="node2" href="$namespaceenum__utils.html#ad4a825ce0637d51c0e406a12299d50a9" title="Cast string to enum." alt="" coords="239,5,409,32"/>
+<area shape="rect" id="node4" href="$namespacetiming.html#ad625aa0dba4dadd42847e1d84c062d07" title="Retrives TimepointType from a given string." alt="" coords="239,56,409,83"/>
+<area shape="rect" id="node3" href="$namespaceenum__utils.html#a14129c9b52376972f5315f437a13a255" title="Casts From type value to enum." alt="" coords="457,5,644,32"/>
 </map>

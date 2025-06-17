@@ -1,9 +1,0 @@
-<map id="dipoles::Dipoles::SetMatrixes" name="dipoles::Dipoles::SetMatrixes">
-<area shape="rect" id="Node000001" title="Recalculates matrix values for dipole coordinates vector." alt="" coords="5,55,216,80"/>
-<area shape="rect" id="Node000002" href="$classdipoles_1_1Dipoles.html#addbdbb05c71483ac05166b6cb4ddb95e" title="Computes euclidean distacne for dipole coordinates." alt="" coords="264,5,479,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="178,52,289,31,290,36,179,57"/>
-<area shape="rect" id="Node000003" href="$classdipoles_1_1Dipoles.html#a424c438485b148ae80f2ab627554355c" title=" " alt="" coords="265,55,478,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,65,251,65,251,70,216,70"/>
-<area shape="rect" id="Node000004" href="$classdipoles_1_1Dipoles.html#ac6f8a623a5e59158df733b39dc3aa2d1" title="Computes vector difference for dipole coordinates." alt="" coords="275,105,467,145"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="170,77,267,99,266,104,169,83"/>
-</map>

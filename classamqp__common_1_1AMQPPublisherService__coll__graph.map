@@ -1,13 +1,8 @@
 <map id="amqp_common::AMQPPublisherService" name="amqp_common::AMQPPublisherService">
-<area shape="rect" id="Node000001" title="Service that allow to Publish messages to multiple queues." alt="" coords="109,1152,332,1412"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="115,717,326,1103"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="223,1117,223,1152,218,1152,218,1117"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="11,379,206,565"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="135,564,170,701,165,702,130,566"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="5,90,201,155"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="107,169,110,379,105,379,101,169"/>
-<area shape="rect" id="Node000005" href="$classnetwork__types_1_1AMQPSQLCStr.html" title="Structure to store and format AMQP connection string." alt="" coords="240,289,449,655"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="296,656,282,702,277,701,290,654"/>
-<area shape="rect" id="Node000006" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="226,5,471,240"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="350,254,349,289,344,289,345,254"/>
+<area shape="rect" id="node1" title="Service that allow to Publish messages to multiple queues." alt="" coords="113,985,344,1209"/>
+<area shape="rect" id="node2" href="$classamqp__common_1_1AMQPService.html" title="This class connection/disconnection semantics." alt="" coords="119,624,338,936"/>
+<area shape="rect" id="node3" href="$classamqp__common_1_1MyHandler.html" title="Custom handler for connection events logging." alt="" coords="11,330,214,495"/>
+<area shape="rect" id="node4" title=" " alt="" coords="5,71,209,149"/>
+<area shape="rect" id="node5" href="$classnetwork__types_1_1AMQPSQLCStr.html" title="Structure to store and format AMQP connection string." alt="" coords="248,264,465,561"/>
+<area shape="rect" id="node6" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="234,5,487,215"/>
 </map>

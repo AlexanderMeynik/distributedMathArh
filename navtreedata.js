@@ -42,7 +42,6 @@ var NAVTREE =
         [ "Enumerator", "namespacemembers_eval.html", null ]
       ] ]
     ] ],
-    [ "Concepts", "concepts.html", "concepts" ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
@@ -52,7 +51,7 @@ var NAVTREE =
         [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
-        [ "Related Symbols", "functions_rela.html", null ]
+        [ "Related Functions", "functions_rela.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -70,14 +69,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "AMQPConsumerService_8cpp.html",
-"classamqp__common_1_1AMQPService.html#a69aa82cad4ddc8644993f4b0b079b2a8",
-"classdb__service_1_1DbService.html#ae9a65995c7175e11a8a1ce0dcbe96bdc",
-"classnetwork__types_1_1AbstractConnectionString.html#a78a7545c88b8a95a66d53fbcb7566900",
-"classshared_1_1RowDivisionError.html#a5d33b396d705f3cd6ef653513174d0fe",
-"dipolesCommon_8cpp.html",
-"namespacedb__common.html#a82a32b7604217a1d8895b397e145c04e",
-"namespacetest__common.html",
-"structgenerators_1_1generator.html#acbb87ed70a7d0c9c4118494b3a0f9e4d"
+"classamqp__common_1_1RabbitMQRestService.html#a427ea6e6c98a1a7cf78cb245839d1679",
+"classprint__utils_1_1IosStateScientific.html#a649b51c667bbe8dcccea89af540db3bd",
+"dbCommon_8h.html#ade4a0e64d613a70412fa41a5008b1d35",
+"namespacedb__common.html#a328a16b225cb6beb4726da339347ec0b",
+"namespaceshared.html#a945426c73d4f4837f3cf6b4e30555866",
+"structnetwork__types_1_1connection.html#a553171500974580eb7346a823ff29ecb"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

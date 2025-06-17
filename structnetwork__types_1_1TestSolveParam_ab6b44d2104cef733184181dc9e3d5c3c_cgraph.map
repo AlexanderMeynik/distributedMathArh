@@ -1,5 +1,4 @@
 <map id="network_types::TestSolveParam::TestSolveParam" name="network_types::TestSolveParam::TestSolveParam">
-<area shape="rect" id="Node000001" title="Deserialize from Json::Value." alt="" coords="5,5,193,45"/>
-<area shape="rect" id="Node000002" href="$namespacenetwork__types.html#a72a0d2ba616b55ebaf6e207bbac87331" title="Casts Json::Value to JsonVariant." alt="" coords="241,13,455,38"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="194,23,228,23,228,28,194,28"/>
+<area shape="rect" id="node1" title="Deserialize from Json::Value." alt="" coords="5,5,193,47"/>
+<area shape="rect" id="node2" href="$namespacenetwork__types.html#a72a0d2ba616b55ebaf6e207bbac87331" title="Casts Json::Value to JsonVariant." alt="" coords="241,13,455,39"/>
 </map>

@@ -1,17 +1,10 @@
 <map id="amqp_common::RabbitMQRestService::ListChannels" name="amqp_common::RabbitMQRestService::ListChannels">
-<area shape="rect" id="Node000001" title="retrieve all channels" alt="" coords="5,37,229,77"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="229,42,264,37,264,43,230,47"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,69,501,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="230,68,264,72,264,77,229,73"/>
-<area shape="rect" id="Node000004" href="$namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,77,771,102"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="502,87,535,87,535,92,502,92"/>
-<area shape="rect" id="Node000005" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,52"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="718,74,821,51,822,56,719,79"/>
-<area shape="rect" id="Node000007" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="819,77,1021,102"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="771,87,805,87,805,92,771,92"/>
-<area shape="rect" id="Node000008" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,126,1011,151"/>
-<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="728,99,839,121,838,126,727,105"/>
-<area shape="rect" id="Node000006" href="$classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,52"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1006,29,1055,29,1055,35,1006,35"/>
+<area shape="rect" id="node1" title="retrieve all channels" alt="" coords="5,39,229,80"/>
+<area shape="rect" id="node2" href="$classamqp__common_1_1RabbitMQRestService.html#aae4eda2e696b8b0366a8c688b82e43e2" title=" " alt="" coords="277,5,501,47"/>
+<area shape="rect" id="node3" href="$classamqp__common_1_1RabbitMQRestService.html#a54851b223b5aa069d5f7b55b46de740c" title="Wrapper to perform curl request." alt="" coords="277,71,501,112"/>
+<area shape="rect" id="node4" href="$namespacerest__utils.html#a502122f2290af8110846bc93d7803ee3" title="Common function to perform http request uning curl." alt="" coords="549,78,771,105"/>
+<area shape="rect" id="node5" href="$classrest__utils_1_1AuthHandler.html#a01f2f91d8883119d6c033c0a6e028b0d" title=" " alt="" coords="835,12,1005,53"/>
+<area shape="rect" id="node7" href="$classrest__utils_1_1CurlWrapper.html#a3aff6fcd40d180ad29a3a886a59527d3" title=" " alt="" coords="819,78,1021,105"/>
+<area shape="rect" id="node8" href="$namespacerest__utils.html#a29a16a9a892696a06504105024ab2fe3" title="Default curl write callback." alt="" coords="829,129,1011,155"/>
+<area shape="rect" id="node6" href="$classrest__utils_1_1AuthHandler.html#a375b521bcb748c448ada5ba190fd78ac" title=" " alt="" coords="1069,12,1240,53"/>
 </map>

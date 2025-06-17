@@ -1,8 +1,8 @@
 var printUtils_8h =
 [
-    [ "print_utils::Delimiter", "structprint__utils_1_1Delimiter.html", "structprint__utils_1_1Delimiter" ],
-    [ "print_utils::IosStatePreserve", "classprint__utils_1_1IosStatePreserve.html", "classprint__utils_1_1IosStatePreserve" ],
-    [ "print_utils::IosStateScientific", "classprint__utils_1_1IosStateScientific.html", "classprint__utils_1_1IosStateScientific" ],
+    [ "Delimiter", "structprint__utils_1_1Delimiter.html", "structprint__utils_1_1Delimiter" ],
+    [ "IosStatePreserve", "classprint__utils_1_1IosStatePreserve.html", "classprint__utils_1_1IosStatePreserve" ],
+    [ "IosStateScientific", "classprint__utils_1_1IosStateScientific.html", "classprint__utils_1_1IosStateScientific" ],
     [ "EIGENF", "printUtils_8h.html#a3dc37f063aa5c4be3ece84d66bd79bc0", null ],
     [ "EFormat", "printUtils_8h.html#ab5fbaf98f89405270aeefac745a3a553", null ],
     [ "EigenPrintFormats", "printUtils_8h.html#a7c4c57d2b5cd44cf47385c0a2ec92ba6", [

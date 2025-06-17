@@ -1,17 +1,10 @@
 <map id="rest::v1::ClusterConfigController::GetStatus" name="rest::v1::ClusterConfigController::GetStatus">
-<area shape="rect" id="Node000001" title="Retrieves the status of whole cluster." alt="" coords="5,101,236,141"/>
-<area shape="rect" id="Node000002" href="$classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,101,523,141"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,119,271,119,271,124,236,124"/>
-<area shape="rect" id="Node000003" href="$classamqp__common_1_1AMQPService.html#a262f9f06b98d262cf4f6f29fb1855d9e" title=" " alt="" coords="589,5,807,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="451,99,570,55,598,46,600,52,572,60,453,104"/>
-<area shape="rect" id="Node000004" href="$classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5" title="returns list of lists with all nodes meta information" alt="" coords="571,69,825,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="523,106,557,102,557,107,523,111"/>
-<area shape="rect" id="Node000006" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="589,133,807,173"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="523,132,575,137,575,143,523,137"/>
-<area shape="rect" id="Node000008" href="$classnetwork__types_1_1AbstractConnectionString.html#a740c4fb2574d6b23b352f0514dc2a649" title="explicit std::string type cast" alt="" coords="571,197,825,237"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="453,139,572,183,600,191,598,196,570,188,451,144"/>
-<area shape="rect" id="Node000005" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="873,77,1083,102"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="825,87,860,87,860,92,825,92"/>
-<area shape="rect" id="Node000007" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="877,133,1079,173"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="807,151,863,151,863,156,807,156"/>
+<area shape="rect" id="node1" title="Retrieves the status of whole cluster." alt="" coords="5,104,236,145"/>
+<area shape="rect" id="node2" href="$classmain__services_1_1MainNodeService.html#ab1180f7bf6b7716041f1e24ab66ffdfa" title="Queries the status of the main node and connected workers Status contains:" alt="" coords="284,104,523,145"/>
+<area shape="rect" id="node3" href="$classamqp__common_1_1AMQPService.html#a262f9f06b98d262cf4f6f29fb1855d9e" title=" " alt="" coords="589,5,807,47"/>
+<area shape="rect" id="node4" href="$classmain__services_1_1WorkerManagementService.html#a0f1f101f84c7bbb7970e6d18a49ccef5" title="returns list of lists with all nodes meta information" alt="" coords="571,71,825,112"/>
+<area shape="rect" id="node6" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="589,136,807,177"/>
+<area shape="rect" id="node8" href="$classnetwork__types_1_1AbstractConnectionString.html#a740c4fb2574d6b23b352f0514dc2a649" title="explicit std::string type cast" alt="" coords="571,201,825,243"/>
+<area shape="rect" id="node5" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="873,78,1083,105"/>
+<area shape="rect" id="node7" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="877,136,1079,177"/>
 </map>

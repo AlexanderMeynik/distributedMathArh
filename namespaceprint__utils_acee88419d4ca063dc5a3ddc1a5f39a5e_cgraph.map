@@ -1,9 +1,0 @@
-<map id="print_utils::PrintCoordinates" name="print_utils::PrintCoordinates">
-<area shape="rect" id="Node000001" title="Basic interface for printing coordinates." alt="" coords="5,31,208,56"/>
-<area shape="rect" id="Node000002" href="$namespaceprint__utils.html#a180b49c0627b496c6d8d86a724d6e37d" title="Prints one dimensional Collection using Eigen format." alt="" coords="259,5,463,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="208,31,245,27,246,32,209,36"/>
-<area shape="rect" id="Node000004" href="$namespaceprint__utils.html#a44ed8b8118be13bb17b537f12502b76c" title="Human readable way to Print coordinates vector." alt="" coords="256,55,467,80"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="209,50,243,53,242,59,208,56"/>
-<area shape="rect" id="Node000003" href="$typeCasts_8h.html#adc37818e5d0af157a49992d0927c8dfc" title="Casts one dimensional collection to eigen RowVector." alt="" coords="515,5,656,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="464,15,501,15,501,21,464,21"/>
-</map>

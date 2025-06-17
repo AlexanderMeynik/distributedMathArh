@@ -1,6 +1,6 @@
 var Generator_8h =
 [
-    [ "generators::generator< randomDevice >", "structgenerators_1_1generator.html", "structgenerators_1_1generator" ],
+    [ "generator", "structgenerators_1_1generator.html", "structgenerators_1_1generator" ],
     [ "DistributionFunctor", "Generator_8h.html#ad620f8b5c4a5c357a4acc0091309b643", null ],
     [ "DistributionType", "Generator_8h.html#aa85d949cd066d474ab708da4d406538c", [
       [ "NORMAL", "Generator_8h.html#aa85d949cd066d474ab708da4d406538ca1e23852820b9154316c7c06e2b7ba051", null ],

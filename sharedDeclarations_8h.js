@@ -1,6 +1,6 @@
 var sharedDeclarations_8h =
 [
-    [ "shared::params", "structshared_1_1params.html", "structshared_1_1params" ],
+    [ "params", "structshared_1_1params.html", "structshared_1_1params" ],
     [ "BenchResultType", "sharedDeclarations_8h.html#a98a73a01c5c6c4ca3e1b3819ce638a98", null ],
     [ "BenchResVec", "sharedDeclarations_8h.html#aa5d7938a2acc14cba538e883c9be6f9f", null ],
     [ "FloatType", "sharedDeclarations_8h.html#af061895f5bfe2ffa0c4ba0215150d34b", null ],

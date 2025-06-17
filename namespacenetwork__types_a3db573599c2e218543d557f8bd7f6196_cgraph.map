@@ -1,7 +1,5 @@
 <map id="network_types::ToString" name="network_types::ToString">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,184,31"/>
-<area shape="rect" id="Node000002" href="$namespaceenum__utils.html#acaa5e0029061787c474cb2df9b10db88" title="Casts enum value to string." alt="" coords="232,5,403,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="184,15,218,15,218,21,184,21"/>
-<area shape="rect" id="Node000003" href="$namespaceenum__utils.html#a895b87a59a61b4f0f015cfd970d95003" title="Casts Enum Value To typed value." alt="" coords="451,5,633,31"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="403,15,437,15,437,21,403,21"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,184,32"/>
+<area shape="rect" id="node2" href="$namespaceenum__utils.html#a961bbb7bae74a9633ce47d76c133d5ce" title="Casts enum value to string." alt="" coords="232,5,403,32"/>
+<area shape="rect" id="node3" href="$namespaceenum__utils.html#a90fbf7a7a2efeb51c66c03eba0e11e90" title="Casts Enum Value To typed value." alt="" coords="451,5,633,32"/>
 </map>

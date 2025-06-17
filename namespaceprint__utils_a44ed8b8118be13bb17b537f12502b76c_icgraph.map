@@ -1,5 +1,4 @@
 <map id="print_utils::PrintCoordinates2" name="print_utils::PrintCoordinates2">
-<area shape="rect" id="Node000001" title="Human readable way to Print coordinates vector." alt="" coords="256,5,467,31"/>
-<area shape="rect" id="Node000002" href="$namespaceprint__utils.html#a41be6bccbb432298d3a8cac37969d6b9" title="Basic interface for printing coordinates." alt="" coords="5,5,208,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="242,21,208,21,208,15,242,15"/>
+<area shape="rect" id="node1" title="Human readable way to Print coordinates vector." alt="" coords="201,5,412,32"/>
+<area shape="rect" id="node2" href="$namespaceprint__utils.html#af27a31bf45d329164210c9df006ede07" title=" " alt="" coords="5,5,153,32"/>
 </map>

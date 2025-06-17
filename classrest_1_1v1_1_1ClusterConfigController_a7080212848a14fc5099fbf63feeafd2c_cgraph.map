@@ -1,27 +1,15 @@
 <map id="rest::v1::ClusterConfigController::SentToExecution" name="rest::v1::ClusterConfigController::SentToExecution">
-<area shape="rect" id="Node000001" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,163,236,203"/>
-<area shape="rect" id="Node000002" href="$classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,163,523,203"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,180,271,180,271,185,236,185"/>
-<area shape="rect" id="Node000003" href="$classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e" title=" " alt="" coords="571,5,825,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="424,161,486,108,526,79,569,55,586,48,589,53,572,60,529,84,489,112,427,165"/>
-<area shape="rect" id="Node000004" href="$classmain__services_1_1WorkerManagementService.html#a033361c3f1627d040e1f357342e794a0" title=" " alt="" coords="571,69,825,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="454,160,570,119,599,110,600,116,571,124,456,165"/>
-<area shape="rect" id="Node000005" href="$classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c" title=" " alt="" coords="571,133,825,173"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="523,168,557,165,557,170,523,173"/>
-<area shape="rect" id="Node000006" href="$namespaceshared.html#ac7511258976ece006064667eb8c6f171" title=" " alt="" coords="638,198,758,223"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="523,191,624,201,624,206,523,197"/>
-<area shape="rect" id="Node000007" href="$classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e" title="Publishes message to queue with routingKey=node." alt="" coords="579,248,817,288"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="467,200,571,232,606,242,605,247,570,237,466,205"/>
-<area shape="rect" id="Node000013" href="$structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d" title="Slices iter_count iterations from current range and creates." alt="" coords="604,312,792,352"/>
-<area shape="poly" id="edge12_Node000002_Node000013" title=" " alt="" coords="429,201,491,249,530,275,572,298,592,306,590,311,570,302,527,280,488,254,426,205"/>
-<area shape="rect" id="Node000008" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="879,184,1098,224"/>
-<area shape="poly" id="edge7_Node000007_Node000008" title=" " alt="" coords="789,245,884,224,885,230,790,251"/>
-<area shape="rect" id="Node000010" href="$classamqp__common_1_1AMQPPublisherService.html#ad7c96d5337da2e7bdeef267e1a17ca74" title="publish a message to qname" alt="" coords="873,248,1104,288"/>
-<area shape="poly" id="edge9_Node000007_Node000010" title=" " alt="" coords="818,265,859,265,859,271,818,271"/>
-<area shape="rect" id="Node000011" href="$structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="895,312,1083,352"/>
-<area shape="poly" id="edge10_Node000007_Node000011" title=" " alt="" coords="790,285,885,306,884,312,789,291"/>
-<area shape="rect" id="Node000009" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="1157,184,1360,224"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="1098,201,1143,201,1143,207,1098,207"/>
-<area shape="rect" id="Node000012" href="$namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="1152,319,1365,345"/>
-<area shape="poly" id="edge11_Node000011_Node000012" title=" " alt="" coords="1083,329,1138,329,1138,335,1083,335"/>
+<area shape="rect" id="node1" title="Sends task to be sharded and published into queues for workers." alt="" coords="5,165,236,207"/>
+<area shape="rect" id="node2" href="$classmain__services_1_1MainNodeService.html#a8bce308ab8bf59f474fc6618efc61050" title="Sends the task to be sharded and republished Uses collected node bench information to divide task int..." alt="" coords="284,165,523,207"/>
+<area shape="rect" id="node3" href="$classmain__services_1_1WorkerManagementService.html#ab7de5b4e6677141e389caaa4acfc103e" title=" " alt="" coords="571,5,825,47"/>
+<area shape="rect" id="node4" href="$classmain__services_1_1WorkerManagementService.html#a033361c3f1627d040e1f357342e794a0" title=" " alt="" coords="571,71,825,112"/>
+<area shape="rect" id="node5" href="$classmain__services_1_1WorkerManagementService.html#a41ae1d1fdad373596caaad5e7b630e1c" title=" " alt="" coords="571,136,825,177"/>
+<area shape="rect" id="node6" href="$namespaceshared.html#ac7511258976ece006064667eb8c6f171" title=" " alt="" coords="638,202,758,229"/>
+<area shape="rect" id="node7" href="$classmain__services_1_1MainNodeService.html#aecde0745d284fb5b405747782567d68e" title="Publishes message to queue with routingKey=node." alt="" coords="579,253,817,295"/>
+<area shape="rect" id="node13" href="$structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d" title="Slices iter_count iterations from current range and creates." alt="" coords="604,319,792,360"/>
+<area shape="rect" id="node8" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="879,188,1098,229"/>
+<area shape="rect" id="node10" href="$classamqp__common_1_1AMQPPublisherService.html#ad7c96d5337da2e7bdeef267e1a17ca74" title="publish a message to qname" alt="" coords="873,253,1104,295"/>
+<area shape="rect" id="node11" href="$structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13" title="Serialize as json." alt="" coords="895,319,1083,360"/>
+<area shape="rect" id="node9" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="1157,188,1360,229"/>
+<area shape="rect" id="node12" href="$namespacenetwork__types.html#a1b599061c22c72f511f1f26cb2a697ff" title="Casts JsonVariant to Json::Value." alt="" coords="1152,326,1365,353"/>
 </map>

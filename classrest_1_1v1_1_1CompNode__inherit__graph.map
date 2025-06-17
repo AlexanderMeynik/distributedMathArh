@@ -1,5 +1,4 @@
 <map id="rest::v1::CompNode" name="rest::v1::CompNode">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,133,167,319"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="7,5,165,85"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="89,99,89,133,83,133,83,99"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,145,176,311"/>
+<area shape="rect" id="node2" title=" " alt="" coords="7,5,174,97"/>
 </map>

@@ -1,10 +1,10 @@
 var annotated_dup =
 [
     [ "amqp_common", "namespaceamqp__common.html", [
+      [ "MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
+      [ "AMQPService", "classamqp__common_1_1AMQPService.html", "classamqp__common_1_1AMQPService" ],
       [ "AMQPConsumerService", "classamqp__common_1_1AMQPConsumerService.html", "classamqp__common_1_1AMQPConsumerService" ],
       [ "AMQPPublisherService", "classamqp__common_1_1AMQPPublisherService.html", "classamqp__common_1_1AMQPPublisherService" ],
-      [ "AMQPService", "classamqp__common_1_1AMQPService.html", "classamqp__common_1_1AMQPService" ],
-      [ "MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
       [ "RabbitMQRestService", "classamqp__common_1_1RabbitMQRestService.html", "classamqp__common_1_1RabbitMQRestService" ]
     ] ],
     [ "bench_utils", "namespacebench__utils.html", [
@@ -14,19 +14,19 @@ var annotated_dup =
       [ "returnToDataTypeT", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT", null ],
       [ "returnToDataTypeT< ReturnType::ARRAY_EIGEN_VECTORS >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1ARRAY__EIGEN__VECTORS_01_4", "namespacecommon__types_structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1ARRAY__EIGEN__VECTORS_01_4_dup" ],
       [ "returnToDataTypeT< ReturnType::EIGEN_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1EIGEN__VECTOR_01_4", "namespacecommon__types_structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1EIGEN__VECTOR_01_4_dup" ],
-      [ "returnToDataTypeT< ReturnType::STD_VALARRAY >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VALARRAY_01_4", "namespacecommon__types_structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VALARRAY_01_4_dup" ],
-      [ "returnToDataTypeT< ReturnType::STD_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4", "namespacecommon__types_structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4_dup" ]
+      [ "returnToDataTypeT< ReturnType::STD_VECTOR >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4", "namespacecommon__types_structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VECTOR_01_4_dup" ],
+      [ "returnToDataTypeT< ReturnType::STD_VALARRAY >", "namespacecommon__types.html#structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VALARRAY_01_4", "namespacecommon__types_structcommon__types_1_1returnToDataTypeT_3_01ReturnType_1_1STD__VALARRAY_01_4_dup" ]
     ] ],
     [ "comp_services", "namespacecomp__services.html", [
       [ "BenchmarkRunner", "classcomp__services_1_1BenchmarkRunner.html", "classcomp__services_1_1BenchmarkRunner" ],
       [ "ComputationNodeService", "classcomp__services_1_1ComputationNodeService.html", "classcomp__services_1_1ComputationNodeService" ]
     ] ],
     [ "db_common", "namespacedb__common.html", [
+      [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ],
       [ "Experiment", "structdb__common_1_1Experiment.html", "structdb__common_1_1Experiment" ],
       [ "Iteration", "structdb__common_1_1Iteration.html", "structdb__common_1_1Iteration" ],
-      [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ],
       [ "Node", "structdb__common_1_1Node.html", "structdb__common_1_1Node" ],
-      [ "User", "structdb__common_1_1User.html", "structdb__common_1_1User" ]
+      [ "Log", "structdb__common_1_1Log.html", "structdb__common_1_1Log" ]
     ] ],
     [ "db_service", "namespacedb__service.html", [
       [ "DbService", "classdb__service_1_1DbService.html", "classdb__service_1_1DbService" ]
@@ -50,8 +50,8 @@ var annotated_dup =
       [ "MeshPlot", "classgui__objects_1_1MeshPlot.html", "classgui__objects_1_1MeshPlot" ]
     ] ],
     [ "main_services", "namespacemain__services.html", [
-      [ "ComputationalNode", "classmain__services_1_1ComputationalNode.html", "classmain__services_1_1ComputationalNode" ],
       [ "MainNodeService", "classmain__services_1_1MainNodeService.html", "classmain__services_1_1MainNodeService" ],
+      [ "ComputationalNode", "classmain__services_1_1ComputationalNode.html", "classmain__services_1_1ComputationalNode" ],
       [ "WorkerManagementService", "classmain__services_1_1WorkerManagementService.html", "classmain__services_1_1WorkerManagementService" ]
     ] ],
     [ "mesh_storage", "namespacemesh__storage.html", [
@@ -63,17 +63,17 @@ var annotated_dup =
     ] ],
     [ "network_types", "namespacenetwork__types.html", [
       [ "AbstractConnectionString", "classnetwork__types_1_1AbstractConnectionString.html", "classnetwork__types_1_1AbstractConnectionString" ],
-      [ "AMQPSQLCStr", "classnetwork__types_1_1AMQPSQLCStr.html", "classnetwork__types_1_1AMQPSQLCStr" ],
-      [ "channel", "structnetwork__types_1_1channel.html", "structnetwork__types_1_1channel" ],
-      [ "connection", "structnetwork__types_1_1connection.html", "structnetwork__types_1_1connection" ],
-      [ "exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
-      [ "global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ],
-      [ "message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
       [ "PostgreSQLCStr", "classnetwork__types_1_1PostgreSQLCStr.html", "classnetwork__types_1_1PostgreSQLCStr" ],
-      [ "queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
+      [ "AMQPSQLCStr", "classnetwork__types_1_1AMQPSQLCStr.html", "classnetwork__types_1_1AMQPSQLCStr" ],
+      [ "TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", "structnetwork__types_1_1TestSolveParam" ],
       [ "queueBinding", "structnetwork__types_1_1queueBinding.html", "structnetwork__types_1_1queueBinding" ],
       [ "rabbitMQUser", "structnetwork__types_1_1rabbitMQUser.html", "structnetwork__types_1_1rabbitMQUser" ],
-      [ "TestSolveParam", "structnetwork__types_1_1TestSolveParam.html", "structnetwork__types_1_1TestSolveParam" ]
+      [ "exchange", "structnetwork__types_1_1exchange.html", "structnetwork__types_1_1exchange" ],
+      [ "queue", "structnetwork__types_1_1queue.html", "structnetwork__types_1_1queue" ],
+      [ "connection", "structnetwork__types_1_1connection.html", "structnetwork__types_1_1connection" ],
+      [ "channel", "structnetwork__types_1_1channel.html", "structnetwork__types_1_1channel" ],
+      [ "message", "structnetwork__types_1_1message.html", "structnetwork__types_1_1message" ],
+      [ "global_param", "structnetwork__types_1_1global__param.html", "structnetwork__types_1_1global__param" ]
     ] ],
     [ "print_utils", "namespaceprint__utils.html", [
       [ "Delimiter", "structprint__utils_1_1Delimiter.html", "structprint__utils_1_1Delimiter" ],
@@ -82,39 +82,39 @@ var annotated_dup =
     ] ],
     [ "rest", "namespacerest.html", [
       [ "v1", "namespacerest_1_1v1.html", [
-        [ "ClusterConfigController", "classrest_1_1v1_1_1ClusterConfigController.html", "classrest_1_1v1_1_1ClusterConfigController" ],
-        [ "CompNode", "classrest_1_1v1_1_1CompNode.html", "classrest_1_1v1_1_1CompNode" ]
+        [ "CompNode", "classrest_1_1v1_1_1CompNode.html", "classrest_1_1v1_1_1CompNode" ],
+        [ "ClusterConfigController", "classrest_1_1v1_1_1ClusterConfigController.html", "classrest_1_1v1_1_1ClusterConfigController" ]
       ] ]
     ] ],
     [ "rest_utils", "namespacerest__utils.html", [
+      [ "CurlWrapper", "classrest__utils_1_1CurlWrapper.html", "classrest__utils_1_1CurlWrapper" ],
       [ "AuthHandler", "classrest__utils_1_1AuthHandler.html", "classrest__utils_1_1AuthHandler" ],
       [ "BasicAuthHandler", "classrest__utils_1_1BasicAuthHandler.html", "classrest__utils_1_1BasicAuthHandler" ],
-      [ "CurlWrapper", "classrest__utils_1_1CurlWrapper.html", "classrest__utils_1_1CurlWrapper" ],
       [ "JsonAuthHandler", "classrest__utils_1_1JsonAuthHandler.html", "classrest__utils_1_1JsonAuthHandler" ]
     ] ],
     [ "shared", "namespaceshared.html", [
-      [ "Already_Connected", "classshared_1_1Already__Connected.html", "classshared_1_1Already__Connected" ],
-      [ "Broken_Connection", "classshared_1_1Broken__Connection.html", "classshared_1_1Broken__Connection" ],
-      [ "CurlError", "classshared_1_1CurlError.html", "classshared_1_1CurlError" ],
-      [ "HttpError", "classshared_1_1HttpError.html", "classshared_1_1HttpError" ],
+      [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
       [ "InvalidOption", "classshared_1_1InvalidOption.html", "classshared_1_1InvalidOption" ],
-      [ "invalidSizes2", "classshared_1_1invalidSizes2.html", "classshared_1_1invalidSizes2" ],
+      [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
+      [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ],
       [ "ioError", "classshared_1_1ioError.html", "classshared_1_1ioError" ],
       [ "mismatchedSizes", "classshared_1_1mismatchedSizes.html", "classshared_1_1mismatchedSizes" ],
-      [ "MyException", "classshared_1_1MyException.html", "classshared_1_1MyException" ],
-      [ "outOfRange", "classshared_1_1outOfRange.html", "classshared_1_1outOfRange" ],
-      [ "params", "structshared_1_1params.html", "structshared_1_1params" ],
+      [ "invalidSizes2", "classshared_1_1invalidSizes2.html", "classshared_1_1invalidSizes2" ],
       [ "RowDivisionError", "classshared_1_1RowDivisionError.html", "classshared_1_1RowDivisionError" ],
-      [ "ScanningError", "classshared_1_1ScanningError.html", "classshared_1_1ScanningError" ],
+      [ "HttpError", "classshared_1_1HttpError.html", "classshared_1_1HttpError" ],
+      [ "CurlError", "classshared_1_1CurlError.html", "classshared_1_1CurlError" ],
       [ "SQL_ERROR", "classshared_1_1SQL__ERROR.html", "classshared_1_1SQL__ERROR" ],
-      [ "zeroSize", "classshared_1_1zeroSize.html", "classshared_1_1zeroSize" ]
+      [ "Already_Connected", "classshared_1_1Already__Connected.html", "classshared_1_1Already__Connected" ],
+      [ "Broken_Connection", "classshared_1_1Broken__Connection.html", "classshared_1_1Broken__Connection" ],
+      [ "ScanningError", "classshared_1_1ScanningError.html", "classshared_1_1ScanningError" ],
+      [ "params", "structshared_1_1params.html", "structshared_1_1params" ]
     ] ],
     [ "test_common", "namespacetest__common.html", [
-      [ "arrayDoubleComparator", "structtest__common_1_1arrayDoubleComparator.html", "structtest__common_1_1arrayDoubleComparator" ],
-      [ "arrayEqualComparator", "structtest__common_1_1arrayEqualComparator.html", "structtest__common_1_1arrayEqualComparator" ],
       [ "AuthParams", "namespacetest__common.html#structtest__common_1_1AuthParams", "namespacetest__common_structtest__common_1_1AuthParams_dup" ],
       [ "get_template", "namespacetest__common.html#structtest__common_1_1get__template", null ],
       [ "get_template< C< Args... > >", "namespacetest__common.html#structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4", "namespacetest__common_structtest__common_1_1get__template_3_01C_3_01Args_8_8_8_01_4_01_4_dup" ],
+      [ "arrayEqualComparator", "structtest__common_1_1arrayEqualComparator.html", "structtest__common_1_1arrayEqualComparator" ],
+      [ "arrayDoubleComparator", "structtest__common_1_1arrayDoubleComparator.html", "structtest__common_1_1arrayDoubleComparator" ],
       [ "twoDArrayDoubleComparator", "structtest__common_1_1twoDArrayDoubleComparator.html", "structtest__common_1_1twoDArrayDoubleComparator" ]
     ] ],
     [ "timing", "namespacetiming.html", [

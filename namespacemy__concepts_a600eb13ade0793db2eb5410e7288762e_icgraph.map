@@ -1,5 +1,4 @@
 <map id="my_concepts::GetShape" name="my_concepts::GetShape">
-<area shape="rect" id="Node000001" title="Returns dimentsions of structure." alt="" coords="292,5,471,31"/>
-<area shape="rect" id="Node000002" href="$namespacetest__common.html#a69912e0bfc34430ad0769e5a94ae44d2" title="Compares 2d arrays." alt="" coords="5,5,244,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="278,21,244,21,244,15,278,15"/>
+<area shape="rect" id="node1" title="Returns dimentsions of structure." alt="" coords="292,5,471,32"/>
+<area shape="rect" id="node2" href="$namespacetest__common.html#a69912e0bfc34430ad0769e5a94ae44d2" title="Compares 2d arrays." alt="" coords="5,5,244,32"/>
 </map>

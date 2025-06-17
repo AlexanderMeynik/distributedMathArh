@@ -1,14 +1,8 @@
 <map id="bench_utils::BenchmarkHandler::~BenchmarkHandler" name="bench_utils::BenchmarkHandler::~BenchmarkHandler">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,235,77"/>
-<area shape="rect" id="Node000002" href="$classfile__utils_1_1FileHandler.html#a971ad9738ee8b3c66cfb8b9f8e292b99" title="Closes all files from this instance of fileHandler." alt="" coords="318,5,477,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="235,41,304,33,305,39,235,47"/>
-<area shape="rect" id="Node000003" href="$classbench__utils_1_1BenchmarkHandler.html#a4bd8b16c6c25b02d60226e6ac030e952" title="Prints global clock results into designated file." alt="" coords="283,69,512,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="235,68,269,72,269,77,235,73"/>
-<area shape="rect" id="Node000004" href="$classfile__utils_1_1FileHandler.html#a881f522f1e3b1eb0d127ffcdd307554e" title="Wrapper for fileHandler::Print to printImpl data to designated file." alt="" coords="560,40,719,80"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="512,73,546,69,547,74,512,78"/>
-<area shape="rect" id="Node000006" href="$classfile__utils_1_1FileHandler.html#a74dcdc729b7414721d6634c2bd204331" title="Adds and opens filename to write with given permissions." alt="" coords="767,97,925,137"/>
-<area shape="poly" id="edge6_Node000003_Node000006" title=" " alt="" coords="513,94,753,109,753,114,512,99"/>
-<area shape="rect" id="Node000005" href="$classfile__utils_1_1FileHandler.html#a55068b77ad669d55409267ec8932a1b7" title="Print pr to selected outPtr." alt="" coords="767,33,925,73"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="719,55,753,54,753,59,719,60"/>
-<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="713,77,761,91,759,96,711,83"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,235,80"/>
+<area shape="rect" id="node2" href="$classfile__utils_1_1FileHandler.html#a971ad9738ee8b3c66cfb8b9f8e292b99" title="Closes all files from this instance of fileHandler." alt="" coords="318,5,477,47"/>
+<area shape="rect" id="node3" href="$classbench__utils_1_1BenchmarkHandler.html#a4bd8b16c6c25b02d60226e6ac030e952" title="Prints global clock results into designated file." alt="" coords="283,71,512,112"/>
+<area shape="rect" id="node4" href="$classfile__utils_1_1FileHandler.html#a881f522f1e3b1eb0d127ffcdd307554e" title="Wrapper for fileHandler::Print to printImpl data to designated file." alt="" coords="560,41,719,83"/>
+<area shape="rect" id="node6" href="$classfile__utils_1_1FileHandler.html#a74dcdc729b7414721d6634c2bd204331" title="Adds and opens filename to write with given permissions." alt="" coords="767,100,925,141"/>
+<area shape="rect" id="node5" href="$classfile__utils_1_1FileHandler.html#a55068b77ad669d55409267ec8932a1b7" title="Print pr to selected outPtr." alt="" coords="767,35,925,76"/>
 </map>

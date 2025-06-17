@@ -1,5 +1,4 @@
 <map id="print_utils::IosStateScientific" name="print_utils::IosStateScientific">
-<area shape="rect" id="Node000001" title="Sets iostream precision to a fixed value after saving it&#39;s state." alt="" coords="5,199,204,324"/>
-<area shape="rect" id="Node000002" href="$classprint__utils_1_1IosStatePreserve.html" title="A guard class to save current iostream state." alt="" coords="6,5,203,151"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,164,107,198,102,198,102,164"/>
+<area shape="rect" id="node1" title="Sets iostream precision to a fixed value after saving it&#39;s state." alt="" coords="5,189,212,311"/>
+<area shape="rect" id="node2" href="$classprint__utils_1_1IosStatePreserve.html" title="A guard class to save current iostream state." alt="" coords="6,5,211,141"/>
 </map>

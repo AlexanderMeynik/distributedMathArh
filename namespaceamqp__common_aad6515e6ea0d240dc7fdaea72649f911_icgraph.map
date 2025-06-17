@@ -1,5 +1,4 @@
 <map id="amqp_common::ConstructCString" name="amqp_common::ConstructCString">
-<area shape="rect" id="Node000001" title="Constructs amqp connection string." alt="" coords="308,5,548,31"/>
-<area shape="rect" id="Node000002" href="$namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109" title=" " alt="" coords="5,5,260,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="294,21,260,21,260,15,294,15"/>
+<area shape="rect" id="node1" title="Constructs amqp connection string." alt="" coords="308,5,548,32"/>
+<area shape="rect" id="node2" href="$namespaceamqp__common.html#ae1105fdd68744605f3d67fedd0ea8109" title=" " alt="" coords="5,5,260,32"/>
 </map>

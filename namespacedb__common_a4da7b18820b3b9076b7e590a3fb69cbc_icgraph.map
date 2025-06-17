@@ -1,37 +1,32 @@
 <map id="db_common::CheckConnection" name="db_common::CheckConnection">
-<area shape="rect" id="Node000001" title="Checks connection." alt="" coords="765,106,988,131"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="483,418,717,443"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="857,144,615,420,611,416,853,140"/>
-<area shape="rect" id="Node000013" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,5,411,45"/>
-<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="787,106,410,42,411,37,788,101"/>
-<area shape="rect" id="Node000015" href="$namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="509,106,691,131"/>
-<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="751,121,692,121,692,116,751,116"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="232,169,423,194"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="585,407,563,363,530,309,486,255,461,230,433,209,408,197,411,192,436,204,464,226,490,251,534,306,567,360,590,404"/>
-<area shape="rect" id="Node000004" href="$classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d" title="Gets iteration using its id." alt="" coords="244,219,411,259"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="579,409,519,342,478,305,433,273,409,261,411,256,436,268,482,301,523,338,583,405"/>
-<area shape="rect" id="Node000005" href="$classdb__service_1_1DbService.html#a7477782eb3f2837dd055fcf4ace15410" title="Retrieves node record for id." alt="" coords="244,283,411,323"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="568,413,507,375,434,337,402,325,404,320,436,332,510,370,570,408"/>
-<area shape="rect" id="Node000006" href="$classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7" title="Retrieves iteration list for experiment_id." alt="" coords="244,347,411,387"/>
-<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="531,417,410,389,411,384,532,412"/>
-<area shape="rect" id="Node000007" href="$classdb__service_1_1DbService.html#a48a8ee09a064d463d4eb2a6f711ec1d9" title=" " alt="" coords="244,411,411,451"/>
-<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="469,433,411,433,411,428,469,428"/>
-<area shape="rect" id="Node000008" href="$classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64" title="Retrieves node list in paginated format." alt="" coords="244,475,411,515"/>
-<area shape="poly" id="edge7_Node000002_Node000008" title=" " alt="" coords="532,449,411,478,410,473,531,444"/>
-<area shape="rect" id="Node000009" href="$classdb__service_1_1DbService.html#ac860534db4dc24ded12dd13527513090" title="Logs with specified message." alt="" coords="229,539,426,565"/>
-<area shape="poly" id="edge8_Node000002_Node000009" title=" " alt="" coords="571,453,510,492,436,529,396,542,394,537,434,524,508,487,568,449"/>
-<area shape="rect" id="Node000010" href="$classdb__service_1_1DbService.html#a574ac0a565f490e1ce191df4deeae935" title="Create node record." alt="" coords="244,589,411,629"/>
-<area shape="poly" id="edge9_Node000002_Node000010" title=" " alt="" coords="581,456,520,517,480,551,436,580,410,592,408,587,433,575,477,546,516,513,577,452"/>
-<area shape="rect" id="Node000011" href="$classdb__service_1_1DbService.html#ab95a76cc6618e1458a7e650e7797f85b" title="Deletes node." alt="" coords="244,653,411,693"/>
-<area shape="poly" id="edge10_Node000002_Node000011" title=" " alt="" coords="588,457,565,498,531,548,487,600,436,644,412,657,410,652,433,639,484,596,526,545,560,495,584,455"/>
-<area shape="rect" id="Node000012" href="$classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4" title="Changes node status." alt="" coords="244,717,411,757"/>
-<area shape="poly" id="edge11_Node000002_Node000012" title=" " alt="" coords="593,458,573,510,540,577,495,647,467,679,436,707,412,722,410,717,433,703,463,676,491,644,536,575,568,508,588,456"/>
-<area shape="rect" id="Node000014" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="5,5,172,45"/>
-<area shape="poly" id="edge13_Node000013_Node000014" title=" " alt="" coords="230,28,172,28,172,23,230,23"/>
-<area shape="poly" id="edge17_Node000015_Node000003" title=" " alt="" coords="533,137,435,160,386,171,385,166,434,155,531,132"/>
-<area shape="poly" id="edge18_Node000015_Node000013" title=" " alt="" coords="551,103,434,61,394,48,395,43,436,56,553,98"/>
-<area shape="rect" id="Node000016" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,70,435,95"/>
-<area shape="poly" id="edge15_Node000015_Node000016" title=" " alt="" coords="494,107,424,98,424,93,495,102"/>
-<area shape="rect" id="Node000017" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,119,429,145"/>
-<area shape="poly" id="edge16_Node000015_Node000017" title=" " alt="" coords="495,126,429,130,429,124,494,121"/>
+<area shape="rect" id="node1" title="Checks connection." alt="" coords="1007,377,1229,403"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="724,522,959,549"/>
+<area shape="rect" id="node25" href="$classdb__service_1_1DbService.html#a434be32fce31b5083a418e2b11235b19" title=" " alt="" coords="758,573,925,615"/>
+<area shape="rect" id="node26" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="485,113,652,155"/>
+<area shape="rect" id="node28" href="$namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="750,230,933,257"/>
+<area shape="rect" id="node3" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="485,332,652,373"/>
+<area shape="rect" id="node15" href="$namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="473,281,664,307"/>
+<area shape="rect" id="node16" href="$classdb__service_1_1DbService.html#a4f6e2251e2d511691066d56627ccc92d" title="Gets iteration using its id." alt="" coords="485,645,652,687"/>
+<area shape="rect" id="node17" href="$classdb__service_1_1DbService.html#a7477782eb3f2837dd055fcf4ace15410" title="Retrieves node record for id." alt="" coords="485,711,652,752"/>
+<area shape="rect" id="node18" href="$classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7" title="Retrieves iteration list for experiment_id." alt="" coords="485,776,652,817"/>
+<area shape="rect" id="node19" href="$classdb__service_1_1DbService.html#a48a8ee09a064d463d4eb2a6f711ec1d9" title=" " alt="" coords="485,841,652,883"/>
+<area shape="rect" id="node20" href="$classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64" title="Retrieves node list in paginated format." alt="" coords="485,907,652,948"/>
+<area shape="rect" id="node21" href="$classdb__service_1_1DbService.html#ac860534db4dc24ded12dd13527513090" title="Logs with specified message." alt="" coords="470,398,667,425"/>
+<area shape="rect" id="node22" href="$classdb__service_1_1DbService.html#a574ac0a565f490e1ce191df4deeae935" title="Create node record." alt="" coords="485,449,652,491"/>
+<area shape="rect" id="node23" href="$classdb__service_1_1DbService.html#ab95a76cc6618e1458a7e650e7797f85b" title="Deletes node." alt="" coords="485,515,652,556"/>
+<area shape="rect" id="node24" href="$classdb__service_1_1DbService.html#a9e607fbe4d2b95dc6c5a13794d79e4c4" title="Changes node status." alt="" coords="485,580,652,621"/>
+<area shape="rect" id="node4" href="$classdb__service_1_1DbService.html#a99c31aaba7911b2434414d0fe3c3b4e5" title="Performs authentication attempt." alt="" coords="233,71,400,112"/>
+<area shape="rect" id="node5" href="$classdb__service_1_1DbService.html#a2f045f38e13e946bd858e17e02cf870b" title="Create new Experiment record." alt="" coords="233,136,400,177"/>
+<area shape="rect" id="node7" href="$classdb__service_1_1DbService.html#afc2577c4a823f1decda807ef99bbdb22" title="Creates experiment record." alt="" coords="233,201,400,243"/>
+<area shape="rect" id="node8" href="$classdb__service_1_1DbService.html#a576eecc67963fdbc8839724aee1aecb3" title="Creates new user record." alt="" coords="233,267,400,308"/>
+<area shape="rect" id="node9" href="$classdb__service_1_1DbService.html#a26791e008af386b90712f6c3a4b51c3d" title="Deletes user record." alt="" coords="233,332,400,373"/>
+<area shape="rect" id="node10" href="$classdb__service_1_1DbService.html#a3cb306dee5e21200b8347fb14a2e3757" title=" " alt="" coords="233,397,400,439"/>
+<area shape="rect" id="node11" href="$classdb__service_1_1DbService.html#aca53a3d1a95c8d14b6e9878221eeabef" title="Retrieves list of Experiments for user_id." alt="" coords="233,463,400,504"/>
+<area shape="rect" id="node12" href="$classdb__service_1_1DbService.html#a7e75c54e7cc87a64a84edd283723c34e" title="Retrieves user list in paginated form." alt="" coords="233,528,400,569"/>
+<area shape="rect" id="node13" href="$classdb__service_1_1DbService.html#a442450409b3a8845144b97fd8b46ce27" title=" " alt="" coords="220,593,413,635"/>
+<area shape="rect" id="node14" href="$classdb__service_1_1DbService.html#af5f9fd1b6ec9dbdef174f18832179a6f" title=" " alt="" coords="230,659,403,700"/>
+<area shape="rect" id="node6" href="$classdb__service_1_1DbService.html#af28a477998781dcf5c20916de82012b4" title=" " alt="" coords="5,136,172,177"/>
+<area shape="rect" id="node27" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="233,5,400,47"/>
+<area shape="rect" id="node29" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="461,179,676,206"/>
+<area shape="rect" id="node30" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="467,230,670,257"/>
 </map>

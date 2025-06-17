@@ -1,13 +1,8 @@
 <map id="db_common::TryConnect" name="db_common::TryConnect">
-<area shape="rect" id="Node000001" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="483,80,665,105"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,5,435,31"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="528,77,434,45,391,33,392,28,435,39,530,72"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,55,429,80"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="469,85,428,80,429,75,469,79"/>
-<area shape="rect" id="Node000004" href="$namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="232,104,423,129"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="469,106,423,110,423,105,469,100"/>
-<area shape="rect" id="Node000005" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,154,411,194"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="525,112,436,143,395,156,393,151,434,138,523,107"/>
-<area shape="rect" id="Node000006" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="5,154,172,194"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="230,177,172,177,172,171,230,171"/>
+<area shape="rect" id="node1" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="483,81,665,108"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,5,435,32"/>
+<area shape="rect" id="node3" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,56,429,83"/>
+<area shape="rect" id="node4" href="$namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="232,107,423,133"/>
+<area shape="rect" id="node5" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,158,411,199"/>
+<area shape="rect" id="node6" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="5,158,172,199"/>
 </map>

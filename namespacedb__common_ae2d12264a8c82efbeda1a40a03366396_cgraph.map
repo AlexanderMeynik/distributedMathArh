@@ -1,23 +1,13 @@
 <map id="db_common::CreateDatabase" name="db_common::CreateDatabase">
-<area shape="rect" id="Node000001" title="Creates database with db_name." alt="" coords="5,159,220,185"/>
-<area shape="rect" id="Node000002" href="$namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="275,5,487,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="126,157,184,108,224,80,267,55,283,48,285,53,269,60,227,84,188,112,129,161"/>
-<area shape="rect" id="Node000003" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="290,70,473,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="140,157,198,131,267,105,301,96,302,101,269,111,200,136,142,162"/>
-<area shape="rect" id="Node000004" href="$classnetwork__types_1_1PostgreSQLCStr.html#a9692ec42cc8694f27cb4b6633d4833bc" title=" " alt="" coords="268,120,495,160"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="219,157,254,152,254,158,220,162"/>
-<area shape="rect" id="Node000005" href="$classnetwork__types_1_1PostgreSQLCStr.html#a002b494c10d362a69ce06e6f902a389f" title=" " alt="" coords="268,184,495,224"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="220,182,254,186,254,192,219,187"/>
-<area shape="rect" id="Node000006" href="$classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2" title=" " alt="" coords="268,248,495,288"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="143,182,269,233,293,241,291,246,267,239,141,187"/>
-<area shape="rect" id="Node000008" href="$namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="290,327,473,353"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="128,183,186,237,226,269,269,298,321,321,319,325,267,302,223,274,183,241,125,187"/>
-<area shape="rect" id="Node000007" href="$classnetwork__types_1_1PostgreSQLCStr.html#a7047006bd7f7a27a84f00a1ce6ada5d5" title=" " alt="" coords="556,233,783,273"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="495,260,542,257,542,262,495,265"/>
-<area shape="rect" id="Node000009" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="558,298,781,323"/>
-<area shape="poly" id="edge8_Node000008_Node000009" title=" " alt="" coords="473,328,544,321,545,326,473,333"/>
-<area shape="rect" id="Node000010" href="$classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="543,348,796,388"/>
-<area shape="poly" id="edge9_Node000008_Node000010" title=" " alt="" coords="473,346,529,352,528,357,473,352"/>
-<area shape="rect" id="Node000011" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="556,412,783,452"/>
-<area shape="poly" id="edge10_Node000008_Node000011" title=" " alt="" coords="415,350,544,397,572,406,570,411,542,403,413,355"/>
+<area shape="rect" id="node1" title="Creates database with db_name." alt="" coords="5,163,220,190"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="275,5,487,47"/>
+<area shape="rect" id="node3" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="290,71,473,98"/>
+<area shape="rect" id="node4" href="$classnetwork__types_1_1PostgreSQLCStr.html#a9692ec42cc8694f27cb4b6633d4833bc" title=" " alt="" coords="268,123,495,164"/>
+<area shape="rect" id="node5" href="$classnetwork__types_1_1PostgreSQLCStr.html#a002b494c10d362a69ce06e6f902a389f" title=" " alt="" coords="268,188,495,229"/>
+<area shape="rect" id="node6" href="$classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2" title=" " alt="" coords="268,253,495,295"/>
+<area shape="rect" id="node8" href="$namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="290,334,473,361"/>
+<area shape="rect" id="node7" href="$classnetwork__types_1_1PostgreSQLCStr.html#a7047006bd7f7a27a84f00a1ce6ada5d5" title=" " alt="" coords="556,239,783,280"/>
+<area shape="rect" id="node9" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="558,305,781,331"/>
+<area shape="rect" id="node10" href="$classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="543,356,796,397"/>
+<area shape="rect" id="node11" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="556,421,783,463"/>
 </map>

@@ -1,5 +1,4 @@
 <map id="mesh_storage::MeshCreator" name="mesh_storage::MeshCreator">
-<area shape="rect" id="Node000001" title="Class that handles 3d mesh creation and parameters management." alt="" coords="5,133,203,319"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="69,5,139,71"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="107,71,107,117,101,117,101,71"/>
+<area shape="rect" id="node1" title="Class that handles 3d mesh creation and parameters management." alt="" coords="5,145,211,311"/>
+<area shape="rect" id="node2" title=" " alt="" coords="69,5,147,83"/>
 </map>

@@ -1,5 +1,4 @@
 <map id="network_types::global_param::ToJson" name="network_types::global_param::ToJson">
-<area shape="rect" id="Node000001" title=" " alt="" coords="277,5,444,45"/>
-<area shape="rect" id="Node000002" href="$classamqp__common_1_1RabbitMQRestService.html#a3285b15d2426b8ed13e6a85dc0f01cc0" title="Uses global&#45;parameters api to interact with them." alt="" coords="5,5,229,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="264,28,229,28,229,23,264,23"/>
+<area shape="rect" id="node1" title=" " alt="" coords="277,5,444,47"/>
+<area shape="rect" id="node2" href="$classamqp__common_1_1RabbitMQRestService.html#a3285b15d2426b8ed13e6a85dc0f01cc0" title="Uses global&#45;parameters api to interact with them." alt="" coords="5,5,229,47"/>
 </map>

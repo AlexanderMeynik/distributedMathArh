@@ -1,3 +1,3 @@
 <map id="print_utils::IosStatePreserve" name="print_utils::IosStatePreserve">
-<area shape="rect" id="Node000001" title="A guard class to save current iostream state." alt="" coords="5,5,203,151"/>
+<area shape="rect" id="node1" title="A guard class to save current iostream state." alt="" coords="5,5,211,141"/>
 </map>

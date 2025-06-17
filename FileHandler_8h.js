@@ -1,6 +1,6 @@
 var FileHandler_8h =
 [
-    [ "file_utils::FileHandler", "classfile__utils_1_1FileHandler.html", "classfile__utils_1_1FileHandler" ],
+    [ "FileHandler", "classfile__utils_1_1FileHandler.html", "classfile__utils_1_1FileHandler" ],
     [ "OstreamPtr", "FileHandler_8h.html#a2a50c823b0cf82a36fb0aec56d3886b2", null ],
     [ "CreateDirIfNotPresent", "FileHandler_8h.html#a3873018bf321fc08c54a705588e19962", null ],
     [ "DirectoryExists", "FileHandler_8h.html#a28c9bfddef815029a9f8c1fdb758b206", null ],

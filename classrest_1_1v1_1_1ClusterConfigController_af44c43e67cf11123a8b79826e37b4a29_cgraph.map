@@ -1,13 +1,8 @@
 <map id="rest::v1::ClusterConfigController::DisconnectNodeHandler" name="rest::v1::ClusterConfigController::DisconnectNodeHandler">
-<area shape="rect" id="Node000001" title="Disconnects node to computational cluster." alt="" coords="5,37,236,77"/>
-<area shape="rect" id="Node000002" href="$classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a" title=" " alt="" coords="284,37,523,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="236,55,271,55,271,60,236,60"/>
-<area shape="rect" id="Node000003" href="$classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77" title="Disconnects worker node from cluster This method calls disconnect http request." alt="" coords="571,5,825,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="523,42,557,38,557,43,523,47"/>
-<area shape="rect" id="Node000005" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="589,69,807,109"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="523,68,575,73,575,79,523,73"/>
-<area shape="rect" id="Node000004" href="$classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="873,5,1128,45"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="826,23,859,23,859,28,826,28"/>
-<area shape="rect" id="Node000006" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="899,69,1102,109"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="808,87,886,87,886,92,808,92"/>
+<area shape="rect" id="node1" title="Disconnects node to computational cluster." alt="" coords="5,39,236,80"/>
+<area shape="rect" id="node2" href="$classmain__services_1_1MainNodeService.html#aed0379bb3e648c0b8ebd298bc7a08e6a" title=" " alt="" coords="284,39,523,80"/>
+<area shape="rect" id="node3" href="$classmain__services_1_1WorkerManagementService.html#ab5130ead15b2bb67e535c9c1fb042e77" title="Disconnects worker node from cluster This method calls disconnect http request." alt="" coords="571,5,825,47"/>
+<area shape="rect" id="node5" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="589,71,807,112"/>
+<area shape="rect" id="node4" href="$classmain__services_1_1WorkerManagementService.html#a3bd743901e7aa5bfb0869361b4e0f0b1" title=" " alt="" coords="873,5,1128,47"/>
+<area shape="rect" id="node6" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="899,71,1102,112"/>
 </map>

@@ -1,11 +1,10 @@
 <map id="db_service::DbService::CreateExperiment" name="db_service::DbService::CreateExperiment">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,37,172,77"/>
-<area shape="rect" id="Node000002" href="$classdb__service_1_1DbService.html#a2f045f38e13e946bd858e17e02cf870b" title="Create new Experiment record." alt="" coords="220,37,387,77"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="173,55,206,55,206,60,173,60"/>
-<area shape="rect" id="Node000003" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="435,5,601,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="387,42,420,37,421,42,388,48"/>
-<area shape="rect" id="Node000004" href="$classdb__service_1_1DbService.html#a285d98fb1ac9d4bd614f43dea27dccd8" title=" " alt="" coords="435,69,601,109"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="388,67,421,72,420,77,387,72"/>
-<area shape="rect" id="Node000005" href="$namespacedb__common.html#ade4a0e64d613a70412fa41a5008b1d35" title="Executes function inside subtransaction of txn." alt="" coords="649,77,908,102"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="602,87,636,87,636,92,602,92"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,61,172,102"/>
+<area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#a2f045f38e13e946bd858e17e02cf870b" title="Create new Experiment record." alt="" coords="220,61,387,102"/>
+<area shape="rect" id="node3" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="435,27,601,69"/>
+<area shape="rect" id="node7" href="$classdb__service_1_1DbService.html#a285d98fb1ac9d4bd614f43dea27dccd8" title=" " alt="" coords="435,93,601,134"/>
+<area shape="rect" id="node4" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="661,35,896,61"/>
+<area shape="rect" id="node5" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="958,5,1181,32"/>
+<area shape="rect" id="node6" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="956,57,1183,98"/>
+<area shape="rect" id="node8" href="$namespacedb__common.html#ade4a0e64d613a70412fa41a5008b1d35" title="Executes function inside subtransaction of txn." alt="" coords="649,100,908,127"/>
 </map>

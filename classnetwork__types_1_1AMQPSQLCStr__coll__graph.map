@@ -1,5 +1,4 @@
 <map id="network_types::AMQPSQLCStr" name="network_types::AMQPSQLCStr">
-<area shape="rect" id="Node000001" title="Structure to store and format AMQP connection string." alt="" coords="23,288,233,653"/>
-<area shape="rect" id="Node000002" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="5,5,251,240"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="131,254,131,288,125,288,125,254"/>
+<area shape="rect" id="node1" title="Structure to store and format AMQP connection string." alt="" coords="23,263,241,560"/>
+<area shape="rect" id="node2" href="$classnetwork__types_1_1AbstractConnectionString.html" title="us it for verbose names" alt="" coords="5,5,259,215"/>
 </map>

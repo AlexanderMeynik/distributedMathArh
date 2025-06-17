@@ -1,11 +1,7 @@
 <map id="comp_services::ComputationNodeService::GetStatus" name="comp_services::ComputationNodeService::GetStatus">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,63,216,103"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#acbc5bd288c4fdfd50bfdb41461dbcaaf" title=" " alt="" coords="268,5,479,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="202,60,267,46,268,51,204,65"/>
-<area shape="rect" id="Node000003" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="269,70,478,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="216,80,255,80,255,85,216,85"/>
-<area shape="rect" id="Node000004" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="264,120,483,160"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="204,100,268,114,267,120,202,105"/>
-<area shape="rect" id="Node000005" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="531,120,733,160"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="483,137,517,137,517,143,483,143"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,64,216,105"/>
+<area shape="rect" id="node2" href="$classcomp__services_1_1ComputationNodeService.html#acbc5bd288c4fdfd50bfdb41461dbcaaf" title=" " alt="" coords="268,5,479,47"/>
+<area shape="rect" id="node3" href="$namespaceprint__utils.html#a4c215113c5319155284729bedc2a4a21" title="Cast any one dimensional array to Json::value." alt="" coords="269,71,478,98"/>
+<area shape="rect" id="node4" href="$classamqp__common_1_1AMQPService.html#ae6dc569c0be707d2d8a49a11c6f7cb45" title=" " alt="" coords="264,123,483,164"/>
+<area shape="rect" id="node5" href="$classamqp__common_1_1MyHandler.html#a6ebb8cfbfb2200330442d21a485d8e2a" title="Gets handler connection status." alt="" coords="531,123,733,164"/>
 </map>

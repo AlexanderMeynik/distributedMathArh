@@ -1,7 +1,5 @@
 <map id="print_utils::ParseMeshFrom" name="print_utils::ParseMeshFrom">
-<area shape="rect" id="Node000001" title="Parses mesh creator from provided istream." alt="" coords="5,13,204,38"/>
-<area shape="rect" id="Node000002" href="$classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84" title="Computes 2d meshgrid using dims,lims." alt="" coords="252,5,457,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="204,23,238,23,238,28,204,28"/>
-<area shape="rect" id="Node000003" href="$namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9" title="Computes meshes using 2 double arrays." alt="" coords="505,13,709,38"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="458,23,492,23,492,28,458,28"/>
+<area shape="rect" id="node1" title="Parses mesh creator from provided istream." alt="" coords="5,13,204,39"/>
+<area shape="rect" id="node2" href="$classmesh__storage_1_1MeshCreator.html#a5f4cda19798d2e55e4d6399dc2f64b84" title="Computes 2d meshgrid using dims,lims." alt="" coords="252,5,457,47"/>
+<area shape="rect" id="node3" href="$namespacemesh__storage.html#af24503ecad79824c864b829950a77ea9" title="Computes meshes using 2 double arrays." alt="" coords="505,13,709,39"/>
 </map>

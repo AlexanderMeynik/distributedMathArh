@@ -1,11 +1,7 @@
 <map id="timing::StrToTimepoint" name="timing::StrToTimepoint">
-<area shape="rect" id="Node000001" title="Retrives TimepointType from a given string." alt="" coords="239,106,409,131"/>
-<area shape="rect" id="Node000002" href="$structdb__common_1_1Experiment.html#a6d6df4c0ee1fb35d605e647bad9bc425" title=" " alt="" coords="5,5,191,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="284,102,190,60,159,48,161,43,192,55,286,98"/>
-<area shape="rect" id="Node000003" href="$structdb__common_1_1Iteration.html#a53998f51dcd0b1fa13317dfc257eb970" title=" " alt="" coords="15,69,181,109"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="225,108,181,103,181,97,225,103"/>
-<area shape="rect" id="Node000004" href="$structdb__common_1_1Log.html#a9738e6b0c17fe8c28702ebdac49394e5" title=" " alt="" coords="16,134,180,159"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,134,181,139,180,134,224,128"/>
-<area shape="rect" id="Node000005" href="$structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4" title=" " alt="" coords="9,183,187,209"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="281,139,192,173,150,186,148,181,190,168,280,134"/>
+<area shape="rect" id="node1" title="Retrives TimepointType from a given string." alt="" coords="239,107,409,134"/>
+<area shape="rect" id="node2" href="$structdb__common_1_1Experiment.html#a6d6df4c0ee1fb35d605e647bad9bc425" title=" " alt="" coords="5,5,191,47"/>
+<area shape="rect" id="node3" href="$structdb__common_1_1Iteration.html#a53998f51dcd0b1fa13317dfc257eb970" title=" " alt="" coords="15,71,181,112"/>
+<area shape="rect" id="node4" href="$structdb__common_1_1Log.html#a9738e6b0c17fe8c28702ebdac49394e5" title=" " alt="" coords="16,137,180,163"/>
+<area shape="rect" id="node5" href="$structdb__common_1_1User.html#ac7415dc23d15f290ae875cefc5e7a9c4" title=" " alt="" coords="9,187,187,214"/>
 </map>

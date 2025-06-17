@@ -1,19 +1,11 @@
 <map id="utilLib/include/parallelUtils/chronoClock.h" name="utilLib/include/parallelUtils/chronoClock.h">
-<area shape="rect" id="Node000001" title=" " alt="" coords="273,5,440,45"/>
-<area shape="rect" id="Node000002" href="$BenchmarkHandler_8h.html" title=" " alt="" coords="40,93,204,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="293,53,174,96,172,91,291,48"/>
-<area shape="rect" id="Node000003" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="228,93,485,133"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="359,59,359,93,354,93,354,59"/>
-<area shape="rect" id="Node000009" href="$chronoClock_8cpp.html" title=" " alt="" coords="510,93,675,133"/>
-<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="422,48,542,91,540,96,420,53"/>
-<area shape="rect" id="Node000004" href="$CompNodeService_8h.html" title=" " alt="" coords="120,181,329,221"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="317,143,255,183,252,179,315,139"/>
-<area shape="rect" id="Node000008" href="$BenchmarkRunnerService_8cpp.html" title=" " alt="" coords="354,181,626,221"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="399,139,462,179,459,183,396,143"/>
-<area shape="rect" id="Node000005" href="$CompNode_8h.html" title=" " alt="" coords="5,269,207,309"/>
-<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="189,232,134,271,131,267,186,227"/>
-<area shape="rect" id="Node000007" href="$CompNodeService_8cpp.html" title=" " alt="" coords="231,269,455,309"/>
-<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="264,227,319,267,316,271,261,232"/>
-<area shape="rect" id="Node000006" href="$CompNode_8cpp.html" title=" " alt="" coords="11,357,201,397"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="109,323,109,357,103,357,103,323"/>
+<area shape="rect" id="node1" title=" " alt="" coords="508,5,675,47"/>
+<area shape="rect" id="node2" href="$BenchmarkRunnerService_8h.html" title=" " alt="" coords="228,95,485,136"/>
+<area shape="rect" id="node8" href="$BenchmarkHandler_8h.html" title=" " alt="" coords="509,95,673,136"/>
+<area shape="rect" id="node9" href="$chronoClock_8cpp.html" title=" " alt="" coords="698,95,863,136"/>
+<area shape="rect" id="node3" href="$CompNodeService_8h.html" title=" " alt="" coords="120,184,329,225"/>
+<area shape="rect" id="node7" href="$BenchmarkRunnerService_8cpp.html" title=" " alt="" coords="354,184,626,225"/>
+<area shape="rect" id="node4" href="$CompNode_8h.html" title=" " alt="" coords="5,273,207,315"/>
+<area shape="rect" id="node6" href="$CompNodeService_8cpp.html" title=" " alt="" coords="231,273,455,315"/>
+<area shape="rect" id="node5" href="$CompNode_8cpp.html" title=" " alt="" coords="11,363,201,404"/>
 </map>

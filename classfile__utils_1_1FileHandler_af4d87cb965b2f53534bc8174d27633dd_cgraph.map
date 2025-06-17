@@ -1,5 +1,4 @@
 <map id="file_utils::FileHandler::~FileHandler" name="file_utils::FileHandler::~FileHandler">
-<area shape="rect" id="Node000001" title=" " alt="" coords="5,5,164,45"/>
-<area shape="rect" id="Node000002" href="$classfile__utils_1_1FileHandler.html#a971ad9738ee8b3c66cfb8b9f8e292b99" title="Closes all files from this instance of fileHandler." alt="" coords="212,5,371,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="164,23,198,23,198,28,164,28"/>
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,164,47"/>
+<area shape="rect" id="node2" href="$classfile__utils_1_1FileHandler.html#a971ad9738ee8b3c66cfb8b9f8e292b99" title="Closes all files from this instance of fileHandler." alt="" coords="212,5,371,47"/>
 </map>

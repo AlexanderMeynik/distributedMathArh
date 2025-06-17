@@ -1,7 +1,7 @@
 var amqpCommon_8h =
 [
-    [ "amqp_common::MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
-    [ "amqp_common::AMQPService", "classamqp__common_1_1AMQPService.html", "classamqp__common_1_1AMQPService" ],
+    [ "MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
+    [ "AMQPService", "classamqp__common_1_1AMQPService.html", "classamqp__common_1_1AMQPService" ],
     [ "EnvelopePtr", "amqpCommon_8h.html#a220e5994f3f6fd563a28ee820411bab2", null ],
     [ "WorkPtr", "amqpCommon_8h.html#a2ddd7b3a0db54bf7c92bff4367606ab6", null ],
     [ "ConstructCAddress", "amqpCommon_8h.html#ae1105fdd68744605f3d67fedd0ea8109", null ],

@@ -1,7 +1,5 @@
 <map id="network_types::PostgreSQLCStr::FromString" name="network_types::PostgreSQLCStr::FromString">
-<area shape="rect" id="Node000001" title="Parses fields from std::string_view." alt="" coords="5,35,232,75"/>
-<area shape="rect" id="Node000002" href="$classnetwork__types_1_1PostgreSQLCStr.html#a7047006bd7f7a27a84f00a1ce6ada5d5" title=" " alt="" coords="280,5,507,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="232,40,266,36,267,42,232,45"/>
-<area shape="rect" id="Node000003" href="$namespacenetwork__types.html#af174f45f5f393316865d089b898ff9b3" title="Replaces all url delimiters with spaces for scanf parsing." alt="" coords="296,70,491,95"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="232,64,282,69,282,74,232,69"/>
+<area shape="rect" id="node1" title="Parses fields from std::string_view." alt="" coords="5,35,232,76"/>
+<area shape="rect" id="node2" href="$classnetwork__types_1_1PostgreSQLCStr.html#a7047006bd7f7a27a84f00a1ce6ada5d5" title=" " alt="" coords="280,5,507,47"/>
+<area shape="rect" id="node3" href="$namespacenetwork__types.html#af174f45f5f393316865d089b898ff9b3" title="Replaces all url delimiters with spaces for scanf parsing." alt="" coords="296,71,491,98"/>
 </map>

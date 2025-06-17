@@ -1,6 +1,6 @@
 var MeshCreator_8h =
 [
-    [ "mesh_storage::MeshCreator", "classmesh__storage_1_1MeshCreator.html", "classmesh__storage_1_1MeshCreator" ],
+    [ "MeshCreator", "classmesh__storage_1_1MeshCreator.html", "classmesh__storage_1_1MeshCreator" ],
     [ "LimType", "MeshCreator_8h.html#a8f91f5676835d70266c8f8f990a0e53e", null ],
     [ "MeshArr", "MeshCreator_8h.html#a7f11b4c2289b930a0dae0b517415d5ed", null ],
     [ "AddMesh", "MeshCreator_8h.html#a9ce59e3e691dbc108a57170c687a73a3", null ],

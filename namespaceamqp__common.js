@@ -1,9 +1,9 @@
 var namespaceamqp__common =
 [
+    [ "MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
+    [ "AMQPService", "classamqp__common_1_1AMQPService.html", "classamqp__common_1_1AMQPService" ],
     [ "AMQPConsumerService", "classamqp__common_1_1AMQPConsumerService.html", "classamqp__common_1_1AMQPConsumerService" ],
     [ "AMQPPublisherService", "classamqp__common_1_1AMQPPublisherService.html", "classamqp__common_1_1AMQPPublisherService" ],
-    [ "AMQPService", "classamqp__common_1_1AMQPService.html", "classamqp__common_1_1AMQPService" ],
-    [ "MyHandler", "classamqp__common_1_1MyHandler.html", "classamqp__common_1_1MyHandler" ],
     [ "RabbitMQRestService", "classamqp__common_1_1RabbitMQRestService.html", "classamqp__common_1_1RabbitMQRestService" ],
     [ "EnvelopePtr", "namespaceamqp__common.html#a220e5994f3f6fd563a28ee820411bab2", null ],
     [ "WorkPtr", "namespaceamqp__common.html#a2ddd7b3a0db54bf7c92bff4367606ab6", null ],

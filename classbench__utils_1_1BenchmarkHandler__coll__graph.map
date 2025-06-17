@@ -1,9 +1,6 @@
 <map id="bench_utils::BenchmarkHandler&lt; range &gt;" name="bench_utils::BenchmarkHandler&lt; range &gt;">
-<area shape="rect" id="Node000001" title="Class that handles benchmark file creation time measurements and other functionality." alt="" coords="5,905,227,1105"/>
-<area shape="rect" id="Node000002" href="$classfile__utils_1_1FileHandler.html" title="Sample class that handles dynamic file opening and Output." alt="" coords="11,520,162,785"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="100,786,109,888,104,889,95,786"/>
-<area shape="rect" id="Node000003" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="187,463,328,843"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="189,830,165,891,160,889,184,828"/>
-<area shape="rect" id="Node000004" href="$classtiming_1_1ClockArray.html" title="Clock array template class." alt="" coords="121,5,393,400"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="260,414,260,462,255,462,255,414"/>
+<area shape="rect" id="node1" title="Class that handles benchmark file creation time measurements and other functionality." alt="" coords="5,769,235,949"/>
+<area shape="rect" id="node2" href="$classfile__utils_1_1FileHandler.html" title="Sample class that handles dynamic file opening and Output." alt="" coords="11,439,170,663"/>
+<area shape="rect" id="node3" href="$classtiming_1_1ClockArray.html" title=" " alt="" coords="195,395,339,707"/>
+<area shape="rect" id="node4" href="$classtiming_1_1ClockArray.html" title="Clock array template class." alt="" coords="127,5,407,332"/>
 </map>

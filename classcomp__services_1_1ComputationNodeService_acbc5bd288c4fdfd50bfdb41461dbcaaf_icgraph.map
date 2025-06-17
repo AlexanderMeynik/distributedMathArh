@@ -1,7 +1,5 @@
 <map id="comp_services::ComputationNodeService::Computed" name="comp_services::ComputationNodeService::Computed">
-<area shape="rect" id="Node000001" title=" " alt="" coords="463,5,673,45"/>
-<area shape="rect" id="Node000002" href="$classcomp__services_1_1ComputationNodeService.html#a76a73721c93bdce971eac3029885d6a9" title=" " alt="" coords="204,5,415,45"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="449,28,415,28,415,23,449,23"/>
-<area shape="rect" id="Node000003" href="$classrest_1_1v1_1_1CompNode.html#a5daf37c187dbb51a0d94c3e2af2968db" title=" " alt="" coords="5,5,156,45"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="190,28,156,28,156,23,190,23"/>
+<area shape="rect" id="node1" title=" " alt="" coords="463,5,673,47"/>
+<area shape="rect" id="node2" href="$classcomp__services_1_1ComputationNodeService.html#a76a73721c93bdce971eac3029885d6a9" title=" " alt="" coords="204,5,415,47"/>
+<area shape="rect" id="node3" href="$classrest_1_1v1_1_1CompNode.html#a5daf37c187dbb51a0d94c3e2af2968db" title=" " alt="" coords="5,5,156,47"/>
 </map>
