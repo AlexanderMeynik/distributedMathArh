@@ -27,7 +27,7 @@ jobs:
           
       - name: Install Doxygen 1.9.1
         run: |
-        sudo apt-get remove --purge doxygen -y
+          sudo apt-get remove --purge doxygen -y
           wget https://github.com/doxygen/doxygen/releases/download/Release_1_9_1/doxygen-1.9.1.linux.bin.tar.gz
           tar -xzf doxygen-1.9.1.linux.bin.tar.gz
           sudo make
