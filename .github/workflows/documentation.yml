@@ -23,7 +23,16 @@ jobs:
         run: |
           sudo apt-get update
           pip3 install coverxygen
-          sudo apt-get install doxygen=1.9.1-2ubuntu2 graphviz -y
+          sudo apt-get install graphviz -y
+          
+      - name: Install Doxygen 1.9.1
+        run: |
+        sudo apt-get remove --purge doxygen -y
+          wget https://github.com/doxygen/doxygen/releases/download/Release_1_9_1/doxygen-1.9.1.linux.bin.tar.gz
+          tar -xzf doxygen-1.9.1.linux.bin.tar.gz
+          sudo make
+          sudo make install
+          doxygen --version
       - name: Build documentation
         run: bash scripts/build_doc.sh
       - name: Save doc
