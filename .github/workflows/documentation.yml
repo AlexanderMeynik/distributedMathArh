@@ -26,8 +26,16 @@ jobs:
           sudo apt-get install doxygen=1.9.1-2ubuntu2 graphviz -y
       - name: Build documentation
         run: bash scripts/build_doc.sh
+      - name: Save doc
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc
+          path: /home/runner/work/distributedMathArh/distributedMathArh
+          if-no-files-found: warn
+          include-hidden-files: true
       - name: Update coverage badge
-        if: ${{ github.ref == 'refs/heads/master' }}
+        if: ${{ github.ref == 'refs/heads/master'&&(success() || failure())}}
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
@@ -41,6 +49,7 @@ jobs:
           minColorRange: 50
           maxColorRange: 90
       - name: Deploy
+        if: success() || failure()
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
