@@ -26,7 +26,7 @@ sed "s/^//g"| grep -v "^$" | tr '\n' ' ')
 COVERAGE_DATA=$(echo "$CONTENT" | grep --line-buffered -oE \
  "Lines:..[0-9]+..[0-9]+..[0-9]+[.][0-9]+.%")
 
-COVERAGE_STR=$(echo "$COVERAGE_DATA" | awk '{print $4" "$5"\t("$3"/"$2")"}')
+COVERAGE_STR=$(echo "$COVERAGE_DATA" | awk '{print $4" "$5"\t("$2"/"$3")"}')
 
 if [ ! -z "$GITHUB_ACTIONS" ]; then
   echo "COVERAGE_LABEL=$COVERAGE_STR" >> $GITHUB_ENV

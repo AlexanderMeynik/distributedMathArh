@@ -1,6 +1,8 @@
 # Разработка и применение распределённой модели вычислений для моделирования системы диполей
 [![Build and Test](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/ci.yml)
 ![Coverage](https://img.shields.io/badge/coverage-84%25-green)
+![Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com//AlexanderMeynik/606d01a7e9c8f0c0787c93e350d22b42/raw/coverage.json)
+
 [![Collect metrics](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/collect_metrics.yml/badge.svg?branch=master)](https://github.com/AlexanderMeynik/distributedMathArh/actions/workflows/collect_metrics.yml)
 
 ## Описание проекта

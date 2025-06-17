@@ -82,7 +82,8 @@ jobs:
         if: success() || failure()
         working-directory: ./src
         run: bash scripts/collect_coverage.sh
-      - name: Update  coverage badge
+      - name: Update coverage badge
+        if: ${{ github.ref == 'refs/heads/master' }}
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
