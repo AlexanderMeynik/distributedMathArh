@@ -32,7 +32,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: doc
-          path: /home/runner/work/distributedMathArh/distributedMathArh
+          path: /home/runner/work/distributedMathArh/distributedMathArh/build/doc
           if-no-files-found: warn
           include-hidden-files: true
       - name: Update coverage badge
@@ -43,12 +43,10 @@ jobs:
           gistID: ${{ secrets.BADGES_GIST_ID }}
           filename: doc_coverage.json
           label: Doc coverage
-
-
           message: ${{ env.DOC_COVERAGE_LABEL }}
           valColorRange: ${{ env.DOC_COVERAGE_VALUE }}
-          minColorRange: 50
-          maxColorRange: 90
+          minColorRange: 40
+          maxColorRange: 80
       - name: Deploy
         if: success() || failure()
         uses: JamesIves/github-pages-deploy-action@v4
