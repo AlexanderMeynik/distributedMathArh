@@ -82,8 +82,7 @@ jobs:
         if: success() || failure()
         working-directory: ./src
         run: bash scripts/collect_coverage.sh
-      - name: Update doxygen coverage badge (Main Branch Only)
-        if: ${{ github.ref == 'refs/heads/main' }}
+      - name: Update  coverage badge
         uses: schneegans/dynamic-badges-action@v1.7.0
         with:
           auth: ${{ secrets.GIST_SECRET }}
