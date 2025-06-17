@@ -26,6 +26,14 @@ jobs:
           sudo apt-get install doxygen graphviz -y
       - name: Build documentation
         run: bash scripts/build_doc.sh
+      - name: Save build
+        if: success() || failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc
+          path: /__w/distributedMathArh/distributedMathArh/build/doc
+          if-no-files-found: warn
+          include-hidden-files: true
       - name: Update coverage badge
         if: ${{ github.ref == 'refs/heads/master'&&(success() || failure())}}
         uses: schneegans/dynamic-badges-action@v1.7.0
