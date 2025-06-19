@@ -3,29 +3,52 @@
 /// file_utils namespace
 namespace file_utils {
 
-fs::path GetNormalAbs(const fs::path &path) {
+FsPath GetNormalAbs(const FsPath &path) {
   return fs::absolute(path).lexically_normal();
 }
 
-bool CreateDirIfNotPresent(const std::string &path) {
+bool CreateDirIfNotPresent(const FsPath &path) {
   if (!fs::exists(path)) {
     return fs::create_directories(path);
   }
-  return fs::is_directory(path);
+  return false;
 }
-bool FileExists(const fs::path &path) {
+
+bool CreateFileIfNotPresent(const FsPath &path,bool force) {
+  if(auto p =path.parent_path();force && !fs::exists(p))
+  {
+    fs::create_directories(p);
+  }
+
+  if (!fs::exists(path)) {
+    return std::ofstream(path).operator bool();
+  }
+  return false;
+}
+
+bool FileExists(const FsPath &path) {
   return fs::exists(path) && fs::is_regular_file(path);
 }
-bool DirectoryExists(const fs::path &path) {
+bool DirectoryExists(const FsPath &path) {
   return fs::exists(path) && fs::is_directory(path);
 }
-std::string ReadFileToString(const fs::path &path) {
+std::string ReadFileToString(const FsPath &path) {
   std::ifstream file(path);
   if (!file.is_open()) {
     throw std::runtime_error("Could not open file: " + path.string());
   }
   return std::string(std::istreambuf_iterator<char>(file), std::istreambuf_iterator<char>());
 }
+uintmax_t DeleteEntry(const FsPath &path) {
+  std::error_code eer;
+  bool del=fs::remove(path,eer);
+  if(!del&&fs::is_directory(path))
+  {
+    return fs::remove_all(path);
+  }
+  return del;
+}
+
 
 FileHandler::FileHandler(const std::string &parent_path) :
     parent_path_(parent_path) {
@@ -60,7 +83,7 @@ void FileHandler::CloseFiles() {
   }
 }
 
-const fs::path &FileHandler::GetParentPath() const {
+const FsPath &FileHandler::GetParentPath() const {
   return parent_path_;
 }
 

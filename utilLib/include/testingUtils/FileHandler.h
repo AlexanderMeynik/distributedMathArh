@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <fstream>
@@ -10,35 +9,54 @@
 namespace file_utils {
 
 namespace fs = std::filesystem;
+/// Filesystem path alias
+using FsPath=fs::path;
+/// Alias for std::ostream ptr
+using OstreamPtr = std::shared_ptr<std::ofstream>;
+
 /**
  * @brief Shorthand for absolute lexically normal path
  * @param path
  * @return
  */
-fs::path GetNormalAbs(const fs::path &path);
+FsPath GetNormalAbs(const FsPath &path);
 
 /**
  * @brief Idempotent operation for directory creation
  * @param path
- * @return is directory created
+ * @return was directory created
  */
-bool CreateDirIfNotPresent(const std::string &path);
-
-
+bool CreateDirIfNotPresent(const FsPath &path);
 
 /**
- * @brief Does files exist
+ * @brief Idempotent operation for file creation
+ * @param path
+ * @param force - creates parent directory if not exist
+ * @return was file created
+ */
+bool CreateFileIfNotPresent(const FsPath &path,bool force = false);
+
+/**
+ * @brief Does file exist
  * @param path
  * @return
  */
-bool FileExists(const fs::path& path);
+bool FileExists(const FsPath& path);
 
 /**
  * @brief Does directory exist
  * @param path
  * @return
  */
-bool DirectoryExists(const fs::path& path);
+bool DirectoryExists(const FsPath& path);
+
+/**
+ * @brief Removes any entry from filesystem
+ * @param path
+ * @return number of deleted entries - if path is non empty directory
+ * @return 0 - if entry doesn't exist, 1 - if it exists and was deleted
+ */
+uintmax_t DeleteEntry(const FsPath& path);
 
 
 /**
@@ -47,9 +65,7 @@ bool DirectoryExists(const fs::path& path);
  * @return files contents
  * @throws runtime_error - file cannot be opened
  */
-std::string ReadFileToString(const fs::path& path);
-
-using OstreamPtr = std::shared_ptr<std::ofstream>;
+std::string ReadFileToString(const FsPath& path);
 
 /**
  * @brief Sample class that handles dynamic file opening and Output
@@ -122,12 +138,12 @@ class FileHandler {
   void Output(const std::string &filename, const T &printed_val);
 
   /**
-   *
+   * @brief Getter for parent dir path
    */
-  const fs::path &GetParentPath() const;
+  const FsPath &GetParentPath() const;
 
  private:
-  fs::path parent_path_;
+  FsPath parent_path_;
   std::unordered_map<std::string, OstreamPtr> file_map_;
 };
 
