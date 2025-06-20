@@ -83,14 +83,23 @@ class FileHandler {
    * @brief Opens file with given permissions
    * @details filename must be present in class
    * @param filename
+   * @return was file opened
    */
-  void Open(const std::string &filename, std::ios_base::openmode mode = std::ios_base::out);
+  bool Open(const std::string &filename, std::ios_base::openmode mode = std::ios_base::out);
 
   /**
    * @brief Closes filename with given name
    * @param filename
+   * @return was file closed
    */
-  void Close(const std::string &filename);
+  bool Close(const std::string &filename);
+
+  /**
+   * @brief Deletes file from map
+   * @param filename
+   * @return was file deleted
+   */
+  bool Delete(const std::string &filename);
 
   /**
    * @brief Adds and opens filename to write with given permissions
@@ -112,9 +121,7 @@ class FileHandler {
    */
   void CloseFiles();
 
-  ~FileHandler() {
-    CloseFiles();
-  }
+  ~FileHandler();
 
   /**
    * @brief Print pr to selected outPtr
