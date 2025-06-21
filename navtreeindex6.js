@@ -1,5 +1,14 @@
 var NAVTREEINDEX6 =
 {
+"structnetwork__types_1_1channel.html#acea336b1e4830c46211c8a64194ae7af":[4,0,15,9,1],
+"structnetwork__types_1_1channel.html#acef374d9636906b376d5418f0232f3cd":[4,0,15,9,6],
+"structnetwork__types_1_1channel.html#ad81be53247cb261f027fc4be96520b44":[4,0,15,9,2],
+"structnetwork__types_1_1channel.html#ad9ae43d52eac660a7640550df3c39d15":[4,0,15,9,7],
+"structnetwork__types_1_1connection.html":[4,0,15,8],
+"structnetwork__types_1_1connection.html#a0a251783ae21af3aa806e004271325c5":[4,0,15,8,4],
+"structnetwork__types_1_1connection.html#a0cefe69b709546c89b9589f7964510fb":[4,0,15,8,1],
+"structnetwork__types_1_1connection.html#a134e904c04b11e04581fe6cdb588e983":[4,0,15,8,6],
+"structnetwork__types_1_1connection.html#a2e367d705f03e51877d4fb8ad2889b95":[4,0,15,8,8],
 "structnetwork__types_1_1connection.html#a553171500974580eb7346a823ff29ecb":[4,0,15,8,3],
 "structnetwork__types_1_1connection.html#a8108f8506cdb2822a3c94572c199c442":[4,0,15,8,9],
 "structnetwork__types_1_1connection.html#a99df621381b349b6184f5191d1a2d7da":[4,0,15,8,2],
