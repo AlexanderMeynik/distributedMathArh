@@ -1,4 +1,5 @@
 #pragma once
+
 #include "network_shared/dbCommon.h"
 
 namespace db_common

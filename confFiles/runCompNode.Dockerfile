@@ -54,6 +54,15 @@ RUN cd /home/deps && \
     cmake --build . && \
     ninja install
 
+RUN cd /home/deps && \
+    git clone https://github.com/jeremy-rifkin/cpptrace && \
+    cd cpptrace && \
+    git reset --hard de1780287e0938c8b33a6dbc7fbdfb39da07f5bb && \
+    mkdir build&&cd build && \
+    cmake -DCMAKE_BUILD_TYPE=Release -G Ninja .. && \
+    cmake --build . && \
+    ninja install
+
 FROM ubuntu:22.04
 COPY --from=build /usr /usr
 COPY --from=build /etc /etc

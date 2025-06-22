@@ -18,7 +18,7 @@ file(GLOB common CONFIGURE_DEPENDS
         "lib/common/*.cpp"
 )
 add_library(commonLib ${common})
-target_link_libraries(commonLib PUBLIC Eigen3::Eigen jsoncpp_lib fmt::fmt scn::scn)
+target_link_libraries(commonLib PUBLIC Eigen3::Eigen jsoncpp_lib fmt::fmt scn::scn cpptrace::cpptrace)
 target_include_directories(commonLib PUBLIC include)
 enable_coverage_for_target(commonLib)
 

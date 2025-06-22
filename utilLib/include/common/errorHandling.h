@@ -6,9 +6,7 @@
 
 #include <fmt/format.h>
 #include <scn/scan.h>
-
-#include "parallelUtils/timingUtils.h"//< todo for source location
-
+#include <cpptrace/cpptrace.hpp>
 
 #define DEFINE_EXCEPTION(Name, fmt_str, severity, ...) \
 class Name : public MyException { \
@@ -45,7 +43,6 @@ private: \
  * @details This namespace Contains multiple forward declarations for types to be use everywhere
  */
 namespace shared {
-using timing::LocationType;
 
 /// severity enum
 enum class Severity {
@@ -76,15 +73,22 @@ const std::unordered_map<std::string,Severity> kStrToSev
     };
 /**
  * @brief Default parent for user defined exception
+ * @details Uses cpptrace::logic_error logic to store stack traces
  */
-class MyException : public std::logic_error {
+class MyException : public cpptrace::logic_error {
  public:
-  using std::logic_error::logic_error;
+  using cpptrace::logic_error::logic_error;
 
+  /**
+   * @brief Retreives error message and stack trace using cpptrace
+   * @param arg
+   * @param sev
+   */
   MyException(const std::string &arg, const Severity &sev) :
-      std::logic_error(arg), m_sev_(sev) {}
+      cpptrace::logic_error(std::string{arg}), m_sev_(sev)
+      {}
 
-  void setSeverity(const Severity &sev) {
+  void SetSeverity(const Severity &sev) {
     m_sev_ = sev;
   }
 
@@ -93,7 +97,7 @@ class MyException : public std::logic_error {
   }
 
  private:
-  Severity m_sev_;
+  Severity m_sev_;//< severity for this exception
 };
 
 /**
@@ -170,9 +174,10 @@ DEFINE_EXCEPTION_IN(Already_Connected, "Service {} is already connected to {}!",
  */
 DEFINE_EXCEPTION_IN(Broken_Connection, "Service {} is unable to connect to {}!", std::string, std::string)
 
-
+/// Alias for scnlib error code enum
 using ScanErrorCode = decltype(scn::scan_error::code::value_negative_overflow);
 
+/// Lookup table for scn code strings
 constexpr std::array<const char*, static_cast<size_t>(ScanErrorCode::max_error) + 1> ScanErrorStrings = {
     "end_of_input",
     "invalid_format_string",
@@ -188,6 +193,11 @@ constexpr std::array<const char*, static_cast<size_t>(ScanErrorCode::max_error) 
     "max_error"
 };
 
+/**
+ * @brief Casts scan error to string
+ * @param c
+ * @return
+ */
 static inline const char* ScanErrorCodeToString(ScanErrorCode c) {
   size_t index = static_cast<size_t>(c);
   return (index <= ScanErrorStrings.size()) ? ScanErrorStrings[index] : "unknown_error";
@@ -209,6 +219,9 @@ namespace fmt {
 using shared::ScanErrorCode;
 using shared::ScanErrorCodeToString;
 template<>
+/**
+ * @brief Formatter for ScanErrorCode
+ */
 struct formatter<ScanErrorCode> : formatter<string_view> {
   auto format(ScanErrorCode c, format_context &ctx) const
   -> format_context::iterator {

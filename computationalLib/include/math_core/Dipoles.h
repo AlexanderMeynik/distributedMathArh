@@ -1,5 +1,6 @@
 #pragma once
 
+#include "common/myConcepts.h"
 #include "dipolesCommon.h"
 
 ///dipoles namespace

@@ -3,7 +3,7 @@
 #include "common/Printers.h"
 #include "common/Parsers.h"
 #include "network_shared/connectionString.h"
-
+#include "parallelUtils/timingUtils.h"
 #include <pqxx/pqxx>
 
 /// Namespace that contains database related utils

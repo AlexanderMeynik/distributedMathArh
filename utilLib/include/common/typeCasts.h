@@ -2,7 +2,8 @@
 
 #include <map>
 
-#include "commonTypes.h"
+#include "common/commonTypes.h"
+#include "common/myConcepts.h"
 
 using my_concepts::isOneDimensionalContinuous;
 using shared::zeroSize;
