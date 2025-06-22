@@ -8,7 +8,7 @@ LABEL authors="Meynik A.V."
 RUN apt-get update && \
     apt-get install -y build-essential ninja-build git \
     wget unzip \
-    cmake libomp-dev libssl-dev libpq-dev \
+    tar libomp-dev libssl-dev libpq-dev \
     libjpeg-dev libtiff5 libpng-dev zlib1g-dev \
     libjsoncpp-dev libfmt-dev uuid-dev zlib1g-dev && \
     cd /home && \
@@ -19,6 +19,14 @@ RUN apt-get update && \
 
 RUN apt-get install -y libeigen3-dev libjsoncpp-dev libcurl4-openssl-dev
 
+RUN cd /home/deps/ && \
+    wget https://github.com/Kitware/CMake/releases/download/v3.26.5/cmake-3.26.5.tar.gz && \
+    tar -zxvf cmake-3.26.5.tar.gz && \
+    cd cmake-3.26.5 && \
+    ./bootstrap && \
+    make -j$(nproc) && \
+    make install
+
 RUN  git clone https://github.com/drogonframework/drogon && \
      cd drogon && \
      git submodule update --init && \
@@ -28,15 +36,17 @@ RUN  git clone https://github.com/drogonframework/drogon && \
      ninja install && \
      ln -s /usr/include/jsoncpp/json/ /usr/include/json
 
-RUN wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/boostSubset.zip && \
+RUN cd /home/deps/ && \
+    wget -q https://github.com/AlexanderMeynik/distributedMathArh/releases/download/dependencies/boostSubset.zip && \
     unzip -q boostSubset.zip && \
     rm boostSubset.zip && \
     cp -r boostSubset/boost/ /usr/include/ && \
     rm -rf boostSubset
 
-RUN cd /home/deps/&& git clone https://github.com/alandefreitas/matplotplusplus.git && \
+RUN cd /home/deps/ && \
+    git clone https://github.com/alandefreitas/matplotplusplus.git && \
     cd matplotplusplus && \
-	git reset --hard fe308e13f6c3ac7c5bd2b2f4717961d1d56d07ea && \
+    git reset --hard fe308e13f6c3ac7c5bd2b2f4717961d1d56d07ea && \
     cmake -B build/system         \
     -DMATPLOTPP_BUILD_EXAMPLES=OFF      \
     -DMATPLOTPP_BUILD_SHARED_LIBS=ON    \

@@ -3,7 +3,7 @@ LABEL authors="Meynik A.V."
 LABEL task = "Runn compNode"
 
 RUN apt-get update && \
-    apt-get install -y build-essential ninja-build git wget unzip cmake \
+    apt-get install -y build-essential ninja-build git wget unzip tar \
     libomp-dev libssl-dev libpq-dev libjsoncpp-dev libfmt-dev uuid-dev \
     zlib1g-dev libcurl4-openssl-dev libeigen3-dev && \
     cd /home && \
@@ -11,6 +11,14 @@ RUN apt-get update && \
     chmod -R 777 deps && \
     cd deps
 
+
+RUN cd /home/deps/ && \
+    wget https://github.com/Kitware/CMake/releases/download/v3.26.5/cmake-3.26.5.tar.gz && \
+    tar -zxvf cmake-3.26.5.tar.gz && \
+    cd cmake-3.26.5 && \
+    ./bootstrap && \
+    make -j$(nproc) && \
+    make install
 
 RUN  git clone https://github.com/drogonframework/drogon && \
      cd drogon && \
