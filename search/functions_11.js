@@ -22,7 +22,7 @@ var searchData=
   ['setpassword_1247',['SetPassword',['../classnetwork__types_1_1PostgreSQLCStr.html#a8de3b6daaf3db96b395c000f75fddd28',1,'network_types::PostgreSQLCStr::SetPassword()'],['../classnetwork__types_1_1AMQPSQLCStr.html#af2a24675ec931ee7d1300de51ff01630',1,'network_types::AMQPSQLCStr::SetPassword()']]],
   ['setport_1248',['SetPort',['../classnetwork__types_1_1PostgreSQLCStr.html#a324f9b34afcd2a05294983ab51ab27bb',1,'network_types::PostgreSQLCStr']]],
   ['setsecure_1249',['SetSecure',['../classnetwork__types_1_1AMQPSQLCStr.html#ae7a744992919575040451838eee669a7',1,'network_types::AMQPSQLCStr']]],
-  ['setseverity_1250',['setSeverity',['../classshared_1_1MyException.html#a94af19e2b39d2b5c27ee4bd696b23075',1,'shared::MyException']]],
+  ['setseverity_1250',['SetSeverity',['../classshared_1_1MyException.html#a2b0433f7fde722799ae8897be65ef289',1,'shared::MyException']]],
   ['setstyle_1251',['SetStyle',['../classgui__objects_1_1MeshPlot.html#a6af26e93f33d839f4c1a1590584ecc8d',1,'gui_objects::MeshPlot']]],
   ['setuser_1252',['SetUser',['../classnetwork__types_1_1PostgreSQLCStr.html#ad2662a7ee82e6fd94ce384cd0743f257',1,'network_types::PostgreSQLCStr::SetUser()'],['../classnetwork__types_1_1AMQPSQLCStr.html#a7912358db4aad2ea42669ef4a8d4e9aa',1,'network_types::AMQPSQLCStr::SetUser()']]],
   ['sliceaway_1253',['SliceAway',['../structnetwork__types_1_1TestSolveParam.html#a5b9ee447f3e0c2d893704ed24dd7152d',1,'network_types::TestSolveParam']]],

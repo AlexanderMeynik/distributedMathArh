@@ -56,7 +56,7 @@ var hierarchy =
     ] ],
     [ "timing::LocationComparator", "structtiming_1_1LocationComparator.html", null ],
     [ "db_common::Log", "structdb__common_1_1Log.html", null ],
-    [ "std::logic_error", null, [
+    [ "cpptrace::logic_error", null, [
       [ "shared::MyException", "classshared_1_1MyException.html", [
         [ "shared::Already_Connected", "classshared_1_1Already__Connected.html", null ],
         [ "shared::Broken_Connection", "classshared_1_1Broken__Connection.html", null ],

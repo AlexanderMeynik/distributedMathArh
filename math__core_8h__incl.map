@@ -1,8 +1,8 @@
 <map id="computationalLib/include/math_core/math_core.h" name="computationalLib/include/math_core/math_core.h">
-<area shape="rect" id="node1" title=" " alt="" coords="119,5,306,47"/>
+<area shape="rect" id="node1" title=" " alt="" coords="179,5,366,47"/>
 <area shape="rect" id="node2" href="$commonTypes_8h.html" title=" " alt="" coords="78,244,267,271"/>
-<area shape="rect" id="node25" href="$Dipoles_8h.html" title=" " alt="" coords="171,95,254,121"/>
-<area shape="rect" id="node27" title=" " alt="" coords="279,95,384,121"/>
+<area shape="rect" id="node17" href="$Dipoles_8h.html" title=" " alt="" coords="231,95,314,121"/>
+<area shape="rect" id="node23" title=" " alt="" coords="339,95,444,121"/>
 <area shape="rect" id="node3" title=" " alt="" coords="5,319,73,345"/>
 <area shape="rect" id="node4" title=" " alt="" coords="97,319,248,345"/>
 <area shape="rect" id="node5" href="$sharedDeclarations_8h.html" title=" " alt="" coords="273,319,433,345"/>
@@ -16,14 +16,10 @@
 <area shape="rect" id="node13" title=" " alt="" coords="447,543,501,569"/>
 <area shape="rect" id="node14" title=" " alt="" coords="525,543,631,569"/>
 <area shape="rect" id="node15" title=" " alt="" coords="655,543,746,569"/>
-<area shape="rect" id="node16" href="$timingUtils_8h.html" title=" " alt="" coords="770,543,959,569"/>
-<area shape="rect" id="node17" title=" " alt="" coords="654,617,721,644"/>
-<area shape="rect" id="node18" title=" " alt="" coords="745,617,803,644"/>
-<area shape="rect" id="node19" title=" " alt="" coords="827,617,902,644"/>
-<area shape="rect" id="node20" title=" " alt="" coords="927,617,1051,644"/>
-<area shape="rect" id="node21" href="$myConcepts_8h.html" title=" " alt="" coords="1075,617,1251,644"/>
-<area shape="rect" id="node22" title=" " alt="" coords="1007,692,1099,719"/>
-<area shape="rect" id="node23" title=" " alt="" coords="1123,692,1203,719"/>
-<area shape="rect" id="node24" title=" " alt="" coords="1227,692,1283,719"/>
-<area shape="rect" id="node26" href="$dipolesCommon_8h.html" title=" " alt="" coords="157,169,297,196"/>
+<area shape="rect" id="node16" title=" " alt="" coords="771,543,937,569"/>
+<area shape="rect" id="node18" href="$myConcepts_8h.html" title=" " alt="" coords="367,169,543,196"/>
+<area shape="rect" id="node22" href="$dipolesCommon_8h.html" title=" " alt="" coords="203,169,343,196"/>
+<area shape="rect" id="node19" title=" " alt="" coords="299,244,391,271"/>
+<area shape="rect" id="node20" title=" " alt="" coords="415,244,495,271"/>
+<area shape="rect" id="node21" title=" " alt="" coords="519,244,575,271"/>
 </map>
