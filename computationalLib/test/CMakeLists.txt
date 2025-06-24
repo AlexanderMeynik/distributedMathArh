@@ -40,7 +40,7 @@ add_env_test(
 
 add_env_test(
         databaseServiceTest
-        interegated/DbServiceTest.cpp
+        interegated/DbServicesTests.cpp
         DB_TEST_ARGS
 )
 

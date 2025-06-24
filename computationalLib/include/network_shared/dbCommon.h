@@ -97,15 +97,15 @@ void Disconnect(ConnPtr &conn_ptr);
  * @throws Broken_Connection - if connection cannot be established
  */
 ConnPtr TryConnect(const PostgreSQLCStr &conn_str,
-                   const std::string service_name);
+                   std::string_view service_name);
 
 /**
  * @brief Checks db_name database existence
  * @param non_trans
  * @param db_name
- * @return Number of databases with name db_name
+ * @return Does database exist
  */
-size_t CheckDatabaseExistence(NonTransType &non_trans,
+bool CheckDatabaseExistence(NonTransType &non_trans,
                               std::string_view db_name);
 
 /**

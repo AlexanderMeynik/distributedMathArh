@@ -9,7 +9,88 @@ using test_common::WaitFor;
 using amqp_common::ExtractHost;
 using namespace db_service;
 AuthParams g_serviceParams;
-const std::string kDbName = "test_db_1";
+const  std::string kDbName = "test_db_1";
+
+
+class DatabaseUtilsTest : public ::testing::Test {
+ protected:
+  static void SetUpTestSuite() {
+    conn_string_ = PostgreSQLCStr(g_serviceParams.username,
+                                  g_serviceParams.password,
+                                  ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
+  }
+
+  static inline PostgreSQLCStr conn_string_=PostgreSQLCStr();
+
+};
+
+TEST_F(DatabaseUtilsTest, TestConnectionEstablished) {
+
+ auto ptr=TryConnect(conn_string_,"serv1");
+ ASSERT_TRUE(CheckConnection(ptr));
+
+}
+
+TEST_F(DatabaseUtilsTest, TestConnectionAborted) {
+  auto invadlid_c_string_ = PostgreSQLCStr("s",
+                                     "s",
+                                     ExtractHost(g_serviceParams.host).value(), "nonex", 5432);
+
+  ASSERT_THROW(TryConnect(invadlid_c_string_,"serv1"),shared::Broken_Connection);
+}
+
+TEST_F(DatabaseUtilsTest, TestDbCreateAlreadyExists) {
+  ConnPtr cc;
+  EXPECT_NO_THROW(cc=CreateDatabase(conn_string_,conn_string_.GetDbname()));
+  ASSERT_TRUE(CheckConnection(cc));
+}
+
+
+TEST_F(DatabaseUtilsTest, TestDbCreateSQLError) {
+
+  ConnPtr cc;
+  ASSERT_THROW(cc=CreateDatabase(conn_string_,"00some\"Very invalidDBname"),SQL_ERROR);
+}
+
+
+TEST_F(DatabaseUtilsTest, TestDbDropNotExists) {
+  ASSERT_NO_THROW(DropDatabase(conn_string_,"some_non_existent_db"));
+}
+
+
+
+TEST_F(DatabaseUtilsTest, TestExecuteTransConnectionAborted) {
+  ConnPtr null_con;
+  ASSERT_THROW(ExecuteTransaction(null_con,[](TransactionT&txn)
+  {
+    return txn.exec("Nothing");
+  },"ss",conn_string_),Broken_Connection);
+}
+
+
+TEST_F(DatabaseUtilsTest, TestExecuteTransSQLError) {
+  auto connection= TryConnect(conn_string_,"serv");
+  EXPECT_TRUE(CheckConnection(connection));
+  ASSERT_THROW(ExecuteTransaction(connection,[](TransactionT&txn)
+  {
+    return txn.exec("some invalid sql statement");
+  },"ss",conn_string_),SQL_ERROR);
+}
+
+
+
+
+
+TEST_F(DatabaseUtilsTest, TestExecuteSubTransSQLError) {
+  auto connection= TryConnect(conn_string_,"serv");
+  EXPECT_TRUE(CheckConnection(connection));
+  TransactionT txn(*connection);
+  ASSERT_THROW(ExecuteSubTransaction(txn,[](Subtransaction&sub)
+  {
+    return sub.exec("some invalid sql statement");
+  },"ss"),SQL_ERROR);
+}
+
 class DbServiceTest : public ::testing::Test {
  protected:
   void SetUp() override {
@@ -26,6 +107,7 @@ class DbServiceTest : public ::testing::Test {
 
   static inline std::string tlogin="testuser";
   static inline std::string tpassword="password";
+
 };
 
 TEST_F(DbServiceTest, SetGetCstring) {
@@ -211,9 +293,25 @@ class DatabaseTestEnvironment : public ::testing::Environment {
  public:
   void SetUp() override {
 
+
     conn_string_ = PostgreSQLCStr(g_serviceParams.username,
                                   g_serviceParams.password,
                                   ExtractHost(g_serviceParams.host).value(), kDbName, 5432);
+    auto str=conn_string_;
+    str.SetDbname(SampleTempDb);
+
+    ConnPtr conn_ptr_;
+
+    conn_ptr_= TryConnect(str,"serv");
+    NonTransType no_trans_exec(*conn_ptr_);//todo very quirky way to handle this
+    if(CheckDatabaseExistence(no_trans_exec,kDbName))
+    {
+      fmt::print(fmt::runtime("Database {} already existed, deleting it"),kDbName);
+      DropDatabase(conn_string_,kDbName);
+    }
+    no_trans_exec.commit();
+    conn_ptr_->close();
+
 
     CreateDatabase(conn_string_, kDbName);
 
@@ -231,7 +329,7 @@ class DatabaseTestEnvironment : public ::testing::Environment {
   }
 
  private:
-  ConnPtr conn_ptr_;
+
   PostgreSQLCStr conn_string_;
 };
 

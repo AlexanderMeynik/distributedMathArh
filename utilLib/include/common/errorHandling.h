@@ -46,7 +46,7 @@ namespace shared {
 
 /// severity enum
 enum class Severity {
-  info = 0,
+  info = 0, //< this exception
   warning,
   error,
   fatal
@@ -84,9 +84,11 @@ class MyException : public cpptrace::logic_error {
    * @param arg
    * @param sev
    */
-  MyException(const std::string &arg, const Severity &sev) :
-      cpptrace::logic_error(std::string{arg}), m_sev_(sev)
-      {}
+  MyException(const std::string &arg, const Severity &sev):
+  cpptrace::logic_error(std::string{arg}), m_sev_(sev)
+  {}
+
+  MyException(MyException&my_exception)=default;
 
   void SetSeverity(const Severity &sev) {
     m_sev_ = sev;

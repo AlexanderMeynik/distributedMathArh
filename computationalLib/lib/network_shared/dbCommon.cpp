@@ -14,7 +14,8 @@ void Disconnect(ConnPtr &conn_ptr) {
   }
 }
 
-ConnPtr TryConnect(const PostgreSQLCStr &conn_str, const std::string service_name) {
+ConnPtr TryConnect(const PostgreSQLCStr &conn_str,
+                   std::string_view service_name) {
   ConnPtr conn;
 
   try {
@@ -53,7 +54,7 @@ ConnPtr CreateDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
 
   try {
 
-    if (CheckDatabaseExistence(no_trans_exec, c_string.GetDbname()) != 0) {
+    if (CheckDatabaseExistence(no_trans_exec, c_string.GetDbname())) {
       no_trans_exec.abort();
       Disconnect(temp_connection);
       return TryConnect(c_string, "Outer");
@@ -87,7 +88,7 @@ void DropDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
   std::string qq;
   try {
 
-    if (CheckDatabaseExistence(no_trans_exec, c_string.GetDbname()) == 0) {
+    if (!CheckDatabaseExistence(no_trans_exec, c_string.GetDbname())) {
       no_trans_exec.abort();
       Disconnect(temp_connection);
       return;
@@ -109,7 +110,7 @@ void DropDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
 
   Disconnect(temp_connection);
 }
-size_t CheckDatabaseExistence(NonTransType &non_trans, std::string_view db_name) {
+bool CheckDatabaseExistence(NonTransType &non_trans, std::string_view db_name) {
   std::string qq = fmt::format("SELECT 1 FROM pg_database WHERE datname = \'{}\';", db_name.data());
   return non_trans.exec(qq).size();
 }
