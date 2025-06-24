@@ -2,6 +2,9 @@
 
 #include <tuple>
 #include <gtest/gtest.h>
+#include <memory>
+#include <cxxabi.h>
+#include <gmock/gmock-matchers.h>
 #include "common/myConcepts.h"
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
@@ -30,6 +33,7 @@ do { \
     EXPECT_EQ);                                                                          \
 } while (0)
 
+#define EXPECT_CONTAINS(haystack,needle) ASSERT_THAT(haystack,::testing::HasSubstr(needle))
 using namespace my_concepts;
 using shared::FloatType;
 namespace sh = shared;
@@ -81,6 +85,44 @@ bool IsNear(T val1, T val2, T abs_error) {
 template<typename TestSuite, typename ...Args>
 auto FirstValueTuplePrinter(const testing::TestParamInfo<typename TestSuite::ParamType> &info) {
   return get<0>(info.param);
+}
+
+/**
+ * @brief Transforms typeid(...).name() into human readable type
+ * @param mangled_name
+ * @return Demangled type - if it's successful
+ * @return empty string - otherwise
+ */
+std::string inline Demangle(std::string_view mangled_name) {
+  int status = 0;
+  std::unique_ptr<char, decltype(&std::free)> demangled_name_ptr(
+      abi::__cxa_demangle(mangled_name.data(), nullptr, nullptr, &status),
+      &std::free
+  );
+  return (status==0)?demangled_name_ptr.get():"";
+}
+/**
+ * @brief Transforms input type into a valid string for gtest
+ * @tparam T
+ * @return type name suitable for parametrized tests
+ */
+template<typename T>
+std::string DemangledName()
+{
+  auto str= Demangle(typeid(T).name());
+
+  std::transform(str.begin(), str.end(),str.begin(),[](char& c)
+  {
+    constexpr const char kToReplace[]=": \t";
+    constexpr auto kSz= sizeof(kToReplace)/ sizeof(kToReplace[0]);
+    auto df=std::find(kToReplace, kToReplace+kSz, c)-kToReplace;
+    if(df<kSz)
+    {
+      return '_';
+    }
+    return c;
+  });
+  return str;
 }
 
 /**

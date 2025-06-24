@@ -124,7 +124,7 @@ DEFINE_EXCEPTION_IN(zeroSize, "Zero collection {} size!", std::string)
  * @brief ioError class
  * @details Use case: error during ios management
  */
-DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!", const std::string&)
+DEFINE_EXCEPTION_IN(ioError, "Io error state:{}!",std::string)
 
 /**
  * @brief mismatchedSizes error
