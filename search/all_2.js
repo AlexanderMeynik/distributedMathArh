@@ -12,7 +12,7 @@ var searchData=
   ['channels_75',['channels',['../structnetwork__types_1_1connection.html#a99df621381b349b6184f5191d1a2d7da',1,'network_types::connection']]],
   ['characteristic_5fcomputed_5f_76',['characteristic_computed_',['../classcomp__services_1_1ComputationNodeService.html#a172060d86fef8e9e838aed1854a351b7',1,'comp_services::ComputationNodeService']]],
   ['checkconnection_77',['CheckConnection',['../namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc',1,'db_common::CheckConnection()'],['../classcomp__services_1_1ComputationNodeService.html#a8fc91cf1d78b43bac3537732109a9ad4',1,'comp_services::ComputationNodeService::CheckConnection()']]],
-  ['checkdatabaseexistence_78',['CheckDatabaseExistence',['../namespacedb__common.html#a9355ec163d544700fd17c31ade29f161',1,'db_common']]],
+  ['checkdatabaseexistence_78',['CheckDatabaseExistence',['../namespacedb__common.html#ae4b4dc5c4843a817080c316576357afd',1,'db_common']]],
   ['chrono_5fclock_79',['chrono_clock',['../namespacechrono__clock.html',1,'']]],
   ['chronoclock_2ecpp_80',['chronoClock.cpp',['../chronoClock_8cpp.html',1,'']]],
   ['chronoclock_2eh_81',['chronoClock.h',['../chronoClock_8h.html',1,'']]],

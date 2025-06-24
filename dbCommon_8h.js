@@ -7,7 +7,7 @@ var dbCommon_8h =
     [ "Subtransaction", "dbCommon_8h.html#a82a32b7604217a1d8895b397e145c04e", null ],
     [ "TransactionT", "dbCommon_8h.html#ae879f5fb9e426f5e75e92cae51316d72", null ],
     [ "CheckConnection", "dbCommon_8h.html#a4da7b18820b3b9076b7e590a3fb69cbc", null ],
-    [ "CheckDatabaseExistence", "dbCommon_8h.html#a9355ec163d544700fd17c31ade29f161", null ],
+    [ "CheckDatabaseExistence", "dbCommon_8h.html#ae4b4dc5c4843a817080c316576357afd", null ],
     [ "CreateDatabase", "dbCommon_8h.html#ae2d12264a8c82efbeda1a40a03366396", null ],
     [ "Disconnect", "dbCommon_8h.html#a6792c7d97a64b6a7c3c1dd6a91822b94", null ],
     [ "DropDatabase", "dbCommon_8h.html#af8bd865a001ad0acf214bd6dd887214c", null ],
@@ -19,6 +19,6 @@ var dbCommon_8h =
     [ "PaginateRequest", "dbCommon_8h.html#afe5a348fb22dd5f91214dd95a80b6973", null ],
     [ "ParseArray", "dbCommon_8h.html#acec6199e9f3a82271a9af92390122f7e", null ],
     [ "TerminateAllDbConnections", "dbCommon_8h.html#ae57400437000d615d8df1cfc6989fa5b", null ],
-    [ "TryConnect", "dbCommon_8h.html#a6559f5b5a1af005a0cb696df5e4dc63b", null ],
+    [ "TryConnect", "dbCommon_8h.html#a8117674f51aa482b0ad4d52268a412df", null ],
     [ "SampleTempDb", "dbCommon_8h.html#a2d8fca39b7d78c9826b6661cc651ac02", null ]
 ];

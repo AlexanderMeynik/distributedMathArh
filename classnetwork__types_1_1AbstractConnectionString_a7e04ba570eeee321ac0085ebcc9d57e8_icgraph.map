@@ -1,6 +1,6 @@
 <map id="network_types::AbstractConnectionString::CStr" name="network_types::AbstractConnectionString::CStr">
 <area shape="rect" id="node1" title="Retrieves const char * representation." alt="" coords="713,74,967,115"/>
-<area shape="rect" id="node2" href="$namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="483,81,665,108"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#a8117674f51aa482b0ad4d52268a412df" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="483,81,665,108"/>
 <area shape="rect" id="node3" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,5,435,32"/>
 <area shape="rect" id="node4" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,56,429,83"/>
 <area shape="rect" id="node5" href="$namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="232,107,423,133"/>

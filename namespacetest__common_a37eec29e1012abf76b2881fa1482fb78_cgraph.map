@@ -1,0 +1,4 @@
+<map id="test_common::DemangledName" name="test_common::DemangledName">
+<area shape="rect" id="node1" title="Transforms input type into a valid string for gtest." alt="" coords="5,5,239,32"/>
+<area shape="rect" id="node2" href="$namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2" title="Transforms typeid(...).name() into human readable type." alt="" coords="287,5,473,32"/>
+</map>

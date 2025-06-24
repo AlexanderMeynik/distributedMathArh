@@ -1,5 +1,11 @@
 var NAVTREEINDEX6 =
 {
+"structnetwork__types_1_1channel.html":[4,0,15,9],
+"structnetwork__types_1_1channel.html#a0672cc5b358024c037b2be64f92a5d8a":[4,0,15,9,3],
+"structnetwork__types_1_1channel.html#a0f8aa9f63926afc86c3c63e95548db86":[4,0,15,9,5],
+"structnetwork__types_1_1channel.html#a20177cc325f4e0fef7616c00673ce119":[4,0,15,9,0],
+"structnetwork__types_1_1channel.html#a820830ca2fccb6cf50174de292b54c8b":[4,0,15,9,8],
+"structnetwork__types_1_1channel.html#a8f70dab4330ccbf415456168abc6154a":[4,0,15,9,4],
 "structnetwork__types_1_1channel.html#acea336b1e4830c46211c8a64194ae7af":[4,0,15,9,1],
 "structnetwork__types_1_1channel.html#acef374d9636906b376d5418f0232f3cd":[4,0,15,9,6],
 "structnetwork__types_1_1channel.html#ad81be53247cb261f027fc4be96520b44":[4,0,15,9,2],

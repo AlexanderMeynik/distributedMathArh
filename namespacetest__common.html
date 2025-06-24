@@ -123,6 +123,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a27cdb59bc1cc554f8cd8e07b3d932745"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a27cdb59bc1cc554f8cd8e07b3d932745">FirstValueTuplePrinter</a> (const testing::TestParamInfo&lt; typename TestSuite::ParamType &gt; &amp;info)</td></tr>
 <tr class="memdesc:a27cdb59bc1cc554f8cd8e07b3d932745"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printer function used to name tests in parameterized test suites.  <a href="namespacetest__common.html#a27cdb59bc1cc554f8cd8e07b3d932745">More...</a><br /></td></tr>
 <tr class="separator:a27cdb59bc1cc554f8cd8e07b3d932745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ab81f215eda9b9bd64a5fa035c7fc2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2">Demangle</a> (std::string_view mangled_name)</td></tr>
+<tr class="memdesc:a33ab81f215eda9b9bd64a5fa035c7fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms typeid(...).name() into human readable type.  <a href="namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2">More...</a><br /></td></tr>
+<tr class="separator:a33ab81f215eda9b9bd64a5fa035c7fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37eec29e1012abf76b2881fa1482fb78"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a37eec29e1012abf76b2881fa1482fb78"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a37eec29e1012abf76b2881fa1482fb78">DemangledName</a> ()</td></tr>
+<tr class="memdesc:a37eec29e1012abf76b2881fa1482fb78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms input type into a valid string for gtest.  <a href="namespacetest__common.html#a37eec29e1012abf76b2881fa1482fb78">More...</a><br /></td></tr>
+<tr class="separator:a37eec29e1012abf76b2881fa1482fb78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60a814823659e6c4e8d8f0d0da14666a"><td class="memTemplParams" colspan="2">template&lt;typename TestSuite &gt; </td></tr>
 <tr class="memitem:a60a814823659e6c4e8d8f0d0da14666a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a60a814823659e6c4e8d8f0d0da14666a">TupleToString</a> (const testing::TestParamInfo&lt; typename TestSuite::ParamType &gt; &amp;info)</td></tr>
 <tr class="memdesc:a60a814823659e6c4e8d8f0d0da14666a"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts tuple to string with _ as a delimiter  <a href="namespacetest__common.html#a60a814823659e6c4e8d8f0d0da14666a">More...</a><br /></td></tr>
@@ -397,6 +404,97 @@ template&lt;bool Expect = false, HasSizeMethod T1, HasSizeMethod T2&gt; </div>
 
 </div>
 </div>
+<a id="a33ab81f215eda9b9bd64a5fa035c7fc2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a33ab81f215eda9b9bd64a5fa035c7fc2">&#9670;&nbsp;</a></span>Demangle()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string test_common::Demangle </td>
+          <td>(</td>
+          <td class="paramtype">std::string_view&#160;</td>
+          <td class="paramname"><em>mangled_name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Transforms typeid(...).name() into human readable type. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">mangled_name</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Demangled type - if it's successful </dd>
+<dd>
+empty string - otherwise </dd></dl>
+
+<p class="reference">Referenced by <a class="el" href="namespacetest__common.html#a37eec29e1012abf76b2881fa1482fb78">DemangledName()</a>.</p>
+<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the caller graph for this function:</div>
+<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespacetest__common_a33ab81f215eda9b9bd64a5fa035c7fc2_icgraph.png" border="0" usemap="#anamespacetest__common_a33ab81f215eda9b9bd64a5fa035c7fc2_icgraph" alt=""/></div>
+<map name="anamespacetest__common_a33ab81f215eda9b9bd64a5fa035c7fc2_icgraph" id="anamespacetest__common_a33ab81f215eda9b9bd64a5fa035c7fc2_icgraph">
+<area shape="rect" title="Transforms typeid(...).name() into human readable type." alt="" coords="287,5,473,32"/>
+<area shape="rect" href="namespacetest__common.html#a37eec29e1012abf76b2881fa1482fb78" title="Transforms input type into a valid string for gtest." alt="" coords="5,5,239,32"/>
+</map>
+</div>
+
+</div>
+</div>
+<a id="a37eec29e1012abf76b2881fa1482fb78"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a37eec29e1012abf76b2881fa1482fb78">&#9670;&nbsp;</a></span>DemangledName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string test_common::DemangledName </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Transforms input type into a valid string for gtest. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">T</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>type name suitable for parametrized tests </dd></dl>
+
+<p class="reference">References <a class="el" href="namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2">Demangle()</a>.</p>
+<div id="dynsection-5" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-5-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-5-summary" class="dynsummary" style="display:block;">
+</div>
+<div id="dynsection-5-content" class="dyncontent" style="display:none;">
+<div class="center"><img src="namespacetest__common_a37eec29e1012abf76b2881fa1482fb78_cgraph.png" border="0" usemap="#anamespacetest__common_a37eec29e1012abf76b2881fa1482fb78_cgraph" alt=""/></div>
+<map name="anamespacetest__common_a37eec29e1012abf76b2881fa1482fb78_cgraph" id="anamespacetest__common_a37eec29e1012abf76b2881fa1482fb78_cgraph">
+<area shape="rect" title="Transforms input type into a valid string for gtest." alt="" coords="5,5,239,32"/>
+<area shape="rect" href="namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2" title="Transforms typeid(...).name() into human readable type." alt="" coords="287,5,473,32"/>
+</map>
+</div>
+
+</div>
+</div>
 <a id="a27cdb59bc1cc554f8cd8e07b3d932745"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a27cdb59bc1cc554f8cd8e07b3d932745">&#9670;&nbsp;</a></span>FirstValueTuplePrinter()</h2>
 
@@ -517,11 +615,11 @@ template&lt;typename TestSuite &gt; </div>
 </dl>
 
 <p class="reference">References <a class="el" href="namespaceprint__utils.html#ae4a7829e4fa46541e13b8b23db463823">print_utils::TupleToString()</a>.</p>
-<div id="dynsection-4" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
-  <img id="dynsection-4-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
-<div id="dynsection-4-summary" class="dynsummary" style="display:block;">
+<div id="dynsection-6" onclick="return toggleVisibility(this)" class="dynheader closed" style="cursor:pointer;">
+  <img id="dynsection-6-trigger" src="closed.png" alt="+"/> Here is the call graph for this function:</div>
+<div id="dynsection-6-summary" class="dynsummary" style="display:block;">
 </div>
-<div id="dynsection-4-content" class="dyncontent" style="display:none;">
+<div id="dynsection-6-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="namespacetest__common_a60a814823659e6c4e8d8f0d0da14666a_cgraph.png" border="0" usemap="#anamespacetest__common_a60a814823659e6c4e8d8f0d0da14666a_cgraph" alt=""/></div>
 <map name="anamespacetest__common_a60a814823659e6c4e8d8f0d0da14666a_cgraph" id="anamespacetest__common_a60a814823659e6c4e8d8f0d0da14666a_cgraph">
 <area shape="rect" title="converts tuple to string with _ as a delimiter" alt="" coords="5,5,211,32"/>

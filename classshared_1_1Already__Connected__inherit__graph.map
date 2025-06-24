@@ -1,5 +1,5 @@
 <map id="shared::Already_Connected" name="shared::Already_Connected">
-<area shape="rect" id="node1" title="Already conencted error class." alt="" coords="5,285,205,407"/>
-<area shape="rect" id="node2" href="$classshared_1_1MyException.html" title="Default parent for user defined exception." alt="" coords="26,131,185,237"/>
+<area shape="rect" id="node1" title="Already conencted error class." alt="" coords="5,300,205,421"/>
+<area shape="rect" id="node2" href="$classshared_1_1MyException.html" title="Default parent for user defined exception." alt="" coords="26,131,185,252"/>
 <area shape="rect" id="node3" title=" " alt="" coords="28,5,183,83"/>
 </map>

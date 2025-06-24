@@ -8,6 +8,8 @@ var namespacetest__common =
     [ "twoDArrayDoubleComparator", "structtest__common_1_1twoDArrayDoubleComparator.html", "structtest__common_1_1twoDArrayDoubleComparator" ],
     [ "Compare2DArrays", "namespacetest__common.html#a69912e0bfc34430ad0769e5a94ae44d2", null ],
     [ "CompareArrays", "namespacetest__common.html#a66991c33407aae5d360b05d6c13f1d7b", null ],
+    [ "Demangle", "namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2", null ],
+    [ "DemangledName", "namespacetest__common.html#a37eec29e1012abf76b2881fa1482fb78", null ],
     [ "FirstValueTuplePrinter", "namespacetest__common.html#a27cdb59bc1cc554f8cd8e07b3d932745", null ],
     [ "IsNear", "namespacetest__common.html#a890235c25c9fe4a368a7bee9a79055c1", null ],
     [ "TupleToString", "namespacetest__common.html#a60a814823659e6c4e8d8f0d0da14666a", null ],

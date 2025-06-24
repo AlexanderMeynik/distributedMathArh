@@ -94,6 +94,9 @@ $(document).ready(function(){initNavTree('GoogleCommon_8h.html',''); initResizab
 <div class="contents">
 <div class="textblock"><code>#include &lt;tuple&gt;</code><br />
 <code>#include &lt;gtest/gtest.h&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
+<code>#include &lt;cxxabi.h&gt;</code><br />
+<code>#include &lt;gmock/gmock-matchers.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="myConcepts_8h_source.html">common/myConcepts.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="sharedDeclarations_8h_source.html">common/sharedDeclarations.h</a>&quot;</code><br />
 <code>#include &quot;<a class="el" href="printUtils_8h_source.html">common/printUtils.h</a>&quot;</code><br />
@@ -106,17 +109,20 @@ $(document).ready(function(){initNavTree('GoogleCommon_8h.html',''); initResizab
 <div id="dynsection-0-content" class="dyncontent" style="display:none;">
 <div class="center"><img src="GoogleCommon_8h__incl.png" border="0" usemap="#autilLib_2include_2testingUtils_2GoogleCommon_8h" alt=""/></div>
 <map name="autilLib_2include_2testingUtils_2GoogleCommon_8h" id="autilLib_2include_2testingUtils_2GoogleCommon_8h">
-<area shape="rect" title=" " alt="" coords="347,5,539,47"/>
+<area shape="rect" title=" " alt="" coords="518,5,710,47"/>
 <area shape="rect" title=" " alt="" coords="5,483,60,509"/>
 <area shape="rect" title=" " alt="" coords="607,95,711,121"/>
-<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="783,95,959,121"/>
+<area shape="rect" title=" " alt="" coords="735,95,813,121"/>
+<area shape="rect" title=" " alt="" coords="837,95,914,121"/>
+<area shape="rect" title=" " alt="" coords="938,95,1130,121"/>
+<area shape="rect" href="myConcepts_8h.html" title=" " alt="" coords="1154,95,1330,121"/>
 <area shape="rect" href="sharedDeclarations_8h.html" title=" " alt="" coords="275,259,497,285"/>
 <area shape="rect" href="printUtils_8h.html" title=" " alt="" coords="125,177,279,203"/>
 <area shape="rect" href="MeshCreator_8h.html" title=" " alt="" coords="355,95,532,121"/>
 <area shape="rect" href="commonTypes_8h.html" title=" " alt="" coords="549,177,738,203"/>
-<area shape="rect" title=" " alt="" coords="763,177,855,203"/>
-<area shape="rect" title=" " alt="" coords="879,177,959,203"/>
-<area shape="rect" title=" " alt="" coords="983,177,1039,203"/>
+<area shape="rect" title=" " alt="" coords="1085,177,1177,203"/>
+<area shape="rect" title=" " alt="" coords="1202,177,1282,203"/>
+<area shape="rect" title=" " alt="" coords="1306,177,1362,203"/>
 <area shape="rect" title=" " alt="" coords="299,333,375,360"/>
 <area shape="rect" href="enumUtils_8h.html" title=" " alt="" coords="399,333,501,360"/>
 <area shape="rect" title=" " alt="" coords="419,408,481,435"/>
@@ -169,6 +175,8 @@ Macros</h2></td></tr>
 <tr class="separator:ac0afb4a9120e3c874683f95d6298c366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fc8ef8af4c9eb576f1986e0994765fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GoogleCommon_8h.html#a0fc8ef8af4c9eb576f1986e0994765fd">EXPECT_EXCEPTION_WITH_ARGS</a>(statement,  exception_type,  expected_tuple)</td></tr>
 <tr class="separator:a0fc8ef8af4c9eb576f1986e0994765fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7a63adf15308469c327cfa1948b34f3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GoogleCommon_8h.html#a7a63adf15308469c327cfa1948b34f3b">EXPECT_CONTAINS</a>(haystack,  needle)&#160;&#160;&#160;ASSERT_THAT(haystack,::testing::HasSubstr(needle))</td></tr>
+<tr class="separator:a7a63adf15308469c327cfa1948b34f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -183,6 +191,13 @@ Functions</h2></td></tr>
 <tr class="memitem:a27cdb59bc1cc554f8cd8e07b3d932745"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a27cdb59bc1cc554f8cd8e07b3d932745">test_common::FirstValueTuplePrinter</a> (const testing::TestParamInfo&lt; typename TestSuite::ParamType &gt; &amp;info)</td></tr>
 <tr class="memdesc:a27cdb59bc1cc554f8cd8e07b3d932745"><td class="mdescLeft">&#160;</td><td class="mdescRight">Printer function used to name tests in parameterized test suites.  <a href="namespacetest__common.html#a27cdb59bc1cc554f8cd8e07b3d932745">More...</a><br /></td></tr>
 <tr class="separator:a27cdb59bc1cc554f8cd8e07b3d932745"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33ab81f215eda9b9bd64a5fa035c7fc2"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2">test_common::Demangle</a> (std::string_view mangled_name)</td></tr>
+<tr class="memdesc:a33ab81f215eda9b9bd64a5fa035c7fc2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms typeid(...).name() into human readable type.  <a href="namespacetest__common.html#a33ab81f215eda9b9bd64a5fa035c7fc2">More...</a><br /></td></tr>
+<tr class="separator:a33ab81f215eda9b9bd64a5fa035c7fc2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a37eec29e1012abf76b2881fa1482fb78"><td class="memTemplParams" colspan="2">template&lt;typename T &gt; </td></tr>
+<tr class="memitem:a37eec29e1012abf76b2881fa1482fb78"><td class="memTemplItemLeft" align="right" valign="top">std::string&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a37eec29e1012abf76b2881fa1482fb78">test_common::DemangledName</a> ()</td></tr>
+<tr class="memdesc:a37eec29e1012abf76b2881fa1482fb78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transforms input type into a valid string for gtest.  <a href="namespacetest__common.html#a37eec29e1012abf76b2881fa1482fb78">More...</a><br /></td></tr>
+<tr class="separator:a37eec29e1012abf76b2881fa1482fb78"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60a814823659e6c4e8d8f0d0da14666a"><td class="memTemplParams" colspan="2">template&lt;typename TestSuite &gt; </td></tr>
 <tr class="memitem:a60a814823659e6c4e8d8f0d0da14666a"><td class="memTemplItemLeft" align="right" valign="top">auto&#160;</td><td class="memTemplItemRight" valign="bottom"><a class="el" href="namespacetest__common.html#a60a814823659e6c4e8d8f0d0da14666a">test_common::TupleToString</a> (const testing::TestParamInfo&lt; typename TestSuite::ParamType &gt; &amp;info)</td></tr>
 <tr class="memdesc:a60a814823659e6c4e8d8f0d0da14666a"><td class="mdescLeft">&#160;</td><td class="mdescRight">converts tuple to string with _ as a delimiter  <a href="namespacetest__common.html#a60a814823659e6c4e8d8f0d0da14666a">More...</a><br /></td></tr>
@@ -320,6 +335,34 @@ Type</td>
           <td></td>
           <td>)</td>
           <td></td><td>&#160;&#160;&#160;ASSERT_NEAR(val1,val2,rel_error*val1/100)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a7a63adf15308469c327cfa1948b34f3b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7a63adf15308469c327cfa1948b34f3b">&#9670;&nbsp;</a></span>EXPECT_CONTAINS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXPECT_CONTAINS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">haystack, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">needle&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;ASSERT_THAT(haystack,::testing::HasSubstr(needle))</td>
         </tr>
       </table>
 </div><div class="memdoc">

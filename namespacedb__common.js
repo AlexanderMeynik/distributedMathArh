@@ -41,7 +41,7 @@ var namespacedb__common =
       [ "ADMINISTRATOR", "namespacedb__common.html#a16d3ed39748679fb4ae2410dc16f5f64a99fedb09f0f5da90e577784e5f9fdc23", null ]
     ] ],
     [ "CheckConnection", "namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc", null ],
-    [ "CheckDatabaseExistence", "namespacedb__common.html#a9355ec163d544700fd17c31ade29f161", null ],
+    [ "CheckDatabaseExistence", "namespacedb__common.html#ae4b4dc5c4843a817080c316576357afd", null ],
     [ "CreateDatabase", "namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396", null ],
     [ "Disconnect", "namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94", null ],
     [ "DropDatabase", "namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c", null ],
@@ -53,7 +53,7 @@ var namespacedb__common =
     [ "PaginateRequest", "namespacedb__common.html#afe5a348fb22dd5f91214dd95a80b6973", null ],
     [ "ParseArray", "namespacedb__common.html#acec6199e9f3a82271a9af92390122f7e", null ],
     [ "TerminateAllDbConnections", "namespacedb__common.html#ae57400437000d615d8df1cfc6989fa5b", null ],
-    [ "TryConnect", "namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b", null ],
+    [ "TryConnect", "namespacedb__common.html#a8117674f51aa482b0ad4d52268a412df", null ],
     [ "kExpStatusMappings", "namespacedb__common.html#af6f3114ad5af3ebb8e68e59f6218a5af", null ],
     [ "kExpStatusToStr", "namespacedb__common.html#ac2029439a3c5ac3130da0085bc9ec6ad", null ],
     [ "kIterStatusMappings", "namespacedb__common.html#a11280fc32e4b235bf990567c480d99d7", null ],

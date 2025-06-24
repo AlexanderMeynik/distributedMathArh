@@ -1,11 +1,11 @@
 <map id="db_common::CreateDatabase" name="db_common::CreateDatabase">
 <area shape="rect" id="node1" title="Creates database with db_name." alt="" coords="5,163,220,190"/>
-<area shape="rect" id="node2" href="$namespacedb__common.html#a9355ec163d544700fd17c31ade29f161" title="Checks db_name database existence." alt="" coords="275,5,487,47"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#ae4b4dc5c4843a817080c316576357afd" title="Checks db_name database existence." alt="" coords="275,5,487,47"/>
 <area shape="rect" id="node3" href="$namespacedb__common.html#a6792c7d97a64b6a7c3c1dd6a91822b94" title="Closes connection and reset conn_ptr." alt="" coords="290,71,473,98"/>
 <area shape="rect" id="node4" href="$classnetwork__types_1_1PostgreSQLCStr.html#a9692ec42cc8694f27cb4b6633d4833bc" title=" " alt="" coords="268,123,495,164"/>
 <area shape="rect" id="node5" href="$classnetwork__types_1_1PostgreSQLCStr.html#a002b494c10d362a69ce06e6f902a389f" title=" " alt="" coords="268,188,495,229"/>
 <area shape="rect" id="node6" href="$classnetwork__types_1_1PostgreSQLCStr.html#a6e18145463d58a0907ef9b5714a303c2" title=" " alt="" coords="268,253,495,295"/>
-<area shape="rect" id="node8" href="$namespacedb__common.html#a6559f5b5a1af005a0cb696df5e4dc63b" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="290,334,473,361"/>
+<area shape="rect" id="node8" href="$namespacedb__common.html#a8117674f51aa482b0ad4d52268a412df" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="290,334,473,361"/>
 <area shape="rect" id="node7" href="$classnetwork__types_1_1PostgreSQLCStr.html#a7047006bd7f7a27a84f00a1ce6ada5d5" title=" " alt="" coords="556,239,783,280"/>
 <area shape="rect" id="node9" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="558,305,781,331"/>
 <area shape="rect" id="node10" href="$classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="543,356,796,397"/>
