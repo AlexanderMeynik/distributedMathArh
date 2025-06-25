@@ -50,7 +50,6 @@ class DbService {
    */
   std::vector<User> ListUsers(IndexType page_num, IndexType page_size = 50);
 
-
   /**
    * @brief Create new Experiment  record
    * @param user_id
@@ -73,12 +72,27 @@ class DbService {
                                           IndexType page_size = 50);
   void UpdateExperimentStatus(IndexType experiment_id,
                               std::string_view status);
+  void UpdateExperimentStatus(IndexType experiment_id,
+                                   ExperimentStatus status);
+  /**
+   * @brief Retrieves experiment using its id
+   * @param experiment_id
+   * @return experiment object
+   */
   Experiment GetExperiment(IndexType experiment_id);
 
+  /**
+   * @brief Updated iteration status
+   * @param iteration_id
+   * @param status
+   * @param output_data
+   */
   void UpdateIterationStatus(IndexType iteration_id,
                              std::string_view status,
                              const Json::Value &output_data = Json::Value());
-
+  void UpdateIterationStatus(IndexType iteration_id,
+                             IterationStatus status,
+                             const Json::Value &output_data = Json::Value());
 
   /**
    * @brief Creates experiment record
@@ -132,6 +146,7 @@ class DbService {
    * @brief Deletes node
    * @param node_id
    */
+
   void UnregisterNode(IndexType node_id);
   /**
    * @brief Retrieves node record for id
@@ -164,6 +179,12 @@ class DbService {
   IndexType Log(const db_common::Log&log);
 
 
+  /**
+   * @brief Lists logs in paginated form
+   * @param page_num
+   * @param page_size
+   * @return list of logs
+   */
   std::vector<db_common::Log> ListLogs(IndexType page_num,
                                        IndexType page_size = 50);
 
@@ -172,26 +193,48 @@ class DbService {
   [[nodiscard]] const PostgreSQLCStr &GetConnStr() const;
   void SetConnStr(const PostgreSQLCStr &conn_str);
 
+  /**
+   * @brief Wrapper for the db_common::ExecuteTransaction
+   * @param func
+   * @return Result object
+   */
   ResType ExecuteTransaction(const std::function<ResType(TransactionT &)> &func);
 
+  /**
+   * @brief Wrapper for the db_common::ExecuteSubTransaction
+   * @param txn
+   * @param func
+   * @param sub_name
+   * @return
+   */
   ResType ExecuteSubTransaction(TransactionT &txn,
                                 const std::function<ResType(Subtransaction &)> &func,
                                 std::string_view sub_name = "");
 
  private:
-  PostgreSQLCStr conn_str_;
-
+  PostgreSQLCStr conn_str_;//< connection string for the service
+  ConnPtr conn_;//< connection pointer
+  /**
+   * @brief implements reconnection logic and checks
+   */
   void Reconnect();
 
-  ConnPtr conn_;
-
+  /**
+   * @brief Shorthand for the service events logging
+   * @param txn
+   * @param experiment_id
+   * @param node_id
+   * @param severity
+   * @param message
+   * @return
+   */
   IndexType InnerLog(TransactionT &txn,
                 std::optional<IndexType> experiment_id,
                 std::optional<IndexType> node_id,
                 std::string_view severity,
                 std::string_view message);
 
-  static inline const char *service_name = "DbService";
+  static inline const char *service_name = "DbService";//<service name
 };
 
 } // namespace db_service

@@ -124,8 +124,8 @@ void DbService::UpdateExperimentStatus(IndexType experiment_id, std::string_view
   ExecuteTransaction([&](TransactionT &txn) {
 
     std::string qq = "UPDATE \"Experiment\" SET status = $1, start_time = CASE WHEN"
-                     " $1 = 'running' THEN NOW() ELSE start_time END,"
-                     " end_time = CASE WHEN $1 IN ('succeeded', 'error')"
+                     " $1 = 'running'::status THEN NOW() ELSE start_time END,"
+                     " end_time = CASE WHEN $1 IN ('succeeded'::status, 'error'::status)"
                      " THEN NOW() ELSE end_time END WHERE experiment_id = $2";
     txn.exec(qq,pqxx::params{status, experiment_id});
 
@@ -134,6 +134,9 @@ void DbService::UpdateExperimentStatus(IndexType experiment_id, std::string_view
   });
 }
 
+void DbService::UpdateExperimentStatus(IndexType experiment_id, ExperimentStatus status) {
+  UpdateExperimentStatus(experiment_id,shared::EnumToStr(status,kExpStatusToStr));
+}
 Experiment DbService::GetExperiment(IndexType experiment_id) {
   Experiment experiment;
   ExecuteTransaction([&](TransactionT &txn) {
@@ -192,6 +195,10 @@ void DbService::UpdateIterationStatus(IndexType iteration_id,
                          );
     return ResType();
   });
+}
+
+void DbService::UpdateIterationStatus(IndexType iteration_id, IterationStatus status, const Json::Value &output_data) {
+  UpdateIterationStatus(iteration_id,shared::EnumToStr(status,kIterStatusToStr),output_data);
 }
 
 Iteration DbService::GetIteration(IndexType iteration_id) {
@@ -349,5 +356,6 @@ std::vector<db_common::Log> DbService::ListLogs(IndexType page_num, IndexType pa
   });
   return ParseArray<std::vector,db_common::Log>(result);
 }
+
 
 } // namespace db_service

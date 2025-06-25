@@ -20,11 +20,7 @@ ConnPtr TryConnect(const PostgreSQLCStr &conn_str,
 
   try {
     conn = std::make_shared<pqxx::connection>(conn_str.CStr());
-  } catch (const std::exception &e) {
-    throw Broken_Connection(service_name, conn_str.GetVerboseName());
-  }
-
-  if (!CheckConnection(conn)) {
+  } catch (const pqxx::broken_connection &e) {
     throw Broken_Connection(service_name, conn_str.GetVerboseName());
   }
 
@@ -71,9 +67,6 @@ ConnPtr CreateDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
   } catch (const pqxx::sql_error &e) {
     throw SQL_ERROR(e.what(), e.query(), e.sqlstate());
   }
-  catch (const std::exception &e) {
-    throw shared::MyException(e.what());
-  }
 
   Disconnect(temp_connection);
   return TryConnect(c_string, "Outer");
@@ -103,9 +96,6 @@ void DropDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
 
   } catch (const pqxx::sql_error &e) {
     throw SQL_ERROR(e.what(), e.query(), e.sqlstate());
-  }
-  catch (const std::exception &e) {
-    throw shared::MyException(e.what());
   }
 
   Disconnect(temp_connection);
@@ -137,10 +127,6 @@ ResType ExecuteTransaction(ConnPtr &ptr,
   catch (const pqxx::sql_error &e) {
     throw SQL_ERROR(e.what(), e.query(), e.sqlstate());
   }
-  catch (const std::exception &e) {
-    throw shared::MyException(fmt::format("Some other error {} {}:{}",
-                                          e.what(), __FILE__, __LINE__), shared::Severity::info);
-  }
 }
 ResType ExecuteSubTransaction(TransactionT &txn,
                               const std::function<ResType(Subtransaction &)> &func,
@@ -155,10 +141,6 @@ ResType ExecuteSubTransaction(TransactionT &txn,
   }
   catch (const pqxx::sql_error &e) {
     throw SQL_ERROR(e.what(), e.query(), e.sqlstate());
-  }
-  catch (const std::exception &e) {
-    throw shared::MyException(fmt::format("Some other error {} {}:{}",
-                                          e.what(), __FILE__, __LINE__), shared::Severity::info);
   }
 }
 std::string PaginateRequest(std::string_view initial_request, IndexType page_num, IndexType page_size) {

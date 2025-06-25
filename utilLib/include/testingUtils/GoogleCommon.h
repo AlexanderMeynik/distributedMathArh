@@ -33,7 +33,9 @@ do { \
     EXPECT_EQ);                                                                          \
 } while (0)
 
-#define EXPECT_CONTAINS(haystack,needle) ASSERT_THAT(haystack,::testing::HasSubstr(needle))
+#define EXPECT_STR_CONTAINS(haystack,needle) ASSERT_THAT(haystack,::testing::HasSubstr(needle))
+#define EXPECT_CONTAINS(collection,element) ASSERT_THAT(collection,::testing::Contains(element))
+#define EXPECT_NOT_CONTAINS(collection,element) ASSERT_THAT(collection,::testing::Not(::testing::Contains(element)))
 using namespace my_concepts;
 using shared::FloatType;
 namespace sh = shared;

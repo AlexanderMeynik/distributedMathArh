@@ -109,6 +109,10 @@ class DbServiceTest : public ::testing::Test {
   static inline std::string tpassword="password";
 
 };
+TEST_F(DbServiceTest,RepeadtedReconnect)
+{
+  ASSERT_THROW(service_->Connect(),Already_Connected);
+}
 
 TEST_F(DbServiceTest, SetGetCstring) {
   auto c_string = PostgreSQLCStr("a", "p", "localhost", "db", 5432);
@@ -166,11 +170,10 @@ TEST_F(DbServiceTest, CreateAndAuthenticateUser) {
   ASSERT_TRUE(service_->AuthenticateUser(user));
 
   auto users = service_->ListUsers(1);
-  ASSERT_TRUE(std::find(users.begin(), users.end(), user) != users.end());
+  EXPECT_CONTAINS(users, user);
 }
 TEST_F(DbServiceTest,DeleteUser)
 {
-
   User user2;
   user2.login = tlogin+"2";
   user2.hashed_password = tpassword+"2";
@@ -181,8 +184,7 @@ TEST_F(DbServiceTest,DeleteUser)
   service_->DeleteUser(user2.user_id);
 
   auto users = service_->ListUsers(1);
-  ASSERT_FALSE(std::find(users.begin(), users.end(), user2) != users.end());
-
+  EXPECT_NOT_CONTAINS(users, user2);
 }
 
 TEST_F(DbServiceTest, CreateExperiment) {
@@ -199,9 +201,21 @@ TEST_F(DbServiceTest, CreateExperiment) {
 
   auto experiments=service_->ListExperiments(user.user_id,1);
 
-  ASSERT_TRUE(std::find(experiments.begin(),
-                        experiments.end(), experiment) != experiments.end());
+  EXPECT_CONTAINS(experiments, experiment);
 }
+
+TEST_F(DbServiceTest, UpdateExperimentStatus) {
+  auto user=service_->ListUsers(1).back();
+  auto st=ExperimentStatus::ERROR;
+  Experiment experiment=*service_->ListExperiments(user.user_id,1).begin();
+
+  service_->UpdateExperimentStatus(experiment.experiment_id,st);
+
+  auto new_experiment=service_->GetExperiment(experiment.experiment_id);
+
+  ASSERT_EQ(new_experiment.status,st);
+}
+
 
 TEST_F(DbServiceTest, CreateIterationAndUpdate) {
 
@@ -233,10 +247,20 @@ TEST_F(DbServiceTest, CreateIterationAndUpdate) {
   service_->UpdateIterationStatus(iterat.iteration_id, "succeeded", output);
 
   auto iters=service_->ListIterations(exp.experiment_id,1);
-  ASSERT_TRUE(std::find(iters.begin(),
-                        iters.end(), iterat) != iters.end());
+
+  EXPECT_CONTAINS(iters, iterat);
 }
 
+TEST_F(DbServiceTest, UpdateIterationStatus) {
+  auto user=service_->ListUsers(1).back();
+  Experiment experiment=*service_->ListExperiments(user.user_id,1).begin();
+
+  auto iter=*service_->ListIterations(experiment.experiment_id,1).begin();
+  auto st=IterationStatus::ERROR;
+  service_->UpdateIterationStatus(iter.iteration_id,st);
+  auto new_iter=service_->GetIteration(iter.iteration_id);
+  ASSERT_EQ(new_iter.status,st);
+}
 
 
 
@@ -251,8 +275,8 @@ TEST_F(DbServiceTest, RegisterNodeAndUpdateStatus) {
   service_->UpdateNodeStatus(node_id, "busy");
 
   auto nodes=service_->ListNodes(1);
-  ASSERT_TRUE(std::find(nodes.begin(),
-                        nodes.end(), node) != nodes.end());
+
+  EXPECT_CONTAINS(nodes, node);
 }
 
 
@@ -268,8 +292,7 @@ TEST_F(DbServiceTest, DeleteNode) {
 
   service_->UnregisterNode(node.node_id);
   auto nodes_del=service_->ListNodes(1);
-  ASSERT_TRUE(std::find(nodes_del.begin(),
-                        nodes_del.end(), node) != nodes_del.end());
+  EXPECT_CONTAINS(nodes, node);
 }
 
 
@@ -283,8 +306,7 @@ TEST_F(DbServiceTest, LogMessage) {
 
   auto logs=service_->ListLogs(1);
 
-  ASSERT_TRUE(std::find(logs.begin(),
-                        logs.end(), lg) != logs.end());
+  EXPECT_CONTAINS(logs, lg);
 }
 
 }

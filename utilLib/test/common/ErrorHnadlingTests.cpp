@@ -41,6 +41,6 @@ TEST_P(ExceptionTypeTs, TestValidMessageFormation) {
     throw *exception;
   } catch (const shared::MyException& e) {
     std::string_view message=e.what();
-    EXPECT_CONTAINS(e.what(),valid_message);
+    EXPECT_STR_CONTAINS(e.what(),valid_message);
   }
 }

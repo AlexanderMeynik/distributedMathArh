@@ -65,6 +65,7 @@ VecT<RetType> ParseArray(const ResType&result);
 
 /**
  * @brief formats request to add pagination
+ * @note pages range from 1
  * @param initial_request
  * @param page_num
  * @param page_size
