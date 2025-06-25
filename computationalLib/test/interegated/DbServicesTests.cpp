@@ -205,15 +205,25 @@ TEST_F(DbServiceTest, CreateExperiment) {
 }
 
 TEST_F(DbServiceTest, UpdateExperimentStatus) {
-  auto user=service_->ListUsers(1).back();
-  auto st=ExperimentStatus::ERROR;
-  Experiment experiment=*service_->ListExperiments(user.user_id,1).begin();
+  User user;
+  user.role = UserRole::USER;
+  user.login = "expuser_update2";
+  user.hashed_password = "password_update2";
+  user.user_id = service_->CreateUser(user);
 
-  service_->UpdateExperimentStatus(experiment.experiment_id,st);
+  auto new_st=ExperimentStatus::ERROR;
+
+
+  Experiment experiment;
+  experiment.user_id=user.user_id;
+  experiment.parameters["N"] = 100;
+  experiment.experiment_id = service_->CreateExperiment(experiment);
+
+  service_->UpdateExperimentStatus(experiment.experiment_id,new_st);
 
   auto new_experiment=service_->GetExperiment(experiment.experiment_id);
 
-  ASSERT_EQ(new_experiment.status,st);
+  ASSERT_EQ(new_experiment.status,new_st);
 }
 
 
@@ -252,14 +262,34 @@ TEST_F(DbServiceTest, CreateIterationAndUpdate) {
 }
 
 TEST_F(DbServiceTest, UpdateIterationStatus) {
-  auto user=service_->ListUsers(1).back();
-  Experiment experiment=*service_->ListExperiments(user.user_id,1).begin();
+  User user;
+  user.role = UserRole::USER;
+  user.login = "expuser_update3";
+  user.hashed_password = "password_update3";
+  user.user_id = service_->CreateUser(user);
 
-  auto iter=*service_->ListIterations(experiment.experiment_id,1).begin();
-  auto st=IterationStatus::ERROR;
-  service_->UpdateIterationStatus(iter.iteration_id,st);
+  Experiment experiment;
+  experiment.user_id=user.user_id;
+  experiment.parameters["N"] = 100;
+  experiment.experiment_id = service_->CreateExperiment(experiment);
+
+
+  Node node;
+  node.ip_address="192.168.1.45";
+  node.benchmark_score=shared::BenchResVec{200, 400};
+  node.node_id = service_->RegisterNode(node);
+
+  Iteration iter;
+  iter.experiment_id=experiment.experiment_id;
+  iter.node_id=node.node_id;
+  iter.iter_t=IterationType::SOLVE;
+
+  iter.iteration_id = service_->CreateIteration(iter);
+
+  auto new_st=IterationStatus::ERROR;
+  service_->UpdateIterationStatus(iter.iteration_id, new_st);
   auto new_iter=service_->GetIteration(iter.iteration_id);
-  ASSERT_EQ(new_iter.status,st);
+  ASSERT_EQ(new_iter.status, new_st);
 }
 
 
