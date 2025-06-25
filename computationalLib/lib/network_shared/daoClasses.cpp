@@ -28,7 +28,7 @@ Iteration::Iteration(const pqxx::row &row) {
   auto st = row["status"].as<std::string>();
   status = StrToEnum(st, kStrToIterStatus);
 
-  output_data = Json::Value(row["output_data"].as<std::string>());
+  output_data = Json::Value(row["output_data"].is_null()?"{}":row["output_data"].as<std::string>());
 
   start_time = *StrToTimepoint(row["start_time"].as<std::string>());
 
