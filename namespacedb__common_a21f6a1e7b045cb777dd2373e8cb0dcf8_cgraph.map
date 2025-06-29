@@ -1,8 +1,8 @@
 <map id="db_common::FillDatabase" name="db_common::FillDatabase">
-<area shape="rect" id="node1" title="Executes the script ot inidb." alt="" coords="5,46,196,73"/>
-<area shape="rect" id="node2" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="244,21,479,47"/>
-<area shape="rect" id="node5" href="$namespacedb__common.html#a8117674f51aa482b0ad4d52268a412df" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="270,71,453,98"/>
-<area shape="rect" id="node3" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="542,71,765,98"/>
-<area shape="rect" id="node4" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="540,5,767,47"/>
-<area shape="rect" id="node6" href="$classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="527,123,780,164"/>
+<area shape="rect" id="node1" title="Executes the script ot inidb." alt="" coords="5,64,196,91"/>
+<area shape="rect" id="node2" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="244,39,479,65"/>
+<area shape="rect" id="node5" href="$namespacedb__common.html#a8117674f51aa482b0ad4d52268a412df" title="Attempt to connect to PostgrSQL with conn_str." alt="" coords="270,89,453,116"/>
+<area shape="rect" id="node3" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="542,5,765,32"/>
+<area shape="rect" id="node4" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="540,57,767,98"/>
+<area shape="rect" id="node6" href="$classnetwork__types_1_1AbstractConnectionString.html#a7e04ba570eeee321ac0085ebcc9d57e8" title="Retrieves const char * representation." alt="" coords="527,122,780,163"/>
 </map>

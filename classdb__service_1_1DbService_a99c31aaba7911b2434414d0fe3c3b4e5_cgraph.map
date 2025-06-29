@@ -1,6 +1,6 @@
 <map id="db_service::DbService::AuthenticateUser" name="db_service::DbService::AuthenticateUser">
 <area shape="rect" id="node1" title="Performs authentication attempt." alt="" coords="5,27,172,69"/>
-<area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title=" " alt="" coords="220,27,387,69"/>
+<area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#a188ea376bf81f5507e5c6b155cc637b7" title="Wrapper for the db_common::ExecuteTransaction." alt="" coords="220,27,387,69"/>
 <area shape="rect" id="node3" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="435,35,669,61"/>
 <area shape="rect" id="node4" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="719,5,942,32"/>
 <area shape="rect" id="node5" href="$classnetwork__types_1_1PostgreSQLCStr.html#a677ab4b9ee5f16abdc6b3a3ef9d28eed" title="Retrieves cString contents for verbose logging." alt="" coords="717,57,944,98"/>

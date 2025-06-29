@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['workermanagementservice_873',['WorkerManagementService',['../classmain__services_1_1WorkerManagementService.html',1,'main_services']]]
+  ['workermanagementservice_876',['WorkerManagementService',['../classmain__services_1_1WorkerManagementService.html',1,'main_services']]]
 ];

@@ -1,4 +1,4 @@
 <map id="db_service::DbService::Reconnect" name="db_service::DbService::Reconnect">
-<area shape="rect" id="node1" title=" " alt="" coords="220,5,387,47"/>
+<area shape="rect" id="node1" title="implements reconnection logic and checks" alt="" coords="220,5,387,47"/>
 <area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="5,5,172,47"/>
 </map>

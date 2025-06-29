@@ -1,10 +1,11 @@
 <map id="db_common::ExecuteSubTransaction" name="db_common::ExecuteSubTransaction">
-<area shape="rect" id="node1" title="Executes function inside subtransaction of txn." alt="" coords="688,79,947,106"/>
-<area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#a371b366a824020f7b467f0f4373f8e73" title=" " alt="" coords="461,39,640,80"/>
-<area shape="rect" id="node3" href="$classdb__service_1_1DbService.html#a285d98fb1ac9d4bd614f43dea27dccd8" title=" " alt="" coords="467,104,634,145"/>
-<area shape="rect" id="node4" href="$classdb__service_1_1DbService.html#a2f045f38e13e946bd858e17e02cf870b" title="Create new Experiment record." alt="" coords="233,5,400,47"/>
-<area shape="rect" id="node6" href="$classdb__service_1_1DbService.html#afc2577c4a823f1decda807ef99bbdb22" title="Creates experiment record." alt="" coords="233,71,400,112"/>
-<area shape="rect" id="node7" href="$classdb__service_1_1DbService.html#a442450409b3a8845144b97fd8b46ce27" title=" " alt="" coords="220,136,413,177"/>
-<area shape="rect" id="node8" href="$classdb__service_1_1DbService.html#af5f9fd1b6ec9dbdef174f18832179a6f" title=" " alt="" coords="230,201,403,243"/>
-<area shape="rect" id="node5" href="$classdb__service_1_1DbService.html#af28a477998781dcf5c20916de82012b4" title=" " alt="" coords="5,5,172,47"/>
+<area shape="rect" id="node1" title="Executes function inside subtransaction of txn." alt="" coords="715,79,973,106"/>
+<area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#a371b366a824020f7b467f0f4373f8e73" title="Wrapper for the db_common::ExecuteSubTransaction." alt="" coords="488,39,667,80"/>
+<area shape="rect" id="node3" href="$classdb__service_1_1DbService.html#a285d98fb1ac9d4bd614f43dea27dccd8" title="Shorthand for the service events logging." alt="" coords="494,104,661,145"/>
+<area shape="rect" id="node4" href="$classdb__service_1_1DbService.html#a2f045f38e13e946bd858e17e02cf870b" title="Create new Experiment record." alt="" coords="260,5,427,47"/>
+<area shape="rect" id="node6" href="$classdb__service_1_1DbService.html#afc2577c4a823f1decda807ef99bbdb22" title="Creates experiment record." alt="" coords="260,71,427,112"/>
+<area shape="rect" id="node7" href="$classdb__service_1_1DbService.html#a442450409b3a8845144b97fd8b46ce27" title=" " alt="" coords="247,136,440,177"/>
+<area shape="rect" id="node9" href="$classdb__service_1_1DbService.html#af5f9fd1b6ec9dbdef174f18832179a6f" title="Updated iteration status." alt="" coords="257,201,430,243"/>
+<area shape="rect" id="node5" href="$classdb__service_1_1DbService.html#af28a477998781dcf5c20916de82012b4" title=" " alt="" coords="19,5,185,47"/>
+<area shape="rect" id="node8" href="$classdb__service_1_1DbService.html#aa73b9bbba565af499f3d935040ccb016" title=" " alt="" coords="5,136,199,177"/>
 </map>

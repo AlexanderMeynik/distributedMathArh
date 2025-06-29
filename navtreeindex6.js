@@ -1,5 +1,9 @@
 var NAVTREEINDEX6 =
 {
+"structnetwork__types_1_1TestSolveParam.html#a6becddfae4e0a46a68e0109a46d8b30f":[4,0,15,3,0],
+"structnetwork__types_1_1TestSolveParam.html#ab6b44d2104cef733184181dc9e3d5c3c":[4,0,15,3,1],
+"structnetwork__types_1_1TestSolveParam.html#ae73b4a40c022006770cb5bd3fc5e4248":[4,0,15,3,2],
+"structnetwork__types_1_1TestSolveParam.html#afd86c96ee05f0317f38298cb373fcd13":[4,0,15,3,5],
 "structnetwork__types_1_1channel.html":[4,0,15,9],
 "structnetwork__types_1_1channel.html#a0672cc5b358024c037b2be64f92a5d8a":[4,0,15,9,3],
 "structnetwork__types_1_1channel.html#a0f8aa9f63926afc86c3c63e95548db86":[4,0,15,9,5],

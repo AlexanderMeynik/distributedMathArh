@@ -1,4 +1,4 @@
 <map id="db_service::DbService::ExecuteSubTransaction" name="db_service::DbService::ExecuteSubTransaction">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,184,47"/>
+<area shape="rect" id="node1" title="Wrapper for the db_common::ExecuteSubTransaction." alt="" coords="5,5,184,47"/>
 <area shape="rect" id="node2" href="$namespacedb__common.html#ade4a0e64d613a70412fa41a5008b1d35" title="Executes function inside subtransaction of txn." alt="" coords="232,13,491,39"/>
 </map>

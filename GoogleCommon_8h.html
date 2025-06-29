@@ -175,8 +175,12 @@ Macros</h2></td></tr>
 <tr class="separator:ac0afb4a9120e3c874683f95d6298c366"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fc8ef8af4c9eb576f1986e0994765fd"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GoogleCommon_8h.html#a0fc8ef8af4c9eb576f1986e0994765fd">EXPECT_EXCEPTION_WITH_ARGS</a>(statement,  exception_type,  expected_tuple)</td></tr>
 <tr class="separator:a0fc8ef8af4c9eb576f1986e0994765fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7a63adf15308469c327cfa1948b34f3b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GoogleCommon_8h.html#a7a63adf15308469c327cfa1948b34f3b">EXPECT_CONTAINS</a>(haystack,  needle)&#160;&#160;&#160;ASSERT_THAT(haystack,::testing::HasSubstr(needle))</td></tr>
-<tr class="separator:a7a63adf15308469c327cfa1948b34f3b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3ee141a28ed6e241bb1a89ccb5a4802"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GoogleCommon_8h.html#aa3ee141a28ed6e241bb1a89ccb5a4802">EXPECT_STR_CONTAINS</a>(haystack,  needle)&#160;&#160;&#160;ASSERT_THAT(haystack,::testing::HasSubstr(needle))</td></tr>
+<tr class="separator:aa3ee141a28ed6e241bb1a89ccb5a4802"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18a309c165bccc925cdfad78808d9a00"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GoogleCommon_8h.html#a18a309c165bccc925cdfad78808d9a00">EXPECT_CONTAINS</a>(collection,  element)&#160;&#160;&#160;ASSERT_THAT(collection,::testing::Contains(element))</td></tr>
+<tr class="separator:a18a309c165bccc925cdfad78808d9a00"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e2a5df8106615f0c75d9a57ac529afb"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="GoogleCommon_8h.html#a9e2a5df8106615f0c75d9a57ac529afb">EXPECT_NOT_CONTAINS</a>(collection,  element)&#160;&#160;&#160;ASSERT_THAT(collection,::testing::Not(::testing::Contains(element)))</td></tr>
+<tr class="separator:a9e2a5df8106615f0c75d9a57ac529afb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
@@ -341,8 +345,8 @@ Type</td>
 
 </div>
 </div>
-<a id="a7a63adf15308469c327cfa1948b34f3b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7a63adf15308469c327cfa1948b34f3b">&#9670;&nbsp;</a></span>EXPECT_CONTAINS</h2>
+<a id="a18a309c165bccc925cdfad78808d9a00"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a18a309c165bccc925cdfad78808d9a00">&#9670;&nbsp;</a></span>EXPECT_CONTAINS</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -351,18 +355,18 @@ Type</td>
           <td class="memname">#define EXPECT_CONTAINS</td>
           <td>(</td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">haystack, </td>
+          <td class="paramname">collection, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">&#160;</td>
-          <td class="paramname">needle&#160;</td>
+          <td class="paramname">element&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
-          <td></td><td>&#160;&#160;&#160;ASSERT_THAT(haystack,::testing::HasSubstr(needle))</td>
+          <td></td><td>&#160;&#160;&#160;ASSERT_THAT(collection,::testing::Contains(element))</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -485,6 +489,62 @@ Type</td>
           <td></td>
           <td>)</td>
           <td></td><td>&#160;&#160;&#160;EXPECT_NEAR(val1,val2,rel_error*val1/100)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a9e2a5df8106615f0c75d9a57ac529afb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9e2a5df8106615f0c75d9a57ac529afb">&#9670;&nbsp;</a></span>EXPECT_NOT_CONTAINS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXPECT_NOT_CONTAINS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">collection, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">element&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;ASSERT_THAT(collection,::testing::Not(::testing::Contains(element)))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="aa3ee141a28ed6e241bb1a89ccb5a4802"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa3ee141a28ed6e241bb1a89ccb5a4802">&#9670;&nbsp;</a></span>EXPECT_STR_CONTAINS</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define EXPECT_STR_CONTAINS</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">haystack, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">needle&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;ASSERT_THAT(haystack,::testing::HasSubstr(needle))</td>
         </tr>
       </table>
 </div><div class="memdoc">

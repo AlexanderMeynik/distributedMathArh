@@ -1,5 +1,5 @@
 <map id="db_service::DbService::ListLogs" name="db_service::DbService::ListLogs">
-<area shape="rect" id="node1" title=" " alt="" coords="5,53,172,94"/>
+<area shape="rect" id="node1" title="Lists logs in paginated form." alt="" coords="5,53,172,94"/>
 <area shape="rect" id="node2" href="$namespacedb__common.html#aa9e2ff021387a58a03679addf6a31073" title="Executes function in the form of transaction." alt="" coords="220,35,455,61"/>
 <area shape="rect" id="node5" href="$namespacedb__common.html#afe5a348fb22dd5f91214dd95a80b6973" title="formats request to add pagination" alt="" coords="228,85,447,112"/>
 <area shape="rect" id="node3" href="$namespacedb__common.html#a4da7b18820b3b9076b7e590a3fb69cbc" title="Checks connection." alt="" coords="505,5,727,32"/>

@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="formats request to add pagination" alt="" coords="220,143,439,170"/>
 <area shape="rect" id="node2" href="$classdb__service_1_1DbService.html#aca53a3d1a95c8d14b6e9878221eeabef" title="Retrieves list of Experiments for user_id." alt="" coords="5,5,172,47"/>
 <area shape="rect" id="node3" href="$classdb__service_1_1DbService.html#aedc5a6ace426c833acf8ede88bd734a7" title="Retrieves iteration list for experiment_id." alt="" coords="5,71,172,112"/>
-<area shape="rect" id="node4" href="$classdb__service_1_1DbService.html#a48a8ee09a064d463d4eb2a6f711ec1d9" title=" " alt="" coords="5,136,172,177"/>
+<area shape="rect" id="node4" href="$classdb__service_1_1DbService.html#a48a8ee09a064d463d4eb2a6f711ec1d9" title="Lists logs in paginated form." alt="" coords="5,136,172,177"/>
 <area shape="rect" id="node5" href="$classdb__service_1_1DbService.html#a7d6825e0d405e15c1e28e23b36de1a64" title="Retrieves node list in paginated format." alt="" coords="5,201,172,243"/>
 <area shape="rect" id="node6" href="$classdb__service_1_1DbService.html#a7e75c54e7cc87a64a84edd283723c34e" title="Retrieves user list in paginated form." alt="" coords="5,267,172,308"/>
 </map>

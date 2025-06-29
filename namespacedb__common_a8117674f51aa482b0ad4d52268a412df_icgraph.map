@@ -3,6 +3,6 @@
 <area shape="rect" id="node2" href="$namespacedb__common.html#ae2d12264a8c82efbeda1a40a03366396" title="Creates database with db_name." alt="" coords="220,5,435,32"/>
 <area shape="rect" id="node3" href="$namespacedb__common.html#af8bd865a001ad0acf214bd6dd887214c" title="Drops specified database." alt="" coords="226,56,429,83"/>
 <area shape="rect" id="node4" href="$namespacedb__common.html#a21f6a1e7b045cb777dd2373e8cb0dcf8" title="Executes the script ot inidb." alt="" coords="232,107,423,133"/>
-<area shape="rect" id="node5" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title=" " alt="" coords="244,158,411,199"/>
+<area shape="rect" id="node5" href="$classdb__service_1_1DbService.html#a0968461075762cbf0c1a3c6592b96aa9" title="implements reconnection logic and checks" alt="" coords="244,158,411,199"/>
 <area shape="rect" id="node6" href="$classdb__service_1_1DbService.html#a89e6e281b62615f03e1f7a1199b1cde5" title=" " alt="" coords="5,158,172,199"/>
 </map>

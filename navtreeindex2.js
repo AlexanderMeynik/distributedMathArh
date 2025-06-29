@@ -1,5 +1,9 @@
 var NAVTREEINDEX2 =
 {
+"classnetwork__types_1_1PostgreSQLCStr.html#aa3a33c6ff05a217aece8ca0e5f419384":[4,0,15,1,0],
+"classnetwork__types_1_1PostgreSQLCStr.html#ac6ec16a1a5865a30bd6ba0a0bdf6eee5":[4,0,15,1,6],
+"classnetwork__types_1_1PostgreSQLCStr.html#ad0a2d409dff29741f9cbe6fd2acbd659":[4,0,15,1,18],
+"classnetwork__types_1_1PostgreSQLCStr.html#ad2662a7ee82e6fd94ce384cd0743f257":[4,0,15,1,13],
 "classprint__utils_1_1IosStatePreserve.html":[4,0,16,1],
 "classprint__utils_1_1IosStatePreserve.html#a35304135d342fad27273af1d35564b32":[4,0,16,1,2],
 "classprint__utils_1_1IosStatePreserve.html#a3e51c256c0cd8ab4aa3980c864b294e9":[4,0,16,1,5],
@@ -245,9 +249,5 @@ var NAVTREEINDEX2 =
 "dbCommon_8cpp.html#af8bd865a001ad0acf214bd6dd887214c":[5,0,2,1,1,6,4],
 "dbCommon_8cpp.html#afe5a348fb22dd5f91214dd95a80b6973":[5,0,2,1,1,6,8],
 "dbCommon_8h.html":[5,0,2,0,1,6],
-"dbCommon_8h.html#a02f534d3d64b4b315c5fcd74cad80fc0":[5,0,2,0,1,6,14],
-"dbCommon_8h.html#a0bf5bdeb7108eed0c8454cbcd5c39615":[5,0,2,0,1,6,1],
-"dbCommon_8h.html#a21f6a1e7b045cb777dd2373e8cb0dcf8":[5,0,2,0,1,6,13],
-"dbCommon_8h.html#a2d8fca39b7d78c9826b6661cc651ac02":[5,0,2,0,1,6,20],
-"dbCommon_8h.html#a328a16b225cb6beb4726da339347ec0b":[5,0,2,0,1,6,2]
+"dbCommon_8h.html#a02f534d3d64b4b315c5fcd74cad80fc0":[5,0,2,0,1,6,14]
 };
