@@ -23,7 +23,7 @@ using shared::Already_Connected;
 using shared::Broken_Connection;
 static const char *const SampleTempDb = "template1";
 
-
+using my_concepts::HasReserve;
 using network_types::PostgreSQLCStr;
 
 /**
@@ -68,7 +68,7 @@ std::optional<T> inline GetFunctionOpt(pqxx::field&&a)
  * @return VecT<RetType>
  */
 template<template<typename ...> typename VecT ,typename RetType>
-requires HasRowConstructor<RetType>
+requires HasRowConstructor<RetType>&& HasReserve<VecT<RetType>>
 VecT<RetType> ParseArray(const ResType&result);
 
 /**
@@ -206,7 +206,7 @@ ResType ExecuteSubTransaction(TransactionT &txn,
 namespace db_common
 {
 template<template<typename ...> typename VecT ,typename RetType>
-requires HasRowConstructor<RetType>
+requires HasRowConstructor<RetType> && HasReserve<VecT<RetType>>
 VecT<RetType> ParseArray(const ResType&result)
 {
   VecT<RetType> res;
