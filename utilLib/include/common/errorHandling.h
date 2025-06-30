@@ -99,7 +99,7 @@ class MyException : public cpptrace::logic_error {
   }
 
  private:
-  Severity m_sev_;//< severity for this exception
+  Severity m_sev_;///< severity for this exception
 };
 
 /**

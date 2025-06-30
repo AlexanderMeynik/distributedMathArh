@@ -332,7 +332,7 @@ std::vector<Node> DbService::ListNodes(IndexType page_num, IndexType page_size) 
 
   auto result=ExecuteTransaction([&](TransactionT &txn) {
     std::string qq = "SELECT * FROM \"Node\"";
-        auto req=PaginateRequest(qq,
+    auto req=PaginateRequest(qq,
                              page_num, page_size);
     return txn.exec(req);
   });

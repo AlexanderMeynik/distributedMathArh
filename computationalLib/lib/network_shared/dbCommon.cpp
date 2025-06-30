@@ -101,10 +101,29 @@ void DropDatabase(PostgreSQLCStr c_string, std::string_view db_name) {
   Disconnect(temp_connection);
 }
 bool CheckDatabaseExistence(NonTransType &non_trans, std::string_view db_name) {
-  std::string qq = fmt::format("SELECT 1 FROM pg_database WHERE datname = \'{}\';", db_name.data());
-  return non_trans.exec(qq).size();
+  std::string qq = "SELECT 1 FROM pg_database WHERE datname = $1";
+  return non_trans.exec(qq,pqxx::params{db_name.data()}).size();
 }
-void FillDatabase(PostgreSQLCStr c_string, std::string_view script) {
+
+DbEntry::DbEntry(const pqxx::row &row) {
+  oid =row["oid"].as<IndexType>();
+  name=row["datname"].as<std::string>();
+  name=row["datname"].as<std::string>();
+}
+bool DbEntry::operator==(const DbEntry &rhs) const {
+  return name == rhs.name;
+}
+DbEntry::DbEntry(IndexType oid, const std::string &name) : oid(oid), name(name) {}
+
+std::vector<DbEntry> ListDatabases(const PostgreSQLCStr & c_string) {
+  auto conn = TryConnect(c_string, "Outer");
+  auto res = ExecuteTransaction(conn, [&](TransactionT &txn) {
+    auto r = txn.exec("SELECT oid,datname FROM pg_database;");
+    return r;
+  }, "Outer", c_string);
+  return ParseArray<std::vector,DbEntry>(res);
+}
+void FillDatabase(const PostgreSQLCStr &c_string, std::string_view script) {
   auto conn = TryConnect(c_string, "Outer");
   ExecuteTransaction(conn, [&](TransactionT &txn) {
     auto r = txn.exec(script);
@@ -149,5 +168,6 @@ std::string PaginateRequest(std::string_view initial_request, IndexType page_num
                      page_size,
                      (page_num - 1) * page_size);
 }
+
 
 }

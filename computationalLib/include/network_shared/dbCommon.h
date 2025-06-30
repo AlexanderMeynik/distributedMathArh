@@ -27,6 +27,13 @@ static const char *const SampleTempDb = "template1";
 using network_types::PostgreSQLCStr;
 
 /**
+ * @brief Concept to check constructability from pqxx::row
+ * @tparam RetType
+ */
+template <typename RetType>
+concept HasRowConstructor = std::is_constructible_v<RetType,const pqxx::row&>;
+
+/**
  * @brief Function to retrieve optional value
  * @tparam T
  * @param a
@@ -61,6 +68,7 @@ std::optional<T> inline GetFunctionOpt(pqxx::field&&a)
  * @return VecT<RetType>
  */
 template<template<typename ...> typename VecT ,typename RetType>
+requires HasRowConstructor<RetType>
 VecT<RetType> ParseArray(const ResType&result);
 
 /**
@@ -109,6 +117,29 @@ ConnPtr TryConnect(const PostgreSQLCStr &conn_str,
 bool CheckDatabaseExistence(NonTransType &non_trans,
                               std::string_view db_name);
 
+
+
+
+/**
+ * @brief Db DAO
+ */
+struct DbEntry {
+  IndexType oid;///<database id
+  std::string name;///<database name
+
+  DbEntry() = default;
+  DbEntry(const pqxx::row &row);
+  DbEntry(IndexType oid, const std::string &name);
+  bool operator==(const DbEntry &rhs) const;
+};
+
+/**
+ * @brief Lists all database
+ * @param c_string
+ * @return List of databases
+ */
+std::vector<DbEntry> ListDatabases(const PostgreSQLCStr & c_string);
+
 /**
  * @brief terminates all connections for the specified database
  * @param no_trans_exec
@@ -140,7 +171,7 @@ void DropDatabase(PostgreSQLCStr c_string, std::string_view db_name);
  * @param c_string
  * @param script
  */
-void FillDatabase(PostgreSQLCStr c_string, std::string_view script);
+void FillDatabase(const PostgreSQLCStr &c_string, std::string_view script);
 
 /**
  * @brief Executes function in the form of transaction
@@ -175,6 +206,7 @@ ResType ExecuteSubTransaction(TransactionT &txn,
 namespace db_common
 {
 template<template<typename ...> typename VecT ,typename RetType>
+requires HasRowConstructor<RetType>
 VecT<RetType> ParseArray(const ResType&result)
 {
   VecT<RetType> res;

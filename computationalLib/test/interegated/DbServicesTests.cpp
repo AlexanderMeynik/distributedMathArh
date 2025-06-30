@@ -352,17 +352,13 @@ class DatabaseTestEnvironment : public ::testing::Environment {
     auto str=conn_string_;
     str.SetDbname(SampleTempDb);
 
-    ConnPtr conn_ptr_;
-
-    conn_ptr_= TryConnect(str,"serv");
-    NonTransType no_trans_exec(*conn_ptr_);//todo very quirky way to handle this
-    if(CheckDatabaseExistence(no_trans_exec,kDbName))
+    DbEntry dd{1,kDbName};
+    auto list= ListDatabases(str);
+    if(std::find(list.begin(), list.end(),dd)!=list.end())
     {
       fmt::print(fmt::runtime("Database {} already existed, deleting it"),kDbName);
       DropDatabase(conn_string_,kDbName);
     }
-    no_trans_exec.commit();
-    conn_ptr_->close();
 
 
     CreateDatabase(conn_string_, kDbName);

@@ -85,7 +85,6 @@ TEST_F(AMQPPublisherServiceTS, AddRemoveQueue) {
   });
   EXPECT_TRUE(connOk);
   EXPECT_TRUE(chanOk);
-  ///@todo remove queue
 }
 
 TEST_F(AMQPPublisherServiceTS, PublishByName) {

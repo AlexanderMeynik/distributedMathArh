@@ -212,8 +212,8 @@ class DbService {
                                 std::string_view sub_name = "");
 
  private:
-  PostgreSQLCStr conn_str_;//< connection string for the service
-  ConnPtr conn_;//< connection pointer
+  PostgreSQLCStr conn_str_;///< connection string for the service
+  ConnPtr conn_;///< connection pointer
   /**
    * @brief implements reconnection logic and checks
    */
@@ -234,7 +234,7 @@ class DbService {
                 std::string_view severity,
                 std::string_view message);
 
-  static inline const char *service_name = "DbService";//<service name
+  static inline const char *service_name = "DbService";///<service name
 };
 
 } // namespace db_service
