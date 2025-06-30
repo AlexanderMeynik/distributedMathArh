@@ -20,7 +20,6 @@ using ClockType = typename std::conditional<std::chrono::high_resolution_clock::
 
 using ClockTimepoint = ClockType::time_point;
 using TimepointType = uint64_t;///< default portable time-point type
-///@todo use in exception
 using LocationType = std::array<std::string, 5>;///< structure to store file data
 
 

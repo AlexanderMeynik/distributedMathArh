@@ -172,49 +172,20 @@ bool RabbitMQRestService::DeleteUser(const std::string &user) {
 
 std::vector<rabbitMQUser> RabbitMQRestService::ListUsers(const std::string &vhost) {
   std::string path = "/api/users/";
-
-  std::vector<rabbitMQUser> out;
-
   auto res = ParseJson(PerformRequest(path, HttpMethod::GET).second);
-  if (res.isArray()) {
-    out.reserve(res.size());
-    for (auto &re : res) {
-      out.emplace_back(re);
-    }
-  }
-  return out;
+  return ParseArray<std::vector,rabbitMQUser>(res);
 }
 
 std::vector<connection> RabbitMQRestService::ListConnections() {
   std::string path = "/api/connections";
-
-  std::vector<connection> connections;
-
   auto res = ParseJson(PerformRequest(path, HttpMethod::GET).second);
-  if (res.isArray()) {
-    connections.reserve(res.size());
-    for (auto &re : res) {
-      connections.emplace_back(re);
-    }
-  }
-
-  return connections;
+  return ParseArray<std::vector,connection>(res);
 }
 
 std::vector<channel> RabbitMQRestService::ListChannels() {
   std::string path = "/api/channels";
-
-  std::vector<channel> connections;
-
   auto res = ParseJson(PerformRequest(path, HttpMethod::GET).second);
-  if (res.isArray()) {
-    connections.reserve(res.size());
-    for (auto &re : res) {
-      connections.emplace_back(re);
-    }
-  }
-
-  return connections;
+  return ParseArray<std::vector,channel>(res);
 }
 
 Json::Value RabbitMQRestService::Whoami() {
@@ -229,33 +200,16 @@ Json::Value RabbitMQRestService::Whoami() {
 std::vector<queueBinding>
 RabbitMQRestService::GetQueueBindings(const std::string &vhost, const std::string &queue) {
   std::string path = fmt::format("/api/queues/{}/{}/bindings", vhost, queue);
-
   auto res = ParseJson(PerformRequest(path, HttpMethod::GET).second);
-  std::vector<queueBinding> out;
-  if (res.isArray()) {
-    for (auto &re : res) {
-      out.emplace_back(re);
-    }
-  }
-
-  return out;
+  return ParseArray<std::vector,queueBinding>(res);
 }
 
 std::vector<global_param> RabbitMQRestService::ListGlobalParams() {
-
   std::string path = "/api/global-parameters";
-
   auto res = ParseJson(PerformRequest(path, HttpMethod::GET).second);
-  std::vector<global_param> out;
-  if (res.isArray()) {
-    for (auto &re : res) {
-      out.emplace_back(re);
-    }
-  }
-
-  return out;
+  return ParseArray<std::vector,global_param>(res);
 }
-bool RabbitMQRestService::GlobalParam(const global_param &param, const HttpMethod &type) {
+void RabbitMQRestService::GlobalParam(const global_param &param, const HttpMethod &type) {
 
   std::string path = fmt::format("/api/global-parameters/{}", param.name);
 
@@ -265,22 +219,12 @@ bool RabbitMQRestService::GlobalParam(const global_param &param, const HttpMetho
   } else {
     PerformRequest(path, type);
   }
-  ///@todo return code
-  return true;
 }
 
 std::vector<exchange> RabbitMQRestService::GetExchanges(const std::string &vhost) {
   std::string path = fmt::format("/api/exchanges/{}", vhost);
-
   auto res = ParseJson(PerformRequest(path, HttpMethod::GET).second);
-  std::vector<exchange> out;
-  if (res.isArray()) {
-    for (auto &re : res) {
-      out.emplace_back(re);
-    }
-  }
-
-  return out;
+  return ParseArray<std::vector,exchange>(res);
 }
 
 

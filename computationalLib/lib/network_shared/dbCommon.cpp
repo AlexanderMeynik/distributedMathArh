@@ -108,7 +108,6 @@ bool CheckDatabaseExistence(NonTransType &non_trans, std::string_view db_name) {
 DbEntry::DbEntry(const pqxx::row &row) {
   oid =row["oid"].as<IndexType>();
   name=row["datname"].as<std::string>();
-  name=row["datname"].as<std::string>();
 }
 bool DbEntry::operator==(const DbEntry &rhs) const {
   return name == rhs.name;

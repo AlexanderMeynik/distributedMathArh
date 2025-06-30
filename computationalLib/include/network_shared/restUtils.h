@@ -3,16 +3,39 @@
 #include <memory>
 
 #include "common/errorHandling.h"
+#include "common/myConcepts.h"
 
 #include <json/json.h>
 #include <curl/curl.h>
 
 /// Namespace for httpr rest utilities
 namespace rest_utils {
+using my_concepts::HasReserve;
+
+///Forward declare AuthHandler
 class AuthHandler;
 
 ///@brief return_code,response_body pair
-using HttpResult=std::pair<long, std::string>;
+using HttpResult = std::pair<long, std::string>;
+
+/**
+ * @brief Concept to check T's constructability from pqxx::row
+ * @tparam T
+ */
+template<typename T>
+concept HasJsonConstructor = std::is_constructible_v<T, Json::Value &>;
+
+/**
+ * @brief Parses specified continuous struct from Json::Value
+ * @note Requires RetType to be constructible from Json::Value
+ * @tparam VecT
+ * @tparam RetType
+ * @param result
+ * @return VecT<RetType>
+ */
+template<template<typename ...> typename VecT, typename RetType>
+requires HasJsonConstructor<RetType> && HasReserve<VecT<RetType>>
+VecT<RetType> ParseArray(const Json::Value &json);
 
 /**
  * @brief Default curl write callback
@@ -38,10 +61,10 @@ static size_t WriteCallback(void *contents,
  * @return HttpResult
  */
 HttpResult PerformCurlRequest(const std::string &path,
-                               const std::string &method,
-                               const std::string &host,
-                               AuthHandler *auth_handler,
-                               const std::string &data = "");
+                              const std::string &method,
+                              const std::string &host,
+                              AuthHandler *auth_handler,
+                              const std::string &data = "");
 
 /**
  * @brief Lock like class to handler curl initialization and free
@@ -103,15 +126,23 @@ class BasicAuthHandler : public AuthHandler {
 class JsonAuthHandler : public BasicAuthHandler {
   using BasicAuthHandler::BasicAuthHandler;
  public:
-  Json::Value ToJson() {
-    Json::Value res;
-    res["user"] = user_;
-    res["password"] = password_;
-    return res;
-  }
+  Json::Value ToJson();
 
-  std::pair<std::string, std::string> Retrive() {
-    return {user_, password_};
-  }
+  std::pair<std::string, std::string> Retrive();
 };
+}
+
+namespace rest_utils {
+template<template<typename ...> typename VecT, typename RetType>
+requires HasJsonConstructor<RetType> && HasReserve<VecT<RetType>>
+VecT<RetType> ParseArray(const Json::Value &res) {
+  VecT<RetType> vec;
+  if (res.isArray()) {
+    vec.reserve(res.size());
+    for (auto &re : res) {
+      vec.emplace_back(re);
+    }
+  }
+  return vec;
+}
 }

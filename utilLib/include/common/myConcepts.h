@@ -121,6 +121,17 @@ auto &GetMatrElement(const Collection &collection, size_t i1, size_t i2) {
   }
 }
 
+
+/**
+ * @brief Concept to check whether Container can be resized
+ * @tparam Container
+ */
+template <typename Container>
+concept HasReserve = requires(Container r, size_t n)
+{
+  {r.reserve(n)}->std::same_as<void>;
+};
+
 /**
  * @brief Specializes return method depending on dimensions of Collection
  * @tparam Collection

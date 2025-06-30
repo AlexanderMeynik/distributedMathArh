@@ -141,7 +141,7 @@ struct rabbitMQUser {
   std::string password_hash;
   std::vector<std::string> tags;
 
-  rabbitMQUser(Json::Value &val);
+  rabbitMQUser(const Json::Value &val);
 
 };
 
@@ -166,7 +166,7 @@ struct exchange {
            bool durable_a = true,
            bool internal_a = false);
 
-  exchange(Json::Value &val);
+  exchange(const Json::Value &val);
 };
 
 /**
@@ -186,7 +186,7 @@ struct queue {
         bool auto_delete_a = false,
         bool durable_a = true);
 
-  queue(Json::Value &val);
+  queue(const Json::Value &val);
 };
 
 /**
@@ -205,7 +205,7 @@ struct connection {
 
   Json::Value ToJson() const;
 
-  connection(Json::Value &val);
+  connection(const Json::Value &val);
 
 };
 
@@ -224,7 +224,7 @@ struct channel {
 
   Json::Value ToJson() const;
 
-  channel(Json::Value &val);
+  channel(const Json::Value &val);
 
 };
 
@@ -241,7 +241,7 @@ struct message {
 
   Json::Value ToJson() const;
 
-  message(Json::Value &val);
+  message(const Json::Value &val);
 
 };
 
@@ -256,7 +256,7 @@ struct global_param {
 
   Json::Value ToJson() const;
 
-  global_param(Json::Value &val);
+  global_param(const Json::Value &val);
 };
 
 

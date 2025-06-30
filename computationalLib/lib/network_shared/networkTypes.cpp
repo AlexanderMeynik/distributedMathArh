@@ -75,7 +75,7 @@ TestSolveParam TestSolveParam::SliceAway(size_t iter_count) {
   return ret;
 }
 
-rabbitMQUser::rabbitMQUser(Json::Value &val) :
+rabbitMQUser::rabbitMQUser(const Json::Value &val) :
     name(val["name"].asString()),
     password_hash(val["password_hash"].asString()),
     tags() {
@@ -94,7 +94,7 @@ queueBinding::queueBinding(const std::string &exch,
     exchange(exch),
     routing_key(key) {}
 
-exchange::exchange(Json::Value &val) :
+exchange::exchange(const Json::Value &val) :
     name(val["name"].asString()),
     creator(val["user_who_performed_action"].asString()),
     type(static_cast<AMQP::ExchangeType>(StrToEnum(val["type"].asString(),kStrToExchangeType))),
@@ -126,7 +126,7 @@ Json::Value exchange::ToJson() const {
   return val;
 }
 
-queue::queue(Json::Value &val) :
+queue::queue(const Json::Value &val) :
     name(val["name"].asString()),
     creator(val["user_who_performed_action"].asString()),
     autoDelete(val["auto_delete"].asBool()),
@@ -148,7 +148,7 @@ Json::Value queue::ToJson() const {
   return val;
 }
 
-connection::connection(Json::Value &val) :
+connection::connection(const Json::Value &val) :
     channels(val["channels"].asUInt()),
     host(val["host"].asString()),
     name(val["name"].asString()),
@@ -182,7 +182,7 @@ Json::Value channel::ToJson() const {
   val["consumer_count"] = consumer_count;
   return val;
 }
-channel::channel(Json::Value &val) :
+channel::channel(const Json::Value &val) :
     name(val["name"].asString()),
     channel_number(val["number"].asUInt()),
     connection_name(val["connection_details"]["name"].asString()),
@@ -200,7 +200,7 @@ Json::Value message::ToJson() const {
   val["payload_encoding"] = payload_encoding;
   return val;
 }
-message::message(Json::Value &val) {
+message::message(const Json::Value &val) {
   routing_key = val["routing_key"].asString();
   payload = val["payload"].asString();
   payload_encoding = val["payload_encoding"].asString();
@@ -211,7 +211,7 @@ message::message(const std::string &key, const std::string &pay, const std::stri
   payload_encoding = payloadType;
 
 }
-global_param::global_param(Json::Value &val) {
+global_param::global_param(const Json::Value &val) {
   name = val["name"].asString();
   value = val["value"];
 }

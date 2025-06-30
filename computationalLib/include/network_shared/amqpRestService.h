@@ -135,7 +135,7 @@ class RabbitMQRestService {
    * @param type
    * @return status
    */
-  bool GlobalParam(const global_param &param, const HttpMethod &type);
+  void GlobalParam(const global_param &param, const HttpMethod &type);
 
   /**
    * @brief Lists all global params from RabbimMQ

@@ -60,12 +60,7 @@ void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
                                        std::function<void(const HttpResponsePtr &)> &&callback) {
 
   auto json = *req->getJsonObject();
-
   auto qname = json["queue_host"].asString();
-  auto szs = json["queues"].size();
-  /*auto queues = print_utils::JsonToContinuous<std::vector<std::string>>(
-      json["queues"], szs, true);*/
-  ///@todo commented out
 
   auto json_output = main_node_service_->Connect(qname);
 

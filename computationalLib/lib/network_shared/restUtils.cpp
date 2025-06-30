@@ -104,5 +104,14 @@ void BasicAuthHandler::AddAuth(CURL *curl) {
     curl_easy_setopt(curl, CURLOPT_PASSWORD, password_.c_str());
   }
 }
+Json::Value JsonAuthHandler::ToJson() {
+  Json::Value res;
+  res["user"] = user_;
+  res["password"] = password_;
+  return res;
+}
+std::pair<std::string, std::string> JsonAuthHandler::Retrive() {
+  return {user_, password_};
+}
 }
 

@@ -139,7 +139,7 @@ Json::Value MainNodeService::Connect(const std::string &qip) {
       auto user = auth_->Retrive().first;
       amqp_common::exchange exchange{publisher_service_->GetDefaultExchange(), user, AMQP::direct};
 
-      rest_service_->CreateExchange(vhost_, exchange, Json::Value());//todo pass more args?
+      rest_service_->CreateExchange(vhost_, exchange, Json::Value());
     }
   }
   catch (shared::HttpError &err) {
