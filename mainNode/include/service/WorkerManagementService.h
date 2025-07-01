@@ -36,27 +36,32 @@ static constexpr inline BenchResultType kBenchInfinity = 1000'000'000'000ULL;
  */
 class ComputationalNode {
  public:
-  HttpClientPtr http_client_; ///< http client used to send requests
+  /// Drogon return code and Response pair
+  using RequestResult=std::pair<ReqResult,HttpResponsePtr>;
 
-  NodeStatus st_;
-  BenchResVec bench_result_;///< time measurements of worker performance
-  BenchResVec node_speed_;///< weighed speed measure of node
 
-  std::string GetPath() {
-    return http_client_->getHost() + ":" + std::to_string(http_client_->getPort());
-  }
+  std::string to_string();
 
   /**
    * @brief Parses and recomputes node performance metrics
    * @param val - json file to parse bench results from
    */
-  void RecomputeCoefficients(const Json::Value &val) {
-    bench_result_ = print_utils::JsonToContinuous<BenchResVec>(val, true, true);
-    if (node_speed_.size() == 0) {
-      node_speed_ = kBenchInfinity / bench_result_;
-    }
+  void RecomputeCoefficients(const Json::Value &val);
+
+  /**
+   * @brief Syntax sugar to send request
+   * @param ptr
+   * @return RequestResult
+   */
+  RequestResult inline PerformHttpRequest(HttpRequestPtr ptr)
+  {
+    return http_client_->sendRequest(ptr);
   }
 
+  HttpClientPtr http_client_; ///< http client used to send requests
+  NodeStatus st_;
+  BenchResVec bench_result_;///< time measurements of worker performance
+  BenchResVec node_speed_;///< weighed speed measure of node
 };
 
 /**
@@ -79,9 +84,7 @@ class WorkerManagementService {
   /**
    *
    */
-  WorkerManagementService() {
-    normalized_ = DefaultBench(0);
-  }
+  WorkerManagementService();
 
   /**
    * @brief Upsets new node into node list
@@ -137,7 +140,7 @@ class WorkerManagementService {
 
   /**
    *
-   * @return normalization coefficients for becnmark speed results
+   * @return normalization coefficients for benchmark speed results
    */
   const BenchResVec GetSum() const;
 
@@ -153,7 +156,7 @@ class WorkerManagementService {
                 const NodeStatus &to);
 
   NodeStorageType worker_nodes_; ///< map of maps to manage worker nodes
-  std::string q_host_; ///< queue host_
+  std::string q_host_; ///< queue host
 
   std::valarray<uint64_t> normalized_;/// < normalization coefficient for all active nodes
 };

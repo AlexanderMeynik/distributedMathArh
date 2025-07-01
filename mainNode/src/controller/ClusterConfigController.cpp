@@ -78,4 +78,14 @@ void ClusterConfigController::DisconnectQ(const HttpRequestPtr &req,
   callback(http_response);
 
 }
+void ClusterConfigController::Rebalance(const HttpRequestPtr &req,
+                                        std::function<void(const HttpResponsePtr &)> &&callback) {
+
+
+  auto json_output = main_node_service_->Rebalance();
+
+  auto http_response = HttpResponse::newHttpJsonResponse(json_output);
+  http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
+  callback(http_response);
+}
 }

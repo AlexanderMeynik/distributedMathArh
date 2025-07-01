@@ -230,9 +230,7 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
   network_types::TestSolveParam ts_t;
 
   auto  n=ts.N_;
-
   auto it = worker_management_service_->begin();
-
   auto it2 = worker_management_service_->begin();
   it2++;
 
@@ -255,6 +253,37 @@ Json::Value MainNodeService::SendToExecution(network_types::TestSolveParam &ts) 
   return res_JSON;
 }
 
+Json::Value MainNodeService::Rebalance()
+{
+  Json::Value res_JSON;
+
+  res_JSON["request"] = "rebalance";
+  if (worker_management_service_->begin() == worker_management_service_->end()) {
+    res_JSON["message"] = "No nodes to be rebalanced";
+    res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
+    return res_JSON;
+  }
+
+  auto req1 = HttpRequest::newHttpRequest();
+  req1->setPath("/v1/rebalance_node");
+  req1->setMethod(Post);
+
+  for (auto [name,node]: *this->worker_management_service_) {
+    auto [code, resp]=node.PerformHttpRequest(req1);
+    if (code == drogon::ReqResult::BadServerAddress) {
+      res_JSON["nodes"][name]["message"] = fmt::format("Unable to access worker on {}! Is working node running?", name);
+      res_JSON["nodes"][name]["status"] = drogon::HttpStatusCode::k504GatewayTimeout;
+      continue;
+    }
+    if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
+      res_JSON["nodes"][name]["message"] = fmt::format("Error occurred during worker {} connection!", name);
+      res_JSON["nodes"][name]["status"] = resp->getStatusCode();
+    }
+    res_JSON["nodes"][name]["node_output"] = *resp->getJsonObject();
+  }
+
+
+  res_JSON["status"] = drogon::HttpStatusCode::k200OK;
+  return res_JSON;
 }
-
-
+}

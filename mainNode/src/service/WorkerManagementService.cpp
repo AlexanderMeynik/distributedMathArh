@@ -11,12 +11,16 @@ Json::Value WorkerManagementService::GetStatus() {
     auto &ss = res[j]["data"];
     for (auto &[str, node] : map) {
       ss[i]["host"] = str;
-      ss[i]["benchRes"] = print_utils::ContinuousToJson(node.bench_result_);
+      ss[i]["benchRes"] = print_utils::ContinuousToJson(node.bench_result_, false, true);
       i++;
     }
     j++;
   }
   return res;
+}
+
+WorkerManagementService::WorkerManagementService() {
+  normalized_ = DefaultBench(0);
 }
 
 Json::Value WorkerManagementService::AddNewNode(const std::string &host_port) {
@@ -50,7 +54,7 @@ Json::Value WorkerManagementService::ConnectNode(const std::string &host_port,
 
   Json::Value res_JSON;
   auto [code, resp] =
-      worker_nodes_[INACTIVE][host_port].http_client_->sendRequest(req1);
+      worker_nodes_[INACTIVE][host_port].PerformHttpRequest(req1);
 
   if (code == drogon::ReqResult::BadServerAddress) {
     res_JSON["message"] = fmt::format("Unable to access worker on {}! Is working node running?", host_port);
@@ -60,7 +64,7 @@ Json::Value WorkerManagementService::ConnectNode(const std::string &host_port,
   if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
     res_JSON["message"] = fmt::format("Error occurred during worker {} connection!", host_port);
     res_JSON["status"] = resp->getStatusCode();
-    res_JSON["node_output"] = resp->getJsonObject()->toStyledString();
+    res_JSON["node_output"] = *resp->getJsonObject();
     return res_JSON;
   }
 
@@ -91,7 +95,7 @@ Json::Value WorkerManagementService::DisconnectNode(const std::string &host_port
   req1->setMethod(Post);
 
   auto ct = HttpClient::newHttpClient(host_port);
-  auto [code, resp] = worker_nodes_[ACTIVE][host_port].http_client_->sendRequest(req1);
+  auto [code, resp] = worker_nodes_[ACTIVE][host_port].PerformHttpRequest(req1);
 
   if (code == drogon::ReqResult::BadServerAddress) {
     res_JSON["message"] = fmt::format("Unable to access worker on {}! Is working node running?", host_port);
@@ -102,7 +106,7 @@ Json::Value WorkerManagementService::DisconnectNode(const std::string &host_port
   if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
     res_JSON["message"] = fmt::format("Unable to disconnect worker {} from cluster!", host_port);
     res_JSON["status"] = resp->getStatusCode();
-    res_JSON["node_output"] = resp->getJsonObject()->toStyledString();
+    res_JSON["node_output"] = *resp->getJsonObject();
     return res_JSON;
   }
   res_JSON = *resp->getJsonObject();
@@ -124,4 +128,14 @@ void WorkerManagementService::MoveNode(const std::string &host_port,
   worker_nodes_[to][host_port] = std::move(aa);
 }
 
+
+std::string ComputationalNode::to_string() {
+  return fmt::format("{}:{}",http_client_->getHost(),http_client_->getPort());
+}
+void ComputationalNode::RecomputeCoefficients(const Json::Value &val) {
+  bench_result_ = print_utils::JsonToContinuous<BenchResVec>(val, std::nullopt, true);
+  if (node_speed_.size() == 0) {
+    node_speed_ = kBenchInfinity / bench_result_;
+  }
+}
 }

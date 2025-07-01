@@ -75,6 +75,14 @@ class MainNodeService {
    * @see amqp_common::AMQPPublisherServicePublish(EnvelopePtr message, const std::string qname)
    */
   Json::Value SendToExecution(network_types::TestSolveParam &ts);
+
+
+  /**
+   * @brief Resends requests to rebalance nodes
+   * @return Json::Value
+   */
+  Json::Value Rebalance();
+
  private:
   std::unique_ptr<JsonAuthHandler> auth_; ///< auth handler for authentication in RabbitMQ
   std::unique_ptr<amqp_common::RabbitMQRestService> rest_service_; ///< rest service for metrics collection and management

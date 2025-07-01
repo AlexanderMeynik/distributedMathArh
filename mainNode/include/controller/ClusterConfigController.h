@@ -39,6 +39,8 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
 
     ADD_METHOD_TO(Cont::SentToExecution, "v1/send_task", Put);
 
+    ADD_METHOD_TO(Cont::Rebalance, "v1/rebalance", Post);
+
   METHOD_LIST_END
 
   /**
@@ -100,6 +102,15 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
    * @see ClusterConfigController::ConnectQ
    */
   void DisconnectQ(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+
+
+  /**
+ * @brief Recomputes node benchmarks to rebalance cluster
+ * @param req
+ * @param callback
+ * @see ClusterConfigController::Rebalance
+ */
+  void Rebalance(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
 };
 }

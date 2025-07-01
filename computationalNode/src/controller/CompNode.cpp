@@ -35,4 +35,14 @@ void CompNode::DisconnectHandler(const HttpRequestPtr &req, std::function<void(c
   callback(response);
 
 }
+void CompNode::RebalanceHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+
+  Json::Value res = handler_->Rebalance();
+
+  auto response = HttpResponse::newHttpJsonResponse(res);
+
+  response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
+
+  callback(response);
+}
 }
