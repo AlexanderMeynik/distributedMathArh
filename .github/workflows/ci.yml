@@ -76,7 +76,7 @@ jobs:
   
           cmake -G Ninja -DCMAKE_BUILD_TYPE=Release-Coverage  \
           -DBUILD_TESTS=ON ../src/
-          cmake --build . -t compNode;mainNode
+          cmake --build . -t compNode mainNode
           ctest -T Build -T Test --output-on-failure
 
       - name: Collect coverage
