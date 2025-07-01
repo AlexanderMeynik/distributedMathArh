@@ -86,4 +86,5 @@ WORKDIR /usr/application/build/computationalNode/bin
 RUN chmod +x compNode
 
 
+
 ENTRYPOINT ./compNode $PORT
