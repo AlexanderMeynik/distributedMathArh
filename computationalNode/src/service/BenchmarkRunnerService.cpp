@@ -63,9 +63,7 @@ std::pair<shared::BenchResVec, shared::BenchResVec> BenchmarkRunner::Run(bool us
     std::cout << ns[j] << '\t' << iter_counts_[j] << '\t';
     std::cout << rr << '\n';
     results2[j] = rr;
-
   }
-
   return {results, results2};
 }
 BenchmarkRunner::BenchmarkRunner(const shared::BenchResVec &nss,
@@ -74,8 +72,7 @@ BenchmarkRunner::BenchmarkRunner(const shared::BenchResVec &nss,
     iter_counts_(iter_counts) {
   if (ns_.size() != iter_counts_.size()) {
 
-    ///@tododo use myException
-    throw std::invalid_argument("ns and iter_counts must have the same size");
+    throw shared::mismatchedSizes(ns.size(),iter_counts.size());
   }
 }
 
