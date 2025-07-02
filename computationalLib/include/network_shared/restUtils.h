@@ -30,7 +30,7 @@ concept HasJsonConstructor = std::is_constructible_v<T, Json::Value &>;
  * @note Requires RetType to be constructible from Json::Value
  * @tparam VecT
  * @tparam RetType
- * @param result
+ * @param res
  * @return VecT<RetType>
  */
 template<template<typename ...> typename VecT, typename RetType>

@@ -76,7 +76,6 @@ class MainNodeService {
    */
   Json::Value SendToExecution(network_types::TestSolveParam &ts);
 
-
   /**
    * @brief Resends requests to rebalance nodes
    * @return Json::Value
