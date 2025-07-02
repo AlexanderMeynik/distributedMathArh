@@ -13,9 +13,10 @@ class CompNode : public drogon::HttpController<CompNode> {
   std::unique_ptr<ComputationNodeService> handler_;
 
  public:
-
+  static bool inline test_ = false;
   CompNode() {
     handler_ = std::make_unique<ComputationNodeService>();
+    handler_->SetTest(test_);
   }
 
   using Cont = CompNode;

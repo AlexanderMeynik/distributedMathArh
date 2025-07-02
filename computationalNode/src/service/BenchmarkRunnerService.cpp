@@ -49,14 +49,21 @@ shared::BenchResultType BenchmarkRunner::RunSingleBenchmark(size_t N,
   return rr;
 }
 
-std::pair<shared::BenchResVec, shared::BenchResVec> BenchmarkRunner::Run(bool use_omp_outer, int eigen_threads) {
+std::pair<shared::BenchResVec, shared::BenchResVec> BenchmarkRunner::Run(bool use_omp_outer,
+                                                                         int eigen_threads,
+                                                                         bool empty_func) {
   std::cout << omp_get_max_threads() << '\n';
   shared::BenchResVec results(ns_.size());
   shared::BenchResVec results2(ns_.size());
+  auto empty=[this]()->shared::BenchResultType{
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    return shared::BenchResultType(1);};
   for (size_t j = 0; j < ns_.size(); ++j) {
     auto loc = clk.TikLoc();
 
-    results[j] = RunSingleBenchmark(ns_[j], iter_counts_[j], use_omp_outer, eigen_threads);
+    results[j] = ((empty_func)?empty():
+        RunSingleBenchmark(ns_[j], iter_counts_[j], use_omp_outer, eigen_threads));
+
     clk.Tak();
     auto rr = clk[loc].time;
     clk.ResetTimer(loc);

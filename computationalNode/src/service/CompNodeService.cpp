@@ -95,7 +95,7 @@ void ComputationNodeService::RunBench() {
 
   computation_thread_ = std::jthread([this]() {
     std::cout << "Job start\n";
-    bench_res_ = benchmark_runner_->Run().first;
+    bench_res_ = benchmark_runner_->Run(true,0,test_).first;
 
     std::cout << "Job done\n";
     characteristic_computed_.store(true, std::memory_order_release);
@@ -118,6 +118,12 @@ Json::Value ComputationNodeService::Rebalance() {
 }
 bool ComputationNodeService::Computed() {
   return characteristic_computed_.load(std::memory_order_acquire);
+}
+bool ComputationNodeService::IsTest() const {
+  return test_;
+}
+void ComputationNodeService::SetTest(bool test) {
+  test_ = test;
 }
 
 }

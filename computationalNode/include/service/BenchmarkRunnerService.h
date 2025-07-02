@@ -6,6 +6,7 @@
 #include "common/Generator.h"
 #include "math_core/Dipoles.h"
 #include "common/Printers.h"
+#include "network_shared/sharedConstants.h"
 
 /// Namespace for comp_node services
 namespace comp_services {
@@ -33,8 +34,11 @@ class BenchmarkRunner {
    * @brief Runs the benchmark for all parameter pairs and returns the results.
    * @param use_omp_outer - uses openmp during runs
    * @param eigen_threads - sets num of eigen threads(0 for default num)
+   * @param num_entries - number of entries to be iterated
    */
-  std::pair<shared::BenchResVec, shared::BenchResVec> Run(bool use_omp_outer = true, int eigen_threads = 0);
+  std::pair<shared::BenchResVec, shared::BenchResVec> Run(bool use_omp_outer = true,
+                                                          int eigen_threads = 0,
+                                                          bool empty_func = false);
 
  private:
   static constexpr double k_arange_ = 1e-6;
@@ -48,6 +52,8 @@ class BenchmarkRunner {
    * @brief Runs the benchmark for a single pair of N and conf_num.
    * @param N
    * @param conf_num
+   * @param use_omp_outer
+   * @param eigen_threads
    */
   shared::BenchResultType RunSingleBenchmark(size_t N, size_t conf_num, bool use_omp_outer, int eigen_threads);
 };

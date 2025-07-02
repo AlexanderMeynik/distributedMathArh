@@ -9,6 +9,6 @@ namespace shared {
 
     size_t inline NIndex(const shared::BenchResultType & result_type)
     {
-      return std::find(std::begin(ns),std::end(ns),result_type)-std::begin(ns);
+      return std::lower_bound(std::begin(ns),std::end(ns),result_type)-std::begin(ns);
     }
 }

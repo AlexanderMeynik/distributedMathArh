@@ -6,7 +6,7 @@ using rest::v1::CompNode;
 int main(int argc, char *argv[]) {
   app().loadConfigFile("config/server_config.json");
   int port;
-  if (argc == 2) {
+  if (argc >= 2) {
     try {
       port = std::stoi(argv[1]);
     }
@@ -16,6 +16,16 @@ int main(int argc, char *argv[]) {
                                inv.what(), argv[1]);
       return -1;
     }
+
+    if (argc == 3) {
+      try {
+        CompNode::test_ = argv[2][0]!='0';
+      } catch (std::invalid_argument &inv) {
+        std::cout << "Invalid argument for benchmark_entries" << std::endl;
+        return -1;
+      }
+    }
+
     app().addListener("0.0.0.0", port);
     std::cout << port << '\n';
     app().run();

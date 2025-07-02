@@ -22,7 +22,7 @@ class ComputationNodeService {
    * @details This function is used to get the following data
    * 1. It's connection status.
    * 2. It's rebalance param changes.
-   * 3. It's perfomance metric
+   * 3. It's performance metric
    * @param rebalance - when node is rebalanced
    * @return Json with status =200
    */
@@ -50,6 +50,9 @@ class ComputationNodeService {
    * @return Json with status =409 if computation is interrupted
    */
   Json::Value Rebalance();
+
+  bool IsTest() const;
+  void SetTest(bool test);
  private:
   void RunBench();
   bool IsConnected();
@@ -58,6 +61,7 @@ class ComputationNodeService {
   amqp_common::AMQPConsumerService consumer_service_;///< service that handles queue events
   std::optional<BenchResVec> bench_res_;///< performance metric of the node
   ConnectionData c_data_;///< contains data about service node is connected to
+  bool test_ = false;///<if true will run empty benchmark
 
   std::jthread computation_thread_;
   std::atomic<bool> characteristic_computed_;
