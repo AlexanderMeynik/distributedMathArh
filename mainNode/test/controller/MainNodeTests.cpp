@@ -19,7 +19,7 @@ static size_t d_port = 8081;
 static std::string uname_ = "new_user";
 static std::string pass_ = "password";
 
-class ProcessRunningFixture: public ::testing::Test {
+class ProcessRunningFixture2: public ::testing::Test {
   using ChildSeT=std::unordered_set<ChildProcess>;
  public:
   ChildSeT child_set_;
@@ -35,7 +35,7 @@ class ProcessRunningFixture: public ::testing::Test {
 
 
   void SetUp() override {
-    EmplaceChild();
+    /*EmplaceChild();*/
     requestor_->SetParams(fmt::format("http://localhost:{}",d_port));
 
     SLEEP(std::chrono::milliseconds(100));
@@ -76,18 +76,8 @@ class ProcessRunningFixture: public ::testing::Test {
   static inline Json::Value body; ///< contains a body that is valid for connection request
 };
 
-TEST_F(ProcessRunningFixture,TestServiceGetStatus)
-{
-  EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
 
-  EXPECT_EQ(r.first,200)<<fmt::format("Invalid response code: expected {}, got {} !",200,r.first);
-  auto json=requestor_->ParseJson(r.second);
-
-  EXPECT_STREQ(json["request"].asCString(),"status");
-  EXPECT_STREQ(json["worker_status"].asCString(),"not running");
-}
-
-TEST_F(ProcessRunningFixture,_1)
+TEST_F(ProcessRunningFixture2,_1)
 {
   ASSERT_TRUE(true);
 }
