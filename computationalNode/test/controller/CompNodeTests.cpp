@@ -189,7 +189,7 @@ TEST_F(ProcessRunningFixture,TestServiceRepeatedDisconnect)
 
 TEST_F(ProcessRunningFixture,TestServiceRebalanceSucess)
 {
-
+  SLEEP(std::chrono::milliseconds(100));
   r = requestor_->PerformRequest("/v1/rebalance_node", HttpMethod::POST);
   auto json =HttpRequestService::ParseJson(r.second);
   EXPECT_STREQ(json["request"].asCString(),"rebalance_node");
