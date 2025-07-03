@@ -192,6 +192,7 @@ class HttpRequestService
   /**
    * @brief Shorthand to retrieve JSON object
    * @param json_str
+   * @todo move outside
    * @return
    */
   static Json::Value ParseJson(const std::string &json_str);

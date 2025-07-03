@@ -11,25 +11,21 @@ int main(int argc, char *argv[]) {
       port = std::stoi(argv[1]);
     }
     catch (std::invalid_argument &inv) {
-      ///@todo use logger
-      std::cout << fmt::format("Invalid argument  exception {} occurred \n argv[1] = {} ",
+      fmt::print("Invalid argument  exception {} occurred \n argv[1] = {} ",
                                inv.what(), argv[1]);
       return -1;
     }
 
     if (argc == 3) {
-      try {
-        CompNode::test_ = argv[2][0]!='0';
-      } catch (std::invalid_argument &inv) {
-        std::cout << "Invalid argument for benchmark_entries" << std::endl;
-        return -1;
-      }
+      CompNode::test_ = argv[2][0]!='0';
     }
 
     app().addListener("0.0.0.0", port);
     std::cout << port << '\n';
     app().run();
   } else {
+    fmt::print("usage: compNode <port> |<mode>\n <port> -will be used to create listener\n<mode> - is optional and if is not 0"
+               " will replace benchmark run with dummy programm, defaults to false");
     return -1;
   }
 

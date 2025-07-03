@@ -24,7 +24,7 @@ Json::Value ComputationNodeService::Disconnect() {
   if (!IsConnected()) {
 
     res_json["status"] = HttpStatusCode::k409Conflict;
-    res_json["message"] = "This worker node is currently not connected to any cluster";
+    res_json["message"] = "This worker node is currently not connected to any cluster!";
     return res_json;
   }
 
@@ -47,6 +47,7 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
     return res_json;
   }
 
+
   std::string ip = val["ip"].asString();
   std::string name = val["name"].asString();
   std::string user = val["user"].asString();
@@ -57,6 +58,15 @@ Json::Value ComputationNodeService::Connect(const HttpRequestPtr &req) {
 
   res_json["input"] = ip;
   res_json["name"] = name;
+
+
+  if(!Computed())
+  {
+    res_json["status"] = HttpStatusCode::k409Conflict;
+    res_json["message"] = fmt::format("Unable to connect node. Wait until benchmark result is computed!");
+    return res_json;
+  }
+
   res_json["bench"] = print_utils::ContinuousToJson(bench_res_.value(), true, true);
 
   auto c = network_types::AMQPSQLCStr(ip, user, pass);
@@ -110,7 +120,7 @@ Json::Value ComputationNodeService::Rebalance() {
   node_st["request"] = "rebalance_node";
   if (!Computed()) {
     node_st["status"] = drogon::HttpStatusCode::k409Conflict;
-    node_st["message"] = "Rabalancing is already running try again later";
+    node_st["message"] = "Rabalancing is already running try again later!";
     return node_st;
   }
   RunBench();

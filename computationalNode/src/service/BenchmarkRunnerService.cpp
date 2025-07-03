@@ -56,7 +56,7 @@ std::pair<shared::BenchResVec, shared::BenchResVec> BenchmarkRunner::Run(bool us
   shared::BenchResVec results(ns_.size());
   shared::BenchResVec results2(ns_.size());
   auto empty=[this]()->shared::BenchResultType{
-    std::this_thread::sleep_for(std::chrono::milliseconds(50));
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
     return shared::BenchResultType(1);};
   for (size_t j = 0; j < ns_.size(); ++j) {
     auto loc = clk.TikLoc();

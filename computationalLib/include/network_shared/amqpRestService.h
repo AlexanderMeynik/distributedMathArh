@@ -34,7 +34,7 @@ class RabbitMQRestService: public HttpRequestService{
    */
   bool CreateQueue(const std::string &vhost,
                    const network_types::queue &queue,
-                   const Json::Value &arguments);
+                   const Json::Value &arguments=Json::nullValue);
 
   /**
    * @brief Remove queue

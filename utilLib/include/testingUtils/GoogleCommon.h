@@ -6,6 +6,7 @@
 #include <cxxabi.h>
 #include <gmock/gmock-matchers.h>
 #include <boost/process.hpp>
+#include <fmt/format.h>
 #include "common/myConcepts.h"
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
@@ -32,6 +33,19 @@ do { \
 do { \
     EXPECT_EXCEPTION_WITH_ARGS_BASE(statement, exception_type, expected_tuple,\
     EXPECT_EQ);                                                                          \
+} while (0)
+
+#define EXPECT_EXCEPTION_WITH_CHECKS(exception_type, statement, checks) \
+do { \
+    try { \
+        statement; \
+        FAIL() << "Expected " #exception_type " but nothing was thrown"; \
+    } catch (const exception_type& e) { \
+        checks; \
+    } catch (const std::exception & e) { \
+        FAIL() << "Expected " #exception_type " but caught a different exception with message "<< \
+        e.what()<<'\n'; \
+    } \
 } while (0)
 
 #define EXPECT_STR_CONTAINS(haystack,needle) ASSERT_THAT(haystack,::testing::HasSubstr(needle))
