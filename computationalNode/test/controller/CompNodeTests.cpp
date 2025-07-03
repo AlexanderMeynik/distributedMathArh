@@ -1,46 +1,59 @@
 #include "testingUtils/GoogleCommon.h"
 #include <cstdlib>
 #include <filesystem>
-#include <boost/process.hpp>
+#include "network_shared/restUtils.h"
+#include <unordered_set>
 using namespace test_common;
-TEST(_1,_1)
-{
-  ASSERT_TRUE(true);
-}
 AuthParams g_serviceParams;
-//todo run comp node(compile it)(workflow)
-//integrate it into env
-//create tests for comp node
 
 namespace bp = boost::process;
+using namespace rest_utils;
+class ProcessRunningFixture: public ::testing::Test {
+  using ChildSeT=std::unordered_set<ChildProcess>;
 
-class DatabaseTestEnvironment : public ::testing::Environment {
+
  public:
+  ChildSeT child_set_;
+
+
+ protected:
+
+
   void SetUp() override {
-    auto abs_fp = std::filesystem::absolute(fp);
-    childP = std::make_unique<bp::child>(comp_node,fmt::format_int(8081).c_str(), bp::start_dir(abs_fp.string()));
   }
 
   void TearDown() override {
-    childP->terminate();
+
   }
 
- private:
-  static std::unique_ptr<bp::child> inline childP= nullptr;
-  static inline const std::filesystem::path fp=std::filesystem::absolute("../bin");
-  const static std::string inline comp_node="./compNode";
+  static void SetUpTestSuite()
+  {
+
+    fp=std::filesystem::absolute("../bin");
+    comp_node="./compNode";
+    requestor_=std::make_unique<HttpRequestService>();
+    abs_fp = std::filesystem::absolute(fp);
+  }
+  static void TearDownTestSuite()
+  {
+    
+  }
+  static inline std::filesystem::path fp;
+  static inline std::string comp_node;
+  static inline std::unique_ptr<HttpRequestService> requestor_;
+  static inline std::filesystem::path abs_fp;
 };
-int main(int argc, char **argv) {
-  ::testing::InitGoogleTest(&argc, argv);
 
-  if (argc < 4) {
-    std::cerr << "Usage: " << argv[0] << " <host> <login> <password>\n";
-    return 1;
-  }
-  g_serviceParams.host = argv[1];
-  g_serviceParams.username = argv[2];
-  g_serviceParams.password = argv[3];
+TEST_F(ProcessRunningFixture,TestServiceRun)
+{
+  requestor_->SetParams(fmt::format("http://localhost:{}",8081));
 
-  ::testing::AddGlobalTestEnvironment(new DatabaseTestEnvironment);
-  return RUN_ALL_TESTS();
+  child_set_.emplace(comp_node,fmt::format_int(8081).c_str(),fmt::format_int(1).c_str(),
+                bp::start_dir(abs_fp.string()), bp::std_out > stdout, bp::std_err > stderr);
+
+  SLEEP(std::chrono::milliseconds(200));
+  HttpResult r;
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
+  ASSERT_EQ(r.first,200)<<fmt::format("Invalid response code: expected {}, got {} !",200,r.first);
 }
+

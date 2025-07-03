@@ -1,12 +1,11 @@
 #pragma once
 
 #include "restUtils.h"
-#include "network_shared/networkTypes.h"
 
 ///amqpCommon namespace
 namespace amqp_common {
 using namespace rest_utils;
-using namespace network_types;
+
 
 /**
  * @class RabbitMQRestService
@@ -16,45 +15,9 @@ using namespace network_types;
  * This class uses libcurl to perform requests.
  * Most of the methods use RabbitMQRestService::PerformRequest() to get the results
  */
-class RabbitMQRestService {
+class RabbitMQRestService: public HttpRequestService{
  public:
-
-  /**
-   *
-   */
-  RabbitMQRestService();
-
-  /**
-   * @brief Sets url's for reuqests
-   * @param base_url
-   */
-  void SetBaseUrl(const std::string &base_url);
-
-  /**
-   * @brief Set's url and auth provider
-   * @param base_url
-   * @param auth_handler
-   */
-  void SetParams(const std::string &base_url,
-                 AuthHandler *auth_handler);
-
-  /**
-   * @brief Same as the default constructor but set's the provided parameters.
-   * @param base_url
-   * @param auth_handler
-   * @see RabbitMQRestService::RabbitMQRestService()
-   */
-  RabbitMQRestService(const std::string &base_url,
-                      AuthHandler *auth_handler);
-
-  RabbitMQRestService(const RabbitMQRestService &other) = delete;
-
-  RabbitMQRestService &operator=(const RabbitMQRestService &other) = delete;
-
-  /**
-   * @brief Clean up curl
-   */
-  ~RabbitMQRestService();
+  using HttpRequestService::HttpRequestService;
 
   /**
    * @brief Requests user information from a RabbitMQ.
@@ -226,27 +189,5 @@ class RabbitMQRestService {
    */
   std::vector<exchange> GetExchanges(const std::string &vhost);
 
- private:
-  std::string base_url_; ///< url to perform request
-
-  AuthHandler *auth_ptr_;
-
-  /**
-   * @brief Wrapper to perform curl request
-   * @brief Wraps around rest_utils::PerformCurlRequest()
-   * Thrown anything this function throws.
-   * @param path
-   * @param method
-   * @param data
-   * @return HttpResult
-   */
-  HttpResult PerformRequest(const std::string &path,
-                             const std::string &method,
-                             const std::string &data = "");
-  HttpResult PerformRequest(const std::string &path,
-                            const HttpMethod &method,
-                            const std::string &data = "");
-
-  static Json::Value ParseJson(const std::string &json_str);
 };
 }

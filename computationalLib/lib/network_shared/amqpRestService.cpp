@@ -4,52 +4,8 @@
 ///amqpCommon namespace
 namespace amqp_common {
 
-RabbitMQRestService::RabbitMQRestService() {
-  curl_global_init(CURL_GLOBAL_DEFAULT);
-}
-RabbitMQRestService::RabbitMQRestService(const std::string &base_url,
-                                         AuthHandler *auth_handler)
-    : base_url_(base_url),
-      auth_ptr_(auth_handler) {
-  curl_global_init(CURL_GLOBAL_DEFAULT);
-}
-
-void RabbitMQRestService::SetBaseUrl(const std::string &base_url) {
-  base_url_ = base_url;
-}
-
-void RabbitMQRestService::SetParams(const std::string &base_url, AuthHandler *auth_handler) {
-  base_url_ = base_url;
-  auth_ptr_ = auth_handler;
-}
-
-RabbitMQRestService::~RabbitMQRestService() {
-  curl_global_cleanup();
-}
-
-HttpResult RabbitMQRestService::PerformRequest(const std::string &path,
-                                                const std::string &method,
-                                                const std::string &data) {
-  return PerformCurlRequest(path, method, base_url_, auth_ptr_, data);
-}
-
-HttpResult RabbitMQRestService::PerformRequest(const std::string &path,
-                                               const HttpMethod &method,
-                                               const std::string &data) {
-  return PerformRequest(path,ToString(method),data);
-}
 
 
-Json::Value RabbitMQRestService::ParseJson(const std::string &json_str) {
-  Json::Value root;
-  Json::CharReaderBuilder builder;
-  std::string errs;
-  std::istringstream iss(json_str);
-  if (!Json::parseFromStream(builder, iss, &root, &errs)) {
-    throw std::runtime_error("JSON parse error: " + errs);
-  }
-  return root;
-}
 
 bool RabbitMQRestService::CreateQueue(const std::string &vhost,
                                       const network_types::queue &queue,

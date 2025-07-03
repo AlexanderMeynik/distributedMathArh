@@ -4,6 +4,7 @@
 
 #include "common/errorHandling.h"
 #include "common/myConcepts.h"
+#include "network_shared/networkTypes.h"
 
 #include <json/json.h>
 #include <curl/curl.h>
@@ -11,6 +12,7 @@
 /// Namespace for httpr rest utilities
 namespace rest_utils {
 using my_concepts::HasReserve;
+using namespace network_types;
 
 ///Forward declare AuthHandler
 class AuthHandler;
@@ -86,7 +88,6 @@ class CurlWrapper {
  * @brief Common interface for handling authentication
  * @details Classes that inherit must provide implementation
  * for AddAuth.
- *
  */
 class AuthHandler {
  public:
@@ -129,6 +130,76 @@ class JsonAuthHandler : public BasicAuthHandler {
   Json::Value ToJson();
 
   std::pair<std::string, std::string> Retrive();
+};
+
+class HttpRequestService
+{
+ public:
+  HttpRequestService();
+  /**
+   * @brief Same as the default constructor but set's the provided parameters.
+   * @param base_url
+   * @param auth_handler
+   * @see HttpRequestService::RabbitMQRestService()
+   */
+  HttpRequestService(const std::string &base_url,
+                     AuthHandler *auth_handler);
+  HttpRequestService(const HttpRequestService &other) = delete;
+
+  HttpRequestService &operator=(const HttpRequestService &other) = delete;
+
+  /**
+   * @brief Sets url's for reuqests
+   * @param base_url
+   */
+  void SetBaseUrl(const std::string &base_url);
+  /**
+   * @brief Set's url and auth provider
+   * @param base_url
+   * @param auth_handler
+   */
+  void SetParams(const std::string &base_url,
+                 AuthHandler *auth_handler=nullptr);
+  /**
+   * @brief Clean up curl
+   */
+  ~HttpRequestService();
+  /**
+   * @brief Wrapper to perform curl request
+   * @brief Wraps around rest_utils::PerformCurlRequest()
+   * Thrown anything this function throws.
+   * @param path
+   * @param method
+   * @param data
+   * @return HttpResult
+   */
+  HttpResult PerformRequest(const std::string &path,
+                            const std::string &method,
+                            const std::string &data = "");
+  /**
+   * @brief Wrapper to perform curl request
+   * @brief Wraps around rest_utils::PerformCurlRequest()
+   * Thrown anything this function throws.
+   * @param path
+   * @param method
+   * @param data
+   * @return HttpResult
+   */
+  HttpResult PerformRequest(const std::string &path,
+                            const HttpMethod &method,
+                            const std::string &data = "");
+
+  /**
+   * @brief Shorthand to retrieve JSON object
+   * @param json_str
+   * @return
+   */
+  static Json::Value ParseJson(const std::string &json_str);
+
+ protected:
+  std::string base_url_; ///< url to perform request
+
+  AuthHandler *auth_ptr_;///< auth handler
 };
 }
 

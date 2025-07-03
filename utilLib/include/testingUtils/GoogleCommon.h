@@ -5,6 +5,7 @@
 #include <memory>
 #include <cxxabi.h>
 #include <gmock/gmock-matchers.h>
+#include <boost/process.hpp>
 #include "common/myConcepts.h"
 #include "common/sharedDeclarations.h"
 #include "common/printUtils.h"
@@ -252,6 +253,74 @@ struct twoDArrayDoubleComparator {
   };
 };
 
+}
+
+/**
+ * @brief Wrapper for boost Process
+ */
+class ChildProcess
+{
+  using ChildPtr=std::unique_ptr<boost::process::child>;
+ public:
+  ChildProcess()=default;
+
+  template<typename ... Args >
+  ChildProcess(Args&&...args):
+      process_ptr_(std::make_unique<boost::process::child>(std::forward<Args>(args)...))
+  {}
+
+  ~ChildProcess()
+  {
+    Terminate();
+    process_ptr_.reset();
+  }
+  /**
+   * @brief Will initialize child process
+   * @tparam Args
+   * @param args
+   * @return
+   */
+  template<typename ... Args >
+  bool Run(Args&&...args)
+  {
+    process_ptr_=std::make_unique<boost::process::child>(std::forward<Args>(args)...);
+    return process_ptr_!= nullptr;
+  }
+
+  /**
+   * @brief Terminates child
+   * @return was child terminated
+   */
+  bool Terminate()
+  {
+    if(process_ptr_->running()) {
+      process_ptr_->terminate();
+      return true;
+    }
+    return false;
+  }
+
+  bool IsActive()
+  {
+    return process_ptr_&&process_ptr_->running();
+  }
+  bool operator==(const ChildProcess &rhs) const {
+    return process_ptr_== rhs.process_ptr_;
+  }
+
+  ChildPtr process_ptr_;
+};
+
+namespace std {
+template <>
+/**
+ * @brief Hash for ChildProcess
+ */
+struct hash<ChildProcess> {
+  std::size_t operator()(const ChildProcess& k) const {
+    return std::hash<char*>()(reinterpret_cast<char *>(k.process_ptr_.get()));
+  }
+};
 }
 
 
