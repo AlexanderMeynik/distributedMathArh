@@ -19,7 +19,7 @@ static size_t d_port = 8080;
 static std::string uname_ = "new_user";
 static std::string pass_ = "password";
 
-class ProcessRunningFixture2: public ::testing::Test {
+class MainNodeTs: public ::testing::Test {
   using ChildSeT=std::unordered_set<ChildProcess>;
  public:
   ChildSeT child_set_;
@@ -31,15 +31,13 @@ class ProcessRunningFixture2: public ::testing::Test {
 
   }
 
+ protected:
   void RunMainNode()
   {
     child_set_.emplace(main_node,
                        bp::start_dir(mainNodeBin.string()), bp::std_out > stdout, bp::std_err > stderr);
 
   }
-
- protected:
-
 
   void SetUp() override {
     RunMainNode();
@@ -63,11 +61,17 @@ class ProcessRunningFixture2: public ::testing::Test {
     amqp_service_ = std::make_unique<RabbitMQRestService>(g_serviceParams.host, hander_.get());
     amqp_service_->CreateQueue(vhost_,network_types::queue{qq_,g_serviceParams.username});
 
+    host =ExtractHost(g_serviceParams.host).value();
     body=Json::Value();
-    body["ip"]=ExtractHost(g_serviceParams.host).value();
+    body["ip"]=host;
     body["name"]=qq_;
     body["user"]=g_serviceParams.username;
     body["password"]=g_serviceParams.password;
+
+    connect_publisher_body=Json::Value();
+    connect_publisher_body["queue_host"]=host;
+    connect_publisher_body["user"]=g_serviceParams.username;
+    connect_publisher_body["password"]=g_serviceParams.password;
 
   }
   static void TearDownTestSuite()
@@ -82,13 +86,15 @@ class ProcessRunningFixture2: public ::testing::Test {
   static inline std::shared_ptr<BasicAuthHandler> hander_;///< is used for rabbimq service to connect
   static inline std::filesystem::path compNodeBin;
   static inline std::filesystem::path mainNodeBin;
+  static inline std::string host;
   static inline Json::Value body; ///< contains a body that is valid for connection request
+  static inline Json::Value connect_publisher_body; ///< contains a body that is valid for connection request
+
 };
 
 
-TEST_F(ProcessRunningFixture2,_1)
+TEST_F(MainNodeTs, MainNodeServiceDefaultStatus)
 {
-  ASSERT_TRUE(true);
   r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
   auto json=RabbitMQRestService::ParseJson(r.second);
   EXPECT_EQ(r.first,200);
@@ -96,7 +102,133 @@ TEST_F(ProcessRunningFixture2,_1)
 }
 
 
+TEST_F(MainNodeTs, MainNodeServiceConnectPublisherSucess)
+{
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
 
+  EXPECT_EQ(r.first,200);
+  r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
+
+  auto json=RabbitMQRestService::ParseJson(r.second);
+
+  EXPECT_STREQ(json["rabbitmq_service"]["status"].asCString(),"Connected");
+  EXPECT_TRUE(json["rabbitmq_service"].isMember("c_string"));
+}
+
+TEST_F(MainNodeTs, MainNodeServiceConnectPublisherRepeated)
+{
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                   connect_publisher_body.toStyledString()),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        //todo message make more verbose
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_STR_CONTAINS(json["message"].asCString(), "Queue service is currently working");
+      }
+  );
+}
+
+TEST_F(MainNodeTs, MainNodeServiceConnectUnableToConnect)
+{
+  auto body=connect_publisher_body;
+  body["queue_host"]="invalid_ip";
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                   body.toStyledString()),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_STREQ(json["message"].asCString(), "Error during http curl request");
+      }
+  );
+}
+
+
+TEST_F(MainNodeTs, MainNodeServiceConnectPublisher_DisconnectPublisher)
+{
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/disconnect_publisher",HttpMethod::POST));
+  EXPECT_EQ(r.first,200);
+  r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
+
+  auto json=RabbitMQRestService::ParseJson(r.second);
+
+  EXPECT_STREQ(json["rabbitmq_service"]["status"].asCString(),"Not Connected");
+  EXPECT_FALSE(json["rabbitmq_service"].isMember("c_string"));
+}
+
+TEST_F(MainNodeTs, MainNodeServiceDisconnectPublisherRepeated)
+{
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest("v1/disconnect_publisher",HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_STREQ(json["message"].asCString(), "Queue service is currently unavailable try using connect_publisher/ request");
+      }
+  );
+}
+
+TEST_F(MainNodeTs, MainNodeServiceConnectNodePublisherNotConnected)
+{
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_STREQ(json["message"].asCString(), "Queue service is currently unavailable try using connect_publisher/ request");
+      }
+  );
+}
+
+
+TEST_F(MainNodeTs, MainNodeServiceConnectNodeNodeNotRunning)
+{
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 504);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_TRUE(json.isMember("balancer_output"));
+        EXPECT_STR_CONTAINS(json["balancer_output"]["message"].asCString(), "Unable to access worker on");
+      }
+  );
+}
+
+TEST_F(MainNodeTs, MainNodeServiceConnectNodeNodeSucess)
+{
+
+  this->RunCompNode(8081);
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+
+  SLEEP(std::chrono::milliseconds(100));
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_EQ(r.first,200);
+
+  r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
+
+  auto json=RabbitMQRestService::ParseJson(r.second);
+  ASSERT_EQ(json["clients"][0]["data"].size(),1);
+  EXPECT_STREQ(json["clients"][0]["data"][0]["host"].asCString(),fmt::format("{}:{}",host,8081).c_str());
+}
 
 
 int main(int argc, char **argv) {

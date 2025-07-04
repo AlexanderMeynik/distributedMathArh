@@ -15,7 +15,7 @@ static std::string qq_ = "test_queue";
 static std::string vhost_ = "%2F";
 static size_t d_port = 8081;
 
-class ProcessRunningFixture: public ::testing::Test {
+class CompNodeFixture: public ::testing::Test {
   using ChildSeT=std::unordered_set<ChildProcess>;
  public:
   ChildSeT child_set_;
@@ -70,7 +70,7 @@ class ProcessRunningFixture: public ::testing::Test {
   static inline Json::Value body; ///< contains a body that is valid for connection request
 };
 
-TEST_F(ProcessRunningFixture,TestServiceGetStatus)
+TEST_F(CompNodeFixture, TestServiceGetStatus)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
 
@@ -81,7 +81,7 @@ TEST_F(ProcessRunningFixture,TestServiceGetStatus)
   EXPECT_STREQ(json["worker_status"].asCString(),"not running");
 }
 
-TEST_F(ProcessRunningFixture,TestServiceConnectSucess)
+TEST_F(CompNodeFixture, TestServiceConnectSucess)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/Connect",HttpMethod::POST,body.toStyledString()));
 
@@ -96,7 +96,7 @@ TEST_F(ProcessRunningFixture,TestServiceConnectSucess)
   EXPECT_TRUE(json.isMember("connected_to"));
 }
 
-TEST_F(ProcessRunningFixture,TestServiceConnectTooSoon)
+TEST_F(CompNodeFixture, TestServiceConnectTooSoon)
 {
   EmplaceChild(8082, true);
   requestor_->SetParams(fmt::format("http://localhost:{}",8082));
@@ -116,7 +116,7 @@ TEST_F(ProcessRunningFixture,TestServiceConnectTooSoon)
 
 }
 
-TEST_F(ProcessRunningFixture,TestServiceRepeatedConnect)
+TEST_F(CompNodeFixture, TestServiceRepeatedConnect)
 {
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/Connect",HttpMethod::POST,body.toStyledString()));
@@ -136,7 +136,7 @@ TEST_F(ProcessRunningFixture,TestServiceRepeatedConnect)
 
 }
 
-TEST_F(ProcessRunningFixture,TestServiceInvalidQService)
+TEST_F(CompNodeFixture, TestServiceInvalidQService)
 {
 
   auto invalid_body=body;
@@ -153,7 +153,7 @@ TEST_F(ProcessRunningFixture,TestServiceInvalidQService)
   );
 }
 
-TEST_F(ProcessRunningFixture,TestServiceDisconnectSucess)
+TEST_F(CompNodeFixture, TestServiceDisconnectSucess)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/Connect",HttpMethod::POST,body.toStyledString()));
 
@@ -170,7 +170,7 @@ TEST_F(ProcessRunningFixture,TestServiceDisconnectSucess)
   EXPECT_STREQ(json["worker_status"].asCString(),"not running");
 }
 
-TEST_F(ProcessRunningFixture,TestServiceRepeatedDisconnect)
+TEST_F(CompNodeFixture, TestServiceRepeatedDisconnect)
 {
 
   EXPECT_EXCEPTION_WITH_CHECKS(
@@ -185,7 +185,7 @@ TEST_F(ProcessRunningFixture,TestServiceRepeatedDisconnect)
 }
 
 
-TEST_F(ProcessRunningFixture,TestServiceRebalanceSucess)
+TEST_F(CompNodeFixture, TestServiceRebalanceSucess)
 {
   SLEEP(std::chrono::milliseconds(100));
   r = requestor_->PerformRequest("/v1/rebalance_node", HttpMethod::POST);
@@ -194,7 +194,7 @@ TEST_F(ProcessRunningFixture,TestServiceRebalanceSucess)
   ASSERT_TRUE(json.isMember("old_bench"));
 }
 
-TEST_F(ProcessRunningFixture,TestServiceRebalanceTooSoon)
+TEST_F(CompNodeFixture, TestServiceRebalanceTooSoon)
 {
 
   EmplaceChild(8082, true);
