@@ -60,9 +60,11 @@ void ClusterConfigController::ConnectQ(const HttpRequestPtr &req,
                                        std::function<void(const HttpResponsePtr &)> &&callback) {
 
   auto json = *req->getJsonObject();
+  auto user = json["user"].asString();
+  auto password = json["password"].asString();
   auto qname = json["queue_host"].asString();
 
-  auto json_output = main_node_service_->Connect(qname);
+  auto json_output = main_node_service_->Connect(user,password,qname);
 
   auto http_response = HttpResponse::newHttpJsonResponse(json_output);
   http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));

@@ -23,7 +23,9 @@ PerformCurlRequest(const std::string &path,
     throw shared::CurlError("Failed to initialize CURL");
   }
 
-  std::string full_url = host + path;
+  char a= path.front();
+  std::string full_url=(a!='/')? fmt::format("{}/{}",host,path): fmt::format("{}{}",host,path);
+
   curl_easy_setopt(curl_wrapper.Get(), CURLOPT_URL, full_url.c_str());
 
   if(auth_handler) {

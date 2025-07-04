@@ -22,8 +22,8 @@ class ProcessRunningFixture: public ::testing::Test {
 
   void EmplaceChild(size_t port=d_port,bool runs_real_benchmark= false)
   {
-    child_set_.emplace(comp_node,fmt::format_int(port).c_str(),fmt::format_int(!runs_real_benchmark).c_str(),
-                       bp::start_dir(abs_fp.string()), bp::std_out > stdout, bp::std_err > stderr);
+    child_set_.emplace(comp_node, fmt::format_int(port).c_str(), fmt::format_int(!runs_real_benchmark).c_str(),
+                       bp::start_dir(compNodeBin.string()), bp::std_out > stdout, bp::std_err > stderr);
 
   }
 
@@ -43,10 +43,9 @@ class ProcessRunningFixture: public ::testing::Test {
 
   static void SetUpTestSuite()
   {
-    fp=std::filesystem::absolute("../bin");
     comp_node="./compNode";
     requestor_=std::make_unique<HttpRequestService>();
-    abs_fp = std::filesystem::absolute(fp);
+    compNodeBin = std::filesystem::absolute("../bin");
     hander_ = std::make_shared<BasicAuthHandler>(g_serviceParams.username, g_serviceParams.password);
     amqp_service_ = std::make_unique<RabbitMQRestService>(g_serviceParams.host, hander_.get());
     amqp_service_->CreateQueue(vhost_,network_types::queue{qq_,g_serviceParams.username});
@@ -63,12 +62,11 @@ class ProcessRunningFixture: public ::testing::Test {
     
   }
   HttpResult r;
-  static inline std::filesystem::path fp;
   static inline std::string comp_node;
   static inline std::unique_ptr<HttpRequestService> requestor_;
   static inline std::unique_ptr<RabbitMQRestService> amqp_service_;
   static inline std::shared_ptr<BasicAuthHandler> hander_;///< is used for rabbimq service to connect
-  static inline std::filesystem::path abs_fp;
+  static inline std::filesystem::path compNodeBin;
   static inline Json::Value body; ///< contains a body that is valid for connection request
 };
 

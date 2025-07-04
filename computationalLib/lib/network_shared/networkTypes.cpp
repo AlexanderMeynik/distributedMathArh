@@ -89,8 +89,8 @@ queueBinding::queueBinding(const Json::Value &val) :
     exchange(val["source"].asString()),
     routing_key(val["routing_key"].asString()) {}
 
-queueBinding::queueBinding(const std::string &exch,
-                           const std::string &key) :
+queueBinding::queueBinding(std::string_view exch,
+                           std::string_view key) :
     exchange(exch),
     routing_key(key) {}
 
@@ -102,8 +102,8 @@ exchange::exchange(const Json::Value &val) :
     durable(val["durable"].asBool()),
     internal(val["internal"].asBool()) {}
 
-exchange::exchange(const std::string &name,
-                   const std::string &creator_a,
+exchange::exchange(std::string_view name,
+                   std::string_view creator_a,
                    const AMQP::ExchangeType &type_a,
                    bool auto_delete_a,
                    bool durable_a,
@@ -131,8 +131,8 @@ queue::queue(const Json::Value &val) :
     creator(val["user_who_performed_action"].asString()),
     autoDelete(val["auto_delete"].asBool()),
     durable(val["durable"].asBool()) {}
-queue::queue(const std::string &name,
-             const std::string &creator_a,
+queue::queue(std::string_view name,
+             std::string_view creator_a,
              bool auto_delete_a,
              bool durable_a) :
     name(name),
@@ -222,7 +222,7 @@ Json::Value global_param::ToJson() const {
   ret["value"] = value;
   return ret;
 }
-global_param::global_param(const std::string pName, const Json::Value &val) {
+global_param::global_param(std::string_view pName, const Json::Value &val) {
   name = pName;
   value = val;
 }

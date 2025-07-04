@@ -128,7 +128,7 @@ struct queueBinding {
 
   bool operator==(const queueBinding &oth) const = default;
 
-  queueBinding(const std::string &exch, const std::string &key);
+  queueBinding(std::string_view exch, std::string_view key);
 
   queueBinding(const Json::Value &val);
 };
@@ -159,8 +159,8 @@ struct exchange {
 
   Json::Value ToJson() const;
 
-  exchange(const std::string &name,
-           const std::string &creator_a,
+  exchange(std::string_view name,
+           std::string_view creator_a,
            const AMQP::ExchangeType &type_a,
            bool auto_delete_a = false,
            bool durable_a = true,
@@ -181,8 +181,8 @@ struct queue {
 
   Json::Value ToJson() const;
 
-  queue(const std::string &name,
-        const std::string &creator_a,
+  queue(std::string_view name,
+        std::string_view creator_a,
         bool auto_delete_a = false,
         bool durable_a = true);
 
@@ -252,7 +252,7 @@ struct global_param {
   std::string name;
   Json::Value value;
 
-  global_param(const std::string pName, const Json::Value &val);
+  global_param(std::string_view pName, const Json::Value &val);
 
   Json::Value ToJson() const;
 

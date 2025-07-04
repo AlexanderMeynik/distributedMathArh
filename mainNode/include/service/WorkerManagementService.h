@@ -93,7 +93,7 @@ class WorkerManagementService {
    * @return empty Json::Value
    * @return Json:: Value with "status"=409 - if node exists and is Active
    */
-  Json::Value AddNewNode(const std::string &host_port);
+  Json::Value AddNewNode(const std::string & host_port);
 
   /**
    * @brief Connects node to computational cluster
@@ -106,7 +106,7 @@ class WorkerManagementService {
    * @return Json:: Value with "status"=504 - if worker cannot be accessed for specified host_port
    * @return Json:: Value with "status">=400 - if any abnormal http code is received
    */
-  Json::Value ConnectNode(const std::string &host_port,
+  Json::Value ConnectNode(const std::string & host_port,
                           drogon::HttpRequestPtr req1);
 
   /**
@@ -118,7 +118,7 @@ class WorkerManagementService {
    * @return Json:: Value with "status"=504 - if worker cannot be accessed for specified host_port
    * @return Json:: Value with "status">=400 - if any abnormal http code is received
    */
-  Json::Value DisconnectNode(const std::string &host_port);
+  Json::Value DisconnectNode(const std::string & host_port);
 
   /**
    *

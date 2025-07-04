@@ -4,8 +4,7 @@
 /// Namespace for services used in main node
 namespace main_services {
 
-MainNodeService::MainNodeService(const std::string &user, const std::string &password) {
-  auth_ = std::make_unique<JsonAuthHandler>(user, password);
+MainNodeService::MainNodeService(const Json::Value &config) {
   rest_service_ = std::make_unique<amqp_common::RabbitMQRestService>();
 
   publisher_service_ = std::make_unique<amqp_common::AMQPPublisherService>();
@@ -21,7 +20,7 @@ Json::Value MainNodeService::Status() {
     res_JSON["rabbitmq_service"]["status"] = "Connected";
     res_JSON["rabbitmq_service"]["c_string"] = publisher_service_->GetCString().to_string();
   } else {
-    res_JSON["RabbitmqService"]["status"] = "Not Connected";
+    res_JSON["rabbitmq_service"]["status"] = "Not Connected";
   }
 
   res_JSON["clients"] = worker_management_service_->GetStatus();
@@ -30,7 +29,7 @@ Json::Value MainNodeService::Status() {
   return res_JSON;
 
 }
-Json::Value MainNodeService::ConnectNode(const std::string &host_port, const std::string &name) {
+Json::Value MainNodeService::ConnectNode(std::string_view host_port, std::string_view name) {
   Json::Value res_JSON;
 
   res_JSON["request"] = "connect_node";
@@ -41,7 +40,7 @@ Json::Value MainNodeService::ConnectNode(const std::string &host_port, const std
     return res_JSON;
   }
 
-  auto js1 = worker_management_service_->AddNewNode(host_port);
+  auto js1 = worker_management_service_->AddNewNode(host_port.data());
   if (js1.isMember("status")) {
     res_JSON["status"] = js1["status"];
     js1.removeMember("status");
@@ -54,7 +53,7 @@ Json::Value MainNodeService::ConnectNode(const std::string &host_port, const std
     if (std::find(ls.begin(), ls.end(), name) == ls.end()) {
       auto queue = network_types::queue(name, auth_->Retrive().first);
       rest_service_->CreateQueue(vhost_, queue, Json::Value());
-      rest_service_->BindQueueToExchange(vhost_, name, publisher_service_->GetDefaultExchange(), name);
+      rest_service_->BindQueueToExchange(vhost_, name.data(), publisher_service_->GetDefaultExchange(), name.data());
     }
   }
   catch (shared::HttpError &err) {
@@ -67,12 +66,12 @@ Json::Value MainNodeService::ConnectNode(const std::string &host_port, const std
 
   Json::Value res = auth_->ToJson();
   res["ip"] = q_host_;
-  res["name"] = name;
+  res["name"] = name.data();
   auto req1 = HttpRequest::newHttpJsonRequest(res);
   req1->setPath("/v1/Connect");
   req1->setMethod(Post);
 
-  js1 = worker_management_service_->ConnectNode(host_port, req1);
+  js1 = worker_management_service_->ConnectNode(host_port.data(), req1);
 
   res_JSON["balancer_output"] = js1;
   if (js1.isMember("status")) {
@@ -86,7 +85,7 @@ Json::Value MainNodeService::ConnectNode(const std::string &host_port, const std
 
   return res_JSON;
 }
-Json::Value MainNodeService::DisconnectNode(const std::string &host_port) {
+Json::Value MainNodeService::DisconnectNode(std::string_view host_port) {
   Json::Value res_JSON;
 
   res_JSON["request"] = "disconnect_node";
@@ -96,7 +95,7 @@ Json::Value MainNodeService::DisconnectNode(const std::string &host_port) {
     return res_JSON;
   }
 
-  auto js1 = worker_management_service_->DisconnectNode(host_port);
+  auto js1 = worker_management_service_->DisconnectNode(host_port.data());
 
   res_JSON["balancer_output"] = js1;
   if (js1.isMember("status")) {
@@ -108,7 +107,7 @@ Json::Value MainNodeService::DisconnectNode(const std::string &host_port) {
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;
 }
-Json::Value MainNodeService::Connect(const std::string &qip) {
+Json::Value MainNodeService::Connect(std::string_view user,std::string_view pass,std::string_view qip) {
 
   Json::Value res_JSON;
 
@@ -121,6 +120,8 @@ Json::Value MainNodeService::Connect(const std::string &qip) {
         fmt::format("Queue service is currently working {}", publisher_service_->GetCString().to_string());
     return res_JSON;
   }
+
+  auth_=std::make_unique<JsonAuthHandler>(user.data(),pass.data());
 
   q_host_ = qip;
 
@@ -185,6 +186,7 @@ Json::Value MainNodeService::Disconnect() {
   }
 
   publisher_service_->Disconnect();
+  auth_.reset();
 
   res_JSON["status"] = drogon::HttpStatusCode::k200OK;
   return res_JSON;

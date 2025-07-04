@@ -23,15 +23,13 @@ class MainNodeService {
  public:
   /**
    * @brief Initializes all components on heap  with default constructors.
-   * Creates JsonAuthHandler from user,password pair
-   * @param user
-   * @param password
+   * @param config
    * @see amqp_common::RabbitMQRestService::RabbitMQRestService()
    * @see rest_utils::JsonAuthHandler
    * @see amqp_common::AMQPPublisherService::AMQPPublisherService()
    * @see main_services::WorkerManagementService::WorkerManagementService()
    */
-  MainNodeService(const std::string &user, const std::string &password);
+  MainNodeService(const Json::Value&config=Json::nullValue);
 
   /**
    * @brief Queries the status of the main node and connected workers
@@ -47,20 +45,22 @@ class MainNodeService {
    * @param name -queue name(currently same as host_port)
    *
    */
-  Json::Value ConnectNode(const std::string &host_port,
-                          const std::string &name);
+  Json::Value ConnectNode(std::string_view host_port,
+                          std::string_view name);
 
   /**
    *
    * @param host_port
    */
-  Json::Value DisconnectNode(const std::string &host_port);
+  Json::Value DisconnectNode(std::string_view host_port);
 
   /**
    * @brief Connects the main node to a RabbiMQ instance at qip
+   * @param user
+   * @param pass
    * @param qip
    */
-  Json::Value Connect(const std::string &qip);
+  Json::Value Connect(std::string_view user,std::string_view pass,std::string_view qip);
 
   /**
    * @brief Disconnects the main node from a RabbitMQ instance

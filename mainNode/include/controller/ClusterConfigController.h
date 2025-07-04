@@ -17,15 +17,14 @@ using namespace main_services;
  */
 class ClusterConfigController : public drogon::HttpController<ClusterConfigController> {
   std::unique_ptr<MainNodeService> main_node_service_;
+  std::unique_ptr<JsonAuthHandler> auth_;
  public:
   /**
    * @brief Initializes MainNodeService with preconfigured credentials provider
    */
   ClusterConfigController() {
-    ///@todo pass args(create role for q creation/ message send)
-    main_node_service_ = std::make_unique<MainNodeService>("sysadmin", "syspassword");
-
-  }///@todo /rebalance
+    main_node_service_ = std::make_unique<MainNodeService>(app().getCustomConfig());
+  }
   ///@todo ping(measures latencies)?
   using Cont = ClusterConfigController;
 

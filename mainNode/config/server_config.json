@@ -32,5 +32,10 @@
     "client_max_memory_body_size": "1M",
     "enable_server_header": false,
     "enable_date_header": true
+  },
+  "custom_config": {
+    "auth": {
+      "task_distribution": "weights"
+    }
   }
 }

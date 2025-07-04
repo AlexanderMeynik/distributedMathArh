@@ -15,7 +15,7 @@ static std::string qq_ = "test_queue";
 static std::string exch_ = "amq.direct";
 static std::string r_key_ = "test_routing";
 static std::string vhost_ = "%2F";
-static size_t d_port = 8081;
+static size_t d_port = 8080;
 static std::string uname_ = "new_user";
 static std::string pass_ = "password";
 
@@ -24,10 +24,17 @@ class ProcessRunningFixture2: public ::testing::Test {
  public:
   ChildSeT child_set_;
 
-  void EmplaceChild(size_t port=d_port,bool runs_real_benchmark= false)
+  void RunCompNode(size_t port= d_port, bool runs_real_benchmark= false)
   {
-    child_set_.emplace(comp_node,fmt::format_int(port).c_str(),fmt::format_int(!runs_real_benchmark).c_str(),
-                       bp::start_dir(abs_fp.string()), bp::std_out > stdout, bp::std_err > stderr);
+    child_set_.emplace(comp_node, fmt::format_int(port).c_str(), fmt::format_int(!runs_real_benchmark).c_str(),
+                       bp::start_dir(compNodeBin.string()), bp::std_out > stdout, bp::std_err > stderr);
+
+  }
+
+  void RunMainNode()
+  {
+    child_set_.emplace(main_node,
+                       bp::start_dir(mainNodeBin.string()), bp::std_out > stdout, bp::std_err > stderr);
 
   }
 
@@ -35,7 +42,7 @@ class ProcessRunningFixture2: public ::testing::Test {
 
 
   void SetUp() override {
-    /*EmplaceChild();*/
+    RunMainNode();
     requestor_->SetParams(fmt::format("http://localhost:{}",d_port));
 
     SLEEP(std::chrono::milliseconds(100));
@@ -47,10 +54,11 @@ class ProcessRunningFixture2: public ::testing::Test {
 
   static void SetUpTestSuite()
   {
-    fp=std::filesystem::absolute("../bin");
     comp_node="./compNode";
+    main_node="./mainNode";
     requestor_=std::make_unique<HttpRequestService>();
-    abs_fp = std::filesystem::absolute(fp);
+    mainNodeBin = std::filesystem::absolute("../bin");
+    compNodeBin = std::filesystem::absolute("../../computationalNode/bin");
     hander_ = std::make_shared<BasicAuthHandler>(g_serviceParams.username, g_serviceParams.password);
     amqp_service_ = std::make_unique<RabbitMQRestService>(g_serviceParams.host, hander_.get());
     amqp_service_->CreateQueue(vhost_,network_types::queue{qq_,g_serviceParams.username});
@@ -67,12 +75,13 @@ class ProcessRunningFixture2: public ::testing::Test {
     
   }
   HttpResult r;
-  static inline std::filesystem::path fp;
   static inline std::string comp_node;
+  static inline std::string main_node;
   static inline std::unique_ptr<HttpRequestService> requestor_;
   static inline std::unique_ptr<RabbitMQRestService> amqp_service_;
   static inline std::shared_ptr<BasicAuthHandler> hander_;///< is used for rabbimq service to connect
-  static inline std::filesystem::path abs_fp;
+  static inline std::filesystem::path compNodeBin;
+  static inline std::filesystem::path mainNodeBin;
   static inline Json::Value body; ///< contains a body that is valid for connection request
 };
 
@@ -80,6 +89,10 @@ class ProcessRunningFixture2: public ::testing::Test {
 TEST_F(ProcessRunningFixture2,_1)
 {
   ASSERT_TRUE(true);
+  r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
+  auto json=RabbitMQRestService::ParseJson(r.second);
+  EXPECT_EQ(r.first,200);
+  EXPECT_STREQ(json["rabbitmq_service"]["status"].asCString(),"Not Connected");
 }
 
 

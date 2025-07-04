@@ -23,7 +23,7 @@ WorkerManagementService::WorkerManagementService() {
   normalized_ = DefaultBench(0);
 }
 
-Json::Value WorkerManagementService::AddNewNode(const std::string &host_port) {
+Json::Value WorkerManagementService::AddNewNode(const std::string & host_port) {
   using NodeStatus::ACTIVE;
   using NodeStatus::INACTIVE;
 
@@ -47,7 +47,7 @@ Json::Value WorkerManagementService::AddNewNode(const std::string &host_port) {
   return res_JSON;
 }
 
-Json::Value WorkerManagementService::ConnectNode(const std::string &host_port,
+Json::Value WorkerManagementService::ConnectNode(const std::string & host_port,
                                                  drogon::HttpRequestPtr req1) {
   using NodeStatus::ACTIVE;
   using NodeStatus::INACTIVE;
@@ -79,12 +79,12 @@ Json::Value WorkerManagementService::ConnectNode(const std::string &host_port,
   return res_JSON;
 }
 
-Json::Value WorkerManagementService::DisconnectNode(const std::string &host_port) {
+Json::Value WorkerManagementService::DisconnectNode(const std::string & host_port) {
   using NodeStatus::ACTIVE;
   using NodeStatus::INACTIVE;
   Json::Value res_JSON;
 
-  if (!worker_nodes_[ACTIVE].count(host_port)) {
+  if (!worker_nodes_[ACTIVE].count(host_port.data())) {
     res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
     res_JSON["message"] = fmt::format("Worker node {} was not connected to cluster!", host_port);
     return res_JSON;
@@ -94,8 +94,8 @@ Json::Value WorkerManagementService::DisconnectNode(const std::string &host_port
   req1->setPath("/v1/Disconnect");
   req1->setMethod(Post);
 
-  auto ct = HttpClient::newHttpClient(host_port);
-  auto [code, resp] = worker_nodes_[ACTIVE][host_port].PerformHttpRequest(req1);
+  auto ct = HttpClient::newHttpClient(host_port.data());
+  auto [code, resp] = worker_nodes_[ACTIVE][host_port.data()].PerformHttpRequest(req1);
 
   if (code == drogon::ReqResult::BadServerAddress) {
     res_JSON["message"] = fmt::format("Unable to access worker on {}! Is working node running?", host_port);
