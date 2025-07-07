@@ -83,6 +83,12 @@ class MainNodeService {
    */
   Json::Value Rebalance();
 
+  /**
+   * @brief Performs clean up before main node disconnect
+   * @return Json::Value
+   */
+  Json::Value CleanUp();
+
  private:
   std::unique_ptr<JsonAuthHandler> auth_; ///< auth handler for authentication in RabbitMQ
   std::unique_ptr<amqp_common::RabbitMQRestService> rest_service_; ///< rest service for metrics collection and management

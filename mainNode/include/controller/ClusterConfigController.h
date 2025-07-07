@@ -39,7 +39,7 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
     ADD_METHOD_TO(Cont::SentToExecution, "v1/send_task", Put);
 
     ADD_METHOD_TO(Cont::Rebalance, "v1/rebalance", Post);
-
+    ADD_METHOD_TO(Cont::SoftTerminate,"v1/soft_terminate",Post);
   METHOD_LIST_END
 
   /**
@@ -104,12 +104,19 @@ class ClusterConfigController : public drogon::HttpController<ClusterConfigContr
 
 
   /**
- * @brief Recomputes node benchmarks to rebalance cluster
- * @param req
- * @param callback
- * @see ClusterConfigController::Rebalance
- */
+  * @brief Recomputes node benchmarks to rebalance cluster
+  * @param req
+  * @param callback
+  * @see ClusterConfigController::Rebalance
+  */
   void Rebalance(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+
+  /**
+   * @brief Will softly terminate current instance
+   * @param req
+   * @param callback
+   */
+  void SoftTerminate(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
 };
 }

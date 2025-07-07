@@ -1,10 +1,21 @@
 #include <controller/CompNode.h>
+#include <csignal>
 
 using namespace drogon;
 using rest::v1::CompNode;
 
+void signalHandler(int) {
+  //todo remake
+  fmt::print("Received sigterm, initiating shutdown...\n");
+  app().getLoop()->queueInLoop([]() {
+    app().quit();
+  });
+}
+
 int main(int argc, char *argv[]) {
+
   app().loadConfigFile("config/server_config.json");
+  signal(SIGTERM, signalHandler);
   int port;
   if (argc >= 2) {
     try {
@@ -21,8 +32,11 @@ int main(int argc, char *argv[]) {
     }
 
     app().addListener("0.0.0.0", port);
-    std::cout << port << '\n';
     app().run();
+
+
+    fmt::print("Computational node {} has shut down gracefully.\n",port);
+    return 0;
   } else {
     fmt::print("usage: compNode <port> |<mode>\n <port> -will be used to create listener\n<mode> - is optional and if is not 0"
                " will replace benchmark run with dummy programm, defaults to false");

@@ -260,6 +260,13 @@ Json::Value MainNodeService::Rebalance()
   Json::Value res_JSON;
 
   res_JSON["request"] = "rebalance";
+
+  if (!publisher_service_->IsConnected()) {
+    res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
+    res_JSON["message"] = "Queue service is currently unavailable try using connect_publisher/ request";
+    return res_JSON;
+  }
+
   if (worker_management_service_->begin() == worker_management_service_->end()) {
     res_JSON["message"] = "No nodes to be rebalanced";
     res_JSON["status"] = drogon::HttpStatusCode::k409Conflict;
@@ -269,12 +276,13 @@ Json::Value MainNodeService::Rebalance()
   auto req1 = HttpRequest::newHttpRequest();
   req1->setPath("/v1/rebalance_node");
   req1->setMethod(Post);
-
+  auto res=drogon::HttpStatusCode::k200OK;
   for (auto [name,node]: *this->worker_management_service_) {
     auto [code, resp]=node.PerformHttpRequest(req1);
     if (code == drogon::ReqResult::BadServerAddress) {
       res_JSON["nodes"][name]["message"] = fmt::format("Unable to access worker on {}! Is working node running?", name);
       res_JSON["nodes"][name]["status"] = drogon::HttpStatusCode::k504GatewayTimeout;
+      res = drogon::HttpStatusCode::k504GatewayTimeout;
       continue;
     }
     if (resp->getStatusCode() >= HttpStatusCode::k400BadRequest) {
@@ -285,7 +293,19 @@ Json::Value MainNodeService::Rebalance()
   }
 
 
-  res_JSON["status"] = drogon::HttpStatusCode::k200OK;
+  res_JSON["status"] = res;
   return res_JSON;
+}
+Json::Value MainNodeService::CleanUp() {
+  Json::Value res;
+
+  for(auto &[host,comp_node]:*worker_management_service_)
+  {
+    res["nodes"][host]["disconnect"]=DisconnectNode(host);
+    //todo more verbose status
+  }
+  res["publisher_service"]=Disconnect();
+  res["status"]=k200OK;
+  return res;
 }
 }

@@ -26,6 +26,7 @@ class CompNode : public drogon::HttpController<CompNode> {
     ADD_METHOD_TO(Cont::ConnectHandler, "v1/Connect", Post);
     ADD_METHOD_TO(Cont::DisconnectHandler, "v1/Disconnect", Post);
     ADD_METHOD_TO(Cont::RebalanceHandler, "v1/rebalance_node", Post);
+    ADD_METHOD_TO(Cont::SoftTerminate,"v1/soft_terminate",Post);
   METHOD_LIST_END
 
   void GetStatus(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
@@ -35,6 +36,9 @@ class CompNode : public drogon::HttpController<CompNode> {
   void DisconnectHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
 
   void RebalanceHandler(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+
+  void SoftTerminate(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback);
+
 };
 }
 

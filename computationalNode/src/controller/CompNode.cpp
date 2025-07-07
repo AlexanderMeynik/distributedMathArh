@@ -45,4 +45,23 @@ void CompNode::RebalanceHandler(const HttpRequestPtr &req, std::function<void(co
 
   callback(response);
 }
+void CompNode::SoftTerminate(const HttpRequestPtr &req, std::function<void(const HttpResponsePtr &)> &&callback) {
+
+
+  Json::Value res;
+  res["status"]=k200OK;
+  res["message"]="Computational node {} received soft_terminate request";
+  res["request"]="soft_terminate";
+
+  app().getLoop()->queueInLoop([]() {
+    app().quit();
+  });
+
+  auto response = HttpResponse::newHttpJsonResponse(res);
+
+  response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
+
+  callback(response);
+
+}
 }

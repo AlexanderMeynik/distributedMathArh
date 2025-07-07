@@ -24,9 +24,9 @@ class MainNodeTs: public ::testing::Test {
  public:
   ChildSeT child_set_;
 
-  void RunCompNode(size_t port= d_port, bool runs_real_benchmark= false)
+  auto RunCompNode(size_t port= d_port, bool runs_real_benchmark= false)
   {
-    child_set_.emplace(comp_node, fmt::format_int(port).c_str(), fmt::format_int(!runs_real_benchmark).c_str(),
+    return child_set_.emplace(comp_node, fmt::format_int(port).c_str(), fmt::format_int(!runs_real_benchmark).c_str(),
                        bp::start_dir(compNodeBin.string()), bp::std_out > stdout, bp::std_err > stderr);
 
   }
@@ -93,7 +93,7 @@ class MainNodeTs: public ::testing::Test {
 };
 
 
-TEST_F(MainNodeTs, MainNodeServiceDefaultStatus)
+TEST_F(MainNodeTs, MainNodeService_Status_Default)
 {
   r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
   auto json=RabbitMQRestService::ParseJson(r.second);
@@ -102,7 +102,7 @@ TEST_F(MainNodeTs, MainNodeServiceDefaultStatus)
 }
 
 
-TEST_F(MainNodeTs, MainNodeServiceConnectPublisherSucess)
+TEST_F(MainNodeTs, MainNodeService_ConnectPublisher_Sucess)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
                                                connect_publisher_body.toStyledString()));
@@ -116,7 +116,7 @@ TEST_F(MainNodeTs, MainNodeServiceConnectPublisherSucess)
   EXPECT_TRUE(json["rabbitmq_service"].isMember("c_string"));
 }
 
-TEST_F(MainNodeTs, MainNodeServiceConnectPublisherRepeated)
+TEST_F(MainNodeTs, MainNodeService_ConnectPublisher_Repeated)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
                                                connect_publisher_body.toStyledString()));
@@ -133,7 +133,7 @@ TEST_F(MainNodeTs, MainNodeServiceConnectPublisherRepeated)
   );
 }
 
-TEST_F(MainNodeTs, MainNodeServiceConnectUnableToConnect)
+TEST_F(MainNodeTs, MainNodeService_ConnectPublisher_UnableToConnect)
 {
   auto body=connect_publisher_body;
   body["queue_host"]="invalid_ip";
@@ -150,7 +150,7 @@ TEST_F(MainNodeTs, MainNodeServiceConnectUnableToConnect)
 }
 
 
-TEST_F(MainNodeTs, MainNodeServiceConnectPublisher_DisconnectPublisher)
+TEST_F(MainNodeTs, MainNodeServiceConnectDisconnectPublisher_Sucess)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
                                                connect_publisher_body.toStyledString()));
@@ -165,7 +165,7 @@ TEST_F(MainNodeTs, MainNodeServiceConnectPublisher_DisconnectPublisher)
   EXPECT_FALSE(json["rabbitmq_service"].isMember("c_string"));
 }
 
-TEST_F(MainNodeTs, MainNodeServiceDisconnectPublisherRepeated)
+TEST_F(MainNodeTs, MainNodeService_DisconnectPublisher_Repeated)
 {
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
@@ -178,7 +178,7 @@ TEST_F(MainNodeTs, MainNodeServiceDisconnectPublisherRepeated)
   );
 }
 
-TEST_F(MainNodeTs, MainNodeServiceConnectNodePublisherNotConnected)
+TEST_F(MainNodeTs, MainNodeService_ConnectNode_PublisherNotConnected)
 {
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
@@ -191,8 +191,9 @@ TEST_F(MainNodeTs, MainNodeServiceConnectNodePublisherNotConnected)
   );
 }
 
+//todo create queue with different specs to cauae an erro at MainNodeService.cpp::59
 
-TEST_F(MainNodeTs, MainNodeServiceConnectNodeNodeNotRunning)
+TEST_F(MainNodeTs, MainNodeService_ConnectNode_NodeNotRunning)
 {
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
@@ -210,7 +211,7 @@ TEST_F(MainNodeTs, MainNodeServiceConnectNodeNodeNotRunning)
   );
 }
 
-TEST_F(MainNodeTs, MainNodeServiceConnectNodeNodeSucess)
+TEST_F(MainNodeTs, MainNodeService_ConnectNode_NodeSucess)
 {
 
   this->RunCompNode(8081);
@@ -230,6 +231,188 @@ TEST_F(MainNodeTs, MainNodeServiceConnectNodeNodeSucess)
   EXPECT_STREQ(json["clients"][0]["data"][0]["host"].asCString(),fmt::format("{}:{}",host,8081).c_str());
 }
 
+
+
+TEST_F(MainNodeTs, MainNodeService_DisconnectNode_NodeSucess)
+{
+
+  this->RunCompNode(8081);
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+
+  SLEEP(std::chrono::milliseconds(100));
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_EQ(r.first,200);
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST));
+
+   r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
+
+   auto json=RabbitMQRestService::ParseJson(r.second);
+   ASSERT_EQ(json["clients"][0]["data"].size(),0);
+}
+
+TEST_F(MainNodeTs, MainNodeService_DisconnectNode_PublisherNotConnected)
+{
+
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_STREQ(json["message"].asCString(), "Queue service is currently unavailable try using connect_publisher/ request");
+      }
+  );
+}
+
+
+TEST_F(MainNodeTs, MainNodeService_DisconnectNode_UnableToAcessWorkerNode)
+{
+
+  auto it=this->RunCompNode(8081).first;
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+
+  SLEEP(std::chrono::milliseconds(100));
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_EQ(r.first,200);
+
+  child_set_.erase(it);
+
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+
+      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 504);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_TRUE(json.isMember("balancer_output"));
+        EXPECT_STR_CONTAINS(json["balancer_output"]["message"].asCString(), "Unable to access worker on");
+      }
+  );
+}
+
+TEST_F(MainNodeTs, MainNodeService_DisconnectNode_NodeWasNotConnected)
+{
+
+  this->RunCompNode(8081);
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+
+  SLEEP(std::chrono::milliseconds(100));
+
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_TRUE(json.isMember("balancer_output"));
+        EXPECT_STR_CONTAINS(json["balancer_output"]["message"].asCString(), "was not connected to cluster!");
+      }
+  );
+}
+
+
+TEST_F(MainNodeTs, MainNodeService_Rebalance_PublisherNotConnected)
+{
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest("v1/rebalance",HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_STREQ(json["message"].asCString(), "Queue service is currently unavailable try using connect_publisher/ request");
+      }
+  );
+}
+
+TEST_F(MainNodeTs, MainNodeService_Rebalance_NoNodes)
+{
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+  
+  
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest("v1/rebalance",HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 409);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_STREQ(json["message"].asCString(), "No nodes to be rebalanced");
+      }
+  );
+}
+
+
+TEST_F(MainNodeTs, MainNodeService_Rebalance_UnableToAcessWotkerNode)
+{
+
+
+  auto it=this->RunCompNode(8081).first;
+  auto node_name=fmt::format("{}:{}",host,8081);
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+
+  SLEEP(std::chrono::milliseconds(100));
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_EQ(r.first,200);
+
+  child_set_.erase(it);
+
+
+  EXPECT_EXCEPTION_WITH_CHECKS(
+      shared::HttpError,
+      r=requestor_->PerformRequest("v1/rebalance",HttpMethod::POST),
+      {
+        EXPECT_EQ(e.get<0>(), 504);
+        auto json = HttpRequestService::ParseJson(e.get<1>());
+        EXPECT_TRUE(json.isMember("nodes"));
+        EXPECT_TRUE(json["nodes"].isMember(node_name));
+        EXPECT_STR_CONTAINS(json["nodes"][node_name]["message"].asCString(), "Unable to access worker on");
+      }
+  );
+}
+
+
+TEST_F(MainNodeTs, MainNodeService_Rebalance_Sucess)
+{
+
+  this->RunCompNode(8081);
+  auto node_name=fmt::format("{}:{}",host,8081);
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
+                                               connect_publisher_body.toStyledString()));
+
+
+  SLEEP(std::chrono::milliseconds(200));
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/rebalance",HttpMethod::POST));
+  EXPECT_EQ(r.first,200);
+}
+
+
+TEST_F(MainNodeTs, MainNodeService_soft_terminate_Sucess)
+{
+
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/soft_terminate",HttpMethod::POST));
+
+  EXPECT_EQ(r.first,200);
+
+  EXPECT_THROW(r=requestor_->PerformRequest("v1/status",HttpMethod::POST),shared::CurlError);
+}
 
 int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);

@@ -70,7 +70,7 @@ class CompNodeFixture: public ::testing::Test {
   static inline Json::Value body; ///< contains a body that is valid for connection request
 };
 
-TEST_F(CompNodeFixture, TestServiceGetStatus)
+TEST_F(CompNodeFixture, TestService_Status_Default)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
 
@@ -81,7 +81,7 @@ TEST_F(CompNodeFixture, TestServiceGetStatus)
   EXPECT_STREQ(json["worker_status"].asCString(),"not running");
 }
 
-TEST_F(CompNodeFixture, TestServiceConnectSucess)
+TEST_F(CompNodeFixture, TestService_Connect_Sucess)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/Connect",HttpMethod::POST,body.toStyledString()));
 
@@ -96,7 +96,7 @@ TEST_F(CompNodeFixture, TestServiceConnectSucess)
   EXPECT_TRUE(json.isMember("connected_to"));
 }
 
-TEST_F(CompNodeFixture, TestServiceConnectTooSoon)
+TEST_F(CompNodeFixture, TestService_Connect_TooEarly)
 {
   EmplaceChild(8082, true);
   requestor_->SetParams(fmt::format("http://localhost:{}",8082));
@@ -116,7 +116,7 @@ TEST_F(CompNodeFixture, TestServiceConnectTooSoon)
 
 }
 
-TEST_F(CompNodeFixture, TestServiceRepeatedConnect)
+TEST_F(CompNodeFixture, TestService_Connect_Repeated)
 {
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/Connect",HttpMethod::POST,body.toStyledString()));
@@ -136,7 +136,7 @@ TEST_F(CompNodeFixture, TestServiceRepeatedConnect)
 
 }
 
-TEST_F(CompNodeFixture, TestServiceInvalidQService)
+TEST_F(CompNodeFixture, TestService_Connect_InvalidQService)
 {
 
   auto invalid_body=body;
@@ -153,7 +153,7 @@ TEST_F(CompNodeFixture, TestServiceInvalidQService)
   );
 }
 
-TEST_F(CompNodeFixture, TestServiceDisconnectSucess)
+TEST_F(CompNodeFixture, TestService_Disconnect_Sucess)
 {
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/Connect",HttpMethod::POST,body.toStyledString()));
 
@@ -170,7 +170,7 @@ TEST_F(CompNodeFixture, TestServiceDisconnectSucess)
   EXPECT_STREQ(json["worker_status"].asCString(),"not running");
 }
 
-TEST_F(CompNodeFixture, TestServiceRepeatedDisconnect)
+TEST_F(CompNodeFixture, TestService_Disconnect_Repeated)
 {
 
   EXPECT_EXCEPTION_WITH_CHECKS(
@@ -185,16 +185,16 @@ TEST_F(CompNodeFixture, TestServiceRepeatedDisconnect)
 }
 
 
-TEST_F(CompNodeFixture, TestServiceRebalanceSucess)
+TEST_F(CompNodeFixture, TestService_Rebalance_Sucess)
 {
-  SLEEP(std::chrono::milliseconds(100));
+  SLEEP(std::chrono::milliseconds(200));
   r = requestor_->PerformRequest("/v1/rebalance_node", HttpMethod::POST);
   auto json =HttpRequestService::ParseJson(r.second);
   EXPECT_STREQ(json["request"].asCString(),"rebalance_node");
   ASSERT_TRUE(json.isMember("old_bench"));
 }
 
-TEST_F(CompNodeFixture, TestServiceRebalanceTooSoon)
+TEST_F(CompNodeFixture, TestService_Rebalance_TooSoon)
 {
 
   EmplaceChild(8082, true);
@@ -211,6 +211,16 @@ TEST_F(CompNodeFixture, TestServiceRebalanceTooSoon)
   );
 }
 
+TEST_F(CompNodeFixture, MainNodeService_soft_terminate_Sucess)
+{
+
+
+  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/soft_terminate",HttpMethod::POST));
+
+  EXPECT_EQ(r.first,200);
+
+  EXPECT_THROW(r=requestor_->PerformRequest("v1/status",HttpMethod::POST),shared::CurlError);
+}
 
 
 int main(int argc, char **argv) {

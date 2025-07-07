@@ -90,4 +90,22 @@ void ClusterConfigController::Rebalance(const HttpRequestPtr &req,
   http_response->setStatusCode(static_cast<HttpStatusCode>(json_output["status"].asUInt()));
   callback(http_response);
 }
+void ClusterConfigController::SoftTerminate(const HttpRequestPtr &req,
+                                            std::function<void(const HttpResponsePtr &)> &&callback) {
+
+  Json::Value res=main_node_service_->CleanUp();
+  res["status"]=k200OK;
+  res["message"]="Main node {} received soft_terminate request";
+  res["request"]="soft_terminate";
+
+  app().getLoop()->queueInLoop([]() {
+    app().quit();
+  });
+
+  auto response = HttpResponse::newHttpJsonResponse(res);
+
+  response->setStatusCode(static_cast<HttpStatusCode>(res["status"].asUInt()));
+
+  callback(response);
+}
 }

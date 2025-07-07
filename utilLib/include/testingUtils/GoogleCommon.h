@@ -283,6 +283,8 @@ class ChildProcess
       process_ptr_(std::make_unique<boost::process::child>(std::forward<Args>(args)...))
   {}
 
+  ChildProcess(ChildProcess &&process):process_ptr_(std::move(process.process_ptr_)) {
+  }
   ~ChildProcess()
   {
     Terminate();
