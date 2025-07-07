@@ -61,7 +61,7 @@ class MainNodeTs: public ::testing::Test {
     amqp_service_ = std::make_unique<RabbitMQRestService>(g_serviceParams.host, hander_.get());
     amqp_service_->CreateQueue(vhost_,network_types::queue{qq_,g_serviceParams.username});
 
-    host =ExtractHost(g_serviceParams.host).value();
+    host ="localhost";//ExtractHost(g_serviceParams.host).value();
     body=Json::Value();
     body["ip"]=host;
     body["name"]=qq_;
@@ -277,7 +277,7 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_UnableToAcessWorkerNode)
                                                connect_publisher_body.toStyledString()));
 
 
-  SLEEP(std::chrono::milliseconds(100));
+  SLEEP(std::chrono::milliseconds(200));
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
@@ -286,7 +286,6 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_UnableToAcessWorkerNode)
 
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
-
       r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 504);
