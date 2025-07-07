@@ -61,7 +61,8 @@ class MainNodeTs: public ::testing::Test {
     amqp_service_ = std::make_unique<RabbitMQRestService>(g_serviceParams.host, hander_.get());
     amqp_service_->CreateQueue(vhost_,network_types::queue{qq_,g_serviceParams.username});
 
-    host ="localhost";//ExtractHost(g_serviceParams.host).value();
+    host =ExtractHost(g_serviceParams.host).value();
+    comp_node_host="localhost";
     body=Json::Value();
     body["ip"]=host;
     body["name"]=qq_;
@@ -87,6 +88,7 @@ class MainNodeTs: public ::testing::Test {
   static inline std::filesystem::path compNodeBin;
   static inline std::filesystem::path mainNodeBin;
   static inline std::string host;
+  static inline std::string comp_node_host;
   static inline Json::Value body; ///< contains a body that is valid for connection request
   static inline Json::Value connect_publisher_body; ///< contains a body that is valid for connection request
 
@@ -182,7 +184,7 @@ TEST_F(MainNodeTs, MainNodeService_ConnectNode_PublisherNotConnected)
 {
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
-      r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 409);
         auto json = HttpRequestService::ParseJson(e.get<1>());
@@ -201,7 +203,7 @@ TEST_F(MainNodeTs, MainNodeService_ConnectNode_NodeNotRunning)
 
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
-      r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 504);
         auto json = HttpRequestService::ParseJson(e.get<1>());
@@ -221,7 +223,7 @@ TEST_F(MainNodeTs, MainNodeService_ConnectNode_NodeSucess)
 
   SLEEP(std::chrono::milliseconds(100));
 
-  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
 
   r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
@@ -243,10 +245,10 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_NodeSucess)
 
   SLEEP(std::chrono::milliseconds(100));
 
-  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
 
-  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
 
    r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
 
@@ -259,7 +261,7 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_PublisherNotConnected)
 
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
-      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 409);
         auto json = HttpRequestService::ParseJson(e.get<1>());
@@ -279,14 +281,14 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_UnableToAcessWorkerNode)
 
   SLEEP(std::chrono::milliseconds(200));
 
-  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
 
   child_set_.erase(it);
 
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
-      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 504);
         auto json = HttpRequestService::ParseJson(e.get<1>());
@@ -308,7 +310,7 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_NodeWasNotConnected)
 
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
-      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",host,8081),HttpMethod::POST),
+      r=requestor_->PerformRequest(fmt::format("v1/disconnect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 409);
         auto json = HttpRequestService::ParseJson(e.get<1>());
@@ -364,7 +366,7 @@ TEST_F(MainNodeTs, MainNodeService_Rebalance_UnableToAcessWotkerNode)
 
   SLEEP(std::chrono::milliseconds(100));
 
-  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
 
   child_set_.erase(it);
@@ -395,7 +397,7 @@ TEST_F(MainNodeTs, MainNodeService_Rebalance_Sucess)
 
   SLEEP(std::chrono::milliseconds(200));
 
-  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",host,8081),HttpMethod::POST));
+  EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/rebalance",HttpMethod::POST));
   EXPECT_EQ(r.first,200);
