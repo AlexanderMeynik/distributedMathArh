@@ -41,7 +41,7 @@ class MainNodeTs: public ::testing::Test {
 
   void SetUp() override {
     RunMainNode();
-    requestor_->SetParams(fmt::format("http://localhost:{}",d_port));
+    requestor_->SetParams(fmt::format("http://{}:{}",comp_node_host,d_port));
 
     SLEEP(std::chrono::milliseconds(100));
   }
@@ -70,7 +70,7 @@ class MainNodeTs: public ::testing::Test {
     body["password"]=g_serviceParams.password;
 
     connect_publisher_body=Json::Value();
-    connect_publisher_body["queue_host"]=host;
+    connect_publisher_body["queue_host"]=comp_node_host;
     connect_publisher_body["user"]=g_serviceParams.username;
     connect_publisher_body["password"]=g_serviceParams.password;
 
