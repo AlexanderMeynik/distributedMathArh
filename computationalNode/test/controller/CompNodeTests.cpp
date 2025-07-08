@@ -75,7 +75,7 @@ TEST_F(CompNodeFixture, TestService_Status_Default)
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
 
   EXPECT_EQ(r.first,200)<<fmt::format("Invalid response code: expected {}, got {} !",200,r.first);
-  auto json=requestor_->ParseJson(r.second);
+  auto json=ParseJson(r.second);
 
   EXPECT_STREQ(json["request"].asCString(),"status");
   EXPECT_STREQ(json["worker_status"].asCString(),"not running");
@@ -90,7 +90,7 @@ TEST_F(CompNodeFixture, TestService_Connect_Sucess)
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
 
   EXPECT_EQ(r.first,200)<<fmt::format("Invalid response code: expected {}, got {} !",200,r.first);
-  auto json=requestor_->ParseJson(r.second);
+  auto json=ParseJson(r.second);
 
   EXPECT_STREQ(json["worker_status"].asCString(),"running");
   EXPECT_TRUE(json.isMember("connected_to"));
@@ -109,7 +109,7 @@ TEST_F(CompNodeFixture, TestService_Connect_TooEarly)
       r = requestor_->PerformRequest("/v1/Connect", HttpMethod::POST, body.toStyledString()),
       {
         EXPECT_EQ(e.get<0>(), 409);
-        auto json = HttpRequestService::ParseJson(e.get<1>());
+        auto json = ParseJson(e.get<1>());
         EXPECT_STREQ(json["message"].asCString(), "Unable to connect node. Wait until benchmark result is computed!");
       }
   );
@@ -129,7 +129,7 @@ TEST_F(CompNodeFixture, TestService_Connect_Repeated)
       r = requestor_->PerformRequest("/v1/Connect", HttpMethod::POST, body.toStyledString()),
       {
         EXPECT_EQ(e.get<0>(), 409);
-        auto json = HttpRequestService::ParseJson(e.get<1>());
+        auto json = ParseJson(e.get<1>());
         EXPECT_STR_CONTAINS(json["message"].asCString(),"Node is already connected to RabbitMQ");
       }
   );
@@ -147,7 +147,7 @@ TEST_F(CompNodeFixture, TestService_Connect_InvalidQService)
       r = requestor_->PerformRequest("/v1/Connect", HttpMethod::POST, invalid_body.toStyledString()),
       {
         EXPECT_EQ(e.get<0>(), 409);
-        auto json = HttpRequestService::ParseJson(e.get<1>());
+        auto json = ParseJson(e.get<1>());
         EXPECT_STR_CONTAINS(json["message"].asCString(),"Queue connection error ms");
       }
   );
@@ -163,7 +163,7 @@ TEST_F(CompNodeFixture, TestService_Disconnect_Sucess)
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
 
   EXPECT_EQ(r.first,200)<<fmt::format("Invalid response code: expected {}, got {} !",200,r.first);
-  auto json=requestor_->ParseJson(r.second);
+  auto json=ParseJson(r.second);
 
   EXPECT_FALSE(json.isMember("connected_to"));
 
@@ -178,7 +178,7 @@ TEST_F(CompNodeFixture, TestService_Disconnect_Repeated)
       r = requestor_->PerformRequest("/v1/Disconnect", HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 409);
-        auto json = HttpRequestService::ParseJson(e.get<1>());
+        auto json = ParseJson(e.get<1>());
         EXPECT_STREQ(json["message"].asCString(),"This worker node is currently not connected to any cluster!");
       }
   );
@@ -189,7 +189,7 @@ TEST_F(CompNodeFixture, TestService_Rebalance_Sucess)
 {
   SLEEP(std::chrono::milliseconds(200));
   r = requestor_->PerformRequest("/v1/rebalance_node", HttpMethod::POST);
-  auto json =HttpRequestService::ParseJson(r.second);
+  auto json =ParseJson(r.second);
   EXPECT_STREQ(json["request"].asCString(),"rebalance_node");
   ASSERT_TRUE(json.isMember("old_bench"));
 }
@@ -205,7 +205,7 @@ TEST_F(CompNodeFixture, TestService_Rebalance_TooSoon)
       r = requestor_->PerformRequest("/v1/rebalance_node", HttpMethod::POST),
       {
         EXPECT_EQ(e.get<0>(), 409);
-        auto json = HttpRequestService::ParseJson(e.get<1>());
+        auto json = ParseJson(e.get<1>());
         EXPECT_STREQ(json["message"].asCString(),"Rabalancing is already running try again later!");
       }
   );
