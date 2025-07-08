@@ -9,6 +9,17 @@ using namespace shared;
 namespace rest::v1 {
 using comp_services::ComputationNodeService;
 
+
+/**
+ * @brief Wraps service method call
+ * @param req
+ * @param callback
+ * @param service_call
+ */
+void WrapServiceCall(const drogon::HttpRequestPtr &req,
+                     std::function<void(const drogon::HttpResponsePtr &)> &&callback,
+                     std::function<Json::Value(const drogon::HttpRequestPtr&)> service_call);
+
 class CompNode : public drogon::HttpController<CompNode> {
   std::unique_ptr<ComputationNodeService> handler_;
 

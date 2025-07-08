@@ -1,6 +1,4 @@
-if (BUILD_TESTS)
-    add_subdirectory(test)
-endif ()
+
 
 
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/computationalNode/lib)
@@ -29,4 +27,17 @@ target_link_libraries(compNode computationalNodeLib allUtils)
 enable_coverage_for_target(compNode)
 
 
+if (BUILD_TESTS)
+    add_subdirectory(test)
 
+    add_custom_command(
+            TARGET compNode
+            POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:compNode>
+            ${CMAKE_BINARY_DIR}/computationalNode/test/$<TARGET_FILE_NAME:compNode>
+            COMMENT "Copying compNode to test directory"
+    )
+
+    file(COPY config
+            DESTINATION ${CMAKE_BINARY_DIR}/computationalNode/test)
+endif ()

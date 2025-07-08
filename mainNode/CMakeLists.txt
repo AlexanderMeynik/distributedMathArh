@@ -1,8 +1,6 @@
 
 
-if (BUILD_TESTS)
-    add_subdirectory(test)
-endif ()
+
 
 include_directories(include)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/mainNode/lib)
@@ -38,3 +36,19 @@ target_link_libraries(consumer PUBLIC network_shared_lib)
 
 add_executable(producer aqmpProd.cpp)
 target_link_libraries(producer PUBLIC network_shared_lib)
+
+
+if (BUILD_TESTS)
+    add_subdirectory(test)
+    add_custom_command(
+            TARGET mainNode
+            POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:mainNode>
+            ${CMAKE_BINARY_DIR}/mainNode/test/$<TARGET_FILE_NAME:mainNode>
+            COMMENT "Copying mainNode to test directory"
+    )
+
+    file(COPY config
+            DESTINATION ${CMAKE_BINARY_DIR}/mainNode/test)
+
+endif ()

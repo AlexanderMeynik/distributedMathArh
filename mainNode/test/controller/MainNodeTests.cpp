@@ -56,8 +56,8 @@ class MainNodeTs: public ::testing::Test {
     comp_node="./compNode";
     main_node="./mainNode";
     requestor_=std::make_unique<HttpRequestService>();
-    mainNodeBin = std::filesystem::absolute("../bin");
-    compNodeBin = std::filesystem::absolute("../../computationalNode/bin");
+    mainNodeBin = std::filesystem::absolute(".");
+    compNodeBin = std::filesystem::absolute("../../computationalNode/test");
     hander_ = std::make_shared<BasicAuthHandler>(g_serviceParams.username, g_serviceParams.password);
     amqp_service_ = std::make_unique<RabbitMQRestService>(g_serviceParams.host, hander_.get());
     amqp_service_->CreateQueue(vhost_,network_types::queue{qq_,g_serviceParams.username});
@@ -93,6 +93,7 @@ class MainNodeTs: public ::testing::Test {
 
 TEST_F(MainNodeTs, MainNodeService_Status_Default)
 {
+  SLEEP(std::chrono::milliseconds(100));
   r=requestor_->PerformRequest("/v1/status",HttpMethod::GET);
   auto json=ParseJson(r.second);
   EXPECT_EQ(r.first,200);
@@ -216,14 +217,8 @@ TEST_F(MainNodeTs, MainNodeService_ConnectNode_Sucess)
                                                connect_publisher_body.toStyledString()));
 
   this->RunCompNode(8081);
-  RestServiceSet(comp_node_host,8081);
+  SLEEP(std::chrono::milliseconds(200));
 
-  SLEEP(std::chrono::milliseconds(100));
-  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/status",HttpMethod::GET));
-
-  fmt::print("{}",ParseJson(r.second).toStyledString());
-
-  RestServiceSet();
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
@@ -246,16 +241,8 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_NodeSucess)
 
 
   this->RunCompNode(8081);
-  RestServiceSet(comp_node_host,8081);
-
   SLEEP(std::chrono::milliseconds(100));
-  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/status",HttpMethod::GET));
 
-  fmt::print("{}",ParseJson(r.second).toStyledString());
-
-  RestServiceSet();
-
-  SLEEP(std::chrono::milliseconds(100));
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
@@ -291,16 +278,7 @@ TEST_F(MainNodeTs, MainNodeService_DisconnectNode_UnableToAcessWorkerNode)
                                                connect_publisher_body.toStyledString()));
 
 
-  SLEEP(std::chrono::milliseconds(200));
-
-  RestServiceSet(comp_node_host,8081);
-
   SLEEP(std::chrono::milliseconds(100));
-  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/status",HttpMethod::GET));
-
-  fmt::print("{}",ParseJson(r.second).toStyledString());
-
-  RestServiceSet();
 
   EXPECT_NO_THROW(r=requestor_->PerformRequest(fmt::format("v1/connect_node?ip={}:{}",comp_node_host,8081),HttpMethod::POST));
   EXPECT_EQ(r.first,200);
@@ -377,23 +355,12 @@ TEST_F(MainNodeTs, MainNodeService_Rebalance_NoNodes)
 
 TEST_F(MainNodeTs, MainNodeService_Rebalance_UnableToAcessWotkerNode)
 {
-
-
   auto it=this->RunCompNode(8081).first;
   auto node_name=fmt::format("{}:{}",host,8081);
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
                                                connect_publisher_body.toStyledString()));
 
 
-
-  RestServiceSet(comp_node_host,8081);
-
-  SLEEP(std::chrono::milliseconds(100));
-  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/status",HttpMethod::GET));
-
-  fmt::print("{}",ParseJson(r.second).toStyledString());
-
-  RestServiceSet();
 
   SLEEP(std::chrono::milliseconds(100));
 
@@ -424,15 +391,6 @@ TEST_F(MainNodeTs, MainNodeService_Rebalance_Sucess)
   auto node_name=fmt::format("{}:{}",host,8081);
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
                                                connect_publisher_body.toStyledString()));
-
-  RestServiceSet(comp_node_host,8081);
-
-  SLEEP(std::chrono::milliseconds(100));
-  EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/status",HttpMethod::GET));
-
-  fmt::print("{}",ParseJson(r.second).toStyledString());
-
-  RestServiceSet();
 
   SLEEP(std::chrono::milliseconds(200));
 

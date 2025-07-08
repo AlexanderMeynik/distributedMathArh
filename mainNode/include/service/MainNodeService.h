@@ -34,7 +34,6 @@ class MainNodeService {
   /**
    * @brief Queries the status of the main node and connected workers
    * Status contains:
-   * @todo refactor node list output
    * 1. Connection status to a RabbitMQ instance (with data if connected)
    * 2. Several lists(by status) of all nodes with their characteristics(bench result ...)
    */

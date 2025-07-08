@@ -34,7 +34,7 @@ Json::Value WorkerManagementService::AddNewNode(const std::string & host_port) {
       ) {
     ComputationalNode cn;
 
-    cn.http_client_ = HttpClient::newHttpClient("http://" + host_port);
+    cn.http_client_ = HttpClient::newHttpClient(fmt::format("http://{}", host_port));
     cn.st_ = INACTIVE;
     worker_nodes_[INACTIVE][host_port] = std::move(cn);
   } else {

@@ -45,7 +45,7 @@ class CompNodeFixture: public ::testing::Test {
   {
     comp_node="./compNode";
     requestor_=std::make_unique<HttpRequestService>();
-    compNodeBin = std::filesystem::absolute("../bin");
+    compNodeBin = std::filesystem::absolute(".");
     hander_ = std::make_shared<BasicAuthHandler>(g_serviceParams.username, g_serviceParams.password);
     amqp_service_ = std::make_unique<RabbitMQRestService>(g_serviceParams.host, hander_.get());
     amqp_service_->CreateQueue(vhost_,network_types::queue{qq_,g_serviceParams.username});
@@ -72,6 +72,8 @@ class CompNodeFixture: public ::testing::Test {
 
 TEST_F(CompNodeFixture, TestService_Status_Default)
 {
+  SLEEP(std::chrono::milliseconds(100));
+
   EXPECT_NO_THROW(r=requestor_->PerformRequest("/v1/status",HttpMethod::GET));
 
   EXPECT_EQ(r.first,200)<<fmt::format("Invalid response code: expected {}, got {} !",200,r.first);

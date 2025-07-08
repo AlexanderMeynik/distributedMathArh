@@ -12,6 +12,15 @@ using namespace drogon;
 using namespace main_services;
 
 /**
+ * @brief Wraps service method call
+ * @param req
+ * @param callback
+ * @param service_call
+ */
+void WrapServiceCall(const drogon::HttpRequestPtr &req,
+                     std::function<void(const drogon::HttpResponsePtr &)> &&callback,
+                     std::function<Json::Value(const drogon::HttpRequestPtr&)> service_call);
+/**
  * @class ClusterConfigController
  * @brief Drogon service for main node
  */
