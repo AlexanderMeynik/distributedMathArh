@@ -64,20 +64,20 @@ class MainNodeTs: public ::testing::Test {
     host =ExtractHost(g_serviceParams.host).value();
     comp_node_host="localhost";
     body=Json::Value();
-    body["ip"]=host;
+    body["ip"]=comp_node_host;
     body["name"]=qq_;
     body["user"]=g_serviceParams.username;
     body["password"]=g_serviceParams.password;
 
     connect_publisher_body=Json::Value();
-    connect_publisher_body["queue_host"]=comp_node_host;
+    connect_publisher_body["queue_host"]=host;
     connect_publisher_body["user"]=g_serviceParams.username;
     connect_publisher_body["password"]=g_serviceParams.password;
 
   }
   static void TearDownTestSuite()
   {
-    
+
   }
   HttpResult r;
   static inline std::string comp_node;
@@ -193,7 +193,6 @@ TEST_F(MainNodeTs, MainNodeService_ConnectNode_PublisherNotConnected)
   );
 }
 
-//todo create queue with different specs to cauae an erro at MainNodeService.cpp::59
 
 TEST_F(MainNodeTs, MainNodeService_ConnectNode_NodeNotRunning)
 {
@@ -213,7 +212,7 @@ TEST_F(MainNodeTs, MainNodeService_ConnectNode_NodeNotRunning)
   );
 }
 
-TEST_F(MainNodeTs, MainNodeService_ConnectNode_NodeSucess)
+TEST_F(MainNodeTs, MainNodeService_ConnectNode_Sucess)
 {
 
   this->RunCompNode(8081);
@@ -340,8 +339,8 @@ TEST_F(MainNodeTs, MainNodeService_Rebalance_NoNodes)
   EXPECT_NO_THROW(r=requestor_->PerformRequest("v1/connect_publisher",HttpMethod::POST,
                                                connect_publisher_body.toStyledString()));
 
-  
-  
+
+
   EXPECT_EXCEPTION_WITH_CHECKS(
       shared::HttpError,
       r=requestor_->PerformRequest("v1/rebalance",HttpMethod::POST),
