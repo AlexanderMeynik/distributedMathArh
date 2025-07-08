@@ -132,6 +132,13 @@ class JsonAuthHandler : public BasicAuthHandler {
   std::pair<std::string, std::string> Retrive();
 };
 
+/**
+   * @brief Shorthand to retrieve JSON object
+   * @param json_str
+   * @return
+   */
+Json::Value ParseJson(const std::string &json_str);
+
 class HttpRequestService
 {
  public:
@@ -189,13 +196,7 @@ class HttpRequestService
                             const HttpMethod &method,
                             const std::string &data = "");
 
-  /**
-   * @brief Shorthand to retrieve JSON object
-   * @param json_str
-   * @todo move outside
-   * @return
-   */
-  static Json::Value ParseJson(const std::string &json_str);
+
 
  protected:
   std::string base_url_; ///< url to perform request

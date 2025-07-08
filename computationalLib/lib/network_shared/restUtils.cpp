@@ -152,7 +152,7 @@ HttpResult HttpRequestService::PerformRequest(const std::string &path,
   return PerformRequest(path, ToString(method), data);
 }
 
-Json::Value HttpRequestService::ParseJson(const std::string &json_str) {
+Json::Value ParseJson(const std::string &json_str) {
   Json::Value root;
   Json::CharReaderBuilder builder;
   std::string errs;
